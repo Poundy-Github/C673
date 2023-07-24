@@ -1,0 +1,90 @@
+VERSION "created by canmatrix"
+
+
+NS_ :
+
+BS_:
+
+BU_: Test ADASACAN 
+
+
+BO_ 1684 LAS_DTC: 64 ADASACAN
+ SG_ LAS_DTC1_HighByte : 7|8@0+ (1,0) [0.0|255.0] "" Test
+ SG_ LAS_DTC1_LowByte : 23|8@0+ (1,0) [0.0|255.0] "" Test
+ SG_ LAS_DTC1_MiddByte : 15|8@0+ (1,0) [0.0|255.0] "" Test
+ SG_ LAS_DTC1_Status : 31|8@0+ (1,0) [0.0|255.0] "" Test
+ SG_ LAS_DTC2_HighByte : 39|8@0+ (1,0) [0.0|255.0] "" Test
+ SG_ LAS_DTC2_LowByte : 55|8@0+ (1,0) [0.0|255.0] "" Test
+ SG_ LAS_DTC2_MiddByte : 47|8@0+ (1,0) [0.0|255.0] "" Test
+ SG_ LAS_DTC2_Status : 63|8@0+ (1,0) [0.0|255.0] "" Test
+
+BO_ 759 TboxLocalTime: 64 Test
+ SG_ TboxLocalTiDate : 20|5@0+ (1,0) [0.0|31.0] "day" ADASACAN
+ SG_ TboxLocalTiHr : 28|5@0+ (1,0) [0.0|31.0] "hour" ADASACAN
+ SG_ TboxLocalTiMins : 37|6@0+ (1,0) [0.0|63.0] "minute" ADASACAN
+ SG_ TboxLocalTiMth : 11|4@0+ (1,0) [0.0|15.0] "month" ADASACAN
+ SG_ TboxLocalTiSec : 45|6@0+ (1,0) [0.0|63.0] "second" ADASACAN
+ SG_ TboxLocalTiVld : 46|1@0+ (1,0) [0.0|1.0] "" ADASACAN
+ SG_ TboxLocalTiYear : 7|8@0+ (1,2000) [2000.0|2255.0] "year" ADASACAN
+
+BO_ 353 VcuInfo: 64 Test
+ SG_ VcuGearPosn : 65|3@0+ (1,0) [0.0|7.0] "" ADASACAN
+
+BO_ 648 BcmInfo: 64 Test
+ SG_ BcmAutHeadLiSts : 16|1@0+ (1,0) [0.0|1.0] "" ADASACAN
+ SG_ BcmFrntWiperSts_ : 47|2@0+ (1,0) [0.0|3.0] "" ADASACAN
+ SG_ BcmHiBeamSts : 5|2@0+ (1,0) [0.0|3.0] "" ADASACAN
+ SG_ BcmLoBeamSts : 7|2@0+ (1,0) [0.0|3.0] "" ADASACAN
+
+BO_ 651 BCM_TurnLight: 64 Test
+ SG_ BCM_TurnLightSwitchSts : 3|2@0+ (1,0) [0.0|3.0] "" ADASACAN
+
+BO_ 378 EspVeh: 64 Test
+ SG_ EspVehSpdVld : 37|1@0+ (1,0) [0.0|1.0] "" ADASACAN
+ SG_ EspVehSpd : 36|13@0+ (0.05625,0) [0.0|460.744] "km/h" ADASACAN
+
+BO_ 384 EpsSas: 64 Test
+ SG_ EpsSasSteerAg : 7|16@0+ (0.1,-780) [-780.0|780.0] "degree" ADASACAN
+ SG_ EpsSasSteerAgVld : 31|1@0+ (1,0) [0.0|1.0] "" ADASACAN
+
+BO_ 632 ESPInfo: 64 Test
+ SG_ ESP_YawRate : 37|14@0+ (0.01,-81.91) [-81.91|81.92] "degree/s" ADASACAN
+ SG_ ESP_YawRateValid : 55|1@0+ (1,0) [0.0|1.0] "" ADASACAN
+ SG_ ESP_LongAccel : 31|10@0+ (0.03125,-16) [-16.0|15.9063] "m/s2" ADASACAN
+ SG_ ESP_LongAccelValid : 3|2@0+ (1,0) [0.0|3.0] "" ADASACAN
+
+
+
+
+
+BA_DEF_ BO_ "GenMsgCycleTime" INT 0 65535;
+BA_DEF_ BO_ "GenMsgCycleTimeActive" INT 0 65535;
+BA_DEF_ BO_ "GenMsgDelayTime" INT 0 65535;
+BA_DEF_ BO_ "GenMsgNrOfRepetitions" INT 0 65535;
+BA_DEF_ BO_ "GenMsgSendType" ENUM  "cyclicX","spontanX","cyclicIfActiveX","spontanWithDelay","cyclicAndSpontanX","cyclicAndSpontanWithDelay","spontanWithRepitition","cyclicIfActiveAndSpontanWD","cyclicIfActiveFast","cyclicWithRepeatOnDemand","none";
+BA_DEF_ BO_ "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","StandardCAN_FD","ExtendedCAN_FD";
+BA_DEF_ SG_ "GenSigSNA" STRING;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_ "BusType" STRING;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_ "BusType" "CAN FD";
+BA_ "DBName" "C385EV";
+
+BA_ "GenMsgCycleTime" BO_ 1684 500;
+BA_ "VFrameFormat" BO_ 1684 14;
+BA_ "GenMsgCycleTime" BO_ 759 100;
+BA_ "VFrameFormat" BO_ 759 14;
+BA_ "GenMsgCycleTime" BO_ 353 10;
+BA_ "VFrameFormat" BO_ 353 14;
+BA_ "GenMsgCycleTime" BO_ 648 40;
+BA_ "VFrameFormat" BO_ 648 14;
+BA_ "GenMsgCycleTime" BO_ 651 40;
+BA_ "VFrameFormat" BO_ 651 14;
+BA_ "GenMsgCycleTime" BO_ 378 10;
+BA_ "VFrameFormat" BO_ 378 14;
+BA_ "GenMsgCycleTime" BO_ 384 10;
+BA_ "VFrameFormat" BO_ 384 14;
+BA_ "GenMsgCycleTime" BO_ 632 20;
+BA_ "VFrameFormat" BO_ 632 14;
+
+

@@ -1,0 +1,17 @@
+		select ".data.HlaAdapter.*";
+		select ".data.HLA_DecisionParameters.*";
+		select ".data.HLA_MatrixParameters.*";
+		select ".data.hla_cpar_init.*";
+		select ".data.hla_errorhandling.*";
+		select ".data.hla_utils.*";
+		select ".data.hla_input_checks.*";
+		select ".data.hla_main.*";
+		select ".data.hla_output_checks.*";
+		select ".data.hla_outputs.*";
+		select ".data.hlaf.*";
+		select ".data.hlaf_decision.*";
+		select ".data.hlaf_decision_blockage.*";
+		select ".data.hlaf_decision_environment.*";
+		select ".data.hlaf_decision_keepoff.*";
+		select ".data.hlaf_matrix.*";
+		select ".data.hlaf_matrixgfa.*";

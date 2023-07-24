@@ -1,0 +1,36 @@
+Vayu_DSP.zip: Platform.xdc
+Platform.xdc:
+Vayu_DSP.zip: Platform.xs
+Platform.xs:
+Vayu_DSP.zip: config.bld
+config.bld:
+Vayu_DSP.zip: package/.vers_b160
+package/.vers_b160:
+Vayu_DSP.zip: package/.vers_g180
+package/.vers_g180:
+Vayu_DSP.zip: package/.vers_r170
+package/.vers_r170:
+Vayu_DSP.zip: package/.xdc-z52
+package/.xdc-z52:
+Vayu_DSP.zip: package/Vayu_DSP.ccs
+package/Vayu_DSP.ccs:
+Vayu_DSP.zip: package/Vayu_DSP.class
+package/Vayu_DSP.class:
+Vayu_DSP.zip: package/Vayu_DSP.java
+package/Vayu_DSP.java:
+Vayu_DSP.zip: package/Vayu_DSP.sch
+package/Vayu_DSP.sch:
+Vayu_DSP.zip: package/build.cfg
+package/build.cfg:
+Vayu_DSP.zip: package/package.bld.xml
+package/package.bld.xml:
+Vayu_DSP.zip: package/package.defs.h
+package/package.defs.h:
+Vayu_DSP.zip: package/package_Vayu_DSP.c
+package/package_Vayu_DSP.c:
+Vayu_DSP.zip: package.bld
+package.bld:
+Vayu_DSP.zip: package.xdc
+package.xdc:
+Vayu_DSP.zip: project.pj
+project.pj:

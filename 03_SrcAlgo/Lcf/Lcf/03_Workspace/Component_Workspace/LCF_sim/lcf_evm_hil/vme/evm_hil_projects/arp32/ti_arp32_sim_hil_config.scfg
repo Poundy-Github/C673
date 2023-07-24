@@ -1,0 +1,26 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. When needed, additional file list can be added (the path should be relative to the
+#    folder containing SConstruct).
+# 3. Include all required source files in ti_arp32_hil_src.
+# 4. Include all required include paths in ti_arp32_hil_cpp_path.
+# 5. Add libraries which are used for all variants in external_lib.
+# ----------------------------------------------------------------------------------------
+
+# read file list containing source files and include paths
+execfile(File("#../lcf_sim/lcf_evm_hil/vme/evm_hil_projects/arp32/ti_arp32_sim_hil_file_list.scfg").abspath)
+execfile(File("#../lcf_sim/lcf_evm_hil/vme/evm_hil_projects/CommonSoC/ecu_sim_hil_file_list.scfg").abspath)
+execfile(File("#../../../01_Source_Code/algo/lcf/algo_lib_file_list.scfg").abspath)
+
+# sources files list
+ti_arp32_hil_src = (Split(arp32_sim_hil_sources) + 
+                    Split(arp32_sim_hil_asm_sources) + 
+                    Split(ecu_eve_sim_hil_sources))
+
+# include paths list
+ti_arp32_hil_cpp_path = (Split(ecu_sim_hil_include_paths) + 
+                         Split(lcf_algo_common_include_paths) + 
+                         Split(lcf_algo_ti_eve_arp32_include_paths))
+
+# external libraries
+external_lib = ["rtsarp32_v200.lib"]

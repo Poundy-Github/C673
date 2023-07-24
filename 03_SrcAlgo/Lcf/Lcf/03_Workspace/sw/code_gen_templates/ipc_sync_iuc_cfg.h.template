@@ -1,0 +1,196 @@
+// Copyright (C) Continental AG
+// All Rights Reserved
+// COMPONENT: IPC
+// VERSION:   $Revision: 1.1 $
+
+
+/// @file
+/// @brief Holds the communication list which describes the data transfer between mcu and soc.
+
+#ifndef IPC_SYNC_IUC_CFG_H
+#define IPC_SYNC_IUC_CFG_H
+
+#include <glob_defs.h> // Defines for SWITCH_ON and SWITCH_OFF
+#include <glob_type.h>
+#include <Rte_Type.h>
+#include <IPC_BASE/IPC_DataBaseConfig/ipc_sync_cfg.h>
+
+#ifdef DB_PLATFORM_MCU
+  #include <ipc_sync_iuc_types.h>
+  #include <ipc_master_config.h>
+  #if (IPC_USED_DB == DB_Type_ITC)
+    #include <itc.h>
+  #endif
+#endif // DB_PLATFORM_MCU
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef struct tag_IPC_t_ClusterListAndListLength
+{
+  const IPC_CLUSTER_ID* p_clusterList;
+  uint32                u_NO_LIST_ELEMENTS;
+} IPC_t_ClusterListAndListLength;
+
+
+#ifdef DB_PLATFORM_MCU
+
+
+  #if (CFG_IOB_MODE == SWITCH_ON)
+// PRQA S 0639 ++
+// 06.05.2019; uib12158
+// summary: Msg(3:0639) Number of members in 'struct' or 'union' exceeds 127 - program does not conform strictly to ISO:C90.
+// reason: we use C99 compliant compiler.
+/// Provides the needed size of the database on IUC.
+/// The size of the database is the sum of all sizes clusters with an entry in the column "IPC" (MCU, DPU) and a header for each cluster (+4).
+typedef struct tag_EFFECTIVE_DATABASE_SIZE_NORMAL_t
+{
+/*!<codegen_start:EFFECTIVE_DB_SIZE_NORMAL>*/\
+/*!<codegen_end:EFFECTIVE_DB_SIZE_NORMAL>*/\
+} EFFECTIVE_DATABASE_SIZE_NORMAL_t;
+// PRQA S 0639 --
+
+typedef struct tag_EFFECTIVE_DATABASE_SIZE_IOB_t
+{
+/*!<codegen_start:EFFECTIVE_DB_SIZE_IOB>*/\
+/*!<codegen_end:EFFECTIVE_DB_SIZE_IOB>*/\
+} EFFECTIVE_DATABASE_SIZE_IOB_t;
+
+// PRQA S 3629 ++ // 2019-05-06 uib12158
+// Summary: Msg(3:3629) Union contains member of floating type.
+// reason: Ok in this case, as the union is not used to manipulate the clusters but to calculate the biggest cluster.
+typedef union tag_EFFECTIVE_DATABASE_SIZE_t
+{
+  EFFECTIVE_DATABASE_SIZE_NORMAL_t Dummy_NORMAL;
+  EFFECTIVE_DATABASE_SIZE_IOB_t    Dummy_IOB;
+} EFFECTIVE_DATABASE_SIZE_t;
+// PRQA S 3629 --
+
+    #define EFFECTIVE_DATABASE_SIZE  (sizeof(EFFECTIVE_DATABASE_SIZE_t))
+
+extern const uint32 ui32_EffectiveDatabaseSize[IPC_NO_OPMODES];
+
+  #else // CFG_IOB_MODE
+    #define EFFECTIVE_DATABASE_SIZE ( 0 \
+/*!<codegen_start:EFFECTIVE_DATABASE_SIZE>*/ \
+/*!<codegen_end:EFFECTIVE_DATABASE_SIZE>*/ \
+)
+  #endif // CFG_IOB_MODE
+
+// PRQA S 3629 ++ // 2019-03-24; uidw7409; summary: Msg(3:3629) Union contains member of floating type.;
+// reason: All used types are defined by Algo, so no chance to change those. Union is used here mainly to find out about the size of the different clusters.
+typedef union tag_ClusterPayload {
+/*!<codegen_start:UNION_CLUSTER_TYPE>*/
+/*!<codegen_end:UNION_CLUSTER_TYPE>*/
+} ClusterPayload_t;
+// PRQA S 3629 --
+
+  #define IPC_TYPE(IpcClusterName) IpcClusterName##_TYPE
+
+/*!<codegen_start:CLUSTER_NAME_TYPE>*/
+/*!<codegen_end:CLUSTER_NAME_TYPE>*/
+
+#endif //DB_PLATFORM_MCU
+
+// PRQA S 1020,1026 ++
+// 2019-04-16; uidh2866
+// summary: Msg(3:1020) Avoid macros.Use constants, enumerators, typedefs or inline functions instead. MISRA-C++ Rules 16-0-4, 16-2-1
+// summary: Msg(3:1026) Macro may be used as a constant expression. Use constants, enumerators, typedefs or inline functions instead. MISRA-C++ Rule 16-2-2
+// reason:  Macros are used on purpose here since they will be used in preprocessor statement or as array dimensions where constants are not applicable.
+
+#define IPC_NO_IUC_RECEIVE_CLUSTERS_NORMAL (\
+/*!<codegen_start:IPC_NO_IUC_RECEIVE_CLUSTERS_NORMAL>*/\
+/*!<codegen_end:IPC_NO_IUC_RECEIVE_CLUSTERS_NORMAL>*/\
+)
+
+#define IPC_NO_IUC_SEND_CLUSTERS_NORMAL (\
+/*!<codegen_start:IPC_NO_IUC_SEND_CLUSTERS_NORMAL>*/\
+/*!<codegen_end:IPC_NO_IUC_SEND_CLUSTERS_NORMAL>*/\
+)
+
+#define IPC_NO_IUC_RECEIVE_CLUSTERS_IOB (\
+/*!<codegen_start:IPC_NO_IUC_RECEIVE_CLUSTERS_IOB>*/\
+/*!<codegen_end:IPC_NO_IUC_RECEIVE_CLUSTERS_IOB>*/\
+)
+#define IPC_NO_IUC_SEND_CLUSTERS_IOB (\
+/*!<codegen_start:IPC_NO_IUC_SEND_CLUSTERS_IOB>*/\
+/*!<codegen_end:IPC_NO_IUC_SEND_CLUSTERS_IOB>*/\
+)
+
+#define IPC_NO_IUC_RECEIVE_CLUSTERS (\
+/*!<codegen_start:IPC_NO_IUC_RECEIVE_CLUSTERS>*/\
+/*!<codegen_end:IPC_NO_IUC_RECEIVE_CLUSTERS>*/\
+)
+
+#define IPC_NO_IUC_SEND_CLUSTERS (\
+/*!<codegen_start:IPC_NO_IUC_SEND_CLUSTERS>*/\
+/*!<codegen_end:IPC_NO_IUC_SEND_CLUSTERS>*/\
+)
+
+#define IPC_XM_RX_CLUSTERS \
+/*!<codegen_start:IPC_XM_RX_CLUSTERS>*/\
+/*!<codegen_end:IPC_XM_RX_CLUSTERS>*/\
+
+#define IPC_XM_TX_CLUSTERS \
+/*!<codegen_start:IPC_XM_TX_CLUSTERS>*/\
+/*!<codegen_end:IPC_XM_TX_CLUSTERS>*/\
+
+// PRQA S 1020,1026 --
+
+#ifdef DB_PLATFORM_MCU
+
+// A struct type that maps an IPC_CLUSTER_ID to the address of that cluster in the database
+typedef struct tag_DB_t_DbMap {
+  const IPC_CLUSTER_ID clusterId;   ///< The cluster ID
+  void* const p_data;               ///< The pointer to the location of that cluster within the effective database.
+  #if (IPC_USED_DB == DB_Type_ITC)
+  const ITC_t_ItcBuffers itcId;   ///< The corresponding ITC ID
+  #else
+  uint16 iucDatabaseClusterId;    ///< ClusterId from the IuC database. This is not must to fill out if not used in IPC.
+  #endif
+} DB_t_DbMap;
+
+
+extern const DB_t_DbMap DB_a_TxMap[IPC_NO_IUC_SEND_CLUSTERS];
+extern const DB_t_DbMap DB_a_RxMap[IPC_NO_IUC_RECEIVE_CLUSTERS];
+
+  #if (CFG_IOB_MODE == SWITCH_ON)
+
+/// This define determines the total number of relevant clusters on IUC
+extern const uint32 ui32_TotalNoOfRelevantClustersOnIUC[IPC_NO_OPMODES];
+
+    #define TOTAL_NO_OF_RELEVANT_CLUSTERS_ON_IUC (\
+      IPC_NO_IUC_SEND_CLUSTERS_NORMAL + IPC_NO_IUC_RECEIVE_CLUSTERS_NORMAL \
+      +IPC_NO_IUC_SEND_CLUSTERS_IOB + IPC_NO_IUC_RECEIVE_CLUSTERS_IOB)
+  #else // CFG_IOB_MODE
+    #define TOTAL_NO_OF_RELEVANT_CLUSTERS_ON_IUC (IPC_NO_IUC_SEND_CLUSTERS + IPC_NO_IUC_RECEIVE_CLUSTERS)
+  #endif // CFG_IOB_MODE == SWITCH_ON
+
+#endif
+
+
+// The list of all the clusters which shall be sent by IUC to any DPU
+#if (CFG_IOB_MODE == SWITCH_ON)
+  extern const IPC_t_ClusterListAndListLength IPC_a_IUC_SEND_CLUSTERS[IPC_NO_OPMODES];
+#else
+  extern const IPC_CLUSTER_ID IPC_a_IUC_SEND_CLUSTERS[IPC_NO_IUC_SEND_CLUSTERS];
+#endif // CFG_IOB_MODE == SWITCH_ON
+
+#ifdef DB_PLATFORM_MCU
+  /// The list of pointers to the list of clusters which shall be sent to IUC.
+  /// There is one list for each sender
+  #if (CFG_IOB_MODE == SWITCH_ON)
+extern const IPC_t_ClusterListAndListLength* IPC_a_IUC_RECEIVE_CLUSTER_LISTS[IPC_NO_OPMODES];
+  #else
+extern const IPC_t_ClusterListAndListLength IPC_a_IUC_RECEIVE_CLUSTER_LISTS[IPC_NUMBER_OF_COMM_PARTNERS];
+  #endif // #if (CFG_IOB_MODE == SWITCH_ON)
+#else
+extern const IPC_CLUSTER_ID* const IPC_p_IUC_RECEIVE_CLUSTER_LIST;
+#endif // DB_PLATFORM_MCU
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // include guard

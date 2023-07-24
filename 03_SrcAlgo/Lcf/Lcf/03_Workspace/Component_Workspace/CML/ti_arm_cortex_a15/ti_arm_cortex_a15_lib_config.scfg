@@ -1,0 +1,23 @@
+#-----------------------
+# variant configuration
+#-----------------------
+
+# create release variant
+release_variant = "release"
+release_ccflags = "-mlittle-endian -O3 -fno-tree-vectorize -mabi=aapcs -mfpu=neon -mfloat-abi=hard"
+release_cppdefines = ["CML_NO_RTE_DEPENDENCY", "NDEBUG"]
+
+# create debug variant
+debug_variant = "debug"
+debug_ccflags = "-mlittle-endian -g -mabi=aapcs -mfpu=neon -mfloat-abi=hard"
+debug_cppdefines = ["CML_NO_RTE_DEPENDENCY"]
+
+# variable containing compiler flags, defines for all variants
+# when creating additional variant beside "release" and "debug", the variant must be added in this variable
+variant_list = [
+[release_variant, release_ccflags, release_cppdefines],
+[debug_variant,   debug_ccflags,   debug_cppdefines],
+]
+
+# library name
+target_name = "cml_arm_cortex_a15"

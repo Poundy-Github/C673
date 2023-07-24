@@ -1,0 +1,724 @@
+Import('*')
+
+import pprint
+import copy
+import cantata_build_option
+import json
+import re
+import os
+import fnmatch
+import general_cantata_test_setup
+from xml.etree.ElementTree import fromstring, tostring, ElementTree
+import xml
+
+build_eclipse = ARGUMENTS.get('build_eclipse')
+core = ARGUMENTS.get('target')
+product = ARGUMENTS.get('product')
+mut_only = ARGUMENTS.get('mut_only')
+driver_only = ARGUMENTS.get('driver_only')
+
+INCLUDE_OPTION='<listOptionValue builtIn="false" value=""/>'
+
+TEMPLATE_ECLIPSE_PROJECT="""<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+    <name></name>
+    <comment></comment>
+    <projects>
+    </projects>
+    <buildSpec>
+        <buildCommand>
+            <name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
+            <triggers>clean,full,incremental,</triggers>
+            <arguments>
+            </arguments>
+        </buildCommand>
+        <buildCommand>
+            <name>org.eclipse.cdt.managedbuilder.core.ScannerConfigBuilder</name>
+            <triggers>full,incremental,</triggers>
+            <arguments>
+            </arguments>
+        </buildCommand>
+    </buildSpec>
+    <natures>
+        <nature>org.eclipse.cdt.core.cnature</nature>
+        <nature>org.eclipse.cdt.core.ccnature</nature>
+        <nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
+        <nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
+        <nature>com.ipl.products.eclipse.cantpp.cdt.CantataCDTNature</nature>
+    </natures>
+    <linkedResources>
+    </linkedResources>
+</projectDescription>
+"""
+
+LINKED_RESSOURCE="""<link>
+    <name></name>
+    <type>1</type>
+    <locationURI></locationURI>
+</link>"""
+
+TEMPLATE_ECLIPSE_CPROJECT="""<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?>
+
+<cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+    <storageModule moduleId="org.eclipse.cdt.core.settings">
+        <cconfiguration id="cdt.managedbuild.config.gnu.mingw.exe.debug.475600192">
+            <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.mingw.exe.debug.475600192" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+                <externalSettings/>
+                <extensions>
+                    <extension id="org.eclipse.cdt.core.PE" point="org.eclipse.cdt.core.BinaryParser"/>
+                    <extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    <extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    <extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                </extensions>
+            </storageModule>
+            <storageModule moduleId="cdtBuildSystem" version="4.0.0">
+                <configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.mingw.exe.debug.475600192" name="Debug" parent="cdt.managedbuild.config.gnu.mingw.exe.debug">
+                    <folderInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.475600192." name="/" resourcePath="">
+                        <toolChain id="cdt.managedbuild.toolchain.gnu.mingw.exe.debug.860519635" name="MinGW GCC" superClass="cdt.managedbuild.toolchain.gnu.mingw.exe.debug">
+                            <targetPlatform id="cdt.managedbuild.target.gnu.platform.mingw.exe.debug.895962584" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.mingw.exe.debug"/>
+                            <builder buildPath="" id="cdt.managedbuild.tool.gnu.builder.mingw.base.509113906" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="cdt.managedbuild.tool.gnu.builder.mingw.base"/>
+                            <tool id="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug.1321858527" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug">
+                                <option id="gnu.both.asm.option.include.paths.1753684689" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+                                    <listOptionValue builtIn="false" value=""/>
+                                </option>
+                                <inputType id="cdt.managedbuild.tool.gnu.assembler.input.425831710" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+                            </tool>
+                            <tool id="cdt.managedbuild.tool.gnu.archiver.mingw.base.1946281806" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.mingw.base"/>
+                            <tool command="" id="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.debug.2131361424" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.debug">
+                                <option id="gnu.cpp.compiler.mingw.exe.debug.option.optimization.level.1220076713" name="Optimization Level" superClass="gnu.cpp.compiler.mingw.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+                                <option id="gnu.cpp.compiler.mingw.exe.debug.option.debugging.level.1470415969" name="Debug Level" superClass="gnu.cpp.compiler.mingw.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
+                                <option id="gnu.cpp.compiler.option.include.paths.1297856878" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+                                    <listOptionValue builtIn="false" value=""/>
+                                    <listOptionValue builtIn="false" value=""/>
+                                </option>
+                                <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.792901746" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+                            </tool>
+                            <tool command="" id="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.1735256348" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug">
+                                <option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.mingw.exe.debug.option.optimization.level.1604601635" name="Optimization Level" superClass="gnu.c.compiler.mingw.exe.debug.option.optimization.level" valueType="enumerated"/>
+                                <option id="gnu.c.compiler.mingw.exe.debug.option.debugging.level.1110600679" name="Debug Level" superClass="gnu.c.compiler.mingw.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
+                                <option id="gnu.c.compiler.option.include.paths.278441677" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+                                    <listOptionValue builtIn="false" value=""/>
+                                    <listOptionValue builtIn="false" value=""/>
+                                </option>
+                                <inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.363243507" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+                            </tool>
+                            <tool command="" id="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.debug.314468186" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.debug"/>
+                            <tool command="" id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug.11062642" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug">
+                                <inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1882678469" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+                                    <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+                                    <additionalInput kind="additionalinput" paths="$(LIBS)"/>
+                                </inputType>
+                            </tool>
+                        </toolChain>
+                    </folderInfo>
+                </configuration>
+            </storageModule>
+            <storageModule moduleId="org.eclipse.cdt.core.externalSettings">
+                <externalSettings containerId="com.ipl.products.eclipse.cantpp.cdt.external_settings" factoryId="org.eclipse.cdt.core.extension.container.factory">
+                    <externalSetting>
+                        <entry flags="" kind="includePath" name=""/>
+                    </externalSetting>
+                </externalSettings>
+            </storageModule>
+        </cconfiguration>
+        <cconfiguration id="cdt.managedbuild.config.gnu.mingw.exe.release.1452695472">
+            <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.mingw.exe.release.1452695472" moduleId="org.eclipse.cdt.core.settings" name="Release">
+                <externalSettings/>
+                <extensions>
+                    <extension id="org.eclipse.cdt.core.PE" point="org.eclipse.cdt.core.BinaryParser"/>
+                    <extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    <extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    <extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                </extensions>
+            </storageModule>
+            <storageModule moduleId="cdtBuildSystem" version="4.0.0">
+                <configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.mingw.exe.release.1452695472" name="Release" parent="cdt.managedbuild.config.gnu.mingw.exe.release">
+                    <folderInfo id="cdt.managedbuild.config.gnu.mingw.exe.release.1452695472." name="/" resourcePath="">
+                        <toolChain id="cdt.managedbuild.toolchain.gnu.mingw.exe.release.1546941615" name="MinGW GCC" superClass="cdt.managedbuild.toolchain.gnu.mingw.exe.release">
+                            <targetPlatform id="cdt.managedbuild.target.gnu.platform.mingw.exe.release.1756655543" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.mingw.exe.release"/>
+                            <builder buildPath="" id="cdt.managedbuild.tool.gnu.builder.mingw.base.1559672098" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="cdt.managedbuild.tool.gnu.builder.mingw.base"/>
+                            <tool id="cdt.managedbuild.tool.gnu.assembler.mingw.exe.release.1771753282" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.exe.release">
+                                <option id="gnu.both.asm.option.include.paths.77467921" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+                                    <listOptionValue builtIn="false" value=""/>
+                                </option>
+                                <inputType id="cdt.managedbuild.tool.gnu.assembler.input.379177388" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+                            </tool>
+                            <tool id="cdt.managedbuild.tool.gnu.archiver.mingw.base.1523292159" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.mingw.base"/>
+                            <tool command="" id="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.release.1818515380" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.release">
+                                <option id="gnu.cpp.compiler.mingw.exe.release.option.optimization.level.1014695250" name="Optimization Level" superClass="gnu.cpp.compiler.mingw.exe.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
+                                <option id="gnu.cpp.compiler.mingw.exe.release.option.debugging.level.1300818338" name="Debug Level" superClass="gnu.cpp.compiler.mingw.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
+                                <option id="gnu.cpp.compiler.option.include.paths.1398796366" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+                                    <listOptionValue builtIn="false" value=""/>
+                                </option>
+                                <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1171960256" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+                            </tool>
+                            <tool command="" id="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.release.1109949135" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.release">
+                                <option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.mingw.exe.release.option.optimization.level.1646497753" name="Optimization Level" superClass="gnu.c.compiler.mingw.exe.release.option.optimization.level" valueType="enumerated"/>
+                                <option id="gnu.c.compiler.mingw.exe.release.option.debugging.level.722033697" name="Debug Level" superClass="gnu.c.compiler.mingw.exe.release.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
+                                <option id="gnu.c.compiler.option.include.paths.1520341240" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+                                    <listOptionValue builtIn="false" value=""/>
+                                </option>
+                                <inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1432060550" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+                            </tool>
+                            <tool command="" id="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.release.1699955621" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.release"/>
+                            <tool command="" id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.release.1609660504" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.release">
+                                <inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1843537053" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+                                    <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+                                    <additionalInput kind="additionalinput" paths="$(LIBS)"/>
+                                </inputType>
+                            </tool>
+                        </toolChain>
+                    </folderInfo>
+                </configuration>
+            </storageModule>
+            <storageModule moduleId="org.eclipse.cdt.core.externalSettings">
+                <externalSettings containerId="com.ipl.products.eclipse.cantpp.cdt.external_settings" factoryId="org.eclipse.cdt.core.extension.container.factory">
+                    <externalSetting>
+                        <entry flags="" kind="includePath" name=""/>
+                    </externalSetting>
+                </externalSettings>
+            </storageModule>
+        </cconfiguration>
+        <cconfiguration id="1048856009">
+            <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="1048856009" moduleId="org.eclipse.cdt.core.settings" name="Cantata">
+                <externalSettings/>
+                <extensions>
+                    <extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+                    <extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    <extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    <extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                </extensions>
+            </storageModule>
+            <storageModule moduleId="cdtBuildSystem" version="4.0.0">
+                <configuration artifactName="${Cantata++ConfigArtifactName}" buildProperties="" cleanCommand="make clean" description="" errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="1048856009" name="Cantata" parent="com.ipl.products.eclipse.cantpp.testscript.makefiles.configuration">
+                    <folderInfo id="1048856009." name="/" resourcePath="">
+                        <toolChain id="com.ipl.products.eclipse.cantpp.testscript.makefiles.toolchain.39239174" name="Cantata Tool Chain" superClass="com.ipl.products.eclipse.cantpp.testscript.makefiles.toolchain">
+                            <targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.target.gnu.platform.base.105248293" name="Debug Platform" osList="linux,hpux,aix,qnx" superClass="cdt.managedbuild.target.gnu.platform.base"/>
+                            <builder buildPath="" id="com.ipl.products.eclipse.cantpp.testscript.makefiles.builder.1534993516" keepEnvironmentInBuildfile="false" name="Cantata Project Builder" superClass="com.ipl.products.eclipse.cantpp.testscript.makefiles.builder"/>
+                            <tool id="cdt.managedbuild.tool.gnu.archiver.base.475592403" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
+                            <tool command="" id="cdt.managedbuild.tool.gnu.cpp.compiler.base.2041326761" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base">
+                                <option id="gnu.cpp.compiler.option.include.paths.1122025265" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+                                    <listOptionValue builtIn="false" value=""/>
+                                </option>
+                                <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.484960020" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+                            </tool>
+                            <tool command="" id="cdt.managedbuild.tool.gnu.c.compiler.base.1634481951" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base">
+                                <option id="gnu.c.compiler.option.include.paths.2057159869" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+                                    <listOptionValue builtIn="false" value=""/>
+                                </option>
+                                <inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.52761006" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+                            </tool>
+                            <tool command="" id="cdt.managedbuild.tool.gnu.c.linker.base.1129691529" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.base"/>
+                            <tool command="" id="cdt.managedbuild.tool.gnu.cpp.linker.base.1878440098" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base">
+                                <inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1888828386" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+                                    <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+                                    <additionalInput kind="additionalinput" paths="$(LIBS)"/>
+                                </inputType>
+                            </tool>
+                            <tool id="cdt.managedbuild.tool.gnu.assembler.base.96229697" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.base">
+                                <option id="gnu.both.asm.option.include.paths.1617640370" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+                                    <listOptionValue builtIn="false" value=""/>
+                                </option>
+                                <inputType id="cdt.managedbuild.tool.gnu.assembler.input.788816808" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+                            </tool>
+                            <tool id="com.ipl.products.eclipse.cantpp.testscript.makefiles.tool.1359748425" name="Cantata Tool" superClass="com.ipl.products.eclipse.cantpp.testscript.makefiles.tool"/>
+                        </toolChain>
+                    </folderInfo>
+                </configuration>
+            </storageModule>
+            <storageModule moduleId="org.eclipse.cdt.core.externalSettings">
+                <externalSettings containerId="com.ipl.products.eclipse.cantpp.cdt.external_settings" factoryId="org.eclipse.cdt.core.extension.container.factory">
+                    <externalSetting>
+                        <entry flags="" kind="includePath" name=""/>
+                    </externalSetting>
+                </externalSettings>
+            </storageModule>
+        </cconfiguration>
+    </storageModule>
+    <storageModule moduleId="cdtBuildSystem" version="4.0.0">
+        <project id="" name="Executable" projectType="cdt.managedbuild.target.gnu.mingw.exe"/>
+    </storageModule>
+    <storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+    <storageModule moduleId="scannerConfiguration">
+        <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+        <scannerConfigBuildInfo instanceId="1048856009;1048856009.;cdt.managedbuild.tool.gnu.c.compiler.base.1634481951;cdt.managedbuild.tool.gnu.c.compiler.input.52761006">
+            <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+        </scannerConfigBuildInfo>
+        <scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.release.1452695472;cdt.managedbuild.config.gnu.mingw.exe.release.1452695472.;cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.release.1818515380;cdt.managedbuild.tool.gnu.cpp.compiler.input.1171960256">
+            <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
+        </scannerConfigBuildInfo>
+        <scannerConfigBuildInfo instanceId="1048856009;1048856009.;cdt.managedbuild.tool.gnu.cpp.compiler.base.2041326761;cdt.managedbuild.tool.gnu.cpp.compiler.input.484960020">
+            <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+        </scannerConfigBuildInfo>
+        <scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.475600192;cdt.managedbuild.config.gnu.mingw.exe.debug.475600192.;cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.1735256348;cdt.managedbuild.tool.gnu.c.compiler.input.363243507">
+            <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
+        </scannerConfigBuildInfo>
+        <scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.475600192;cdt.managedbuild.config.gnu.mingw.exe.debug.475600192.;cdt.managedbuild.tool.gnu.cpp.compiler.mingw.exe.debug.2131361424;cdt.managedbuild.tool.gnu.cpp.compiler.input.792901746">
+            <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
+        </scannerConfigBuildInfo>
+        <scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.release.1452695472;cdt.managedbuild.config.gnu.mingw.exe.release.1452695472.;cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.release.1109949135;cdt.managedbuild.tool.gnu.c.compiler.input.1432060550">
+            <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
+        </scannerConfigBuildInfo>
+    </storageModule>
+</cproject>
+"""
+
+ENV = {'PATH' : os.environ['PATH']}
+ENV.update(general_cantata_test_setup.GENERAL_BUILD_SETTINGS['LICENSE_SETTING'])
+
+test_environment = Environment(ENV = ENV )
+test_environment['CPPDEFPREFIX'] = '-D'
+test_environment['INCPREFIX'] = '-I'
+
+def BuildPartlyTemplate(target,source,env):
+    f=open(str(target[0]), 'w')
+    template_new = {}
+    template_new['UNIT_TEST_ITEMS'] = {}
+
+    for _source in source:
+        basename = os.path.splitext(os.path.basename(str(_source)))[0]
+        modulename = os.path.dirname(str(_source)).split('\\')[-1]
+        testdirs = []
+        path = os.path.join(GetLaunchDir(), general_cantata_test_setup.GENERAL_BUILD_SETTINGS['MODULE_TEST_ROOT'])
+        for root, dirnames, filenames in os.walk(path):
+            for dirname in fnmatch.filter(dirnames, basename):
+                testdirs.append(os.path.join(GetLaunchDir(), root, dirname))
+        if len(testdirs) > 1:
+            for dir in testdirs:
+                dirmatch = dir.split(os.sep)
+                if dirmatch[-2] == modulename:
+                    testdir=dir
+                    break
+        elif len(testdirs) == 1:
+            testdir=testdirs[0]
+        else:    
+            testdir = None
+        if testdir != None:
+            cop_files = []
+            for root, dirnames, filenames in os.walk(testdir):
+                for filename in fnmatch.filter(filenames, '*.cop'):
+                    cop_files.append(os.path.join(root, filename))
+            test_driver='test_'+basename+'.cpp'
+            test_drivers = []
+            for root, dirnames, filenames in os.walk(testdir):
+                for filename in fnmatch.filter(filenames, test_driver):
+                    test_drivers.append(os.path.join(root, filename))
+            if len(test_drivers) == 1 and len(cop_files) >= 1:
+                src_path = str(_source)
+                src_path_reduced =  src_path.split(GetLaunchDir() + '\\')[1]
+                src_path_formatted = src_path_reduced.replace('\\', '/')
+                test_drv_path = str(test_drivers[0])
+                test_drv_reduced =  test_drv_path.split(GetLaunchDir() + '\\')[1]
+                test_drv_formatted = test_drv_reduced.replace('\\', '/')
+                template_new['UNIT_TEST_ITEMS'][src_path_formatted] = {'TEST_FILE_NAME':test_driver,
+                                                                       'TEST_PATH':os.path.dirname(test_drv_formatted)
+                                                                      }
+    f.write('CANTATA_BUILD_OPTION = \\\n')
+    pprint.pprint(template_new,stream=f)
+    f.close()
+
+def CollectPartlyTemplates():
+    partlyTemplates = []
+    for root, dirnames, filenames in os.walk(GetLaunchDir()):
+        for filename in fnmatch.filter(filenames,'partly_*.cbo'):  
+            partlyTemplates.append(os.path.join(root, filename))
+    return partlyTemplates
+
+def BuildCompleteTemplate(target,source,env):
+    ft = open(str(target[0]),'w')
+    complete_dict = {}
+    complete_dict['PRODUCT'] = {}
+    for _source in source:
+        fs = open(str(_source),'r')
+        text = fs.read()
+        exec(text)
+        for product_key in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT']:
+            if product_key not in complete_dict['PRODUCT']:
+                complete_dict['PRODUCT'][product_key] = {}
+                complete_dict['PRODUCT'][product_key]['TARGET'] = {}
+            complete_dict['PRODUCT'][product_key]['TARGET'].update(CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product_key]['TARGET'])
+        fs.close()
+    clean_dict = copy.deepcopy(complete_dict)    
+    for product_key in complete_dict['PRODUCT']:
+        for target_key in complete_dict['PRODUCT'][product_key]['TARGET']:
+            for module_key in complete_dict['PRODUCT'][product_key]['TARGET'][target_key]['UNIT_TEST_ITEMS']:
+                if complete_dict['PRODUCT'][product_key]['TARGET'][target_key]['UNIT_TEST_ITEMS'][module_key] == None:
+                    del clean_dict['PRODUCT'][product_key]['TARGET'][target_key]['UNIT_TEST_ITEMS'][module_key]
+    ft.write('CANTATA_BUILD_OPTION = \\\n')
+    pprint.pprint(clean_dict,stream=ft)
+    ft.close()
+
+
+def removeCCppComment( text ) :
+
+    def blotOutNonNewlines( strIn ) :  # Return a string containing only the newline chars contained in strIn
+        return "" + ("\n" * strIn.count('\n'))
+
+    def replacer( match ) :
+        s = match.group(0)
+        if s.startswith('/'):  # Matched string is //...EOL or /*...*/  ==> Blot out all non-newline chars
+            return blotOutNonNewlines(s)
+        else:                  # Matched string is '...' or "..."  ==> Keep unchanged
+            return s
+
+    pattern = re.compile(
+        r'//.*?$|/\*.*?\*/|\'(?:\\.|[^\\\'])*\'|"(?:\\.|[^\\"])*"',
+        re.DOTALL | re.MULTILINE
+    )
+
+    return re.sub(pattern, replacer, text)
+
+
+def CreateCantataOptionFile(env, target, source):
+    f = open(str(source[0]),'r')
+    command_line=f.read()
+    f.close()
+    command_line = command_line.replace('#define','')
+    stripped_lines = ''
+    env['CPPDEFINES'] = []
+    for line in command_line.splitlines():
+         line = removeCCppComment(line)
+         line = line.strip()
+         splits = line.split(' ',1)
+         if len(splits) == 2:
+            env['CPPDEFINES'].append((splits[0],splits[1]))
+         elif len(splits) == 1:
+            env['CPPDEFINES'].append(splits[0])
+    #optStr = '"--analyse"\n'
+    optStr = ''
+    tempStr = env.subst('$_CPPDEFFLAGS')
+    tokens=tempStr.split('-D')
+    for token in tokens:
+        if len(token) > 0:
+            token=token.strip()
+            optStr += '"--parse:-D'+token+'"\n'
+    tempStr = env.subst('$_CPPINCFLAGS')
+    tokens=tempStr.split('-I')
+    for token in tokens:
+        if len(token) > 0:
+            token=token.strip()
+            exclude_fg = False
+            for exlude_path in general_cantata_test_setup.GENERAL_BUILD_SETTINGS['EXCLUDE_INC_PATH']:
+                _token = token.replace('\\','/').lower()
+                _exclude_path = exlude_path.replace('\\','/').lower()
+                if _exclude_path in _token:
+                    exclude_fg = True
+                    break
+            if not exclude_fg:       
+                optStr += '"--parse:-I'+os.path.abspath(token)+'"\n'
+    compiler_path = env.subst("$COMPILER_PATH")
+    compiler_cfg_key = None
+    for compiler_key in general_cantata_test_setup.GENERAL_BUILD_SETTINGS['COMPILER_PORTINGS']['COMPILER'].keys():
+        if compiler_key.replace('\\','/').lower() in compiler_path.replace('\\','/').lower():
+            compiler_cfg_key = compiler_key
+            break
+    if compiler_cfg_key != None:
+        for option in general_cantata_test_setup.GENERAL_BUILD_SETTINGS['COMPILER_PORTINGS']['COMPILER'][compiler_cfg_key]['CANTATA_PORTING_OPTIONS']:
+            optStr += option+'\n'
+    
+    f = open(str(target[0]),'w')
+    f.write(optStr)
+    f.close()
+
+def PrepareCantataOptionFile():
+    test_environment['CPPPATH'] = env['CPPPATH']
+    test_environment['COMPILER_PATH'] = env.subst(env['CC'])
+    try:
+        f = open(config_pkg_compiler_file,'r')
+        command_line=f.read()
+        f.close()
+        d = env.ParseFlags(command_line)
+        test_environment['CPPPATH'] += d['CPPPATH']
+    except:
+        pass
+
+
+
+def PreparePreProcessorList():
+    compiler_path = env.subst(env['CC'])
+    compiler_cfg_key = None
+    command_line = 'echo /* dummy */ > $TARGET' 
+    for compiler_key in general_cantata_test_setup.GENERAL_BUILD_SETTINGS['COMPILER_PORTINGS']['COMPILER'].keys():
+        if compiler_key.replace('\\','/').lower() in compiler_path.replace('\\','/').lower():
+            compiler_cfg_key = compiler_key
+            break
+    if compiler_cfg_key != None:
+        try:
+            command_line = ' '+general_cantata_test_setup.GENERAL_BUILD_SETTINGS['COMPILER_PORTINGS']['COMPILER'][compiler_cfg_key]['COMPILER_CMD_FOR_PREPROCESSOR_LIST'](core, config_pkg_compiler_file)
+        except:    
+            command_line = ' '+general_cantata_test_setup.GENERAL_BUILD_SETTINGS['COMPILER_PORTINGS']['COMPILER'][compiler_cfg_key]['COMPILER_CMD_FOR_PREPROCESSOR_LIST'](core, None)
+    return command_line
+    
+def SysCall(env, target, source):
+    os.system(str(source[0]))
+
+
+def StripConfigTable():
+    mut = ARGUMENTS.get('mut')
+    if mut != None:
+        if product in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT']:
+            if core in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET']:
+                for unit_test_item in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'].keys():
+                    if mut not in unit_test_item:
+                        del CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][unit_test_item]
+
+
+def BuildExecuteables():
+    if product in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT']:
+        if core in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET']:
+            for unit_test_item in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'].keys():
+                if  CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][unit_test_item]['ENABLED']:
+                    ENV = {'PATH' : os.environ['PATH']}
+                    ENV.update(general_cantata_test_setup.GENERAL_BUILD_SETTINGS['LICENSE_SETTING'])
+                    SingleTestEnvironment = Environment(ENV=ENV)
+                    SingleTestEnvironment['INCPREFIX'] = '-I'
+                    SingleTestEnvironment['CPPDEFPREFIX'] = '-D'
+                    SingleTestEnvironment['CPPPATH'] = [os.path.dirname(unit_test_item)]
+                    for inc in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][unit_test_item]['ADDITIONAL_INCLUDES']:
+                        SingleTestEnvironment['CPPPATH'].append(os.path.join(GetLaunchDir(),inc))   
+                    SingleTestEnvironment['CPPDEFINES'] = (CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][unit_test_item]['ADDITIONAL_DEFINES']) 
+                    
+                    cantata_file=os.path.join(cantata_base_dir,'cantata.opt')
+                    target_dir = SingleTestEnvironment.subst("$TARGET",target=os.path.dirname(unit_test_item))
+                    source_basename = os.path.splitext(os.path.basename(unit_test_item))[0]
+                    target = os.path.join(target_dir,source_basename+'.o')
+                    cop_str = ''
+                    objects = []
+                    for cop_file in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][unit_test_item]['COP_FILES']:
+                        cop_str += '-F ' + GetLaunchDir() + '/' + cop_file+' '
+                        if CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][unit_test_item]['MUT_IN_DRIVER_INCLUDED'] == False:
+                            SingleTestEnvironment.Depends(target,os.path.join(GetLaunchDir(),cop_file))
+                        test_driver = CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][unit_test_item]['TEST_DRIVER']   
+                        driver_basename = os.path.splitext(os.path.basename(test_driver))[0]
+                        driver_target = os.path.join(target_dir,driver_basename+'.o')
+                        SingleTestEnvironment.Depends(driver_target,os.path.join(GetLaunchDir(),cop_file))
+                        if CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][unit_test_item]['MUT_IN_DRIVER_INCLUDED'] == True:
+                            SingleTestEnvironment.Depends(driver_target,os.path.join(GetLaunchDir(),unit_test_item))
+                        for add_source in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][unit_test_item]['ADDITIONAL_SOURCES']:
+                            add_source_basename = os.path.splitext(os.path.basename(add_source))[0]
+                            add_source_target = os.path.join(target_dir,add_source_basename+'.o')
+                            SingleTestEnvironment.Depends(add_source_target,os.path.join(GetLaunchDir(),cop_file))
+                    if os.path.basename(unit_test_item)[-2:] != '.c':
+                        SingleTestEnvironment['CCCOM']='cppccd -F %(cantata_file)s %(cop_str)s --intdir:$TARGET.dir --comp:x86-Win32-gpp4.6.2-bundled --no_link -- g++ $_CPPDEFFLAGS $_CPPINCFLAGS -o $TARGET -c $SOURCE'%{'cantata_file':cantata_file,
+                                                                                                                                                                                          'cop_str':cop_str,} 
+                    else:
+                        SingleTestEnvironment['CCCOM']='cppccd -F %(cantata_file)s %(cop_str)s --intdir:$TARGET.dir --comp:x86-Win32-gcc4.6.2-bundled --no_link -- gcc $_CPPDEFFLAGS $_CPPINCFLAGS -o $TARGET -c $SOURCE'%{'cantata_file':cantata_file,
+                                                                                                                                                                                          'cop_str':cop_str,} 
+                    SingleTestEnvironment['LINKCOM']='cppccd %(cop_str)s --intdir:$TARGET.dir --comp:x86-Win32-gpp4.6.2-bundled  g++ $SOURCES -o $TARGET'%{'cop_str':cop_str} 
+                    SingleTestEnvironment['CXXCOM'] = SingleTestEnvironment['CCCOM']
+                    SingleTestEnvironment['ASOM'] = SingleTestEnvironment['CCCOM']
+                    
+                    if mut_only != None:
+                        SingleTestEnvironment.Object(target,unit_test_item)
+                        SingleTestEnvironment.Depends(target,cantata_file)
+                        objects.append(target)
+                        continue
+                    
+                    SingleTestEnvironment.Object(driver_target,os.path.join(GetLaunchDir(),test_driver))
+                    if driver_only != None:
+                        continue
+
+                    if CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][unit_test_item]['MUT_IN_DRIVER_INCLUDED'] == False:
+                            SingleTestEnvironment.Object(target,unit_test_item)
+                            SingleTestEnvironment.Depends(target,cantata_file)
+                            objects.append(target)
+                    else:    
+                        SingleTestEnvironment.Depends(driver_target,unit_test_item)
+
+                    objects.append(driver_target)
+                    SingleTestEnvironment.Depends(driver_target,cantata_file)
+                    for add_source in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][unit_test_item]['ADDITIONAL_SOURCES']:
+                        add_source_basename = os.path.splitext(os.path.basename(add_source))[0]
+                        add_source_target = os.path.join(target_dir,add_source_basename+'.o')
+                        SingleTestEnvironment.Object(add_source_target,add_source)
+                        objects.append(add_source_target)
+                        SingleTestEnvironment.Depends(add_source_target,cantata_file)
+                    result_path=target_dir 
+                
+                    SingleTestEnvironment.Program(os.path.join(result_path,driver_basename+'.exe'),objects)
+                    #SingleTestEnvironment.Execute(os.path.join(result_path,source_basename+'.exe'))    
+                    SingleTestEnvironment.Command(os.path.join(result_path,driver_basename+'.ctr'), os.path.join(result_path,driver_basename+'.exe'), [   SysCall,
+                        Move('$TARGET.dir\\'+driver_basename+'.ctr',GetLaunchDir()+'\\04_Engineering\\03_Workspace\\sw\\make\\'+driver_basename+'.ctr'),
+                        Move('$TARGET.dir\\'+driver_basename+'.cov',GetLaunchDir()+'\\04_Engineering\\03_Workspace\\sw\\make\\'+driver_basename+'.cov'),
+                        Move('$TARGET.dir\\'+driver_basename+'.ctg',GetLaunchDir()+'\\04_Engineering\\03_Workspace\\sw\\make\\'+driver_basename+'.ctg'),
+                                                                                                                                       ])    
+
+def CreateEclipseProjectFile(env, target, source):
+    tree = ElementTree(fromstring(TEMPLATE_ECLIPSE_PROJECT))
+    root = tree.getroot()        
+    name = root.find("name")
+    name.text = os.path.splitext(os.path.basename(str(source[0])))[0]
+    linkedResources = root.find("linkedResources")
+    ######################################
+    if CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][str(source[0])]['MUT_IN_DRIVER_INCLUDED'] == False:
+        lr=fromstring(LINKED_RESSOURCE)
+        name=lr.find("name")
+        name.text = os.path.basename(str(source[0]))
+        location = lr.find("locationURI")
+        abspath=os.path.abspath(str(source[0]))
+        relpath=os.path.relpath(abspath,os.path.dirname(str(target[0])))
+        relpath=relpath.replace('\\','/')
+        levels=relpath.count('../') 
+        relpath=relpath.replace('../','')
+        relpath="PARENT-"+str(levels)+"-PROJECT_LOC/"+relpath
+        location.text=relpath
+        linkedResources.append(lr)
+    ######################################
+    lr=fromstring(LINKED_RESSOURCE)
+    name=lr.find("name")
+    name.text = os.path.basename(CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][str(source[0])]['TEST_DRIVER'])
+    location = lr.find("locationURI")
+    abspath=os.path.abspath(CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][str(source[0])]['TEST_DRIVER'])
+    relpath=os.path.relpath(abspath,os.path.dirname(str(target[0])))
+    relpath=relpath.replace('\\','/')
+    levels=relpath.count('../') 
+    relpath=relpath.replace('../','')
+    relpath="PARENT-"+str(levels)+"-PROJECT_LOC/"+relpath
+    location.text=relpath
+    linkedResources.append(lr)
+    ######################################
+    for cop_file in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][str(source[0])]['COP_FILES']:
+        lr=fromstring(LINKED_RESSOURCE)
+        name=lr.find("name")
+        name.text = os.path.basename(cop_file)
+        location = lr.find("locationURI")
+        abspath=os.path.abspath(cop_file)
+        relpath=os.path.relpath(abspath,os.path.dirname(str(target[0])))
+        relpath=relpath.replace('\\','/')
+        levels=relpath.count('../') 
+        relpath=relpath.replace('../','')
+        relpath="PARENT-"+str(levels)+"-PROJECT_LOC/"+relpath
+        location.text=relpath
+        linkedResources.append(lr)
+    ######################################
+    lr=fromstring(LINKED_RESSOURCE)
+    name=lr.find("name")
+    name.text = 'cantata.opt'
+    location = lr.find("locationURI")
+    abspath=os.path.abspath(str(source[1]))
+    relpath=os.path.relpath(abspath,os.path.dirname(str(target[0])))
+    relpath=relpath.replace('\\','/')
+    levels=relpath.count('../') 
+    relpath=relpath.replace('../','')
+    relpath="PARENT-"+str(levels)+"-PROJECT_LOC/"+relpath
+    location.text=relpath
+    linkedResources.append(lr)
+
+    f = open(str(target[0]),'w')
+    f.write('<?xml version="1.0" encoding="UTF-8"?>\n'+tostring(root))
+    f.close()
+
+def CreateEclipseCProjectFile(env, target, source):
+    tree = ElementTree(fromstring(TEMPLATE_ECLIPSE_CPROJECT))
+    root = tree.getroot()        
+    project=root.find("storageModule/project")
+    project.attrib["id"] = os.path.splitext(os.path.basename(str(source[0])))[0]+".cdt.managedbuild.target.gnu.mingw.exe.954170436"
+    tools = root.findall('storageModule/cconfiguration/storageModule/configuration/folderInfo/toolChain/tool')
+    for tool in tools:
+        #print tool.get('name') +'#'
+        if tool.get('name') == 'GCC C++ Compiler' or tool.get('name') == 'GCC C Compiler' or tool.get('name') == 'MinGW C++ Compiler' or tool.get('name') == 'MinGW C Compiler':
+            cop_file_str = '' 
+            for cop_file in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][str(source[0])]['COP_FILES']:
+                cop_file_str = ' -F '+os.path.abspath(cop_file)
+            tool.attrib["command"] = 'cppccd -F '+os.path.abspath(str(source[1]))+cop_file_str+' --no_link -- g++'
+            options=tool.findall('option')
+            for option in options:
+                if option.get('name') == 'Include paths (-I)':
+                    for inc_file in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][str(source[0])]['ADDITIONAL_INCLUDES']:
+                        io=fromstring(INCLUDE_OPTION)
+                        io.attrib["value"] = os.path.abspath(inc_file)
+                        option.append(io)
+                    io=fromstring(INCLUDE_OPTION)
+                    io.attrib["value"] = os.path.dirname(os.path.abspath(str(source[0])))
+                    option.append(io)
+                    
+        if tool.get('name') == 'GCC C++ Linker' or tool.get('name') == 'GCC C Linker' or tool.get('name') == 'MinGW C++ Linker' or tool.get('name') == 'MinGW C Linker':
+            cop_file_str = '' 
+            for cop_file in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][str(source[0])]['COP_FILES']:
+                cop_file_str = ' -F '+os.path.abspath(cop_file)
+            tool.attrib["command"] = 'cppccd -F '+os.path.abspath(str(source[1]))+cop_file_str+' -- g++'
+    f = open(str(target[0]),'w')
+    f.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n<?fileVersion 4.0.0?>\n'+tostring(root))
+    f.close()
+
+def BuildEclipseProjects():
+    if product in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT']:
+        if core in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET']:
+            Command('EclipseProjects',None,Mkdir('$TARGET'))
+            for unit_test_item in CANTATA_BUILD_OPTION_EXTENDED['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'].keys():
+                source_basename = os.path.splitext(os.path.basename(unit_test_item))[0]
+                Command(os.path.join('EclipseProjects',source_basename),unit_test_item,Mkdir('$TARGET'))
+                Command(os.path.join('EclipseProjects',source_basename,'Cantata'),unit_test_item,Mkdir('$TARGET'))
+                Command(os.path.join('EclipseProjects',source_basename,'Cantata','results'),unit_test_item,Mkdir('$TARGET'))
+                Command(os.path.join('EclipseProjects',source_basename,'Cantata','tests'),unit_test_item,Mkdir('$TARGET'))
+                Command(os.path.join('EclipseProjects',source_basename,'Debug'),unit_test_item,Mkdir('$TARGET'))
+                Command(os.path.join('EclipseProjects',source_basename,'.project'),[unit_test_item,'cantata.opt'],CreateEclipseProjectFile)
+                Command(os.path.join('EclipseProjects',source_basename,'.cproject'),[unit_test_item,'cantata.opt'],CreateEclipseCProjectFile)
+                
+def build_cantata_build_options():
+      OPTION_FILE_NAME = 'test_options.json'
+      out_option = {}
+      out_option['PRODUCT'] = {}
+      out_option['PRODUCT'][product] = {}
+      out_option['PRODUCT'][product]['TARGET'] = {}
+      out_option['PRODUCT'][product]['TARGET'][core] = {}
+      out_option['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'] = {}
+      
+      for unit_test in cantata_build_option.CANTATA_BUILD_OPTION['UNIT_TEST_ITEMS'].keys():
+            unit_path = cantata_build_option.CANTATA_BUILD_OPTION['UNIT_TEST_ITEMS'][unit_test]['TEST_PATH']
+            option_file_path_name = os.path.join(GetLaunchDir(), unit_path, OPTION_FILE_NAME).replace('\\', '/')
+
+            with open(option_file_path_name, 'r') as input_file_hdr:
+                options = json.load(input_file_hdr)
+            if options:
+                out_option['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][unit_test] = {}
+                template = {}
+
+                template['ADDITIONAL_DEFINES'] = []
+
+                include_path = '04_Engineering/00_Projects/' + product + '/temporary'
+                template['ADDITIONAL_INCLUDES'] = [include_path]
+
+                template['ADDITIONAL_SOURCES'] = []
+
+                if product in options['INCLUDED_COP_FILES']:
+                  template['COP_FILES'] = options['INCLUDED_COP_FILES'][product]
+                else:
+                  template['COP_FILES'] = options['INCLUDED_COP_FILES']['default']
+
+                template['ENABLED'] = True
+                if product in options['EXCLUDED_PROJECTS']:
+                  template['ENABLED'] = False
+                if product in options['INCLUDED_CORES']:
+                  if core not in options['INCLUDED_CORES'][product]:
+                      template['ENABLED'] = False
+                else:
+                  if core not in options['INCLUDED_CORES']['default']:
+                      template['ENABLED'] = False
+
+                template['MUT_IN_DRIVER_INCLUDED'] = True
+
+                if product in options['INCLUDED_TEST_PATH']:
+                  template['TEST_DRIVER'] = options['INCLUDED_TEST_PATH'][product]
+                else:
+                  template['TEST_DRIVER'] = options['INCLUDED_TEST_PATH']['default']
+
+                out_option['PRODUCT'][product]['TARGET'][core]['UNIT_TEST_ITEMS'][unit_test] = template
+              
+      return out_option
+      
+test_environment.Command('partly_'+product+'_'+core+'_template.cbo',source,BuildPartlyTemplate)
+CANTATA_BUILD_OPTION_EXTENDED = build_cantata_build_options()
+test_environment.Command(os.path.join(GetLaunchDir(),'cantata_build_option.cbo'),CollectPartlyTemplates(),BuildCompleteTemplate)
+command_line=PreparePreProcessorList()
+test_environment.Command("dummy.c",None,'echo /* dummy */ > $TARGET')
+env.Command('preprocessor.pp',"dummy.c",command_line)
+PrepareCantataOptionFile()
+test_environment.Command('cantata.opt','preprocessor.pp',CreateCantataOptionFile)
+StripConfigTable()
+ 
+if build_eclipse != None:
+    BuildEclipseProjects()
+else:    
+    BuildExecuteables()

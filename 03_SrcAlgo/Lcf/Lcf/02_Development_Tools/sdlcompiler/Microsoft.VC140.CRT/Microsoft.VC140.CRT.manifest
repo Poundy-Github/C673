@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <noInheritable></noInheritable>
+  <assemblyIdentity type="win32" name="Microsoft.VC140.CRT" version="14.00.24210.0" processorArchitecture="x86"/>
+  <file name="concrt140.dll"/>
+  <file name="msvcp140.dll"/>
+  <file name="vccorlib140.dll"/>
+  <file name="vcruntime140.dll"/>
+</assembly>

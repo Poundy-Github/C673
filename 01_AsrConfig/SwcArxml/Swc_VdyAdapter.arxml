@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00045.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2022-01-15T19:46:02+08:00" UUID="dc2a996e-627e-4c31-a1de-f399fbb990d8">
+      <SHORT-NAME>VdyAdapter</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SW-COMPONENT-TYPE T="2023-03-16T11:25:45+08:00" UUID="b946bced-cb2d-487b-bdb9-f8463eeca462">
+          <SHORT-NAME>VdyAdapter</SHORT-NAME>
+          <LONG-NAME T="2022-01-15T18:59:32+08:00">
+            <L-4 L="FOR-ALL">Vehicle Dynamic Yaw</L-4>
+          </LONG-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE T="2022-01-23T07:02:47+08:00" UUID="30eb509b-0786-4799-8058-7bd612aa37c1">
+              <SHORT-NAME>PP_VdyAdapter_AlgoCompState</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_AlgoCompState</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2022-01-23T07:06:36+08:00" UUID="cb83d3e6-9a9c-4eb9-843b-595e26ecb7dc">
+              <SHORT-NAME>PP_VdyAdapter_VdyErrors</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_VdyErrors</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2022-01-23T07:08:02+08:00" UUID="55fb35d0-b1a5-4e18-9f2c-eed70c0433cc">
+              <SHORT-NAME>PP_VdyAdapter_VdyEstCurves</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_VdyEstCurves</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2022-01-23T07:10:37+08:00" UUID="058f56c4-1883-40ac-90e3-0320ee4aacde">
+              <SHORT-NAME>PP_VdyAdapter_VdyOffsets</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_VdyOffsets</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2022-01-23T07:04:43+08:00" UUID="04b72367-59f9-4641-b09e-2d1566ec97fe">
+              <SHORT-NAME>PP_VdyAdapter_VdyOutputNvMData</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_VdyNvMInOutData</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2022-01-15T19:11:21+08:00" UUID="368c7659-094e-4c53-98cf-ba0851689061">
+              <SHORT-NAME>PP_VdyAdapter_VehDyn</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_VehDyn</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2022-01-23T07:11:38+08:00" UUID="d58aa619-4456-4d99-abef-b7a194bff5b6">
+              <SHORT-NAME>RP_Cdm_VdyInputNvMData</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_VdyNvMInOutData</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2022-03-31T23:12:09+08:00" UUID="20841fb2-b03d-406f-a6d4-9f5f5de75893">
+              <SHORT-NAME>RP_Fcu_BaseCtrlData</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_BaseCtrlData</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2022-03-06T18:25:35+08:00" UUID="9de52b5c-560b-4972-8c36-d6a71b41fcf2">
+              <SHORT-NAME>RP_Fcu_VehPar</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_VehPar</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2022-03-06T18:25:42+08:00" UUID="d1482e8b-0fef-4baf-8a0c-45221c5e13dd">
+              <SHORT-NAME>RP_Fcu_VehSig</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_VehSig</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="1dd9d608-aeb1-4b25-bdb3-984d43fedae4">
+              <SHORT-NAME>RP_MtsiAdapter_MeasFreezeData</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_Mtsi_MeasFreezeData</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="f479703a-81d6-4d62-a546-ce78e917c8c2">
+              <SHORT-NAME>RP_MtsiAdapter_UpdateTaskCycle</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_Mtsi_UpdateTaskCycle</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-03-16T11:25:45+08:00" UUID="af0be1c4-0a96-401d-a792-e917fe3d5b4a">
+              <SHORT-NAME>RP_NvM_VdyBlockOperation</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_NvM/PortInterfaces/NvMService</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR T="2022-01-23T04:39:58+08:00" UUID="9b55e7c0-9d05-4981-9216-1b4d926c7c36">
+              <SHORT-NAME>VdyAdapter_IB</SHORT-NAME>
+              <EVENTS>
+                <INIT-EVENT T="2022-01-15T19:01:58+08:00" UUID="beb4301f-fcd7-4918-9b9f-d9308c55d887">
+                  <SHORT-NAME>InitEvent_VdyAdapter_InitFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/VdyAdapter/VdyAdapter/VdyAdapter_IB/VdyAdapter_InitFunction</START-ON-EVENT-REF>
+                </INIT-EVENT>
+                <TIMING-EVENT T="2022-01-15T19:02:29+08:00" UUID="65ab30c9-7ddc-4b42-9f45-85e95b685b8a">
+                  <SHORT-NAME>TimingEvent_VdyAdapter_MainFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/VdyAdapter/VdyAdapter/VdyAdapter_IB/VdyAdapter_MainFunction</START-ON-EVENT-REF>
+                  <PERIOD>0.02</PERIOD>
+                </TIMING-EVENT>
+                <TIMING-EVENT T="2022-01-23T04:39:58+08:00" UUID="bfb150ab-f094-4c6a-97f6-4b4a257f1f8e">
+                  <SHORT-NAME>TimingEvent_VdyAdapter_VdyExec</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/VdyAdapter/VdyAdapter/VdyAdapter_IB/VdyAdapter_VdyExec</START-ON-EVENT-REF>
+                  <PERIOD>0.02</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY T="2022-03-31T23:12:24+08:00" UUID="DCE:d761c7b4-9860-415b-9979-dca017a87115">
+                  <SHORT-NAME>VdyAdapter_InitFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                    <VARIABLE-ACCESS UUID="4b39f49e-6072-4ec8-8971-86b4a5536fc3">
+                      <SHORT-NAME>drparg_BaseCtrlData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_Fcu_BaseCtrlData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_BaseCtrlData/BaseCtrlData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="9ef28c60-dda5-4c58-8ab7-adc6ee214792">
+                      <SHORT-NAME>drparg_VdyNvMInOutData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_Cdm_VdyInputNvMData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyNvMInOutData/VdyNvMInOutData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="1f5c32aa-6fad-482f-a006-742b464d976c">
+                      <SHORT-NAME>drparg_VehPar</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_Fcu_VehPar</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehPar/VehPar</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="c08122fc-4571-470c-8fff-2fabe98b4845">
+                      <SHORT-NAME>drparg_VehSig</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_Fcu_VehSig</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehSig/VehSig</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                  <DATA-SEND-POINTS>
+                    <VARIABLE-ACCESS UUID="c432c534-7616-4ced-990d-c1a4d7db26fe">
+                      <SHORT-NAME>dsp_AlgoCompState</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_AlgoCompState</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_AlgoCompState/AlgoCompState</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="20c63830-6403-4555-a2f1-7886756e4ba7">
+                      <SHORT-NAME>dsp_VdyErrors</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VdyErrors</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyErrors/VdyErrors</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="3b3bc610-9dcc-4557-8f0c-a3886631ab6e">
+                      <SHORT-NAME>dsp_VdyEstCurves</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VdyEstCurves</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyEstCurves/VdyEstCurves</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="60898362-de46-4ff4-9de8-fecee006aba4">
+                      <SHORT-NAME>dsp_VdyNvMInOutData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VdyOutputNvMData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyNvMInOutData/VdyNvMInOutData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="9ed0c1e1-51c1-424b-aa60-250a65e2b580">
+                      <SHORT-NAME>dsp_VdyOffsets</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VdyOffsets</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyOffsets/VdyOffsets</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="1e0fc30c-3fc8-4cdb-8a39-d4ba383eda2e">
+                      <SHORT-NAME>dsp_VehDyn</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VehDyn</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehDyn/VehDyn</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-SEND-POINTS>
+                  <SYMBOL>VdyAdapter_InitFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-03-16T13:54:06+08:00" UUID="DCE:677914c8-6d64-4c71-be91-9aaa60bc3c60">
+                  <SHORT-NAME>VdyAdapter_MainFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                    <VARIABLE-ACCESS UUID="02bd9a7c-58f6-4f60-94d7-49cbc04136a2">
+                      <SHORT-NAME>drparg_BaseCtrlData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_Fcu_BaseCtrlData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_BaseCtrlData/BaseCtrlData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="0745e991-3642-4148-a129-0da22b3bfaf4">
+                      <SHORT-NAME>drparg_VdyNvMInOutData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_Cdm_VdyInputNvMData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyNvMInOutData/VdyNvMInOutData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="9334a812-e86a-40ef-96f7-9184b9ff1d9e">
+                      <SHORT-NAME>drparg_VehPar</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_Fcu_VehPar</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehPar/VehPar</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="0dc2f184-fe13-417e-b59e-c047f93ef3eb">
+                      <SHORT-NAME>drparg_VehSig</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_Fcu_VehSig</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehSig/VehSig</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                  <DATA-SEND-POINTS>
+                    <VARIABLE-ACCESS UUID="41fd82e3-bddf-4c4d-bc15-555d467a8c11">
+                      <SHORT-NAME>dsp_AlgoCompState</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_AlgoCompState</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_AlgoCompState/AlgoCompState</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="77954020-d886-45fa-b1fd-e52003f50e6e">
+                      <SHORT-NAME>dsp_VdyErrors</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VdyErrors</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyErrors/VdyErrors</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="bff50f08-5a83-4e68-a46d-261fd6377751">
+                      <SHORT-NAME>dsp_VdyEstCurves</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VdyEstCurves</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyEstCurves/VdyEstCurves</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="750fda1a-7e6a-410a-b373-a0a1929e18dd">
+                      <SHORT-NAME>dsp_VdyNvMInOutData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VdyOutputNvMData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyNvMInOutData/VdyNvMInOutData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="cba47ced-77d2-4a22-b3b0-168157d09183">
+                      <SHORT-NAME>dsp_VdyOffsets</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VdyOffsets</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyOffsets/VdyOffsets</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="e8106ff8-a88a-4cab-b9c4-a89833406e88">
+                      <SHORT-NAME>dsp_VehDyn</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VehDyn</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehDyn/VehDyn</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-SEND-POINTS>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT T="2023-03-16T13:54:06+08:00" UUID="c3a08df6-fa3e-4d73-8a09-b2f4de8b387d">
+                      <SHORT-NAME>scp_GetErrorStatus</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_NvM_VdyBlockOperation</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/GetErrorStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT T="2023-03-16T13:54:06+08:00" UUID="1134996e-d0e5-471a-934e-e8e85bdac7db">
+                      <SHORT-NAME>scp_ReadBlock</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_NvM_VdyBlockOperation</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/ReadBlock</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT T="2023-03-16T11:26:26+08:00" UUID="7e85de7a-f5fe-4345-b06b-39094966c17e">
+                      <SHORT-NAME>scp_SetRamBlockStatus</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_NvM_VdyBlockOperation</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/SetRamBlockStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT T="2023-03-16T13:54:06+08:00" UUID="1fcd64b0-8d5b-4a82-801e-3ed6fde99c70">
+                      <SHORT-NAME>scp_WriteBlock</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_NvM_VdyBlockOperation</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMService/WriteBlock</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>VdyAdapter_MainFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2022-03-31T23:12:38+08:00" UUID="DCE:271c551c-1beb-499f-a6b4-15bc68aa08c6">
+                  <SHORT-NAME>VdyAdapter_VdyExec</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                    <VARIABLE-ACCESS UUID="2f507fca-3a81-433e-bd5f-6d26d81c5a79">
+                      <SHORT-NAME>drparg_BaseCtrlData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_Fcu_BaseCtrlData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_BaseCtrlData/BaseCtrlData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="69e759d4-a8d5-4ec8-b7c2-644539bfb18c">
+                      <SHORT-NAME>drparg_VdyNvMInOutData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_Cdm_VdyInputNvMData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyNvMInOutData/VdyNvMInOutData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="8dda2ed8-3a01-492f-aea3-1886917fb15d">
+                      <SHORT-NAME>drparg_VehPar</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_Fcu_VehPar</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehPar/VehPar</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="f0affc87-97a9-4fb3-ab0f-32437d666048">
+                      <SHORT-NAME>drparg_VehSig</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_Fcu_VehSig</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehSig/VehSig</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                  <DATA-SEND-POINTS>
+                    <VARIABLE-ACCESS UUID="b01f9061-8f3f-456a-b602-a354da3d5a3c">
+                      <SHORT-NAME>dsp_AlgoCompState</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_AlgoCompState</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_AlgoCompState/AlgoCompState</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="044cfdcf-27ee-4f1e-9501-dffd4db59089">
+                      <SHORT-NAME>dsp_VdyErrors</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VdyErrors</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyErrors/VdyErrors</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="da04cf91-8be7-4ac5-b175-df647cf32cc8">
+                      <SHORT-NAME>dsp_VdyEstCurves</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VdyEstCurves</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyEstCurves/VdyEstCurves</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="2e258d07-f271-43c5-8e0a-4924a6cdbd2c">
+                      <SHORT-NAME>dsp_VdyNvMInOutData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VdyOutputNvMData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyNvMInOutData/VdyNvMInOutData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="1108271a-7276-402b-813d-f2a13cebd800">
+                      <SHORT-NAME>dsp_VdyOffsets</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VdyOffsets</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyOffsets/VdyOffsets</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="fbd14cfb-634e-4609-9ce2-ca25884dbfca">
+                      <SHORT-NAME>dsp_VehDyn</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/PP_VdyAdapter_VehDyn</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehDyn/VehDyn</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-SEND-POINTS>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="8a592883-e4e6-48ee-8553-2adc8355e7c8">
+                      <SHORT-NAME>scp_MeasFreezeData</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_MtsiAdapter_MeasFreezeData</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Mtsi_MeasFreezeData/MeasFreezeData</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="2a98318a-55e8-486b-b585-782eabcaa5fd">
+                      <SHORT-NAME>scp_UpdateTaskCycle</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/VdyAdapter/VdyAdapter/RP_MtsiAdapter_UpdateTaskCycle</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Mtsi_UpdateTaskCycle/UpdateTaskCycle</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>VdyAdapter_VdyExec</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION T="2022-01-15T19:05:01+08:00" UUID="a44fac84-f108-495d-99df-8ab5b0d417ac">
+          <SHORT-NAME>VdyAdapterImpl</SHORT-NAME>
+          <CODE-DESCRIPTORS>
+            <CODE T="2022-01-15T19:03:55+08:00" UUID="ae6c3f7a-5808-48b5-b8a4-409b7704a68d">
+              <SHORT-NAME>CodeGen</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/VdyAdapter/VdyAdapter/VdyAdapter_IB/VdyAdapter_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/VdyAdapter/VdyAdapter/VdyAdapter_IB/VdyAdapter_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/VdyAdapter/VdyAdapter/VdyAdapter_IB/VdyAdapter_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/VdyAdapter/VdyAdapter/VdyAdapter_IB/VdyAdapter_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <ARTIFACT-DESCRIPTORS>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-01-15T19:03:55+08:00">
+                  <SHORT-LABEL>SWSRC</SHORT-LABEL>
+                  <CATEGORY>SWSRC</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-01-15T19:03:55+08:00">
+                  <SHORT-LABEL>SWHDR</SHORT-LABEL>
+                  <CATEGORY>SWHDR</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+              </ARTIFACT-DESCRIPTORS>
+            </CODE>
+          </CODE-DESCRIPTORS>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <RESOURCE-CONSUMPTION T="2022-01-15T19:05:05+08:00" UUID="DCE:1c4f1912-e0f7-472f-b7d9-07877eae921e">
+            <SHORT-NAME>Resource</SHORT-NAME>
+            <MEMORY-SECTIONS>
+              <MEMORY-SECTION T="2022-01-10T18:50:57+08:00" UUID="bb85e6f3-6c44-4cd2-8f06-9169787b232a">
+                <SHORT-NAME>CODE</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2022-01-10T18:50:57+08:00" UUID="89f95fb5-4ec4-42c9-ad2e-907f36d8227e">
+                <SHORT-NAME>VAR_UNSPECIFIED</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/VAR</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+            </MEMORY-SECTIONS>
+          </RESOURCE-CONSUMPTION>
+          <SW-VERSION>1.0.0</SW-VERSION>
+          <VENDOR-ID>0</VENDOR-ID>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/VdyAdapter/VdyAdapter/VdyAdapter_IB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

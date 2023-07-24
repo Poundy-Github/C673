@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00045.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2022-11-15T14:00:16+08:00" UUID="41435b28-6fb0-4e3a-a284-d93d664b1a1e">
+      <SHORT-NAME>FSMonitor</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SW-COMPONENT-TYPE T="2023-06-29T13:54:59+08:00" UUID="f584e9ed-9199-456c-b4c1-ff1a0e87e47d">
+          <SHORT-NAME>FSMonitor</SHORT-NAME>
+          <LONG-NAME T="2022-11-15T13:57:15+08:00">
+            <L-4 T="2022-11-15T13:57:15+08:00" L="FOR-ALL">Function Safety Monitor</L-4>
+          </LONG-NAME>
+          <PORTS>
+            <R-PORT-PROTOTYPE T="2023-06-08T15:31:17+08:00" UUID="8e62daa2-01d7-41b2-af2a-8dd868e78fa1">
+              <SHORT-NAME>RP_Fs_Chassis_Data_EspVehSpd_Status</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-06-08T15:53:11+08:00" UUID="f7fd812b-7479-47bd-bf27-5010fd983639">
+              <SHORT-NAME>RP_Fs_EvAdc_GetValue_VMON_BATT</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-06-08T15:53:44+08:00" UUID="09d6e803-fdca-4bae-92a8-596077fded35">
+              <SHORT-NAME>RP_Fs_EvAdc_GetValue_VMON_IGN</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-06-08T15:54:34+08:00" UUID="300a9f41-a848-44af-b1cc-6d9766d3ae38">
+              <SHORT-NAME>RP_Fs_EvAdc_GetValue_VMON_McuExtTemp</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-06-08T15:54:57+08:00" UUID="0f1517dd-deee-4602-bedb-c0a621de93df">
+              <SHORT-NAME>RP_Fs_EvAdc_GetValue_VMON_SocExtTemp</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR T="2022-11-15T13:59:05+08:00" UUID="619c646e-89eb-4c39-919c-6d6f2322ada9">
+              <SHORT-NAME>FSMonitor_IB</SHORT-NAME>
+              <EVENTS>
+                <INIT-EVENT T="2022-11-15T13:58:41+08:00" UUID="7ffff670-833a-49a1-b2c4-550d9fac445f">
+                  <SHORT-NAME>IE_FSMonitor_InitFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/FSMonitor/FSMonitor/FSMonitor_IB/FSMonitor_InitFunction</START-ON-EVENT-REF>
+                </INIT-EVENT>
+                <TIMING-EVENT T="2022-11-15T13:59:05+08:00" UUID="4a470662-906f-47f9-a45a-99275481d09a">
+                  <SHORT-NAME>TE_FSMonitor_MainFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/FSMonitor/FSMonitor/FSMonitor_IB/FSMonitor_MainFunction</START-ON-EVENT-REF>
+                  <PERIOD>0.005</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY T="2022-11-15T13:57:49+08:00" UUID="DCE:da7ce856-2af1-4442-9d9c-eeba729e8c89">
+                  <SHORT-NAME>FSMonitor_InitFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>FSMonitor_InitFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-06-29T13:54:45+08:00" UUID="DCE:45def0db-527e-4fbe-8426-fc6331e4ee7e">
+                  <SHORT-NAME>FSMonitor_MainFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                    <VARIABLE-ACCESS UUID="ae740d46-8135-4de6-a1d7-453f7f7c2cdd">
+                      <SHORT-NAME>drparg_EspVehSpd</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/FSMonitor/FSMonitor/RP_Fs_Chassis_Data_EspVehSpd_Status</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/EspVehSpd</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT T="2023-06-08T15:55:38+08:00" UUID="7cb0d7b3-3010-4e8a-9fd0-c01724290f7a">
+                      <SHORT-NAME>scp_GetPhyValue</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/FSMonitor/FSMonitor/RP_Fs_EvAdc_GetValue_VMON_BATT</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT T="2023-06-08T15:55:38+08:00" UUID="670dd58b-ed7e-45a2-b0fb-aa2ed8f1805c">
+                      <SHORT-NAME>scp_GetPhyValue0</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/FSMonitor/FSMonitor/RP_Fs_EvAdc_GetValue_VMON_IGN</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT T="2023-06-08T15:55:38+08:00" UUID="e32a4fe5-611b-441e-a1fc-7d81685dac3a">
+                      <SHORT-NAME>scp_GetPhyValue1</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/FSMonitor/FSMonitor/RP_Fs_EvAdc_GetValue_VMON_McuExtTemp</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT T="2023-06-08T15:55:38+08:00" UUID="3c52d10c-e5e4-4168-ac0a-5885cc909780">
+                      <SHORT-NAME>scp_GetPhyValue2</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/FSMonitor/FSMonitor/RP_Fs_EvAdc_GetValue_VMON_SocExtTemp</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>FSMonitor_MainFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION T="2022-11-15T14:00:34+08:00" UUID="80be0d3e-f65e-4bfc-a0f5-1eb924413961">
+          <SHORT-NAME>FSMonitor_Impl</SHORT-NAME>
+          <CODE-DESCRIPTORS>
+            <CODE T="2022-11-15T14:00:02+08:00" UUID="2c847a0a-c8f5-4784-a5c6-0c82a1f021b8">
+              <SHORT-NAME>CD_FSMonitor</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/FSMonitor/FSMonitor/FSMonitor_IB/FSMonitor_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/FSMonitor/FSMonitor/FSMonitor_IB/FSMonitor_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <ARTIFACT-DESCRIPTORS>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-11-15T14:00:02+08:00">
+                  <SHORT-LABEL>SWSRC</SHORT-LABEL>
+                  <CATEGORY>SWSRC</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+              </ARTIFACT-DESCRIPTORS>
+            </CODE>
+          </CODE-DESCRIPTORS>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <RESOURCE-CONSUMPTION T="2022-11-15T14:00:34+08:00" UUID="7fb07211-682b-453a-994c-b3a8283a8417">
+            <SHORT-NAME>Resource</SHORT-NAME>
+            <MEMORY-SECTIONS>
+              <MEMORY-SECTION T="2022-11-15T14:00:34+08:00" UUID="ade07db8-a210-4b8e-b6fe-f49c63345945">
+                <SHORT-NAME>CODE</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2022-11-15T14:00:34+08:00" UUID="127c2b89-3841-4fc2-b4a4-073bcaaa875f">
+                <SHORT-NAME>VAR_UNSPECIFIED</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/VAR</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+            </MEMORY-SECTIONS>
+          </RESOURCE-CONSUMPTION>
+          <SW-VERSION>1.0.0</SW-VERSION>
+          <VENDOR-ID>0</VENDOR-ID>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/FSMonitor/FSMonitor/FSMonitor_IB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

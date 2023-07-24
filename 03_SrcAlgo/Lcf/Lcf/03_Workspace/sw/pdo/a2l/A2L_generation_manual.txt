@@ -1,0 +1,49 @@
+This document should give a short overview how the a2l files are generated and how to add elements to the a2l.
+
+
+Note: The PDO Tool is only usable for C sources and does NOT support C++
+
+
+HowTo Modify files for adding elements to the a2l file:
+
+   1. Add the include paths for the needed source/header files in the build_a2l.bat
+
+   2. Add the wanted source and/or header files to the wanted dummy_%CORE%.c file
+
+   3. If any "new" core must be activated, which is not yet used (at the moment only arm-m_0, arm-m_1 and dsp_0 are used), check the commented out files for this core in the build_a2l.bat
+
+
+
+Workflow for A2L file generation with the PDO Tool:
+
+   The whole generation process will be handled in the build_a2l.bat like this:
+
+   1. Including ic_controller.c, ic_exposuremgr.c + dummy files for each core
+
+      - The dummy files containes information about the source and header files which must be included for associated core
+
+   2. Taking the core map files and defining temporary "modified" map files
+
+      - The "modified" map files are needed for the PDO Tool
+
+   3. Calling converter scripts for general TI map file format and GCC map file format
+
+      - The converter scripts converting the core map file information into a PDO Tool readable format and storing the information to the "modified" map files
+
+      - The converter scripts ar called with an address offset which is needed for the XCP communication (needed for GD) 0x20000000 for mono cores and 0x28000000
+
+   4. Set defines etc. for the different PROJECTs needed for the PDO Tool
+
+   5. Generating "simple" (xml) DAT files for the cores with the PDO Tool for collecting the includes, defines etc. based on the definitions of "arm_m3_pdo_cmt.cfg"  
+
+   6. Merging the "simple" DAT files with information of the "modified" map files for the cores and store the output in "map" DAT files with the PDO Tool
+
+   7. Generating A2L files for the single cores with the information of the "map" DAT files based on core specific PDO Tool config files "pdo_tool_cfg_soc_%CORE%_a2l.cfg"
+
+   8. Calling the "merge_a2l_files.pl" with arguments -> %PROJECT_NAME% for the (merged) out a2l file and -> list of input core a2l files for getting a single a2l file
+      containing all core a2l file information
+
+   9. Copy the merged a2l file to ...\04_Build\a2l and delete the temporary DAT, "modified" map and core a2l files
+
+
+

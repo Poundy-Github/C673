@@ -1,0 +1,11 @@
+# config file containing TI C66xx sim hil source file list
+
+# C66xx sim hil source files
+C66xx_sim_hil_sources = """
+    C66xx_EvmHilWrapper_hla.cpp
+"""
+
+# C66xx sim hil include paths
+C66xx_sim_hil_include_paths = """
+#../hla_sim/hla_evm_hil/vh28/evm_hil_projects/C66xx/
+"""

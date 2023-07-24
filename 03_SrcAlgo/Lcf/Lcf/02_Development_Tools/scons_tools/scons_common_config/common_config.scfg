@@ -1,0 +1,270 @@
+#***************************************************************************************************
+# COMPANY: Continental AG, ADAS, A.D.C. GmbH
+#
+# PROJECT: ETK/SCT_Sconstools
+#
+# COMPONENT: scons_common_config
+#
+# CONFIGURATION FILE: common_config.scfg
+#
+# DESCRIPTION: Definition of directory paths of project and default compiler and tool settings.
+#
+# INITIAL AUTHOR: Hendra.Sasmito-EXT (uidw1406)
+#
+# CREATION DATE: 2013/04/05
+#
+# LAST CHANGE:      $Date: 2021/12/13 19:04:08CET $
+#                   $Author: Wang, David (Wangd3) $
+#
+# CURRENT VERSION:  $Revision: 1.1 $
+#############################################################################
+# CHANGES:                   $Log: common_config.scfg  $
+# CHANGES:                   Revision 1.1 2021/12/13 19:04:08CET Wang, David (Wangd3) 
+# CHANGES:                   Initial revision
+# CHANGES:                   Member added to project /ADAS/Projects/MFC5xx/MFC5J3/06_Algorithm/DPU/04_Engineering/02_Development_Tools/scons_tools/scons_common_config/project.pj
+# CHANGES:                   Revision 1.44 2017/09/07 13:35:26CEST Bhagawati, Tridip (uidr2134) 
+# CHANGES:                   Command line too long error
+# CHANGES:                   Revision 1.43 2017/05/31 07:50:15CEST Singh, Vishal (uidj9083) 
+# CHANGES:                   update
+# CHANGES:                   Revision 1.42 2017/05/30 10:43:07CEST Bhagawati, Tridip (uidr2134) 
+# CHANGES:                   GSCons update for Mainstream
+# CHANGES:                   Revision 1.41 2017/04/27 15:53:38CEST Bhagawati, Tridip (uidr2134) 
+# CHANGES:                   Support Mainstream adaptation
+# CHANGES:                   Revision 1.40 2016/05/13 13:31:37CEST Singh, Vishal (uidj9083) 
+# CHANGES:                   Updated for setting fp:strict flag globally for the SIM build
+# CHANGES:                   Revision 1.39 2016/01/21 12:16:07CET Singh, Vishal (uidj9083) 
+# CHANGES:                   Update common configuartion file to adapt new file name of QAC compiler personality.
+# CHANGES:                   Revision 1.38 2015/09/23 16:08:30CEST Fischer-EXT, Andre (uidg5297) 
+# CHANGES:                   add some directory definitions
+# CHANGES:                   specify ti-tools extraction being supported
+# CHANGES:                   --- Added comments ---  uidg5297 [Sep 23, 2015 4:08:31 PM CEST]
+# CHANGES:                   Change Package : 379758:1 http://mks-psad:7002/im/viewissue?selection=379758
+# CHANGES:                   Revision 1.36 2015/07/06 10:04:10CEST Fischer-EXT, Andre (uidg5297) 
+# CHANGES:                   use mechanism for contradicting compiler flags
+# CHANGES:                   --- Added comments ---  uidg5297 [Jul 6, 2015 10:04:11 AM CEST]
+# CHANGES:                   Change Package : 353994:1 http://mks-psad:7002/im/viewissue?selection=353994
+# CHANGES:                   Revision 1.35 2015/06/29 13:35:48CEST Stark-EXT, Roland (uidw1169) 
+# CHANGES:                   Added support for CortexM3 and M4
+# CHANGES:                   --- Added comments ---  uidw1169 [Jun 29, 2015 1:35:49 PM CEST]
+# CHANGES:                   Change Package : 351977:1 http://mks-psad:7002/im/viewissue?selection=351977
+# CHANGES:                   Revision 1.34 2015/06/26 07:06:15CEST Palanisamy-EXT, Lenin (uidr0826) 
+# CHANGES:                   Add revision label with module description for all GSCons files (Issue 320651)
+# CHANGES:                   --- Added comments ---  uidr0826 [Jun 26, 2015 7:06:16 AM CEST]
+# CHANGES:                   Change Package : 350940:1 http://mks-psad:7002/im/viewissue?selection=350940
+
+#***************************************************************************************************
+
+# common configuration for SCons build environment
+
+execfile(File("#../GSCons_project_config.scfg").abspath)
+
+# development tool paths
+engineering_dir               = "#../../../"
+source_code_dir_name          = "01_Source_Code/"
+development_tools_dir_name    = "02_Development_Tools/"
+workspace_dir_name            = "03_Workspace/"
+build_dir_name                = "04_Build/"
+deliverables_dir_name         = "05_Deliverables/"
+source_code_dir               = source_code_path_from_sconstruct
+development_tools_dir         = development_tools_path_from_sconstruct
+workspace_dir                 = workspace_path_from_sconstruct
+build_dir                     = build_path_from_sconstruct
+deliverables_dir              = deliverables_path_from_sconstruct
+testing_dir                   = testing_path_from_sconstruct
+
+src_dirs = [source_code_dir_name, development_tools_dir_name, workspace_dir_name]
+
+ti_tools_dir                  = development_tools_dir + "ti_tools/"
+ti_tools_compiler_dir         = ti_tools_dir + "compiler/"
+c6000_code_gen_tool_dir       = ti_tools_compiler_dir + "c6000/"
+tms470_code_gen_tool_dir      = ti_tools_compiler_dir + "arm/"
+arp32_tool_base_dir           = ti_tools_compiler_dir + "arp32/"
+ti_bios_dir                   = ti_tools_dir + "bios/"
+ti_bios_package_dir           = ti_bios_dir + "packages/"
+ti_xdctools_dir               = ti_tools_dir + "xdctools/"
+ti_xdctools_package_dir       = ti_xdctools_dir + "packages/"
+edma3_drv_dir                 = ti_tools_dir + "edma3_lld/"
+edma3_drv_package_dir         = edma3_drv_dir + "packages/"
+evestarterware_dir            = ti_tools_dir + "evestarterware/"
+eve_edma_csl_dir              = evestarterware_dir + "edma_csl/"
+networking_dir                = ti_tools_dir + "networking/"
+ndk_dir                       = networking_dir + "ndk/"
+ndk_package_dir               = ndk_dir + "packages/"
+#pdk_biospsp_dir               = ti_tools_dir + "pdk/biospsp_03_10_06_00/"
+#pdk_hdvpss_dir                = ti_tools_dir + "pdk/hdvpss_01_00_01_42/"
+#pdk_hdvpss_package_dir        = pdk_hdvpss_dir + "packages/"
+pdk_nsp_dm814x_dir            = networking_dir + "nsp/"
+pdk_nsp_dm814x_package_dir    = pdk_nsp_dm814x_dir + "packages/"
+pdk_nsp_vayu_dir              = pdk_nsp_dm814x_dir
+pdk_nsp_vayu_package_dir      = pdk_nsp_dm814x_package_dir
+#pdk_VisionISS_dir             = ti_tools_dir + "pdk/VisionISS_01_05_00_00/"
+#pdk_VisionISS_package_dir     = pdk_VisionISS_dir + "packages/"
+arm_gcc_code_gen_tool_dir     = ti_tools_compiler_dir + "gcc-arm-none-eabi/"
+arm_fastrts_dir               = tms470_code_gen_tool_dir + "lib/"
+
+unzip_dir                     = ti_tools_dir + 'unzip_tools/'
+
+scons_tools_dir               = development_tools_dir + 'scons_tools/'
+scons_tools_common_config_dir = scons_tools_dir + 'scons_common_config/'
+scons_tools_tools_dir         = scons_tools_dir + 'tools/'
+junction_dir                  = scons_tools_tools_dir + 'junction/'
+
+doxygen_dir                   = development_tools_dir + "doxygen/bin/"
+graphviz_dir                  = development_tools_dir + "graphviz/bin/"
+pdo_dir                       = development_tools_dir + "pdo_tool_MFC/"
+pdo_scan_config               = development_tools_dir + "pdo_tool_MFC/msvc_x86_pdo_cmt.cfg"
+pdo_algo_scan_config          = development_tools_dir + "pdo_tool/dm643x_pdo_cmt.cfg"
+gnutools_dir                  = development_tools_dir + "scons_tools/gnutools/"
+sdl_compiler_dir              = development_tools_dir + "sdlcompiler/"
+visual_studio_script_dir      = development_tools_dir + "visual_studio_scripts/"
+sh_exec                        = development_tools_dir + "shell/bin/sh.exe"
+
+cantata_tool_dir              = ["c:/tools/qa_systems/cantata","c:/LegacyApp/qa_systems/cantata", "c:/LegacyApp/IPL/cantpp"]
+
+#-------------------------------------------------------
+# Zip files for compilers
+#-------------------------------------------------------
+# Symbolic link folder where tools will be extracted to such that they appear in the correct directory
+LINK_FOLDER = "C:\\Tools\\Link\\" 
+# Read file lists
+try:
+    # TI-Tools checkpoints from TI_TOOLS_02.00.04_ALGO onwards provide such files 
+    execfile(File(ti_tools_compiler_dir + 'c6000/c6000_file_list.scfg').abspath)
+    execfile(File(ti_tools_compiler_dir + 'arp32/arp32_file_list.scfg').abspath)
+    execfile(File(ti_tools_compiler_dir + 'arm/arm_file_list.scfg').abspath)
+    execfile(File(ti_tools_compiler_dir + 'gcc-arm-none-eabi/gcc_file_list.scfg').abspath)
+    execfile(File(ti_xdctools_dir + 'xdc_file_list.scfg').abspath)
+    execfile(File(evestarterware_dir + 'evestarter_file_list.scfg').abspath)
+    execfile(File(ti_bios_dir + 'bios_file_list.scfg').abspath)
+    execfile(File(edma3_drv_dir + 'edma3_file_list.scfg').abspath)
+    execfile(File(ndk_dir + 'ndk_file_list.scfg').abspath)
+    execfile(File(pdk_nsp_dm814x_dir + 'nsp_file_list.scfg').abspath)
+except IOError:
+    # In case older TI-Tools checkpoints are used, use the file provided by GenericScons
+    execfile(File(scons_tools_common_config_dir + "ti_tools_file_list.scfg").abspath)
+
+ti_zip_files = {
+    ti_tools_compiler_dir + 'c6000/c6000.7z'                           : c6000_files,
+    ti_tools_compiler_dir + 'arp32/arp32.7z'                           : arp32_files,
+    ti_tools_compiler_dir + 'arm/arm.7z'                               : arm_files,
+    ti_tools_compiler_dir + 'gcc-arm-none-eabi/gcc-arm-none-eabi.zip'  : gcc_files,
+    ti_xdctools_dir + 'xdctools.7z'                                    : xdc_files,
+    evestarterware_dir + 'evestarterware.7z'                           : evestarter_files,
+    ti_bios_dir + 'bios.7z'                                            : bios_files,
+    edma3_drv_dir + 'edma3_lld.7z'                                     : edma3_files,
+    ndk_dir + 'ndk.7z'                                                 : ndk_files,
+    pdk_nsp_dm814x_dir + 'nsp.7z'                                      : nsp_files  
+    }
+
+# QAC directories
+QACPATH = 'C:\\tools\QAC\\'
+QACPPPATH = 'C:\\tools\\QACPP-2.5\\'
+QAWBIN = 'C:\\tools\\QAW\\bin\\'
+QARBIN = 'QAR-1.1\\bin'
+
+qacpp_rep_dir = "#../../../../05_Testing/02_Reports/algo/modtests/qacpp_tests/"
+qac_rep_dir = "#../../../../05_Testing/02_Reports/algo/modtests/qac_tests/"
+
+# QAC configurations
+# C-compiler personalities
+
+comp_pers_path = "./../common/CompilerPers/"
+comp_pers_ti_c674x = "TMS320C6x_TI_DSP/CodeComposer_DSP6x_C674x.p_c"
+comp_pers_ti_c66xx = "TMS320C6x_TI_DSP/CodeComposer_DSP6x_C66xx.p_c"
+comp_pers_ti_cortex_mx = "TMS470_TI_ARM/CodeComposer_TMS470_ARMGCC.p_c"
+comp_pers_ti_cortex_a8 = "TMS470_TI_ARM/CodeComposer_TMS470_ARMGCC.p_c"
+comp_pers_ti_cortex_a15 = "TMS470_TI_ARM/CodeComposer_TMS470_ARMGCC.p_c"
+comp_pers_ti_arp32 = "ARP32_TI_EVE/CodeComposer_ARP32EVE_C.p_c"
+
+# scons adas extensions path
+scons_adas_extensions_path    = development_tools_dir + "scons_tools/scons_adas_extensions/"
+
+# compiler specific defines, those are set for IDEs, 
+# but NOT used for the actual build
+arp32_built_in_defines_list = ["__ARP32__"]
+arp32_built_in_eabi_defines_list = ["__TI_EABI__"]
+
+c674x_built_in_defines_list = ["_TMS320C6X", "_TMS320C6400", "_TMS320C6400_PLUS", "_TMS320C6700", "_TMS320C6700_PLUS", "_TMS320C6740"]
+c674x_built_in_eabi_defines_list = ["__TI_EABI__"]
+
+c66xx_built_in_defines_list = ["_TMS320C6X", "_TMS320C6400", "_TMS320C6400_PLUS", "_TMS320C6600", "_TMS320C6700", "_TMS320C6700_PLUS", "_TMS320C6740"]
+c66xx_built_in_eabi_defines_list = ["__TI_EABI__"]
+
+cortex_a8_built_in_defines_list = ["__TI_ARM_V7A8__", "__TI_ARM__", "__TI_ARM_V7__"]
+cortex_a8_built_in_eabi_defines_list = ["__TI_EABI_SUPPORT__"]
+
+cortex_a15_built_in_defines_list = ["__TI_ARM__", "__TI_ARM_V7__"]
+cortex_a15_built_in_eabi_defines_list = ["__TI_EABI_SUPPORT__"]
+
+cortex_m3_built_in_defines_list = ["__TI_ARM__", "__TI_ARM_V7__", "__TI_ ARM_V7M3__"]
+
+cortex_m4_built_in_defines_list = ["__TI_ARM__", "__TI_ARM_V7__", "__TI_ ARM_V7M4__"]
+
+# common compile and linker options
+# WIN DLL:
+execfile(File("#sconstruct_config.scfg").abspath)
+
+try:
+    no_fpstrict	
+except NameError:
+    no_fpstrict = False
+if no_fpstrict:
+    sim_rel_common_ccflags = "/EHsc /c /errorReport:prompt /O2 /FD /MD /nologo /W3"
+    sim_dbg_common_ccflags = "/EHsc /c /errorReport:prompt /Od /RTC1 /MDd /nologo /W3"	
+else:
+    sim_rel_common_ccflags = "/EHsc /c /errorReport:prompt /O2 /FD /MD /nologo /W3 /fp:strict"
+    sim_dbg_common_ccflags = "/EHsc /c /errorReport:prompt /Od /RTC1 /MDd /nologo /W3 /fp:strict"	
+
+sim_rel_common_linkflags = "/DLL /DEBUG"
+
+sim_dbg_common_linkflags = "/DLL /DEBUG"
+    # handling of multiply set contradicting compiler flags:
+sim_common_ccflags_to_check = {r'\/W\d' : 'keep_highest'}
+
+# TI C674x lib/hil:
+c674x_common_ccflags = "--abi=eabi -mv6740 -c"
+c674x_rel_common_ccflags = c674x_common_ccflags + " -o3"
+c674x_dbg_common_ccflags = c674x_common_ccflags + " -g"
+    # handling of multiply set contradicting compiler flags:
+c674x_common_ccflags_to_check = {r'-[oO][0123]' : 'keep_local'}
+
+# TI C66xx lib/hil:
+c66xx_common_ccflags = "--abi=eabi -mv6600 -c"
+c66xx_rel_common_ccflags = c66xx_common_ccflags + " -o3"
+c66xx_dbg_common_ccflags = c66xx_common_ccflags + " -g"
+    # handling of multiply set contradicting compiler flags:
+c66xx_common_ccflags_to_check = {r'-[oO][0123]' : 'keep_local'}
+
+# TI ARP32 lib:
+arp32_common_ccflags = "-kv -kh --silicon_version=v210"
+arp32_rel_common_ccflags = arp32_common_ccflags + " -O3 --symdebug:skeletal "
+arp32_dbg_common_ccflags = arp32_common_ccflags + " -g"
+
+# TI Cortex M3/M4 lib:
+cortex_mx_common_ccflags = "--display_error_number --diag_warning=225 -k"
+cortex_mx_rel_common_ccflags = cortex_mx_common_ccflags + " "
+cortex_mx_dbg_common_ccflags = cortex_mx_common_ccflags + " -g"
+
+# TI Cortex A8 lib:
+cortex_a8_common_ccflags = "--display_error_number --diag_warning=225 -k --float_support=vfpv3"
+cortex_a8_rel_common_ccflags = cortex_a8_common_ccflags + " --neon  -mf=5 -s -os -on=2"
+cortex_a8_dbg_common_ccflags = cortex_a8_common_ccflags + " -g"
+
+# TI Cortex A8 GCC lib/hil:
+cortex_a8_gcc_common_ccflags = "-fno-common -c -mcpu=cortex-a8 -mtune=cortex-a8 -mlittle-endian -mabi=aapcs -fshort-enums -mfpu=neon -mfloat-abi=hard -Wall"
+cortex_a8_gcc_rel_common_ccflags = cortex_a8_gcc_common_ccflags + " -O3 "
+cortex_a8_gcc_dbg_common_ccflags = cortex_a8_gcc_common_ccflags + " -g -gstrict-dwarf"
+
+# TI Cortex A15 GCC lib:
+cortex_a15_gcc_common_ccflags = "-fno-common -c -mcpu=cortex-a15 -mtune=cortex-a15 -mlittle-endian -mabi=aapcs -fshort-enums -mfloat-abi=hard -mfpu=neon -Wall"
+cortex_a15_gcc_rel_common_ccflags = cortex_a15_gcc_common_ccflags + " -O3 "
+cortex_a15_gcc_dbg_common_ccflags = cortex_a15_gcc_common_ccflags + " -g -gstrict-dwarf"
+
+# Flags for QAC and QAR
+qac_common_options = "-m -stoponfail "
+qac_common_ide_options = qac_common_options + "-disp "
+qac_common_cmd_options = qac_common_options
+
+qar_common_options = '-po "qar::report_type=Compliance Report" -po "qar::viewing_program=none" -po "qar::report_format=%s"' # %s will be replaced by the format to be used
+qar_default_format = "html"
+

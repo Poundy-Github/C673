@@ -1,0 +1,410 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>excelaccess.libwrappers package &#8212; ExcelAccess 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="excelaccess package" href="excelaccess.html" />
+    <link rel="prev" title="excelaccess.libwrappers.dataobjects package" href="excelaccess.libwrappers.dataobjects.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="excelaccess-libwrappers-package">
+<h1>excelaccess.libwrappers package<a class="headerlink" href="#excelaccess-libwrappers-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="excelaccess.libwrappers.dataobjects.html">excelaccess.libwrappers.dataobjects package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="excelaccess.libwrappers.dataobjects.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excelaccess.libwrappers.dataobjects.html#module-excelaccess.libwrappers.dataobjects.excel_cell_object">excelaccess.libwrappers.dataobjects.excel_cell_object module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excelaccess.libwrappers.dataobjects.html#module-excelaccess.libwrappers.dataobjects.excel_column_object">excelaccess.libwrappers.dataobjects.excel_column_object module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excelaccess.libwrappers.dataobjects.html#module-excelaccess.libwrappers.dataobjects.excel_row_object">excelaccess.libwrappers.dataobjects.excel_row_object module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excelaccess.libwrappers.dataobjects.html#module-excelaccess.libwrappers.dataobjects.excel_sheet_object">excelaccess.libwrappers.dataobjects.excel_sheet_object module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excelaccess.libwrappers.dataobjects.html#module-excelaccess.libwrappers.dataobjects.excel_table_object">excelaccess.libwrappers.dataobjects.excel_table_object module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excelaccess.libwrappers.dataobjects.html#module-excelaccess.libwrappers.dataobjects">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-excelaccess.libwrappers.excel_file_reader">
+<span id="excelaccess-libwrappers-excel-file-reader-module"></span><h2>excelaccess.libwrappers.excel_file_reader module<a class="headerlink" href="#module-excelaccess.libwrappers.excel_file_reader" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="class">
+<dt id="excelaccess.libwrappers.excel_file_reader.ExcelFileReader">
+<em class="property">class </em><code class="descclassname">excelaccess.libwrappers.excel_file_reader.</code><code class="descname">ExcelFileReader</code><span class="sig-paren">(</span><em>cfg_xml=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/excel_file_reader.html#ExcelFileReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.excel_file_reader.ExcelFileReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for reading an Excel file based on the provided XML configuration file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cfg_xml</strong> (<em>str</em><em> or </em><em>None</em>) – a (relative) path to Config XML (if not provided via command line arguments)</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="excelaccess.libwrappers.excel_file_reader.ExcelFileReader.init_arg_parser">
+<code class="descname">init_arg_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/excel_file_reader.html#ExcelFileReader.init_arg_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.excel_file_reader.ExcelFileReader.init_arg_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes argument parser.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.excel_file_reader.ExcelFileReader.init_logger">
+<code class="descname">init_logger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/excel_file_reader.html#ExcelFileReader.init_logger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.excel_file_reader.ExcelFileReader.init_logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes logger for this module.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.excel_file_reader.ExcelFileReader.read_excel_file">
+<code class="descname">read_excel_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/excel_file_reader.html#ExcelFileReader.read_excel_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.excel_file_reader.ExcelFileReader.read_excel_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads a given Excel file (through XML).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Excel file representation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject" title="excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject">xlrd_xlwt_wrapper.ExcelFileObject</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.libwrappers.excel_file_reader.main">
+<code class="descclassname">excelaccess.libwrappers.excel_file_reader.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/excel_file_reader.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.excel_file_reader.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>For testing purposes. Actual functionality lies in ExcelFileReader-class below this function.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.libwrappers.openpyxl_wrapper">
+<span id="excelaccess-libwrappers-openpyxl-wrapper-module"></span><h2>excelaccess.libwrappers.openpyxl_wrapper module<a class="headerlink" href="#module-excelaccess.libwrappers.openpyxl_wrapper" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<p><a class="reference external" href="https://openpyxl.readthedocs.io/en/default/">https://openpyxl.readthedocs.io/en/default/</a></p>
+<dl class="class">
+<dt id="excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject">
+<em class="property">class </em><code class="descclassname">excelaccess.libwrappers.openpyxl_wrapper.</code><code class="descname">ExcelFileObject</code><span class="sig-paren">(</span><em>excel_file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/openpyxl_wrapper.html#ExcelFileObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">excelaccess.libwrappers._excel_library_wrapper.ExcelLibraryWrapper</span></code></p>
+<p>Openpyxl implementation of ExcelFileObject.</p>
+<dl class="method">
+<dt id="excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/openpyxl_wrapper.html#ExcelFileObject.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>-&gt; not existing for this lib???</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject.get_column_headers">
+<code class="descname">get_column_headers</code><span class="sig-paren">(</span><em>excel_sheet=None</em>, <em>caption_row=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/openpyxl_wrapper.html#ExcelFileObject.get_column_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject.get_column_headers" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li>Load headers of columns</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject.get_lib_sheet">
+<code class="descname">get_lib_sheet</code><span class="sig-paren">(</span><em>sheet_identifier</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/openpyxl_wrapper.html#ExcelFileObject.get_lib_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject.get_lib_sheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: fill</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject.get_lib_sheets">
+<code class="descname">get_lib_sheets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/openpyxl_wrapper.html#ExcelFileObject.get_lib_sheets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject.get_lib_sheets" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: fill</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject.read_workbook">
+<code class="descname">read_workbook</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/openpyxl_wrapper.html#ExcelFileObject.read_workbook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject.read_workbook" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: fill</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>path=None</em>, <em>file_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/openpyxl_wrapper.html#ExcelFileObject.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.openpyxl_wrapper.ExcelFileObject.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>-&gt; test saving</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.libwrappers.xlrd_xlwt_wrapper">
+<span id="excelaccess-libwrappers-xlrd-xlwt-wrapper-module"></span><h2>excelaccess.libwrappers.xlrd_xlwt_wrapper module<a class="headerlink" href="#module-excelaccess.libwrappers.xlrd_xlwt_wrapper" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<p><a class="reference external" href="http://xlrd.readthedocs.io/en/latest/">http://xlrd.readthedocs.io/en/latest/</a>
+<a class="reference external" href="https://xlwt.readthedocs.io/en/latest/">https://xlwt.readthedocs.io/en/latest/</a>
+<a class="reference external" href="http://xlutils.readthedocs.io/en/latest/">http://xlutils.readthedocs.io/en/latest/</a></p>
+<dl class="docutils">
+<dt>-&gt; ATTENTION to indexing: most of the time has to be decremented by 1 before use </dt>
+<dd>due to the aligning to xlwings which is 1 indexed instead of zero indexed</dd>
+</dl>
+<dl class="class">
+<dt id="excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject">
+<em class="property">class </em><code class="descclassname">excelaccess.libwrappers.xlrd_xlwt_wrapper.</code><code class="descname">ExcelFileObject</code><span class="sig-paren">(</span><em>cfg_xml_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/xlrd_xlwt_wrapper.html#ExcelFileObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">excelaccess.libwrappers._excel_library_wrapper.ExcelLibraryWrapper</span></code></p>
+<p>ExcelFileObject for xlrd/xlwt libraries.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cfg_xml_path</strong> (<em>str</em>) – a (relative) path to a Config XML file</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/xlrd_xlwt_wrapper.html#ExcelFileObject.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.close" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><strong>NotImplementedError</strong> – method not yet implemented</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.create_header_tree">
+<code class="descname">create_header_tree</code><span class="sig-paren">(</span><em>sheet_obj</em>, <em>header_col_range</em>, <em>header_row_range</em>, <em>header_merged_cells</em>, <em>parent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/xlrd_xlwt_wrapper.html#ExcelFileObject.create_header_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.create_header_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a tree structure of the header fields in the specified ranges of the provided sheet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sheet_obj</strong> (<em>xlrd.sheet</em>) – Excel sheet to operate on</li>
+<li><strong>header_col_range</strong> (<em>list</em><em>(</em><em>int</em><em>)</em>) – the range of columns of the header</li>
+<li><strong>header_row_range</strong> (<em>list</em><em>(</em><em>int</em><em>)</em>) – the range of rows of the header</li>
+<li><strong>header_merged_cells</strong> (<em>lsit</em><em>(</em><em>MergedCell</em><em>)</em>) – list of merged cells in the header area</li>
+<li><strong>parent</strong> (<a class="reference internal" href="excelaccess.utils.html#excelaccess.utils.unorderd_tree.TreeNode" title="excelaccess.utils.unorderd_tree.TreeNode"><em>TreeNode</em></a><em> or </em><em>None</em>) – parent node</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">tree of headers</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="excelaccess.utils.html#excelaccess.utils.unorderd_tree.TreeNode" title="excelaccess.utils.unorderd_tree.TreeNode">TreeNode</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_lib_sheet">
+<code class="descname">get_lib_sheet</code><span class="sig-paren">(</span><em>sheet_identifier</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/xlrd_xlwt_wrapper.html#ExcelFileObject.get_lib_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_lib_sheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns one specific sheet from a workbook.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sheet_identifier</strong> (<em>str</em>) – a sheet name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">xlrd sheet object by name</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list(xlrd.sheet)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_lib_sheets">
+<code class="descname">get_lib_sheets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/xlrd_xlwt_wrapper.html#ExcelFileObject.get_lib_sheets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_lib_sheets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all sheets of a workbook.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of sheets</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list(xlrd.sheet)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_sheet_content">
+<code class="descname">get_sheet_content</code><span class="sig-paren">(</span><em>sheet_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/xlrd_xlwt_wrapper.html#ExcelFileObject.get_sheet_content"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_sheet_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes content of one SheetObject.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_sheet_contents">
+<code class="descname">get_sheet_contents</code><span class="sig-paren">(</span><em>sheet_names</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/xlrd_xlwt_wrapper.html#ExcelFileObject.get_sheet_contents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_sheet_contents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes sheets and their tables and data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sheet_names</strong> (<em>list</em><em>(</em><em>str</em><em>)</em>) – Excel sheet names</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">sheets</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list(<a class="reference internal" href="excelaccess.libwrappers.dataobjects.html#excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject" title="excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject">SheetObject</a>) or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_table_content">
+<code class="descname">get_table_content</code><span class="sig-paren">(</span><em>sheet_name</em>, <em>cells</em>, <em>table_obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/xlrd_xlwt_wrapper.html#ExcelFileObject.get_table_content"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_table_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes content of on ExcelTableObject.</p>
+<p>TODOs: 
+-&gt; aufteilen in Funktionen und verschieben falls sinnvoll in entsprechende Klassen
+-&gt; effizienz! z.B. merged cells ueber dicts schon im dump etwas ordnen und hier besser drauf zugreifen
+-&gt; alles auf logger umbauen und prints entfernen
+-&gt; contents laden falls in xml vorhanden!
+==&gt; refactoring, splitting and improving!</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_xml_sheet_names">
+<code class="descname">get_xml_sheet_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/xlrd_xlwt_wrapper.html#ExcelFileObject.get_xml_sheet_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_xml_sheet_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns sheet names present in the XML file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Excel sheet names</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list(str)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.read_workbook">
+<code class="descname">read_workbook</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/xlrd_xlwt_wrapper.html#ExcelFileObject.read_workbook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.read_workbook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads in a Excel file with xlrd.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.save">
+<code class="descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/xlrd_xlwt_wrapper.html#ExcelFileObject.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.save" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><strong>NotImplementedError</strong> – method not yet implemented</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.libwrappers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-excelaccess.libwrappers" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">excelaccess.libwrappers package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-excelaccess.libwrappers.excel_file_reader">excelaccess.libwrappers.excel_file_reader module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.libwrappers.openpyxl_wrapper">excelaccess.libwrappers.openpyxl_wrapper module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.libwrappers.xlrd_xlwt_wrapper">excelaccess.libwrappers.xlrd_xlwt_wrapper module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.libwrappers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="excelaccess.libwrappers.dataobjects.html" title="previous chapter">excelaccess.libwrappers.dataobjects package</a></li>
+      <li>Next: <a href="excelaccess.html" title="next chapter">excelaccess package</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/excelaccess.libwrappers.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, uidq3472.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/excelaccess.libwrappers.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

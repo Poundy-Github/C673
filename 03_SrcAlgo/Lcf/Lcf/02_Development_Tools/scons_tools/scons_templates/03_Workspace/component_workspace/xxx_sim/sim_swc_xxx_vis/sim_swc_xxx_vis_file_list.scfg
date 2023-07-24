@@ -1,0 +1,17 @@
+# Note:
+# 1. Rename this file and replace xxx with component name in lowercase.
+# 2. Replace xxx with component name in lowercase.
+# 3. Update each variable according to the existing source files and include paths.
+# ----------------------------------------------------------------------------------------
+
+# config file containing source files in sim visualization
+
+xxx_vis_sim_swc_source_files = """
+sim_swc_xxx_vis.cpp
+sim_swc_xxx_vis_dll.cpp
+stdafx.cpp
+"""
+
+xxx_vis_sim_swc_include_paths = """
+#../xxx_sim/sim_swc_xxx_vis/
+"""

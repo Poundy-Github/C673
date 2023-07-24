@@ -1,0 +1,1167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00045.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2022-02-25T14:27:41+08:00" UUID="48b46d1a-3197-4667-b35f-77eb71022820">
+      <SHORT-NAME>Sdc</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SW-COMPONENT-TYPE T="2023-06-08T16:01:42+08:00" UUID="5a80c85f-5b50-4836-a74d-00c253853ca2">
+          <SHORT-NAME>Sdc</SHORT-NAME>
+          <LONG-NAME T="2022-02-25T13:34:53+08:00">
+            <L-4 T="2022-02-25T13:34:53+08:00" L="FOR-ALL">SPI Message Center</L-4>
+          </LONG-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE T="2022-03-08T14:24:45+08:00" UUID="93eda187-269e-422d-8bd5-10bc62a37f88">
+              <SHORT-NAME>PP_Sdc_Cem_ARSObjectList</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_ARSObjectList</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2022-03-08T14:24:09+08:00" UUID="b9944db9-4a73-4522-827a-76d35147aab8">
+              <SHORT-NAME>PP_Sdc_Cem_FusionObjectList</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_FusionObjectList</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2022-03-08T14:24:31+08:00" UUID="bbd9696e-6e9e-421d-bfe7-061e5a0e9258">
+              <SHORT-NAME>PP_Sdc_Cem_GenObjectList</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_GenObjectList</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2022-03-08T16:29:26+08:00" UUID="29cd2aac-9d17-4170-98fb-6bcadfcfa9f7">
+              <SHORT-NAME>PP_Sdc_Perception_AbdOutputData</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_AbdOutputData</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2022-03-08T14:23:54+08:00" UUID="8900b932-6130-4533-be94-eecb9906caff">
+              <SHORT-NAME>PP_Sdc_Perception_CamLaneInputData</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_CamLaneInputData</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2023-05-30T11:27:47+08:00" UUID="b44a3657-78ca-4362-970d-e1d09a207693">
+              <SHORT-NAME>PP_Sdc_SendInterface_Calibration</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_Sdc_SendInterface_Calibration</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2023-05-30T11:28:52+08:00" UUID="d9f94d84-1768-4fda-b001-3752fb7b6670">
+              <SHORT-NAME>PP_Sdc_SendInterface_Diag</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_Sdc_SendInterface_Diag</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2023-05-30T11:29:34+08:00" UUID="ee009536-425f-49ec-a050-ec3e40eddea6">
+              <SHORT-NAME>PP_Sdc_SendInterface_Eth</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2023-06-06T16:07:27+08:00" UUID="a61c2b7c-36a0-47a6-8964-3c5c85245be4">
+              <SHORT-NAME>PP_Sdc_SendInterface_Perception</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_Sdc_SendInterface_Perception</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2023-05-30T11:29:17+08:00" UUID="d97f4fa5-be26-4f78-ab26-ba188dee1ea3">
+              <SHORT-NAME>PP_Sdc_SendInterface_SocInfo</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_Sdc_SendInterface_SocInfo</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2023-05-24T18:00:36+08:00" UUID="87ad81c7-8854-4618-893a-2e554d87405d">
+              <SHORT-NAME>PP_Sdc_SendInterface_TSync</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_Sdc_SendInterface_SpiSync</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-06-08T16:01:42+08:00" UUID="1410fb04-718a-45d1-896c-1483fa187004">
+              <SHORT-NAME>RP_Dsm_SRI_InternalTestMode</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Dsm/SRI_InternalTestMode</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-04-25T13:42:44+08:00" UUID="6d6f82ee-8429-4076-841a-0503053fa046">
+              <SHORT-NAME>RP_Sdc_Adas_Data</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Adas</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-04-17T14:29:12+08:00" UUID="dd7344ed-42bc-4bd0-9e35-c4d28ac98710">
+              <SHORT-NAME>RP_Sdc_Body_Data</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Body</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-04-17T14:28:51+08:00" UUID="c866ed6d-f1a7-414b-b94c-14ec83b9412b">
+              <SHORT-NAME>RP_Sdc_Chassis_Data</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-04-25T13:43:45+08:00" UUID="5a9c6bb5-cbe4-4044-a909-4c8ca71a93e7">
+              <SHORT-NAME>RP_Sdc_Powertrain_Data</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Powertrain</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2022-02-25T15:35:44+08:00" UUID="a397e2b4-0d01-4039-b918-dd00ecc0eadd">
+              <SHORT-NAME>RP_VdyAdapter_VehDyn</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_VehDyn</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR T="2023-06-19T10:28:12+08:00" UUID="22fa465a-95b9-4fd9-af5f-2499a1c8e5b9">
+              <SHORT-NAME>Sdc_IB</SHORT-NAME>
+              <EVENTS>
+                <OPERATION-INVOKED-EVENT UUID="18a213c6-60ea-4e46-9f1f-6ae7bc09af03">
+                  <SHORT-NAME>CalibrationFlag_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_CalibrationFlag_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Calibration</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Calibration/CalibrationFlag_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="ab25aa1b-b502-44ee-9246-55cbc9dd91ab">
+                  <SHORT-NAME>CameraCaliresultDetails_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_CameraCaliresultDetails_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Calibration</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Calibration/CameraCaliresultDetails_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="5fce71ba-0c57-4604-b22e-1db40fddf9c0">
+                  <SHORT-NAME>CameraValue_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_CameraValue_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Calibration</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Calibration/CameraValue_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="405f0110-2a81-4213-ac64-47dd53a21d1c">
+                  <SHORT-NAME>EOLCalResult_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EOLCalResult_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Calibration</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Calibration/EOLCalResult_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="ecec7daf-dccd-4547-b95d-e596f8a48bb7">
+                  <SHORT-NAME>EthCableDiagnosticInfo_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthCableDiagnosticInfo_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthCableDiagnosticInfo_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="30501b93-0c4d-4b8a-8bcf-2ceaad575aa8">
+                  <SHORT-NAME>EthCableDiagnostic_StartRoutine_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthCableDiagnostic_StartRoutine</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthCableDiagnostic_StartRoutine</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="972cb487-9337-4240-a41f-ac26add4d938">
+                  <SHORT-NAME>EthCableFault_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthCableFault_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthCableFault_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="40d73e01-10f5-4564-a0a8-b49212d32d99">
+                  <SHORT-NAME>EthCableLengthDiagnosticInfo_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthCableLengthDiagnosticInfo_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthCableLengthDiagnosticInfo_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="f545383a-92bf-44d5-8473-f82c2c417b5b">
+                  <SHORT-NAME>EthCableLengthDiagnostic_StartRoutine_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthCableLengthDiagnostic_StartRoutine</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthCableLengthDiagnostic_StartRoutine</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="8d63560c-d7c2-4859-897e-806028de8056">
+                  <SHORT-NAME>EthCrcError_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthCrcError_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthCrcError_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="068ca050-18fd-496e-89c1-74a6cfd6eec8">
+                  <SHORT-NAME>EthEnableTestModeInfo_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthEnableTestModeInfo_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthEnableTestModeInfo_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="c14fc918-abde-42fe-922e-59e00f174644">
+                  <SHORT-NAME>EthEnableTestMode_StartRoutine_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthEnableTestMode_StartRoutine</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthEnableTestMode_StartRoutine</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="62480215-afca-447c-8c17-19201bf2bce0">
+                  <SHORT-NAME>EthEnableTestMode_StopRoutine_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthEnableTestMode_StopRoutine</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthEnableTestMode_StopRoutine</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="bda7e362-629f-4aeb-b88b-a48d10418056">
+                  <SHORT-NAME>EthIcmpError_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthIcmpError_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthIcmpError_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="bc05611f-cb1c-4523-8941-7407bb98e138">
+                  <SHORT-NAME>EthPhyLoopBackTestInfo_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthPhyLoopBackTestInfo_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthPhyLoopBackTestInfo_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="b1bfd590-bd8f-4215-8375-79ec29a04b9b">
+                  <SHORT-NAME>EthPhyLoopBackTest_StartRoutine_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthPhyLoopBackTest_StartRoutine</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthPhyLoopBackTest_StartRoutine</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="87702905-7a6e-4f78-8493-875f4f9575ef">
+                  <SHORT-NAME>EthPhyLoopBackTest_StopRoutine_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthPhyLoopBackTest_StopRoutine</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthPhyLoopBackTest_StopRoutine</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="55584a45-1b4a-4dfe-8b46-6c1853a4920b">
+                  <SHORT-NAME>EthReadPhyRegisterInfo_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthReadPhyRegisterInfo_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthReadPhyRegisterInfo_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="07a68469-ee43-4725-8aff-3ab7aaad33db">
+                  <SHORT-NAME>EthReadPhyRegister_StartRoutine_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthReadPhyRegister_StartRoutine</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthReadPhyRegister_StartRoutine</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="aa44b041-6910-45ee-8b75-73079c5f1a50">
+                  <SHORT-NAME>EthResetMACAddressInfo_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthResetMACAddressInfo_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthResetMACAddressInfo_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="6aef5585-ea1a-4358-b6e2-a2bae107852f">
+                  <SHORT-NAME>EthResetMACAddress_StartRoutine_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthResetMACAddress_StartRoutine</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthResetMACAddress_StartRoutine</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="bd15f223-670c-4924-aba9-f409212ef279">
+                  <SHORT-NAME>EthResetMACLayerStatisticInfo_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthResetMACLayerStatisticInfo_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthResetMACLayerStatisticInfo_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="308ee5a2-f345-4136-81a3-8626612d0e06">
+                  <SHORT-NAME>EthResetMACLayerStatistic_StartRoutine_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthResetMACLayerStatistic_StartRoutine</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthResetMACLayerStatistic_StartRoutine</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="1554b269-6175-41a2-863e-a7bb1f9557d9">
+                  <SHORT-NAME>EthResetPortConfigurationInfo_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthResetPortConfigurationInfo_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthResetPortConfigurationInfo_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="e603647f-b065-4025-b046-8cb3f0c7cd4c">
+                  <SHORT-NAME>EthResetPortConfiguration_StartRoutine_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthResetPortConfiguration_StartRoutine</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthResetPortConfiguration_StartRoutine</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="2e18acdf-bc95-4b56-b81a-85e5c0b67653">
+                  <SHORT-NAME>EthSQI_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthSQI_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthSQI_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="72459882-12f4-4528-b7b8-2b69619f5335">
+                  <SHORT-NAME>EthSetPortConfigurationInfo_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthSetPortConfigurationInfo_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthSetPortConfigurationInfo_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="59c80fc7-bab5-46ed-a427-7f35da0a00ba">
+                  <SHORT-NAME>EthSetPortConfiguration_StartRoutine_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_EthSetPortConfiguration_StartRoutine</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Eth</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Eth/EthSetPortConfiguration_StartRoutine</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="2ff6159c-416f-4ae2-8912-c5215d95cbf4">
+                  <SHORT-NAME>HostLane_Left_flag_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_HostLane_Left_flag_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Perception</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Perception/HostLane_Left_flag_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="539a2b02-dafc-4a8d-b3b9-94b8a601b516">
+                  <SHORT-NAME>HostLane_Right_flag_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_HostLane_Right_flag_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Perception</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Perception/HostLane_Right_flag_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <INIT-EVENT T="2022-02-25T14:28:49+08:00" UUID="e4d2b4af-41ec-4b3d-aa5c-18b912304aa4">
+                  <SHORT-NAME>InitEvent_Sdc_InitFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_InitFunction</START-ON-EVENT-REF>
+                </INIT-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="c99cb7d9-2100-47f4-adfa-43e136e48072">
+                  <SHORT-NAME>J3_PerceptionData_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_J3_PerceptionData_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Perception</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Perception/J3_PerceptionData_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="bb27b10b-5ef2-46b6-af64-55c5da0929cc">
+                  <SHORT-NAME>Len_to_Left_Lane_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_Len_to_Left_Lane_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Perception</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Perception/Len_to_Left_Lane_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="6c6e5dfd-2480-410c-9790-d8654a20f7aa">
+                  <SHORT-NAME>Len_to_Right_Lane_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_Len_to_Right_Lane_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Perception</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Perception/Len_to_Right_Lane_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="6c419870-215c-4467-8835-e09495efc6fb">
+                  <SHORT-NAME>PWMState_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_PWMState_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_SocInfo</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_SocInfo/PWMState_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="695ba7a0-e5b7-476d-b034-d95c6d306e81">
+                  <SHORT-NAME>RequestBootSensor_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_RequestBootSensor</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_SocInfo</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_SocInfo/RequestBootSensor</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="54959d02-ed9b-474e-9c68-79bc5944444a">
+                  <SHORT-NAME>RequestCalibrationValue_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_RequestCalibrationValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Calibration</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Calibration/RequestCalibrationValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT T="2023-05-30T13:22:57+08:00" UUID="a9ff66a6-5067-472b-b32e-8caf67b85f06">
+                  <SHORT-NAME>RequestEOLCalibration_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_RequestEOLCalibration</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Calibration</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Calibration/RequestEOLCalibration</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="8f573dac-7ba5-43a9-b245-8a3358a1dba8">
+                  <SHORT-NAME>RequestOMSN_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_RequestOMSN</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_SocInfo</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_SocInfo/RequestOMSN</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="2ae9192a-aa91-47c2-90b9-d99221a514dc">
+                  <SHORT-NAME>RequestSDACalibration_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_RequestSDACalibration</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Calibration</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Calibration/RequestSDACalibration</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="926dd72a-8fc1-4242-a31c-61dd8208bf7c">
+                  <SHORT-NAME>SocBootSensor_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_SocBootSensor_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_SocInfo</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_SocInfo/SocBootSensor_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="a2ebb47a-0d49-40c3-b492-d8dcd82f1511">
+                  <SHORT-NAME>SocCpuInfo_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_SocCpuInfo_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_SocInfo</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_SocInfo/SocCpuInfo_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="d4b285c6-c96d-4bd1-8b18-0dc150580eac">
+                  <SHORT-NAME>SocDiagInfo_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_SocDiagInfo_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Diag</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Diag/SocDiagInfo_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="768f03bd-3cd0-417f-96f2-9b9ad2794a83">
+                  <SHORT-NAME>SocOMSN_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_SocOMSN_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_SocInfo</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_SocInfo/SocOMSN_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="e22a8a06-d479-43e2-a4a7-f32005f94aa0">
+                  <SHORT-NAME>SocShutdownReuqest_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_SocShutdownReuqest</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_SocInfo</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_SocInfo/SocShutdownReuqest</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="58f8e47c-bce0-422f-8b58-2159a0ef5c0e">
+                  <SHORT-NAME>SocSysState_Read_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_SocSysState_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Diag</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Diag/SocSysState_Read</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="7fa38627-310c-4969-8360-36f328b8e9ed">
+                  <SHORT-NAME>Time_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_TimeSyncMsg</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_TSync</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_SpiSync/TimeSyncMsg</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <TIMING-EVENT T="2023-03-19T17:23:42+08:00" UUID="01709b6f-8308-41e2-a0e4-efe285f67a85">
+                  <SHORT-NAME>TimingEvent_Sdc_MainFunction_5ms</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_MainFunction_5ms</START-ON-EVENT-REF>
+                  <PERIOD>0.005</PERIOD>
+                </TIMING-EVENT>
+                <TIMING-EVENT T="2023-03-19T17:23:27+08:00" UUID="cb6457e3-df18-43bc-929c-081be1ee7f1c">
+                  <SHORT-NAME>TimingEvt_Sdc_MainFunction_10ms</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_MainFunction_10ms</START-ON-EVENT-REF>
+                  <PERIOD>0.01</PERIOD>
+                </TIMING-EVENT>
+                <TIMING-EVENT T="2023-03-19T17:24:25+08:00" UUID="3b6ab5a2-04a8-4b76-a520-8fcc12e032a5">
+                  <SHORT-NAME>TimingEvt_Sdc_MainFunction_20ms</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_MainFunction_20ms</START-ON-EVENT-REF>
+                  <PERIOD>0.02</PERIOD>
+                </TIMING-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="7b7cfbde-72b7-47d7-9abc-80155b6e777b">
+                  <SHORT-NAME>UTC_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_TimeSyncUtc</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_TSync</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_SpiSync/TimeSyncUtc</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="b6b7327b-abde-4e67-8b36-61fd1244f6be">
+                  <SHORT-NAME>UdsRequest_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Sdc/Sdc/Sdc_IB/Sdc_SendInterface_UdsRequest</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_SendInterface_Diag</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Sdc_SendInterface_Diag/UdsRequest</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+              </EVENTS>
+              <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY T="2022-02-25T14:28:34+08:00" UUID="DCE:b018304e-5c1b-4cb7-a8ae-5e9ab3b36b47">
+                  <SHORT-NAME>Sdc_InitFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_InitFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-04-26T11:12:17+08:00" UUID="DCE:c67c9d2c-ba52-47f2-9da5-80fe88e63de0">
+                  <SHORT-NAME>Sdc_MainFunction_10ms</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                    <VARIABLE-ACCESS UUID="ae8efcb9-8df3-4d39-9800-e3c448ba3362">
+                      <SHORT-NAME>drparg_BCM_TurnLightSwitchSt</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Body_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Body/BCM_TurnLightSwitchSts_Status</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="1fdff2d1-2320-4f4d-ae17-7f8333522cc3">
+                      <SHORT-NAME>drparg_BCM_TurnLightSwitchSts</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Body_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Body/BCM_TurnLightSwitchSts</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="6f64c4ba-3f63-49c6-8547-1a70b6806931">
+                      <SHORT-NAME>drparg_BcmFrntWiperSts</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Body_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Body/BcmFrntWiperSts</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="5c87971f-4978-4f47-89a4-8ebe71202291">
+                      <SHORT-NAME>drparg_BcmFrntWiperSts_Status</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Body_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Body/BcmFrntWiperSts_Status</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="4ffc7e9e-504d-4758-bcea-5b9d2f7d4671">
+                      <SHORT-NAME>drparg_BcmHiBeamSts</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Body_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Body/BcmHiBeamSts</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="fdcfce3a-fa5d-4290-adcd-ebb106a58272">
+                      <SHORT-NAME>drparg_BcmHiBeamSts_Status</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Body_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Body/BcmHiBeamSts_Status</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="b517104b-3bfc-433c-b75b-ef4e8c993683">
+                      <SHORT-NAME>drparg_ESP_LongAccelValid</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/ESP_LongAccelValid</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="263d890f-b810-4f9e-a3e8-26ab63047f9f">
+                      <SHORT-NAME>drparg_ESP_YawRateValid</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/ESP_YawRateValid</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="32e16309-53d6-4b92-a4f9-df5ea1dfca93">
+                      <SHORT-NAME>drparg_EpsSasSteerAg</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/EpsSasSteerAg</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="51c9f401-c5f2-421a-a91c-e618fc2f6363">
+                      <SHORT-NAME>drparg_EpsSasSteerAgVld</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/EpsSasSteerAgVld</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="03170df1-64db-4a6e-9747-27466e0f54f7">
+                      <SHORT-NAME>drparg_EpsSasSteerAg_Status</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/EpsSasSteerAg_Status</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="f252dfab-040f-47ad-b1a9-cb4ba9e11ee9">
+                      <SHORT-NAME>drparg_EpsSteerAgRate</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/EpsSteerAgRate</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="f194f335-c567-46f1-b769-8de6ff6002d7">
+                      <SHORT-NAME>drparg_EspLongAccel</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/EspLongAccel</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="2c001d7e-1025-4b93-bfc7-ac15b9f99974">
+                      <SHORT-NAME>drparg_EspLongAccel_Status</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/EspLongAccel_Status</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="73c4f575-6092-4db0-95f6-851abaad39de">
+                      <SHORT-NAME>drparg_EspVehSpd</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/EspVehSpd</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="106d16cf-2339-4549-b361-7b9f2d7a3abc">
+                      <SHORT-NAME>drparg_EspVehSpdVld</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/EspVehSpdVld</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="8db51192-d82b-4d8b-89b7-5d1c2fc8803b">
+                      <SHORT-NAME>drparg_EspVehSpd_Status</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/EspVehSpd_Status</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="7a00b35d-eb45-46ca-ac4f-dbf98f32380f">
+                      <SHORT-NAME>drparg_EspYawRate</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/EspYawRate</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="27cb4413-eac8-4691-90b4-c35760a20c71">
+                      <SHORT-NAME>drparg_EspYawRate_Status</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/EspYawRate_Status</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="f23cd628-fa59-4766-8a02-97f79db516b8">
+                      <SHORT-NAME>drparg_VcuGearPosn</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/VcuGearPosn</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="161544d7-8039-4522-91e7-65ccd5e50155">
+                      <SHORT-NAME>drparg_VcuGearPosn_Status</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Sdc_Chassis_Data</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Cpr_Rxsginal_Chassisd/VcuGearPosn_Status</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                  <SYMBOL>Sdc_MainFunction_10ms</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-03-19T17:24:25+08:00" UUID="DCE:38f9ea67-637e-41fa-9326-b03d667b68e7">
+                  <SHORT-NAME>Sdc_MainFunction_20ms</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_MainFunction_20ms</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-03-19T17:22:33+08:00" UUID="DCE:7d5e5a60-5dc0-4a91-80a9-c81d15d1b7e7">
+                  <SHORT-NAME>Sdc_MainFunction_5ms</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                    <VARIABLE-ACCESS UUID="10f074d7-6d23-4e0a-8294-3bc427f6cedc">
+                      <SHORT-NAME>drparg_VehDyn</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_VdyAdapter_VehDyn</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehDyn/VehDyn</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                  <DATA-SEND-POINTS>
+                    <VARIABLE-ACCESS UUID="719d6c47-bc76-4644-9e5d-ece59cbd3472">
+                      <SHORT-NAME>dsp_ARSObjectList</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_Cem_ARSObjectList</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_ARSObjectList/ARSObjectList</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="a8cd9a43-d9aa-4ab2-bd50-6908e09016c4">
+                      <SHORT-NAME>dsp_AbdOutputData_t</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_Perception_AbdOutputData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_AbdOutputData/AbdOutputData_t</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="96a89b31-987c-4478-9025-e94218d84483">
+                      <SHORT-NAME>dsp_CamLaneInputData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_Perception_CamLaneInputData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_CamLaneInputData/CamLaneInputData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="901805df-a6ce-4c84-ae18-0b66d543a929">
+                      <SHORT-NAME>dsp_FusionObjectList</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_Cem_FusionObjectList</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_FusionObjectList/FusionObjectList</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="b3db4b07-d7ac-4d16-b478-52a6c12c7620">
+                      <SHORT-NAME>dsp_GenObjectList</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Sdc/Sdc/PP_Sdc_Cem_GenObjectList</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_GenObjectList/GenObjectList</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-SEND-POINTS>
+                  <SYMBOL>Sdc_MainFunction_5ms</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:38:58+08:00" UUID="7e3d7dc3-0ec8-4b50-a68f-4428a8c994b8">
+                  <SHORT-NAME>Sdc_SendInterface_CalibrationFlag_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_CalibrationFlag_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:39:03+08:00" UUID="64ab0d73-e783-4d61-9549-5dc52e759fab">
+                  <SHORT-NAME>Sdc_SendInterface_CameraCaliresultDetails_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_CameraCaliresultDetails_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:39:07+08:00" UUID="78c9185d-f2f3-46fa-930e-745a6edaf960">
+                  <SHORT-NAME>Sdc_SendInterface_CameraValue_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_CameraValue_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T19:17:31+08:00" UUID="354826ed-9aa5-4ba1-8c25-edffbab109a1">
+                  <SHORT-NAME>Sdc_SendInterface_EOLCalResult_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EOLCalResult_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:39:20+08:00" UUID="d530c666-6aff-4e76-aa20-146d1fff0516">
+                  <SHORT-NAME>Sdc_SendInterface_EthCableDiagnosticInfo_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthCableDiagnosticInfo_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:39:13+08:00" UUID="f806432a-233b-4f54-9400-c66920160a7d">
+                  <SHORT-NAME>Sdc_SendInterface_EthCableDiagnostic_StartRoutine</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthCableDiagnostic_StartRoutine</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:39:25+08:00" UUID="5b71b15a-874c-4cb5-a532-2af3fa287a75">
+                  <SHORT-NAME>Sdc_SendInterface_EthCableFault_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthCableFault_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:39:37+08:00" UUID="ce38003c-b704-42ff-97be-c7926eae646c">
+                  <SHORT-NAME>Sdc_SendInterface_EthCableLengthDiagnosticInfo_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthCableLengthDiagnosticInfo_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:39:32+08:00" UUID="9628a827-619f-4d71-9b41-f2ba9500b8b9">
+                  <SHORT-NAME>Sdc_SendInterface_EthCableLengthDiagnostic_StartRoutine</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthCableLengthDiagnostic_StartRoutine</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:39:41+08:00" UUID="67ccd43f-1105-483e-ac00-73beebcc75c9">
+                  <SHORT-NAME>Sdc_SendInterface_EthCrcError_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthCrcError_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:39:54+08:00" UUID="5c335fce-79ed-40a1-b07e-53081ab8e97b">
+                  <SHORT-NAME>Sdc_SendInterface_EthEnableTestModeInfo_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthEnableTestModeInfo_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:39:46+08:00" UUID="1a455c7b-4d35-4ded-ba08-e9f9762e1191">
+                  <SHORT-NAME>Sdc_SendInterface_EthEnableTestMode_StartRoutine</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthEnableTestMode_StartRoutine</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:39:50+08:00" UUID="51c35875-4a37-499c-be5f-46a1cce472ed">
+                  <SHORT-NAME>Sdc_SendInterface_EthEnableTestMode_StopRoutine</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthEnableTestMode_StopRoutine</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:39:59+08:00" UUID="490c5d9e-fafc-412e-9098-f9f2010687bf">
+                  <SHORT-NAME>Sdc_SendInterface_EthIcmpError_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthIcmpError_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:40:25+08:00" UUID="3d50c2f4-c5e0-4f48-81a5-62e77e7a5d27">
+                  <SHORT-NAME>Sdc_SendInterface_EthPhyLoopBackTestInfo_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthPhyLoopBackTestInfo_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:40:07+08:00" UUID="9fe143ab-e766-425d-8a8f-525ad36dfcad">
+                  <SHORT-NAME>Sdc_SendInterface_EthPhyLoopBackTest_StartRoutine</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthPhyLoopBackTest_StartRoutine</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:40:12+08:00" UUID="f06be1c8-1f2e-4914-8f39-7fa4bb0ce070">
+                  <SHORT-NAME>Sdc_SendInterface_EthPhyLoopBackTest_StopRoutine</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthPhyLoopBackTest_StopRoutine</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:40:35+08:00" UUID="24954e45-b1f8-48d4-aa48-55a30dc4e402">
+                  <SHORT-NAME>Sdc_SendInterface_EthReadPhyRegisterInfo_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthReadPhyRegisterInfo_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:40:31+08:00" UUID="53bee6f2-ec82-494e-b62d-8144627103ef">
+                  <SHORT-NAME>Sdc_SendInterface_EthReadPhyRegister_StartRoutine</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthReadPhyRegister_StartRoutine</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:40:45+08:00" UUID="468c8e5c-40bc-49c4-aff9-66ae9762b36c">
+                  <SHORT-NAME>Sdc_SendInterface_EthResetMACAddressInfo_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthResetMACAddressInfo_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:40:41+08:00" UUID="a066ccea-d9a9-4769-97ac-172a1179a8be">
+                  <SHORT-NAME>Sdc_SendInterface_EthResetMACAddress_StartRoutine</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthResetMACAddress_StartRoutine</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:40:54+08:00" UUID="cd81d18f-0183-46af-b359-5d4f91a1c1dd">
+                  <SHORT-NAME>Sdc_SendInterface_EthResetMACLayerStatisticInfo_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthResetMACLayerStatisticInfo_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:40:50+08:00" UUID="2ea3c3df-bafd-4930-9b3e-4d86d528bb37">
+                  <SHORT-NAME>Sdc_SendInterface_EthResetMACLayerStatistic_StartRoutine</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthResetMACLayerStatistic_StartRoutine</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:41:03+08:00" UUID="98ce5869-b914-48a8-8476-49fc323b5ac1">
+                  <SHORT-NAME>Sdc_SendInterface_EthResetPortConfigurationInfo_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthResetPortConfigurationInfo_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:40:59+08:00" UUID="3f58b55c-2203-499e-b1ce-5996af58aee9">
+                  <SHORT-NAME>Sdc_SendInterface_EthResetPortConfiguration_StartRoutine</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthResetPortConfiguration_StartRoutine</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:41:17+08:00" UUID="0e01843f-4239-441e-8981-7957d75b2577">
+                  <SHORT-NAME>Sdc_SendInterface_EthSQI_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthSQI_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:41:11+08:00" UUID="c148409f-ba64-4963-a953-a3c6fac4a441">
+                  <SHORT-NAME>Sdc_SendInterface_EthSetPortConfigurationInfo_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthSetPortConfigurationInfo_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:41:07+08:00" UUID="0a467896-0393-473a-810e-c977910cc2c9">
+                  <SHORT-NAME>Sdc_SendInterface_EthSetPortConfiguration_StartRoutine</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_EthSetPortConfiguration_StartRoutine</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-06-15T13:26:41+08:00" UUID="6f1ede95-8f14-404c-bbc4-31fd436793a3">
+                  <SHORT-NAME>Sdc_SendInterface_HostLane_Left_flag_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_HostLane_Left_flag_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-06-15T13:26:49+08:00" UUID="b83574a3-1477-4e6b-9bb9-db8bc2d280dd">
+                  <SHORT-NAME>Sdc_SendInterface_HostLane_Right_flag_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_HostLane_Right_flag_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-06-06T16:08:55+08:00" UUID="d39949ec-961f-4a24-a122-845a970c69af">
+                  <SHORT-NAME>Sdc_SendInterface_J3_PerceptionData_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_J3_PerceptionData_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-06-06T16:09:02+08:00" UUID="06dbfa9c-9cc0-41fa-9686-0c3f4740949d">
+                  <SHORT-NAME>Sdc_SendInterface_Len_to_Left_Lane_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_Len_to_Left_Lane_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-06-06T16:09:06+08:00" UUID="ef690678-8414-4ac6-a6b1-36675d7b2117">
+                  <SHORT-NAME>Sdc_SendInterface_Len_to_Right_Lane_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_Len_to_Right_Lane_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:41:22+08:00" UUID="33f59f9c-f291-4dc1-ba41-1e99396b78f1">
+                  <SHORT-NAME>Sdc_SendInterface_PWMState_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_PWMState_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:41:26+08:00" UUID="a9f07200-7839-40b9-97c5-c1fd3ad3dd92">
+                  <SHORT-NAME>Sdc_SendInterface_RequestBootSensor</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_RequestBootSensor</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T20:19:11+08:00" UUID="da66dae2-82b9-4e17-83b8-8fe3f6450b16">
+                  <SHORT-NAME>Sdc_SendInterface_RequestCalibrationValue</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_RequestCalibrationValue</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:41:41+08:00" UUID="3f09c2d5-1e81-4fa4-9c0a-2fa24d8716ac">
+                  <SHORT-NAME>Sdc_SendInterface_RequestEOLCalibration</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_RequestEOLCalibration</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:41:47+08:00" UUID="7500eb24-d61f-43b5-a767-a05dbed6d831">
+                  <SHORT-NAME>Sdc_SendInterface_RequestOMSN</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_RequestOMSN</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:41:52+08:00" UUID="f68af3d2-1db0-472b-a46d-21c66ef34236">
+                  <SHORT-NAME>Sdc_SendInterface_RequestSDACalibration</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_RequestSDACalibration</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:42:00+08:00" UUID="b38ff8c4-fa23-4a76-96a9-7143a018edca">
+                  <SHORT-NAME>Sdc_SendInterface_SocBootSensor_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_SocBootSensor_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:42:04+08:00" UUID="3e4ceecb-0790-409f-8e7c-6982ae7351f2">
+                  <SHORT-NAME>Sdc_SendInterface_SocCpuInfo_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_SocCpuInfo_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-06-08T16:06:48+08:00" UUID="67226953-5f10-4cce-8588-8cbd165ba975">
+                  <SHORT-NAME>Sdc_SendInterface_SocDiagInfo_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                    <VARIABLE-ACCESS UUID="5994b552-0647-4584-bc80-4e6f5f67be37">
+                      <SHORT-NAME>drparg_DE_InternalTestMode</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Sdc/Sdc/RP_Dsm_SRI_InternalTestMode</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Dsm/SRI_InternalTestMode/DE_InternalTestMode</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                  <SYMBOL>Sdc_SendInterface_SocDiagInfo_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:42:07+08:00" UUID="89c3b1e2-b52d-4a1e-b72c-53ac49cf1f06">
+                  <SHORT-NAME>Sdc_SendInterface_SocOMSN_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_SocOMSN_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:42:10+08:00" UUID="1acf8666-41c5-4126-8be7-7b7ca1e4b90e">
+                  <SHORT-NAME>Sdc_SendInterface_SocShutdownReuqest</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_SocShutdownReuqest</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:42:17+08:00" UUID="6f2931a4-2d12-432c-a8e0-dbec8323e805">
+                  <SHORT-NAME>Sdc_SendInterface_SocSysState_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_SocSysState_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-31T17:30:46+08:00" UUID="12a52859-1d40-4481-b7fc-7e9e65cffcc7">
+                  <SHORT-NAME>Sdc_SendInterface_TimeSyncMsg</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_TimeSyncMsg</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-25T10:36:18+08:00" UUID="a50b2a29-08dc-482f-a17b-2a865b492933">
+                  <SHORT-NAME>Sdc_SendInterface_TimeSyncUtc</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_TimeSyncUtc</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-05-30T13:42:28+08:00" UUID="24da8a3c-db71-40d7-8ef1-494af34934d2">
+                  <SHORT-NAME>Sdc_SendInterface_UdsRequest</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Sdc_SendInterface_UdsRequest</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION T="2022-02-25T14:28:02+08:00" UUID="359d3cd4-4d55-4143-8ab8-eda8a11fb76a">
+          <SHORT-NAME>SdcImpl</SHORT-NAME>
+          <CODE-DESCRIPTORS>
+            <CODE T="2022-02-25T13:36:53+08:00" UUID="5f5e9a18-e03d-498f-8da7-9a1740b31ac2">
+              <SHORT-NAME>CodeGen</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/Sdc/Sdc/Sdc_IB/Sdc_MainFunction_5ms?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/Sdc/Sdc/Sdc_IB/Sdc_MainFunction_5ms?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/Sdc/Sdc/Sdc_IB/Sdc_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/Sdc/Sdc/Sdc_IB/Sdc_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <ARTIFACT-DESCRIPTORS>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-02-25T13:36:53+08:00">
+                  <SHORT-LABEL>SWSRC</SHORT-LABEL>
+                  <CATEGORY>SWSRC</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-02-25T13:36:53+08:00">
+                  <SHORT-LABEL>SWHDR</SHORT-LABEL>
+                  <CATEGORY>SWHDR</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+              </ARTIFACT-DESCRIPTORS>
+            </CODE>
+          </CODE-DESCRIPTORS>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <RESOURCE-CONSUMPTION T="2022-02-25T13:37:20+08:00" UUID="DCE:aa6bb1f1-b345-475a-9731-778e2dded88a">
+            <SHORT-NAME>Resource</SHORT-NAME>
+            <MEMORY-SECTIONS>
+              <MEMORY-SECTION T="2021-12-26T13:27:58+08:00" UUID="47638dee-2486-44a8-a886-c5823606bc42">
+                <SHORT-NAME>CODE</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2021-12-26T13:29:44+08:00" UUID="a4ccf528-4822-46fe-96ad-cb08270af4b9">
+                <SHORT-NAME>VAR_UNSPECIFIED</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/VAR</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+            </MEMORY-SECTIONS>
+          </RESOURCE-CONSUMPTION>
+          <SW-VERSION>0.0.1</SW-VERSION>
+          <VENDOR-ID>0</VENDOR-ID>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/Sdc/Sdc/Sdc_IB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

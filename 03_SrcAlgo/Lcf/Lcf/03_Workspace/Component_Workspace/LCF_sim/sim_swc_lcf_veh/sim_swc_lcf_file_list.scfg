@@ -1,0 +1,22 @@
+# Note:
+# 1. Rename this file and replace xxx with component name in lowercase.
+# 2. Replace xxx with component name in lowercase.
+# 3. Update each variable according to the existing source files and include paths.
+# ----------------------------------------------------------------------------------------
+
+# config file containing source files in PC sim wrapper
+
+lcf_sim_swc_source_files = """
+sim_swc_lcf_veh.cpp
+sim_swc_lcf_veh_dll.cpp
+stdafx.cpp
+"""
+
+lcf_sim_swc_pdo_sources = """
+lcf_veh_sim_pdo_tags_file.c
+../../../../01_Source_Code/LCF/Common/lcf_veh_pdo_tags_file.c
+"""
+
+lcf_sim_swc_include_paths = """
+#../lcf_sim/sim_swc_lcf_veh/
+"""

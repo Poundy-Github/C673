@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<location name="__CORE_NAME__" xmlns="http://contiautomotive.com/courage/coxml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <courage_tool_settings>
+      <project_root_dir>../../../../../../..</project_root_dir>
+   </courage_tool_settings>
+   <build_options>
+      <build_option name="COU_MOCKUP">COU_MOCKUP_LIBRARY_AUTO</build_option>
+      <build_option name="COU_COV">CTC</build_option>
+   </build_options>
+
+   <alloc_sw_implementation>
+      <include_paths>__AUTOMATICALLY_FILLED__</include_paths>
+      <defines>
+        <define name="__COURAGE_TEST_SWITCH__">1</define>
+      </defines>
+   </alloc_sw_implementation>
+
+   <composites>
+      <composite name="__COMPOSITE_NAME__">
+         <alloc_sw_implementation>
+
+            <productive_sources>
+               <source>../../../../../../../04_Engineering/01_Source_Code/HLA/function/hlaf_matrixgfa.c</source>
+            </productive_sources>
+
+            <test_sources>
+               <source>test_hlaf_matrixgfa.c</source>
+            </test_sources>
+
+            <mockup_sources>
+              <source>../../../../../../../04_Engineering/01_Source_Code/CML/misc/cml_misc.c</source>
+              <source>../../../../../../../04_Engineering/01_Source_Code/CML/trigo/cml_trigo.c</source>
+              <source>../../../../../../../04_Engineering/01_Source_Code/HLA/hla_cam_rot.c</source>
+              <source>../../../../../../../04_Engineering/01_Source_Code/HLA/hla_errorhandling.c</source>
+              <source>../../../../../../../04_Engineering/01_Source_Code/HLA/function/hlaf_matrix.c</source>
+              <source>../../../../../../../04_Engineering/01_Source_Code/HLA/function/hlaf_matrix_objects.c</source>
+              <source>../../../../../../../04_Engineering/00_Projects/__PROJECT__/HLA/parameters/HLA_MatrixParameters.c</source>
+              <source>../../../../../../../04_Engineering/00_Projects/__PROJECT__/HLA/sw_support/hla_cpar_init.c</source>
+            </mockup_sources>
+
+         </alloc_sw_implementation>
+      </composite>
+
+   </composites>
+</location>

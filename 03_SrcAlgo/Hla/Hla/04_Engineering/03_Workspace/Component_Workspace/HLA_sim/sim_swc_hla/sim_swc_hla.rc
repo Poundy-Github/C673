@@ -1,0 +1,171 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,0
+ PRODUCTVERSION 1,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040704b0"
+        BEGIN
+            VALUE "Comments", "Head Light Assist Plugin DLL"
+            VALUE "CompanyName", "Continental AG"
+            VALUE "FileDescription", "sim_swc_hla.dll"
+            VALUE "FileVersion", "1, 0, 0, 0"
+            VALUE "InternalName", "Head Light Assist Simulator Plugin DLL"
+            VALUE "LegalCopyright", "(c) 2001-2009 Continental Automotive Systems Lindau; All rights reserved."
+            VALUE "OriginalFilename", "sim_swc_hla.dll"
+            VALUE "ProductName", "Sim SWC Head Light Assist Plugin Dynamic Link Library"
+            VALUE "ProductVersion", "1, 0, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x407, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP_BMW_LOGO     BITMAP                  "res\\bmwLogo_big256.bmp"
+IDB_BITMAP_HIGHWAY_DTCT BITMAP                  "res\\Sign_330_HiWay_big256.bmp"
+IDB_BITMAP_HIGHWAY_IDLE BITMAP                  "res\\Sign_330_HiWay-Idle_big256.bmp"
+IDB_BITMAP_CITY_DTCT    BITMAP                  "res\\Sign_City_big256.bmp"
+IDB_BITMAP_TUNNEL_AHEAD BITMAP                  "res\\Sign_327_Tunnel-Ahead_big256.bmp"
+IDB_BITMAP_TUNNEL_INSIDE BITMAP                 "res\\Sign_327_Tunnel_big256.bmp"
+IDB_BITMAP_BAD_WEATHER  BITMAP                  "res\\Rain_Cloud_big256.bmp"
+IDB_BITMAP_DAYLIGHT     BITMAP                  "res\\Sunny_big256.bmp"
+IDB_BITMAP_TWILIGHT_1   BITMAP                  "res\\Twilight_1_big256.bmp"
+IDB_BITMAP_TWILIGHT_2   BITMAP                  "res\\Twilight_2_big256.bmp"
+IDB_BITMAP_TWILIGHT_3   BITMAP                  "res\\Twilight_3_big256.bmp"
+IDB_BITMAP_RHD_TRAFFIC  BITMAP                  "res\\Righthand_Traffic_big256.bmp"
+IDB_BITMAP_LHD_TRAFFIC  BITMAP                  "res\\Lefthand_Traffic_big256.bmp"
+IDB_BITMAP_BLOCKAGE_FULLBLIND BITMAP            "res\\Blockage_FullBlind_big256.bmp"
+IDB_BITMAP_BLOCKAGE_CONDENSATION BITMAP         "res\\Blockage_Condensation_big256.bmp"
+IDB_BITMAP_ONCOMING_VEHICLE BITMAP              "res\\OncomingVeh_big256.bmp"
+IDB_BITMAP_PRECEDING_VEHICLE BITMAP             "res\\PrecedingVeh_big256.bmp"
+IDB_BITMAP_MIN_SPEED BITMAP                     "res\\MinSpeed_big256.bmp"
+IDB_BITMAP_DELAY BITMAP                         "res\\Sandglass_big256.bmp"
+IDB_BITMAP_CLEARANCE_MEASUREMENT BITMAP         "res\\Clearance_big256.bmp"
+IDB_BITMAP_HB_OFF BITMAP                        "res\\HBoff_big256.bmp"
+IDB_BITMAP_HB_ON BITMAP                         "res\\HBon_big256.bmp"
+IDB_BITMAP_HB_PARTIAL_LEFT_RIGHT BITMAP         "res\\HBpartialLeftRight_big256.bmp"
+IDB_BITMAP_HB_PARTIAL_LEFT BITMAP               "res\\HBpartialLeft_big256.bmp"
+IDB_BITMAP_HB_PARTIAL_RIGHT BITMAP              "res\\HBpartialRight_big256.bmp"
+IDB_BITMAP_MERICA BITMAP                        "res\\Merica_big256.bmp"
+IDB_BITMAP_RUNTIME BITMAP                       "res\\Runtime_big256.bmp"
+IDB_BITMAP_IMAGE_TURNOFF_ERROR BITMAP           "res\\Error_big256.bmp"
+IDB_BITMAP_FOG          BITMAP                  "res\\fog.bmp"
+IDR_CDL1                CDL                     "sim_swc_hla.cdl"
+IDR_IMAGE_BMW_LOGO                RCDATA        "res\\bmwLogo_128px.rgb"
+IDR_IMAGE_HIGHWAY_DTCT  RCDATA                  "res\\Sign_330_HiWay_128pix.rgb"
+IDR_IMAGE_HIGHWAY_IDLE  RCDATA                  "res\\Sign_330_HiWay-Idle_128pix.rgb"
+IDR_IMAGE_CITY_DTCT     RCDATA                  "res\\Sign_City_128pix.rgb"
+IDR_IMAGE_TUNNEL_AHEAD  RCDATA                  "res\\Sign_327_Tunnel-Ahead_128pix.rgb"
+IDR_IMAGE_TUNNEL_INSIDE RCDATA                  "res\\Sign_327_Tunnel_128pix.rgb"
+IDR_IMAGE_BAD_WEATHER   RCDATA                  "res\\Rain_Cloud_128pix.rgb"
+IDR_IMAGE_DAYLIGHT      RCDATA                  "res\\Sunny_128pix.rgb"
+IDR_IMAGE_TWILIGHT_1    RCDATA                  "res\\Twilight_1_128pix.rgb"
+IDR_IMAGE_TWILIGHT_2    RCDATA                  "res\\Twilight_2_128pix.rgb"
+IDR_IMAGE_TWILIGHT_3    RCDATA                  "res\\Twilight_3_128pix.rgb"
+IDR_IMAGE_RHT_TRAFFIC   RCDATA                  "res\\Righthand_Traffic_128pix.rgb"
+IDR_IMAGE_LHT_TRAFFIC   RCDATA                  "res\\Lefthand_Traffic_128pix.rgb"
+IDR_IMAGE_BLOCKAGE_FULLBLIND  RCDATA            "res\\Blockage_FullBlind_128pix.rgb"
+IDR_IMAGE_BLOCKAGE_CONDENSATION  RCDATA         "res\\Blockage_Condensation_128pix.rgb"
+IDR_IMAGE_ONCOMING_VEHICLE  RCDATA              "res\\OncomingVeh_128pix.rgb"
+IDR_IMAGE_PRECEDING_VEHICLE  RCDATA             "res\\PrecedingVeh_128pix.rgb"
+IDR_IMAGE_MIN_SPEED  RCDATA                     "res\\MinSpeed_128pix.rgb"
+IDR_IMAGE_DELAY  RCDATA                         "res\\Sandglass_128pix.rgb"
+IDR_IMAGE_CLEARANCE_MEASUREMENT  RCDATA         "res\\Clearance_128pix.rgb"
+IDR_IMAGE_HB_OFF  RCDATA                        "res\\HBoff_128pix.rgb"
+IDR_IMAGE_HB_ON RCDATA                          "res\\HBon_128pix.rgb"
+IDR_IMAGE_HB_PARTIAL_LEFT_RIGHT RCDATA          "res\\HBpartialLeftRight_128pix.rgb"
+IDR_IMAGE_HB_PARTIAL_LEFT RCDATA                "res\\HBpartialLeft_128pix.rgb"
+IDR_IMAGE_HB_PARTIAL_RIGHT RCDATA               "res\\HBpartialRight_128pix.rgb"
+IDR_IMAGE_MERICA RCDATA                         "res\\Merica_128pix.rgb"
+IDR_IMAGE_RUNTIME RCDATA                        "res\\Runtime_128pix.rgb"
+IDR_IMAGE_TURNOFF_ERROR RCDATA                  "res\\Error_128pix.rgb"
+IDR_IMAGE_FOG           RCDATA                  "res\\fog.rgb"
+
+
+
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

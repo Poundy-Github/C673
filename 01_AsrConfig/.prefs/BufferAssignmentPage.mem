@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<memento version="1.0" lastmodified="Oct 12, 2022 10:31:12 AM">
+    <BufferAssignmentPage FILTER_ACTION_COMBO="None"
+        AA_SUMMARY="&lt;b>192&lt;/b> HOHs on all Controllers; &lt;b>138&lt;/b> without PDU assignment"
+        AA_MIXED="true"
+        PDU_SUMMARY="&lt;b>106&lt;/b> PDUs on all Controllers; &lt;b>0&lt;/b> not assigned to any HOH"
+        CTRS_COMBO="&lt;all>" COMBO_MULTI_CONFIG="CanIfInitCfg"
+        CC_CONFIG_COMBO="CanContConfig" AA_TEXT="1">
+        <__metadata>
+            <WIDGET_GROUP_TOP_COMBOS __expanded="true"/>
+            <WIDGET_LABEL_CTRS/>
+            <WIDGET_COMBO_CTRS __radix="DEC" __separators="false"/>
+            <WIDGET_LABEL_CC_CONFIG/>
+            <WIDGET_COMBO_CC_CONFIG __radix="DEC" __separators="false"/>
+            <WIDGET_LABEL_FILTER_ACTION/>
+            <WIDGET_COMBO_FILTER_ACTION __radix="DEC" __separators="false"/>
+            <WIDGET_TABLE_PDUS
+                __width="100 214 73 75 89 256 146 50 453 104"
+                __sortcolumn="3" __visible="nyyyyyyyyy" __sortorder="1"/>
+            <WIDGET_GROUP_MAPPING_BUTTONS __expanded="true"/>
+            <WIDGET_LABEL_PDU_SUMMARY/>
+            <WIDGET_BUTTON_ASSIGN_PDUS __toggled="false"/>
+            <WIDGET_BUTTON_CLEAR_PDUS __toggled="false"/>
+            <WIDGET_BUTTON_CLEAR_HOHS __toggled="false"/>
+            <WIDGET_TABLE_HOHS
+                __width="100 351 100 251 100 50 50 75 75 75 75 85 75"
+                __sortcolumn="1" __visible="nyyyyyyyyyyyy" __sortorder="1"/>
+            <topGroup __expanded="true"/>
+            <WIDGET_LABEL_SUMMARY/>
+            <WIDGET_GROUP_AUTO_ASSIGNMENT __expanded="true"/>
+            <WIDGET_BUTTON_AUTO_ASSIGNMENT __toggled="false"/>
+            <WIDGET_LABEL_AUTO_ASSIGNMENT/>
+            <WIDGET_TEXT_AUTO_ASSIGNMENT __radix="DEC" __separators="false"/>
+            <mixedHTHgroup __expanded="true"/>
+            <WIDGET_LABEL_CHECK_BOX_MIXED_HTHS/>
+            <WIDGET_CHECK_BOX_MIXED_HTHS/>
+        </__metadata>
+        <PDUSCanIfInitCfg>
+            <FR_111_273R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_112_274R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_113_275R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_114_276R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_115_277R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_116_278R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_117_279R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_118_280R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_119_281R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_11A_282R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_11B_283R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_11C_284R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_11D_285R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_11E_286R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_11F_287R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_120_288R HOH_SHARING="allowed" CTR="FC"/>
+            <GW_50_80R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_170_368R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_17A_378R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_17E_382R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_180_384R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_1C2_450R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_20B_523R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_24F_591R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_288_648R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_28B_651R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_2A8_680R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_2C2_706R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_2DE_734R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_3C2_962R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <Diag_PhysReq_763R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <Diag_FuncReqFD_7DFR HOH_SHARING="allowed" CTR="FC_Public"/>
+            <Diag_PhysReqFD_752R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <FC_107_263T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_108_264T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_150_336T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_151_337T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_152_338T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_153_339T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_154_340T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_160_352T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_161_353T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_162_354T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_163_355T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_164_356T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_165_357T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_166_358T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_167_359T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_168_360T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_169_361T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_170_368T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_171_369T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_172_370T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_173_371T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_174_372T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_175_373T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_176_374T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_177_375T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_178_376T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_179_377T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_195_405T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_196_406T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_197_407T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_198_408T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_694_1684T HOH_SHARING="n/a" CTR="FC_Public"/>
+            <Diag_DataResp_0x76BT HOH_SHARING="n/a" CTR="FC_Public"/>
+            <Diag_DataRespFD_0x75AT HOH_SHARING="n/a" CTR="FC_Public"/>
+            <VCU_161_353R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_507_1287R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_278_632R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <FR_136_310R HOH_SHARING="allowed" CTR="FC"/>
+            <FR_138_312R HOH_SHARING="allowed" CTR="FC"/>
+            <ADC_19B_411R HOH_SHARING="allowed" CTR="FC"/>
+            <ADC_344_836R HOH_SHARING="allowed" CTR="FC"/>
+            <ADC_345_837R HOH_SHARING="allowed" CTR="FC"/>
+            <ADC_346_838R HOH_SHARING="allowed" CTR="FC"/>
+            <GW_3BD_957R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <FC_190_400T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_193_403T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_207_519T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_1BA_442T HOH_SHARING="n/a" CTR="FC_Public"/>
+            <FC_244_580T HOH_SHARING="n/a" CTR="FC_Public"/>
+            <FC_307_775T HOH_SHARING="n/a" CTR="FC_Public"/>
+            <FC_312_786T HOH_SHARING="n/a" CTR="FC_Public"/>
+            <FC_31A_794T HOH_SHARING="n/a" CTR="FC_Public"/>
+            <FC_571_1393T HOH_SHARING="n/a" CTR="FC_Public"/>
+            <FC_592_1426T HOH_SHARING="n/a" CTR="FC_Public"/>
+            <FC_204_516T HOH_SHARING="n/a" CTR="FC"/>
+            <GW_2D2_722R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <TBOX_2F7_759R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <VCU_38A_906R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <GW_3AF_943R HOH_SHARING="allowed" CTR="FC_Public"/>
+            <ADC_200_512R_Static HOH_SHARING="allowed" CTR="FC"/>
+            <Diag_FuncReq_7DFR HOH_SHARING="allowed" CTR="FC_Public"/>
+            <FC_XCP_R_1536R_Static HOH_SHARING="allowed" CTR="FC_Public"/>
+            <Diag_FC_0x76BT HOH_SHARING="n/a" CTR="FC_Public"/>
+            <Diag_FCFD_0x75AT HOH_SHARING="n/a" CTR="FC_Public"/>
+            <FC_XCP_T_1538T_Static HOH_SHARING="n/a" CTR="FC_Public"/>
+            <FC_180_384T HOH_SHARING="n/a" CTR="FC"/>
+            <ADC_1F1_497R HOH_SHARING="allowed" CTR="FC"/>
+            <ADC_200_512R HOH_SHARING="allowed" CTR="FC"/>
+            <ADC_201_513R HOH_SHARING="allowed" CTR="FC"/>
+            <CANNM_R_0x406 HOH_SHARING="allowed" CTR="FC_Public"/>
+            <FC_181_385T HOH_SHARING="n/a" CTR="FC"/>
+            <FC_1F2_498T HOH_SHARING="n/a" CTR="FC"/>
+            <CANNM_T_0x452 HOH_SHARING="n/a" CTR="FC_Public"/>
+        </PDUSCanIfInitCfg>
+    </BufferAssignmentPage>
+</memento>

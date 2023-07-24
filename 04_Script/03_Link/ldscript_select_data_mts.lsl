@@ -1,0 +1,17 @@
+		select ".data.MtsiAdapter.*";
+		select ".data.MTSI_Cfg.*";
+		select ".data.ScuRcu.*";
+		select ".data.ScuWdt.*";
+		select ".data.MTSI_Filter.*";
+		select ".data.CDD_MTSI.*";
+		select ".data.MTSI_Custom.*";
+		select ".data.MTSI_FilterCfg.*";
+		select ".data.MTSI_SwVersionInfo.*";
+		select ".data.MTSI.*";
+		select ".data.MTSI_Driver.*";
+		select ".data.MTSI_Statistics.*";
+		select ".data.MTSI_Test.*";
+		select ".data.MTSI_Pal.*";
+		select ".data.HSCT.*";
+		select ".data.HSSL.*";
+		select ".data.HSSL_HSCT_Cfg.*";

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="sim_swc_lcf_vis"
+	OutputDirectory="..\..\..\..\..\05_Testing\06_Test_Tools\mts_measurement\dll\algo\lcf_vis_sim"
+	IntermediateDirectory="$(ConfigurationName)"
+	DeleteExtensionsOnClean="*.obj;*.ilk;*.tlb;*.tli;*.tlh;*.tmp;*.rsp;*.pgc;*.pgd;*.dat;*.sdl;$(TargetPath)"
+	>
+	<Tool
+		Name="VCBscMakeTool"
+		SuppressStartupBanner="true"
+		OutputFile="$(IntDir)/$(TargetName).bsc"
+	/>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalOptions=""
+		AdditionalIncludeDirectories=".;..\src\std;..\src\pgm_rw;..\..\..\..\01_Source_Code\algo\lcf;..\..\..\..\01_Source_Code\algo\cml;..\..\..\..\01_Source_Code\common;..\..\..\..\01_Source_Code\common\rte;..\..\..\..\01_Source_Code\algo\00_Custom\frame_sen;..\..\..\..\01_Source_Code\algo\00_Custom\frame_veh;..\..\..\..\01_Source_Code\algo\00_Custom\lcfsen_wrp;..\..\..\..\01_Source_Code\algo\00_Custom\lcfveh_wrp;..\..\..\..\01_Source_Code\algo\00_Custom\lcfveh_wrp\lcd;..\..\..\..\01_Source_Code\algo\00_Custom\lcfveh_wrp\lck;..\..\..\..\01_Source_Code\algo\00_Custom\lcfveh_wrp\lks;..\..\..\..\..\05_Testing\06_Test_Tools\mts\include;..\..\externals\sim\include\sim_swc;..\..\externals\sim\include\gdv;..\..\externals\sim\include\ctk;..\..\externals\sim\include\sim_kernel;..\..\externals\sim\include\sim_adapter;..\..\externals\sim_extensions;..\..\externals\sim\include\sim_rte;..\..\externals\sim\include\ctk\wtl;"
+		PreprocessorDefinitions="WIN32;_WINDOWS;_USRDLL;SIMPLG_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CFG_PROJECT=$(ConfigurationName);USE_OLD_ADC_CODING_STYLE_TYPEDEFS"
+		StructMemberAlignment="3"
+		FloatingPointModel="0"
+		FloatingPointExceptions="true"
+		UsePrecompiledHeader="0"
+		AssemblerListingLocation="$(IntDir)\"
+		ObjectFile="$(IntDir)\"
+		ProgramDataBaseFileName="$(IntDir)\"
+		BrowseInformation="1"
+		WarningLevel="4"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalDependencies="$(IntDir)\$(TargetName).res"
+		OutputFile="$(OutDir)\$(ProjectName).dll"
+		LinkIncremental="1"
+		SuppressStartupBanner="true"
+		AdditionalLibraryDirectories="..\..\..\..\..\05_Testing\06_Test_Tools\mts\lib;..\..\externals\sim\lib;"
+		GenerateDebugInformation="true"
+		ProgramDatabaseFile="$(OutDir)\$(TargetName).pdb"
+		GenerateMapFile="true"
+		MapFileName="$(IntDir)\$(TargetName).map"
+		ImportLibrary="$(IntDir)\$(TargetName).lib"
+		TargetMachine="1"
+	/>
+	<Tool
+		Name="VCMIDLTool"
+		MkTypLibCompatible="false"
+	/>
+	<Tool
+		Name="VCPreBuildEventTool"
+		Description="Make DLL and PDB writeable ..."
+		CommandLine="attrib -r $(TargetDir)\$(TargetName).pdb &gt; NUL&#x0D;&#x0A;attrib -r $(TargetDir)\$(TargetName).dll &gt; NUL&#x0D;&#x0A;"
+	/>
+	<Tool
+		Name="VCPreLinkEventTool"
+		Description="Patch Resources ..."
+		CommandLine="cscript ..\..\..\..\02_Development_Tools\visual_studio_scripts\res_patch.vbs /D:$(ConfigurationName) /R:$(TargetName).rc /V:.\sim_swc_lcf_vis_version.h //NoLogo&#x0D;&#x0A;rc /d &quot;NDEBUG&quot; /d &quot;_VC80_UPGRADE=0x0600&quot; /l 0x407 /fo&quot;$(IntDir)/$(TargetName).res&quot;  $(TargetName).rc&#x0D;&#x0A;"
+	/>
+	<Tool
+		Name="VCResourceCompilerTool"
+		Culture="1033"
+		AdditionalIncludeDirectories="&amp;quot;$(IntDir)&amp;quot;"
+	/>
+</VisualStudioPropertySheet>

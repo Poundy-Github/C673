@@ -1,0 +1,87 @@
+// T32 Thu Jul 28 18:01:39 2022
+
+B::
+
+TOOLBAR   ON
+STATUSBAR ON
+FramePOS 30.375,0.0,,,Maximized
+WinPAGE.RESet
+
+WinPAGE.Create P000
+WinCLEAR
+
+WinPOS 9.375 5.3571 113. 26. 13. 1. W003
+WinTABS 10. 10. 25.
+List e:Sdc_MainFunction
+
+WinPOS 50.5 6.7143 113. 26. 13. 1. W007
+WinTABS 10. 10. 25.
+List `Sdc_DataProcess_TxRadarData`
+
+WinPOS 3.0 4.0 113. 26. 13. 1. W004
+WinTABS 10. 10. 25.
+List e:OS_TASK_Core2_OsTask_Appl_5ms
+
+WinPOS 50.875 2.0 113. 26. 13. 1. W005
+WinTABS 10. 10. 25.
+List P:0xA01848C0
+
+WinPOS 5.0 0.5 113. 26. 13. 1. W008
+WinTABS 10. 10. 25.
+List e:ServiceHdl_svcCanData_VDY
+
+WinPOS 21.75 0.0 113. 26. 13. 1. W006
+WinTABS 10. 10. 25.
+List P:0xA018750C
+
+WinPOS 28.125 2.1429 113. 26. 13. 1. W009
+WinTABS 10. 10. 25.
+List P:0xA0187914
+
+WinPOS 41.25 2.1429 113. 26. 13. 1. W010
+WinTABS 10. 10. 25.
+List P:0xA01D93FC
+
+WinPOS 83.0 2.6429 68. 25. 0. 2. W012
+WinTABS 31. 52.
+PERF.List
+
+WinPOS 3.75 5.3571 113. 26. 13. 1. W011
+WinTABS 10. 10. 25.
+List Sdc_DataProcess_RxCemData2Rte
+
+WinPOS 7.5 4.2857 74. 26. 0. 1. W002
+WinTABS 26. 26.
+sYmbol.Browse.symbol
+
+WinPOS 9.375 0.0 38. 30. 13. 1. W013
+WinTABS 10. 10. 25.
+List e:Sdc_DataReceive_CemDataFromJ3
+
+WinPOS 11.375 9.5714 105. 25. 5. 0. W000
+Frame
+
+WinPOS 11.25 0.0 105. 25. 5. 0. W015
+Frame.view /Locals /Caller
+
+WinPOS 9.375 5.3571 113. 26. 13. 1. W014
+WinTABS 10. 10. 25.
+List P:0xA01DEEBC
+
+WinPOS 60.625 0.42857 126. 28. 0. 0. W001
+Var.Watch
+
+Var.AddWatch Sdc_Radar_ObjectList
+Var.AddWatch Sdc_Read_VehDynData
+Var.AddWatch Sdc_Cemdata
+Var.AddWatch Sdc_Write_VehDynData
+Var.AddWatch e_Sdc_UpdatedFlag_Updated
+Var.AddWatch Sdc_CemDataUpdatedFlag
+Var.AddWatch e_Sdc_UpdatedFlag_NotUpdated
+Var.AddWatch Sdc_GenObjectList
+Var.AddWatch Sdc_CemDataUpdatedFlag
+Var.AddWatch Debug_Sdc_GenObjectList
+
+WinPAGE.select P000
+
+ENDDO

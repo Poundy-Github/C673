@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00045.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2022-01-10T16:16:42+08:00" UUID="1774411c-7125-4a7c-83f8-5bf4bbf3e0d9">
+      <SHORT-NAME>HlaAdapter</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SW-COMPONENT-TYPE T="2023-03-10T15:56:08+08:00" UUID="bd11b213-24de-4e9b-b3e6-d386dc7a276a">
+          <SHORT-NAME>HlaAdapter</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE T="2023-03-21T15:51:19+08:00" UUID="335f5321-c649-449a-97dd-43a0e5ca23e3">
+              <SHORT-NAME>PP_HlaAdapter_OutputData</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_Hla_OutputSignals_t</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2022-03-31T23:08:30+08:00" UUID="32364f2e-241d-4b38-80fe-6213f79d446e">
+              <SHORT-NAME>RP_Fcu_BaseCtrlData</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_BaseCtrlData</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-03-21T15:51:52+08:00" UUID="61a74e53-689c-4a47-b3ad-5ce99ad81d10">
+              <SHORT-NAME>RP_Fcu_HlaInputData</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_Hla_InputSignals_t</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2022-03-10T21:15:40+08:00" UUID="a675fd44-e9f3-4b07-abeb-b3dec81b1898">
+              <SHORT-NAME>RP_Fcu_VehSig</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_VehSig</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="e2002037-c139-4cd2-8d6b-db084008b6b0">
+              <SHORT-NAME>RP_MtsiAdapter_MeasFreezeData</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_Mtsi_MeasFreezeData</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="3d9d2905-ff1c-4d46-aa29-146a9781fd3d">
+              <SHORT-NAME>RP_UpdateTaskCycle</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_Mtsi_UpdateTaskCycle</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-03-10T15:56:08+08:00" UUID="101d6fcb-4304-44cf-932b-f00a1016fc8a">
+              <SHORT-NAME>RP_VdyAdapter_VehDynData</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_VehDyn</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR T="2022-01-10T16:14:39+08:00" UUID="dc98cecc-1ca8-4af3-aab1-8b5708dd67e9">
+              <SHORT-NAME>HlaAdapter_IB</SHORT-NAME>
+              <EVENTS>
+                <INIT-EVENT T="2022-01-10T16:12:59+08:00" UUID="324dff8d-130a-416d-9844-c013467dbd8c">
+                  <SHORT-NAME>InitEvent_HlaAdapter_InitFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/HlaAdapter/HlaAdapter/HlaAdapter_IB/HlaAdapter_InitFunction</START-ON-EVENT-REF>
+                </INIT-EVENT>
+                <TIMING-EVENT T="2022-01-10T16:14:39+08:00" UUID="e6af209f-4987-4f67-8f22-234292a0ed3f">
+                  <SHORT-NAME>TimingEvent_HlaAdapter_HlaExec</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/HlaAdapter/HlaAdapter/HlaAdapter_IB/HlaAdapter_HlaExec</START-ON-EVENT-REF>
+                  <PERIOD>0.06</PERIOD>
+                </TIMING-EVENT>
+                <TIMING-EVENT T="2022-02-24T10:27:54+08:00" UUID="e1266083-8068-4257-af33-705b0285486b">
+                  <SHORT-NAME>TimingEvent_HlaAdapter_MainFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/HlaAdapter/HlaAdapter/HlaAdapter_IB/HlaAdapter_MainFunction</START-ON-EVENT-REF>
+                  <PERIOD>0.06</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY T="2022-03-31T23:10:27+08:00" UUID="DCE:fcc6792a-6a1a-46e1-ac6f-2be88b60ac37">
+                  <SHORT-NAME>HlaAdapter_HlaExec</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                    <VARIABLE-ACCESS UUID="906264f7-a28d-4bf0-b153-659a71155902">
+                      <SHORT-NAME>drparg_BaseCtrlData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/HlaAdapter/HlaAdapter/RP_Fcu_BaseCtrlData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_BaseCtrlData/BaseCtrlData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="f112a43d-48f8-415b-9d8a-e7959389e5f9">
+                      <SHORT-NAME>drparg_VehSig</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/HlaAdapter/HlaAdapter/RP_Fcu_VehSig</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehSig/VehSig</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                  <SYMBOL>HlaAdapter_HlaExec</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2022-03-31T23:10:35+08:00" UUID="DCE:3f083401-141a-4625-9b52-e5111540b40a">
+                  <SHORT-NAME>HlaAdapter_InitFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                    <VARIABLE-ACCESS UUID="92a560bc-c3d3-4b73-98fc-1f2192b8862e">
+                      <SHORT-NAME>drparg_BaseCtrlData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/HlaAdapter/HlaAdapter/RP_Fcu_BaseCtrlData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_BaseCtrlData/BaseCtrlData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="0f4cac34-37a4-442e-a350-889c467455b0">
+                      <SHORT-NAME>drparg_VehSig</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/HlaAdapter/HlaAdapter/RP_Fcu_VehSig</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehSig/VehSig</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                  <SYMBOL>HlaAdapter_InitFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-03-10T15:56:35+08:00" UUID="DCE:07e87552-3252-4939-a912-4488f282028d">
+                  <SHORT-NAME>HlaAdapter_MainFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                    <VARIABLE-ACCESS UUID="36acd905-f3e9-4e88-9c84-d41e1cf26469">
+                      <SHORT-NAME>drparg_BaseCtrlData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/HlaAdapter/HlaAdapter/RP_Fcu_BaseCtrlData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_BaseCtrlData/BaseCtrlData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="4cbd9220-99ad-465f-a169-7b99e465a2c8">
+                      <SHORT-NAME>drparg_VehDyn</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/HlaAdapter/HlaAdapter/RP_VdyAdapter_VehDynData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehDyn/VehDyn</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="ac209be9-7856-4cce-94e6-a5a4d1f7b01e">
+                      <SHORT-NAME>drparg_Hla_InputSignals_t</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/HlaAdapter/HlaAdapter/RP_Fcu_HlaInputData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Hla_InputSignals_t/Hla_InputSignals_t</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="522a9ffd-27ae-4813-b833-4c237626c03a">
+                      <SHORT-NAME>drparg_VehSig</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/HlaAdapter/HlaAdapter/RP_Fcu_VehSig</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VehSig/VehSig</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                  <DATA-SEND-POINTS>
+                    <VARIABLE-ACCESS UUID="57d4472b-e719-41e0-b780-e6f8aa1db2b4">
+                      <SHORT-NAME>dsp_Hla_OutputSignals_t</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/HlaAdapter/HlaAdapter/PP_HlaAdapter_OutputData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_Hla_OutputSignals_t/Hla_OutputSignals_t</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-SEND-POINTS>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="09cfa255-817d-45c2-8907-a84dd7f01c90">
+                      <SHORT-NAME>scp_MeasFreezeData</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/HlaAdapter/HlaAdapter/RP_MtsiAdapter_MeasFreezeData</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Mtsi_MeasFreezeData/MeasFreezeData</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="2a354dac-e7db-42a8-badb-441c66db6ed9">
+                      <SHORT-NAME>scp_UpdateTaskCycle</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/HlaAdapter/HlaAdapter/RP_UpdateTaskCycle</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_Mtsi_UpdateTaskCycle/UpdateTaskCycle</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>HlaAdapter_MainFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION T="2022-01-10T18:50:36+08:00" UUID="cebf22fd-4dd8-43b1-9706-37f2f70122d0">
+          <SHORT-NAME>HlaAdapterImpl</SHORT-NAME>
+          <CODE-DESCRIPTORS>
+            <CODE T="2022-01-10T16:16:26+08:00" UUID="dc7e8c7c-c402-4b65-87a1-d5e10755ad4e">
+              <SHORT-NAME>CodeGen</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/HlaAdapter/HlaAdapter/HlaAdapter_IB/HlaAdapter_HlaExec?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR2</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/HlaAdapter/HlaAdapter/HlaAdapter_IB/HlaAdapter_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/HlaAdapter/HlaAdapter/HlaAdapter_IB/HlaAdapter_HlaExec?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC2</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/HlaAdapter/HlaAdapter/HlaAdapter_IB/HlaAdapter_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/HlaAdapter/HlaAdapter/HlaAdapter_IB/HlaAdapter_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/HlaAdapter/HlaAdapter/HlaAdapter_IB/HlaAdapter_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <ARTIFACT-DESCRIPTORS>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-01-10T16:16:08+08:00">
+                  <SHORT-LABEL>SWHDR</SHORT-LABEL>
+                  <CATEGORY>SWHDR</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-01-10T16:16:26+08:00">
+                  <SHORT-LABEL>SWSRC</SHORT-LABEL>
+                  <CATEGORY>SWSRC</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+              </ARTIFACT-DESCRIPTORS>
+            </CODE>
+          </CODE-DESCRIPTORS>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <RESOURCE-CONSUMPTION T="2022-01-10T18:50:36+08:00" UUID="869e2cc2-8fb3-4c4f-b034-3b2112d66b13">
+            <SHORT-NAME>Resource</SHORT-NAME>
+            <MEMORY-SECTIONS>
+              <MEMORY-SECTION T="2022-01-10T18:50:36+08:00" UUID="090ce036-15ba-4f86-9867-a1804e4a7060">
+                <SHORT-NAME>CODE</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2022-01-10T18:50:36+08:00" UUID="8f7c4903-29f3-4fd1-befd-d43fb38a83da">
+                <SHORT-NAME>VAR_UNSPECIFIED</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/VAR</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+            </MEMORY-SECTIONS>
+          </RESOURCE-CONSUMPTION>
+          <SW-VERSION>1.0.0</SW-VERSION>
+          <VENDOR-ID>0</VENDOR-ID>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/HlaAdapter/HlaAdapter/HlaAdapter_IB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

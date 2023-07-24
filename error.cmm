@@ -1,0 +1,29 @@
+// T32 Fri Apr 14 18:08:26 2023
+
+B::
+
+TOOLBAR   ON
+STATUSBAR ON
+FramePOS 98.0,17.071,,,Maximized
+WinPAGE.RESet
+
+WinPAGE.Create P000
+WinCLEAR
+
+WinPOS 1.875 1.0714 113. 26. 13. 1. W001
+WinTABS 10. 10. 25.
+l Fcu_RxProcess_HeadInputCustomData
+
+WinPOS 0.0 0.0 190. 44. 0. 0. W000 MAXIMIZED
+Var.Watch
+
+Var.AddWatch SocDiagInfo
+Var.AddWatch Fcu_ErrorStatusInfo
+Var.AddWatch Cps_SignalPhyData_FC_AEBStatus
+Var.AddWatch EOL_MODE_SWITCH
+Var.AddWatch Cps_SignalPhyData_FC_LKAStatus_Current
+Var.AddWatch FCU_SwitchData
+
+WinPAGE.select P000
+
+ENDDO

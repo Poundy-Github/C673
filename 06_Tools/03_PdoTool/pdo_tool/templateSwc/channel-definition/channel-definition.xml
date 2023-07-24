@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Channels xmlns="http://schemas.continental-corporation.com/mts/swc/2016/channel-definition">
+  <!--The channel definition with Id=0 means a channel with all data-->
+  <!--<Channel Id="0" Name="CEM All data"/>-->
+  <Channel Id="5" Name="CEM_data"/>
+  <Channel Id="6" Name="ADCU_R7"/>
+  <Channel Id="7" Name="ADCU_A57"/>
+  <Channel Id="8" Name="ACDC"/>
+  <Channel Id="9" Name="MEDIC"/>
+  <Channel Id="10" Name="ADCU_DIAG"/>
+  <Channel Id="11" Name="AlgoVehCycle"/>
+</Channels>

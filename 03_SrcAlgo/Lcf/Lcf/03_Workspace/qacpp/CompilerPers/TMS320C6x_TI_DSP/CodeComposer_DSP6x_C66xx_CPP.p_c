@@ -1,0 +1,45 @@
+-audi-
+-aicpm+
+-atanpc-
+-accd-
+-atncrb-
+-sdep-
+-ptp-
+-dpft-
+-ifn-
+-sig-
+-duc99dilt-
+-rvrb+
+-pp32bt-
+-sd "__attribute__ =_ignore_paren"
+-sd "__cplusplus=199711"
+-sd "__cplusplus=199711L"
+-sd "__cregister="
+-sd "cregister="
+-sd "__EDG_RUNTIME_USES_NAMESPACES=1"
+-sd "__inline=inline"
+-sd "__int40_t=long"
+-sd "__intaddr__="
+-sd "__PTRDIFF_T_TYPE__=int"
+-sd "__SIZE_T_TYPE__=unsigned"
+-sd "__va_argref=_ignore_semi"
+-sd "__va_parmadr="
+-sd "__WCHAR_T_TYPE__=unsigned short"
+-sd "_DATA_ACCESS="
+-sd "_prl_null_expression=0 _prl_ignore_paren"
+-sd "_STD_USING"
+-sd "_TMS320C6600=1"
+-sd "_TMS320C6700=1"
+-sd "_TMS320C6740=1"
+-sd "_TMS320C6X=1"
+-sd "far="
+-sd "interrupt="
+-sd "near="
+-sd "prl_ignore_paren=_ignore_paren"
+-sd "restrict="
+-sd "volatile="
+-sl-
+-a long=8
+-sa+
+-s long=40
+-mrtnd 200

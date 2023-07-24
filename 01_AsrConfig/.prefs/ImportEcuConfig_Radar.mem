@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<memento version="1.0" lastmodified="Mar 7, 2023 5:26:01 PM">
+    <ImportEcuConfig
+        ecuConfiguration_comboText_CanTSyn="Do not import this module"
+        ecuConfiguration_comboText_ComM="Do not import this module"
+        ecuConfiguration_comboText_Com="Com"
+        ecuConfiguration_comboText_Dem="Do not import this module"
+        ecuConfiguration_comboText_Can="Can"
+        ecuConfiguration_comboText_FiM="Do not import this module"
+        ecuConfiguration_comboText_EcuM="Do not import this module"
+        ecuConfiguration_comboText_StbM="Do not import this module"
+        system_comboText=""
+        ecuConfiguration_comboText_CanTp="Do not import this module"
+        ecuConfiguration_comboText_PduR="PduR"
+        ecuConfiguration_comboText_CanNm="Do not import this module"
+        ecuConfiguration_comboText_Xcp="Do not import this module"
+        ecuConfiguration_comboText_Dcm="Do not import this module"
+        overrideCheckbox="true" ecuConfiguration_comboText_EcuC="EcuC"
+        bufferAssignmentCheckbox="Create default buffer assignment"
+        ecuConfiguration_comboText_Nm="Do not import this module"
+        ecuInstance_comboText=""
+        ecuConfiguration_comboText_CanSM="Do not import this module"
+        suffixCheckbox="true" ecuConfiguration_comboText_CanIf="CanIf">
+        <__metadata>
+            <WidgetModuleConfigurationGroup __expanded="true"/>
+            <ButtonsGroup __expanded="true"/>
+            <selectAll __toggled="false"/>
+            <deselectAll __toggled="false"/>
+            <configuration_labelText_Can/>
+            <configuration_comboText_Can __radix="DEC" __separators="false"/>
+            <configuration_labelText_CanIf/>
+            <configuration_comboText_CanIf __radix="DEC" __separators="false"/>
+            <configuration_labelText_CanSM/>
+            <configuration_comboText_CanSM __radix="DEC" __separators="false"/>
+            <configuration_labelText_Com/>
+            <configuration_comboText_Com __radix="DEC" __separators="false"/>
+            <configuration_labelText_ComM/>
+            <configuration_comboText_ComM __radix="DEC" __separators="false"/>
+            <configuration_labelText_Dem/>
+            <configuration_comboText_Dem __radix="DEC" __separators="false"/>
+            <configuration_labelText_EcuC/>
+            <configuration_comboText_EcuC __radix="DEC" __separators="false"/>
+            <configuration_labelText_PduR/>
+            <configuration_comboText_PduR __radix="DEC" __separators="false"/>
+            <prefixLabel/>
+            <prefixText __radix="DEC" __separators="false"/>
+            <bufferAssignmentLabel/>
+            <bufferAssignmentCombobox __radix="DEC" __separators="false"/>
+            <suffixLabel/>
+            <suffixCheckbox/>
+            <overrideProjectSettingsGroup __expanded="true"/>
+            <browser/>
+            <overrideCheckbox/>
+            <overrideLabel/>
+            <overrideGroup __expanded="true"/>
+            <spacerGroup __expanded="true"/>
+            <systemLabel/>
+            <systemCombobox __radix="DEC" __separators="false"/>
+            <ecuInstanceLabel/>
+            <ecuInstanceCombobox __radix="DEC" __separators="false"/>
+            <configuration_labelText_CanTp/>
+            <configuration_comboText_CanTp __radix="DEC" __separators="false"/>
+            <configuration_labelText_Dcm/>
+            <configuration_comboText_Dcm __radix="DEC" __separators="false"/>
+            <configuration_labelText_Xcp/>
+            <configuration_comboText_Xcp __radix="DEC" __separators="false"/>
+            <configuration_labelText_CanTSyn/>
+            <configuration_comboText_CanTSyn __radix="DEC" __separators="false"/>
+            <configuration_labelText_StbM/>
+            <configuration_comboText_StbM __radix="DEC" __separators="false"/>
+            <configuration_labelText_CanNm/>
+            <configuration_comboText_CanNm __radix="DEC" __separators="false"/>
+            <configuration_labelText_EcuM/>
+            <configuration_comboText_EcuM __radix="DEC" __separators="false"/>
+            <configuration_labelText_FiM/>
+            <configuration_comboText_FiM __radix="DEC" __separators="false"/>
+            <configuration_labelText_Nm/>
+            <configuration_comboText_Nm __radix="DEC" __separators="false"/>
+            <description __desc="Updates/syncs the ecu configuration of all selected BSW modules based on the currently present systemmodel"/>
+        </__metadata>
+    </ImportEcuConfig>
+</memento>

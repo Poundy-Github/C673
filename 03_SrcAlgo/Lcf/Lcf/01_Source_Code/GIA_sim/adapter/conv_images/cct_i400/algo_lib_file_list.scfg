@@ -1,0 +1,32 @@
+# config file containing algo source file list
+
+# algo source files
+cct_algo_sources = """
+../cml/cml_bayes.c
+../cml/cml_complex.c
+../cml/cml_fourier.c
+../cml/cml_kafi.c
+../cml/cml_mat.c
+../cml/cml_misc.c
+../cml/cml_mtrx.c
+../cml/cml_stat.c
+../cml/cml_trigo.c
+../cml/cml_vector.c
+image_fingerprint.cpp
+"""
+
+# algo pdo source files
+cct_algo_pdo_sources = """
+"""
+
+# algo include paths
+cct_algo_include_paths = """
+#../../../01_Source_Code/algo/cct
+#../../../01_Source_Code/algo/cml
+"""
+
+# algo common include paths
+cct_algo_common_include_paths = """
+#../../../01_Source_Code/common
+#../../../01_Source_Code/common/rte
+"""

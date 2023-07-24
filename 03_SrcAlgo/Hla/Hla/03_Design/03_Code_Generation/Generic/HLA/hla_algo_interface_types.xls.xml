@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<excel_file file_path=".\hla_algo_interface_types.xls">
+	<excel_config 
+		fn_name_prefix="HLA_OutputCheck_"
+		fn_name_infix="Range"
+		error_code_prefix="HLA_ERROR_OUTPUT_CHECK_"
+		warning_code_prefix="HLA_WARNING_OUTPUT_CHECK_"
+		indention_baseline="0"
+		indention_step="2"
+		doxygen_line_length="100"
+		doxygen_line_start="20"
+		fn_loc_decl_start="/*//\\START_GENERATED_FUNCTIONS_DECLARATION//\\*/"
+		fn_loc_decl_end="/*//\\END_GENERATED_FUNCTIONS_DECLARATION//\\*/"
+		fn_glob_def_start="/*//\\START_GENERATED_FUNCTIONS_DEFINITION//\\*/"
+		fn_glob_def_end="/*//\\END_GENERATED_FUNCTIONS_DEFINITION//\\*/"
+		fn_call_main_start="/*//\\START_GENERATED_MAIN_FUNCTIONS_CALL//\\*/"
+		fn_call_main_end="/*//\\END_GENERATED_MAIN_FUNCTIONS_CALL//\\*/"
+		error_enum_start="/* OUTPUT_CHECK_ERRORS_START */"
+		error_enum_end="/* OUTPUT_CHECK_ERRORS_END */"
+		warning_enum_start="/* OUTPUT_CHECK_WARNINGS_START */"
+		warning_enum_end="/* OUTPUT_CHECK_WARNINGS_END */"
+		error_draw_start="/* OUTPUT_CHECK_ERRORS_START */"
+		error_draw_end="/* OUTPUT_CHECK_ERRORS_END */"
+		warning_draw_start="/* OUTPUT_CHECK_WARNINGS_START */"
+		warning_draw_end="/* OUTPUT_CHECK_WARNINGS_END */"
+		error_handling_header="../../../../04_Engineering/01_Source_Code/HLA/hla_errorhandling.h"
+		template_name="asdf"
+		output_file_name="../../../../04_Engineering/01_Source_Code/HLA/frame/hla_output_checks.c"
+		c_warning_function_name="HLA_ErrorHandling_SetWarning"
+		c_error_function_name="HLA_ErrorHandling_SetError"
+		c_error_or_warning_number_function="HLA_ErrorHandling_GetNum"
+		name_clearing_regex="RTE_HLA[RF]?_|HLA[RF]?_"
+		code_clearing_regex="RTE_HLA[RF]?_"
+		excel_http_path="http://ims-adas:7001/si/viewrevision?projectName=%23%2FADAS%2FSW%23Components%2FHLA_HeadLightAssist%2F03_Design%2F03_Code_Generation%2FGeneric%2FHLA&amp;selection=hla_algo_interface_types.xls"
+		doxy_comment_start_column="81"
+	/>
+	<excel_sheet sheet_name="RTE_HLAF_HeadlightControl">
+		<sheet_config port_name="pHlaf_HeadlightControl" port_list_name="proHlaPrtList_t"/>
+		<table header_rows="1" table_end="V72" table_start="A1" />
+	</excel_sheet>
+</excel_file>

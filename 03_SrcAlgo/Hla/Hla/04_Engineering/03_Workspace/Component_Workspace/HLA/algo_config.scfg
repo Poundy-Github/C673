@@ -1,0 +1,121 @@
+# Note:
+# 1. Replace lsd with component name in lowercase and lsd with component name in uppercase.
+# 2. When needed, additional file list can be added (the path should be relative to the
+#    folder containing SConstruct).
+# 3. Include all required source files in c674x_src, ca8_src, pc_sim_src and arp32_src.
+# 4. Include all required include paths in c674x_cpp_path, ca8_cpp_path, pc_sim_cpp_path and arp32_cpp_path.
+# 5. Add include paths which must be added before compiler include paths in c674x_prepend_cpp_path,
+#    ca8_prepend_cpp_path, pc_prepend_cpp_path and arp32_prepend_cpp_path.
+# 6. Include all C source files used to create SDL file for ECU in pdo_src_list (only C file).
+# 7. Include all C source files used to create SDL file for SIM in pdo_sim_src_list (only C file).
+# 8. Include all algo source files, including EVE source in fingerprint_src_list.
+#    Source files in fingerprint_src_list are used to generate checksum. 
+# ----------------------------------------------------------------------------------------
+
+# read file list containing all variables used in this scfg file
+execfile(File("#algo_lib_file_list.scfg").abspath)
+execfile(File("#../hla_sim/sim_swc_hla/sim_swc_config.scfg").abspath)
+
+
+#*********************************************************************************
+#                                       C674x lib
+#*********************************************************************************
+
+# source and include paths for C674x
+c674x_src      = Split(hla_algo_sources)
+c674x_cpp_path =   Split(hla_algo_include_paths) \
+                 + Split(hla_algo_common_include_paths) 
+# include paths that must be added before compiler includes
+c674x_prepend_cpp_path = []
+
+#*********************************************************************************
+#                                       PC SIM 
+#*********************************************************************************
+# source and include paths for PC sim
+pc_sim_src      =   Split(hla_algo_sources) \
+                  + Split(hla_algo_pdo_sources) \
+                  + Split(hla_helper_sources)
+  
+# hla_sim_swc_include_paths needed for compilation of sdl file for simulation dll
+#sim_swc_cpp_path it must be added to pc lib build configuration for pdo tool. hla_algo_include_paths and hla_algo_common_include_paths are already included in sim_swc_cpp_path
+pc_sim_cpp_path = Split(sim_swc_cpp_path)
+# include paths that must be added before compiler includes
+pc_prepend_cpp_path = []
+
+#*********************************************************************************
+#                                       ARP32 lib
+#*********************************************************************************
+
+# source and include paths for Arp32
+arp32_src = []
+arp32_cpp_path = []
+# include paths that must be added before compiler includes
+arp32_prepend_cpp_path = []
+
+#*********************************************************************************
+#                                       PDO
+#*********************************************************************************
+
+# pdo source
+pdo_src_list = Split(hla_algo_pdo_sources)
+
+# pdo source for sim
+pdo_sim_src_list = pdo_src_list + map(lambda x: ("../../03_Workspace/Component_Workspace/hla_sim/sim_swc_hla/" + x), Split(hla_sim_swc_pdo_sources))
+
+# define if sdl is generated when lib is compiled (default: True)
+generate_sdl_when_compiling_lib = True
+
+# header file containing TASK_ID_(component)
+id_file_path = "#../../../01_Source_Code/common/MTSI/glob_comp_id.h"
+
+# task ID. The value of this task ID will replace %s in PDO_TOOL_OPTIONS_ECU and PDO_TOOL_OPTIONS_SIM
+task_id_define = "TASK_ID_" + algo_name.upper()
+
+# PDO tool option for ECU
+PDO_TOOL_OPTIONS_ECU = ("-f sdl2.0 --disable normalobj --enable virtualobj --cycleinfo default," + 
+                       algo_name.upper() + "_ENV_PVT " + algo_name.upper() + " %s -v 0x00000000-0xFFFFFFFF --checkvirtrange 0x00000000-0xFFFFFFFF")
+
+# PDO tool option for sim DLL                       
+PDO_TOOL_OPTIONS_SIM = ("-f sdl2.0 --disable normalobj --enable virtualobj --cycleinfo default," + 
+                       algo_name.upper() + "_ENV," + algo_name.upper() + "_ENV_PVT," + algo_name.upper() + "_ENV_SIM " +  algo_name.upper() + " %s -v 0x00000000-0xFFFFFFFF --checkvirtrange 0x00000000-0xFFFFFFFF")
+
+# compiler include path required by pdo_scan when generating sdl file for sim
+compiler_include_paths = """
+C:/LegacyApp/VisualStudio2005/VC/INCLUDE
+C:/LegacyApp/VisualStudio2010/VC/INCLUDE
+"""
+
+#*********************************************************************************
+#                                    POLYSPACE
+#*********************************************************************************
+# polyspace target options and language settings
+ps_target_option = {"-O": "0", "-OS-target": "Linux", "-batch": "true", "-dialect": "gnu3.4", "-post-analysis-command": "", "-to": "Software Safety Analysis level 0"}
+
+ps_lan_settings = {"-align": "32", "-default-sign-of-char": "signed", "-double-is-64bits": "", "-int-is-32bits": "", "-little-endian": "Little", "-long-long-is-64bits": "", "-pointer-is-32bits": ""}
+# polyspace macros
+ps_macros = ["NDEBUG", "__TI_COMPILER_VERSION__=5000000", "_LITTLE_ENDIAN", "__TI_EABI__=1", "_TMS320C6740", "__TMS320C6X__", "__STDC__", "__STDC_VERSION__=1", "__TI_32BIT_LONG__", "__SIZE_T_TYPE__=unsigned int", "__PTRDIFF_T_TYPE__=int", "_TMS320C6X", "restrict", "assert(X)="]
+
+# polyspace version "2012", "2014" or "2016a", by default "2012"
+ps_version = "2016a"
+
+# polyspace additional includes
+ps_additional_includes = Split(hla_algo_ps_additional_include_paths)
+
+# polyspace additional sources
+ps_additional_sources = Split(hla_algo_ps_additional_sources)
+
+#*********************************************************************************
+#                                       QAC
+#*********************************************************************************
+# qac_ide_options: analysis option for QAC via visual studio, default: '-disp'
+# please modify according to your needs
+# "-disp" displaying all messages
+# "-su=N" suppresses all qac warnings of level N
+qac_ide_options = "-disp -su 0 -su 2"
+# qac_cmd_options: analysis option for QAC via command line, default: ''
+# please modify according to your needs
+# "-disp" displaying all messages
+# "-su=N" suppresses all qac warnings of level N
+qac_cmd_options = "-disp -su 0 -su 2"
+# qar_options: additional options for generating the compliance report
+qar_options = ""

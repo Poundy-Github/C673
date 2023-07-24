@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<memento version="1.0" lastmodified="Mar 7, 2023 5:25:59 PM">
+    <MemoryStackAutomation CheckboxEvaluateNVBlockNeedsMemento="true" CheckboxMemoryStackConfiguratorMemento="true">
+        <__metadata>
+            <GroupWidget1 __expanded="true"/>
+            <Ev_Block_Needs/>
+            <CheckboxEvBlockNeeds/>
+            <Mem_Stack_Configurator/>
+            <CheckboxMemStackConfigurator/>
+            <description __desc="Execute MemoryStackEditor Actions"/>
+        </__metadata>
+    </MemoryStackAutomation>
+</memento>

@@ -1,0 +1,51 @@
+# Note:
+# 1. Rename this file and replace xxx with component name in lowercase.
+# 2. Replace xxx with component name in lowercase.
+# 3. Update each variable according to the existing source files and include paths.
+# ----------------------------------------------------------------------------------------
+
+# config file containing source files in sim visualization
+
+execfile(File("#algo_lib_file_list.scfg").abspath)
+
+lcf_vis_sim_swc_source_files = """
+sim_swc_lcf_vis.cpp
+sim_swc_lcf_vis_dll.cpp
+stdafx.cpp
+../../../../01_Source_Code/cml/trigo/cml_trigo.c
+../../../../01_Source_Code/cml/misc/cml_misc.c
+../../../../01_Source_Code/cml/matrix/cml_mtrx.c
+../../../../01_Source_Code/cml/matrix/cml_mat.c
+vis_gl/vis_gl.cpp	
+vis_gl/vis_gl_bitmap.cpp
+vis_gl/vis_gl_attrib_guard.cpp
+vis_gl/vis_gl_client_attrib_guard.cpp
+vis_gl/vis_gl_color.cpp
+vis_gl/vis_gl_lense_shader.cpp
+vis_gl/vis_gl_line.cpp
+vis_gl/vis_gl_mat.cpp
+vis_gl/vis_gl_math.cpp
+vis_gl/vis_gl_matrix_guard.cpp
+vis_gl/vis_gl_normal.cpp
+vis_gl/vis_gl_pixel.cpp
+vis_gl/vis_gl_pixel_line.cpp
+vis_gl/vis_gl_pixel_rect.cpp
+vis_gl/vis_gl_pixel_tri.cpp
+vis_gl/vis_gl_pos.cpp
+vis_gl/vis_gl_rect.cpp
+vis_gl/vis_gl_screen.cpp
+vis_gl/vis_gl_screen_quad.cpp
+vis_gl/vis_gl_shader_base.cpp
+vis_gl/vis_gl_vertex_pointer.cpp
+vis_gl/vis_gl_exception.cpp
+"""
+
+lcf_vis_algo_source_files = map(lambda x: ("../../../../01_Source_Code/lcf/" + x), Split(lcf_algo_sources))
+
+lcf_vis_sim_swc_include_paths = """
+#../lcf_sim/sim_swc_lcf_vis/
+#../../../01_Source_Code/cml
+#../../../01_Source_Code/cml/trigo
+#../../../01_Source_Code/cml/misc
+#../../../01_Source_Code/cml/matrix
+"""

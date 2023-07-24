@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<xs:schema targetNamespace="http://schemas.continental-corporation.com/mts/swc/2016/hw-data-cycle"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://schemas.continental-corporation.com/mts/swc/2016/hw-data-cycle"
+           xmlns:tns="http://schemas.continental-corporation.com/mts/swc/2016/hw-data-cycle"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="Interfaces">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Interface" type="HwData.Interface" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:anyAttribute/>
+    </xs:complexType>
+    <xs:unique name="InterfaceUnique">
+      <xs:selector xpath="tns:Interface"/>
+      <xs:field xpath="@InterfaceId"/>
+      <xs:field xpath="@GroupId"/>
+    </xs:unique>
+    <xs:unique name="InterfaceMappingUnique">
+      <xs:selector xpath="tns:Interface"/>
+      <xs:field xpath="@InterfaceId"/>
+      <xs:field xpath="@GroupId"/>
+      <xs:field xpath="@CycleId"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:complexType name="HwData.Interface">
+    <xs:attribute name="GroupId" type="xs:unsignedInt" use="required" />
+    <xs:attribute name="InterfaceId" type="xs:unsignedInt" use="required" />
+    <xs:attribute name="CycleId" type="xs:unsignedInt" use="required" />
+  </xs:complexType>
+</xs:schema>

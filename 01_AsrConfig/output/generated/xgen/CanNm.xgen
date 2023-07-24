@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?module CanNm?>
+
+<!-- !LINKSTO CanNm.Format.VCC-62,1 -->
+<xgen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://www.elektrobit.com/2013/xgen" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- !LINKSTO CanNm.EB.PBSelectable.TypeName,1 -->
+
+
+
+
+
+
+  <!-- This is the configuration of module CanNm -->
+  <module name="CanNm" version="6.19.8 B466224">
+
+    <!-- This is the Precompile-time configuration of the module. -->
+    <configuration class="PreCompile">
+      <?artifact directory="include" file="CanNm_Types.h" type="types-h" generate="yes"?>
+<!-- !LINKSTO CanNm.Impl.Relocatable,1 -->
+
+
+      <parameter name="relocatable-enable">
+        <boolean-value>true</boolean-value>
+      </parameter>
+
+      <!-- !LINKSTO CANNM202,1 -->
+      <!-- This is the type definition of the root structure -->
+      <type name="CanNm_ConfigType">
+        <struct>
+          <!-- !LINKSTO CanNm.Impl.Hash,1 -->
+          <member name="PlatformSignature" type="uint32" comment="Used to validate the platform"/>
+          <member name="LcfgSignature" type="uint32" comment="Used to validate the post build configuration against the link time configuration"/>
+          <member name="CfgSignature" type="uint32" comment="Used to validate the post build configuration against the precompile time configuration"/>
+          <member name="PublicInfoSignature" type="uint32" comment="Used to validate Public information"/>
+          <member name="CanNm_ChannelData" type="CanNm_ChannelDataType" count="1" comment="CanNm_ChannelData"/>
+          <member name="BufferOffsets" type="uint32" count="1" comment="BufferOffsets array" />
+          <member name="TxBufferOffset" type="uint32" comment="Offset where Tx buffers starts"/>
+          <member name="PbRequiredCfgRamSize" type="uint32" comment="Buffer size needed by TX and RX pdus"/>
+        </struct>
+      </type>
+
+      <type name="CanNm_ChannelDataType">
+        <struct>
+          <member name="UserDataLength" type="uint32" comment="User Data Length"/>
+          <member name="CanNmMsgCycleOffset" type="uint16" comment="CanNmMsgCycleOffset"/>
+          <member name="RxPduLength" type="PduLengthType" comment="PduLength array"/>
+          <member name="UserTxConfPduId" type="PduIdType" comment="UserTxConfPduId array"/>
+          <member name="UserRxPduId" type="PduIdType" comment="UserRxPduId"/>
+          <member name="TxPduId" type="PduIdType" comment="Pdu ID if transmit PDU (from CanIf)"/>
+          <member name="CanNmNodeId" type="uint8" comment="CanNmNodeId"/>
+          <member name="UserRxPduEnabled" type="boolean" comment="UserRxPduEnabled"/>
+        </struct>
+      </type>
+
+    </configuration>  <!-- PreCompile -->
+
+    <!-- This is the post-build configuration of the module. -->
+    <configuration class="PostBuild">
+
+      <!-- !LINKSTO CANNM301,1, CanNm.Format.C,1 -->
+      <?artifact directory="include" file="CanNm_PBcfg.h" type="postbuild-h" ?>
+      <?artifact directory="src" file="CanNm_PBcfg.c" type="postbuild-c" ?>
+
+      <!--
+          Type declarations:
+          Specifies the content of CanNm_Pbcfg.h and CanNm_Types.h
+      -->
+
+      <!-- This is the type definition of the layout type of the
+           modules' postbuild configuration structure -->
+      <type name="CanNm_ConfigLayoutType">
+        <struct>
+          <!-- Member of the layout type starting with the RootCfg -->
+          <member name="RootCfg" type="CanNm_ConfigType"/>
+        </struct>
+      </type>
+
+
+      <type name="CanNm_ConstConfigLayoutType">
+        <reference type="CanNm_ConfigLayoutType">
+          <compiler-abstraction>
+            <const memory-class="CANNM_APPL_CONST" />
+          </compiler-abstraction>
+        </reference>
+      </type>
+
+      <!--
+          Type definition and initialisation:
+          Specifies the content of CanNm_Pbcfg.c
+      -->
+
+      <memory-section name="CONFIG_DATA_UNSPECIFIED">
+      <instance type="CanNm_ConstConfigLayoutType"
+                name="CanNm_ConfigLayout">
+
+        <parameter name="postbuild-configuration-name">
+          <symbolic-value>CanNm_Config_0</symbolic-value>
+        </parameter>
+
+        <!-- CanNm_ConfigType -->
+        <field>
+          <field>
+            <int>2281703698</int>
+          </field>
+          <field>
+            <int>3958107115</int>
+          </field>
+          <field>
+            <int>670254499</int>
+          </field>
+          <field>
+            <int>1750501377</int>
+          </field>
+          <field>
+            <field>
+              <field>
+                <int>0</int>
+              </field> <!-- User Data Length -->
+              <field>
+                <int>
+                1
+                </int>
+              </field> <!-- CanNmMsgCycleOffset -->
+              <field>
+                <int>8</int>
+              </field> <!-- PduLength -->
+              <field>
+                <int>0</int>
+               </field> <!-- UserTxConfPduId -->
+              <field>
+                <int>
+    0
+                 </int>
+               </field> <!-- UserRxPduId -->
+              <field>
+                <!-- get Tx PduId by EcuC reference from CanIf, existence is checked in xdm -->
+                <int>49</int>
+              </field> <!-- TxPduId -->
+              <field>
+                <int>
+                82
+                </int>
+              </field> <!-- CanNmNodeId -->
+              <field>
+                <int>
+                 0
+                </int>
+              </field> <!-- UserRxPduEnabled -->
+            </field>
+          </field> <!-- CanNm_ChannelData -->
+          <field>
+            <field>
+              <int>0</int>
+            </field>
+          </field> <!-- BufferOffsets -->
+          <field>
+            <int>8</int>
+          </field>  <!-- TxBufferOffset -->
+          <field>
+            <int>16</int>
+          </field>  <!-- PbRequiredCfgRamSize-->
+        </field> <!-- CanNm_ConfigType -->
+
+      </instance> <!-- CanNm_ConfigLayoutType -->
+      </memory-section>
+
+    </configuration>
+  </module>
+
+  <!-- include the AUTOSAR standard data types, etc. -->
+  <!-- The xpointer atribute shouldrather be something like "xpointer(//module[name='...'])",
+       but unfortunately our XML parser does not support the XPointer xpointer() Scheme.
+       This is also the reason why all these xincludes must be at the end of the file rather
+       than at the beginning, because that way the other xgen files that include this one can
+       be sure that "element(/1/1)" is the CanNm module element.
+  -->
+  <xi:include href="Base.xgen" xpointer="element(/1/1)"/>
+
+</xgen>
+

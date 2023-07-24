@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="InfoPath.Document" versionProgid="InfoPath.Document.2"?><?mso-infoPathSolution PIVersion="1.0.0.0" name="urn:schemas-microsoft-com:office:infopath:CBD-TD5:" productVersion="15.0.0" href="file:///D:\TD5_DEV\CBD-TD5.xsn" solutionVersion="1.0.0.76" ?><cbd version="1.0" xmlns:ns1="http://schemas.microsoft.com/office/infopath/2003/myXSD/2010-05-03T19:01:03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:my="http://schemas.microsoft.com/office/infopath/2003/myXSD/2016-02-01T15:15:16" xmlns:xd="http://schemas.microsoft.com/office/infopath/2003" xml:lang="en-us">
+	<CMInfo>
+		<Author>$Author: Wang, David (Wangd3) $</Author>
+		<Date>$Date: 2021/12/13 17:19:37CET $</Date>
+		<Workfile>$Source: gia_sim.cbd $</Workfile>
+		<Revision>$Revision: 1.1 $</Revision>
+	</CMInfo>
+	<Composite>
+		<CompositeName>gia_sim</CompositeName>
+		<Comment></Comment>
+		<CompositeType>composite</CompositeType>
+		<TargetPlatform></TargetPlatform>
+		<isDisabled>false</isDisabled>
+	<CompositeFileTypes>
+										<FileTypeDefinition>
+											<FileTypeName>gia_sim_c</FileTypeName>
+											<Comment></Comment>
+											<FilePattern>*.c</FilePattern>
+											<FilePatternPath>./?</FilePatternPath>
+											<isDisabled>false</isDisabled>
+										<ProcessDefinitions>
+									<ProcessDefinition>
+										<ProcessName>CCOMP</ProcessName>
+										<Comment></Comment>
+										<ProcessOption>CFLAGS_STD</ProcessOption>
+										<isDisabled>false</isDisabled>
+									</ProcessDefinition>
+								</ProcessDefinitions></FileTypeDefinition>
+									<FileTypeDefinition>
+									<FileTypeName>gia_sim_h</FileTypeName>
+									<Comment></Comment>
+									<FilePattern>*.h</FilePattern>
+									<FilePatternPath>./?</FilePatternPath>
+									<isDisabled>false</isDisabled>
+								<ProcessDefinitions>
+									<ProcessDefinition>
+										<ProcessName>CHEADER</ProcessName>
+										<Comment></Comment>
+										<ProcessOption></ProcessOption>
+										<isDisabled>false</isDisabled>
+									</ProcessDefinition>
+								</ProcessDefinitions></FileTypeDefinition><FileTypeDefinition>
+									<FileTypeName>gia_sim_cpp</FileTypeName>
+									<Comment></Comment>
+									<FilePattern>*.cpp</FilePattern>
+									<FilePatternPath>./?</FilePatternPath>
+									<isDisabled>false</isDisabled>
+								<ProcessDefinitions>
+									<ProcessDefinition>
+										<ProcessName>CCOMP</ProcessName>
+										<Comment></Comment>
+										<ProcessOption>CFLAGS_STD</ProcessOption>
+										<isDisabled>false</isDisabled>
+									</ProcessDefinition>
+								</ProcessDefinitions></FileTypeDefinition></CompositeFileTypes><Files>
+										
+									</Files></Composite>
+<Variants>
+									
+								
+						
+						
+						
+						
+						
+							
+							
+						
+							
+						
+						
+						
+						
+
+						
+
+						
+
+						
+
+						
+
+						
+
+						
+
+						
+
+						
+
+						
+
+						
+
+						
+
+						
+
+						
+
+						
+								</Variants></cbd>

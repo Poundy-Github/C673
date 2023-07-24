@@ -1,0 +1,32 @@
+//======================================================
+//General Settings which are used inside the Algo-Domain
+//
+//======================================================
+
+
+//===================================================
+// Include some standard lint files
+//===================================================
+env-vc8.lnt
+//au_misra.lnt  //MISRA
+//au_misra1.lnt //MISRA 1998
+//au_misra2.lnt //MISRA 2004
+
+//===================================================
+// Set of Warning Level
+//===================================================
+//-wLevel This option allows the user to set a Warning level in a fashion similar to many compilers. The warning levels are:
+//-w0 No messages (except for fatal errors)
+//-w1 Error messages only -- no Warnings or Informationals.
+//-w2 Error and Warning messages only
+//-w3 Error, Warning and Informational messages (this is the default)
+//-w4 All messages.
+
+//Set the Warning Level to 3 (default)
+-w3
+
+//===================================================
+// Misc
+//===================================================
+-wlib(0) // Suppress Error Messages for Libary Header Files
+-e830    // Suppress Error Message (Location cited in prior message)

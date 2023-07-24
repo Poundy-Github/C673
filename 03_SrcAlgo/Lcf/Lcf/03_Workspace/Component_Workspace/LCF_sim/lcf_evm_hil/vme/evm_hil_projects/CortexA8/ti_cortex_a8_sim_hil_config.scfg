@@ -1,0 +1,49 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. When needed, additional file list can be added (the path should be relative to the
+#    folder containing SConstruct).
+# 3. Include all required source files in ti_cortex_a8_hil_src.
+# 4. Include all required include paths in ti_cortex_a8_hil_cpp_path.
+# 5. Add include paths which must be added before compiler include paths in ti_cortex_a8_prepend_cpp_path.
+# 6. Add libraries which are used for all variants in external_lib.
+# 7. Fill the name of sysbios cfg file in sysbios_cfg.
+# 8. Fill xs_compiler_options with compiler options which will be used by xs configuro.
+# 9. When additional target configuration is needed, add it in target_configuration.
+# ----------------------------------------------------------------------------------------
+
+# read file list containing source files and include paths
+execfile(File("#../lcf_sim/lcf_evm_hil/vme/evm_hil_projects/CortexA8/ti_cortex_a8_sim_hil_file_list.scfg").abspath)
+execfile(File("#../lcf_sim/lcf_evm_hil/vme/evm_hil_projects/CommonSoC/ecu_sim_hil_file_list.scfg").abspath)
+execfile(File("#../../../01_Source_Code/algo/lcf/algo_lib_file_list.scfg").abspath)
+execfile(File("#../lcf_sim/lcf_evm_hil/vme/generic/evm_sw/hil_server/hil_server_file_list.scfg").abspath)
+execfile(File("#../lcf_sim/sim_swc_lcf/sim_swc_lcf_file_list.scfg").abspath)
+
+# sources files list
+ti_cortex_a8_hil_src = (Split(cortex_a8_sim_hil_sources) + 
+                        Split(ecu_sim_hil_sources) + 
+                        Split(hil_server_sources) + 
+                        Split(hil_server_rta_sources))
+
+# include paths list
+ti_cortex_a8_hil_cpp_path = (Split(lcf_algo_include_paths) + 
+                             Split(lcf_algo_common_include_paths) + 
+                             Split(ecu_sim_hil_include_paths) + 
+                             Split(cortex_a8_sim_hil_include_paths) + 
+                             Split(lcf_sim_swc_include_paths) + 
+                             Split(hil_server_include_paths))
+                  
+# include paths list that should be added before compiler include paths
+ti_cortex_a8_prepend_cpp_path = []
+
+# external libraries
+external_lib = ["libc.a"]
+
+# sysbios configuration
+sysbios_cfg = "client.cfg"
+
+# xdctools compiler options
+xs_compiler_options = '--compileOptions "--enum_type=packed"'
+
+# target configuration (used for running simulation in eval board)
+target_configuration = [File("#../lcf_sim/lcf_evm_hil/vme/generic/evm_sw/target_configuration/BH560BP_VME_EVM_DDR3_EVE_NDK.ccxml").abspath, 
+                        File("#../lcf_sim/lcf_evm_hil/vme/generic/evm_sw/target_configuration/BH560V2_VME_EVM_DDR3_EVE_NDK.ccxml").abspath]

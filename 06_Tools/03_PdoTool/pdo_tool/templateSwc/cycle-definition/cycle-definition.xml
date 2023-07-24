@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Cycles xmlns="http://schemas.continental-corporation.com/mts/swc/2016/cycle-definition">
+  <!--Cycle definitions-->
+  <Cycle Name="CEM_data" Id="130" CycleTime="10" MaxCycleTime="100" Description="CycleID 130: CEM_data"/> 
+  <Cycle Name="ADCU_R7" Id="120" CycleTime="10" MaxCycleTime="100" Description="CycleID 120: ADCU_R7"/> 
+  <Cycle Name="ADCU_A57" Id="140" CycleTime="10" MaxCycleTime="100" Description="CycleID 140: ADCU_A57"/> 
+  <Cycle Name="ACDC" Id="208" CycleTime="10" MaxCycleTime="100" Description="CycleID 208: ACDC"/> 
+  <Cycle Name="MEDIC" Id="205" CycleTime="10" MaxCycleTime="100" Description="CycleID 205: MEDIC"/> 
+  <Cycle Name="ADCU_DIAG" Id="100" CycleTime="10" MaxCycleTime="100" Description="CycleID 100: ADCU_DIAG"/> 
+  <Cycle Name="AlgoVehCycle" Id="207" CycleTime="10" MaxCycleTime="100" Description="CycleID 207: AlgoVehCycle"/> 
+</Cycles>

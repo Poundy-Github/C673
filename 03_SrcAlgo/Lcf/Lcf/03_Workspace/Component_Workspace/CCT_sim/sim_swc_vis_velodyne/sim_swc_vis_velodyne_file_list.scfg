@@ -1,0 +1,17 @@
+# config file containing source files in sim_swc_vis_velodyne
+
+sim_swc_vis_velodyne_source_files = """
+sim_swc_vis_velodyne.cpp
+sim_swc_vis_velodyne_dll.cpp
+stdafx.cpp
+vis_velodyne.cpp
+../../../../01_Source_Code/externals/sim_extensions/sim_gl_tools.cpp
+"""
+
+sim_swc_vis_velodyne_include_file_paths = """
+#../cct_sim/sim_swc_vis_velodyne/
+#../../../01_Source_Code/externals/sim/include/sim_kernel/
+#../../../01_Source_Code/externals/sim/include/sim_swc/
+#../../../01_Source_Code/externals/sim/include/sim_adapter/
+#../../../01_Source_Code/externals/sim_extensions/
+"""

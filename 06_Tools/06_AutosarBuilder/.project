@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>MFC5J3_ChangAn_C673</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+		<nature>org.artop.aal.workspace.autosarnature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>SwcArxml</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/01_AsrConfig/SwcArxml</locationURI>
+		</link>
+		<link>
+			<name>swcd</name>
+			<type>2</type>
+			<location>E:/Git_Repository/MFC5J3_C673_Mcu_App/01_AsrConfig/output/generated/swcd</location>
+		</link>
+		<link>
+			<name>system</name>
+			<type>2</type>
+			<location>E:/Git_Repository/MFC5J3_C673_Mcu_App/01_AsrConfig/system</location>
+		</link>
+	</linkedResources>
+	<variableList>
+		<variable>
+			<name>copy_PARENT</name>
+			<value>file:/E:/Git_Repository/MFC5J3_C673_Mcu_App</value>
+		</variable>
+	</variableList>
+</projectDescription>

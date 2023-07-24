@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00045.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2022-05-17T17:58:23+08:00" UUID="c957d0ee-ec69-46a2-9300-6c9d01a6f32d">
+      <SHORT-NAME>SpiSync</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SW-COMPONENT-TYPE T="2022-05-17T15:44:34+08:00" UUID="1f1623d8-d8e1-4cca-b495-b9d11ef8fb10">
+          <SHORT-NAME>SpiSync</SHORT-NAME>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR T="2022-05-17T15:46:06+08:00" UUID="6ec7f270-f44c-4678-8841-498f047a3089">
+              <SHORT-NAME>SpiSync_IB</SHORT-NAME>
+              <EVENTS>
+                <INIT-EVENT T="2022-05-17T15:45:14+08:00" UUID="dbefb2bb-00b8-4b04-89a9-0e41e77c813d">
+                  <SHORT-NAME>InitEvt_SpiSync_InitFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SpiSync/SpiSync/SpiSync_IB/SpiSync_InitFunction</START-ON-EVENT-REF>
+                </INIT-EVENT>
+                <TIMING-EVENT T="2022-06-07T18:41:54+08:00" UUID="8e3c07cf-84b4-4c50-b75d-a5965861b8b9">
+                  <SHORT-NAME>TimingEvt_SpiSync_MainFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/SpiSync/SpiSync/SpiSync_IB/SpiSync_MainFunction</START-ON-EVENT-REF>
+                  <PERIOD>0.005</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY T="2022-05-17T15:45:14+08:00" UUID="DCE:e8578f72-ba58-4e95-82bb-399353243781">
+                  <SHORT-NAME>SpiSync_InitFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>SpiSync_InitFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2022-05-17T15:46:06+08:00" UUID="DCE:eb6852f6-fcf8-4646-896a-1edd134c5fb0">
+                  <SHORT-NAME>SpiSync_MainFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>SpiSync_MainFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION T="2022-05-17T17:58:41+08:00" UUID="24c6c65d-a3a8-4b30-893d-7587aac87be9">
+          <SHORT-NAME>SpiSyncImpl</SHORT-NAME>
+          <CODE-DESCRIPTORS>
+            <CODE T="2022-05-17T17:58:23+08:00" UUID="dee1f790-b21f-480e-85d3-07553c28045d">
+              <SHORT-NAME>CodeGen</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/SpiSync/SpiSync/SpiSync_IB/SpiSync_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/SpiSync/SpiSync/SpiSync_IB/SpiSync_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/SpiSync/SpiSync/SpiSync_IB/SpiSync_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/SpiSync/SpiSync/SpiSync_IB/SpiSync_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <ARTIFACT-DESCRIPTORS>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-05-17T17:58:23+08:00">
+                  <SHORT-LABEL>SWSRC</SHORT-LABEL>
+                  <CATEGORY>SWSRC</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-05-17T17:58:23+08:00">
+                  <SHORT-LABEL>SWHDR</SHORT-LABEL>
+                  <CATEGORY>SWHDR</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+              </ARTIFACT-DESCRIPTORS>
+            </CODE>
+          </CODE-DESCRIPTORS>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <RESOURCE-CONSUMPTION T="2022-05-17T18:02:12+08:00" UUID="DCE:a6f8dae4-c1a7-4e90-ad7c-f0f6552b6079">
+            <SHORT-NAME>Resource</SHORT-NAME>
+            <MEMORY-SECTIONS>
+              <MEMORY-SECTION T="2021-12-27T13:17:30+08:00" UUID="55c0b98f-cbe8-43de-98ee-8e080dfa29ea">
+                <SHORT-NAME>CODE</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2021-12-27T13:17:30+08:00" UUID="24f6a5e9-a9c2-428b-90f3-7761dc07829f">
+                <SHORT-NAME>VAR_UNSPECIFIED</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/VAR</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+            </MEMORY-SECTIONS>
+          </RESOURCE-CONSUMPTION>
+          <SW-VERSION>0.0.1</SW-VERSION>
+          <VENDOR-ID>0</VENDOR-ID>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/SpiSync/SpiSync/SpiSync_IB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

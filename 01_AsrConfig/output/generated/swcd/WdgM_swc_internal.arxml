@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3_STRICT_COMPACT.xsd">
+  
+  <AR-PACKAGES>
+    <AR-PACKAGE> <!-- AUTOSAR_WdgM -->
+      <SHORT-NAME>AUTOSAR_WdgM</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE> <!-- SwComponentTypes/ComponentTypes -->
+          <SHORT-NAME>SwComponentTypes</SHORT-NAME>
+          <ELEMENTS>
+            <SERVICE-SW-COMPONENT-TYPE>
+              <SHORT-NAME>WdgM_CORE_0</SHORT-NAME>
+              <PORTS>
+  <!-- Provide AUTOSAR 4.0 as default service -->
+  
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>globalMode</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/AUTOSAR_WdgM/PortInterfaces/WdgM_GlobalMode</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+  
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>alive_WdgM_SE_AS_HM</SHORT-NAME>
+                  <PROVIDED-COM-SPECS>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/UpdateAliveCounter</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/CheckpointReached</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+  
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>mode_WdgM_SE_AS_HM</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+  
+  
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>alive_WdgM_SE_CameraTemp</SHORT-NAME>
+                  <PROVIDED-COM-SPECS>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/UpdateAliveCounter</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/CheckpointReached</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+  
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>mode_WdgM_SE_CameraTemp</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+  
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>alive_WdgM_SE_ConfigReg</SHORT-NAME>
+                  <PROVIDED-COM-SPECS>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/UpdateAliveCounter</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/CheckpointReached</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+  
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>mode_WdgM_SE_ConfigReg</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+  
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>alive_WdgM_SE_FS_MAIN</SHORT-NAME>
+                  <PROVIDED-COM-SPECS>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/UpdateAliveCounter</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/CheckpointReached</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+  
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>mode_WdgM_SE_FS_MAIN</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+  
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>alive_WdgM_SE_FS_ADC</SHORT-NAME>
+                  <PROVIDED-COM-SPECS>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/UpdateAliveCounter</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/CheckpointReached</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+  
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>mode_WdgM_SE_FS_ADC</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+              </PORTS>
+              <INTERNAL-BEHAVIORS>
+                <SWC-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>SwcInternalBehavior_CORE_0</SHORT-NAME>
+                  <DATA-TYPE-MAPPING-REFS>
+<!-- Provide default DataTypeMappings -->
+                    <DATA-TYPE-MAPPING-REF DEST="DATA-TYPE-MAPPING-SET">/AUTOSAR_WdgM/ImplementationDataTypes/WdgMDataTypeMappingSet</DATA-TYPE-MAPPING-REF>
+                  </DATA-TYPE-MAPPING-REFS>
+                  <EVENTS>
+<!-- Provide default service -->
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>EV_UpdateAliveCounter_SE_WdgM_SE_AS_HM</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/SwcInternalBehavior_CORE_0/RE_UpdateAliveCounter</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_AS_HM</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/UpdateAliveCounter</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>EV_CheckpointReached_SE_WdgM_SE_AS_HM</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/SwcInternalBehavior_CORE_0/RE_CheckpointReached</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_AS_HM</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/CheckpointReached</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>EV_UpdateAliveCounter_SE_WdgM_SE_CameraTemp</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/SwcInternalBehavior_CORE_0/RE_UpdateAliveCounter</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_CameraTemp</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/UpdateAliveCounter</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>EV_CheckpointReached_SE_WdgM_SE_CameraTemp</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/SwcInternalBehavior_CORE_0/RE_CheckpointReached</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_CameraTemp</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/CheckpointReached</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>EV_UpdateAliveCounter_SE_WdgM_SE_ConfigReg</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/SwcInternalBehavior_CORE_0/RE_UpdateAliveCounter</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_ConfigReg</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/UpdateAliveCounter</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>EV_CheckpointReached_SE_WdgM_SE_ConfigReg</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/SwcInternalBehavior_CORE_0/RE_CheckpointReached</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_ConfigReg</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/CheckpointReached</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>EV_UpdateAliveCounter_SE_WdgM_SE_FS_MAIN</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/SwcInternalBehavior_CORE_0/RE_UpdateAliveCounter</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_FS_MAIN</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/UpdateAliveCounter</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>EV_CheckpointReached_SE_WdgM_SE_FS_MAIN</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/SwcInternalBehavior_CORE_0/RE_CheckpointReached</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_FS_MAIN</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/CheckpointReached</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>EV_UpdateAliveCounter_SE_WdgM_SE_FS_ADC</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/SwcInternalBehavior_CORE_0/RE_UpdateAliveCounter</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_FS_ADC</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/UpdateAliveCounter</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>EV_CheckpointReached_SE_WdgM_SE_FS_ADC</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/SwcInternalBehavior_CORE_0/RE_CheckpointReached</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_FS_ADC</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/CheckpointReached</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                  </EVENTS>
+                  <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+                  <PORT-API-OPTIONS>
+<!-- Port API options for default service -->
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/globalMode</PORT-REF>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-ARG-VALUES>
+                        <PORT-DEFINED-ARGUMENT-VALUE>
+                          <VALUE>
+                            <NUMERICAL-VALUE-SPECIFICATION>
+                              <SHORT-LABEL>PORTARG_SE_WdgM_SE_AS_HM</SHORT-LABEL>
+                              <VALUE>0</VALUE>
+                            </NUMERICAL-VALUE-SPECIFICATION>
+                          </VALUE>
+                          <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_WdgM/ImplementationDataTypes/WdgM_SupervisedEntityIdType</VALUE-TYPE-TREF>
+                        </PORT-DEFINED-ARGUMENT-VALUE>
+                      </PORT-ARG-VALUES>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_AS_HM</PORT-REF>
+                    </PORT-API-OPTION>
+                    <!-- switch functions must be accessible via function pointer -->
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_AS_HM</PORT-REF>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-ARG-VALUES>
+                        <PORT-DEFINED-ARGUMENT-VALUE>
+                          <VALUE>
+                            <NUMERICAL-VALUE-SPECIFICATION>
+                              <SHORT-LABEL>PORTARG_SE_WdgM_SE_CameraTemp</SHORT-LABEL>
+                              <VALUE>2</VALUE>
+                            </NUMERICAL-VALUE-SPECIFICATION>
+                          </VALUE>
+                          <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_WdgM/ImplementationDataTypes/WdgM_SupervisedEntityIdType</VALUE-TYPE-TREF>
+                        </PORT-DEFINED-ARGUMENT-VALUE>
+                      </PORT-ARG-VALUES>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_CameraTemp</PORT-REF>
+                    </PORT-API-OPTION>
+                    <!-- switch functions must be accessible via function pointer -->
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_CameraTemp</PORT-REF>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-ARG-VALUES>
+                        <PORT-DEFINED-ARGUMENT-VALUE>
+                          <VALUE>
+                            <NUMERICAL-VALUE-SPECIFICATION>
+                              <SHORT-LABEL>PORTARG_SE_WdgM_SE_ConfigReg</SHORT-LABEL>
+                              <VALUE>3</VALUE>
+                            </NUMERICAL-VALUE-SPECIFICATION>
+                          </VALUE>
+                          <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_WdgM/ImplementationDataTypes/WdgM_SupervisedEntityIdType</VALUE-TYPE-TREF>
+                        </PORT-DEFINED-ARGUMENT-VALUE>
+                      </PORT-ARG-VALUES>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_ConfigReg</PORT-REF>
+                    </PORT-API-OPTION>
+                    <!-- switch functions must be accessible via function pointer -->
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_ConfigReg</PORT-REF>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-ARG-VALUES>
+                        <PORT-DEFINED-ARGUMENT-VALUE>
+                          <VALUE>
+                            <NUMERICAL-VALUE-SPECIFICATION>
+                              <SHORT-LABEL>PORTARG_SE_WdgM_SE_FS_MAIN</SHORT-LABEL>
+                              <VALUE>4</VALUE>
+                            </NUMERICAL-VALUE-SPECIFICATION>
+                          </VALUE>
+                          <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_WdgM/ImplementationDataTypes/WdgM_SupervisedEntityIdType</VALUE-TYPE-TREF>
+                        </PORT-DEFINED-ARGUMENT-VALUE>
+                      </PORT-ARG-VALUES>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_FS_MAIN</PORT-REF>
+                    </PORT-API-OPTION>
+                    <!-- switch functions must be accessible via function pointer -->
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_FS_MAIN</PORT-REF>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-ARG-VALUES>
+                        <PORT-DEFINED-ARGUMENT-VALUE>
+                          <VALUE>
+                            <NUMERICAL-VALUE-SPECIFICATION>
+                              <SHORT-LABEL>PORTARG_SE_WdgM_SE_FS_ADC</SHORT-LABEL>
+                              <VALUE>5</VALUE>
+                            </NUMERICAL-VALUE-SPECIFICATION>
+                          </VALUE>
+                          <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_WdgM/ImplementationDataTypes/WdgM_SupervisedEntityIdType</VALUE-TYPE-TREF>
+                        </PORT-DEFINED-ARGUMENT-VALUE>
+                      </PORT-ARG-VALUES>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/alive_WdgM_SE_FS_ADC</PORT-REF>
+                    </PORT-API-OPTION>
+                    <!-- switch functions must be accessible via function pointer -->
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_FS_ADC</PORT-REF>
+                    </PORT-API-OPTION>
+                  </PORT-API-OPTIONS>
+                  <RUNNABLES>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>RE_Main</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                      <MODE-ACCESS-POINTS>
+                        <MODE-ACCESS-POINT>
+                          <MODE-GROUP-IREF>
+                            <P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                              <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/globalMode</CONTEXT-P-PORT-REF>
+                              <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_GlobalMode/currentMode</TARGET-MODE-GROUP-REF>
+                            </P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-ACCESS-POINT>
+                        <MODE-ACCESS-POINT>
+                          <MODE-GROUP-IREF>
+                            <P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                              <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_AS_HM</CONTEXT-P-PORT-REF>
+                              <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode/currentMode</TARGET-MODE-GROUP-REF>
+                            </P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-ACCESS-POINT>
+                        <MODE-ACCESS-POINT>
+                          <MODE-GROUP-IREF>
+                            <P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                              <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_CameraTemp</CONTEXT-P-PORT-REF>
+                              <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode/currentMode</TARGET-MODE-GROUP-REF>
+                            </P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-ACCESS-POINT>
+                        <MODE-ACCESS-POINT>
+                          <MODE-GROUP-IREF>
+                            <P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                              <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_ConfigReg</CONTEXT-P-PORT-REF>
+                              <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode/currentMode</TARGET-MODE-GROUP-REF>
+                            </P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-ACCESS-POINT>
+                        <MODE-ACCESS-POINT>
+                          <MODE-GROUP-IREF>
+                            <P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                              <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_FS_MAIN</CONTEXT-P-PORT-REF>
+                              <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode/currentMode</TARGET-MODE-GROUP-REF>
+                            </P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-ACCESS-POINT>
+                        <MODE-ACCESS-POINT>
+                          <MODE-GROUP-IREF>
+                            <P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                              <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_FS_ADC</CONTEXT-P-PORT-REF>
+                              <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode/currentMode</TARGET-MODE-GROUP-REF>
+                            </P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-ACCESS-POINT>
+                      </MODE-ACCESS-POINTS>
+                      <MODE-SWITCH-POINTS>
+                        <MODE-SWITCH-POINT>
+                          <SHORT-NAME>MSP_globalMode</SHORT-NAME>
+                          <MODE-GROUP-IREF>
+                            <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/globalMode</CONTEXT-P-PORT-REF>
+                            <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_GlobalMode/currentMode</TARGET-MODE-GROUP-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-SWITCH-POINT>
+                        <MODE-SWITCH-POINT>
+                          <SHORT-NAME>MSP_mode_WdgM_SE_AS_HM</SHORT-NAME>
+                          <MODE-GROUP-IREF>
+                            <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_AS_HM</CONTEXT-P-PORT-REF>
+                            <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode/currentMode</TARGET-MODE-GROUP-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-SWITCH-POINT>
+                        <MODE-SWITCH-POINT>
+                          <SHORT-NAME>MSP_mode_WdgM_SE_CameraTemp</SHORT-NAME>
+                          <MODE-GROUP-IREF>
+                            <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_CameraTemp</CONTEXT-P-PORT-REF>
+                            <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode/currentMode</TARGET-MODE-GROUP-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-SWITCH-POINT>
+                        <MODE-SWITCH-POINT>
+                          <SHORT-NAME>MSP_mode_WdgM_SE_ConfigReg</SHORT-NAME>
+                          <MODE-GROUP-IREF>
+                            <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_ConfigReg</CONTEXT-P-PORT-REF>
+                            <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode/currentMode</TARGET-MODE-GROUP-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-SWITCH-POINT>
+                        <MODE-SWITCH-POINT>
+                          <SHORT-NAME>MSP_mode_WdgM_SE_FS_MAIN</SHORT-NAME>
+                          <MODE-GROUP-IREF>
+                            <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_FS_MAIN</CONTEXT-P-PORT-REF>
+                            <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode/currentMode</TARGET-MODE-GROUP-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-SWITCH-POINT>
+                        <MODE-SWITCH-POINT>
+                          <SHORT-NAME>MSP_mode_WdgM_SE_FS_ADC</SHORT-NAME>
+                          <MODE-GROUP-IREF>
+                            <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/mode_WdgM_SE_FS_ADC</CONTEXT-P-PORT-REF>
+                            <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode/currentMode</TARGET-MODE-GROUP-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-SWITCH-POINT>
+                      </MODE-SWITCH-POINTS>
+                      <SYMBOL>WdgM_MainFunction</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>RE_UpdateAliveCounter</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>SEID</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>WdgM_Rte_UpdateAliveCounter_CORE_0</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>RE_CheckpointReached</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>SEID</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>CheckpointID</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>WdgM_Rte_CheckpointReached_CORE_0</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                  </RUNNABLES>
+                  <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+                </SWC-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </SERVICE-SW-COMPONENT-TYPE>
+            <SERVICE-SW-COMPONENT-TYPE>
+              <SHORT-NAME>WdgM_CORE_1</SHORT-NAME>
+              <PORTS>
+  <!-- Provide AUTOSAR 4.0 as default service -->
+  
+  
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>alive_WdgM_SE_SWC_MONITOR</SHORT-NAME>
+                  <PROVIDED-COM-SPECS>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/UpdateAliveCounter</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                    <SERVER-COM-SPEC>
+                      <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/CheckpointReached</OPERATION-REF>
+                      <QUEUE-LENGTH>1</QUEUE-LENGTH>
+                    </SERVER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+  
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>mode_WdgM_SE_SWC_MONITOR</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+  
+  
+  
+  
+              </PORTS>
+              <INTERNAL-BEHAVIORS>
+                <SWC-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>SwcInternalBehavior_CORE_1</SHORT-NAME>
+                  <DATA-TYPE-MAPPING-REFS>
+<!-- Provide default DataTypeMappings -->
+                    <DATA-TYPE-MAPPING-REF DEST="DATA-TYPE-MAPPING-SET">/AUTOSAR_WdgM/ImplementationDataTypes/WdgMDataTypeMappingSet</DATA-TYPE-MAPPING-REF>
+                  </DATA-TYPE-MAPPING-REFS>
+                  <EVENTS>
+<!-- Provide default service -->
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>EV_UpdateAliveCounter_SE_WdgM_SE_SWC_MONITOR</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_1/SwcInternalBehavior_CORE_1/RE_UpdateAliveCounter</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_1/alive_WdgM_SE_SWC_MONITOR</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/UpdateAliveCounter</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>EV_CheckpointReached_SE_WdgM_SE_SWC_MONITOR</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_1/SwcInternalBehavior_CORE_1/RE_CheckpointReached</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_1/alive_WdgM_SE_SWC_MONITOR</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_WdgM/PortInterfaces/WdgM_AliveSupervision/CheckpointReached</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                  </EVENTS>
+                  <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+                  <PORT-API-OPTIONS>
+<!-- Port API options for default service -->
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-ARG-VALUES>
+                        <PORT-DEFINED-ARGUMENT-VALUE>
+                          <VALUE>
+                            <NUMERICAL-VALUE-SPECIFICATION>
+                              <SHORT-LABEL>PORTARG_SE_WdgM_SE_SWC_MONITOR</SHORT-LABEL>
+                              <VALUE>1</VALUE>
+                            </NUMERICAL-VALUE-SPECIFICATION>
+                          </VALUE>
+                          <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_WdgM/ImplementationDataTypes/WdgM_SupervisedEntityIdType</VALUE-TYPE-TREF>
+                        </PORT-DEFINED-ARGUMENT-VALUE>
+                      </PORT-ARG-VALUES>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_1/alive_WdgM_SE_SWC_MONITOR</PORT-REF>
+                    </PORT-API-OPTION>
+                    <!-- switch functions must be accessible via function pointer -->
+                    <PORT-API-OPTION>
+                      <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+                      <INDIRECT-API>false</INDIRECT-API>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_1/mode_WdgM_SE_SWC_MONITOR</PORT-REF>
+                    </PORT-API-OPTION>
+                  </PORT-API-OPTIONS>
+                  <RUNNABLES>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>RE_Main</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                      <MODE-ACCESS-POINTS>
+                        <MODE-ACCESS-POINT>
+                          <MODE-GROUP-IREF>
+                            <P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                              <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_1/mode_WdgM_SE_SWC_MONITOR</CONTEXT-P-PORT-REF>
+                              <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode/currentMode</TARGET-MODE-GROUP-REF>
+                            </P-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-ACCESS-POINT>
+                      </MODE-ACCESS-POINTS>
+                      <MODE-SWITCH-POINTS>
+                        <MODE-SWITCH-POINT>
+                          <SHORT-NAME>MSP_mode_WdgM_SE_SWC_MONITOR</SHORT-NAME>
+                          <MODE-GROUP-IREF>
+                            <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_1/mode_WdgM_SE_SWC_MONITOR</CONTEXT-P-PORT-REF>
+                            <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/AUTOSAR_WdgM/PortInterfaces/WdgM_IndividualMode/currentMode</TARGET-MODE-GROUP-REF>
+                          </MODE-GROUP-IREF>
+                        </MODE-SWITCH-POINT>
+                      </MODE-SWITCH-POINTS>
+
+                      <SYMBOL>WdgM_1_CORE_1_MainFunction</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>RE_UpdateAliveCounter</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>SEID</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>WdgM_Rte_UpdateAliveCounter_CORE_1</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>RE_CheckpointReached</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>SEID</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>CheckpointID</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>WdgM_Rte_CheckpointReached_CORE_1</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                  </RUNNABLES>
+                  <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+                </SWC-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </SERVICE-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+    <AR-PACKAGE>
+      <SHORT-NAME>EB_WdgM</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>SwcImplementations</SHORT-NAME>
+          <ELEMENTS>
+            <SWC-IMPLEMENTATION>
+              <SHORT-NAME>SwcImplementation_CORE_0</SHORT-NAME>
+              <CODE-DESCRIPTORS>
+                <CODE>
+                  <SHORT-NAME>WdgMCode</SHORT-NAME>
+                  <ARTIFACT-DESCRIPTORS>
+                    <AUTOSAR-ENGINEERING-OBJECT>
+                      <SHORT-LABEL>EngObject</SHORT-LABEL>
+                      <CATEGORY>SWSRC</CATEGORY>
+                    </AUTOSAR-ENGINEERING-OBJECT>
+                  </ARTIFACT-DESCRIPTORS>
+                </CODE>
+              </CODE-DESCRIPTORS>
+              <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+              <RESOURCE-CONSUMPTION>
+                <SHORT-NAME>Resources</SHORT-NAME>
+                <MEMORY-SECTIONS>
+                    <MEMORY-SECTION>
+                        <SHORT-NAME>CODE</SHORT-NAME>
+                        <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+                    </MEMORY-SECTION>
+                </MEMORY-SECTIONS>
+              </RESOURCE-CONSUMPTION>
+              <SW-VERSION>6.2.3</SW-VERSION>
+              <VENDOR-ID>1</VENDOR-ID>
+              <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_0/SwcInternalBehavior_CORE_0</BEHAVIOR-REF>
+            </SWC-IMPLEMENTATION>
+            <SWC-IMPLEMENTATION>
+              <SHORT-NAME>SwcImplementation_CORE_1</SHORT-NAME>
+              <CODE-DESCRIPTORS>
+                <CODE>
+                  <SHORT-NAME>WdgMCode</SHORT-NAME>
+                  <ARTIFACT-DESCRIPTORS>
+                    <AUTOSAR-ENGINEERING-OBJECT>
+                      <SHORT-LABEL>EngObject</SHORT-LABEL>
+                      <CATEGORY>SWSRC</CATEGORY>
+                    </AUTOSAR-ENGINEERING-OBJECT>
+                  </ARTIFACT-DESCRIPTORS>
+                </CODE>
+              </CODE-DESCRIPTORS>
+              <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+              <RESOURCE-CONSUMPTION>
+                <SHORT-NAME>Resources</SHORT-NAME>
+                <MEMORY-SECTIONS>
+                    <MEMORY-SECTION>
+                        <SHORT-NAME>CODE</SHORT-NAME>
+                        <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+                    </MEMORY-SECTION>
+                </MEMORY-SECTIONS>
+              </RESOURCE-CONSUMPTION>
+              <SW-VERSION>6.2.3</SW-VERSION>
+              <VENDOR-ID>1</VENDOR-ID>
+              <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/AUTOSAR_WdgM/SwComponentTypes/WdgM_CORE_1/SwcInternalBehavior_CORE_1</BEHAVIOR-REF>
+            </SWC-IMPLEMENTATION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

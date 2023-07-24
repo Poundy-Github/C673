@@ -1,0 +1,27 @@
+---
+# This is the configurationInput file in which all relevant information must be collected, like outputPath, required files, ...
+# This file has to be provided as an argument to the generator. 
+#
+# The paths can be given either as absolute paths or as relative paths. 
+# In case there are relative path are delivered it is important that a referencePath is given at generator call (optional parameter -r).
+# All provided relPath have to be then relative to given referencePath, that the absolute path can be determined in the generator. 
+# The format of given information is really important, especially the names on the left hand side.
+# It has to be always of the following format: 
+#
+# <name> : <value> 
+#
+# Just subtitute the <#######> in below lines with real texts/paths.
+
+
+project            : <The ProjectName>
+build_unit         : <The name of the buildUnit>
+output_path        : <The path where the xml files shall be generated to, e.g. D:\repo\ars540bw11\MTS\05_Testing\MTS\mts_measurement\ini\RTA_xml>
+pdo_path           : <The path containing the relevant *.dat file(s)>
+generator_cfg_file : <The path - including the filename - where to find the generatorConfigFile e.g. RtaXmlGeneratorCfg_infra.py>
+rta_globalids_h    : <The path - including the filename - where to find the RTA_GlobalIDs.h>
+os_type            : <The os which is used. It can be one of the following: OS_TYPE_EB_S, OS_TYPE_EB, OS_TYPE_VECTOR, OS_TYPE_RTOS, OS_TYPE_SYS_BIOS or OS_TYPE_NONE in case there is no OS used>
+os_dir_path        : <The path containing the related osFiles like Mk_gen_user.h (ElektroBitSafetyOs) or Os_Types_Lcfg.h (VectorOs) - This element is optional, only required in case an OS is used>
+lut_cfg_file_path  : <The path containing the os_rta_taskid_lut_cfg.h - This element is optional, only required in case an OS is used>
+rta_taskids_h      : <The path - including the filename - where to find the os_rta_task_ids.h - This element is optional, only required in case an OS is used>
+local_id_xml_path  : The path containing the preGenerated localIdXml-files. This elememt is optional, it is only required in case there are preGenerated XMLs which shall be used. 
+

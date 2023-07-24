@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ecu_src">
+      <UniqueIdentifier>{81a23625-a537-453e-8875-be0acfa9254a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ecu_src\algo">
+      <UniqueIdentifier>{df9efe75-7b22-49c8-a32c-8cee9cb7f2a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ecu_src\algo\algo_common">
+      <UniqueIdentifier>{50bf7d19-5110-48fc-ba90-adcebad229e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ecu_src\algo\cml">
+      <UniqueIdentifier>{ac98cca2-3a57-49af-a2c5-48ac229c2d40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ecu_src\common">
+      <UniqueIdentifier>{e109152a-9174-47ef-bd5a-e57295196595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ecu_src\common\rte">
+      <UniqueIdentifier>{1d145ad2-f926-4451-bfce-7393cbbd535c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ecu_src\rte_sim">
+      <UniqueIdentifier>{98afd9c7-f0e1-4e8f-a0e1-10d9f9a6dd30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ecu_src\algo\cml_test_application">
+      <UniqueIdentifier>{fb7283fa-c45c-41a2-9763-254cee999350}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\algo_common\algo_cfg.h">
+      <Filter>ecu_src\algo\algo_common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\algo_common\algo_constants.h">
+      <Filter>ecu_src\algo\algo_common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\algo_common\algo_glob.h">
+      <Filter>ecu_src\algo\algo_common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\algo_common\algo_sensor_params.h">
+      <Filter>ecu_src\algo\algo_common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\algo_common\algo_type.h">
+      <Filter>ecu_src\algo\algo_common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_bayes.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_cfg.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_complex.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_const.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_ecu_emul.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_ext.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_ext_cpp.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_fourier.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_kafi.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_mapping.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_mat.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_misc.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_mtrx.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stat.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_array.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_array2d.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_iterator.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_matrix.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_vector.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_trigo.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_vector.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_ver.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\common\glob_comp_id.h">
+      <Filter>ecu_src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\common\meas_ext.h">
+      <Filter>ecu_src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\common\rte\rte_type.h">
+      <Filter>ecu_src\common\rte</Filter>
+    </ClInclude>
+    <ClInclude Include="..\externals\sim\include\sim_rte\Compiler.h">
+      <Filter>ecu_src\rte_sim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\externals\sim\include\sim_rte\Platform_Types.h">
+      <Filter>ecu_src\rte_sim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\externals\sim\include\sim_rte\Rte.h">
+      <Filter>ecu_src\rte_sim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\externals\sim\include\sim_rte\std_types.h">
+      <Filter>ecu_src\rte_sim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\common\glob_type.h">
+      <Filter>ecu_src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_interpol.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_algorithm.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_cmath.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_list.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_memory.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_point.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_type_traits.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_type.h">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_bayes.c">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_complex.c">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_fourier.c">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_kafi.c">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_mat.c">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_misc.c">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_mtrx.c">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_stat.c">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_trigo.c">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_vector.c">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_interpol.c">
+      <Filter>ecu_src\algo\cml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\C66xx_EvmHilWrapper_cml.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_algorithm.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_array.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_array2d.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_iterator.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_list.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_matrix.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_point.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_vector.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_cmath.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\csv_parser.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_trigo.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_misc.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_mat.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_mtrx.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_fourier.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_kafi.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_bayes.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_complex.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_interpol.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stat.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_vector.cpp">
+      <Filter>ecu_src\algo\cml_test_application</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,20 @@
+entry &WHAT
+global &gPROJECTNAME &gBASEPATH &gCORENAME &gPLATFORM
+
+&SETTINGS_FILE_USER="&(gBASEPATH)\settings\&(gPROJECTNAME)\&(gCORENAME).&(WHAT).cmm"
+&SETTINGS_FILE_PLATFORM="&(gBASEPATH)\platforms\&(gPLATFORM)\default_&(gCORENAME).&(WHAT).cmm"
+if FILE.EXIST("&SETTINGS_FILE_USER")
+(
+	on error continue
+	do "&SETTINGS_FILE_USER"
+)
+else if FILE.EXIST("&SETTINGS_FILE_PLATFORM")
+(
+	on error continue
+	do "&SETTINGS_FILE_PLATFORM"
+)
+else if "&WHAT"=="settings"
+(
+	on error continue
+	do "&(gBASEPATH)\common\default_settings.cmm"
+)

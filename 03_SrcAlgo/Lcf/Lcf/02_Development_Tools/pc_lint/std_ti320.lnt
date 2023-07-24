@@ -1,0 +1,33 @@
+//===================================================
+// Include some standard lint files
+//===================================================
+co-ti320.lnt
+
+//===================================================
+// Memory-Model
+//===================================================
+// -fcu        // plain character is unsigned
+-sb8        // 'Byte' is 8 bits
+-sc1        // sizeof(char) is 1
+-ss2        // sizeof(short) is 2
+-si4        // sizeof(int) is 4
+-sl5        // sizeof(long) is 5
+-sll8       // sizeof(long long) is 8
+-sf4        // sizeof(float) is 4
+-sd8        // sizeof(double) is 8
+-sld8       // sizeof(long double)  is 8
+-spN4       // sizeof(near pointer) is 4
+-spF4       // sizeof(far pointer) is 4
+
+//===================================================
+// Include Settings for the Algo&SW Domain
+//===================================================
+adas_options.lnt
+
+//===================================================
+// Linbuffer increase
+//===================================================
+//+linebuf This option doubles the size of the line 
+//buffer, which is initially 600 bytes.
++linebuf 
++linebuf

@@ -1,0 +1,37 @@
+// Copyright (C) Continental AG
+// All Rights Reserved
+// COMPONENT: IPC
+// VERSION:   $Revision: 1.1 $
+
+/// generated part of the RTE Wrapper for IPC.
+///
+/// @file
+
+#ifndef IPC_RTEWRAPPERGEN_H
+#define IPC_RTEWRAPPERGEN_H
+
+#include <Std_Types.h>
+#include <Rte_Type.h>
+#include <IPC_BASE/IPC_DataBaseConfig/ipc_sync_cfg.h>
+
+/// Read function for typecasting inside the Mapping Table
+typedef Std_ReturnType (*RteClusterReadFunction)(void* const p_Data);
+
+/// Write function for typecasting inside the Mapping Table
+typedef Std_ReturnType (*RteClusterWriteFunction)(const void* const p_Data);
+
+/// Mapping Table entry
+typedef struct tag_IpcRteMappingTableEntry
+{
+  IPC_CLUSTER_ID clusterId;                ///< ID of the cluster
+  RteClusterReadFunction RteClusterRead;   ///< Function pointer to the cluster specific read function
+  RteClusterWriteFunction RteClusterWrite; ///< Function pointer to the cluster specific write function
+} IpcRteMappingTableEntry;
+
+extern const IpcRteMappingTableEntry IpcRteMappingTable[IPC_E_NUM_CLUSTERS];
+
+/*!<codegen_start:IPC_RTE_WRAPPER_FUNCTIONS_H>*/
+/*!<codegen_end:IPC_RTE_WRAPPER_FUNCTIONS_H>*/
+
+#endif //IPC_RTEWRAPPERGEN_H
+

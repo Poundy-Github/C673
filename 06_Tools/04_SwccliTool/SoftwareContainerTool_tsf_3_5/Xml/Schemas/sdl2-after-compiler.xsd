@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 (http://www.altova.com) by Canti (FLCL) -->
+<!-- edited with XMLSPY v5 U (http://www.xmlspy.com) by Bad User (KPI) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="SdlFile">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="View">
+					<xs:complexType>
+						<xs:choice minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="Group">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="TGroup"/>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:attribute name="Name" type="TName" use="required"/>
+						<xs:attribute name="CycleID" type="xs:integer" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="ByteAlignment" type="EByteAlignment" use="required"/>
+			<xs:attribute name="Version" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="TGroup">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="SubGroup" type="TSubGroup"/>
+			<xs:element name="Signal" type="TSimpleSignal"/>
+		</xs:choice>
+		<xs:attribute name="Name" type="TName" use="required"/>
+		<xs:attribute name="Address" type="THex" use="required"/>
+		<xs:attribute name="ArrayLen" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:positiveInteger">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Size" type="xs:positiveInteger" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TSubGroup">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="SubGroup" type="TSubGroup"/>
+			<xs:element name="Signal" type="TSimpleSignal"/>
+		</xs:choice>
+		<xs:attribute name="Name" type="TName" use="required"/>
+		<xs:attribute name="Offset" type="THex" use="required"/>
+		<xs:attribute name="ArrayLen" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:positiveInteger">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Size" type="xs:positiveInteger" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TSimpleSignal">
+		<xs:attribute name="Name" type="TName" use="required"/>
+		<xs:attribute name="Offset" type="THex" use="required"/>
+		<xs:attribute name="ArrayLen" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:positiveInteger">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Type" type="ESimpleType" use="required"/>
+		<xs:attribute name="Bitmask" type="THex" use="required"/>
+		<xs:attribute name="ByteOrder" type="EByteOrder" use="required"/>
+		<xs:attribute name="Units" type="xs:string" use="optional"/>
+		<xs:attribute name="a" type="xs:double" use="optional" default="0.0"/>
+		<xs:attribute name="b" type="xs:double" use="optional" default="1.0"/>
+		<xs:attribute name="c" type="xs:double" use="optional" default="0.0"/>
+		<xs:attribute name="d" type="xs:double" use="optional" default="0.0"/>
+		<xs:attribute name="e" type="xs:double" use="optional" default="0.0"/>
+		<xs:attribute name="f" type="xs:double" use="optional" default="1.0"/>
+		<xs:attribute name="Size" type="xs:integer" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="TName">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:pattern value="(\w|_)(\w|\d|_)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EByteAlignment">
+		<xs:restriction base="xs:integer">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EByteOrder">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="big-endian"/>
+			<xs:enumeration value="little-endian"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ESimpleType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="char"/>
+			<xs:enumeration value="uchar"/>
+			<xs:enumeration value="short"/>
+			<xs:enumeration value="ushort"/>
+			<xs:enumeration value="long"/>
+			<xs:enumeration value="ulong"/>
+			<xs:enumeration value="int64"/>
+			<xs:enumeration value="uint64"/>
+			<xs:enumeration value="float"/>
+			<xs:enumeration value="double"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="THex">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([a-f]|[A-F]|[0-9])+"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

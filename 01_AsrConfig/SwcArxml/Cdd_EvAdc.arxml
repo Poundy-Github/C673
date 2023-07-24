@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00045.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2023-02-10T16:38:47+08:00" UUID="ba77afaa-fb83-413c-b1cb-e02163e027e3">
+      <SHORT-NAME>EvAdc</SHORT-NAME>
+      <ELEMENTS>
+        <COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE T="2023-02-13T10:41:58+08:00" UUID="94f2a569-b76b-46aa-b405-04676d9d77c2">
+          <SHORT-NAME>EvAdc</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE UUID="66d5cb87-f503-4059-bf2b-fd77ed8f7719">
+              <SHORT-NAME>PP_Port_Cdd_EvAdc_GetValue_PMIC_FS84_AMUX_OUT</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="3136524a-36af-4c22-b0e4-e1d176b49abe">
+              <SHORT-NAME>PP_Port_Cdd_EvAdc_GetValue_SOC_PMIC_8200_AMUX_OUT</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="e76fcde2-3b1d-478e-a054-58850540cf92">
+              <SHORT-NAME>PP_Port_Cdd_EvAdc_GetValue_TMON_SYS1</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="292151e8-fdb7-444a-944a-9e66d4ead2c4">
+              <SHORT-NAME>PP_Port_Cdd_EvAdc_GetValue_TMON_SYS2</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="66e25de9-2c47-4957-915b-bd24c00c3673">
+              <SHORT-NAME>PP_Port_Cdd_EvAdc_GetValue_VMON_1V0_GEPHY</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="93d657ea-275b-43b7-a58f-5ec2ffd98ace">
+              <SHORT-NAME>PP_Port_Cdd_EvAdc_GetValue_VMON_3V3_GEPHY</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2023-02-13T10:42:55+08:00" UUID="a748e5bc-157e-4db8-b093-46de6e53220a">
+              <SHORT-NAME>PP_Port_Cdd_EvAdc_GetValue_VMON_BATT</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="9682dc2a-3064-421a-b316-12140299b244">
+              <SHORT-NAME>PP_Port_Cdd_EvAdc_GetValue_VMON_IGN</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR T="2023-03-07T14:12:37+08:00" UUID="4ce6f0e5-b182-45f9-998b-e7b510960743">
+              <SHORT-NAME>Cdd_EvAdc_IB</SHORT-NAME>
+              <EVENTS>
+                <TIMING-EVENT T="2023-02-13T10:41:24+08:00" UUID="7414bdc9-859a-4302-aa32-c5f28fea5287">
+                  <SHORT-NAME>Event_5ms_Cdd_EvAdc_MainFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_MainFunction</START-ON-EVENT-REF>
+                  <PERIOD>0.005</PERIOD>
+                </TIMING-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="223a66fc-cc7f-4b10-bd63-2145f32b099a">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetRegValue_J3_PMIC_8200_AMUX_OUT_GetRegValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRegValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_SOC_PMIC_8200_AMUX_OUT</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetRegValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="202ec4c9-8603-42b4-8776-2ced0d96ff2a">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetRegValue_PMIC_FS84_AMUX_OUT_GetRegValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRegValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_PMIC_FS84_AMUX_OUT</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetRegValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="45f402d2-a8d3-43d4-b1b1-55d4dedd4005">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetRegValue_TMON_SYS1_GetRegValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRegValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_TMON_SYS1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetRegValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="0912d494-ed39-407f-ba69-c228ccc15f4d">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetRegValue_TMON_SYS2_GetRegValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRegValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_TMON_SYS2</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetRegValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="685bde7c-7401-4f5c-ba5d-d4691dcdfd32">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetRegValue_VMON_1V0_GEPHY_GetRegValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRegValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_VMON_1V0_GEPHY</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetRegValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="cba89387-235a-4a87-9db4-76aafaa4f677">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetRegValue_VMON_3V3_GEPHY_GetRegValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRegValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_VMON_3V3_GEPHY</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetRegValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="a5b1f811-158d-4c41-92aa-f6e6403b92cb">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetRegValue_VMON_BATT_GetRegValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRegValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_VMON_BATT</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetRegValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="97eb4e80-e741-420d-ae21-c9816ea26372">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetRegValue_VMON_IGN_GetRegValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRegValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_VMON_IGN</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetRegValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="2783cebe-27d7-43f8-bb96-477b72c16138">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetValue_PMIC_FS84_AMUX_OUT_GetPhyValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRhyValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_PMIC_FS84_AMUX_OUT</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="68066a94-52a4-4515-accd-70152daa5e4a">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetValue_SOC_PMIC_8200_AMUX_OUT_GetPhyValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRhyValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_SOC_PMIC_8200_AMUX_OUT</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="25c0195b-d2fa-4d4f-8cca-f86a5eff7731">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetValue_TMON_SYS1_GetPhyValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRhyValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_TMON_SYS1</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="c5b515bc-1ec1-4102-ac68-4988f63d930c">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetValue_TMON_SYS2_GetPhyValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRhyValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_TMON_SYS2</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="cf7cb93c-742f-4451-929c-2a749282ccb2">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetValue_VMON_1V0_GEPHY_GetPhyValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRhyValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_VMON_1V0_GEPHY</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="7fa8dae9-ca91-4f63-915c-48073a05cce7">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetValue_VMON_3V3_GEPHY_GetPhyValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRhyValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_VMON_3V3_GEPHY</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="e9d3fbed-d844-4e78-839d-0fff7a165e88">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetValue_VMON_BATT_GetPhyValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRhyValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_VMON_BATT</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="dfc18bdb-ba80-438a-9a04-d6272aec04fd">
+                  <SHORT-NAME>oie_PP_Port_Cdd_EvAdc_GetValue_VMON_IGN_GetPhyValue</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_GetRhyValue</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_VMON_IGN</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+              </EVENTS>
+              <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+              <PORT-API-OPTIONS>
+                <PORT-API-OPTION>
+                  <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                  <ERROR-HANDLING>NO-TRANSFORMER-ERROR-HANDLING</ERROR-HANDLING>
+                  <INDIRECT-API>false</INDIRECT-API>
+                  <PORT-ARG-VALUES>
+                    <PORT-DEFINED-ARGUMENT-VALUE>
+                      <VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>channel</SHORT-LABEL>
+                          <VALUE>0</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </VALUE>
+                      <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint8_t</VALUE-TYPE-TREF>
+                    </PORT-DEFINED-ARGUMENT-VALUE>
+                  </PORT-ARG-VALUES>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_VMON_BATT</PORT-REF>
+                </PORT-API-OPTION>
+                <PORT-API-OPTION>
+                  <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                  <ERROR-HANDLING>NO-TRANSFORMER-ERROR-HANDLING</ERROR-HANDLING>
+                  <INDIRECT-API>false</INDIRECT-API>
+                  <PORT-ARG-VALUES>
+                    <PORT-DEFINED-ARGUMENT-VALUE>
+                      <VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>channel</SHORT-LABEL>
+                          <VALUE>1</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </VALUE>
+                      <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint8_t</VALUE-TYPE-TREF>
+                    </PORT-DEFINED-ARGUMENT-VALUE>
+                  </PORT-ARG-VALUES>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_VMON_IGN</PORT-REF>
+                </PORT-API-OPTION>
+                <PORT-API-OPTION>
+                  <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                  <ERROR-HANDLING>NO-TRANSFORMER-ERROR-HANDLING</ERROR-HANDLING>
+                  <INDIRECT-API>false</INDIRECT-API>
+                  <PORT-ARG-VALUES>
+                    <PORT-DEFINED-ARGUMENT-VALUE>
+                      <VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>channel</SHORT-LABEL>
+                          <VALUE>2</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </VALUE>
+                      <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint8_t</VALUE-TYPE-TREF>
+                    </PORT-DEFINED-ARGUMENT-VALUE>
+                  </PORT-ARG-VALUES>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_SOC_PMIC_8200_AMUX_OUT</PORT-REF>
+                </PORT-API-OPTION>
+                <PORT-API-OPTION>
+                  <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                  <ERROR-HANDLING>NO-TRANSFORMER-ERROR-HANDLING</ERROR-HANDLING>
+                  <INDIRECT-API>false</INDIRECT-API>
+                  <PORT-ARG-VALUES>
+                    <PORT-DEFINED-ARGUMENT-VALUE>
+                      <VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>channel</SHORT-LABEL>
+                          <VALUE>3</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </VALUE>
+                      <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint8_t</VALUE-TYPE-TREF>
+                    </PORT-DEFINED-ARGUMENT-VALUE>
+                  </PORT-ARG-VALUES>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_PMIC_FS84_AMUX_OUT</PORT-REF>
+                </PORT-API-OPTION>
+                <PORT-API-OPTION>
+                  <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                  <ERROR-HANDLING>NO-TRANSFORMER-ERROR-HANDLING</ERROR-HANDLING>
+                  <INDIRECT-API>false</INDIRECT-API>
+                  <PORT-ARG-VALUES>
+                    <PORT-DEFINED-ARGUMENT-VALUE>
+                      <VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>channel</SHORT-LABEL>
+                          <VALUE>4</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </VALUE>
+                      <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint8_t</VALUE-TYPE-TREF>
+                    </PORT-DEFINED-ARGUMENT-VALUE>
+                  </PORT-ARG-VALUES>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_VMON_1V0_GEPHY</PORT-REF>
+                </PORT-API-OPTION>
+                <PORT-API-OPTION>
+                  <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                  <ERROR-HANDLING>NO-TRANSFORMER-ERROR-HANDLING</ERROR-HANDLING>
+                  <INDIRECT-API>false</INDIRECT-API>
+                  <PORT-ARG-VALUES>
+                    <PORT-DEFINED-ARGUMENT-VALUE>
+                      <VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>channel</SHORT-LABEL>
+                          <VALUE>5</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </VALUE>
+                      <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint8_t</VALUE-TYPE-TREF>
+                    </PORT-DEFINED-ARGUMENT-VALUE>
+                  </PORT-ARG-VALUES>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_VMON_3V3_GEPHY</PORT-REF>
+                </PORT-API-OPTION>
+                <PORT-API-OPTION>
+                  <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                  <ERROR-HANDLING>NO-TRANSFORMER-ERROR-HANDLING</ERROR-HANDLING>
+                  <INDIRECT-API>false</INDIRECT-API>
+                  <PORT-ARG-VALUES>
+                    <PORT-DEFINED-ARGUMENT-VALUE>
+                      <VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>channel</SHORT-LABEL>
+                          <VALUE>6</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </VALUE>
+                      <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint8_t</VALUE-TYPE-TREF>
+                    </PORT-DEFINED-ARGUMENT-VALUE>
+                  </PORT-ARG-VALUES>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_TMON_SYS1</PORT-REF>
+                </PORT-API-OPTION>
+                <PORT-API-OPTION>
+                  <ENABLE-TAKE-ADDRESS>false</ENABLE-TAKE-ADDRESS>
+                  <ERROR-HANDLING>NO-TRANSFORMER-ERROR-HANDLING</ERROR-HANDLING>
+                  <INDIRECT-API>false</INDIRECT-API>
+                  <PORT-ARG-VALUES>
+                    <PORT-DEFINED-ARGUMENT-VALUE>
+                      <VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>channel</SHORT-LABEL>
+                          <VALUE>7</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </VALUE>
+                      <VALUE-TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint8_t</VALUE-TYPE-TREF>
+                    </PORT-DEFINED-ARGUMENT-VALUE>
+                  </PORT-ARG-VALUES>
+                  <PORT-REF DEST="P-PORT-PROTOTYPE">/EvAdc/EvAdc/PP_Port_Cdd_EvAdc_GetValue_TMON_SYS2</PORT-REF>
+                </PORT-API-OPTION>
+              </PORT-API-OPTIONS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY T="2023-02-13T10:42:35+08:00" UUID="4bfd244a-fb9d-4e67-8985-2dfb542e4a22">
+                  <SHORT-NAME>Cdd_EvAdc_GetRegValue</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Cdd_EvAdc_GetRegValue</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY UUID="DCE:9eb5a9cb-eb31-492e-8f36-652b51a170bf">
+                  <SHORT-NAME>Cdd_EvAdc_GetRhyValue</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Cdd_EvAdc_GetRhyValue</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-02-10T15:35:45+08:00" UUID="DCE:c2e43129-2362-4495-bbef-04467d3b1f4a">
+                  <SHORT-NAME>Cdd_EvAdc_MainFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Cdd_EvAdc_MainFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION T="2023-02-10T16:42:12+08:00" UUID="a0d6a77c-7560-4bb5-92ff-7378cd1545c1">
+          <SHORT-NAME>EvAdcImpl</SHORT-NAME>
+          <CODE-DESCRIPTORS>
+            <CODE T="2023-02-13T10:14:41+08:00" UUID="ddc8cdab-49b4-4af1-88ac-6e5a0c12f3ac">
+              <SHORT-NAME>Code_Descriptor</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">2023-03-07T13:43:27+08:00</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">2023-03-07T13:43:27+08:00</SD>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">2023-03-07T13:43:27+08:00</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">2023-03-07T13:43:27+08:00</SD>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/EvAdc/EvAdc/Cdd_EvAdc_IB/Cdd_EvAdc_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <ARTIFACT-DESCRIPTORS>
+                <AUTOSAR-ENGINEERING-OBJECT T="2023-02-10T16:39:52+08:00">
+                  <SHORT-LABEL>SWHDR</SHORT-LABEL>
+                  <CATEGORY>SWHDR</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+                <AUTOSAR-ENGINEERING-OBJECT T="2023-02-10T16:38:47+08:00">
+                  <SHORT-LABEL>SWSRC</SHORT-LABEL>
+                  <CATEGORY>SWSRC</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+              </ARTIFACT-DESCRIPTORS>
+            </CODE>
+          </CODE-DESCRIPTORS>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <RESOURCE-CONSUMPTION T="2023-02-10T19:52:57+08:00" UUID="DCE:0eae244a-a963-4e3e-9a28-0fee0e38400a">
+            <SHORT-NAME>EvAdc_Resource</SHORT-NAME>
+            <MEMORY-SECTIONS>
+              <MEMORY-SECTION T="2021-12-26T13:27:58+08:00" UUID="a496b8a0-65f9-48fc-9e43-311a767a4eb9">
+                <SHORT-NAME>CODE</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2021-12-26T13:29:44+08:00" UUID="7fd1095b-9728-4778-b691-e43a51d2f557">
+                <SHORT-NAME>VAR_UNSPECIFIED</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/VAR</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+            </MEMORY-SECTIONS>
+          </RESOURCE-CONSUMPTION>
+          <SW-VERSION>1.0.0</SW-VERSION>
+          <VENDOR-ID>0</VENDOR-ID>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/EvAdc/EvAdc/Cdd_EvAdc_IB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

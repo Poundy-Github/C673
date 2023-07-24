@@ -1,0 +1,1907 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?module CanTp?>
+
+<xgen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://www.elektrobit.com/2013/xgen" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+
+
+
+
+
+
+
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+    
+    
+    
+         
+         
+    
+    
+
+
+
+
+ 
+
+ 
+ 
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+     
+     
+     
+          
+          
+     
+     
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- This is the configuration of module CanTp -->
+  <module name="CanTp" version="6.8.45 B466224">
+
+    <!-- This is the Precompile-time configuration of the module. -->
+    <configuration class="PreCompile">
+        <?artifact directory="include" file="CanTp_Types_Int.h" type="types-h" generate="yes" ?>
+
+
+
+      <parameter name="relocatable-enable">
+        <boolean-value>true</boolean-value>
+      </parameter>
+
+
+      <!-- This is the type definition of the root structure -->
+      <type name="CanTp_ConfigType">
+        <struct>
+          <comment><![CDATA[Post-build configuration type]]></comment>
+          <member name="PlatformSignature" type="uint32">
+            <comment><![CDATA[Used to validate the platform]]></comment>
+          </member>
+          <member name="LcfgSignature" type="uint32">
+            <comment><![CDATA[Used to validate the post build configuration against the link time configuration.]]></comment>
+          </member>
+          <member name="CfgSignature" type="uint32">
+            <comment><![CDATA[Used to validate the post build configuration against the precompile time configuration.]]></comment>
+          </member>
+          <member name="PublicInfoSignature" type="uint32">
+            <comment>
+               <![CDATA[Used to validate the post build configuration against the precompile time published info
+                        configuration.
+               ]]>
+            </comment>
+          </member>
+          <!-- Pointers to post build data structures -->
+          <member name="RxNPduLookupTablePtr" type="CanTp_RxNPduLookupEntryType">
+            <comment><![CDATA[This pointer contains the address to the N-PDU lookup table.]]></comment>
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="RxNPduTablePtr" type="CanTp_RxNPduTableType">
+            <comment><![CDATA[This pointer contains the address to the RX N-PDU table if available.]]></comment>
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="RxNSduConfigPtr" type="CanTp_RxNSduConfigType">
+            <comment><![CDATA[This pointer contains the address to the RX N-SDU config array if available.]]></comment>
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="TxNSduConfigPtr" type="CanTp_TxNSduConfigType">
+            <comment><![CDATA[This pointer contains the address to the TX N-SDU config array if available.]]></comment>
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="MfCtrConfigPtr" type="CanTp_MfCtrConfigType">
+            <comment><![CDATA[This pointer contains the address to the main function control config array if available.]]></comment>
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+
+
+          <member name="TxNPduToTpChannelPtr" type="CanTp_TxNPduToTpChannelType">
+            <comment><![CDATA[Array to translate CanIf Tx Confirmation PDU IDs into the CanTp channel.]]></comment>
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+
+
+          <member name="NumberRxNPdus" type="uint16">
+            <comment><![CDATA[Number of unequal Rx N-PDU elements.]]></comment>
+          </member>
+          <member name="NumberTxNSdus" type="uint16">
+            <comment><![CDATA[Configured number of TxNSdus.]]></comment>
+          </member>
+          <member name="NumberRxNSdus" type="uint16">
+            <comment><![CDATA[Configured number of RxNSdus.]]></comment>
+          </member>
+
+          <member name="NumberTxConfNPdus" type="uint16">
+            <comment><![CDATA[Configured number of Tx confirmation NPdus (Tx ConfNPdus + RxFcNPdus).]]></comment>
+          </member>
+
+
+           <member name="NumberOfChannels" type="uint8">
+             <comment><![CDATA[Number of Tx and Rx channels.]]></comment>
+           </member>
+
+           <member name="NumberOfTxChannels" type="uint8">
+             <comment><![CDATA[Number of Tx channels.]]></comment>
+           </member>
+
+        </struct>
+      </type>
+
+      <!-- This is the type definition of the Tx PDU config structure -->
+      <type name="CanTp_RxNPduLookupEntryType">
+          <comment><![CDATA[Type for the N-PDU Lookup Table.]]></comment>
+        <reference type="uint16" />
+      </type>
+
+      <!--  Type for List of CanTp Rx N-PDUs. -->
+      <type name="CanTp_RxNPduTableType">
+       <struct>
+        <comment><![CDATA[Type for CanTp List of all receivable N-PDUs.]]></comment>
+        <member name="Next" type="uint16">
+          <comment><![CDATA[index of next element with the same N-PDU Id, zero terminates]]></comment>
+        </member>
+        <member name="Index" type="PduIdType">
+          <comment><![CDATA[index in Tx or Rx array]]></comment>
+        </member>
+        <member name="AddressingFormat" type="uint8">
+          <comment><![CDATA[address format of this N-PDU]]></comment>
+        </member>
+        <member name="N_SA_AE" type="uint8">
+          <comment>
+             <![CDATA[expected source address in extended addressing mode or address extension
+                     (N_AE) in mixed addressing mode.
+             ]]>
+          </comment>
+        </member>
+        <member name="Direction" type="uint8">
+          <comment><![CDATA[direction (tx or rx)]]></comment>
+        </member>
+       </struct>
+      </type>
+
+      <!-- Type for CanTp Rx N-SDU configuration. -->
+      <type name="CanTp_RxNSduConfigType">
+        <struct>
+        <comment><![CDATA[Type for CanTp Rx N-SDU configuration.]]></comment>
+        <member name="N_Ar" type="uint16">
+          <comment><![CDATA[time to transmit N-PDU]]></comment>
+        </member>
+        <member name="N_Br" type="uint16">
+          <comment><![CDATA[time between two FCs]]></comment>
+        </member>
+        <member name="N_Cr" type="uint16">
+          <comment><![CDATA[time until CF receive]]></comment>
+        </member>
+        <member name="NPduConfIdFc" type="PduIdType">
+          <comment><![CDATA[N-Pdu confirmation Id for sent FC frames]]></comment>
+        </member>
+        <member name="LSduIdFc" type="PduIdType">
+          <comment><![CDATA[L-Sdu Id for sending FC frames]]></comment>
+        </member>
+        <member name="IPduId" type="PduIdType">
+          <comment><![CDATA[I-Pdu Id for Rx-UL communication (PduR_CanTpRxIndication)]]></comment>
+        </member>
+        <member name="NPduIdxF" type="PduIdType">
+          <comment><![CDATA[N-Pdu Id for receiving frames from lower layer]]></comment>
+        </member>
+
+        <!--  check if the local index channel exceeds uint8 range
+              Rationale: For each full duplex channel, two channel indexes are assigned ($numAllChannels * 2),
+                         but for half duplex channels ($numAllChannels - $numFullDuplexChannels) only one channel index is assigned. -->
+        <member name="Channel" type="uint8">
+          <comment><![CDATA[associated Rx channel ID]]></comment>
+        </member>
+
+       <!--  check if the Tx channel index exceeds uint8 range -->
+        <member name="Tx_Channel" type="uint8">
+          <comment><![CDATA[associated Tx channel ID]]></comment>
+        </member>
+
+        <member name="AddressingFormat" type="uint8">
+          <comment><![CDATA[addressing format - standard, extended, mixed, normal fixed]]></comment>
+        </member>
+        <member name="Tatype" type="uint8">
+          <comment><![CDATA[physical, functional]]></comment>
+        </member>
+        <member name="PaddingActivation" type="uint8">
+          <comment><![CDATA[padding of N-PDUs]]></comment>
+        </member>
+        <member name="FcCanIdType" type="uint8">
+          <comment><![CDATA[CANTP_TX_STANDARD_CAN, CANTP_TX_EXTENDED_CAN, CANTP_TX_STANDARD_FD_CAN, CANTP_TX_EXTENDED_FD_CAN]]></comment>
+        </member>
+        <member name="N_TA_AE" type="uint8">
+          <comment><![CDATA[extended/normal fixed target address (N_TA) or mixed address extension (N_AE)]]></comment>
+        </member>
+        <member name="WftMax" type="uint8">
+          <comment><![CDATA[max number of FC wait]]></comment>
+        </member>
+        <member name="BS" type="uint8">
+          <comment><![CDATA[block size]]></comment>
+        </member>
+        <member name="ChannelMode" type="uint8">
+          <comment><![CDATA[associated channel mode]]></comment>
+        </member>
+        <member name="STmin" type="uint8">
+          <comment><![CDATA[STmin value to be used for the sender]]></comment>
+        </member>
+        <member name="NPduMaxLength" type="uint8">
+          <comment><![CDATA[Maximum length of N-PDU]]></comment>
+        </member>
+       </struct>
+      </type>
+
+      <!-- Type for Tx N-SDU configuration. -->
+      <type name="CanTp_TxNSduConfigType">
+       <struct>
+        <comment><![CDATA[Type for CanTp Tx N-SDU configuration.]]></comment>
+        <member name="N_As" type="uint16">
+          <comment><![CDATA[time to transmit N-PDU]]></comment>
+        </member>
+        <member name="N_Bs" type="uint16">
+          <comment><![CDATA[time to next FC]]></comment>
+        </member>
+        <member name="N_Cs" type="uint16">
+          <comment><![CDATA[time to next CF]]></comment>
+        </member>
+        <member name="NPduIdFc" type="PduIdType">
+          <comment><![CDATA[N-Pdu Id for incoming FC frames]]></comment>
+        </member>
+        <member name="NPduConfIdxF" type="PduIdType">
+          <comment><![CDATA[N-Pdu confirmation Id for sent SF, FF, CF]]></comment>
+        </member>
+        <member name="LSduIdxF" type="PduIdType">
+          <comment><![CDATA[L-Sdu Id for SF, FF, CF]]></comment>
+        </member>
+        <member name="IPduConfId" type="PduIdType">
+          <comment><![CDATA[I-PDU Id for Tx-UL communication (CopyTxData, TxConfirmation)]]></comment>
+        </member>
+
+
+        <!--  check if the local index channel exceeds uint8 range
+              Rationale: For each full duplex channel, two channel indexes are assigned ($numAllChannels * 2),
+                         but for half duplex channels ($numAllChannels - $numFullDuplexChannels) only one channel index is assigned. -->
+        <member name="Channel" type="uint8">
+          <comment><![CDATA[associated Tx channel ID]]></comment>
+        </member>
+
+        <!--  check if the Rx channel index exceeds uint8 range -->
+        <member name="Rx_Channel" type="uint8">
+          <comment><![CDATA[associated Rx channel ID]]></comment>
+        </member>
+
+        <member name="AddressingFormat" type="uint8">
+          <comment><![CDATA[defines address format (standard, extended, mixed, normal fixed)]]></comment>
+        </member>
+        <member name="Tatype" type="uint8">
+          <comment><![CDATA[physical, functional]]></comment>
+        </member>
+        <member name="PaddingActivation" type="uint8">
+          <comment><![CDATA[padding of N-PDUs]]></comment>
+        </member>
+        <member name="CanIdType" type="uint8">
+          <comment><![CDATA[CANTP_TX_STANDARD_CAN, CANTP_TX_EXTENDED_CAN, CANTP_TX_STANDARD_FD_CAN, CANTP_TX_EXTENDED_FD_CAN]]></comment>
+        </member>
+        <member name="N_TA_AE" type="uint8">
+          <comment><![CDATA[extended/normal fixed target address (N_TA) or mixed address extension (N_AE)]]></comment>
+        </member>
+        <member name="ChannelMode" type="uint8">
+          <comment><![CDATA[associated channel mode]]></comment>
+        </member>
+        <member name="LSduMaxLength" type="uint8">
+          <comment><![CDATA[Maximum length of L-SDU]]></comment>
+        </member>
+        <member name="CanTpTc" type="boolean">
+          <comment><![CDATA[parameter for enabling Tx cancellation]]></comment>
+        </member>
+       </struct>
+      </type>
+
+
+      <!-- Type of MainFunction counter config for Tx channels. -->
+      <type name="CanTp_MfCtrConfigType">
+       <struct>
+        <comment><![CDATA[Type of MainFunction counter config, needed for all Tx channels.]]></comment>
+        <member name="Resolution" type="uint32">
+          <comment><![CDATA[Resolution of GPT in ns per ticks.]]></comment>
+        </member>
+        <member name="CallbackType" type="uint8">
+          <comment><![CDATA[GPT or MainFunction callback.]]></comment>
+        </member>
+       </struct>
+      </type>
+      
+            <!-- Type of CanTp channel index for the TX N-SDU. -->
+      <type name="CanTp_TxNPduToTpChannelType">
+       <struct>
+        <member name="Tx_Chan" type="uint8">
+          <comment><![CDATA[CanTp channel index for the N-SDU, to which the CanIf Tx 
+                      confirmation PDU with the ID as index of this array is assigned.]]></comment>
+        </member>
+        <member name="Rx_Chan" type="uint8">
+          <comment><![CDATA[CanTp channel index for the N-SDU, to which the CanIf Tx 
+                      confirmation FC PDU with the ID as index of this array is assigned.]]></comment>
+        </member>
+       </struct>
+      </type>
+      
+
+    </configuration>  <!-- PreCompile -->
+
+
+
+    <!-- This is the post-build configuration of the module. -->
+    <configuration class="PostBuild">
+
+      <!-- !LINKSTO CanTp.ASR40.CANTP160_2,1 -->
+      <?artifact directory="include" file="CanTp_PBcfg.h" type="postbuild-h" ?>
+      <!-- !LINKSTO CanTp.ASR40.CANTP259,1 -->
+      <?artifact directory="src" file="CanTp_PBcfg.c" type="postbuild-c" ?>
+
+      <!--
+          Type declarations:
+          Specifies the content of CanTp_PBcfg.h and CanTp_Types.h
+      -->
+
+      <!-- This is the type definition of the layout type of the
+           modules' postbuild configuration structure -->
+      <type name="CanTp_ConfigLayoutType">
+        <struct>
+          <!-- Member of the layout type starting with the RootCfg -->
+          <member name="RootCfg" type="CanTp_ConfigType"/>
+          <member name="RxNPduLookupTable" type="CanTp_RxNPduLookupEntryType" count="5">
+            <comment><![CDATA[This array contains the N-PDU lookup table.]]></comment>
+          </member>
+          <member name="RxNPduTable" type="CanTp_RxNPduTableType" count="6">
+            <comment><![CDATA[This array contains the RX N-PDU table.]]></comment>
+          </member>
+          <member name="RxNSduConfig" type="CanTp_RxNSduConfigType" count="4">
+            <comment><![CDATA[This array contains the RX N-SDU config.]]></comment>
+          </member>
+          <member name="TxNSduConfig" type="CanTp_TxNSduConfigType" count="2">
+            <comment><![CDATA[This array contains the TX N-SDU config.]]></comment>
+          </member>
+          <member name="MfCtrConfig" type="CanTp_MfCtrConfigType" count="1">
+            <comment><![CDATA[This array contains the main function control config.]]></comment>
+          </member>
+
+
+          <member name="TxNPduToTpChannel" type="CanTp_TxNPduToTpChannelType" count="4">
+            <comment><![CDATA[This array contains the CanTp channel index for the N-SDU, to which the
+            CanIf Tx confirmation PDU with the ID as index of this array is assigned.]]></comment>
+          </member>
+          
+
+        </struct>
+      </type>
+
+      <type name="CanTp_ConstConfigLayoutType">
+        <reference type="CanTp_ConfigLayoutType">
+          <compiler-abstraction>
+            <!-- !LINKSTO CanTp.ASR40.CANTP152,1 -->
+            <const memory-class="CANTP_APPL_CONST" />
+          </compiler-abstraction>
+        </reference>
+      </type>
+
+      <!--
+          Type definition and initialization:
+          Specifies the content of CanTp_PBcfg.c
+      -->
+
+      <memory-section name="CONFIG_DATA_UNSPECIFIED">
+      <instance type="CanTp_ConstConfigLayoutType"
+             name="CanTp_ConfigLayout">
+
+        <comment><![CDATA[CanTp post build config. - Static code accesses this config
+ solely via the pointer of type CanTp_ConfigType passed to
+ \a CanTp_Init() as parameter.]]></comment>
+
+        <parameter name="postbuild-configuration-name">
+          <symbolic-value>CanTp_Config</symbolic-value>
+        </parameter>
+        <parameter name="postbuild-configuration-name">
+          <symbolic-value>CanTpConfig_0</symbolic-value>
+        </parameter>
+
+        <!-- CanTp_ConfigLayout.RootCfg -->
+        <field>
+          <field>
+            <int>2281703698</int>
+          </field>
+          <field>
+            <int>3958107115</int>
+          </field>
+          <field>
+            <int>1732989128</int>
+          </field>
+          <field>
+            <int>1189933925</int>
+          </field>
+          <field>
+            <ref>
+              <struct-field name="RxNPduLookupTable"/>
+              <array-field index="0" />
+            </ref>
+          </field>
+
+          <field>
+            <ref>
+              <struct-field name="RxNPduTable"/>
+              <array-field index="0" />
+            </ref>
+          </field>
+
+          <field>
+            <ref>
+              <struct-field name="RxNSduConfig"/>
+              <array-field index="0" />
+            </ref>
+          </field>
+
+          <field>
+            <ref>
+              <struct-field name="TxNSduConfig"/>
+              <array-field index="0" />
+            </ref>
+          </field>
+
+
+          <field>
+            <ref>
+              <struct-field name="MfCtrConfig"/>
+              <array-field index="0" />
+            </ref>
+          </field>
+
+          <field>
+            <ref>
+              <struct-field name="TxNPduToTpChannel"/>
+              <array-field index="0" />
+            </ref>
+          </field>
+
+
+          <field>
+            <int>4</int>
+          </field>
+          <field>
+            <int>2</int>
+          </field>
+          <field>
+            <int>4</int>
+          </field>
+
+          <field>
+            <int>4</int>
+          </field>
+
+
+          <field>
+            <int>3</int>
+          </field>
+          <field>
+            <int>1</int>
+          </field>
+
+        </field> <!-- CanTp_ConfigLayout.RootCfg -->
+
+        <!-- CanTp_ConfigLayout.RxNPduLookupTable -->
+        <field>
+          <field>
+            <int>0</int>
+          </field>
+          <field>
+            <int>2</int>
+          </field>
+          <field>
+            <int>4</int>
+          </field>
+          <field>
+            <int>5</int>
+          </field>
+          <field>
+            <int>6</int>
+          </field>
+        </field> <!-- CanTp_ConfigLayout.RxNPduLookupTable -->
+
+        <field>
+              <field>
+                <field>
+                  <int>1</int>
+                </field>
+                <field>
+                  <int>0</int>
+                </field>
+                <field>
+                  <int>0</int>
+                </field>
+                <field>
+                  <int>0</int>
+                </field>
+                <field>
+                  <int>1</int>
+                </field>
+              </field>
+            <field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+              <field>
+                <field>
+                  <int>3</int>
+                </field>
+                <field>
+                  <int>1</int>
+                </field>
+                <field>
+                  <int>0</int>
+                </field>
+                <field>
+                  <int>0</int>
+                </field>
+                <field>
+                  <int>1</int>
+                </field>
+              </field>
+            <field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+              <field>
+                <field>
+                  <int>0</int>
+                </field>
+                <field>
+                  <int>2</int>
+                </field>
+                <field>
+                  <int>0</int>
+                </field>
+                <field>
+                  <int>0</int>
+                </field>
+                <field>
+                  <int>1</int>
+                </field>
+              </field>
+              <field>
+                <field>
+                  <int>0</int>
+                </field>
+                <field>
+                  <int>3</int>
+                </field>
+                <field>
+                  <int>0</int>
+                </field>
+                <field>
+                  <int>0</int>
+                </field>
+                <field>
+                  <int>1</int>
+                </field>
+              </field>
+        </field>
+
+        <field>  <!-- CanTp_ConfigLayout.RxNSduConfig -->
+           <field>
+             <field>
+               <int>14</int>
+             </field>
+             <field>
+               <int>12</int>
+             </field>
+             <field>
+               <int>30</int>
+             </field>
+             <field>
+               <int>2</int>
+             </field>
+             <field>
+               <int>9</int>
+             </field>
+             <field>
+              <int>2
+              </int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+
+             <field>
+                <int>1</int>
+             </field>
+             
+             <field>
+                <int>255</int> <!-- Tx_Channel -->
+             </field>
+
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>1</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>4</int>
+             </field>
+             <field>
+               <int>8</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>20</int>
+             </field>
+             <field>
+               <int>8</int> <!-- NPduMaxLength -->
+             </field>
+           </field>
+           <field>
+             <field>
+               <int>14</int>
+             </field>
+             <field>
+               <int>12</int>
+             </field>
+             <field>
+               <int>30</int>
+             </field>
+             <field>
+               <int>3</int>
+             </field>
+             <field>
+               <int>11</int>
+             </field>
+             <field>
+              <int>3
+              </int>
+             </field>
+             <field>
+               <int>1</int>
+             </field>
+
+             <field>
+                <int>1</int>
+             </field>
+             
+             <field>
+                <int>255</int> <!-- Tx_Channel -->
+             </field>
+
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>1</int>
+             </field>
+             <field>
+               <int>2</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>4</int>
+             </field>
+             <field>
+               <int>8</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>20</int>
+             </field>
+             <field>
+               <int>64</int> <!-- NPduMaxLength -->
+             </field>
+           </field>
+           <field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>20</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>65535</int>
+             </field>
+             <field>
+               <int>65535</int>
+             </field>
+             <field>
+              <int>1
+              </int>
+             </field>
+             <field>
+               <int>2</int>
+             </field>
+
+             <field>
+                <int>2</int>
+             </field>
+             
+             <field>
+                <int>255</int> <!-- Tx_Channel -->
+             </field>
+
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>1</int>
+             </field>
+             <field>
+               <int>1</int>
+             </field>
+             <field>
+               <int>255</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>1</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>64</int> <!-- NPduMaxLength -->
+             </field>
+           </field>
+           <field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>20</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>65535</int>
+             </field>
+             <field>
+               <int>65535</int>
+             </field>
+             <field>
+              <int>0
+              </int>
+             </field>
+             <field>
+               <int>3</int>
+             </field>
+
+             <field>
+                <int>2</int>
+             </field>
+             
+             <field>
+                <int>255</int> <!-- Tx_Channel -->
+             </field>
+
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>1</int>
+             </field>
+             <field>
+               <int>1</int>
+             </field>
+             <field>
+               <int>255</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>1</int>
+             </field>
+             <field>
+               <int>0</int>
+             </field>
+             <field>
+               <int>8</int> <!-- NPduMaxLength -->
+             </field>
+           </field>
+        </field>  <!-- CanTp_ConfigLayout.RxNSduConfig -->
+
+        <field>  <!-- CanTp_ConfigLayout.TxNSduConfig -->
+          <field>
+            <field>
+              <int>14</int>
+            </field>
+            <field>
+              <int>30</int>
+            </field>
+            <field>
+              <int>12</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <!-- !LINKSTO CanTp.EB.InvalidCanIdMask,1 -->
+            <field>
+              <int>8</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+
+            <field>
+              <int>0</int>
+            </field>
+            
+             <field>
+               <int>255</int> <!-- Rx_Channel -->
+            </field>
+
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+               <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>8</int> <!-- NPduMaxLength -->
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>14</int>
+            </field>
+            <field>
+              <int>30</int>
+            </field>
+            <field>
+              <int>12</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <!-- !LINKSTO CanTp.EB.InvalidCanIdMask,1 -->
+            <field>
+              <int>10</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+
+            <field>
+              <int>0</int>
+            </field>
+            
+             <field>
+               <int>255</int> <!-- Rx_Channel -->
+            </field>
+
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+               <int>2</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int> <!-- NPduMaxLength -->
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+          </field>
+        </field> <!-- CanTp_ConfigLayout.TxNSduConfig -->
+
+
+        <field>
+          <field>
+             <field>
+               <int>5000000</int>
+             </field>
+             <field>
+               <int>1</int>
+             </field>
+          </field>
+        </field> <!-- CanTp_ConfigLayout.MfCtrConfig -->
+
+        <field>
+          <field>
+          <field>
+          <int>0</int>
+          </field>
+          <field>
+          <int>255</int>
+          </field>
+          </field>
+          <field>
+          <field>
+          <int>0</int>
+          </field>
+          <field>
+          <int>255</int>
+          </field>
+          </field>
+          <field>
+          <field>
+          <int>255</int>
+          </field>
+          <field>
+          <int>1</int>
+          </field>
+          </field>
+          <field>
+          <field>
+          <int>255</int>
+          </field>
+          <field>
+          <int>1</int>
+          </field>
+          </field>
+        </field> <!-- CanTp_ConfigLayout.TxNPduToTpChannel -->
+        
+
+      </instance> <!-- CanTp_ConfigLayoutType -->
+      </memory-section>
+
+    </configuration>
+  </module>
+
+  <!-- include the AUTOSAR standard data types, etc. -->
+  <xi:include href="Base.xgen" xpointer="element(/1/1)"/>
+
+</xgen>
+

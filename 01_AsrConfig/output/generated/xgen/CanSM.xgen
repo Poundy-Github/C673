@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?module CanSM?>
+
+<xgen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.elektrobit.com/2013/xgen" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+
+
+
+
+
+
+
+  <module name="CanSM" version="3.7.7 B466224">
+    <configuration class="PreCompile">
+      <?artifact directory="include" file="CanSM_Types_Int.h" type="types-h" generate="yes"?>
+      
+      <parameter name="relocatable-enable">
+        <boolean-value>
+          false
+        </boolean-value>
+      </parameter>
+      
+      <type name="CanSM_ConfigType">
+        <struct>
+          <member name="NetRef" type="CanSMNetworkType" comment="Reference to CanSM networks." >
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="ModeReqRepTime" type="uint16" comment="Time duration after which a mode change request is repeated (in ticks)." />
+          <member name="ModeReqRepMax" type="uint8" comment="Maximum amount of mode change request repetitions." />
+        </struct>
+      </type>
+
+      <type name="CanSMNetworkType">
+        <struct>
+          <member name="CtrlRef" type="CanSMControllerType" comment="Reference to CanSM configured controllers." >
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="BorCounterL1ToL2" type="uint16" comment="Bus-off recovery L1 to L2 Threshold." />
+          <member name="BorTimeL1" type="uint16" comment="Duration to stay in level 1 check before restart of communication." />
+          <member name="BorTimeL2" type="uint16" comment="Duration to stay in level 2 check before restart of communication." />
+          <member name="BorTimeTxEnsured" type="uint16" comment="Duration until bus-off free communication is assumed." />
+          <member name="DemEventId" type="uint16" comment="ID of referenced DEM event to be reported in case of bus-off errors." />
+          <member name="ComMChId" type="uint8" comment="ID of referenced ComM channel." />
+          <member name="TrcvId" type="uint8" comment="ID of CAN Transceiver." />
+          <member name="NumNwCtrl" type="uint8" comment="Number of controllers per network." />
+          <member name="BorTxConfirmationPolling" type="boolean" comment="BOR Tx Confirmation Polling." />
+        </struct>
+      </type>
+
+      <type name="CanSMControllerType">
+        <struct>
+          <member name="ControllerId" type="uint8" comment="ID of CAN controller." />
+        </struct>
+      </type>
+      
+    </configuration>
+    <configuration class="PostBuild">
+      <?artifact directory="include" file="CanSM_PBcfg.h" type="postbuild-h" ?>
+      <?artifact directory="src" file="CanSM_PBcfg.c" type="postbuild-c" ?>
+
+      <!-- !LINKSTO dsn.CanSM.PostBuildConfigurationData,1 -->
+      <type name="CanSM_ConfigLayoutType">
+        <struct>
+          <member type="CanSM_ConfigType" name="RootCfg" />
+          <member type="CanSMNetworkType" name="CanSM_Net" count="2" />
+          <member type="CanSMControllerType" name="CanSM_Ctrl" count="2" />
+        </struct>
+      </type>
+
+
+      <type name="CanSM_ConstConfigLayoutType">
+        <reference type="CanSM_ConfigLayoutType">
+          <compiler-abstraction>
+            <const memory-class="CANSM_APPL_CONST" />
+          </compiler-abstraction>
+        </reference>
+      </type>
+
+      <memory-section  name="CONFIG_DATA_UNSPECIFIED">
+        <instance type="CanSM_ConstConfigLayoutType" name="CanSM_ConfigLayout">
+          <parameter name="postbuild-configuration-name">
+          <symbolic-value>CanSM_Config_0</symbolic-value>
+        </parameter>
+        <parameter name="postbuild-configuration-name">
+          <symbolic-value>CanSMConfiguration</symbolic-value>
+        </parameter>
+
+          <field>
+            <field>
+              <ref>
+                <struct-field name="CanSM_Net" />
+                <array-field index="0" />
+              </ref>
+            </field>
+            <field>
+              <int>2</int>
+            </field>
+            <field>
+              <int>5</int>
+            </field>
+          </field>
+
+          <field>
+              
+            <field>
+              <field>
+                <ref>
+                  <struct-field name="CanSM_Ctrl" />
+                  <array-field index="0" />
+                </ref>
+              </field>
+              <field>
+                <int>10</int>
+              </field>
+              <field>
+                <int>8</int>
+              </field>
+              <field>
+                <int>200</int>
+              </field>
+              <field>
+                <int>200</int>
+              </field>
+              <field>
+                <int>84</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+              
+            <field>
+              <field>
+                <ref>
+                  <struct-field name="CanSM_Ctrl" />
+                  <array-field index="1" />
+                </ref>
+              </field>
+              <field>
+                <int>10</int>
+              </field>
+              <field>
+                <int>8</int>
+              </field>
+              <field>
+                <int>200</int>
+              </field>
+              <field>
+                <int>200</int>
+              </field>
+              <field>
+                <int>83</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+          </field>
+
+          <field>
+              <field>
+                <field>
+                  <int>0</int>
+                </field>
+              </field>
+              <field>
+                <field>
+                  <int>1</int>
+                </field>
+              </field>
+          </field>
+
+        </instance>
+      </memory-section>
+    </configuration>
+  </module>
+  <xi:include href="Base.xgen" xpointer="element(/1/1)" />
+</xgen>

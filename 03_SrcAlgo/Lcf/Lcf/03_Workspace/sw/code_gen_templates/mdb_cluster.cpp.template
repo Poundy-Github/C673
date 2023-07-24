@@ -1,0 +1,49 @@
+// COMPANY:   Continental Automotive
+// COMPONENT: DPUFF
+// VERSION:   $Revision: 1.1 $
+
+#include "Rte_type.h"
+
+#if defined(PRODUCT_ARS441)
+#include "dap_ext.h"
+#include "gp_ext.h"
+#include "od_main.h"
+#endif
+
+#include <DPUFF/ga/mdb_cluster.h>
+
+
+// PRQA S 1020 ++
+// 09.11.2016; uidg6511;
+// summary: Msg(3:1020) Avoid macros. Use constants, enumerators, typedefs or inline functions instead. MISRA-C++ Rules 16-0-4, 16-2-1;
+// reason: this macro is used because the precompiler needs to translate __LINE__
+
+// PRQA S 1110 ++
+// 09.11.2016; uidg6511;
+// summary: Msg(3:1110) Multiple '##' operators found in macro. MISRA-C++ Rule 16-3-1;
+// reason: used for pre compilation test
+
+// PRQA S 1039 ++
+// 09.11.2016; uidg6511;
+// summary: Msg(2:1039) Avoid using the glue operator (##). MISRA-C++ Rule 16-3-2;
+// reason: Using the glue operator is not a problem with the used C version
+
+// Check during compilation if the expression is TRUE
+// for more  information see http://www.pixelbeat.org/programming/gcc/static_assert.html
+// example of precompiled line
+//input
+//COMPILETIME_ASSERT_CLUSTER_TYPE_DIVISIBLE_BY_4(MDB_e_CL_ACAL_ALGO_COMP_STATE,ARS410VW16_ACCSM_t_Timer)
+//output
+// enum check_MDB_e_CL_ACAL_ALGO_COMP_STATE_alignment_en {check_MDB_e_CL_ACAL_ALGO_COMP_STATE_alignment_in_line_152 = 1 / (sint8)(!!((sizeof(ARS410VW16_ACCSM_t_Timer) % 4u) == 0u))} ;
+
+#define ASSERT_CONCAT_EVALUATE(a,b)a##_in_line_##b
+#define ASSERT_CONCAT(a,b) ASSERT_CONCAT_EVALUATE(a,b)
+
+#define COMPILETIME_ASSERT(message,expression) enum message##_en {ASSERT_CONCAT(message,__LINE__) = 1 / (sint8)(!!(expression))}
+#define COMPILETIME_ASSERT_CLUSTER_TYPE_DIVISIBLE_BY_4(cluster,type) COMPILETIME_ASSERT(check_##cluster##_alignment, (sizeof(type) % 4u) == 0u)
+// PRQA S 1020 --
+// PRQA S 1110 --
+// PRQA S 1039 --
+
+/*!<codegen_start:CLUSTER_CHECK>*/
+/*!<codegen_end:CLUSTER_CHECK>*/

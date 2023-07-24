@@ -1,0 +1,36 @@
+Conti_MFC400_M3VPSS.zip: Platform.xdc
+Platform.xdc:
+Conti_MFC400_M3VPSS.zip: Platform.xs
+Platform.xs:
+Conti_MFC400_M3VPSS.zip: config.bld
+config.bld:
+Conti_MFC400_M3VPSS.zip: package/.vers_b160
+package/.vers_b160:
+Conti_MFC400_M3VPSS.zip: package/.vers_g180
+package/.vers_g180:
+Conti_MFC400_M3VPSS.zip: package/.vers_r170
+package/.vers_r170:
+Conti_MFC400_M3VPSS.zip: package/.xdc-z52
+package/.xdc-z52:
+Conti_MFC400_M3VPSS.zip: package/Conti.MFC400.M3VPSS.ccs
+package/Conti.MFC400.M3VPSS.ccs:
+Conti_MFC400_M3VPSS.zip: package/Conti.MFC400.M3VPSS.sch
+package/Conti.MFC400.M3VPSS.sch:
+Conti_MFC400_M3VPSS.zip: package/Conti_MFC400_M3VPSS.class
+package/Conti_MFC400_M3VPSS.class:
+Conti_MFC400_M3VPSS.zip: package/Conti_MFC400_M3VPSS.java
+package/Conti_MFC400_M3VPSS.java:
+Conti_MFC400_M3VPSS.zip: package/build.cfg
+package/build.cfg:
+Conti_MFC400_M3VPSS.zip: package/package.bld.xml
+package/package.bld.xml:
+Conti_MFC400_M3VPSS.zip: package/package.defs.h
+package/package.defs.h:
+Conti_MFC400_M3VPSS.zip: package/package_Conti.MFC400.M3VPSS.c
+package/package_Conti.MFC400.M3VPSS.c:
+Conti_MFC400_M3VPSS.zip: package.bld
+package.bld:
+Conti_MFC400_M3VPSS.zip: package.xdc
+package.xdc:
+Conti_MFC400_M3VPSS.zip: project.pj
+project.pj:

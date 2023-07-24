@@ -1,0 +1,27 @@
+<SimVis>
+    <Tab Name="HLA" RefreshCycleMs="60">
+        <Splitter Orientation="Horizontal" Ratio="1">
+            <View Name="View2" Ratio="1" />
+            <View Name="View1" Ratio="6" />
+        </Splitter>
+    </Tab>
+    <ViewRef Url="HLA.View1">
+        <RenderContext Name="FPGA.PerspectiveDefault" />
+        <RenderContext Name="Images.RROIImageRight"/>
+        <RenderContext Name="CHIPS.RenderImageYP2" DefaultState = "On" />
+        <RenderContext Name="HLA.Overlay"/>
+    </ViewRef>
+    <ViewRef Url="HLA.View2">
+        <RenderContext Name="FPGA.PerspectiveDefault" />
+        <RenderContext Name="HLA.Overlay2"/>
+    </ViewRef>
+    <ParamRefLocal View="HLA.View1"  Context="Images.RROIImageRight">
+        <Param Name="16Bit_ConvertMethod" Type="simI32_t" Value="2"/>
+        
+        <Param Name="Param_FullDynamic" Type="simUI8_t" Value="0"/>
+        <Param Name="16Bit_MaxValue" Type="simI32_t" Value="500"/>
+        <Param Name="16Bit_MinValue" Type="simI32_t" Value="80"/>
+        <Param Name="Param_BayernPattern" Type="simUI8_t" Value="1"/>
+        <Param Name="Param_GivenRange" Type="simUI8_t" Value="1"/>
+    </ParamRefLocal>
+</SimVis>

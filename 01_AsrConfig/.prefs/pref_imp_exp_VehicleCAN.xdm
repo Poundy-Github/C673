@@ -1,0 +1,41 @@
+<?xml version='1.0'?>
+<datamodel version="7.0" 
+           xmlns="http://www.tresos.de/_projects/DataModel2/16/root.xsd" 
+           xmlns:a="http://www.tresos.de/_projects/DataModel2/16/attribute.xsd" 
+           xmlns:v="http://www.tresos.de/_projects/DataModel2/06/schema.xsd" 
+           xmlns:d="http://www.tresos.de/_projects/DataModel2/06/data.xsd">
+
+  <d:ctr name="General">
+    <a:a name="DEF" value="XPath:/PreferencesSchema/General"/>
+    <d:lst name="ImportersExporters" type="MAP">
+      <d:ctr name="VehicleCAN">
+        <d:var name="Id" value="dreisoft.tresos.dbcimporter.plugin.importer"/>
+        <d:var name="Mode" value="import"/>
+      </d:ctr>
+    </d:lst>
+  </d:ctr>
+  <d:ctr name="ImporterExporterAdditions">
+    <a:a name="DEF" value="XPath:/PreferencesSchema/ImporterExporterAdditions"/>
+    <d:lst name="ComImportersExporters" type="MAP">
+      <d:ctr name="VehicleCAN">
+        <d:var name="FileName" value="dbc\C385EV_V2.2.2_20211228ADASACAN.dbc"/>
+        <d:var name="preTransformHook" value=""/>
+        <d:var name="overwriteSystemModel" value="FALSE"/>
+        <d:var name="useAtpSplitableSystemModelMerge" value="TRUE"/>
+        <d:var name="packageName" value=""/>
+        <d:lst name="CustomParameters">
+          <d:ctr>
+            <d:var name="Name" 
+                   value="dbcImporter.importSignalEnumerationConstants"/>
+            <d:var name="Value" value="true"/>
+          </d:ctr>
+          <d:ctr>
+            <d:var name="Name" value="selectorFieldAsComSignal"/>
+            <d:var name="Value" value="AutosarCompliant"/>
+          </d:ctr>
+        </d:lst>
+      </d:ctr>
+    </d:lst>
+  </d:ctr>
+
+</datamodel>

@@ -1,0 +1,184 @@
+Import('*')
+
+setCompiler('eve')
+
+with open('../components_build_info.txt', 'a') as f:
+    print >> f, '   '
+    print >> f, 'Building EVE_MEMTEST'
+
+if product in ['mfc431', 'mfc431ta19', 'mfc431lo19','mfc431lo20', 'hfl110', 'hfl110ta10','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']:
+    CFG_LOAD_GEN = False
+else:
+    CFG_LOAD_GEN = True
+
+CFG_ICC_OT = False
+
+
+if product in ['ars441', 'ars441dc13']:
+    base_project = 'ars441'
+    if product != base_project:
+        addCompilerDefine('PRODUCT_ARS441')
+        appendConfiguroDefine('product=ars441')
+        addLinkerDefine('PRODUCT_ARS441')
+
+elif product in ['mfc431', 'mfc431ta19', 'mfc431lo19','mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']:
+    base_project = 'mfc431'     
+    UseCompAlgo = False
+    if product != base_project:
+        addCompilerDefine('PRODUCT_MFC431')
+        appendConfiguroDefine('product=mfc431')
+        addLinkerDefine('PRODUCT_MFC431')
+
+elif product == 'hfl110':
+  base_project = 'hfl110'
+
+elif product == 'hfl110ta10':
+  base_project = 'hfl110'
+
+elif product == 'mfc430hi17':
+  base_project = 'mfc430hi17'
+
+else:
+  base_project = product
+
+setBaseProject(base_project)
+
+
+class  Component:
+    global product
+    global base_project
+    DONOTUSEFOR = []
+    OVERRIDEFOR = []
+    
+    INCLUDE    = []
+    SOURCE     = []
+    SOURCE_DIR = []
+    COMPDEF    = []
+    LIBS       = []
+    KFILES     = []
+    USEFROM    = None
+    
+    def AddComp ( self ):
+        self.USEFROM  = None    if product in self.DONOTUSEFOR else base_project    # Component blacklist. Add product if component not wanted default is usage of BaseProject
+        self.USEFROM  = product if product in self.OVERRIDEFOR else self.USEFROM    # Component override for application project. Add product if you want your own (not baseProject) as application project
+
+        pstr  = "{0: <30}".format("Component " + self.__class__.__name__ )
+        pstr += "{0: ^20}".format([ 'from Base ' + base_project, 'from this '+ product, 'not used' ][ [ base_project, product, None ].index(self.USEFROM) ] )
+        print pstr
+        
+        with open('../components_build_info.txt', 'a') as f:
+            print >> f, pstr
+        
+        incPath = ""
+        if self.USEFROM != None:
+
+          incPath = "\n".join(
+          [ Path.replace('$usedfrom', self.USEFROM )                      for Path       in self.INCLUDE]) + '\n'
+          [ addFiles(    Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE     ]
+          [ addDirs(     Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE_DIR ]
+          [ addLibrary(  Path.replace('$usedfrom', self.USEFROM )       ) for Path       in self.LIBS       ]
+          [ addCompilerDefine(Define)                                     for Define     in self.COMPDEF    ]
+
+          if len(self.KFILES) > 0:
+            addkfiles(*self.KFILES)
+
+        
+        return incPath
+
+
+################# Component Example ##############
+# As default component is taken from base_project location, only if entered in OVERRIDEFOR it is taken from product location
+#
+#class NAME(Component):
+#  DONOTUSEFOR = ['example'] <- Enter your project name if you don't want to build this component
+#  OVERRIDEFOR = ['example'] <- Enter your project name if you want this component from product location, and not from base_project location.
+#
+#  INCLUDE    = ['$usedfrom/include1,                <- Enter your include Path here. $usedfrom will be replaced.
+#                'include2]
+#  SOURCE     = [['$usedfrom/path1', ['*.c']],       <- Enter your source files here filename or pattern ( e.g *.c). $usedfrom will be replaced.
+#                ['path2', ['file1.cpp','file2.s']]]
+#  SOURCE_DIR = [['path1', ['*.c']]]                 <- Enter your source dir here. It will recursively search for filename or pattern ( e.g *.c)
+#  COMPDEF    = ['define1','define2']                <- Enter your Component Defines here
+#  LIBS       = ['path1']                            <- Enter your Librarry Path here ( only path supported )
+
+
+
+################# Component DPUCOMMON #################
+class DPUCOMMON(Component):
+
+  OVERRIDEFOR = ['mfc431hi28', 'mfc431ta19']
+
+  INCLUDE = [
+              '04_Engineering/00_Projects/$usedfrom/common/GLOB',
+              '04_Engineering/01_Source_Code/common',
+              '04_Engineering/01_Source_Code/common/GLOB',
+              '04_Engineering/01_Source_Code/common/GLOB/GLOB_DPU',
+            ]
+
+
+
+################# Component STARTERWARE #################
+class STARTERWARE(Component):
+  INCLUDE = [
+             '04_Engineering/04_Build/tools/starterware/include',
+             '04_Engineering/04_Build/tools/starterware/include/pm',
+             '04_Engineering/04_Build/tools/starterware/include/hw',
+             '04_Engineering/04_Build/tools/starterware/include/arp32',
+             '04_Engineering/04_Build/tools/starterware/include/arp32/tda2xx',
+             '04_Engineering/04_Build/tools/starterware/include/tda2xx',
+             '04_Engineering/04_Build/tools/starterware/include/tda2xx/hw',
+             '04_Engineering/04_Build/tools/evestarterware/inc/baseaddress/vayu/eve',
+             '04_Engineering/04_Build/tools/evestarterware/drivers/devices/vayu/cred/inc/eve1'
+            ]
+  
+  LIBS    = [
+             '04_Engineering/04_Build/tools/starterware/binary/pm/pmhal/lib/tda2xx/arp32/debug/starterware_pm_hal.aearp32',
+             '04_Engineering/04_Build/tools/starterware/binary/pm/pmlib/lib/tda2xx/arp32/debug/starterware_pm_lib.aearp32'
+            ]
+
+
+
+################# Component DPUHWIF #################
+class DPUHWIF(Component):
+  INCLUDE = [
+             '04_Engineering/01_Source_Code/DPUHWIF/titda',
+             '04_Engineering/01_Source_Code/DPUHWIF/titda/cslr',
+             '04_Engineering/01_Source_Code/DPUHWIF/titda/firewall'
+            ]
+
+
+
+################# Component DPUST #################
+class DPUST(Component):
+  INCLUDE =[]
+
+  SOURCE = [['04_Engineering/01_Source_Code/DPUST/memtest', [ '*.c', 'boot.asm']]]
+
+
+
+################# Component DPUMISC #################
+class DPUMISC(Component):
+  INCLUDE = ['04_Engineering/01_Source_Code']
+
+
+includePath = ""
+
+Components = [
+   STARTERWARE(),
+   DPUCOMMON(),
+   DPUHWIF(),
+   DPUST(),
+   DPUMISC()
+   ]
+
+   
+for i in Components:
+  includePath +=i.AddComp()
+
+setIncludePath(includePath)
+
+addCompilerDefine('CORE_ARP32_0')
+addCompilerDefine('VAYU_PLATFORM')   
+   
+
+compile('eve_memtest')

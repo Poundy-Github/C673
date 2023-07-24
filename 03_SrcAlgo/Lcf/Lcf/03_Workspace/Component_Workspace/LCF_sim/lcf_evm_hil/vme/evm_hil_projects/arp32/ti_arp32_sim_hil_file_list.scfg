@@ -1,0 +1,26 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Update each variable according to the existing source files and include paths.
+# ----------------------------------------------------------------------------------------
+
+# config file containing TI ARP32 sim hil source file list
+
+# arp32 sim hil source files
+arp32_sim_hil_sources = """
+src/main_evm_hil.c
+"""
+
+# arp32 sim hil asm files
+arp32_sim_hil_asm_sources = """
+src/boot_arp32.asm
+"""
+
+# arp32 sim hil include paths
+arp32_sim_hil_include_paths = """
+#../lcf_sim/lcf_evm_hil/vme/evm_hil_projects/arp32/src
+"""
+
+# arp32 sim hil linker
+arp32_sim_hil_lcf = """
+src/linker.cmd
+"""

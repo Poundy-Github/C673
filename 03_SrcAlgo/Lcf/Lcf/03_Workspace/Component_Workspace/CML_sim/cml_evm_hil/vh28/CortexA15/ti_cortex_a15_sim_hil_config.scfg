@@ -1,0 +1,28 @@
+# read file list containing source files and include paths
+execfile(File("#../cml_sim/cml_evm_hil/vh28/evm_hil_projects/CortexA15/ti_cortex_a15_sim_hil_file_list.scfg").abspath)
+execfile(File("#../cml_sim/cml_evm_hil/vh28/generic/CommonSoC/ecu_sim_hil_file_list.scfg").abspath)
+execfile(File("#../../../01_Source_Code/algo/cml/algo_lib_file_list.scfg").abspath)
+#execfile(File("#../cml_sim/cml_evm_hil/vh28/generic/hil_server/hil_server_file_list.scfg").abspath)
+#execfile(File("#../cml_sim/sim_swc_cml/sim_swc_cml_file_list.scfg").abspath)
+
+# sources files list
+ti_cortex_a15_hil_src = (Split(cortex_a15_sim_hil_sources))
+
+# include paths list
+ti_cortex_a15_hil_cpp_path = (Split(cml_algo_include_paths) + 
+                             Split(cml_algo_common_include_paths) + 
+                             Split(ecu_sim_hil_include_paths) + 
+                             Split(cortex_a15_sim_hil_include_paths))
+                  
+# include paths list that should be added before compiler include paths
+ti_cortex_a15_prepend_cpp_path = []
+
+# external libraries
+external_lib = ["gcc", "c", "m", "stdc++", "rdimon"]
+
+# sysbios configuration
+sysbios_cfg = "app.cfg"
+
+# xdctools compiler options
+xs_compiler_options = '--compileOptions "-fshort-enums"'
+

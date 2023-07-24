@@ -1,0 +1,12 @@
+/* GNU linker script for functional security */
+/* This linker script must be the first!!! */
+
+/* This script creates intermediate sections to bypass ".data*" used in SYSBIOS linker files */
+
+SECTIONS 
+{
+  .functional_security_sec_gnu : {
+    *(.data_secure_section_var)
+    *(.const_secure_section_const)
+  } 
+}

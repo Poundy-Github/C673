@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<xs:schema targetNamespace="http://schemas.continental-corporation.com/mts/swc/2016/channel-definition"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://schemas.continental-corporation.com/mts/swc/2016/channel-definition"
+           xmlns:tns="http://schemas.continental-corporation.com/mts/swc/2016/channel-definition"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="Channels">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Channel" type="Channels.Channel" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:anyAttribute/>
+    </xs:complexType>
+    <xs:unique name="ChannelIdUnique">
+      <xs:selector xpath="tns:Channel"/>
+      <xs:field xpath="@Id"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:complexType name="Channels.Channel">
+    <xs:attribute name="Id" type="xs:unsignedInt" use="required" />
+    <xs:attribute name="Name" type="xs:token" use="required" />
+    <xs:attribute name="Description" type="xs:string" use="optional" />
+  </xs:complexType>
+</xs:schema>

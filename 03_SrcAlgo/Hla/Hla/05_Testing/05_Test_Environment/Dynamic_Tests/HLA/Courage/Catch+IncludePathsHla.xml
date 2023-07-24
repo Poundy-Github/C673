@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdtprojectproperties>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.IncludePaths">
+<language name="holder for library settings">
+
+</language>
+<language name="Assembly">
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\01_Source_Code\HLA</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\01_Source_Code\HLA\function</includepath>
+
+</language>
+<language name="GNU C++">
+
+</language>
+<language name="GNU C">
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\00_Projects\MFC431\common\GLOB</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\00_Projects\MFC431\common\RTE_VH\algo</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\00_Projects\MFC431\common\RTE_VH\include</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\00_Projects\MFC431\common\DGM</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\00_Projects\MFC431\HLA</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\00_Projects\MFC431\HLA\sw_support</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\00_Projects\MFC431\GA</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\01_Source_Code\common\GLOB</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\01_Source_Code\common\GLOB\GLOB_DPU</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\01_Source_Code\common\MTSI</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\01_Source_Code\common\RTA</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\01_Source_Code\HLA</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\01_Source_Code\HLA\function</includepath>
+<includepath>${ProjDirPath}\..\..\..\..\..\04_Engineering\01_Source_Code\CML</includepath>
+<includepath>${COURAGE_ROOT_DIR}\base</includepath>
+<includepath>${COURAGE_ROOT_DIR}\base\framework\include</includepath>
+<includepath>${COURAGE_ROOT_DIR}\build\msys64\usr\include</includepath>
+
+</language>
+</section>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
+<language name="holder for library settings">
+
+</language>
+<language name="Assembly">
+
+</language>
+<language name="GNU C++">
+
+</language>
+<language name="GNU C">
+<macro>
+<name>__COURAGE_TEST_SWITCH__</name><value>1</value>
+</macro>
+
+</language>
+</section>
+</cdtprojectproperties>

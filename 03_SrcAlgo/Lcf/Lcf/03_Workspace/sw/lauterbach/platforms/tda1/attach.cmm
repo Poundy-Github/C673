@@ -1,0 +1,14 @@
+global &gCORENAME
+
+if "&gCORENAME"=="arm-a_0"
+(
+	sys.attach
+)
+else
+(
+	; attach debug master core
+	INTERCOM localhost:10000 sys.attach
+	
+	; attach this debug (slave) core
+	sys.attach
+)

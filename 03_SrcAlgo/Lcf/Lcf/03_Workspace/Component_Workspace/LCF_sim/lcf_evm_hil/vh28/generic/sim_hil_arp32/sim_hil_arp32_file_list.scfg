@@ -1,0 +1,11 @@
+# config file containing ARP32 hil source file list
+
+# hil server source files
+sim_hil_arp32_asm_sources = """
+../../generic/sim_hil_arp32/boot_arp32.asm
+"""
+
+# hil server include paths
+sim_hil_arp32_include_paths = """
+../../generic/sim_hil_arp32/
+"""

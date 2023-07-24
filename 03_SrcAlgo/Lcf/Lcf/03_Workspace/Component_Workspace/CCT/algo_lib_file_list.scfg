@@ -1,0 +1,100 @@
+# config file containing algo source file list
+Import("project_name")
+
+# algo source files
+cct_algo_sources = """
+image_fingerprint.cpp
+"""
+
+# algo pdo source files
+cct_algo_pdo_sources = """
+"""
+
+# algo include paths
+cct_algo_include_paths = """
+cct
+cml
+CML/bayes
+CML/complex
+CML/fourier
+CML/interpol
+CML/kalman
+CML/matrix
+CML/misc
+CML/stat
+CML/stl
+CML/stl/algorithm
+CML/stl/container
+CML/stl/math
+CML/trigo
+CML/vector
+CML/exp
+RTE_EB_ACG8/include
+"""
+
+common_path = "#../../../01_Source_Code/"
+cct_algo_include_paths = [common_path + rel_path.strip() for rel_path in cct_algo_include_paths.strip().split()]
+
+# algo common include paths
+cct_algo_common_include_paths = """
+common/RTA
+common/MTSI
+common/GLOB
+common/GLOB/GLOB_DPU
+commen/GLOB/GLOB_ren
+"""
+
+cct_algo_common_include_paths_list = [common_path + rel_path.strip() for rel_path in cct_algo_common_include_paths.strip().split()]
+
+# algo common include paths for the project "project_name"
+cct_algo_common_include_paths_project_specific = ""
+
+if project_name.upper().startswith('MFC5J3'):
+  #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+  cct_algo_common_include_paths_project_specific = """
+  common/DGM
+  common/GLOB
+  common/RTE_VH/algo
+  common/RTE_VH/include
+  """
+
+# algo common include paths for the project "project_name"
+if project_name.upper().startswith('MFC4'):
+  #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+  cct_algo_common_include_paths_project_specific = """
+  stubs
+  stubs_sil
+  BASE/include
+  common/GLOB
+  RTE_EB/include
+  DPUSERVICE
+  DGM/Dgm_Slave
+  """
+
+# algo common include paths for the project "project_name"
+if project_name.upper().startswith('HFL'):
+  #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+  cct_algo_common_include_paths_project_specific = """
+  common/DGM
+  common/GLOB
+  common/RTE_VH/algo
+  common/RTE_VH/include
+  """
+
+project_path = "#../../../00_Projects/" + project_name + "/"
+cct_algo_common_include_paths_project_specific_list = [project_path + rel_path.strip() for rel_path in cct_algo_common_include_paths_project_specific.strip().split()]
+
+cct_algo_common_include_paths = '\n'.join(cct_algo_common_include_paths_list + cct_algo_common_include_paths_project_specific_list)
+
+# exclude paths for QAC
+qac_exclude_paths = """
+#../../../01_Source_Code/common
+"""
+
+# polyspace additional includes
+ps_additional_includes = """
+"""
+
+# polyspace additional sources
+ps_additional_sources = """
+"""

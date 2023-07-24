@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<memento version="1.0" lastmodified="Mar 7, 2023 5:26:07 PM">
+    <EcuExtractCreator autoDelegate="true" autoExport="true">
+        <__metadata>
+            <Group __expanded="true"/>
+            <ecuBrowser/>
+            <labelSystem/>
+            <System __radix="DEC" __separators="false"/>
+            <labelEcuInstance/>
+            <EcuInstance __radix="DEC" __separators="false"/>
+            <ecuBrowser1/>
+            <autoDelegate_label/>
+            <autoDelegate/>
+            <autoExport_label/>
+            <autoExport/>
+            <description __desc="Creates the flat ecu extract out of the imported hierarchical system description as required by the Rte"/>
+        </__metadata>
+    </EcuExtractCreator>
+</memento>

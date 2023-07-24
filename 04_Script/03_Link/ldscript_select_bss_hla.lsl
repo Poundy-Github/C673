@@ -1,0 +1,17 @@
+		select ".bss.HlaAdapter.*";
+		select ".bss.HLA_DecisionParameters.*";
+		select ".bss.HLA_MatrixParameters.*";
+		select ".bss.hla_cpar_init.*";
+		select ".bss.hla_errorhandling.*";
+		select ".bss.hla_utils.*";
+		select ".bss.hla_input_checks.*";
+		select ".bss.hla_main.*";
+		select ".bss.hla_output_checks.*";
+		select ".bss.hla_outputs.*";
+		select ".bss.hlaf.*";
+		select ".bss.hlaf_decision.*";
+		select ".bss.hlaf_decision_blockage.*";
+		select ".bss.hlaf_decision_environment.*";
+		select ".bss.hlaf_decision_keepoff.*";
+		select ".bss.hlaf_matrix.*";
+		select ".bss.hlaf_matrixgfa.*";

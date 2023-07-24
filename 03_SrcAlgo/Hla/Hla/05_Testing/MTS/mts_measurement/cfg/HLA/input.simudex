@@ -1,0 +1,31 @@
+[PPort pAlgoCompState]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = pAlgoCompState
+URL.1                 = MFC4xx Device.HLA.AlgoCompState
+URL.2                 = SRLCAM4xx Device.HLA.AlgoCompState
+URL.3                 = MFC4xx Device.HLA.HlaAlgoCompState
+URL.4                 = SRLCAM4xx Device.HLA.HlaAlgoCompState
+
+[PPort pHlaf_HeadlightControl]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = pHlaf_HeadlightControl
+URL.1                 = MFC4xx Device.HLA.HLAF_HeadlightControl
+URL.2                 = SRLCAM4xx Device.HLA.HLAF_HeadlightControl
+URL.3                 = MFC4xx Device.HLA.RTE_HLAF_HeadlightControl
+URL.4                 = SRLCAM4xx Device.HLA.RTE_HLAF_HeadlightControl
+
+[PPort HLA_ErrorStack]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = HLA_ErrorStack
+URL.1                 = MFC4xx Device.HLA.HLAErrorStack
+URL.2                 = SRLCAM4xx Device.HLA.HLAErrorStack
+URL.3                 = MFC4xx Device.HLA.HlaErrorStack
+URL.4                 = SRLCAM4xx Device.HLA.HlaErrorStack
+
+[PPort hla_SyncRef]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = hla_SyncRef
+URL.0                 = MFC4xx Device.HLA.HlaSyncRef
+URL.1                 = SRLCAM4xx Device.HLA.HlaSyncRef
+URL.2                 = MFC4xx Device.HLA.Hla_SyncRef
+URL.3                 = SRLCAM4xx Device.HLA.Hla_SyncRef

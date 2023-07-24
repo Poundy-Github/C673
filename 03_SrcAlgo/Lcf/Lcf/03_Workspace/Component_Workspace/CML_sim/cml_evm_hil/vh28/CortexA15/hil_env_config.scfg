@@ -1,0 +1,40 @@
+#-----------------------
+# variant config
+#-----------------------
+
+execfile(File("#../../../02_Development_Tools/scons_tools/scons_common_config/common_config.scfg").abspath)
+
+# create release variant
+release_variant = "release"
+release_ccflags = "-mtune=cortex-a15 -mfloat-abi=hard -mfpu=neon-vfpv4 -O3 -fno-math-errno -ffinite-math-only -fira-loop-pressure -Wall -mlong-calls -Wno-unused-function"
+release_cppdefines = ["CML_NO_RTE_DEPENDENCY", "TARGET_PLATFORM", "ENABLE_PROFILER", "NDEBUG", "CML_USE_INTRINSICS", "CML_TEST", "xdc__RESTRICT__", "xdc_target_types__=gnu/targets/std.h"]
+release_linkflags = "-mfloat-abi=hard -nostartfiles -static -Wl,--no-gc-sections"
+release_libpaths = [Dir("#../../../04_Build/algo/" + algo_name + "/ti_cortex_a15/release").abspath]
+release_libs = [algo_name + "_arm_cortex_a15_release"]
+release_lcffile = []
+#release_lcffile = ["#../cml_sim/cml_evm_hil/vh28/generic/CommonSoC/SharedRAM.lcf",  "#../cml_sim/cml_evm_hil/vh28/generic/CommonSoC/SharedRAM_EVE.lcf",
+#                   "#../cml_sim/cml_evm_hil/vh28/evm_hil_projects/CortexA15/sr_custom.lcf"]
+
+# create debug variant
+debug_variant = "debug"
+debug_ccflags = "-mtune=cortex-a15 -mfloat-abi=hard -mfpu=neon-vfpv4 -g -gstrict-dwarf -Wall -mlong-calls -Wno-unused-function"
+debug_cppdefines = ["CML_NO_RTE_DEPENDENCY", "TARGET_PLATFORM", "ENABLE_PROFILER", "NDEBUG", "CML_USE_INTRINSICS", "CML_TEST", "xdc__RESTRICT__", "xdc_target_types__=gnu/targets/std.h"]
+debug_linkflags = "-mfloat-abi=hard -nostartfiles -static -Wl,--no-gc-sections"
+debug_libpaths = [Dir("#../../../04_Build/algo/" + algo_name + "/ti_cortex_a15/debug").abspath]
+debug_libs = [algo_name + "_arm_cortex_a15_debug"]
+debug_lcffile = []
+#debug_lcffile = ["#../cml_sim/cml_evm_hil/vh28/generic/CommonSoC/SharedRAM.lcf", "#../cml_sim/cml_evm_hil/vh28/generic/CommonSoC/SharedRAM_EVE.lcf",
+#                 "#../cml_sim/cml_evm_hil/vh28/evm_hil_projects/CortexA15/sr_custom.lcf"]
+
+# variable containing compiler flags, defines and linker flags for all variants
+# when creating additional variant beside "release" and "debug", the variant must be added in this variable
+variant_list = [
+[release_variant, release_ccflags, release_cppdefines, release_linkflags, release_libpaths, release_libs, release_lcffile],
+[debug_variant,   debug_ccflags,   debug_cppdefines,   debug_linkflags, debug_libpaths, debug_libs, debug_lcffile],
+]
+
+# out file name
+outfile_name = "CML_CortexA15_EvmHilWrapper.out"
+
+# ccs project name
+ccs_project_name = algo_name.upper() + "_TI_CortexA15_EvmHilWrapper"

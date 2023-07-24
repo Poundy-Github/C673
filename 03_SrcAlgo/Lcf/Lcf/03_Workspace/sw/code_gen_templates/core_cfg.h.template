@@ -1,0 +1,21 @@
+///@file
+/// Generated file about core
+
+
+#define CORE_CFG_H
+
+/// The CoreID of the core on which this code is running.
+/// Type: e_CORE_THIS
+/*!<codegen_start:CFG_CORE_THIS>*/
+/*!<codegen_end:CFG_CORE_THIS>*/
+
+/// Type definition of the core identifiers.
+typedef enum {
+  e_CORE_INVALID = 0,  ///< Invalid core
+/*!<codegen_start:CFG_CORE_ID>*/
+/*!<codegen_end:CFG_CORE_ID>*/    
+  e_CORE_NUM, ///< Number of cores (Includes invalid core!)
+  e_CORE_FORCE32 = 0x7FFFFFFFU ///< Force 32-Bit datatype
+} SW_e_CoreIdent;
+
+#endif // CORE_CFG_H

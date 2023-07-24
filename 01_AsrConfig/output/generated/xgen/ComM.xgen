@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?module ComM?>
+
+<xgen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://www.elektrobit.com/2013/xgen" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+
+
+
+  <!-- This is the configuration of module ComM -->
+  <module name="ComM">
+
+    <!-- This is the Precompile-time configuration of the module. -->
+    <configuration class="PreCompile">
+
+      <?artifact directory="include" file="ComM_Types_Int.h" type="types-h" generate="yes" ?>
+      <!-- !LINKSTO ComM.PB.Impl.Relocatable,1 -->
+      <parameter name="relocatable-enable">
+        <boolean-value>true</boolean-value>
+      </parameter>
+
+      <!-- This is the type definition of the root structure -->
+      <type name="ComM_ConfigType">
+        <struct>
+          <!-- !LINKSTO ComM.PB.Impl.Hash,1 -->
+          <member name="PlatformSignature" type="uint32" comment="Used to validate the platform"/>
+          <member name="LcfgSignature" type="uint32" comment="Used to validate the post build configuration against the link time configuration"/>
+          <member name="CfgSignature" type="uint32" comment="Used to validate the post build configuration against the precompile time configuration"/>
+          <member name="PublicInfoSignature" type="uint32" comment="Used to validate Public information"/>
+          <member name="pUsersOfAllChannel" type="uint8" comment="Reference to COMM_ConfigLayoutType.aUsersOfAllChannel">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="NumUsersOfAllChannel" type="uint16" count="3" comment="Index of first user of a channel in COMM_ConfigLayoutType.aUsersOfAllChannel"/>
+          <member name="pChannelsOfAllUser" type="uint8" comment="Reference to COMM_ConfigLayoutType.aChannelsOfAllUser">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="NumChannelsOfAllUser" type="uint16" count="3" comment="Index of first channel of a user in COMM_ConfigLayoutType.aChannelsOfAllUser"/>
+          <member name="DirectNumChannelsOfAllUser" type="uint16" count="3" comment="Index of first channel of a user in COMM_ConfigLayoutType.aChannelsOfAllUser"/>
+
+        </struct>
+      </type>
+
+    </configuration>  <!-- PreCompile -->
+
+    <!-- This is the post-build configuration of the module. -->
+    <configuration class="PostBuild">
+
+      <!-- !LINKSTO ComM.PB.Format.C,1 -->
+      <?artifact directory="include" file="ComM_PBcfg.h" type="postbuild-h" ?>
+      <?artifact directory="src" file="ComM_PBcfg.c" type="postbuild-c" ?>
+
+      <!--
+          Type declarations:
+          Specifies the content of ComM_PBcfg.h and ComM_Types.h
+      -->
+
+      <!-- This is the type definition of the layout type of the
+           modules' postbuild configuration structure -->
+     <type name="ComM_ConfigLayoutType">
+        <struct>
+          <!-- Member of the layout type starting with the RootCfg -->
+          <member name="RootCfg" type="ComM_ConfigType"/>
+          <!-- !LINKSTO ComM795,1, ComM796,1, ComM797,1, ComM798,1 -->
+          
+          <member name="aUsersOfAllChannel" type="uint8" count="2" comment="User Ids referenced by channel or PNCs of channel"/>
+          <member name="aChannelsOfAllUser" type="uint8" count="2" comment="Channel Ids or PNC ids referenced by user of channel" />           
+        </struct>
+      </type>
+
+      <type name="ComM_ConstConfigLayoutType">
+        <reference type="ComM_ConfigLayoutType">
+          <compiler-abstraction>
+            <const memory-class="COMM_APPL_CONST" />
+          </compiler-abstraction>
+        </reference>
+      </type>
+
+      <!--
+          Type definition and initialisation:
+          Specifies the content of ComM_Pbcfg.c
+      -->
+
+      <memory-section name="CONFIG_DATA_UNSPECIFIED">
+      <instance type="ComM_ConstConfigLayoutType"
+             name="ComM_Configuration">
+
+        <parameter name="postbuild-configuration-name">
+          <symbolic-value>ComMConfigSet</symbolic-value>
+        </parameter>
+
+        <!-- ComM_ConfigType -->
+        <field>
+          <field>
+            <int>2281703698</int>
+          </field>
+          <field>
+            <int>3958107115</int>
+          </field>
+          <field>
+            <int>573838340</int>
+          </field>
+          <field>
+            <int>1442233893</int>
+          </field>
+          <field>
+            <ref>
+              <struct-field name="aUsersOfAllChannel"/>
+              <array-field index="0" />
+            </ref>
+          </field> <!-- pUsersOfAllChannel -->
+          <field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <int>2</int>
+            </field>
+          </field> <!-- NumUsersOfAllChannel -->
+          <field>
+            <ref>
+              <struct-field name="aChannelsOfAllUser"/>
+              <array-field index="0" />
+            </ref>
+          </field> <!-- pChannelsOfAllUser -->
+          <field>
+            <field>
+              <int>0</int> <!-- idx of user ComMUser_Public -->
+            </field>
+            <field>
+              <int>1</int> <!-- idx of user ComMUser_Private -->
+            </field>
+            <field>
+              <int>2</int> <!-- idx of entry after last user -->
+            </field>
+          </field> <!-- NumChannelsOfAllUser -->
+
+          <field>
+            <field>
+              <int>0</int> <!-- idx of user ComMUser_Public -->
+            </field>
+            <field>
+              <int>1</int> <!-- idx of user ComMUser_Private -->
+            </field>
+            <field>
+              <int>2</int> <!-- idx of entry after last user -->
+            </field>
+          </field> <!-- DirectNumChannelsOfAllUser -->
+
+        </field> <!-- ComM_ConfigType -->
+        <field>
+          <field>
+            <int>0</int> <!-- user ComMUser_Public -->
+          </field>
+          <field>
+            <int>1</int> <!-- user ComMUser_Private -->
+          </field>
+        </field> <!-- aUsersOfAllChannel -->
+        <field>
+          <!-- user ComMUser_Public (ID=0) -->
+          <field>
+            <int>0</int> <!-- channel ComMChannel_Public -->
+          </field>
+          <!-- user ComMUser_Private (ID=1) -->
+          <field>
+            <int>1</int> <!-- channel ComMChannel_Private -->
+          </field>
+        </field> <!-- aChannelsOfAllUser -->
+      </instance> <!-- ComM_ConfigLayoutType -->
+      </memory-section>
+
+    </configuration>
+  </module>
+
+  <!-- include the AUTOSAR standard data types, etc. -->
+  <!-- The xpointer atribute shouldrather be something like "xpointer(//module[name='...'])",
+       but unfortunately our XML parser does not support the XPointer xpointer() Scheme.
+       This is also the reason why all these xincludes must be at the end of the file rather
+       than at the beginning, because that way the other xgen files that include this one can
+       be sure that "element(/1/1)" is the ComM module element.
+  -->
+  <xi:include href="Base.xgen" xpointer="element(/1/1)"/>
+
+</xgen>

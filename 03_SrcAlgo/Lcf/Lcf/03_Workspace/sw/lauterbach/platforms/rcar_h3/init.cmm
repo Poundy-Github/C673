@@ -1,0 +1,24 @@
+entry &CORENAME
+
+if "&CORENAME"=="ca53"
+(
+    system.cpu R8A77950
+    ;core.assign 1				; attach to only CPU0
+    SYStem.JtagClock CTCK 10MHz
+    ;CORE.ASSIGN 1. ; Cortex-A57
+    CORE.ASSIGN 2. ; Cortex-A53
+    SYStem.memaccess dap		; allow dap access
+)
+else if "&CORENAME"=="cr7"
+(
+    system.cpu R8A77950-CR7
+    system.memaccess dap
+)
+else
+(
+	error "Unknown Core ID"
+)
+
+; Interrupts shall be disabled when single-stepping
+sys.Option IMASKHLL ON
+sys.Option IMASKASM ON

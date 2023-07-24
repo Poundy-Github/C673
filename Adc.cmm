@@ -1,0 +1,44 @@
+// T32 Mon Mar 13 10:00:42 2023
+
+B::
+
+TOOLBAR   ON
+STATUSBAR ON
+FramePOS 67.625,-63.929,,,Maximized
+WinPAGE.RESet
+
+WinPAGE.Create P000
+WinCLEAR
+
+WinPOS 93.625 7.8571 105. 25. 5. 0. W003
+Frame
+
+WinPOS 26.125 0.0 138. 38. 13. 1. W002
+WinTABS 10. 10. 25.
+List e:Det_ASR40_ReportError
+
+WinPOS 29.5 5.5714 100. 37. 0. 0. W001
+per , "IR (Interrupt Router),SRC"
+WinPAN 0. 27.
+
+WinPOS 28.125 0.0 95. 26. 0. 1. W005
+WinTABS 41. 31.
+sYmbol.Browse.sYmbol
+
+WinPOS 61.25 0.14286 123. 43. 0. 0. W004
+per , "DMA (Direct Memory Access)"
+WinPAN 0. 57.
+
+WinPOS 1.375 0.5 82. 41. 0. 0. W000
+Var.Watch
+
+Var.AddWatch EvAdc_DMADataBufferPtr0
+Var.AddWatch EvAdc_DMADataBufferPtr2
+Var.AddWatch EvAdc_AdcBaseBuffData
+Var.AddWatch Test_Cdd_EvAdc_MainFunction1
+Var.AddWatch Test_Cdd_EvAdc_MainFunction2
+Var.AddWatch HeartbeatDet_Info
+
+WinPAGE.select P000
+
+ENDDO

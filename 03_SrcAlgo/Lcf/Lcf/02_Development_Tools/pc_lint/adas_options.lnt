@@ -1,0 +1,39 @@
+//===============================================================
+//General Settings which are used inside the Algo and SW Domains
+//===============================================================
+
+
+//===================================================
+// Include some standard lint files
+//===================================================
+env-vc8.lnt     // Visual studio 2005 environment
+
+//===================================================
+// Set of Warning Level
+//===================================================
+//-wLevel This option allows the user to set a Warning level in a fashion similar to many compilers. The warning levels are:
+//-w0 No messages (except for fatal errors)
+//-w1 Error messages only -- no Warnings or Informationals.
+//-w2 Error and Warning messages only
+//-w3 Error, Warning and Informational messages (this is the default)
+//-w4 All messages.
+
+//Set the Warning Level to 3 (default)
+-w3
+
+//===================================================
+// Misc
+//===================================================
+-wlib(0)   // Suppress Error Messages for Libary Header Files
+
+//===================================================
+// Set/Reset PC-Lint options
+//===================================================
+-fkp            // don't complain about not K&R extensions
++rw(restrict)   // add 'restrict' as reserved keyword 
+
+//===========================================
+// PC-Lint messages suppression ( not MISRA )
+//===========================================
+-e830    // Location cited in prior message
+-e546    // Suspicious use of &

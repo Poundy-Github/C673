@@ -1,0 +1,1419 @@
+// board-tasking.ldscript
+//
+// $Id: board-tasking.ldscript 27024 2017-07-18 16:46:18Z aniv261689 $
+//
+// Common part of linker script for the Tasking linker
+// This file will be included into the generated linker script.
+//
+// The internal DSPR RAM is divided between data & CSAs for each core.
+// The end of the DSPR is used for a configured number of CSAs, the rest
+// is left for data. The number of CSAs available to each core is configured
+// in Tresos Studio (within OsCoreConfig)
+
+
+#define TSK_DATA_FILL_CHARACTER				        0xFF
+// define the Block A macro
+#define TSK_COMPILE_CODE_IN_BLOCK_A			        0x01
+// define the Block B macro
+#define TSK_COMPILE_CODE_IN_BLOCK_B			        0x02
+// The integrator using this macro to select the code compiling to which block
+#define TSK_COMPILE_CODE_IN_BLOCK			        TSK_COMPILE_CODE_IN_BLOCK_A
+
+/********************************************************* PFLASH*********************************************************************/
+#define INT_VECTOR_TABLE_SIZE 						20k
+// Physical memory size,only use for MCU Application
+// Program Flash,the address range is 0xA0106000~0xA04FFEFF or 0xA0506000~0xA08FFEFF,include the const value section before code section;
+#define PFLASH_SIZE 						        0xFA000
+// Memory Address
+#ifdef PFLASH_SIZE
+#if (TSK_COMPILE_CODE_IN_BLOCK == TSK_COMPILE_CODE_IN_BLOCK_A)
+#define PFLASH_START_ADDRESS						0x80104040
+#define PFLASH_CODE_START_ADDRESS					0x80106000
+#define PFLASH_START_CPU1							0x80300000
+#define PFLASH_START_CPU2 							0x80600000
+#define PFLASH_START_CPU3 							0x80900000
+#elif (TSK_COMPILE_CODE_IN_BLOCK == TSK_COMPILE_CODE_IN_BLOCK_B)
+#define PFLASH_START_ADDRESS						0x80204040
+#define PFLASH_CODE_START_ADDRESS					0X80206000
+#define PFLASH_START_CPU1							0x80480000
+#define PFLASH_START_CPU2 							0x80780000
+#define PFLASH_START_CPU3 							0x80980000
+#else
+// default block setting to Block A
+#define PFLASH_START_ADDRESS						0x80104000
+#define PFLASH_CODE_START_ADDRESS					0x80106000
+#endif
+#endif
+
+// section size of logic
+#define PFLASH_SHARED_CONST_SECTION_SIZE			(PFLASH_CODE_START_ADDRESS - PFLASH_START_ADDRESS)
+#define PFLASH_SHARED_CONST_BLOCK_SIZE				32  /*Byte*/
+#define PFLASH_SHARED_CONST_BLOCK_NUM				2	/*SwVerInfo,SwPartNum*/
+
+/********************************************************* DSPR*********************************************************************/
+#define DSPR0_SIZE 							        240k
+#define DSPR1_SIZE 							        240k
+#define DSPR2_SIZE 							        96k
+#define DSPR3_SIZE 							        96k
+
+#ifdef DSPR0_SIZE
+// Note: the GENLD_csaCore<coreId>_NCSA identifiers are replaced by the linker script generator
+#define NCSA_C0 									GENLD_csaCore0_NCSA
+#define DSPR0_USABLE_SIZE 							(DSPR0_SIZE - NCSA_C0*64)
+#define DSPR0_SHARED_VAR_PF_SECTION_SIZE			256 /*Byte*/
+#define DSPR0_VAR_DEFAULT_SECTION_SIZE				(DSPR0_USABLE_SIZE - DSPR0_SHARED_VAR_PF_SECTION_SIZE)
+#endif
+
+#ifdef DSPR1_SIZE
+#define NCSA_C1 									GENLD_csaCore1_NCSA
+#define DSPR1_USABLE_SIZE 							(DSPR1_SIZE - NCSA_C1*64)
+#define DSPR1_VAR_FCT_SECTION_SIZE					0K	//only bss,data in the int_ram_core0
+#define DSPR1_VAR_LCF_SECTION_SIZE					0K	//only bss,data in the int_ram_core0
+#define DSPR1_VAR_VDY_SECTION_SIZE					0K	//only bss,data in the int_ram_core0
+#define DSPR1_VAR_DEFAULT_SECTION_SIZE				(DSPR1_USABLE_SIZE-DSPR1_VAR_FCT_SECTION_SIZE-DSPR1_VAR_LCF_SECTION_SIZE-DSPR1_VAR_VDY_SECTION_SIZE)
+#endif
+
+#ifdef DSPR2_SIZE
+#define NCSA_C2 									GENLD_csaCore2_NCSA
+#define DSPR2_USABLE_SIZE 							(DSPR2_SIZE - NCSA_C2*64)
+#define DSPR2_VAR_DEFAULT_SECTION_SIZE				(DSPR2_USABLE_SIZE)	
+#endif
+
+#ifdef DSPR3_SIZE
+#define NCSA_C3 									GENLD_csaCore3_NCSA
+#define DSPR3_USABLE_SIZE 							(DSPR3_SIZE - NCSA_C3*64)
+#define DSPR3_VAR_MTS_SECTION_SIZE					16K
+#define DSPR3_VAR_DEFAULT_SECTION_SIZE				(DSPR3_USABLE_SIZE - DSPR3_VAR_MTS_SECTION_SIZE)	
+#endif
+
+#ifdef DSPR0_SIZE
+#define DSPR0_START_ADDRESS							0x70000000
+#define DSPR0_VAR_DEFAULT_START_ADDRESS				DSPR0_START_ADDRESS
+#define DSPR0_SHARED_VAR_PF_START_ADDRESS			(DSPR0_START_ADDRESS+DSPR0_VAR_DEFAULT_SECTION_SIZE)
+#endif
+
+#ifdef DSPR1_SIZE
+#define DSPR1_START_ADDRESS							0x60000000
+#define DSPR1_VAR_DEFAULT_START_ADDRESS				DSPR1_START_ADDRESS
+#define DSPR1_VAR_FCT_START_ADDRESS					(DSPR1_START_ADDRESS+DSPR1_VAR_DEFAULT_SECTION_SIZE)
+#define DSPR1_VAR_LCF_START_ADDRESS					(DSPR1_START_ADDRESS+DSPR1_VAR_DEFAULT_SECTION_SIZE+DSPR1_VAR_FCT_SECTION_SIZE)
+#define DSPR1_VAR_VDY_START_ADDRESS					(DSPR1_START_ADDRESS+DSPR1_VAR_DEFAULT_SECTION_SIZE+DSPR1_VAR_FCT_SECTION_SIZE+DSPR1_VAR_LCF_SECTION_SIZE)
+#endif
+
+#ifdef DSPR2_SIZE
+#define DSPR2_START_ADDRESS							0x50000000
+#define DSPR2_VAR_DEFAULT_START_ADDRESS				DSPR2_START_ADDRESS
+#endif
+
+#ifdef DSPR3_SIZE
+#define DSPR3_START_ADDRESS							0x40000000
+#define DSPR3_VAR_DEFAULT_START_ADDRESS				DSPR3_START_ADDRESS
+#define DSPR3_VAR_MTS_START_ADDRESS					(DSPR3_START_ADDRESS+DSPR3_VAR_DEFAULT_SECTION_SIZE)
+#endif
+
+/********************************************************* PSPR*********************************************************************/
+#define PSPR0_SIZE 							        64k
+#define PSPR1_SIZE 							        64k
+#define PSPR2_SIZE 							        64k
+#define PSPR3_SIZE 							        64k
+
+#ifdef PSPR0_SIZE
+#define PSPR0_USABLE_SIZE 							PSPR0_SIZE
+#define PSPR0_VAR_DEFAULT_SECTION_SIZE				(PSPR0_USABLE_SIZE)	
+#endif
+
+#ifdef PSPR1_SIZE
+#define PSPR1_USABLE_SIZE 							PSPR1_SIZE
+#define PSPR1_VAR_DEFAULT_SECTION_SIZE				(PSPR1_USABLE_SIZE)	
+#endif
+
+#ifdef PSPR2_SIZE
+#define PSPR2_USABLE_SIZE 							PSPR2_SIZE
+#define PSPR2_VAR_DEFAULT_SECTION_SIZE				(PSPR2_USABLE_SIZE)	
+#endif
+
+#ifdef PSPR3_SIZE
+#define PSPR3_USABLE_SIZE 							PSPR3_SIZE
+#define PSPR3_VAR_DEFAULT_SECTION_SIZE				(PSPR3_USABLE_SIZE)	
+#endif
+
+#ifdef PSPR0_SIZE
+#define PSPR0_START_ADDRESS							0x70100000
+#define PSPR0_VAR_DEFAULT_START_ADDRESS				PSPR0_START_ADDRESS
+#endif
+
+#ifdef PSPR1_SIZE
+#define PSPR1_START_ADDRESS							0x60100000
+#define PSPR1_VAR_DEFAULT_START_ADDRESS				PSPR1_START_ADDRESS
+#endif
+
+#ifdef PSPR2_SIZE
+#define PSPR2_START_ADDRESS							0x50100000
+#define PSPR2_VAR_DEFAULT_START_ADDRESS				PSPR2_START_ADDRESS
+#endif
+
+#ifdef PSPR0_SIZE
+#define PSPR3_START_ADDRESS							0x40100000
+#define PSPR3_VAR_DEFAULT_START_ADDRESS				PSPR3_START_ADDRESS
+#endif
+
+/********************************************************* LMU*********************************************************************/ 
+#define DLMU0_SIZE 							        64k
+#define DLMU1_SIZE 							        64k
+#define DLMU2_SIZE 							        64k
+#define DLMU3_SIZE 							        64k
+
+/********************************************************* LMURAM******************************************************************/ 
+#define LMURAM_SIZE 					            128k
+
+
+
+#include "tc1v1_6_2.lsl"
+
+
+processor mpe
+{
+	derivative = tc38;
+}
+
+derivative tc38
+{
+    core tc0
+    {
+        architecture = TC1V1.6.2;
+        space_id_offset = 100;            // add 100 to all space IDs in the architecture definition
+        copytable_space = vtc:linear;     // use the copy table in the virtual core for 'bss' and initialized data sections
+    }
+    
+    core tc1 
+    {
+        architecture = TC1V1.6.2;
+        space_id_offset = 200;            // add 200 to all space IDs in the architecture definition
+        copytable_space = vtc:linear;     // use the copy table in the virtual core for 'bss' and initialized data sections
+    }
+    
+    core tc2 
+    {
+        architecture = TC1V1.6.2;
+        space_id_offset = 300;            // add 300 to all space IDs in the architecture definition
+        copytable_space = vtc:linear;     // use the copy table in the virtual core for 'bss' and initialized data sections
+    }
+    
+    core tc3 
+    {
+        architecture = TC1V1.6.2;
+        space_id_offset = 400;            // add 300 to all space IDs in the architecture definition
+        copytable_space = vtc:linear;     // use the copy table in the virtual core for 'bss' and initialized data sections
+    }
+
+    core vtc
+    {
+        architecture = TC1V1.6.2;
+        import tc0;                     // add all address spaces of core tc0 to core vtc for linking and locating
+        import tc1;                     //                                tc1
+        import tc2;                     //                                tc2
+        import tc3;                     //                                tc3
+    }
+	
+    bus sri
+    {
+        mau = 8;
+        width = 32;
+        
+        // map shared addresses one-to-one to real cores and virtual cores
+        map (dest=bus:tc0:fpi_bus, src_offset=0, dest_offset=0, size=0xc0000000);
+        map (dest=bus:tc1:fpi_bus, src_offset=0, dest_offset=0, size=0xc0000000);
+        map (dest=bus:tc2:fpi_bus, src_offset=0, dest_offset=0, size=0xc0000000);
+        map (dest=bus:tc3:fpi_bus, src_offset=0, dest_offset=0, size=0xc0000000);
+        map (dest=bus:vtc:fpi_bus, src_offset=0, dest_offset=0, size=0xc0000000);
+    }
+
+	memory ROM_PFlash_SharedConst_SwPartNum
+	{
+		mau = 8;
+		size = PFLASH_SHARED_CONST_BLOCK_SIZE;
+		type = rom;
+		fill = TSK_DATA_FILL_CHARACTER;
+		map cached(	dest=bus:sri, dest_offset=PFLASH_START_ADDRESS, size=PFLASH_SHARED_CONST_BLOCK_SIZE);
+		map not_cached(dest=bus:sri, dest_offset=(PFLASH_START_ADDRESS + 0x20000000), reserved, size=PFLASH_SHARED_CONST_BLOCK_SIZE);
+	}
+	
+	
+	memory ROM_PFlash_SharedConst_SwVerInfo
+	{
+		mau = 8;
+		size = PFLASH_SHARED_CONST_BLOCK_SIZE;
+		type = rom;
+		fill = TSK_DATA_FILL_CHARACTER;
+		map cached(	dest=bus:sri, dest_offset=PFLASH_START_ADDRESS + PFLASH_SHARED_CONST_BLOCK_SIZE, size=PFLASH_SHARED_CONST_BLOCK_SIZE);
+		map not_cached(dest=bus:sri, dest_offset=(PFLASH_START_ADDRESS + PFLASH_SHARED_CONST_BLOCK_SIZE + 0x20000000), reserved, size=PFLASH_SHARED_CONST_BLOCK_SIZE);
+	}
+	
+	memory ROM_PFlash_SharedConst_ReleaseVariables
+	{
+		mau = 8;
+		size = PFLASH_SHARED_CONST_SECTION_SIZE - (PFLASH_SHARED_CONST_BLOCK_SIZE * PFLASH_SHARED_CONST_BLOCK_NUM);
+		type = rom;
+		fill = TSK_DATA_FILL_CHARACTER;
+		map cached(	dest=bus:sri, 
+				dest_offset=PFLASH_START_ADDRESS + PFLASH_SHARED_CONST_BLOCK_SIZE + PFLASH_SHARED_CONST_BLOCK_SIZE, 
+				size=PFLASH_SHARED_CONST_SECTION_SIZE - (PFLASH_SHARED_CONST_BLOCK_SIZE * PFLASH_SHARED_CONST_BLOCK_NUM) );
+		map not_cached (dest=bus:sri, 
+		dest_offset=(PFLASH_START_ADDRESS + PFLASH_SHARED_CONST_BLOCK_SIZE + PFLASH_SHARED_CONST_BLOCK_SIZE + 0x20000000), 
+		reserved, 
+		size=PFLASH_SHARED_CONST_SECTION_SIZE - (PFLASH_SHARED_CONST_BLOCK_SIZE * PFLASH_SHARED_CONST_BLOCK_NUM));
+	}
+	
+	memory int_rom_vect
+	{
+		mau = 8;
+		size = INT_VECTOR_TABLE_SIZE;
+		type = rom;
+		fill = TSK_DATA_FILL_CHARACTER;
+		map cached(	dest=bus:sri, dest_offset=PFLASH_CODE_START_ADDRESS, size=INT_VECTOR_TABLE_SIZE);
+		map not_cached (dest=bus:sri, dest_offset=(PFLASH_CODE_START_ADDRESS + 0x20000000), reserved, size=INT_VECTOR_TABLE_SIZE);
+	}
+
+	memory int_rom
+	{
+		mau = 8;
+		size = (PFLASH_SIZE - INT_VECTOR_TABLE_SIZE);
+		type = rom;
+		fill = TSK_DATA_FILL_CHARACTER;
+		map cached(	dest=bus:sri,dest_offset=(PFLASH_CODE_START_ADDRESS +INT_VECTOR_TABLE_SIZE),size=(PFLASH_SIZE - INT_VECTOR_TABLE_SIZE));
+		map not_cached (dest=bus:sri, dest_offset=(PFLASH_CODE_START_ADDRESS +INT_VECTOR_TABLE_SIZE+ 0x20000000), reserved, size=(PFLASH_SIZE - INT_VECTOR_TABLE_SIZE));
+	}
+    memory pfls1
+    {
+        mau = 8;
+        size = 3M/2;
+        type = rom;
+		fill = TSK_DATA_FILL_CHARACTER;
+        map     cached (dest=bus:sri, dest_offset=PFLASH_START_CPU1,           size=3M/2);
+        map not_cached (dest=bus:sri, dest_offset=(PFLASH_START_CPU1 + 0x20000000), reserved, size=3M/2);
+    }
+	memory pfls2
+    {
+        mau = 8;
+        size = 3M/2;
+        type = rom;
+		fill = TSK_DATA_FILL_CHARACTER;
+        map     cached (dest=bus:sri, dest_offset=PFLASH_START_CPU2,           size=3M/2);
+        map not_cached (dest=bus:sri, dest_offset=(PFLASH_START_CPU2 + 0x20000000), reserved, size=3M/2);
+    }
+	memory pfls3
+    {
+        mau = 8;
+        size = 1M/2;
+        type = rom;
+		fill = TSK_DATA_FILL_CHARACTER;
+        map     cached (dest=bus:sri, dest_offset=PFLASH_START_CPU3,           size=1M/2);
+        map not_cached (dest=bus:sri, dest_offset=(PFLASH_START_CPU3 + 0x20000000), reserved, size=1M/2);
+    }
+
+	memory RAM_DSPR0_log
+	{
+		mau = 8;
+		size = 3K;
+		type = ram;
+		//map (dest=bus:tc0:fpi_bus, dest_offset=0xd0000000, size=3K);
+		map (dest=bus:sri, dest_offset=0x70037000, size=3K);
+	}
+
+	memory RAM_DSPR0_FS_preserved
+	{
+		mau = 8;
+		size = 512;
+		type = ram;
+		map (dest=bus:sri, dest_offset=0x70037c00, size=512);
+	}
+	
+	memory RAM_DSPR0_SharedVar_ProgramFlag
+	{
+		mau = 8;
+		size = DSPR0_SHARED_VAR_PF_SECTION_SIZE;
+		type = ram;
+		//map (dest=bus:tc0:fpi_bus, dest_offset=0xd0000000, size=DSPR0_SHARED_VAR_PF_SECTION_SIZE);
+		map (dest=bus:sri, dest_offset=0x70037F00, size=DSPR0_SHARED_VAR_PF_SECTION_SIZE);
+	}
+    
+		
+	#ifdef DSPR0_SIZE	
+	memory int_ram_core0
+	{
+		mau = 8;
+		size = (DSPR0_VAR_DEFAULT_SECTION_SIZE -4K);	//4K is RAM_DSPR0_log start address
+		type = ram;
+		map (dest=bus:tc0:fpi_bus, dest_offset=0xd0000000, size=(DSPR0_VAR_DEFAULT_SECTION_SIZE -4K), priority=8);	
+		map (dest=bus:sri, dest_offset=DSPR0_START_ADDRESS, size=(DSPR0_VAR_DEFAULT_SECTION_SIZE -4K));
+	}  
+    #endif
+	
+	#ifdef DSPR1_SIZE
+	memory int_ram_core1
+	{
+		mau = 8;
+		size = DSPR1_VAR_DEFAULT_SECTION_SIZE;
+		type = ram;
+		map (dest=bus:tc1:fpi_bus, dest_offset=0xd0000000, size=DSPR1_VAR_DEFAULT_SECTION_SIZE);
+		map (dest=bus:sri, dest_offset=DSPR1_START_ADDRESS, size=DSPR1_VAR_DEFAULT_SECTION_SIZE);
+	}
+	#endif
+	
+	#ifdef DSPR2_SIZE
+	memory int_ram_core2
+	{
+		mau = 8;
+		size = DSPR2_VAR_DEFAULT_SECTION_SIZE;
+		type = ram;
+		map (dest=bus:tc2:fpi_bus, dest_offset=0xd0000000, size=DSPR2_VAR_DEFAULT_SECTION_SIZE, priority=8);
+        map (dest=bus:sri, dest_offset=DSPR2_VAR_DEFAULT_START_ADDRESS, size=DSPR2_VAR_DEFAULT_SECTION_SIZE);
+	}
+	
+	#endif
+	
+	#ifdef DSPR3_SIZE
+	memory int_ram_core3
+	{
+		mau = 8;
+		size = DSPR3_VAR_DEFAULT_SECTION_SIZE;
+		type = ram;
+		map (dest=bus:tc3:fpi_bus, dest_offset=0xd0000000, size=DSPR3_VAR_DEFAULT_SECTION_SIZE, priority=8);
+        map (dest=bus:sri, dest_offset=DSPR3_VAR_DEFAULT_START_ADDRESS, size=DSPR3_VAR_DEFAULT_SECTION_SIZE);
+	}
+	#endif
+	
+	#ifdef PSPR0_SIZE
+	memory int_ram_pspr_core0
+	{
+		mau = 8;
+		size = PSPR0_VAR_DEFAULT_SECTION_SIZE;
+		type = ram;
+		map (dest=bus:tc0:fpi_bus, dest_offset=0xc0000000, size=PSPR0_VAR_DEFAULT_SECTION_SIZE, priority=8);
+		map (dest=bus:sri, dest_offset=PSPR0_VAR_DEFAULT_START_ADDRESS, size=PSPR0_VAR_DEFAULT_SECTION_SIZE);
+	}
+	#endif
+
+	#ifdef PSPR1_SIZE
+	memory int_ram_pspr_core1
+	{
+		mau = 8;
+		size = PSPR1_VAR_DEFAULT_SECTION_SIZE;
+		type = ram;
+		map (dest=bus:tc1:fpi_bus, dest_offset=0xc0000000, size=PSPR1_VAR_DEFAULT_SECTION_SIZE, priority=8);
+		map (dest=bus:sri, dest_offset=PSPR1_VAR_DEFAULT_START_ADDRESS, size=PSPR1_VAR_DEFAULT_SECTION_SIZE);
+	}
+	#endif
+
+	#ifdef PSPR2_SIZE
+	memory int_ram_pspr_core2
+	{
+		mau = 8;
+		size = PSPR2_VAR_DEFAULT_SECTION_SIZE;
+		type = ram;
+		map (dest=bus:tc2:fpi_bus, dest_offset=0xc0000000, size=PSPR2_VAR_DEFAULT_SECTION_SIZE, priority=8);
+        map (dest=bus:sri, dest_offset=PSPR2_VAR_DEFAULT_START_ADDRESS, size=PSPR2_VAR_DEFAULT_SECTION_SIZE);
+	}
+	#endif
+	
+	#ifdef PSPR3_SIZE
+	memory int_ram_pspr_core3
+	{
+		mau = 8;
+		size = PSPR3_VAR_DEFAULT_SECTION_SIZE;
+		type = ram;
+		map (dest=bus:tc3:fpi_bus, dest_offset=0xc0000000, size=PSPR3_VAR_DEFAULT_SECTION_SIZE, priority=8);
+        map (dest=bus:sri, dest_offset=PSPR3_VAR_DEFAULT_START_ADDRESS, size=PSPR3_VAR_DEFAULT_SECTION_SIZE);
+	}
+	#endif    
+    
+	#ifdef DLMU0_SIZE
+	memory cpu0_dlmu
+    {
+        mau = 8;
+        size = DLMU0_SIZE;
+        type = ram;
+        map     cached (dest=bus:sri, dest_offset=0x90000000,           size=DLMU0_SIZE);
+        map not_cached (dest=bus:sri, dest_offset=0xb0000000, reserved, size=DLMU0_SIZE);
+    }
+    #endif
+	
+	#ifdef DLMU1_SIZE
+    memory cpu1_dlmu
+    {
+        mau = 8;
+        size = DLMU1_SIZE;
+        type = ram;
+        map     cached (dest=bus:sri, dest_offset=0x90010000,           size=DLMU1_SIZE);
+        map not_cached (dest=bus:sri, dest_offset=0xb0010000, reserved, size=DLMU1_SIZE);
+    }
+    #endif
+	
+	#ifdef DLMU2_SIZE
+    memory cpu2_dlmu
+    {
+        mau = 8;
+        size = DLMU2_SIZE;
+        type = ram;
+        map     cached (dest=bus:sri, dest_offset=0x90020000,           size=DLMU2_SIZE);
+        map not_cached (dest=bus:sri, dest_offset=0xb0020000, reserved, size=DLMU2_SIZE);
+    }
+    #endif
+	
+	#ifdef DLMU3_SIZE
+    memory cpu3_dlmu
+    {
+        mau = 8;
+        size = DLMU3_SIZE;
+        type = ram;
+        map     cached (dest=bus:sri, dest_offset=0x90030000,           size=DLMU3_SIZE);
+        map not_cached (dest=bus:sri, dest_offset=0xb0030000, reserved, size=DLMU3_SIZE);
+    }
+	#endif
+	
+	#ifdef LMURAM_SIZE
+	memory lmuram
+    {
+        mau = 8;
+        size = LMURAM_SIZE;
+        type = ram;
+        map     cached (dest=bus:sri, dest_offset=0x90040000,           size=LMURAM_SIZE);
+        map not_cached (dest=bus:sri, dest_offset=0xb0040000, reserved, size=LMURAM_SIZE);
+    }
+	#endif
+  
+    /*Section setup for the copy table*/
+    section_setup :vtc:linear
+    {
+        copytable
+        (
+            align = 4,
+            dest = linear,
+            table
+            {
+                symbol = "_lc_ub_table_tc0";
+                space = :tc0:linear, :tc0:abs24, :tc0:abs18, :tc0:csa;
+            },
+            table
+            {
+                symbol = "_lc_ub_table_tc1";
+                space = :tc1:linear, :tc1:abs24, :tc1:abs18, :tc1:csa;
+            },
+            table
+            {
+                symbol = "_lc_ub_table_tc2";
+                space = :tc2:linear, :tc2:abs24, :tc2:abs18, :tc2:csa;
+            },
+            table
+            {
+                symbol = "_lc_ub_table_tc3";
+                space = :tc3:linear, :tc3:abs24, :tc3:abs18, :tc3:csa;
+            }
+        );
+    }
+ 
+	section_layout :vtc:linear
+	{
+		// Where the CSA memory is located:
+		// OS_csaCorex_BEGIN is the base of the CSA block of core x
+		// OS_csaCorex_NCSA is the number of CSAs in the block
+		//
+		// OS_csaCorex_BEGIN must be aligned on a 64-byte boundary (lower 6 bits all zero)
+		"OS_csaCore0_BEGIN"  := 0xd0000000 + DSPR0_USABLE_SIZE;
+		"OS_csaCore0_NCSA"   := NCSA_C0;
+	#ifdef DSPR1_SIZE
+		"OS_csaCore1_BEGIN"  := 0xd0000000 + DSPR1_USABLE_SIZE;
+		"OS_csaCore1_NCSA"   := NCSA_C1;
+	#endif
+	#ifdef DSPR2_SIZE
+		"OS_csaCore2_BEGIN"  := 0xd0000000 + DSPR2_USABLE_SIZE;
+		"OS_csaCore2_NCSA"   := NCSA_C2;
+	#endif
+	#ifdef DSPR3_SIZE
+		"OS_csaCore3_BEGIN"  := 0xd0000000 + DSPR3_USABLE_SIZE;
+		"OS_csaCore3_NCSA"   := NCSA_C3;
+	#endif
+	
+		// some symbols for global read/execute permissions
+	#if defined(DSPR3_SIZE)
+		"__GLBL_DATA_START"   := DSPR3_START_ADDRESS;
+	#elif defined(DSPR2_SIZE)
+		"__GLBL_DATA_START"   := DSPR2_START_ADDRESS;
+	#elif defined(DSPR1_SIZE)
+		"__GLBL_DATA_START"   := DSPR1_START_ADDRESS;
+	#else
+		"__GLBL_DATA_START"   := DSPR0_START_ADDRESS;
+	#endif
+	
+		"__GLBL_DATA_END"     := DSPR0_START_ADDRESS + DSPR0_VAR_DEFAULT_SECTION_SIZE;
+	}
+
+	section_layout :vtc:linear
+	{
+		group Grp_ROM_PFlash_SharedConst_SwPartNum(run_addr=mem:ROM_PFlash_SharedConst_SwPartNum)
+		{
+			select ".rodata.Grp_ROM_PFlash_SharedConst_SwPartNum";
+		}
+		
+		group Grp_ROM_PFlash_SharedConst_SwVerInfo(align=4, nocopy, run_addr = mem:ROM_PFlash_SharedConst_SwVerInfo)
+		{
+			select ".rodata.Grp_ROM_PFlash_SharedConst_SwVerInfo";
+		}
+		
+		group Grp_ROM_PFlash_SharedConst_ReleaseVariables(run_addr = mem:ROM_PFlash_SharedConst_ReleaseVariables)
+		{		
+			select ".rodata.Grp_ROM_PFlash_SharedConst_ReleaseVariables";
+		}
+		/******************************************************************
+		* Code Flash Memory Map : Core0 QM Code Section
+		* ****************************************************************/
+		group Grp_ROM_Core0_QM_Code_Section(align=4, nocopy,  run_addr = mem:int_rom)
+		{
+			select ".text.Grp_ROM_Core0_QM_Code_Section";
+
+			"__START_CORE0_QM_Code" = "_lc_gb_Grp_ROM_Core0_QM_Code_Section";
+			"__END_CORE0_QM_Code"   = "_lc_ge_Grp_ROM_Core0_QM_Code_Section";	
+		}
+		
+		/******************************************************************
+		* Code Flash Memory Map : Core0 ASIL Code Section
+		* ****************************************************************/
+		group Grp_ROM_Core0_ASIL_Code_Section(align=4, nocopy,  run_addr = mem:int_rom)
+		{
+			select ".text.Grp_ROM_Core0_ASIL_Code_Section";
+
+			"__START_CORE0_ASIL_Code" = "_lc_gb_Grp_ROM_Core0_ASIL_Code_Section";
+			"__END_CORE0_ASIL_Code"   = "_lc_ge_Grp_ROM_Core0_ASIL_Code_Section";	
+		}
+		
+		/******************************************************************
+		* Code Flash Memory Map : CORE1 QM Code Section
+		* ****************************************************************/		
+		group Grp_ROM_Core1_QM_Code_Section(align=4, nocopy, run_addr=mem:pfls1)
+		{
+			select ".text.Grp_ROM_Core1_QM_Code_Section";
+
+			"__START_CORE1_QM_Code" = "_lc_gb_Grp_ROM_Core1_QM_Code_Section";
+			"__END_CORE1_QM_Code"   = "_lc_ge_Grp_ROM_Core1_QM_Code_Section";		
+		}
+		
+		/******************************************************************
+		* Code Flash Memory Map : CORE1 ASIL Code Section
+		* ****************************************************************/
+		group Grp_ROM_Core1_ASIL_Code_Section(align=4, nocopy, run_addr=mem:pfls1)
+        {
+			select ".text.Grp_ROM_Core1_ASIL_Code_Section";
+			
+			#include "ldscript_select_text_vdy_pfls1.lsl"
+			#include "ldscript_select_text_fct_pfls1.lsl"
+			#include "ldscript_select_text_lcf_pfls1.lsl"
+			
+			"__START_CORE1_ASIL_Code" = "_lc_gb_Grp_ROM_Core1_ASIL_Code_Section";
+			"__END_CORE1_ASIL_Code"   = "_lc_ge_Grp_ROM_Core1_ASIL_Code_Section";	
+        }
+		
+		/******************************************************************
+		* Code Flash Memory Map : CORE2 QM Code Section
+		* ****************************************************************/
+		group Grp_ROM_Core2_QM_Code_Section(align=4, nocopy,  run_addr = mem:pfls2)
+		{
+			select ".text.Grp_ROM_Core2_QM_Code_Section";
+
+			"__START_CORE2_QM_Code" = "_lc_gb_Grp_ROM_Core2_QM_Code_Section";
+			"__END_CORE2_QM_Code"   = "_lc_ge_Grp_ROM_Core2_QM_Code_Section";	
+		}	
+
+		/******************************************************************
+		* Code Flash Memory Map : CORE2 ASIL Code Section
+		* ****************************************************************/		
+		group Grp_ROM_Core2_ASIL_Code_Section(align=4, nocopy,  run_addr = mem:pfls2)
+		{
+			select ".text.Grp_ROM_Core2_ASIL_Code_Section";
+
+			"__START_CORE2_ASIL_Code" = "_lc_gb_Grp_ROM_Core2_ASIL_Code_Section";
+			"__END_CORE2_ASIL_Code"   = "_lc_ge_Grp_ROM_Core2_ASIL_Code_Section";	
+		}
+	
+		/******************************************************************
+		* Code Flash Memory Map : CORE3 QM Code Section
+		* ****************************************************************/	
+		group Grp_ROM_Core3_QM_Code_Section(align=4, nocopy,  run_addr = mem:pfls3)
+		{
+			select ".text.Grp_ROM_Core3_QM_Code_Section";
+
+			"__START_CORE3_QM_Code" = "_lc_gb_Grp_ROM_Core3_QM_Code_Section";
+			"__END_CORE3_QM_Code"   = "_lc_ge_Grp_ROM_Core3_QM_Code_Section";	
+		}
+		
+		/******************************************************************
+		* Code Flash Memory Map : CORE3 ASIL Code Section
+		* ****************************************************************/
+		group Grp_ROM_Core3_ASIL_Code_Section(align=4, nocopy,  run_addr = mem:pfls3)
+		{
+			select ".text.Grp_ROM_Core3_ASIL_Code_Section";
+
+			"__START_CORE3_ASIL_Code" = "_lc_gb_Grp_ROM_Core3_ASIL_Code_Section";
+			"__END_CORE3_ASIL_Code"   = "_lc_ge_Grp_ROM_Core3_ASIL_Code_Section";	
+		}		
+		
+		/******************************************************************
+		* Code Flash Memory Map : CORE0 QM Const Section
+		* ****************************************************************/		
+		group Grp_ROM_Core0_QM_Const_Section(ordered, align = 4, run_addr=mem:int_rom)
+		{
+			select ".rodata.Grp_ROM_Core0_QM_Const_Section";
+
+			"__START_CORE0_QM_Const" = "_lc_gb_Grp_ROM_Core0_QM_Const_Section";
+			"__END_CORE0_QM_Const"   = "_lc_ge_Grp_ROM_Core0_QM_Const_Section";	
+		}
+
+		/******************************************************************
+		* Code Flash Memory Map : CORE0 ASIL Const Section
+		* ****************************************************************/				
+		group Grp_ROM_Core0_ASIL_Const_Section(ordered, align = 4, run_addr=mem:int_rom)
+		{
+			select ".rodata.Grp_ROM_Core0_ASIL_Const_Section";
+
+			"__START_CORE0_ASIL_Const" = "_lc_gb_Grp_ROM_Core0_ASIL_Const_Section";
+			"__END_CORE0_ASIL_Const"   = "_lc_ge_Grp_ROM_Core0_ASIL_Const_Section";	
+		}
+		
+		/******************************************************************
+		* Code Flash Memory Map : CORE1 QM Const Section
+		* ****************************************************************/
+		group Grp_ROM_Core1_QM_Const_Section(ordered, align = 4, run_addr=mem:pfls1)
+		{
+			select ".rodata.Grp_ROM_Core1_QM_Const_Section";
+
+			"__START_CORE1_QM_Const" = "_lc_gb_Grp_ROM_Core1_QM_Const_Section";
+			"__END_CORE1_QM_Const"   = "_lc_ge_Grp_ROM_Core1_QM_Const_Section";			
+		}
+		
+		/******************************************************************
+		* Code Flash Memory Map : CORE1 ASIL Const Section
+		* ****************************************************************/
+		group Grp_ROM_Core1_ASIL_Const_Section(ordered, align = 4, run_addr=mem:pfls1)
+		{
+			select ".rodata.Grp_ROM_Core0_ASIL_Const_Section";
+			
+			#include "ldscript_select_rodata_vdy_pfls1.lsl"
+			#include "ldscript_select_rodata_fct_pfls1.lsl"
+			#include "ldscript_select_rodata_lcf_pfls1.lsl"
+
+			"__START_CORE1_ASIL_Const" = "_lc_gb_Grp_ROM_Core1_ASIL_Const_Section";
+			"__END_CORE1_ASIL_Const"   = "_lc_ge_Grp_ROM_Core1_ASIL_Const_Section";	
+		}
+	
+		/******************************************************************
+		* Code Flash Memory Map : CORE2 QM Const Section
+		* ****************************************************************/		
+		group Grp_ROM_Core2_QM_Const_Section(ordered, align = 4, run_addr=mem:pfls2)
+		{
+			select ".rodata.Grp_ROM_Core2_QM_Const_Section";
+
+			"__START_CORE2_QM_Const" = "_lc_gb_Grp_ROM_Core2_QM_Const_Section";
+			"__END_CORE2_QM_Const"   = "_lc_ge_Grp_ROM_Core2_QM_Const_Section";	
+		}
+
+		/******************************************************************
+		* Code Flash Memory Map : CORE2 ASIL Const Section
+		* ****************************************************************/				
+		group Grp_ROM_Core2_ASIL_Const_Section(ordered, align = 4, run_addr=mem:pfls2)
+		{
+			select ".rodata.Grp_ROM_Core2_ASIL_Const_Section";
+
+			"__START_CORE2_ASIL_Const" = "_lc_gb_Grp_ROM_Core2_ASIL_Const_Section";
+			"__END_CORE2_ASIL_Const"   = "_lc_ge_Grp_ROM_Core2_ASIL_Const_Section";	
+		}
+		
+		/******************************************************************
+		* Code Flash Memory Map : CORE3 QM Const Section
+		* ****************************************************************/		
+		group Grp_ROM_Core3_QM_Const_Section(ordered, align = 4, run_addr=mem:pfls3)
+		{
+			select ".rodata.Grp_ROM_Core3_QM_Const_Section";
+
+			"__START_CORE3_QM_Const" = "_lc_gb_Grp_ROM_Core3_QM_Const_Section";
+			"__END_CORE3_QM_Const"   = "_lc_ge_Grp_ROM_Core3_QM_Const_Section";	
+		}
+
+		/******************************************************************
+		* Code Flash Memory Map : CORE3 ASIL Const Section
+		* ****************************************************************/				
+		group Grp_ROM_Core3_ASIL_Const_Section(ordered, align = 4, run_addr=mem:pfls3)
+		{
+			select ".rodata.Grp_ROM_Core3_ASIL_Const_Section";
+
+			"__START_CORE3_ASIL_Const" = "_lc_gb_Grp_ROM_Core3_ASIL_Const_Section";
+			"__END_CORE3_ASIL_Const"   = "_lc_ge_Grp_ROM_Core3_ASIL_Const_Section";	
+		}
+
+		/******************************************************************
+		* DSPR Memory Map : Core0 QM bss Section
+		* ****************************************************************/	
+	    group Grp_RAM_DSPR_Core0_QM_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_core0)
+	    {
+			select ".bss.Grp_RAM_DSPR_Core0_QM_Bss_Section";
+			
+			select ".bss.Notifications.*";	//Shall added the section to this group,otherwise,the MCU enter trap.
+			select ".bss.McalLib*";			//Shall added the section to this group,otherwise,the MCU enter trap.
+			select ".bss.Icu_17_TimerIp*";	//Shall added the section to this group,otherwise,the MCU enter trap.
+
+			//select ".bss.Eth_17_GEthMac.Eth_RxBuffer";
+			//select ".bss.Eth_17_GEthMac.Eth_TxBuffer";
+			//select ".bss.Rte_OsApplication_C0.*";	
+			
+			"__START_DSPR_Core0_QM_Bss" = "_lc_gb_Grp_RAM_DSPR_Core0_QM_Bss_Section";
+			"__END_DSPR_Core0_QM_Bss"   = "_lc_ge_Grp_RAM_DSPR_Core0_QM_Bss_Section";			
+	    }
+		/******************************************************************
+		* DSPR Memory Map : Core0 DMA bss Section
+		* ****************************************************************/	
+	    group Grp_RAM_DSPR_Core0_DMA_Bss_Section_64 (align=8, ordered, nocopy,  run_addr = mem:int_ram_core0)
+	    {
+			select ".bss.Grp_RAM_DSPR_Core0_DMA_Bss_Section_64";
+			
+			"__START_DSPR_Core0_DMA_Bss" = "_lc_gb_Grp_RAM_DSPR_Core0_DMA_Bss_Section_64";
+			"__END_DSPR_Core0_DMA_Bss"   = "_lc_ge_Grp_RAM_DSPR_Core0_DMA_Bss_Section_64";			
+	    }
+		
+		/******************************************************************
+		* DSPR Memory Map : Core0 ASIL bss Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core0_ASIL_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_core0)
+		{
+			select ".bss.Grp_RAM_DSPR_Core0_ASIL_Bss_Section";
+
+			"__START_DSPR_Core0_ASIL_Bss" = "_lc_gb_Grp_RAM_DSPR_Core0_ASIL_Bss_Section";
+			"__END_DSPR_Core0_ASIL_Bss"   = "_lc_ge_Grp_RAM_DSPR_Core0_ASIL_Bss_Section";		
+		}
+		
+		/******************************************************************
+		* DSPR Memory Map : Core1 QM bss Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core1_QM_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_core1)
+		{
+			select ".bss.Grp_RAM_DSPR_Core1_QM_Bss_Section";
+
+			"__START_DSPR_Core1_QM_Bss" = "_lc_gb_Grp_RAM_DSPR_Core1_QM_Bss_Section";
+			"__END_DSPR_Core1_QM_Bss"   = "_lc_ge_Grp_RAM_DSPR_Core1_QM_Bss_Section";		
+		}
+		
+		/******************************************************************
+		* DSPR Memory Map : Core1 ASIL bss Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core1_ASIL_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_core1)
+		{
+			select ".bss.Grp_RAM_DSPR_Core1_ASIL_Bss_Section";
+			
+			select ".bss.Rte_OsApplication_C1.*";
+			select ".bss.core1.*";
+			#include "ldscript_select_bss_fct.lsl"
+			#include "ldscript_select_bss_lcf.lsl"
+			#include "ldscript_select_bss_vdy.lsl"
+			
+			"__START_DSPR_Core1_ASIL_Bss" = "_lc_gb_Grp_RAM_DSPR_Core1_ASIL_Bss_Section";
+			"__END_DSPR_Core1_ASIL_Bss"   = "_lc_ge_Grp_RAM_DSPR_Core1_ASIL_Bss_Section";		
+		}
+
+		/******************************************************************
+		* DSPR Memory Map : Core2 QM bss Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core2_QM_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_core2)
+		{
+			select ".bss.Grp_RAM_DSPR_Core2_QM_Bss_Section";
+
+			select ".bss.Rte_OsApplication_C2.*";
+			select ".bss.core2.*";
+			#include "ldscript_select_bss_multi.lsl"
+
+			"__START_DSPR_Core2_QM_Bss" = "_lc_gb_Grp_RAM_DSPR_Core2_QM_Bss_Section";
+			"__END_DSPR_Core2_QM_Bss"   = "_lc_ge_Grp_RAM_DSPR_Core2_QM_Bss_Section";		
+		}
+		
+		/******************************************************************
+		* DSPR Memory Map : Core2 ASIL bss Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core2_ASIL_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_core2)
+		{
+			select ".bss.Grp_RAM_DSPR_Core2_ASIL_Bss_Section";
+			
+			"__START_DSPR_Core2_ASIL_Bss" = "_lc_gb_Grp_RAM_DSPR_Core2_ASIL_Bss_Section";
+			"__END_DSPR_Core2_ASIL_Bss"   = "_lc_ge_Grp_RAM_DSPR_Core2_ASIL_Bss_Section";		
+		}
+
+		/******************************************************************
+		* DSPR Memory Map : Core3 QM bss Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core3_QM_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_core3)
+		{
+			select ".bss.Grp_RAM_DSPR_Core3_QM_Bss_Section";
+			
+			select ".bss.Rte_OsApplication_C3.*";
+			select ".bss.core3.*";
+			//#include "ldscript_select_bss_lcf.lsl"
+			#include "ldscript_select_bss_mts.lsl"
+			
+			"__START_DSPR_Core3_QM_Bss" = "_lc_gb_Grp_RAM_DSPR_Core3_QM_Bss_Section";
+			"__END_DSPR_Core3_QM_Bss"   = "_lc_ge_Grp_RAM_DSPR_Core3_QM_Bss_Section";		
+		}
+		
+		/******************************************************************
+		* DSPR Memory Map : Core3 ASIL bss Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core3_ASIL_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_core3)
+		{
+			select ".bss.Grp_RAM_DSPR_Core3_ASIL_Bss_Section";
+			
+			"__START_DSPR_Core3_ASIL_Bss" = "_lc_gb_Grp_RAM_DSPR_Core3_ASIL_Bss_Section";
+			"__END_DSPR_Core3_ASIL_Bss"   = "_lc_ge_Grp_RAM_DSPR_Core3_ASIL_Bss_Section";		
+		}
+		
+		/******************************************************************
+		* PSPR Memory Map : Core0 QM bss Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core0_QM_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_pspr_core0)
+		{
+			select ".bss.Grp_RAM_PSPR_Core0_QM_Bss_Section";
+					
+			"__START_PSPR_Core0_QM_Bss" = "_lc_gb_Grp_RAM_PSPR_Core0_QM_Bss_Section";
+			"__END_PSPR_Core0_QM_Bss"   = "_lc_ge_Grp_RAM_PSPR_Core0_QM_Bss_Section";			
+		}
+
+		/******************************************************************
+		* PSPR Memory Map : Core0 ASIL bss Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core0_ASIL_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_pspr_core0)
+		{
+			select ".bss.Grp_RAM_PSPR_Core0_ASIL_Bss_Section";
+
+			"__START_PSPR_Core0_ASIL_Bss" = "_lc_gb_Grp_RAM_PSPR_Core0_ASIL_Bss_Section";
+			"__END_PSPR_Core0_ASIL_Bss"   = "_lc_ge_Grp_RAM_PSPR_Core0_ASIL_Bss_Section";		
+		}
+
+		/******************************************************************
+		* PSPR Memory Map : Core1 QM bss Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core1_QM_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_pspr_core1)
+		{
+			select ".bss.Grp_RAM_PSPR_Core1_QM_Bss_Section";
+
+			"__START_PSPR_Core1_QM_Bss" = "_lc_gb_Grp_RAM_PSPR_Core1_QM_Bss_Section";
+			"__END_PSPR_Core1_QM_Bss"   = "_lc_ge_Grp_RAM_PSPR_Core1_QM_Bss_Section";		
+		}
+
+		/******************************************************************
+		* PSPR Memory Map : Core1 ASIL bss Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core1_ASIL_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_pspr_core1)
+		{
+			select ".bss.Grp_RAM_PSPR_Core1_ASIL_Bss_Section";
+
+			"__START_PSPR_Core1_ASIL_Bss" = "_lc_gb_Grp_RAM_PSPR_Core1_ASIL_Bss_Section";
+			"__END_PSPR_Core1_ASIL_Bss"   = "_lc_ge_Grp_RAM_PSPR_Core1_ASIL_Bss_Section";		
+		}
+
+		/******************************************************************
+		* PSPR Memory Map : Core2 QM bss Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core2_QM_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_pspr_core2)
+		{
+			select ".bss.Grp_RAM_PSPR_Core2_QM_Bss_Section";
+
+			"__START_PSPR_Core2_QM_Bss" = "_lc_gb_Grp_RAM_PSPR_Core2_QM_Bss_Section";
+			"__END_PSPR_Core2_QM_Bss"   = "_lc_ge_Grp_RAM_PSPR_Core2_QM_Bss_Section";		
+		}
+
+		/******************************************************************
+		* PSPR Memory Map : Core2 ASIL bss Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core2_ASIL_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_pspr_core2)
+		{
+			select ".bss.Grp_RAM_PSPR_Core2_ASIL_Bss_Section";
+
+			"__START_PSPR_Core2_ASIL_Bss" = "_lc_gb_Grp_RAM_PSPR_Core2_ASIL_Bss_Section";
+			"__END_PSPR_Core2_ASIL_Bss"   = "_lc_ge_Grp_RAM_PSPR_Core2_ASIL_Bss_Section";		
+		}
+
+		/******************************************************************
+		* PSPR Memory Map : Core3 QM bss Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core3_QM_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_pspr_core3)
+		{
+			select ".bss.Grp_RAM_PSPR_Core3_QM_Bss_Section";
+
+			"__START_PSPR_Core3_QM_Bss" = "_lc_gb_Grp_RAM_PSPR_Core3_QM_Bss_Section";
+			"__END_PSPR_Core3_QM_Bss"   = "_lc_ge_Grp_RAM_PSPR_Core3_QM_Bss_Section";		
+		}
+
+		/******************************************************************
+		* PSPR Memory Map : Core3 ASIL bss Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core3_ASIL_Bss_Section (align=4, ordered, nocopy,  run_addr = mem:int_ram_pspr_core3)
+		{
+			select ".bss.Grp_RAM_PSPR_Core3_ASIL_Bss_Section";
+
+			"__START_PSPR_Core3_ASIL_Bss" = "_lc_gb_Grp_RAM_PSPR_Core3_ASIL_Bss_Section";
+			"__END_PSPR_Core3_ASIL_Bss"   = "_lc_ge_Grp_RAM_PSPR_Core3_ASIL_Bss_Section";		
+		}
+
+		/******************************************************************
+		* DSPR Memory Map : Core0 QM data Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core0_QM_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_core0)
+	    {
+			section ".data.Grp_RAM_DSPR_Core0_QM_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_DSPR_Core0_QM_Data_Section";
+			}
+			
+			"__START_DSPR_Core0_QM_Data" = "_lc_gb_Grp_RAM_DSPR_Core0_QM_Data_Section";
+			"__END_DSPR_Core0_QM_Data"   = "_lc_ge_Grp_RAM_DSPR_Core0_QM_Data_Section";			
+	    }
+		group Grp_ROM_DSPR_Core0_QM_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:int_rom)
+		{
+			section "initdata.data.Grp_RAM_DSPR_Core0_QM_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_DSPR_Core0_QM_Data_Section\]";	
+			}
+			"__START_DSPR_Core0_QM_Init_Data" = "_lc_gb_Grp_ROM_DSPR_Core0_QM_Init_Data_Section";
+			"__END_DSPR_Core0_QM_Init_Data" = "_lc_ge_Grp_ROM_DSPR_Core0_QM_Init_Data_Section";
+		}
+		
+		/******************************************************************
+		* DSPR Memory Map : Core0 ASIL data Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core0_ASIL_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_core0)
+	    {
+			section ".data.Grp_RAM_DSPR_Core0_ASIL_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_DSPR_Core0_ASIL_Data_Section";
+			}
+			
+			"__START_DSPR_Core0_ASIL_Data" = "_lc_gb_Grp_RAM_DSPR_Core0_ASIL_Data_Section";
+			"__END_DSPR_Core0_ASIL_Data"   = "_lc_ge_Grp_RAM_DSPR_Core0_ASIL_Data_Section";			
+	    }
+		group Grp_ROM_DSPR_Core0_ASIL_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:int_rom)
+		{
+			section "initdata.data.Grp_RAM_DSPR_Core0_ASIL_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_DSPR_Core0_ASIL_Data_Section\]";	
+			}
+			"__START_DSPR_Core0_ASIL_Init_Data" = "_lc_gb_Grp_ROM_DSPR_Core0_ASIL_Init_Data_Section";
+			"__END_DSPR_Core0_ASIL_Init_Data" = "_lc_ge_Grp_ROM_DSPR_Core0_ASIL_Init_Data_Section";
+		}
+		
+		/******************************************************************
+		* DSPR Memory Map : Core1 QM data Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core1_QM_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_core1)
+	    {
+			section ".data.Grp_RAM_DSPR_Core1_QM_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_DSPR_Core1_QM_Data_Section";
+			}
+			
+			"__START_DSPR_Core1_QM_Data" = "_lc_gb_Grp_RAM_DSPR_Core1_QM_Data_Section";
+			"__END_DSPR_Core1_QM_Data"   = "_lc_ge_Grp_RAM_DSPR_Core1_QM_Data_Section";			
+	    }
+		group Grp_ROM_DSPR_Core1_QM_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:pfls1)
+		{
+			section "initdata.data.Grp_RAM_DSPR_Core1_QM_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_DSPR_Core1_QM_Data_Section\]";	
+			}
+			"__START_DSPR_Core1_QM_Init_Data" = "_lc_gb_Grp_ROM_DSPR_Core1_QM_Init_Data_Section";
+			"__END_DSPR_Core1_QM_Init_Data" = "_lc_ge_Grp_ROM_DSPR_Core1_QM_Init_Data_Section";
+		}
+		
+		/******************************************************************
+		* DSPR Memory Map : Core1 ASIL data Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core1_ASIL_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_core1)
+	    {
+			section ".data.Grp_RAM_DSPR_Core1_ASIL_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_DSPR_Core1_ASIL_Data_Section";
+				
+				#include "ldscript_select_data_fct.lsl"
+				#include "ldscript_select_data_lcf.lsl"
+				#include "ldscript_select_data_vdy.lsl"	
+			}
+			
+			"__START_DSPR_Core1_ASIL_Data" = "_lc_gb_Grp_RAM_DSPR_Core1_ASIL_Data_Section";
+			"__END_DSPR_Core1_ASIL_Data"   = "_lc_ge_Grp_RAM_DSPR_Core1_ASIL_Data_Section";			
+	    }
+		group Grp_ROM_DSPR_Core1_ASIL_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:pfls1)
+		{
+			section "initdata.data.Grp_RAM_DSPR_Core1_ASIL_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_DSPR_Core1_ASIL_Data_Section\]";	
+
+				#include "ldscript_select_data_fct_init.lsl"
+				#include "ldscript_select_data_lcf_init.lsl"
+				#include "ldscript_select_data_vdy_init.lsl"				
+			}
+			"__START_DSPR_Core1_ASIL_Init_Data" = "_lc_gb_Grp_ROM_DSPR_Core1_ASIL_Init_Data_Section";
+			"__END_DSPR_Core1_ASIL_Init_Data" = "_lc_ge_Grp_ROM_DSPR_Core1_ASIL_Init_Data_Section";
+		}
+
+		/******************************************************************
+		* DSPR Memory Map : Core2 QM data Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core2_QM_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_core2)
+	    {
+			section ".data.Grp_RAM_DSPR_Core2_QM_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_DSPR_Core2_QM_Data_Section";
+				
+				#include "ldscript_select_data_multi.lsl"
+			}
+			
+			"__START_DSPR_Core2_QM_Data" = "_lc_gb_Grp_RAM_DSPR_Core2_QM_Data_Section";
+			"__END_DSPR_Core2_QM_Data"   = "_lc_ge_Grp_RAM_DSPR_Core2_QM_Data_Section";			
+	    }
+		group Grp_ROM_DSPR_Core2_QM_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:pfls2)
+		{
+			section "initdata.data.Grp_RAM_DSPR_Core2_QM_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_DSPR_Core2_QM_Data_Section\]";	
+				
+				#include "ldscript_select_data_multi_init.lsl"
+			}
+			"__START_DSPR_Core2_QM_Init_Data" = "_lc_gb_Grp_ROM_DSPR_Core2_QM_Init_Data_Section";
+			"__END_DSPR_Core2_QM_Init_Data" = "_lc_ge_Grp_ROM_DSPR_Core2_QM_Init_Data_Section";
+		}
+		
+		/******************************************************************
+		* DSPR Memory Map : Core2 ASIL data Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core2_ASIL_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_core2)
+	    {
+			section ".data.Grp_RAM_DSPR_Core2_ASIL_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_DSPR_Core2_ASIL_Data_Section";
+			}
+			
+			"__START_DSPR_Core2_ASIL_Data" = "_lc_gb_Grp_RAM_DSPR_Core2_ASIL_Data_Section";
+			"__END_DSPR_Core2_ASIL_Data"   = "_lc_ge_Grp_RAM_DSPR_Core2_ASIL_Data_Section";			
+	    }
+		group Grp_ROM_DSPR_Core2_ASIL_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:pfls2)
+		{
+			section "initdata.data.Grp_RAM_DSPR_Core2_ASIL_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_DSPR_Core2_ASIL_Data_Section\]";				
+			}
+			"__START_DSPR_Core2_ASIL_Init_Data" = "_lc_gb_Grp_ROM_DSPR_Core2_ASIL_Init_Data_Section";
+			"__END_DSPR_Core2_ASIL_Init_Data" = "_lc_ge_Grp_ROM_DSPR_Core2_ASIL_Init_Data_Section";
+		}
+		
+		/******************************************************************
+		* DSPR Memory Map : Core3 QM data Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core3_QM_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_core3)
+	    {
+			section ".data.Grp_RAM_DSPR_Core3_QM_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_DSPR_Core3_QM_Data_Section";
+				
+				#include "ldscript_select_data_mts.lsl"
+			}
+			
+			"__START_DSPR_Core3_QM_Data" = "_lc_gb_Grp_RAM_DSPR_Core3_QM_Data_Section";
+			"__END_DSPR_Core3_QM_Data"   = "_lc_ge_Grp_RAM_DSPR_Core3_QM_Data_Section";			
+	    }
+		group Grp_ROM_DSPR_Core3_QM_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:pfls3)
+		{
+			section "initdata.data.Grp_RAM_DSPR_Core3_QM_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_DSPR_Core3_QM_Data_Section\]";	
+				
+				#include "ldscript_select_data_mts_init.lsl"
+			}
+			"__START_DSPR_Core3_QM_Init_Data" = "_lc_gb_Grp_ROM_DSPR_Core3_QM_Init_Data_Section";
+			"__END_DSPR_Core3_QM_Init_Data" = "_lc_ge_Grp_ROM_DSPR_Core3_QM_Init_Data_Section";
+		}
+		
+		/******************************************************************
+		* DSPR Memory Map : Core3 ASIL data Section
+		* ****************************************************************/	
+		group Grp_RAM_DSPR_Core3_ASIL_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_core3)
+	    {
+			section ".data.Grp_RAM_DSPR_Core3_ASIL_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_DSPR_Core3_ASIL_Data_Section";
+			}
+			
+			"__START_DSPR_Core3_ASIL_Data" = "_lc_gb_Grp_RAM_DSPR_Core3_ASIL_Data_Section";
+			"__END_DSPR_Core3_ASIL_Data"   = "_lc_ge_Grp_RAM_DSPR_Core3_ASIL_Data_Section";			
+	    }
+		group Grp_ROM_DSPR_Core3_ASIL_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:pfls3)
+		{
+			section "initdata.data.Grp_RAM_DSPR_Core3_ASIL_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_DSPR_Core3_ASIL_Data_Section\]";				
+			}
+			"__START_DSPR_Core3_ASIL_Init_Data" = "_lc_gb_Grp_ROM_DSPR_Core3_ASIL_Init_Data_Section";
+			"__END_DSPR_Core3_ASIL_Init_Data" = "_lc_ge_Grp_ROM_DSPR_Core3_ASIL_Init_Data_Section";
+		}
+		
+		/******************************************************************
+		* PSPR Memory Map : Core0 QM data Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core0_QM_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_pspr_core0)
+	    {
+			section ".data.Grp_RAM_PSPR_Core0_QM_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_PSPR_Core0_QM_Data_Section";
+			}
+			
+			"__START_PSPR_Core0_QM_Data" = "_lc_gb_Grp_RAM_PSPR_Core0_QM_Data_Section";
+			"__END_PSPR_Core0_QM_Data"   = "_lc_ge_Grp_RAM_PSPR_Core0_QM_Data_Section";			
+	    }
+		group Grp_ROM_PSPR_Core0_QM_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:int_rom)
+		{
+			section "initdata.data.Grp_RAM_PSPR_Core0_QM_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_PSPR_Core0_QM_Data_Section\]";	
+			}
+			"__START_PSPR_Core0_QM_Init_Data" = "_lc_gb_Grp_ROM_PSPR_Core0_QM_Init_Data_Section";
+			"__END_PSPR_Core0_QM_Init_Data" = "_lc_ge_Grp_ROM_PSPR_Core0_QM_Init_Data_Section";
+		}
+		
+		/******************************************************************
+		* PSPR Memory Map : Core0 ASIL data Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core0_ASIL_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_pspr_core0)
+	    {
+			section ".data.Grp_RAM_PSPR_Core0_ASIL_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_PSPR_Core0_ASIL_Data_Section";
+			}
+			
+			"__START_PSPR_Core0_ASIL_Data" = "_lc_gb_Grp_RAM_PSPR_Core0_ASIL_Data_Section";
+			"__END_PSPR_Core0_ASIL_Data"   = "_lc_ge_Grp_RAM_PSPR_Core0_ASIL_Data_Section";			
+	    }
+		group Grp_ROM_PSPR_Core0_ASIL_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:int_rom)
+		{
+			section "initdata.data.Grp_RAM_PSPR_Core0_ASIL_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_PSPR_Core0_ASIL_Data_Section\]";	
+			}
+			"__START_PSPR_Core0_ASIL_Init_Data" = "_lc_gb_Grp_ROM_PSPR_Core0_ASIL_Init_Data_Section";
+			"__END_PSPR_Core0_ASIL_Init_Data" = "_lc_ge_Grp_ROM_PSPR_Core0_ASIL_Init_Data_Section";
+		}
+		
+		/******************************************************************
+		* PSPR Memory Map : Core1 QM data Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core1_QM_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_pspr_core1)
+	    {
+			section ".data.Grp_RAM_PSPR_Core1_QM_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_PSPR_Core1_QM_Data_Section";
+			}
+			
+			"__START_PSPR_Core1_QM_Data" = "_lc_gb_Grp_RAM_PSPR_Core1_QM_Data_Section";
+			"__END_PSPR_Core1_QM_Data"   = "_lc_ge_Grp_RAM_PSPR_Core1_QM_Data_Section";			
+	    }
+		group Grp_ROM_PSPR_Core1_QM_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:pfls1)
+		{
+			section "initdata.data.Grp_RAM_PSPR_Core1_QM_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_PSPR_Core1_QM_Data_Section\]";	
+			}
+			"__START_PSPR_Core1_QM_Init_Data" = "_lc_gb_Grp_ROM_PSPR_Core1_QM_Init_Data_Section";
+			"__END_PSPR_Core1_QM_Init_Data" = "_lc_ge_Grp_ROM_PSPR_Core1_QM_Init_Data_Section";
+		}
+		
+		/******************************************************************
+		* PSPR Memory Map : Core1 ASIL data Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core1_ASIL_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_pspr_core1)
+	    {
+			section ".data.Grp_RAM_PSPR_Core1_ASIL_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_PSPR_Core1_ASIL_Data_Section";
+			}
+			
+			"__START_PSPR_Core1_ASIL_Data" = "_lc_gb_Grp_RAM_PSPR_Core1_ASIL_Data_Section";
+			"__END_PSPR_Core1_ASIL_Data"   = "_lc_ge_Grp_RAM_PSPR_Core1_ASIL_Data_Section";			
+	    }
+		group Grp_ROM_PSPR_Core1_ASIL_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:pfls1)
+		{
+			section "initdata.data.Grp_RAM_PSPR_Core1_ASIL_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_PSPR_Core1_ASIL_Data_Section\]";				
+			}
+			"__START_PSPR_Core1_ASIL_Init_Data" = "_lc_gb_Grp_ROM_PSPR_Core1_ASIL_Init_Data_Section";
+			"__END_PSPR_Core1_ASIL_Init_Data" = "_lc_ge_Grp_ROM_PSPR_Core1_ASIL_Init_Data_Section";
+		}
+
+		/******************************************************************
+		* PSPR Memory Map : Core2 QM data Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core2_QM_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_pspr_core2)
+	    {
+			section ".data.Grp_RAM_PSPR_Core2_QM_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_PSPR_Core2_QM_Data_Section";
+			}
+			
+			"__START_PSPR_Core2_QM_Data" = "_lc_gb_Grp_RAM_PSPR_Core2_QM_Data_Section";
+			"__END_PSPR_Core2_QM_Data"   = "_lc_ge_Grp_RAM_PSPR_Core2_QM_Data_Section";			
+	    }
+		group Grp_ROM_PSPR_Core2_QM_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:pfls2)
+		{
+			section "initdata.data.Grp_RAM_PSPR_Core2_QM_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_PSPR_Core2_QM_Data_Section\]";	
+			}
+			"__START_PSPR_Core2_QM_Init_Data" = "_lc_gb_Grp_ROM_PSPR_Core2_QM_Init_Data_Section";
+			"__END_PSPR_Core2_QM_Init_Data" = "_lc_ge_Grp_ROM_PSPR_Core2_QM_Init_Data_Section";
+		}
+		
+		/******************************************************************
+		* PSPR Memory Map : Core2 ASIL data Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core2_ASIL_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_pspr_core2)
+	    {
+			section ".data.Grp_RAM_PSPR_Core2_ASIL_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_PSPR_Core2_ASIL_Data_Section";
+			}
+			
+			"__START_PSPR_Core2_ASIL_Data" = "_lc_gb_Grp_RAM_PSPR_Core2_ASIL_Data_Section";
+			"__END_PSPR_Core2_ASIL_Data"   = "_lc_ge_Grp_RAM_PSPR_Core2_ASIL_Data_Section";			
+	    }
+		group Grp_ROM_PSPR_Core2_ASIL_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:pfls2)
+		{
+			section "initdata.data.Grp_RAM_PSPR_Core2_ASIL_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_PSPR_Core2_ASIL_Data_Section\]";				
+			}
+			"__START_PSPR_Core2_ASIL_Init_Data" = "_lc_gb_Grp_ROM_PSPR_Core2_ASIL_Init_Data_Section";
+			"__END_PSPR_Core2_ASIL_Init_Data" = "_lc_ge_Grp_ROM_PSPR_Core2_ASIL_Init_Data_Section";
+		}
+		
+		/******************************************************************
+		* PSPR Memory Map : Core3 QM data Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core3_QM_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_pspr_core3)
+	    {
+			section ".data.Grp_RAM_PSPR_Core3_QM_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_PSPR_Core3_QM_Data_Section";
+			}
+			
+			"__START_PSPR_Core3_QM_Data" = "_lc_gb_Grp_RAM_PSPR_Core3_QM_Data_Section";
+			"__END_PSPR_Core3_QM_Data"   = "_lc_ge_Grp_RAM_PSPR_Core3_QM_Data_Section";			
+	    }
+		group Grp_ROM_PSPR_Core3_QM_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:pfls3)
+		{
+			section "initdata.data.Grp_RAM_PSPR_Core3_QM_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_PSPR_Core3_QM_Data_Section\]";	
+			}
+			"__START_PSPR_Core3_QM_Init_Data" = "_lc_gb_Grp_ROM_PSPR_Core3_QM_Init_Data_Section";
+			"__END_PSPR_Core3_QM_Init_Data" = "_lc_ge_Grp_ROM_PSPR_Core3_QM_Init_Data_Section";
+		}
+		
+		/******************************************************************
+		* PSPR Memory Map : Core3 ASIL data Section
+		* ****************************************************************/	
+		group Grp_RAM_PSPR_Core3_ASIL_Data_Section (align=4, nocopy,  run_addr = mem:int_ram_pspr_core3)
+	    {
+			section ".data.Grp_RAM_PSPR_Core3_ASIL_Data_Section"  (attributes=rw, blocksize=4)
+			{
+				select ".data.Grp_RAM_PSPR_Core3_ASIL_Data_Section";
+			}
+			
+			"__START_PSPR_Core3_ASIL_Data" = "_lc_gb_Grp_RAM_PSPR_Core3_ASIL_Data_Section";
+			"__END_PSPR_Core3_ASIL_Data"   = "_lc_ge_Grp_RAM_PSPR_Core3_ASIL_Data_Section";			
+	    }
+		group Grp_ROM_PSPR_Core3_ASIL_Init_Data_Section(align=4,contiguous, ordered, load_addr = mem:pfls3)
+		{
+			section "initdata.data.Grp_RAM_PSPR_Core3_ASIL_Data_Section" (fill=0, attributes=r, blocksize=64)
+			{
+				select "\[.data.Grp_RAM_PSPR_Core3_ASIL_Data_Section\]";				
+			}
+			"__START_PSPR_Core3_ASIL_Init_Data" = "_lc_gb_Grp_ROM_PSPR_Core3_ASIL_Init_Data_Section";
+			"__END_PSPR_Core3_ASIL_Init_Data" = "_lc_ge_Grp_ROM_PSPR_Core3_ASIL_Init_Data_Section";
+		}
+
+	    group Grp_RAM_DSPR0_Log (align=4, ordered, nocopy,  run_addr = mem:RAM_DSPR0_log)
+	    {
+			select ".bss.log.g_lsg_log";
+	    }
+
+        group Grp_RAM_DSPR0_Fs_Preserve (align=4, ordered, nocopy,  run_addr = mem:RAM_DSPR0_FS_preserved)
+	    {
+			select ".bss.nonclear.fs";
+	    }
+
+		group Grp_RAM_DSPR0_Dsm_ProgramFlag (align=4, ordered, nocopy,  run_addr = mem:RAM_DSPR0_SharedVar_ProgramFlag)
+	    {
+			select ".bss.Grp_RAM_DSPR0_Dsm_ProgramFlag";
+	    }
+		/******************************************************************
+		* LMU Memory Map : LMU Data sections
+		* ****************************************************************/
+		group (ordered, attributes=rw, run_addr = mem:cpu0_dlmu)
+        {
+          select ".data.*.lmudata_cpu0";
+          select ".bss.*.lmubss_cpu0";
+        }
+        group (ordered, attributes=rw, run_addr = mem:cpu1_dlmu)
+        {
+          select ".data.*.lmudata_cpu1";
+          select ".bss.*.lmubss_cpu1";
+        }
+        group (ordered, attributes=rw, run_addr = mem:cpu2_dlmu)
+        {
+          select ".data.*.lmudata_cpu2";
+          select ".bss.*.lmubss_cpu2";
+        }
+        group (ordered, attributes=rw, run_addr = mem:cpu3_dlmu)
+        {
+          select ".data.*.lmudata_cpu3";
+          select ".bss.*.lmubss_cpu3";
+        }
+	    /******************************************************************
+		* LMURAM Memory Map : LMURAM Data sections
+		* ****************************************************************/
+		group (ordered, attributes=rw, run_addr=mem:lmuram)
+        {
+          select ".data.*.lmu_data";
+          select ".bss.*.lmu_bss";
+        }
+        group (ordered, attributes=rw, run_addr = mem:lmuram/not_cached)
+        {
+          /* Initialized Data */
+          select "*InitData.LmuNC.8bit";
+          select "*InitData.LmuNC.16bit";
+          select "*InitData.LmuNC.32bit";
+          select "*InitData.LmuNC.64bit";
+          select "*InitData.LmuNC.256bit";
+          select "*InitData.LmuNC.Unspecified";
+          select "*InitData.Fast.LmuNC.8bit";
+          select "*InitData.Fast.LmuNC.16bit";
+          select "*InitData.Fast.LmuNC.32bit";
+          select "*InitData.Fast.LmuNC.64bit";
+          select "*InitData.Fast.LmuNC.256bit";
+          select "*InitData.Fast.LmuNC.Unspecified";
+          /* UnInitialized Data */
+          select "*ClearedData.LmuNC.8bit";
+          select "*ClearedData.LmuNC.16bit";
+          select "*ClearedData.LmuNC.32bit";
+          select "*ClearedData.LmuNC.64bit";
+          select "*ClearedData.LmuNC.256bit";
+          select "*ClearedData.LmuNC.Unspecified";
+          select "*ClearedData.Fast.LmuNC.8bit";
+          select "*ClearedData.Fast.LmuNC.16bit";
+          select "*ClearedData.Fast.LmuNC.32bit";
+          select "*ClearedData.Fast.LmuNC.64bit";
+          select "*ClearedData.Fast.LmuNC.256bit";
+          select "*ClearedData.Fast.LmuNC.Unspecified";
+        }
+	}
+}

@@ -1,0 +1,19 @@
+TRQ interface 
+Found in folder: latdmc_veh
+Proj:MFC431, MFC431BD10 
+Iuc existing: YES, in folder latdmc_iuc
+
+TRQ interface 
+Found in folder: latdmc_veh_trq   ---->latdmc_veh_trq = latdmc_veh + latdmc_iuc
+Proj:ADC420HA10
+Iuc existing: NO
+
+ANGLE interface
+Found in folder: latdmc_veh_ang
+Proj:MFC431LO19, MFC431SW19, MFC431VA10, MFC431TA19, MFC431VA21
+Iuc existing: NO
+
+SteerTRQ interface:
+Found in folder: latdmc_veh_strq
+Proj:MFC431SC19
+Iuc existing: YES, latdmc_iuc_strq

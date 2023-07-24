@@ -1,0 +1,22 @@
+-il 2
+
+-i "C:\Tools\gcc_arm\4.7_2012q4\lib\gcc\arm-none-eabi\4.7.3\include"
+-i "C:\Tools\gcc_arm\4.7_2012q4\arm-none-eabi\include\c++\4.7.3"
+-i "C:\Tools\gcc_arm\4.7_2012q4\arm-none-eabi\include\c++\4.7.3\arm-none-eabi"
+-i "C:\Tools\ti_xdc\3.50.05.12\packages"
+-i "C:\Tools\ti_bios\6.70.01.03\packages"
+-i "C:\Tools\ti_bios\6.70.01.03\packages\gnu\targets\arm"
+
+-q "C:\Tools\gcc_arm\4.7_2012q4\lib\gcc\arm-none-eabi\4.7.3\include"
+-q "C:\Tools\gcc_arm\4.7_2012q4\arm-none-eabi\include\c++\4.7.3"
+-q "C:\Tools\gcc_arm\4.7_2012q4\arm-none-eabi\include\c++\4.7.3\arm-none-eabi"
+-q "C:\Tools\ti_xdc\3.50.05.12\packages"
+-q "C:\Tools\ti_bios\6.70.01.03\packages"
+-q "C:\Tools\ti_bios\6.70.01.03\packages\gnu\targets\arm"
+
+-d SECTION_ALIGN_IMPL(alignment)=
+-d SECTION_CODE_IMPL(section)=
+-d SECTION_DATA_IMPL(section)=
+
+-d _GLIBCXX_CSTDARG=1
+-d __func__

@@ -1,0 +1,39 @@
+-sd "__PTRDIFF_T_TYPE__=int"
+-sd "__SIZE_T_TYPE__=unsigned"
+-sd __cplusplus
+-sd __attribute__(x)=
+-sd "cregister="
+-s char=8
+-a char=1
+-s int=32
+-a int=4
+-s short=16
+-a short=2
+-s long=32
+-a long=4
+-s longlong=64
+-a longlong=4
+-s float=32
+-a float=4
+-s double=64
+-a double=4
+-s ldouble=64
+-a ldouble=4
+-s dataptr=32
+-a dataptr=4
+-s codeptr=32
+-a codeptr=4
+"-mrtnd 200"
+-accd-
+-aicpm+
+-atanpc-
+-atncrb-
+-audi-
+-dpft-
+-duc99dilt+
+-ifn-
+-ptp-
+-sdep-
+-sig-
+-sd "_prl_null_expression=0 _prl_ignore_paren"
+-sd prl_ignore_paren=_ignore_paren

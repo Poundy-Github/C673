@@ -1,0 +1,28 @@
+---
+
+#The rtaXmlgenerator configuration file for the baseProject ARS540 and all related application projects
+
+#Here all cores have to be specified.
+#Further all relevant datFiles have to be provided
+
+# The projectName in the paths has to be substituted with '<___project___>'. During generator run it will be replaced with the correct projectName
+# <___OsPath___>    will be replaced by the argument os_dir_path which has to be the folder of a related conan package or project 
+# <___pdoPath___>   will be replaced by the argument pdo_path which has to be the folder where the pdo metadata (pdoscan_out.dat) file is stored
+
+#All cores of the iuc build unit
+CORES :  
+# NOTE: The order of the parameter is important! In case one parameter is not relevant (not given) just enter an empty string ( -> '' )
+#  'coreName'  , 'coreID'  , 'osConfigFile'                   , 'osCoreID'            , 'isrRangeStart' , 'isrRangeEnd'  , 'group'         , 'wakeupComponent'  , 'WakeupMarker'      , 'barChartXml', 'ignoreLocalIdStrings' ,
+- ['S202_Core0'      , '0'       , '<___OsPath___>/Os_user.h' , '0'                   , '0'             , '255'           , ''              , ''                 , ''                  , ''           , '0'                    ,]
+- ['S202_Core1'      , '1'       , '<___OsPath___>/Os_user.h' , '1'                   , '0'             , '255'           , ''              , ''                 , ''                  , ''           , '0'                    ,]
+- ['S202_Core2'      , '2'       , '<___OsPath___>/Os_user.h' , '2'                   , '0'             , '255'           , ''              , ''                 , ''                  , ''           , '0'                    ,]
+- ['S202_Core3'      , '3'       , '<___OsPath___>/Os_user.h' , '3'                   , '0'             , '255'           , ''              , ''                 , ''                  , ''           , '0'                    ,] 
+
+#All relevant DatFiles (one or more)
+DAT_FILES : 
+- <___pdoPath___>/FCTVDY.pdo
+#HanGu should be uncommented later
+
+# Configuration flag (True OR False)
+# The globalIDs (ComponentIDs.xml) shall be only generated in case of INFRA and not in case of DPU - due to the globalIDs of the RTE 
+GENERATE_GLOBALID_FEAT : True

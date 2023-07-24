@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="InfoPath.Document" versionProgid="InfoPath.Document.2"?><?mso-infoPathSolution PIVersion="1.0.0.0" name="urn:schemas-microsoft-com:office:infopath:CBD-TD5:" productVersion="15.0.0" href="file:///D:\TD5_DEV\CBD-TD5.xsn" solutionVersion="1.0.0.76" ?><cbd version="1.0" xmlns:ns1="http://schemas.microsoft.com/office/infopath/2003/myXSD/2010-05-03T19:01:03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:my="http://schemas.microsoft.com/office/infopath/2003/myXSD/2016-02-01T15:15:16" xmlns:xd="http://schemas.microsoft.com/office/infopath/2003" xml:lang="en-us">
+	<CMInfo>
+		<Author>$Author: Kloiber, Armin (uidk7587) $</Author>
+		<Date>$Date: 2019/04/02 15:44:59CEST $</Date>
+		<Workfile>$Source: lohp.cbd $</Workfile>
+		<Revision>$Revision: 1.2 $</Revision>
+	</CMInfo>
+	<Composite>
+		<CompositeName>lohp</CompositeName>
+		<Comment></Comment>
+		<CompositeType>composite</CompositeType>
+		<TargetPlatform></TargetPlatform>
+		<isDisabled>false</isDisabled>
+		<CompositeFileTypes>
+			
+			
+		</CompositeFileTypes>
+		<Files></Files>
+	</Composite>
+	<Variants>
+		<Variant>
+			<VariantName>LOHP_RRU</VariantName>
+			<Comment></Comment>
+			<VariantComputation>GLOB_BF_CHIP_TECH == GLOB_BF_CHIP_RRU</VariantComputation>
+			<isDisabled>false</isDisabled>
+			<CompositeFileTypes>
+			<FileTypeDefinition>
+				<FileTypeName>lohp_c</FileTypeName>
+				<Comment></Comment>
+				<FilePattern>*.c</FilePattern>
+				<FilePatternPath>./?</FilePatternPath>
+				<isDisabled>false</isDisabled>
+				<ProcessDefinitions>
+					<ProcessDefinition>
+						<ProcessName>CCOMP</ProcessName>
+						<Comment></Comment>
+						<ProcessOption>CFLAGS_Z7</ProcessOption>
+						<isDisabled>false</isDisabled>
+					</ProcessDefinition>
+				<ProcessDefinition>
+									<ProcessName>SCA_SOURCE</ProcessName>
+									<Comment></Comment>
+									<ProcessOption></ProcessOption>
+									<isDisabled>false</isDisabled>
+								</ProcessDefinition></ProcessDefinitions>
+			</FileTypeDefinition>
+			<FileTypeDefinition>
+				<FileTypeName>lohp_h</FileTypeName>
+				<Comment></Comment>
+				<FilePattern>*.h</FilePattern>
+				<FilePatternPath>./?</FilePatternPath>
+				<isDisabled>false</isDisabled>
+				<ProcessDefinitions>
+					<ProcessDefinition>
+						<ProcessName>CHEADER</ProcessName>
+						<Comment></Comment>
+						<ProcessOption></ProcessOption>
+						<isDisabled>false</isDisabled>
+					</ProcessDefinition>
+				<ProcessDefinition>
+									<ProcessName>SCA_HEADER</ProcessName>
+									<Comment></Comment>
+									<ProcessOption></ProcessOption>
+									<isDisabled>false</isDisabled>
+								</ProcessDefinition></ProcessDefinitions>
+			</FileTypeDefinition>
+			</CompositeFileTypes>
+		</Variant>	
+		
+		
+	<Variant>
+			<VariantName>LOHP_xxx</VariantName>
+			<Comment></Comment>
+			<VariantComputation>GLOB_BF_CHIP_TECH != GLOB_BF_CHIP_RRU</VariantComputation>
+			<isDisabled>false</isDisabled>
+			<CompositeFileTypes>
+			<FileTypeDefinition>
+				<FileTypeName>lohp_c</FileTypeName>
+				<Comment></Comment>
+				<FilePattern>*.c</FilePattern>
+				<FilePatternPath>./?</FilePatternPath>
+				<isDisabled>false</isDisabled>
+				<ProcessDefinitions>
+					<ProcessDefinition>
+						<ProcessName>CCOMP</ProcessName>
+						<Comment></Comment>
+						<ProcessOption>CFLAGS_STD</ProcessOption>
+						<isDisabled>false</isDisabled>
+					</ProcessDefinition>
+				<ProcessDefinition>
+									<ProcessName>SCA_SOURCE</ProcessName>
+									<Comment></Comment>
+									<ProcessOption></ProcessOption>
+									<isDisabled>false</isDisabled>
+								</ProcessDefinition></ProcessDefinitions>
+			</FileTypeDefinition>
+			<FileTypeDefinition>
+				<FileTypeName>lohp_h</FileTypeName>
+				<Comment></Comment>
+				<FilePattern>*.h</FilePattern>
+				<FilePatternPath>./?</FilePatternPath>
+				<isDisabled>false</isDisabled>
+				<ProcessDefinitions>
+					<ProcessDefinition>
+						<ProcessName>CHEADER</ProcessName>
+						<Comment></Comment>
+						<ProcessOption></ProcessOption>
+						<isDisabled>false</isDisabled>
+					</ProcessDefinition>
+				<ProcessDefinition>
+									<ProcessName>SCA_HEADER</ProcessName>
+									<Comment></Comment>
+									<ProcessOption></ProcessOption>
+									<isDisabled>false</isDisabled>
+								</ProcessDefinition></ProcessDefinitions>
+			</FileTypeDefinition>
+			</CompositeFileTypes>
+		</Variant></Variants>
+</cbd>

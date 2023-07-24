@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<Channels xmlns="http://schemas.continental-corporation.com/mts/swc/2016/channel-definition">
+  <!--The channel definition with Id=0 means a channel with all data-->
+  <Channel Id="0" Name="All data"/>
+</Channels>

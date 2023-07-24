@@ -1,0 +1,34 @@
+vh28_evm_hil_c66xx.zip: Platform.xdc
+Platform.xdc:
+vh28_evm_hil_c66xx.zip: Platform.xs
+Platform.xs:
+vh28_evm_hil_c66xx.zip: config.bld
+config.bld:
+vh28_evm_hil_c66xx.zip: package/.vers_b160
+package/.vers_b160:
+vh28_evm_hil_c66xx.zip: package/.vers_g180
+package/.vers_g180:
+vh28_evm_hil_c66xx.zip: package/.vers_r170
+package/.vers_r170:
+vh28_evm_hil_c66xx.zip: package/.xdc-z52
+package/.xdc-z52:
+vh28_evm_hil_c66xx.zip: package/build.cfg
+package/build.cfg:
+vh28_evm_hil_c66xx.zip: package/package.bld.xml
+package/package.bld.xml:
+vh28_evm_hil_c66xx.zip: package/package.defs.h
+package/package.defs.h:
+vh28_evm_hil_c66xx.zip: package/package_vh28_evm_hil_c66xx.c
+package/package_vh28_evm_hil_c66xx.c:
+vh28_evm_hil_c66xx.zip: package/vh28_evm_hil_c66xx.ccs
+package/vh28_evm_hil_c66xx.ccs:
+vh28_evm_hil_c66xx.zip: package/vh28_evm_hil_c66xx.class
+package/vh28_evm_hil_c66xx.class:
+vh28_evm_hil_c66xx.zip: package/vh28_evm_hil_c66xx.java
+package/vh28_evm_hil_c66xx.java:
+vh28_evm_hil_c66xx.zip: package/vh28_evm_hil_c66xx.sch
+package/vh28_evm_hil_c66xx.sch:
+vh28_evm_hil_c66xx.zip: package.bld
+package.bld:
+vh28_evm_hil_c66xx.zip: package.xdc
+package.xdc:

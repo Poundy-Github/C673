@@ -1,0 +1,114 @@
+// COMPANY:   Continental Automotive
+// COMPONENT: DPUFF
+// VERSION:   $Revision: 1.1 $
+
+///@file
+///Defines adapter configuration for all cores and for all alogs.
+///Defines the requested and provided ports for each cluster.
+
+#ifndef GEN_ADAPTER_CONF_H
+#define GEN_ADAPTER_CONF_H
+
+/*!<codegen_start:GEN_ADAPTER_EN_ALGO>*/
+/*!<codegen_end:GEN_ADAPTER_EN_ALGO>*/
+
+// exclude this if this file is included from one of the ARP32 cores
+#if !defined(CORE_ARP32_1) && !defined(CORE_ARP32_0)
+
+#include <glob_defs.h>
+#include <DPUFF/ga/generic_adapter_cfg.h>
+#if CFG_ENABLED(DPUFF_GA_USING_ALGO_SERVICE)
+#include <algo_service_types.h>
+#endif
+#include <DPUFF/ga/mdb_cluster.h>
+#include <DPUFF/mdb/mdb.h>
+#include <glob_comp_id.h>
+#include <DPUFF/ga/algo_to_core_cfg.h>
+
+/*!<codegen_start:GEN_ADAPTER_INCLUDES>*/
+/*!<codegen_end:GEN_ADAPTER_INCLUDES>*/
+
+/*!<codegen_start:GEN_GA_MAX_NUM_PRO_PORT>*/
+/*!<codegen_end:GEN_GA_MAX_NUM_PRO_PORT>*/
+
+/*!<codegen_start:GEN_GA_MAX_NUM_REQ_PORT>*/
+/*!<codegen_end:GEN_GA_MAX_NUM_REQ_PORT>*/
+
+typedef enum tag_GA_e_MDB_access
+{
+  GA_e_ReadLatest   = 0,        ///< latest(newest) instance of the Custer is requested
+  GA_e_ReadFrameID  = 1,        ///< FrameID (from GS) is used as read index
+  GA_e_ReadDummy    = 0xffffff  ///< only needed to get always 32bit enum
+} GA_e_MDB_access;
+
+typedef enum tag_GA_e_QualityLevel
+{
+  GA_e_QL_QM      = 0,        ///< Quality level QM
+  GA_e_QL_ASIL_A  = 1,        ///< Quality level ASIL-A
+  GA_e_QLdummy    = 0xffffff  ///< only needed to get always 32bit enum
+} GA_e_QualityLevel;
+
+typedef struct tag_t_GA_reqPortElement
+{
+  MDB_E_ClusterID  Cluster_ID;        ///< MDB cluster ID
+  GA_e_MDB_access  read_access;       ///< defines if latest Cluster or Cluster with matching frameID is reqested
+  MDB_E_CRC_status e_CrcCheck;        ///< defines if CRC check verification is needed
+  sint8            cycleOffset;       ///< if read_access == \ref GA_e_ReadFrameID: offset to frameID requested from GS
+                                      ///<br> if read_access == \ref GA_e_ReadLatest: offset to index for latest instance in ringbuffer
+  sint16           struct_offset;     ///< offset (in byte) of the related element in the prov/reqPort struct
+} t_GA_reqPortElement;
+
+typedef struct tag_t_GA_proPortElement
+{
+  MDB_E_ClusterID   Cluster_ID;    ///< MDB cluster ID
+  sint16            struct_offset; ///< offset of the related element in the prov/reqPort struct
+} t_GA_proPortElement;
+
+#if CFG_ENABLED(DPUFF_GA_USING_ALGO_SERVICE)
+typedef void (* t_p_GA_function)(void * const p_reqPortStruct, void * const p_proPortStruct, AS_t_ServiceFuncts * const a_Serv_FuncPtr);
+#else
+typedef void (* t_p_GA_function)(void * const p_reqPortStruct, void * const p_proPortStruct);
+#endif
+
+typedef boolean (* t_p_GA_checkFunction)(void);
+
+// defines all properties needed in Generic Adapter for one Algo
+typedef struct tag_t_GA_algoElement
+{
+  sint16                      numReqPort;                ///< total number of requested (input) ports
+  sint16                      numProPort;                ///< total number of provided (output) ports
+  sint16                      sizeReqPortStruct;         ///< size of the requested port struct (e.g. reqVDYPrtList_t) in Byte
+  sint16                      sizeProPortStruct;         ///< size of the provided port struct (e.g. proVDYPrtList_t) in Byte
+  const t_GA_reqPortElement*  reqPortList;               ///< pointer to the description struct of the first requested Port
+  const t_GA_proPortElement*  proPortList;               ///< pointer to the description struct of the first provided Port
+  t_p_GA_function             p_GA_function;             ///< pointer of function to the function that calls Algo function
+  t_p_GA_checkFunction        p_GA_checkReqPortFunction; ///< pointer of function to the function checkingthe compliance betwenn algo config of the requested port struct and gen_adapter config
+  t_p_GA_checkFunction        p_GA_checkProPortFunction; ///< pointer of function to the function checking the compliance betwenn algo config of the provided port struct and gen_adapter config
+  uint8                       taskId;                    ///< ID of the Algo used for setting RTA Event Markers at start and end of Algo execution
+  GA_e_QualityLevel           qualityLevel;              ///< quality level of the Algo
+} t_GA_algoElement;
+
+/*!<codegen_start:GEN_ADAPTER_CFG_REQ_PORTS_H>*/
+/*!<codegen_end:GEN_ADAPTER_CFG_REQ_PORTS_H>*/
+
+/*!<codegen_start:GEN_ADAPTER_CFG_PRO_PORTS_H>*/
+/*!<codegen_end:GEN_ADAPTER_CFG_PRO_PORTS_H>*/
+
+/*!<codegen_start:GEN_ADAPTER_CFG_ALGO_ID>*/
+/*!<codegen_end:GEN_ADAPTER_CFG_ALGO_ID>*/
+
+/// contains the configuration of the generic adapters
+///
+/// the last value (+ 1) is set as guard but is not used.
+/// with this guard, the array is never empty
+// PRQA S 3710 ++
+// 21.04.2017; uidg6511
+// summary: Msg(3:3710) Expression(s) with enum type used as operand(s) to '+'.;
+// reason: this expression belongs to the type enum, just because the C enum implementation don't have size of type enum.
+// So GA_MAX_ALGO_ID is computed as size of the type enum, but it is not a part of the enum as set. GA_MAX_ALGO_ID is like const uint32. Also + 1 is correct.
+extern const t_GA_algoElement GA_PortConfig[GA_MAX_ALGO_ID + 1];
+// PRQA S 3710 --
+#endif
+
+#endif /* GEN_ADAPTER_CONF_H */
+

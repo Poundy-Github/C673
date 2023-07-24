@@ -1,0 +1,11 @@
+global &gCORENAME &gPROJECTNAME &gBASEPATH
+
+&DIR="&(gBASEPATH)\settings\&(gPROJECTNAME)"
+&PREFIX="&(DIR)\&(gCORENAME)"
+IF OS.DIR(&DIR)==FALSE()
+(
+	mkdir "&DIR"
+)
+store &PREFIX.settings.cmm win spath spathcache
+store &PREFIX.history.cmm history
+store &PREFIX.break.cmm break

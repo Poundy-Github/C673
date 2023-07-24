@@ -1,0 +1,47 @@
+
+; ----- GATEWAYS -----
+[UDEX]
+CfgSectionType = UdexComponent
+ExternalObject = SIM UDEX
+SimUdexDefFile = hla_sim_sub_meas.simudex
+DataSources    = DEVICE = $DEVICE$
+
+
+; ----- COMPONENTS -----
+[DUMMY]
+CfgSectionType = SimpleComponent
+PluginFile     = $UserPathMeasObj$\sim\sim_swc_gen_buf$REF$.dll
+IniFile        = hla_sim_sub_meas.ini
+
+
+; ----- EXPOSED PORTS -----
+[ExposedProvidePorts]
+CfgSectionType = ExposedProvidePort
+pAlgoCompState          = UDEX.pAlgoCompState
+pHlaf_HeadlightControl  = UDEX.pHlaf_HeadlightControl
+
+
+[ExposedRequestPorts]
+CfgSectionType = ExposedRequestPort
+pBaseCtrlData                  = DUMMY.Dummy1
+pCPar_HlafPar                  = DUMMY.Dummy2
+pCbOutputs                     = DUMMY.Dummy3
+pGenObjectList                 = DUMMY.Dummy4
+pHlaBusInputSignals            = DUMMY.Dummy5
+pHlaRadarObjectList            = DUMMY.Dummy6
+pMonoCalibration               = DUMMY.Dummy7
+pVehDyn                        = DUMMY.Dummy8
+pVehSig                        = DUMMY.Dummy9
+pLsdEnvironmentData            = DUMMY.Dummy10
+pLsdLightObjectList            = DUMMY.Dummy11
+pLsdLightList                  = DUMMY.Dummy12
+
+
+[ExposedClientPorts]
+CfgSectionType = ExposedClientPort
+Done = DUMMY.SelectionDone.0
+
+[ExposedServerPorts]
+CfgSectionType = ExposedServerPort
+Doit = DUMMY.DoStore
+

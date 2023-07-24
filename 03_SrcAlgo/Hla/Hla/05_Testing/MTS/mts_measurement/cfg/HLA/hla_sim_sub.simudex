@@ -1,0 +1,9 @@
+
+; ----- ProvidePorts -----
+
+[PPort hla_SyncRef]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = hla_SyncRef
+URL.1                 = DEVICE_REC.HLA.HlaSyncRef
+
+; ----- ClientPorts -----

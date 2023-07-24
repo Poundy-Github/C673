@@ -1,0 +1,12 @@
+[PPort pAlgoCompState]
+CfgSectionType=UdexProvidePort::RAWGroup
+Name=pAlgoCompState
+URL.0=DEVICE.HLA.AlgoCompState
+URL.1=DEVICE.HLA.HlaAlgoCompState
+
+[PPort pHlaf_HeadlightControl]
+CfgSectionType=UdexProvidePort::RAWGroup
+Name=pHlaf_HeadlightControl
+URL.0=DEVICE.HLA.HLAF_HeadlightControl
+URL.1=DEVICE.HLA.RTE_HLAF_HeadlightControl
+

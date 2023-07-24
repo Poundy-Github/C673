@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00045.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2022-11-29T12:06:13+08:00" UUID="25431b59-9c49-49f8-b10c-bf7f102d2ef9">
+      <SHORT-NAME>VoltageMonitor</SHORT-NAME>
+      <ELEMENTS>
+        <SENDER-RECEIVER-INTERFACE T="2022-11-29T11:36:34+08:00" UUID="DCE:a2c6de50-7e31-4d6c-a07a-fbd36e0feea7">
+          <SHORT-NAME>SRI_VoltMonI_DisableCommunication</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <DATA-ELEMENTS>
+            <VARIABLE-DATA-PROTOTYPE T="2022-11-29T11:36:34+08:00" UUID="59982b6d-d401-43c5-a9f8-4e53af0d1ed0">
+              <SHORT-NAME>DE_VoltMonI_DisableCommunication</SHORT-NAME>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL></SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/boolean</TYPE-TREF>
+              <INIT-VALUE>
+                <NUMERICAL-VALUE-SPECIFICATION T="2022-11-29T11:36:34+08:00">
+                  <SHORT-LABEL>FALSE</SHORT-LABEL>
+                  <VALUE>0</VALUE>
+                </NUMERICAL-VALUE-SPECIFICATION>
+              </INIT-VALUE>
+            </VARIABLE-DATA-PROTOTYPE>
+          </DATA-ELEMENTS>
+        </SENDER-RECEIVER-INTERFACE>
+        <SENDER-RECEIVER-INTERFACE T="2022-11-29T12:06:13+08:00" UUID="DCE:6d0ea7d3-48b3-46d6-8ab4-de5c83c8a525">
+          <SHORT-NAME>SRI_VoltMonI_VoltState</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <DATA-ELEMENTS>
+            <VARIABLE-DATA-PROTOTYPE T="2022-11-29T12:05:58+08:00" UUID="cb0e7666-2ec2-41cf-9139-5bbc7fe68ccc">
+              <SHORT-NAME>DE_VoltMonI_VoltState</SHORT-NAME>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL></SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</TYPE-TREF>
+            </VARIABLE-DATA-PROTOTYPE>
+          </DATA-ELEMENTS>
+        </SENDER-RECEIVER-INTERFACE>
+        <APPLICATION-SW-COMPONENT-TYPE T="2023-02-01T15:45:12+08:00" UUID="52b81ef4-7a8f-4133-a20c-3ad160fdd1f1">
+          <SHORT-NAME>VoltMonI</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE T="2022-11-29T11:37:35+08:00" UUID="ddcc7fa0-2b25-48fe-90b6-011367ca4d92">
+              <SHORT-NAME>PP_VoltMonI_SRI_DisableCommunication</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/VoltageMonitor/SRI_VoltMonI_DisableCommunication</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2022-11-29T12:07:48+08:00" UUID="d0bdcef1-bb60-4467-a43c-ca3c50077753">
+              <SHORT-NAME>PP_VoltMonI_SRI_VoltState</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/VoltageMonitor/SRI_VoltMonI_VoltState</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="4b21bb37-63ad-460f-abee-5f7b6f3f5d7a">
+              <SHORT-NAME>RP_Comco_CSI_NMWakupFlag</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Comco/CSI_NMWakupFlag</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="e58c7df2-64a8-4aed-b2a4-b6aba7a4db66">
+              <SHORT-NAME>RP_EvAdc_GetValue_VMON_BATT</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="eee06852-20f8-427e-8c82-68705ef7281f">
+              <SHORT-NAME>RP_EvAdc_GetValue_VMON_IGN</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR T="2023-02-01T13:00:30+08:00" UUID="4fa0e9e7-70a9-4ca2-9690-3ba5338ca804">
+              <SHORT-NAME>VoltageMonitor_IB</SHORT-NAME>
+              <EVENTS>
+                <INIT-EVENT T="2022-11-29T11:25:10+08:00" UUID="a8b7acb5-cd27-4a8e-8081-a9e0b06c5a59">
+                  <SHORT-NAME>IE_VoltMonI_InitFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/VoltageMonitor/VoltMonI/VoltageMonitor_IB/VoltMonI_InitFunction</START-ON-EVENT-REF>
+                </INIT-EVENT>
+                <TIMING-EVENT T="2022-11-29T11:25:53+08:00" UUID="4f959d19-eab0-4aef-8f2e-87d4073d6092">
+                  <SHORT-NAME>TE_VoltMonI_MainFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/VoltageMonitor/VoltMonI/VoltageMonitor_IB/VoltMonI_MainFunction</START-ON-EVENT-REF>
+                  <PERIOD>0.01</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY T="2023-02-01T13:00:30+08:00" UUID="DCE:743ef4b1-937c-43db-852f-55d8f63c82ad">
+                  <SHORT-NAME>VoltMonI_InitFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>VoltMonI_InitFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-02-01T15:45:38+08:00" UUID="DCE:9cec4cb7-0257-4649-bd4e-9c5733979a4a">
+                  <SHORT-NAME>VoltMonI_MainFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-SEND-POINTS>
+                    <VARIABLE-ACCESS UUID="4a379c08-ca39-483e-9c52-58cd51991442">
+                      <SHORT-NAME>dsp_DE_VoltMonI_DisableCommu</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VoltageMonitor/VoltMonI/PP_VoltMonI_SRI_DisableCommunication</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/VoltageMonitor/SRI_VoltMonI_DisableCommunication/DE_VoltMonI_DisableCommunication</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="88bfe3c1-6190-4cc2-958f-447bd486caef">
+                      <SHORT-NAME>dsp_DE_VoltMonI_VoltState</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/VoltageMonitor/VoltMonI/PP_VoltMonI_SRI_VoltState</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/VoltageMonitor/SRI_VoltMonI_VoltState/DE_VoltMonI_VoltState</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-SEND-POINTS>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="d10707aa-a957-40e8-954e-e472fec173ef">
+                      <SHORT-NAME>scp_GetPhyValue</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/VoltageMonitor/VoltMonI/RP_EvAdc_GetValue_VMON_BATT</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="b30ff0cd-3493-4571-9e3f-706d1d500567">
+                      <SHORT-NAME>scp_GetPhyValue0</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/VoltageMonitor/VoltMonI/RP_EvAdc_GetValue_VMON_IGN</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="7adc5e72-38f8-447b-b571-bee28d039f46">
+                      <SHORT-NAME>scp_NMWakupFlag</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/VoltageMonitor/VoltMonI/RP_Comco_CSI_NMWakupFlag</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Comco/CSI_NMWakupFlag/NMWakupFlag</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>VoltMonI_MainFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION T="2022-11-29T11:44:04+08:00" UUID="0de09e65-0e69-4a41-9bcb-56cd3af70af7">
+          <SHORT-NAME>VoltageMonitor_Impl</SHORT-NAME>
+          <CODE-DESCRIPTORS>
+            <CODE T="2022-11-29T11:39:36+08:00" UUID="1a400689-ebe2-4078-8755-a1564ea2a7fa">
+              <SHORT-NAME>CD_VoltageMonitor</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/VoltageMonitor/VoltMonI/VoltageMonitor_IB/VoltMonI_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/VoltageMonitor/VoltMonI/VoltageMonitor_IB/VoltMonI_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/VoltageMonitor/VoltMonI/VoltageMonitor_IB/VoltMonI_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/VoltageMonitor/VoltMonI/VoltageMonitor_IB/VoltMonI_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <ARTIFACT-DESCRIPTORS>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-11-29T11:39:36+08:00">
+                  <SHORT-LABEL>SWSRC</SHORT-LABEL>
+                  <CATEGORY>SWSRC</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-11-29T11:39:36+08:00">
+                  <SHORT-LABEL>SWHDR</SHORT-LABEL>
+                  <CATEGORY>SWHDR</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+              </ARTIFACT-DESCRIPTORS>
+            </CODE>
+          </CODE-DESCRIPTORS>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <RESOURCE-CONSUMPTION T="2022-11-29T11:44:04+08:00" UUID="6fd57d2a-b12f-4534-8d27-3ad3217e1294">
+            <SHORT-NAME>Resources</SHORT-NAME>
+            <MEMORY-SECTIONS>
+              <MEMORY-SECTION T="2022-11-29T11:44:30+08:00" UUID="3898bbdc-b9e0-4d83-a6fd-547bc8a20e9f">
+                <SHORT-NAME>CODE</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2022-12-14T09:46:45+08:00" UUID="7920e89a-d616-430c-b4c3-398f310f8371">
+                <SHORT-NAME>CODE_LOCAL</SHORT-NAME>
+                <OPTIONS>
+                  <OPTION>coreLocal</OPTION>
+                </OPTIONS>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE_LOCAL</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2022-12-14T09:46:45+08:00" UUID="bf5c35c2-383b-48c3-947a-bd28c5277139">
+                <SHORT-NAME>CONST</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR/MemMap/SwAddrMethods/CONST</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2022-12-14T09:46:45+08:00" UUID="4ac95df5-68cb-4f16-8412-f1f6d5562de7">
+                <SHORT-NAME>VAR_CLEARED_LOCAL</SHORT-NAME>
+                <OPTIONS>
+                  <OPTION>coreLocal</OPTION>
+                </OPTIONS>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/VAR_CLEARED_LOCAL</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2022-12-14T09:46:45+08:00" UUID="afcf0ddc-0eb8-4b3a-8aaf-e7663e892e2f">
+                <SHORT-NAME>VAR_INIT_LOCAL</SHORT-NAME>
+                <OPTIONS>
+                  <OPTION>coreLocal</OPTION>
+                </OPTIONS>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/VAR_CLEARED_LOCAL</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+            </MEMORY-SECTIONS>
+          </RESOURCE-CONSUMPTION>
+          <SW-VERSION>1.0.0</SW-VERSION>
+          <VENDOR-ID>0</VENDOR-ID>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/VoltageMonitor/VoltMonI/VoltageMonitor_IB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

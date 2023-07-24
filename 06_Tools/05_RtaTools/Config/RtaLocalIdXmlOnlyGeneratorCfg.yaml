@@ -1,0 +1,17 @@
+---
+
+# The generator configuration file for the localIdXmlOnly generator 
+
+# All relevant DatFiles (one or more)
+# Here all relevant datFiles have to be provided either with its absolute path or with a relative path.
+# In case the datFiles are provided with relative path the optional argument  -p pdoRefPath must be provided at generator call.
+# The given relative paths here must be relative to -p pdoRefPath.
+# Note: A relative path MUST NOT start with a slash nor a back slash otherwise it is considered as an absolute path. 
+DAT_FILES : 
+- input/myInputDatFile.dat
+
+# The output path as an absolute path or a relative path. 
+# In case it is provided as a relPath the optional argument -o outputRefPath must be provided at generator call.
+# The given relative outputPath here must be relative to -o outputRefPath.
+# Note: A relative path MUST NOT start with a slash nor a back slash otherwise it is considered as an absolute path. 
+OUTPUT_PATH: output/myXMLs

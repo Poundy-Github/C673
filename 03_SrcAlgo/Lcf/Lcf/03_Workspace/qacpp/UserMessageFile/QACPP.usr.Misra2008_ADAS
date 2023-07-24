@@ -1,0 +1,2496 @@
+* qacpp.usr.mcpp
+*
+* copyright:  (c) 2009 - Programming Research
+*
+* Purpose:  MCPP-1.1-QACPP-2.5 configuration user message file
+*
+* History:  Auto-created from Database on 11-Mar-09
+*
+* CMS version: 0.1a
+*
+#levelname                         0     
+#levelname                         1     Conti Naming Convention Check
+#levelname                         2     Minor
+#levelname                         3     Mandatory
+#levelname                         4     Critical
+#levelname                         5     Errors
+#define    NCC_MACRO         	   2     Naming Conventions for macros
+#define    NCC_VAR_LOC         	   2     Naming Conventions for local variables
+#define    NCC_VAR_GLOB        	   2     Naming Conventions for global variables
+#define    NCC_FCT        	   2     Naming Conventions for functions 
+#define    NCC_TYPE        	   2     Naming Conventions for types
+#define    HIS_METRICS_STCDN  	   0     HIS metrics check: comment density
+#define    HIS_METRICS_STPTH  	   3     HIS metrics check: amount of non-cyclic paths
+#define    HIS_METRICS_STGTO  	   3     HIS metrics check: number of goto-statements
+#define    HIS_METRICS_STCYC  	   3     HIS metrics check: cyclomatic complexitiy
+#define    HIS_METRICS_STPAR  	   3     HIS metrics check: number of function parameters
+#define    HIS_METRICS_STMIF  	   0     HIS metrics check: function nesting level
+#define    METRICS_STXLN  	   3     metrics check: executable lines of code per function
+#define    METRICS_STTPP  	   2     metrics check: executable lines of code per file
+#define    info                    0     Information Messages
+#define    submsg                  0     Context Messages
+#define    CMA_information         0     CMA information
+#define    ANT_information         0     Annotations
+#define    layout                  0     Source Layout Standards
+#define    declaration             0     Declaration Standards
+#define    structure               0     Code Structure Standards
+#define    preproc                 0     Pre-processor Standards
+#define    CMA_declaration         0     CMA Declaration Standards
+#define    maint                   0     Maintenance Warnings
+#define    CMA_maintenance         0     CMA Maintenance Warnings
+#define    improvement             0     C++ Improvements over C
+#define    uselibs                 0     Use Libraries
+#define    efficiency              0     Efficiency Notes
+#define    local                   3     Local Standards
+#define    serious_bugs            0     Serious Problems
+#define    serious_leaks           3     Serious Resource Leaks
+#define    serious_excp_bugs       0     Serious Exception Problems
+#define    behaviour_bugs          0     Behaviour Problems
+#define    pot_bugs                0     Potential Problems
+#define    pot_leaks               0     Potential Resource Leaks
+#define    pot_excp_bugs           0     Potential Exception Problems
+#define    prev_measures           0     Preventative Measures
+#define    portability             0     Portability Problems
+#define    complex                 0     Complexity Problems
+#define    CMA_warning             3     CMA Semantic Warnings
+#define    semwarn                 3     Semantic Warnings
+#define    syntwarn                3     Syntax Warnings
+#define    deprecated              3     Deprecated
+#define    semantic                4     Semantic Errors
+#define    syntax                  4     Syntax Errors
+#define    config                  4     Configuration Errors
+#define    unrecoverable           4     Unrecoverable Errors
+#define    fatal                   4     Fatal Errors
+#define    RULE00_1_1              3     MCPP Rule 0-1-1
+#define    RULE00_1_2              3     MCPP Rule 0-1-2
+#define    RULE00_1_3              2     MCPP Rule 0-1-3
+#define    RULE00_1_4              3     MCPP Rule 0-1-4
+#define    RULE00_1_5              3     MCPP Rule 0-1-5
+#define    RULE00_1_6              3     MCPP Rule 0-1-6
+#define    RULE00_1_7              3     MCPP Rule 0-1-7
+#define    RULE00_1_8              3     MCPP Rule 0-1-8
+#define    RULE00_1_9              3     MCPP Rule 0-1-9
+#define    RULE0_1_10              3     MCPP Rule 0-1-10
+#define    RULE0_1_11              3     MCPP Rule 0-1-11
+#define    RULE0_1_12              3     MCPP Rule 0-1-12
+#define    RULE00_2_1              3     MCPP Rule 0-2-1
+#define    RULE00_3_1              3     MCPP Rule 0-3-1
+#define    RULE00_3_2              3     MCPP Rule 0-3-2
+#define    RULE00_4_1              3     MCPP Rule 0-4-1
+#define    RULE00_4_2              2     MCPP Rule 0-4-2
+#define    RULE00_4_3              3     MCPP Rule 0-4-3
+#define    RULE01_0_1              3     MCPP Rule 1-0-1
+#define    RULE01_0_2              3     MCPP Rule 1-0-2
+#define    RULE01_0_3              3     MCPP Rule 1-0-3
+#define    RULE02_2_1              3     MCPP Rule 2-2-1
+#define    RULE02_3_1              3     MCPP Rule 2-3-1
+#define    RULE02_5_1              2     MCPP Rule 2-5-1
+#define    RULE02_7_1              3     MCPP Rule 2-7-1
+#define    RULE02_7_2              2     MCPP Rule 2-7-2
+#define    RULE02_7_3              2     MCPP Rule 2-7-3
+#define    RULE2_10_1              3     MCPP Rule 2-10-1
+#define    RULE2_10_2              3     MCPP Rule 2-10-2
+#define    RULE2_10_3              3     MCPP Rule 2-10-3
+#define    RULE2_10_4              3     MCPP Rule 2-10-4
+#define    RULE2_10_5              2     MCPP Rule 2-10-5
+#define    RULE2_10_6              3     MCPP Rule 2-10-6
+#define    RULE2_13_1              2     MCPP Rule 2-13-1
+#define    RULE2_13_2              2     MCPP Rule 2-13-2
+#define    RULE2_13_3              3     MCPP Rule 2-13-3
+#define    RULE2_13_4              3     MCPP Rule 2-13-4
+#define    RULE2_13_5              2     MCPP Rule 2-13-5
+#define    RULE03_1_1              3     MCPP Rule 3-1-1
+#define    RULE03_1_2              3     MCPP Rule 3-1-2
+#define    RULE03_1_3              4     MCPP Rule 3-1-3
+#define    RULE03_2_1              4     MCPP Rule 3-2-1
+#define    RULE03_2_2              4     MCPP Rule 3-2-2
+#define    RULE03_2_3              3     MCPP Rule 3-2-3
+#define    RULE03_2_4              4     MCPP Rule 3-2-4
+#define    RULE03_3_1              3     MCPP Rule 3-3-1
+#define    RULE03_3_2              3     MCPP Rule 3-3-2
+#define    RULE03_4_1              0     MCPP Rule 3-4-1
+#define    RULE03_9_1              3     MCPP Rule 3-9-1
+#define    RULE03_9_2              2     MCPP Rule 3-9-2
+#define    RULE03_9_3              4     MCPP Rule 3-9-3
+#define    RULE04_5_1              4     MCPP Rule 4-5-1
+#define    RULE04_5_2              3     MCPP Rule 4-5-2
+#define    RULE04_5_3              3     MCPP Rule 4-5-3
+#define    RULE4_10_1              4     MCPP Rule 4-10-1
+#define    RULE4_10_2              4     MCPP Rule 4-10-2
+#define    RULE05_0_1              4     MCPP Rule 5-0-1
+#define    RULE05_0_2              2     MCPP Rule 5-0-2
+#define    RULE05_0_3              3     MCPP Rule 5-0-3
+#define    RULE05_0_4              3     MCPP Rule 5-0-4
+#define    RULE05_0_5              3     MCPP Rule 5-0-5
+#define    RULE05_0_6              3     MCPP Rule 5-0-6
+#define    RULE05_0_7              3     MCPP Rule 5-0-7
+#define    RULE05_0_8              3     MCPP Rule 5-0-8
+#define    RULE05_0_9              3     MCPP Rule 5-0-9
+#define    RULE5_0_10              3     MCPP Rule 5-0-10
+#define    RULE5_0_11              3     MCPP Rule 5-0-11
+#define    RULE5_0_12              3     MCPP Rule 5-0-12
+#define    RULE5_0_13              3     MCPP Rule 5-0-13
+#define    RULE5_0_14              3     MCPP Rule 5-0-14
+#define    RULE5_0_15              3     MCPP Rule 5-0-15
+#define    RULE5_0_16              3     MCPP Rule 5-0-16
+#define    RULE5_0_17              3     MCPP Rule 5-0-17
+#define    RULE5_0_18              3     MCPP Rule 5-0-18
+#define    RULE5_0_19              4     MCPP Rule 5-0-19
+#define    RULE5_0_20              3     MCPP Rule 5-0-20
+#define    RULE5_0_21              4     MCPP Rule 5-0-21
+#define    RULE05_2_1              4     MCPP Rule 5-2-1
+#define    RULE05_2_2              4     MCPP Rule 5-2-2
+#define    RULE05_2_3              2     MCPP Rule 5-2-3
+#define    RULE05_2_4              3     MCPP Rule 5-2-4
+#define    RULE05_2_5              3     MCPP Rule 5-2-5
+#define    RULE05_2_6              3     MCPP Rule 5-2-6
+#define    RULE05_2_7              3     MCPP Rule 5-2-7
+#define    RULE05_2_8              3     MCPP Rule 5-2-8
+#define    RULE05_2_9              2     MCPP Rule 5-2-9
+#define    RULE5_2_10              2     MCPP Rule 5-2-10
+#define    RULE5_2_11              3     MCPP Rule 5-2-11
+#define    RULE5_2_12              2     MCPP Rule 5-2-12
+#define    RULE05_3_1              3     MCPP Rule 5-3-1
+#define    RULE05_3_2              4     MCPP Rule 5-3-2
+#define    RULE05_3_3              4     MCPP Rule 5-3-3
+#define    RULE05_3_4              3     MCPP Rule 5-3-4
+#define    RULE05_8_1              4     MCPP Rule 5-8-1
+#define    RULE5_14_1              3     MCPP Rule 5-14-1
+#define    RULE5_17_1              3     MCPP Rule 5-17-1
+#define    RULE5_18_1              3     MCPP Rule 5-18-1
+#define    RULE5_19_1              3     MCPP Rule 5-19-1
+#define    RULE06_2_1              4     MCPP Rule 6-2-1
+#define    RULE06_2_2              4     MCPP Rule 6-2-2
+#define    RULE06_2_3              3     MCPP Rule 6-2-3
+#define    RULE06_3_1              4     MCPP Rule 6-3-1
+#define    RULE06_4_1              4     MCPP Rule 6-4-1
+#define    RULE06_4_2              3     MCPP Rule 6-4-2
+#define    RULE06_4_3              3     MCPP Rule 6-4-3
+#define    RULE06_4_4              4     MCPP Rule 6-4-4
+#define    RULE06_4_5              4     MCPP Rule 6-4-5
+#define    RULE06_4_6              3     MCPP Rule 6-4-6
+#define    RULE06_4_7              4     MCPP Rule 6-4-7
+#define    RULE06_4_8              4     MCPP Rule 6-4-8
+#define    RULE06_5_1              4     MCPP Rule 6-5-1
+#define    RULE06_5_2              3     MCPP Rule 6-5-2
+#define    RULE06_5_3              3     MCPP Rule 6-5-3
+#define    RULE06_5_4              3     MCPP Rule 6-5-4
+#define    RULE06_5_5              3     MCPP Rule 6-5-5
+#define    RULE06_5_6              3     MCPP Rule 6-5-6
+#define    RULE06_6_1              3     MCPP Rule 6-6-1
+#define    RULE06_6_2              3     MCPP Rule 6-6-2
+#define    RULE06_6_3              3     MCPP Rule 6-6-3
+#define    RULE06_6_4              3     MCPP Rule 6-6-4
+#define    RULE06_6_5              3     MCPP Rule 6-6-5
+#define    RULE07_1_1              3     MCPP Rule 7-1-1
+#define    RULE07_1_2              3     MCPP Rule 7-1-2
+#define    RULE07_2_1              3     MCPP Rule 7-2-1
+#define    RULE07_3_1              3     MCPP Rule 7-3-1
+#define    RULE07_3_2              3     MCPP Rule 7-3-2
+#define    RULE07_3_3              3     MCPP Rule 7-3-3
+#define    RULE07_3_4              3     MCPP Rule 7-3-4
+#define    RULE07_3_5              3     MCPP Rule 7-3-5
+#define    RULE07_3_6              3     MCPP Rule 7-3-6
+#define    RULE07_4_1              4     MCPP Rule 7-4-1
+#define    RULE07_4_2              4     MCPP Rule 7-4-2
+#define    RULE07_4_3              3     MCPP Rule 7-4-3
+#define    RULE07_5_1              4     MCPP Rule 7-5-1
+#define    RULE07_5_2              3     MCPP Rule 7-5-2
+#define    RULE07_5_3              4     MCPP Rule 7-5-3
+#define    RULE07_5_4              2     MCPP Rule 7-5-4
+#define    RULE08_0_1              3     MCPP Rule 8-0-1
+#define    RULE08_3_1              3     MCPP Rule 8-3-1
+#define    RULE08_4_1              4     MCPP Rule 8-4-1
+#define    RULE08_4_2              4     MCPP Rule 8-4-2
+#define    RULE08_4_3              4     MCPP Rule 8-4-3
+#define    RULE08_4_4              4     MCPP Rule 8-4-4
+#define    RULE08_5_1              4     MCPP Rule 8-5-1
+#define    RULE08_5_2              3     MCPP Rule 8-5-2
+#define    RULE08_5_3              4     MCPP Rule 8-5-3
+#define    RULE09_3_1              3     MCPP Rule 9-3-1
+#define    RULE09_3_2              4     MCPP Rule 9-3-2
+#define    RULE09_3_3              3     MCPP Rule 9-3-3
+#define    RULE09_5_1              3     MCPP Rule 9-5-1
+#define    RULE09_6_1              3     MCPP Rule 9-6-1
+#define    RULE09_6_2              3     MCPP Rule 9-6-2
+#define    RULE09_6_3              4     MCPP Rule 9-6-3
+#define    RULE09_6_4              3     MCPP Rule 9-6-4
+#define    RULE10_1_1              3     MCPP Rule 10-1-1
+#define    RULE10_1_2              3     MCPP Rule 10-1-2
+#define    RULE10_1_3              3     MCPP Rule 10-1-3
+#define    RULE10_2_1              2     MCPP Rule 10-2-1
+#define    RULE10_3_1              3     MCPP Rule 10-3-1
+#define    RULE10_3_2              3     MCPP Rule 10-3-2
+#define    RULE10_3_3              3     MCPP Rule 10-3-3
+#define    RULE11_0_1              2     MCPP Rule 11-0-1
+#define    RULE12_1_1              3     MCPP Rule 12-1-1
+#define    RULE12_1_2              2     MCPP Rule 12-1-2
+#define    RULE12_1_3              3     MCPP Rule 12-1-3
+#define    RULE12_8_1              3     MCPP Rule 12-8-1
+#define    RULE12_8_2              3     MCPP Rule 12-8-2
+#define    RULE14_5_1              4     MCPP Rule 14-5-1
+#define    RULE14_5_2              4     MCPP Rule 14-5-2
+#define    RULE14_5_3              4     MCPP Rule 14-5-3
+#define    RULE14_6_1              3     MCPP Rule 14-6-1
+#define    RULE14_6_2              4     MCPP Rule 14-6-2
+#define    RULE14_7_1              3     MCPP Rule 14-7-1
+#define    RULE14_7_2              3     MCPP Rule 14-7-2
+#define    RULE14_7_3              3     MCPP Rule 14-7-3
+#define    RULE14_8_1              3     MCPP Rule 14-8-1
+#define    RULE14_8_2              2     MCPP Rule 14-8-2
+#define    RULE15_0_1              3     MCPP Rule 15-0-1
+#define    RULE15_0_2              2     MCPP Rule 15-0-2
+#define    RULE15_0_3              4     MCPP Rule 15-0-3
+#define    RULE15_1_1              3     MCPP Rule 15-1-1
+#define    RULE15_1_2              3     MCPP Rule 15-1-2
+#define    RULE15_1_3              3     MCPP Rule 15-1-3
+#define    RULE15_3_1              3     MCPP Rule 15-3-1
+#define    RULE15_3_2              2     MCPP Rule 15-3-2
+#define    RULE15_3_3              3     MCPP Rule 15-3-3
+#define    RULE15_3_4              3     MCPP Rule 15-3-4
+#define    RULE15_3_5              3     MCPP Rule 15-3-5
+#define    RULE15_3_6              3     MCPP Rule 15-3-6
+#define    RULE15_3_7              2     MCPP Rule 15-3-7
+#define    RULE15_4_1              3     MCPP Rule 15-4-1
+#define    RULE15_5_1              4     MCPP Rule 15-5-1
+#define    RULE15_5_2              3     MCPP Rule 15-5-2
+#define    RULE15_5_3              2     MCPP Rule 15-5-3
+#define    RULE16_0_1              3     MCPP Rule 16-0-1
+#define    RULE16_0_2              3     MCPP Rule 16-0-2
+#define    RULE16_0_3              2     MCPP Rule 16-0-3
+#define    RULE16_0_4              3     MCPP Rule 16-0-4
+#define    RULE16_0_5              3     MCPP Rule 16-0-5
+#define    RULE16_0_6              3     MCPP Rule 16-0-6
+#define    RULE16_0_7              4     MCPP Rule 16-0-7
+#define    RULE16_0_8              3     MCPP Rule 16-0-8
+#define    RULE16_1_1              3     MCPP Rule 16-1-1
+#define    RULE16_1_2              4     MCPP Rule 16-1-2
+#define    RULE16_2_1              3     MCPP Rule 16-2-1
+#define    RULE16_2_2              3     MCPP Rule 16-2-2
+#define    RULE16_2_3              4     MCPP Rule 16-2-3
+#define    RULE16_2_4              4     MCPP Rule 16-2-4
+#define    RULE16_2_5              2     MCPP Rule 16-2-5
+#define    RULE16_2_6              3     MCPP Rule 16-2-6
+#define    RULE16_3_1              3     MCPP Rule 16-3-1
+#define    RULE16_3_2              2     MCPP Rule 16-3-2
+#define    RULE16_6_1              2     MCPP Rule 16-6-1
+#define    RULE17_0_1              4     MCPP Rule 17-0-1
+#define    RULE17_0_2              4     MCPP Rule 17-0-2
+#define    RULE17_0_3              3     MCPP Rule 17-0-3
+#define    RULE17_0_4              3     MCPP Rule 17-0-4
+#define    RULE17_0_5              3     MCPP Rule 17-0-5
+#define    RULE18_0_1              4     MCPP Rule 18-0-1
+#define    RULE18_0_2              4     MCPP Rule 18-0-2
+#define    RULE18_0_3              4     MCPP Rule 18-0-3
+#define    RULE18_0_4              4     MCPP Rule 18-0-4
+#define    RULE18_0_5              4     MCPP Rule 18-0-5
+#define    RULE18_2_1              4     MCPP Rule 18-2-1
+#define    RULE18_4_1              4     MCPP Rule 18-4-1
+#define    RULE18_7_1              4     MCPP Rule 18-7-1
+#define    RULE19_3_1              4     MCPP Rule 19-3-1
+#define    RULE27_0_1              4     MCPP Rule 27-0-1
+
+12     RULE01_0_1            The type in a function style cast must comprise of only one type specifier.\\
+MISRA-C++ Rule 1-0-1
+
+13     RULE01_0_1            A delete array expression with an array dimension is obsolete.\\
+MISRA-C++ Rule 1-0-1
+
+14     RULE01_0_1            Syntax error before '%1s'.\\
+MISRA-C++ Rules 1-0-1, 2-13-5, 7-4-2
+14     RULE2_13_5            Syntax error before '%1s'.\\
+MISRA-C++ Rules 1-0-1, 2-13-5, 7-4-2
+14     RULE07_4_2            Syntax error before '%1s'.\\
+MISRA-C++ Rules 1-0-1, 2-13-5, 7-4-2
+
+15     RULE01_0_1            Divide by zero in expression.\\
+MISRA-C++ Rule 1-0-1
+
+16     RULE01_0_1            No tokens remaining after macro substitution in #%1s directive, prefer defined() or #ifdef instead?\\
+MISRA-C++ Rule 1-0-1
+
+17     RULE01_0_1            Invalid #line syntax: expect '#line NUMBER' or '#line NUMBER "FILENAME"'.\\
+MISRA-C++ Rule 1-0-1
+
+18     RULE01_0_1            Macro '%1s' is already defined, ignoring this definition.\\
+MISRA-C++ Rule 1-0-1
+
+19     RULE01_0_1            Expecting value of form '{size_t|ptrdiff_t|wchar_t}=datatype' in -intrinsictype option.\\
+MISRA-C++ Rule 1-0-1
+
+20     RULE01_0_1            '%1s' cannot be set with -intrinsictype. Valid types are 'size_t', 'ptrdiff_t' and 'wchar_t'.\\
+MISRA-C++ Rule 1-0-1
+
+21     RULE01_0_1            Missing #endif directive at end of file.\\
+MISRA-C++ Rules 1-0-1, 16-1-2
+21     RULE16_1_2            Missing #endif directive at end of file.\\
+MISRA-C++ Rules 1-0-1, 16-1-2
+
+22     RULE01_0_1            Identifier expected in 'defined' expression.\\
+MISRA-C++ Rules 1-0-1, 16-1-1
+22     RULE16_1_1            Identifier expected in 'defined' expression.\\
+MISRA-C++ Rules 1-0-1, 16-1-1
+
+23     RULE01_0_1            Right parenthesis expected in 'defined' expression.\\
+MISRA-C++ Rule 1-0-1
+
+24     RULE01_0_1            Tokens '%1s' and '%2s' do not form a valid token when concatenated and will remain separate tokens.\\
+MISRA-C++ Rule 1-0-1
+
+25     RULE01_0_1            Function macro '%1s' requires %2s arguments.\\
+MISRA-C++ Rule 1-0-1
+
+26     RULE01_0_1            Token 'defined' generated from macro replacement in #if.\\
+MISRA-C++ Rule 1-0-1
+
+27     RULE01_0_1            'extern' used before an explicit template instantiation is a language extension.\\
+MISRA-C++ Rule 1-0-1
+
+28     RULE01_0_1            Missing filename in #import directive, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+29     RULE01_0_1            'asm' used before a function definition is a language extension.\\
+MISRA-C++ Rules 1-0-1, 7-4-1, 7-4-2
+29     RULE07_4_1            'asm' used before a function definition is a language extension.\\
+MISRA-C++ Rules 1-0-1, 7-4-1, 7-4-2
+29     RULE07_4_2            'asm' used before a function definition is a language extension.\\
+MISRA-C++ Rules 1-0-1, 7-4-1, 7-4-2
+
+30     RULE01_0_1            Invalid '%1s' specifier in this context.\\
+MISRA-C++ Rule 1-0-1
+
+32     RULE01_0_1            The result after macro expansion is not a filename, ignoring #include.\\
+MISRA-C++ Rules 1-0-1, 16-2-6
+32     RULE16_2_6            The result after macro expansion is not a filename, ignoring #include.\\
+MISRA-C++ Rules 1-0-1, 16-2-6
+
+34     RULE01_0_1            Cannot find include file '%1s', ignoring #include.\\
+MISRA-C++ Rule 1-0-1
+
+37     RULE01_0_1            Unable to extend namespace using a qualified name.\\
+MISRA-C++ Rule 1-0-1
+
+39     RULE01_0_1            Unexpected end of input found while parsing buffer.\\
+MISRA-C++ Rule 1-0-1
+
+40     RULE01_0_1            Directive name '%1s' not recognised.\\
+MISRA-C++ Rules 1-0-1, 16-0-8
+40     RULE16_0_8            Directive name '%1s' not recognised.\\
+MISRA-C++ Rules 1-0-1, 16-0-8
+
+43     RULE01_0_1            Qualified ID not valid in this context.\\
+MISRA-C++ Rule 1-0-1
+
+44     RULE01_0_1            Comma ignored after enumerator list.\\
+MISRA-C++ Rule 1-0-1
+
+45     RULE01_0_1            Name is not a type, will assume 'int'.\\
+MISRA-C++ Rule 1-0-1
+
+46     RULE01_0_1            Not a type name, base type ignored.\\
+MISRA-C++ Rule 1-0-1
+
+47     RULE01_0_1            This declaration is of the non standard type long long.\\
+MISRA-C++ Rule 1-0-1
+
+48     RULE01_0_1            This declaration is of the non standard type unsigned long long.\\
+MISRA-C++ Rule 1-0-1
+
+50     RULE01_0_1            Unexpected end of file while reading function macro arguments.\\
+MISRA-C++ Rule 1-0-1
+
+51     RULE01_0_1            Expecting a preprocessor directive following #.\\
+MISRA-C++ Rule 1-0-1
+
+52     RULE01_0_1            #endif directive without preceding #if, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+53     RULE01_0_1            #elif directive without preceding #if, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+54     RULE01_0_1            #else directive without preceding #if, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+55     RULE01_0_1            Macro '%1s' not defined, #undef ignored.\\
+MISRA-C++ Rules 1-0-1, 16-0-2, 16-0-3
+55     RULE16_0_2            Macro '%1s' not defined, #undef ignored.\\
+MISRA-C++ Rules 1-0-1, 16-0-2, 16-0-3
+55     RULE16_0_3            Macro '%1s' not defined, #undef ignored.\\
+MISRA-C++ Rules 1-0-1, 16-0-2, 16-0-3
+
+56     RULE01_0_1            '%1s' is not a valid macro name, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+57     RULE01_0_1            Extra characters after directive.\\
+MISRA-C++ Rule 1-0-1
+
+58     RULE01_0_1            Invalid macro parameter name, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+59     RULE01_0_1            Syntax error in macro parameter list, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+60     RULE01_0_1            Non-standard 'asm' syntax, standard syntax is 'asm (" ... ");'.\\
+MISRA-C++ Rules 1-0-1, 7-4-1
+60     RULE07_4_1            Non-standard 'asm' syntax, standard syntax is 'asm (" ... ");'.\\
+MISRA-C++ Rules 1-0-1, 7-4-1
+
+61     RULE01_0_1            #error: %1s\\
+MISRA-C++ Rule 1-0-1
+
+63     RULE01_0_1            File '%1s' is included recursively.\\
+MISRA-C++ Rule 1-0-1
+
+64     RULE01_0_1            Ill-formed universal character.\\
+MISRA-C++ Rule 1-0-1
+
+66     RULE01_0_1            Unexpected end of file while ignoring tokens.\\
+MISRA-C++ Rule 1-0-1
+
+67     RULE01_0_1            Invalid _ignore syntax, expecting '_ignore' or '_ignore(#)'.\\
+MISRA-C++ Rule 1-0-1
+
+68     RULE01_0_1            The type in a function style cast cannot be an elaborated type specifier. A typedef should be used instead.\\
+MISRA-C++ Rule 1-0-1
+
+69     RULE01_0_1            A typedef declaration must include a declarator.\\
+MISRA-C++ Rule 1-0-1
+
+70     RULE01_0_1            Newline in literal character.\\
+MISRA-C++ Rule 1-0-1
+
+71     RULE01_0_1            Newline in literal string.\\
+MISRA-C++ Rule 1-0-1
+
+72     RULE01_0_1            Hex digit must follow '0x'.\\
+MISRA-C++ Rule 1-0-1
+
+73     RULE01_0_1            An optional sign and at least one digit must follow 'E' or 'e' in a floating literal.\\
+MISRA-C++ Rule 1-0-1
+
+74     RULE01_0_1            Invalid character.\\
+MISRA-C++ Rule 1-0-1
+
+75     RULE01_0_1            Unexpected end of file while reading c-style comment.\\
+MISRA-C++ Rule 1-0-1
+
+76     RULE01_0_1            No hex digits following '\x' in string literal.\\
+MISRA-C++ Rule 1-0-1
+
+77     RULE01_0_1            Invalid escape character in string literal.\\
+MISRA-C++ Rules 1-0-1, 2-13-1
+77     RULE2_13_1            Invalid escape character in string literal.\\
+MISRA-C++ Rules 1-0-1, 2-13-1
+
+78     RULE01_0_1            Literal contains character that exceeds maximum char value.\\
+MISRA-C++ Rule 1-0-1
+
+83     RULE01_0_1            The use of a template-id is not valid in this context.\\
+MISRA-C++ Rule 1-0-1
+
+84     RULE01_0_1            Friend specifier not valid with object declaration.\\
+MISRA-C++ Rule 1-0-1
+
+85     RULE01_0_1            Friend specifier not valid with bitfield declaration.\\
+MISRA-C++ Rule 1-0-1
+
+86     RULE01_0_1            Typedef specifier not valid with bitfield declaration.\\
+MISRA-C++ Rule 1-0-1
+
+87     RULE01_0_1            Friend specifier not valid with pure virtual function.\\
+MISRA-C++ Rule 1-0-1
+
+88     RULE01_0_1            Typedef specifier not valid with pure virtual function.\\
+MISRA-C++ Rule 1-0-1
+
+89     RULE01_0_1            Initialiser invalid in this context.\\
+MISRA-C++ Rule 1-0-1
+
+90     RULE01_0_1            Typedef specifier not valid with function definition.\\
+MISRA-C++ Rule 1-0-1
+
+91     RULE01_0_1            Pure virtual functions must use "= 0".\\
+MISRA-C++ Rule 1-0-1
+
+92     RULE01_0_1            '%1s' is not a valid PPH file.\\
+MISRA-C++ Rule 1-0-1
+
+93     RULE01_0_1            Unable to find PPH file '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+94     RULE01_0_1            Missing type specifier.\\
+MISRA-C++ Rule 1-0-1
+
+95     RULE01_0_1            An ellipse in a throw specification is a language extension.\\
+MISRA-C++ Rule 1-0-1
+
+97     RULE01_0_1            Missing filename in #using directive, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+98     RULE01_0_1            PPH file '%1s' is not valid.\\
+MISRA-C++ Rule 1-0-1
+
+99     RULE01_0_1            PPH version %1s is not supported. Supported versions are 1 and 2.\\
+MISRA-C++ Rule 1-0-1
+
+100    RULE01_0_1            The declaration specifier '%1s' may not be used in this declaration.\\
+MISRA-C++ Rule 1-0-1
+
+101    RULE01_0_1            The scope '%1s', in class member access expression, not found.\\
+MISRA-C++ Rule 1-0-1
+
+103    RULE01_0_1            '%1s' was already defined.\\
+MISRA-C++ Rule 1-0-1
+
+104    RULE01_0_1            '%1s' was not declared in the qualifying scope '%2s'.\\
+MISRA-C++ Rule 1-0-1
+
+105    RULE01_0_1            '%1s' was previously declared with non-static linkage.\\
+MISRA-C++ Rule 1-0-1
+
+107    RULE01_0_1            '%1s' may not be redeclared in a class.\\
+MISRA-C++ Rule 1-0-1
+
+108    RULE01_0_1            Static member functions may not have 'const' or 'volatile' qualification.\\
+MISRA-C++ Rule 1-0-1
+
+114    RULE01_0_1            This function cannot accept arguments.\\
+MISRA-C++ Rule 1-0-1
+
+115    RULE01_0_1            This function may not have an explicit return type.\\
+MISRA-C++ Rule 1-0-1
+
+117    RULE01_0_1            A copy constructor cannot have the class type itself as its parameter type.\\
+Allowing passing by value of class type would results in infinite to copying of the argument. A reference to the class should be used instead. MISRA-C++ Rule 1-0-1
+
+118    RULE01_0_1            '%1s' is not a static member object and cannot be defined here.\\
+In certain situations static member data needs to be defined outside the class so that storage can be allocated for it. Storage is allocated for non-static member data when you create an object of the type of the class that the data is in. MISRA-C++ Rule 1-0-1
+
+122    RULE01_0_1            The namespace alias '%1s' was already used for a different namespace alias.\\
+Redeclarations of namespace alias' should refer to the same namespace. MISRA-C++ Rule 1-0-1
+
+124    RULE01_0_1            A qualified '%1s' declaration is not allowed at class scope.\\
+MISRA-C++ Rule 1-0-1
+
+125    RULE01_0_1            '%1s' is already declared.\\
+The identifier is used in the control scope (if/for/...). The scope of such declarations was changed during the C++ standardisation process. MISRA-C++ Rule 1-0-1
+
+126    RULE01_0_1            '%1s' is used here for a different type.\\
+MISRA-C++ Rule 1-0-1
+
+127    RULE01_0_1            '%1s' is not a class.\\
+MISRA-C++ Rule 1-0-1
+
+128    RULE01_0_1            Type '%1s' is not complete, continuing with '%2s'.\\
+MISRA-C++ Rule 1-0-1
+
+129    RULE01_0_1            Array type is not complete, recovering with '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+131    RULE01_0_1            '%1s' was previously declared to be of a different type.\\
+MISRA-C++ Rules 1-0-1, 3-2-1
+131    RULE03_2_1            '%1s' was previously declared to be of a different type.\\
+MISRA-C++ Rules 1-0-1, 3-2-1
+
+133    RULE01_0_1            The type '%1s' used as a qualifier is not complete.\\
+MISRA-C++ Rule 1-0-1
+
+134    RULE01_0_1            The function return type was not specified.\\
+A return type must always be specified in C++. MISRA-C++ Rule 1-0-1
+
+135    RULE01_0_1            The class '%1s' may not be used as a base class of itself.\\
+MISRA-C++ Rule 1-0-1
+
+136    RULE01_0_1            Illegal qualified declaration.\\
+MISRA-C++ Rule 1-0-1
+
+137    RULE01_0_1            Existing %3s '%1s' prevents this %2s declaration.\\
+MISRA-C++ Rule 1-0-1
+
+139    RULE01_0_1            '%1s' different when looked up as a member than when looked up in the enclosing context.\\
+MISRA-C++ Rule 1-0-1
+
+140    RULE01_0_1            An enumeration may not be forward declared.\\
+MISRA-C++ Rule 1-0-1
+
+141    RULE01_0_1            An enumerator may only be initialised with a compile time constant.\\
+MISRA-C++ Rule 1-0-1
+
+142    RULE01_0_1            The type of this object was not specified, recovering with 'int'.\\
+A type must always be specified for an object declaration in C++. Sometimes this is missing in code ported from C, where a type of 'int' was assumed if no type was specified. MISRA-C++ Rule 1-0-1
+
+143    RULE01_0_1            '%1s' is not visible.\\
+The use of the keyword 'typename' does not make later lookup find types rather than objects or functions. MISRA-C++ Rule 1-0-1
+
+144    RULE01_0_1            An initialiser is not allowed here.\\
+MISRA-C++ Rule 1-0-1
+
+145    RULE01_0_1            Too many initialisers were provided.\\
+MISRA-C++ Rule 1-0-1
+
+146    RULE01_0_1            An expression was expected.\\
+MISRA-C++ Rule 1-0-1
+
+147    RULE01_0_1            A brace enclosed initialiser was expected.\\
+MISRA-C++ Rule 1-0-1
+
+148    RULE01_0_1            '%1s' should be preceded by a '%2s' keyword.\\
+MISRA-C++ Rule 1-0-1
+
+149    RULE01_0_1            '%1s' should be preceded by 'enum'.\\
+MISRA-C++ Rule 1-0-1
+
+150    RULE01_0_1            Could not convert expression to type '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+152    RULE01_0_1            '%1s' is not declared.\\
+MISRA-C++ Rule 1-0-1
+
+153    RULE01_0_1            An array must have a size greater than zero, using dimension of '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+154    RULE01_0_1            The size of an array must be a constant value, using dimension of '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+155    RULE01_0_1            An array of reference type is not allowed, recovering with '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+156    RULE01_0_1            An array cannot be of type void, recovering with '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+157    RULE01_0_1            Invalid bitfield size.\\
+MISRA-C++ Rule 1-0-1
+
+158    RULE01_0_1            Typename '%1s' not found, recovering with '%2s'.\\
+MISRA-C++ Rule 1-0-1
+
+159    RULE01_0_1            This member function may not be static.\\
+MISRA-C++ Rule 1-0-1
+
+160    RULE01_0_1            Class template '%1s' was already declared with an incompatible template parameter list.\\
+MISRA-C++ Rule 1-0-1
+
+161    RULE01_0_1            The class template name '%1s' was already used in another declaration.\\
+MISRA-C++ Rule 1-0-1
+
+162    RULE01_0_1            The declaration of the specialisation for '%1s' must be preceded by 'template <> '.\\
+MISRA-C++ Rule 1-0-1
+
+163    RULE01_0_1            A type was expected for parameter '%1s', recovering with '%2s'.\\
+MISRA-C++ Rule 1-0-1
+
+164    RULE01_0_1            An object was expected for parameter %1s, attempting to recover with '0'.\\
+MISRA-C++ Rule 1-0-1
+
+165    RULE01_0_1            Only %1s of the %2s required arguments were given.\\
+MISRA-C++ Rule 1-0-1
+
+166    RULE01_0_1            Too many arguments provided for template (only expected %1s arguments).\\
+MISRA-C++ Rule 1-0-1
+
+167    RULE01_0_1            A partial specialisation should have dependent arguments.\\
+MISRA-C++ Rule 1-0-1
+
+168    RULE01_0_1            More than one partial specialisations are equally suitable for this specialisation.\\
+MISRA-C++ Rule 1-0-1
+
+169    RULE01_0_1            For '%1s' to be considered a type, the 'typename' keyword must precede the qualified name.\\
+MISRA-C++ Rule 1-0-1
+
+170    RULE01_0_1            '%1s' not found in '%2s'.\\
+MISRA-C++ Rule 1-0-1
+
+172    RULE01_0_1            The template for this specialisation was not found.\\
+MISRA-C++ Rule 1-0-1
+
+173    RULE01_0_1            A non-type template parameter may not be of type '%1s', recovering with '%2s'.\\
+MISRA-C++ Rule 1-0-1
+
+174    RULE01_0_1            A class template was expected for parameter %1s.\\
+MISRA-C++ Rule 1-0-1
+
+175    RULE01_0_1            Template arguments must be given in this context.\\
+MISRA-C++ Rule 1-0-1
+
+177    RULE01_0_1            Invalid template non-type argument '%1s', continuing in outer scope.\\
+MISRA-C++ Rule 1-0-1
+
+178    RULE01_0_1            Illegal nested template syntax, for non nested class template.\\
+MISRA-C++ Rule 1-0-1
+
+179    RULE01_0_1            Fully qualify nested names and use 'typename' where necessary when using -sdep flag.\\
+MISRA-C++ Rule 1-0-1
+
+180    RULE01_0_1            A parameter may not be added after 'void' is specified.\\
+A function may be specified as taking no parameters by leaving the list empty, or listing one unnamed parameter of type void (e.g. int f(void)). No further parameters may be listed (e.g. int f(void, int) is illegal). MISRA-C++ Rule 1-0-1
+
+181    RULE01_0_1            'void' cannot be specified after any other parameters have been specified for a function.\\
+MISRA-C++ Rule 1-0-1
+
+182    RULE01_0_1            'break' can only appear within a 'switch', 'while', 'do', or 'for' statement.\\
+MISRA-C++ Rule 1-0-1
+
+183    RULE01_0_1            'continue' can only appear within a 'while', 'do', or 'for' statement.\\
+MISRA-C++ Rule 1-0-1
+
+184    RULE01_0_1            A 'case' label must be within a switch statement.\\
+MISRA-C++ Rule 1-0-1
+
+185    RULE01_0_1            A 'default' label must be within a switch statement.\\
+MISRA-C++ Rule 1-0-1
+
+186    RULE01_0_1            This label has already been used.\\
+MISRA-C++ Rule 1-0-1
+
+187    RULE01_0_1            A default argument was already specified for this parameter.\\
+MISRA-C++ Rule 1-0-1
+
+189    RULE01_0_1            A function in a namespace may not have 'const' or 'volatile' qualification.\\
+MISRA-C++ Rule 1-0-1
+
+190    RULE01_0_1            '%1s' may not have any parameters.\\
+MISRA-C++ Rule 1-0-1
+
+191    RULE01_0_1            '%1s' may only have zero or one parameters.\\
+MISRA-C++ Rule 1-0-1
+
+192    RULE01_0_1            '%1s' must have exactly one parameter.\\
+MISRA-C++ Rule 1-0-1
+
+193    RULE01_0_1            '%1s' must have at least one parameter.\\
+MISRA-C++ Rule 1-0-1
+
+194    RULE01_0_1            '%1s' must have one or two parameters.\\
+MISRA-C++ Rule 1-0-1
+
+195    RULE01_0_1            '%1s' must have exactly two parameters.\\
+MISRA-C++ Rule 1-0-1
+
+196    RULE01_0_1            Parameter %1s must be of class or enum type.\\
+MISRA-C++ Rule 1-0-1
+
+197    RULE01_0_1            Parameter %1s must be of type '%2s'.\\
+MISRA-C++ Rule 1-0-1
+
+198    RULE01_0_1            At least one parameter must be class or enum type.\\
+MISRA-C++ Rule 1-0-1
+
+199    RULE01_0_1            Return type must be '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+200    RULE01_0_1            A declaration of array type is not allowed here.\\
+MISRA-C++ Rule 1-0-1
+
+201    RULE01_0_1            A declaration of function type is not allowed here.\\
+MISRA-C++ Rule 1-0-1
+
+202    RULE01_0_1            A pure function must be virtual.\\
+MISRA-C++ Rule 1-0-1
+
+203    RULE01_0_1            Exception specification is not allowed.\\
+MISRA-C++ Rule 1-0-1
+
+204    RULE01_0_1            This function has a less restrictive exception specification to the function it overrides.\\
+MISRA-C++ Rule 1-0-1
+
+205    RULE01_0_1            A return expression is required.\\
+MISRA-C++ Rule 1-0-1
+
+206    RULE01_0_1            This function may not return an expression.\\
+MISRA-C++ Rule 1-0-1
+
+207    RULE01_0_1            A function may not return '%1s', recovering with '%2s'.\\
+MISRA-C++ Rule 1-0-1
+
+208    RULE01_0_1            Default argument not yet available\\
+MISRA-C++ Rule 1-0-1
+
+209    RULE01_0_1            A destructor must be a member function.\\
+MISRA-C++ Rule 1-0-1
+
+210    RULE01_0_1            This operator cannot have an ellipsis parameter.\\
+MISRA-C++ Rule 1-0-1
+
+211    RULE01_0_1            Conversion functions must be member functions.\\
+MISRA-C++ Rule 1-0-1
+
+220    RULE01_0_1            Initialiser illegal for local extern.\\
+MISRA-C++ Rule 1-0-1
+
+221    RULE01_0_1            Initialiser illegal with using declaration.\\
+MISRA-C++ Rule 1-0-1
+
+222    RULE01_0_1            The target type has a more restrictive exception specification.\\
+MISRA-C++ Rule 1-0-1
+
+223    RULE01_0_1            Typename '%1s' not found - perhaps you should include cstddef.\\
+MISRA-C++ Rule 1-0-1
+
+224    RULE01_0_1            '%1s' differs from the parser internal value - please set the parser internal value using -intrinsictype "%1s=%2s", not changing internal parser value.\\
+MISRA-C++ Rule 1-0-1
+
+225    RULE01_0_1            '%1s' is a typedef and cannot be preceded by class or enum.\\
+MISRA-C++ Rule 1-0-1
+
+226    RULE01_0_1            The type is not a class where a class was expected or an enum where an enum was expected.\\
+MISRA-C++ Rule 1-0-1
+
+227    RULE01_0_1            The last member of a C++ class may not be an incomplete array type.\\
+MISRA-C++ Rule 1-0-1
+
+228    RULE01_0_1            The target type has a different language linkage.\\
+MISRA-C++ Rule 1-0-1
+
+229    RULE01_0_1            This redeclaration has different exception specifications.\\
+MISRA-C++ Rule 1-0-1
+
+231    RULE01_0_1            Template '%1s' not found.\\
+MISRA-C++ Rule 1-0-1
+
+232    RULE01_0_1            The namespace '%1s' was not found - using directive ignored.\\
+MISRA-C++ Rule 1-0-1
+
+233    RULE01_0_1            No type was specified, recovering with '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+237    RULE01_0_1            This declaration does not declare anything.\\
+MISRA-C++ Rule 1-0-1
+
+238    RULE01_0_1            Friend function declarations cannot have default arguments.\\
+MISRA-C++ Rule 1-0-1
+
+239    RULE01_0_1            Cannot declare an object template.\\
+MISRA-C++ Rule 1-0-1
+
+240    RULE01_0_1            Cannot declare a destructor template.\\
+MISRA-C++ Rule 1-0-1
+
+241    RULE01_0_1            Cannot declare a friend class in namespace scope.\\
+MISRA-C++ Rule 1-0-1
+
+242    RULE01_0_1            Cannot declare a typedef template.\\
+MISRA-C++ Rule 1-0-1
+
+243    RULE01_0_1            Cannot redeclare a qualified function template.\\
+MISRA-C++ Rule 1-0-1
+
+245    RULE01_0_1            This member initialiser identifier is not a class member object, or a valid base.\\
+MISRA-C++ Rule 1-0-1
+
+246    RULE01_0_1            '%1s' is ambiguous.\\
+MISRA-C++ Rule 1-0-1
+
+247    RULE01_0_1            Cannot declare '%1s', as an extern and non extern object in block scope.\\
+MISRA-C++ Rule 1-0-1
+
+248    RULE01_0_1            '%1s' may not be redeclared in the current scope, ignoring redeclaration.\\
+MISRA-C++ Rule 1-0-1
+
+249    RULE01_0_1            '%1s' is not a legal switch conditional type.\\
+MISRA-C++ Rule 1-0-1
+
+250    RULE01_0_1            The case label expression should be a constant integral expression.\\
+MISRA-C++ Rule 1-0-1
+
+251    RULE01_0_1            '%1s' is not complete, continuing in outer scope.\\
+MISRA-C++ Rule 1-0-1
+
+252    RULE01_0_1            Cannot create an array with elements of array type with unknown size.\\
+MISRA-C++ Rule 1-0-1
+
+253    RULE01_0_1            Too many initialisers provided for direct initialisation.\\
+MISRA-C++ Rule 1-0-1
+
+254    RULE01_0_1            Invalid Declaration (ignoring):\\
+MISRA-C++ Rule 1-0-1
+
+255    RULE01_0_1            Invalid Definition (continuing in outer scope):\\
+MISRA-C++ Rule 1-0-1
+
+256    RULE01_0_1            Anonymous member %1s already declared.\\
+MISRA-C++ Rule 1-0-1
+
+257    RULE01_0_1            The name '%1s', before '::', in the ptr to member declaration must be a class type.\\
+MISRA-C++ Rule 1-0-1
+
+258    RULE01_0_1            The scope 'std' is not yet declared.\\
+MISRA-C++ Rule 1-0-1
+
+259    RULE01_0_1            The type 'std::bad_alloc' is not yet declared.\\
+MISRA-C++ Rule 1-0-1
+
+260    RULE01_0_1            Type name '%1s' is not qualified and does not need the typename keyword.\\
+MISRA-C++ Rule 1-0-1
+
+261    RULE01_0_1            '%1s' found by lookup in '%2s', the typename keyword is not required.\\
+MISRA-C++ Rule 1-0-1
+
+262    RULE01_0_1            Explicit template arguments are illegal for '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+263    RULE01_0_1            Friend declarations cannot declare partial specialisations.\\
+MISRA-C++ Rule 1-0-1
+
+264    RULE01_0_1            Parameter %1s is considered a template in this scope.\\
+MISRA-C++ Rule 1-0-1
+
+265    RULE01_0_1            Parameter %1s is considered a type in this scope.\\
+MISRA-C++ Rule 1-0-1
+
+266    RULE01_0_1            Invalid template non-type argument '%1s', attempting to recover.\\
+MISRA-C++ Rule 1-0-1
+
+267    RULE01_0_1            Cannot declare an explicit class specialisation as a member of a class template.\\
+MISRA-C++ Rule 1-0-1
+
+268    RULE01_0_1            Cannot declare an explicit function specialisation as a member of a class template, treating as non template function.\\
+MISRA-C++ Rule 1-0-1
+
+269    RULE01_0_1            '%1s' cannot be explicit instantiated.\\
+MISRA-C++ Rule 1-0-1
+
+270    RULE01_0_1            Passing the minimum required recursive template instantiation depth: '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+271    RULE01_0_1            Passing the configured maximum recursive template instantiation depth: '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+272    RULE01_0_1            Illegal explicit function specialisation, treating as non template function.\\
+MISRA-C++ Rule 1-0-1
+
+273    RULE01_0_1            Incorrect number of template parameter scopes.\\
+MISRA-C++ Rule 1-0-1
+
+274    RULE01_0_1            '%1s' must be a template and be explicitly specialised using a 'template-id'.\\
+MISRA-C++ Rule 1-0-1
+
+280    RULE01_0_1            Class '%1s' is not a base class in member using declaration.\\
+MISRA-C++ Rule 1-0-1
+
+281    RULE01_0_1            Nested name '%1s' is not a class in member using declaration.\\
+MISRA-C++ Rule 1-0-1
+
+282    RULE01_0_1            Type '%1s' cannot have a scope.\\
+MISRA-C++ Rule 1-0-1
+
+283    RULE01_0_1            Using declarations for class members shall be class member declarations.\\
+MISRA-C++ Rule 1-0-1
+
+284    RULE01_0_1            '%1s' is not a namespace or class.\\
+MISRA-C++ Rule 1-0-1
+
+285    RULE01_0_1            '%1s' is not a namespace or class in '%2s'.\\
+MISRA-C++ Rule 1-0-1
+
+286    RULE01_0_1            '%1s' is not a class template.\\
+MISRA-C++ Rule 1-0-1
+
+287    RULE01_0_1            '%1s' is not a class template in '%2s'.\\
+MISRA-C++ Rule 1-0-1
+
+288    RULE01_0_1            This qualified member initialiser is not a class.\\
+MISRA-C++ Rule 1-0-1
+
+289    RULE01_0_1            Cannot declare an enum template, continuing with non template.\\
+MISRA-C++ Rule 1-0-1
+
+290    RULE01_0_1            Cannot create an array with elements of type abstract class.\\
+MISRA-C++ Rule 1-0-1
+
+291    RULE01_0_1            Cannot declare a namespace template.\\
+MISRA-C++ Rule 1-0-1
+
+292    RULE01_0_1            Could not convert expression to type '%1s', recovering by inserting c-style cast.\\
+MISRA-C++ Rule 1-0-1
+
+293    RULE01_0_1            Undefined behaviour: '%1s' declared with internal and external linkage.\\
+MISRA-C++ Rule 1-0-1
+
+294    RULE01_0_1            Too many braces were provided.\\
+MISRA-C++ Rule 1-0-1
+
+295    RULE01_0_1            This static member has the same name as the class it is a member of.\\
+MISRA-C++ Rule 1-0-1
+
+296    RULE01_0_1            This type member has the same name as the class it is a member of.\\
+MISRA-C++ Rule 1-0-1
+
+297    RULE01_0_1            This enumerator has the same name as the enlcosing class.\\
+MISRA-C++ Rule 1-0-1
+
+298    RULE01_0_1            This member of an anonymous union has the same name as the enclosing class.\\
+MISRA-C++ Rule 1-0-1
+
+299    RULE01_0_1            This member has the same name as the class it is a member of and there is a user declared constructor.\\
+MISRA-C++ Rule 1-0-1
+
+300    RULE01_0_1            Enum name not valid as part of nested qualified scope.\\
+MISRA-C++ Rule 1-0-1
+
+301    semwarn               Invalid type '%1s' for bitfield.
+
+400    RULE01_0_1            '%1s' is not declared.\\
+MISRA-C++ Rule 1-0-1
+
+401    RULE01_0_1            Entity is not an expression.\\
+MISRA-C++ Rule 1-0-1
+
+403    RULE01_0_1            No matching functions, arguments were '%2s'.\\
+MISRA-C++ Rule 1-0-1
+
+404    RULE01_0_1            Ambiguous call to overloaded function, arguments were '%2s'.\\
+MISRA-C++ Rule 1-0-1
+
+405    RULE01_0_1            Object expression does not have class type.\\
+MISRA-C++ Rule 1-0-1
+
+406    RULE01_0_1            Non-static member used without object.\\
+MISRA-C++ Rule 1-0-1
+
+415    RULE01_0_1            'this' used outside non-static member function.\\
+MISRA-C++ Rule 1-0-1
+
+424    RULE01_0_1            No conversion to left-hand type in assignment, ignoring expression.\\
+MISRA-C++ Rule 1-0-1
+
+429    RULE01_0_1            Operand does not have function or pointer-to-function type.\\
+MISRA-C++ Rule 1-0-1
+
+435    RULE01_0_1            Division by zero, the behaviour is undefined.\\
+MISRA-C++ Rule 1-0-1
+
+439    RULE01_0_1            Operator function is not declared.\\
+MISRA-C++ Rule 1-0-1
+
+440    RULE01_0_1            Conversion function is not declared.\\
+MISRA-C++ Rule 1-0-1
+
+441    RULE01_0_1            Entity is not a member of object.\\
+MISRA-C++ Rule 1-0-1
+
+445    RULE01_0_1            Conversion to %1s is ambiguous, ignoring expression.\\
+MISRA-C++ Rule 1-0-1
+
+446    RULE01_0_1            No hex digits following x in character literal, will assume 0.\\
+MISRA-C++ Rule 1-0-1
+
+447    RULE01_0_1            Invalid escape character in character literal.\\
+MISRA-C++ Rule 1-0-1
+
+448    RULE01_0_1            Too many arguments in function style cast (zero or one expected), ignoring expression.\\
+MISRA-C++ Rule 1-0-1
+
+450    RULE01_0_1            Invalid arguments to operator.\\
+MISRA-C++ Rule 1-0-1
+
+451    RULE01_0_1            Invalid argument to sizeof operator.\\
+MISRA-C++ Rule 1-0-1
+
+453    RULE01_0_1            Ambiguous reference to overloaded function.\\
+MISRA-C++ Rule 1-0-1
+
+454    RULE01_0_1            Destructor is not declared.\\
+MISRA-C++ Rule 1-0-1
+
+455    RULE01_0_1            Null array size in call to operator new, recovering with size of '1'.\\
+MISRA-C++ Rule 1-0-1
+
+456    RULE01_0_1            Cannot determine which overload of '%1s' to use.\\
+MISRA-C++ Rule 1-0-1
+
+457    RULE01_0_1            A function or pointer to function may not be deleted\\
+MISRA-C++ Rule 1-0-1
+
+458    RULE01_0_1            Could not convert instantiated expression to type '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+459    RULE01_0_1            Can't call constructor explicitly, instead use placement new.\\
+MISRA-C++ Rule 1-0-1
+
+461    RULE01_0_1            dynamic_cast type should be pointer or reference to a complete type or pointer to void\\
+MISRA-C++ Rule 1-0-1
+
+462    RULE01_0_1            Do not call or take the address of global main\\
+MISRA-C++ Rule 1-0-1
+
+464    RULE01_0_1            String literal does not convert to void *.\\
+MISRA-C++ Rule 1-0-1
+
+465    RULE01_0_1            Cannot copy initialise type with expression.\\
+MISRA-C++ Rule 1-0-1
+
+466    RULE01_0_1            Using old ISO lookup rules to find this id.\\
+MISRA-C++ Rule 1-0-1
+
+467    RULE01_0_1            ISO lookup rules will not find '%1s', recovering with lookup at instantiation.\\
+MISRA-C++ Rules 1-0-1, 14-6-1
+467    RULE14_6_1            ISO lookup rules will not find '%1s', recovering with lookup at instantiation.\\
+MISRA-C++ Rules 1-0-1, 14-6-1
+
+468    RULE01_0_1            ISO lookup rules will not find this operator here, attempting to find by delayed lookup.\\
+MISRA-C++ Rules 1-0-1, 14-6-1
+468    RULE14_6_1            ISO lookup rules will not find this operator here, attempting to find by delayed lookup.\\
+MISRA-C++ Rules 1-0-1, 14-6-1
+
+469    RULE01_0_1            '%2s' is not declared in '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+471    RULE01_0_1            Number is too big for largest integral data type\\
+MISRA-C++ Rule 1-0-1
+
+473    RULE01_0_1            This literal is implicitly of the non standard type 'long long'\\
+MISRA-C++ Rule 1-0-1
+
+474    RULE01_0_1            This literal is of the non standard type 'long long'\\
+MISRA-C++ Rule 1-0-1
+
+475    RULE01_0_1            This literal is implicitly of the non standard type 'unsigned long long'\\
+MISRA-C++ Rule 1-0-1
+
+476    RULE01_0_1            This literal is of the non standard type 'unsigned long long'\\
+MISRA-C++ Rule 1-0-1
+
+479    RULE01_0_1            This function call was resolved with recovery lookup.\\
+ISO lookup did not resolve this instantiated function call. MISRA-C++ Rule 1-0-1
+
+480    RULE01_0_1            Incomplete class to operand of typeid, recovering with '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+481    RULE01_0_1            'class' operand to delete must have exactly one user conversion to pointer type.\\
+MISRA-C++ Rule 1-0-1
+
+482    RULE01_0_1            Operand to delete does not have pointer type or is not a complete class.\\
+MISRA-C++ Rule 1-0-1
+
+483    RULE01_0_1            No suitable 'operator delete' found.\\
+MISRA-C++ Rule 1-0-1
+
+484    RULE01_0_1            A pseudo destructor shall only be used as the operand to ().\\
+MISRA-C++ Rule 1-0-1
+
+485    RULE01_0_1            No suitable functions found for '%1s' during first phase lookup, recovering with lookup at instantiation.\\
+MISRA-C++ Rule 1-0-1
+
+486    RULE01_0_1            No suitable operator functions found during first phase lookup, recovering with lookup at instantiation.\\
+MISRA-C++ Rule 1-0-1
+
+487    RULE01_0_1            Instantiated '%1s' is not an expression, recovering with implicit 'typename'.\\
+MISRA-C++ Rule 1-0-1
+
+600    RULE01_0_1            The macro concatenation operator cannot be the first or last token in a macro token replacement set, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+601    RULE01_0_1            The stringify operator must precede a macro parameter, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+602    RULE01_0_1            Filename expected after #include directive, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+603    RULE01_0_1            Identifier expected after #%1s directive.\\
+MISRA-C++ Rule 1-0-1
+
+604    RULE01_0_1            Empty literal character.\\
+MISRA-C++ Rule 1-0-1
+
+605    RULE01_0_1            Function macro argument consists of no preprocessing tokens.\\
+MISRA-C++ Rule 1-0-1
+
+606    RULE01_0_1            Function macro '%1s' requires at least %2s arguments, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+607    RULE01_0_1            '%1s' has already been used a macro parameter name, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+608    RULE01_0_1            '__VA_ARGS__' cannot be used as a macro parameter name, ignoring directive.\\
+MISRA-C++ Rule 1-0-1
+
+609    RULE01_0_1            '__VA_ARGS__' is used in replacement list of non-variadic function macro.\\
+MISRA-C++ Rule 1-0-1
+
+610    RULE01_0_1            '__VA_ARGS__' is used in replacement list of variadic function macro with named variable argument.\\
+MISRA-C++ Rule 1-0-1
+
+611    RULE01_0_1            Syntax error before '%2s' in #%1s expression, skipping until #endif.\\
+MISRA-C++ Rules 1-0-1, 16-1-1
+611    RULE16_1_1            Syntax error before '%2s' in #%1s expression, skipping until #endif.\\
+MISRA-C++ Rules 1-0-1, 16-1-1
+
+612    RULE01_0_1            Missing tokens after #%1s directive, recovering with 0.\\
+MISRA-C++ Rule 1-0-1
+
+613    RULE01_0_1            A namespace name cannot be a template-id, template argument list ignored.\\
+MISRA-C++ Rule 1-0-1
+
+616    RULE01_0_1            Namespace is not defined, ignoring alias definition.\\
+MISRA-C++ Rule 1-0-1
+
+617    RULE01_0_1            Unable to alias a namespace using a qualified name, ignoring alias definition.\\
+MISRA-C++ Rule 1-0-1
+
+618    RULE01_0_1            Octal constant '%1s' contains digits beyond radix.\\
+MISRA-C++ Rule 1-0-1
+
+619    RULE01_0_1            Parameter name is not an identifier, ignoring parameter.\\
+MISRA-C++ Rule 1-0-1
+
+620    RULE01_0_1            '%1s' is not a type.\\
+MISRA-C++ Rule 1-0-1
+
+621    RULE01_0_1            Critical Parsing error, parser failures for:\\
+MISRA-C++ Rule 1-0-1
+
+622    RULE01_0_1            Unable to open PPH file '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+623    RULE01_0_1            Unexpected characters following integer literal.\\
+MISRA-C++ Rule 1-0-1
+
+624    RULE01_0_1            Unexpected characters following floating point literal.\\
+MISRA-C++ Rule 1-0-1
+
+625    RULE01_0_1            Floating point literals are not valid in #if expressions.\\
+MISRA-C++ Rule 1-0-1
+
+626    RULE01_0_1            Treating '%1s' as a '>' followed by '%2s'.\\
+MISRA-C++ Rule 1-0-1
+
+627    RULE01_0_1            Unexpected EOF in char or string literal.\\
+MISRA-C++ Rule 1-0-1
+
+803    RULE01_0_1            Missing token: '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+804    RULE01_0_1            Discarding token: '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+805    RULE01_0_1            Unrecoverable syntax error before '%1s'.\\
+MISRA-C++ Rule 1-0-1
+
+1001   RULE16_2_3            The include guard is not self-contained.\\
+MISRA-C++ Rule 16-2-3
+
+1014   RULE18_0_1            This is a C standard library header.\\
+Use header <%1s> instead which has the same contents but its declarations and definitions are in the scope of namespace std. MISRA-C++ Rule 18-0-1
+
+1016   RULE16_2_4            Header name contains "%1s".\\
+MISRA-C++ Rule 16-2-4
+
+1017   RULE16_2_5            Header name contains "%1s", a directory separator on some platforms.\\
+MISRA-C++ Rule 16-2-5
+
+1020   RULE16_0_4            Avoid macros.\\
+Use constants, enumerators, typedefs or inline functions instead. MISRA-C++ Rules 16-0-4, 16-2-1
+1020   RULE16_2_1            Avoid macros.\\
+Use constants, enumerators, typedefs or inline functions instead. MISRA-C++ Rules 16-0-4, 16-2-1
+
+1021   RULE16_2_2            This macro is replaced with a literal.\\
+Use a constant of type 'const %1s' instead. MISRA-C++ Rule 16-2-2
+
+1025   RULE16_2_2            Macro may be used as a literal.\\
+Use constants, enumerators, typedefs or inline functions instead. MISRA-C++ Rule 16-2-2
+
+1026   RULE16_2_2            Macro may be used as a constant expression.\\
+Use constants, enumerators, typedefs or inline functions instead. MISRA-C++ Rule 16-2-2
+
+1030   RULE16_0_6            Enclose macro arguments in parentheses.\\
+If the macro is used with an expression as argument the evaluation order may not be as expected. MISRA-C++ Rule 16-0-6
+
+1032   RULE16_0_3            This is an #undef directive.\\
+MISRA-C++ Rule 16-0-3
+
+1033   RULE16_0_3            Compiler macro '%1s' is subject of '#%2s' directive.\\
+MISRA-C++ Rule 16-0-3
+
+1034   RULE16_0_2            #define directive should be in the global namespace.\\
+MISRA-C++ Rule 16-0-2
+
+1035   RULE16_0_2            #undef directive should be in the global namespace.\\
+MISRA-C++ Rule 16-0-2
+
+1036   RULE16_0_7            Identifier '%1s', used in a conditional preprocessor directive is not defined.\\
+MISRA-C++ Rule 16-0-7
+
+1038   RULE16_3_2            Avoid using the stringify operator (#).\\
+MISRA-C++ Rule 16-3-2
+
+1039   RULE16_3_2            Avoid using the glue operator (##).\\
+MISRA-C++ Rule 16-3-2
+
+1040   RULE16_6_1            This is a #pragma directive\\
+#pragma directives are inherently non-portable. MISRA-C++ Rule 16-6-1
+
+1051   RULE02_7_3            This C++ style comment, comments out source code.\\
+MISRA-C++ Rule 2-7-3
+
+1052   RULE02_7_2            This C style comment, comments out source code.\\
+MISRA-C++ Rule 2-7-2
+
+1053   RULE02_7_1            Character sequence '/*' found in c-style comment.\\
+MISRA-C++ Rule 2-7-1
+
+1067   RULE03_1_1            This is a definition in a header file that could violate the one definition rule.\\
+MISRA-C++ Rule 3-1-1
+
+1070   RULE16_1_2            This directive is not an include directive, or an include guard using: ifndef, define, and endif.\\
+MISRA-C++ Rules 16-1-2, 16-2-2
+1070   RULE16_2_2            This directive is not an include directive, or an include guard using: ifndef, define, and endif.\\
+MISRA-C++ Rules 16-1-2, 16-2-2
+
+1092   RULE02_3_1            Trigraph '??%1s' replaced with '%2s'.\\
+MISRA-C++ Rule 2-3-1
+
+1093   RULE02_5_1            Digraph '%1s' is equivalent to '%2s'.\\
+MISRA-C++ Rule 2-5-1
+
+1100   RULE07_4_1            This is an asm declaration.\\
+Assembly code is not portable. MISRA-C++ Rule 7-4-1
+
+1110   RULE16_3_1            Multiple '%1s' operators found in macro.\\
+MISRA-C++ Rule 16-3-1
+
+1111   RULE16_3_1            Macro contains mixture of '#' and '##' operators.\\
+MISRA-C++ Rule 16-3-1
+
+1500   RULE00_1_3            The object '%1s' is declared but is not used within this project.\\
+MISRA-C++ Rule 0-1-3
+
+1502   RULE00_1_3            The object '%1s' is defined but is not used within this project.\\
+MISRA-C++ Rule 0-1-3
+
+1503   RULE0_1_10            The function '%1s' is defined but is not used within this project.\\
+MISRA-C++ Rule 0-1-10
+
+1506   RULE2_10_3            The identifier '%1s' is declared as a typedef and is used elsewhere for a different kind of declaration.\\
+MISRA-C++ Rule 2-10-3
+
+1507   RULE2_10_3            '%1s' is used as a typedef for different types.\\
+MISRA-C++ Rule 2-10-3
+
+1508   RULE2_10_3            The typedef '%1s' is declared in more than one location.\\
+MISRA-C++ Rules 2-10-3, 3-2-3
+1508   RULE03_2_3            The typedef '%1s' is declared in more than one location.\\
+MISRA-C++ Rules 2-10-3, 3-2-3
+
+1509   RULE01_0_1            '%1s' has external linkage and has multiple definitions.\\
+MISRA-C++ Rules 1-0-1, 3-2-2, 3-2-4
+1509   RULE03_2_2            '%1s' has external linkage and has multiple definitions.\\
+MISRA-C++ Rules 1-0-1, 3-2-2, 3-2-4
+1509   RULE03_2_4            '%1s' has external linkage and has multiple definitions.\\
+MISRA-C++ Rules 1-0-1, 3-2-2, 3-2-4
+
+1510   RULE01_0_1            '%1s' has external linkage and has incompatible declarations.\\
+MISRA-C++ Rules 1-0-1, 3-2-1
+1510   RULE03_2_1            '%1s' has external linkage and has incompatible declarations.\\
+MISRA-C++ Rules 1-0-1, 3-2-1
+
+1512   RULE03_2_3            Identifier '%1s' with external linkage has separate declarations in multiple translation units.\\
+MISRA-C++ Rule 3-2-3
+
+1513   RULE03_2_3            Identifier '%1s' with external linkage has separate non-defining declarations in more than one location.\\
+MISRA-C++ Rule 3-2-3
+
+1520   RULE07_5_4            Functions are indirectly recursive.\\
+MISRA-C++ Rule 7-5-4
+
+1521   RULE07_5_4            Function '%1s' is recursive.\\
+MISRA-C++ Rule 7-5-4
+
+1525   RULE2_10_5            Object/function with external linkage has same identifier as another object/function with internal linkage.\\
+MISRA-C++ Rule 2-10-5
+
+1527   RULE2_10_5            Object/function with internal linkage has same identifier as another object/function with internal linkage.\\
+MISRA-C++ Rule 2-10-5
+
+1528   RULE2_10_5            Object with no linkage has same identifier as another object/function with internal linkage.\\
+MISRA-C++ Rule 2-10-5
+
+1530   serious_leaks         Object '%1s' used with inconsistent allocation methods in different translation units.
+
+1710   RULE2_10_1            Identifier '%1s' is similar to identifier '%2s'.\\
+MISRA-C++ Rule 2-10-1
+
+1720   RULE2_10_5            Object/function declared in an unnamed namespace has same identifier as another object/function with internal linkage.\\
+MISRA-C++ Rule 2-10-5
+
+1730   RULE14_7_3            This specialization is not declared with its primary template.\\
+MISRA-C++ Rule 14-7-3
+
+1950   RULE01_0_1            '%1s' Rule match failure\\
+MISRA-C++ Rule 1-0-1
+
+1951   RULE01_0_1            Not analysing this node\\
+MISRA-C++ Rule 1-0-1
+
+1962   RULE01_0_1            Layout needs a definition for the '%1s' checker\\
+MISRA-C++ Rule 1-0-1
+
+1963   RULE01_0_1            '%1s' is declared in more than one category\\
+MISRA-C++ Rule 1-0-1
+
+1964   RULE01_0_1            The newline decoration only makes sense if it's before other decorations.\\
+MISRA-C++ Rule 1-0-1
+
+1965   RULE01_0_1            A space decoration can not follow here\\
+MISRA-C++ Rule 1-0-1
+
+1966   RULE01_0_1            An indent decoration must be preceded by a newline decoration\\
+MISRA-C++ Rule 1-0-1
+
+1967   RULE01_0_1            A column decoration must be preceded by a newline decoration\\
+MISRA-C++ Rule 1-0-1
+
+1968   RULE01_0_1            Here are two sequential decorations of the same type\\
+MISRA-C++ Rule 1-0-1
+
+1969   RULE01_0_1            This rule is equivalent to it's category - illegal recursion\\
+MISRA-C++ Rule 1-0-1
+
+1970   RULE01_0_1            This rule is equivalent to itself - illegal recursion\\
+MISRA-C++ Rule 1-0-1
+
+1971   RULE01_0_1            You cannot nest rule branches\\
+MISRA-C++ Rule 1-0-1
+
+1972   RULE01_0_1            The message number is invalid\\
+MISRA-C++ Rule 1-0-1
+
+1973   RULE01_0_1            This category is not declared - ignoring\\
+MISRA-C++ Rule 1-0-1
+
+1974   RULE01_0_1            This rule name has been used to declare a rule category\\
+MISRA-C++ Rule 1-0-1
+
+1975   RULE01_0_1            This rule is already defined\\
+MISRA-C++ Rule 1-0-1
+
+1976   RULE01_0_1            This category is already declared\\
+MISRA-C++ Rule 1-0-1
+
+1977   RULE01_0_1            This is an invalid parameter to the decoration\\
+MISRA-C++ Rule 1-0-1
+
+1978   RULE01_0_1            This is an invalid decoration (have you used the correct decoration symbol?)\\
+MISRA-C++ Rule 1-0-1
+
+1979   RULE01_0_1            You cannot have nested decoration sequences\\
+MISRA-C++ Rule 1-0-1
+
+1980   RULE01_0_1            Rule referenced but not defined. Need a definition for '%1s'\\
+MISRA-C++ Rule 1-0-1
+
+1982   RULE01_0_1            The indent width value is not valid. (-layoutindentwidth on command line)\\
+MISRA-C++ Rule 1-0-1
+
+1984   RULE01_0_1            No definition for layout rule '%1s'\\
+MISRA-C++ Rule 1-0-1
+
+1985   RULE01_0_1            The dummy rule '%1s' has a definition or equivalent nodes... '@' is a special lexeme that indicates a rule is a dummy\\
+MISRA-C++ Rule 1-0-1
+
+1986   RULE01_0_1            Could not open layout file\\
+MISRA-C++ Rule 1-0-1
+
+1987   RULE01_0_1            No line break decorations must appear alone in a sequence.\\
+MISRA-C++ Rule 1-0-1
+
+1989   RULE01_0_1            There should not be a rule '%1s'\\
+MISRA-C++ Rule 1-0-1
+
+1990   RULE01_0_1            You can only specify no line break decoration (ie '/n0') once in a decoration prefix\\
+MISRA-C++ Rule 1-0-1
+
+1991   RULE01_0_1            You cannot have a no line break decoration (ie '/n0') in the same prefix as line breaking decorations\\
+MISRA-C++ Rule 1-0-1
+
+2000   RULE07_3_1            The function '%1s' is in the global scope.\\
+This practice may pollute the global namespace. MISRA-C++ Rule 7-3-1
+
+2012   RULE08_4_1            This function accepts an unlimited number of parameters.\\
+Prefer overloaded functions and chained function calls for type safety and maintainability. MISRA-C++ Rule 8-4-1
+
+2017   RULE08_4_2            This function redeclaration declares parameter names that are different from those in the original declaration.\\
+Prefer to consistently name parameters in subsequent declarations. MISRA-C++ Rule 8-4-2
+
+2018   RULE08_3_1            The default value is different from the overridden function.\\
+Avoid changing a default value for an inherited function. MISRA-C++ Rule 8-3-1
+
+2019   RULE08_3_1            This virtual function in the derived class does not have a default argument.\\
+You should have a default argument in a derived class function when the overridden base class function has a default argument. MISRA-C++ Rule 8-3-1
+
+2040   RULE07_3_2            'main' used for function other than '::main'.\\
+MISRA-C++ Rule 7-3-2
+
+2041   RULE07_3_2            'main' used for member function.\\
+MISRA-C++ Rule 7-3-2
+
+2050   RULE03_3_2            Function '%1s' is implicitly static.\\
+MISRA-C++ Rule 3-3-2
+
+2077   RULE5_2_11            Avoid overloading comma operator (,).\\
+MISRA-C++ Rule 5-2-11
+
+2078   RULE5_2_11            Avoid overloading operator 'and' (&&).\\
+MISRA-C++ Rule 5-2-11
+
+2079   RULE5_2_11            Avoid overloading operator 'or' (||).\\
+MISRA-C++ Rule 5-2-11
+
+2080   RULE12_8_2            This is an abstract base class with a non-protected copy assign operator.\\
+Prefer to declare the copy assignment operator protected in an abstract class. MISRA-C++ Rule 12-8-2
+
+2087   RULE14_5_1            This template may be used unexpectedly by argument dependent lookup.\\
+This function may be found by argument dependent lookup. MISRA-C++ Rule 14-5-1
+
+2088   RULE14_6_2            This calls a function found with argument dependent lookup that is declared after the function call.\\
+Some compilers will not find functions that are declared after the function call. MISRA-C++ Rule 14-6-2
+
+2092   RULE05_3_3            Avoid overloading the address-of operator.\\
+MISRA-C++ Rule 5-3-3
+
+2100   RULE11_0_1            '%1s' is public.\\
+Non-private data members violate the object oriented encapsulation paradigm. MISRA-C++ Rule 11-0-1
+
+2101   RULE11_0_1            '%1s' is protected.\\
+Non-private data members violate the object oriented encapsulation paradigm. MISRA-C++ Rule 11-0-1
+
+2126   RULE10_3_3            Pure virtual function overriding non pure virtual function.\\
+MISRA-C++ Rule 10-3-3
+
+2127   RULE10_3_1            Introducing virtual function without the pure specifier.\\
+MISRA-C++ Rule 10-3-1
+
+2128   RULE10_3_1            Overriding non-pure base class virtual function.\\
+MISRA-C++ Rule 10-3-1
+
+2129   RULE10_3_1            Overriding non-pure base class virtual functions from multiple base classes..\\
+MISRA-C++ Rule 10-3-1
+
+2132   RULE10_3_2            This function is implicitly virtual.\\
+Specifying 'virtual' explicitly may help documentation for this class. MISRA-C++ Rule 10-3-2
+
+2150   RULE10_2_1            This accessible name is reused for a different entity elsewhere in the hierarchy.\\
+MISRA-C++ Rule 10-2-1
+
+2151   RULE10_1_3            Class '%1s' is the common ancestor of two or more derived base classes and is not declared virtual in all inheritance paths.\\
+MISRA-C++ Rule 10-1-3
+
+2159   RULE10_2_1            This accessible name is reused for a different inaccessible entity elsewhere in the hierarchy.\\
+MISRA-C++ Rule 10-2-1
+
+2176   RULE09_5_1            This is a union.\\
+Use polymorphic classes instead. MISRA-C++ Rule 9-5-1
+
+2180   RULE12_1_3            This constructor could be used when implicit conversions are required.\\
+Use the keyword 'explicit' to avoid one argument constructors being used for implicit conversions. MISRA-C++ Rule 12-1-3
+
+2300   RULE07_3_1            The object '%1s' is in the global scope.\\
+This may pollute the global namespace. MISRA-C++ Rule 7-3-1
+
+2302   RULE09_6_4            This signed bitfield has a limited and unintuitive value range.\\
+MISRA-C++ Rule 9-6-4
+
+2304   RULE09_6_2            Bitfield not declared explicitly as unsigned or signed.\\
+MISRA-C++ Rule 9-6-2
+
+2307   RULE09_6_2            Bitfield declared with enumeration type.\\
+MISRA-C++ Rules 9-6-2, 9-6-3
+2307   RULE09_6_3            Bitfield declared with enumeration type.\\
+MISRA-C++ Rules 9-6-2, 9-6-3
+
+2308   RULE09_6_2            Bitfield declared with wchar_t type.\\
+MISRA-C++ Rule 9-6-2
+
+2309   RULE09_6_2            Bitfield has dependent type.\\
+MISRA-C++ Rule 9-6-2
+
+2313   RULE01_0_1            The use of keyword static in declaration of objects in namespaces and the global scope is deprecated.\\
+Use unnamed namespaces instead. MISRA-C++ Rule 1-0-1
+
+2316   RULE01_0_1            Superfluous 'static' keyword object declaration in unnamed namespace.\\
+Remove the superfluous 'static' keyword. MISRA-C++ Rule 1-0-1
+
+2317   RULE01_0_1            Superfluous 'static' keyword function declaration in unnamed namespace.\\
+Remove the superfluous 'static' keyword. MISRA-C++ Rule 1-0-1
+
+2400   RULE07_3_1            The type name '%1s' is in the global scope.\\
+This may pollute the global namespace. MISRA-C++ Rule 7-3-1
+
+2406   RULE03_9_3            This union allows for manipulation of the bits in a floating point type object through its integral member.\\
+MISRA-C++ Rule 3-9-3
+
+2407   RULE03_9_3            This union allows for manipulation of the bits in a floating point type object through its POD class or array member.\\
+MISRA-C++ Rule 3-9-3
+
+2412   RULE08_5_2            Array has fewer initialisers than it's declared size.\\
+When an array has dimensions larger than the number of initialisers provided, the remaining elements in the array are value-initialised. MISRA-C++ Rule 8-5-2
+
+2414   RULE08_5_2            Use {} to document that the array should be 'value-initialised'.\\
+When an array has dimensions larger than the number of initialisers provided, the remaining elements in the array are value-initialised. MISRA-C++ Rule 8-5-2
+
+2416   RULE08_5_2            String literal is smaller than declared size of array.\\
+When an array has dimensions larger than the number of initialisers provided, the remaining elements in the array are value-initialised. MISRA-C++ Rule 8-5-2
+
+2417   RULE08_5_2            Aggregate has fewer initialisers than members.\\
+When an array has dimensions larger than the number of initialisers provided, the remaining elements in the array are value-initialised. MISRA-C++ Rule 8-5-2
+
+2418   RULE08_5_2            Use {} to document that the aggregate object is to be 'value-initialised'.\\
+When an aggregate has more members than the number of initialisers provided, the remaining members are value-initialised. MISRA-C++ Rule 8-5-2
+
+2420   RULE08_5_2            Incorrect bracing in this array initialiser.\\
+MISRA-C++ Rule 8-5-2
+
+2421   RULE08_5_2            Incorrect bracing in this aggregate initialiser.\\
+MISRA-C++ Rule 8-5-2
+
+2422   RULE08_5_3            Initialise none, the first only or all enumerators in an enumeration.\\
+MISRA-C++ Rule 8-5-3
+
+2424   RULE5_0_19            This is using more than two levels of pointer indirection.\\
+MISRA-C++ Rule 5-0-19
+
+2427   RULE03_9_2            Direct use of fundamental type.\\
+Use typedefs that show the size of the type being used. MISRA-C++ Rule 3-9-2
+
+2430   RULE03_1_3            This array object is not declared with a dimension in this translation unit.\\
+MISRA-C++ Rule 3-1-3
+
+2431   RULE03_1_3            The first declaration of this array object is not declared with a dimension in this translation unit.\\
+MISRA-C++ Rule 3-1-3
+
+2432   RULE03_1_3            This member array object is not declared with a dimension in this translation unit.\\
+MISRA-C++ Rule 3-1-3
+
+2500   RULE2_10_2            The name of this type will be hidden by a previous object/function name.\\
+MISRA-C++ Rule 2-10-2
+
+2501   RULE2_10_2            The name of this object/function will hide a previous type name.\\
+MISRA-C++ Rules 2-10-2, 2-10-6
+2501   RULE2_10_6            The name of this object/function will hide a previous type name.\\
+MISRA-C++ Rules 2-10-2, 2-10-6
+
+2502   RULE2_10_2            This name hides a similar kind of declaration.\\
+MISRA-C++ Rule 2-10-2
+
+2503   RULE2_10_2            Class member not template parameter found by lookup for '%1s'.\\
+MISRA-C++ Rule 2-10-2
+
+2504   RULE2_10_2            This name hides a different kind of declaration.\\
+MISRA-C++ Rule 2-10-2
+
+2505   RULE2_10_2            This name hides a similar kind of member declaration.\\
+MISRA-C++ Rule 2-10-2
+
+2510   RULE03_1_2            This function first declared here in block scope is not explicitly declared in the innermost enclosing namespace.\\
+MISRA-C++ Rule 3-1-2
+
+2511   RULE03_1_2            This function first declared here in block scope is later explicitly redeclared in the innermost enclosing namespace.\\
+MISRA-C++ Rule 3-1-2
+
+2515   RULE07_5_2            This is assigning the address of an object to a pointer that has greater lifetime.\\
+MISRA-C++ Rule 7-5-2
+
+2516   RULE07_5_2            This is assigning the address of an object to a pointer that may have greater lifetime.\\
+MISRA-C++ Rule 7-5-2
+
+2518   RULE07_3_3            This is an unnamed namespace in a header file\\
+MISRA-C++ Rule 7-3-3
+
+2519   RULE07_3_4            This is a using directive.\\
+MISRA-C++ Rule 7-3-4
+
+2521   RULE07_3_6            This using directive is in the global namespace in a header file.\\
+MISRA-C++ Rule 7-3-6
+
+2522   RULE07_3_6            This using directive is in a header file.\\
+MISRA-C++ Rule 7-3-6
+
+2523   RULE07_3_6            This using declaration is in the global namespace in a header file.\\
+MISRA-C++ Rule 7-3-6
+
+2524   RULE07_3_6            This using declaration is in a header file.\\
+MISRA-C++ Rule 7-3-6
+
+2525   RULE07_3_5            This declaration will not be found by the previous using declaration.\\
+MISRA-C++ Rule 7-3-5
+
+2526   RULE07_3_5            This declaration will not be found by the previous using declaration in block scope.\\
+MISRA-C++ Rule 7-3-5
+
+2638   RULE14_5_2            Implicit copy constructor generation not suppressed by this template constructor.\\
+MISRA-C++ Rule 14-5-2
+
+2639   RULE14_5_3            Implicit copy assignment operator generation not suppressed by this template assignment operator.\\
+MISRA-C++ Rule 14-5-3
+
+2641   RULE03_3_1            Object with external linkage not first declared in a header file.\\
+MISRA-C++ Rule 3-3-1
+
+2642   RULE03_3_1            Function with external linkage not first declared in a header file.\\
+MISRA-C++ Rule 3-3-1
+
+2650   RULE10_1_1            Base class '%1s' derived virtually.\\
+MISRA-C++ Rule 10-1-1
+
+3002   RULE05_3_2            This unary minus operator is being applied to an unsigned type.\\
+The resulting value will be unsigned, which may not be as expected. MISRA-C++ Rule 5-3-2
+
+3003   RULE5_0_21            Bitwise operator is being applied to a signed type.\\
+The resulting value may not be as expected. MISRA-C++ Rule 5-0-21
+
+3004   RULE5_0_21            Bitwise operator is being applied to an enumerator value which is potentially negative.\\
+The resulting value may not be as expected on certain operating systems. MISRA-C++ Rule 5-0-21
+
+3005   RULE05_3_2            This unary minus operator is being applied to a type that is unsigned before promotion.\\
+The resulting value will be unsigned, which may not be as expected. MISRA-C++ Rule 5-3-2
+
+3011   RULE05_0_5            This is an implicit conversion between floating and integer types.\\
+This is a conversion where data may be lost. MISRA-C++ Rule 5-0-5
+
+3017   RULE03_9_3            This cast allows manipulation of the bits in an object of floating point type.\\
+MISRA-C++ Rule 3-9-3
+
+3036   RULE05_2_8            This expression casts from a pointer type to a fundamental type.\\
+Prefer to use types that may be checked and converted statically or dynamically. MISRA-C++ Rules 5-2-8, 5-2-9
+3036   RULE05_2_9            This expression casts from a pointer type to a fundamental type.\\
+Prefer to use types that may be checked and converted statically or dynamically. MISRA-C++ Rules 5-2-8, 5-2-9
+
+3037   RULE05_2_8            This expression casts a fundamental type to a pointer type.\\
+Prefer to use types that may be checked and converted statically or dynamically. MISRA-C++ Rules 5-2-8, 5-2-9
+3037   RULE05_2_9            This expression casts a fundamental type to a pointer type.\\
+Prefer to use types that may be checked and converted statically or dynamically. MISRA-C++ Rules 5-2-8, 5-2-9
+
+3040   RULE05_2_9            This expression casts from a pointer type to a smaller integral type.\\
+Avoid using pointer casts. MISRA-C++ Rule 5-2-9
+
+3041   RULE05_2_8            This expression casts to a pointer type from a smaller integral type.\\
+Avoid using pointer casts. MISRA-C++ Rule 5-2-8
+
+3042   RULE05_2_9            This expression casts from a pointer type to a signed integral type of the same size.\\
+Avoid using pointer casts. MISRA-C++ Rule 5-2-9
+
+3043   RULE05_2_8            This expression casts to a pointer type from a signed integral type of the same size.\\
+Avoid using pointer casts. MISRA-C++ Rule 5-2-8
+
+3044   RULE05_2_9            This expression casts from a pointer type to an integral type.\\
+Avoid using pointer casts. MISRA-C++ Rule 5-2-9
+
+3045   RULE05_2_8            This expression casts to a pointer from an integral type.\\
+Avoid using pointer casts. MISRA-C++ Rule 5-2-8
+
+3046   RULE05_2_9            This expression casts from a pointer type to an integral type with implementation defined size.\\
+Avoid using pointer casts. MISRA-C++ Rule 5-2-9
+
+3047   RULE05_2_8            This expression casts to a pointer type from an integral type with implementation defined size.\\
+Avoid using pointer casts. MISRA-C++ Rule 5-2-8
+
+3048   RULE05_2_6            This expression is a cast to or from a pointer to function type.\\
+Avoid using pointer casts. MISRA-C++ Rule 5-2-6
+
+3051   RULE05_0_5            Be aware that an implicit conversion from '%1s' to '%2s' takes place.\\
+MISRA-C++ Rule 5-0-5
+
+3054   RULE5_0_13            Be aware that an implicit conversion from '%1s' to bool takes place.\\
+MISRA-C++ Rules 5-0-13, 5-0-14, 5-3-1
+3054   RULE5_0_14            Be aware that an implicit conversion from '%1s' to bool takes place.\\
+MISRA-C++ Rules 5-0-13, 5-0-14, 5-3-1
+3054   RULE05_3_1            Be aware that an implicit conversion from '%1s' to bool takes place.\\
+MISRA-C++ Rules 5-0-13, 5-0-14, 5-3-1
+
+3058   RULE08_4_4            Function not used in call and not preceded by '&' operator.\\
+MISRA-C++ Rule 8-4-4
+
+3059   RULE08_4_4            Reference to function not used in call and not preceded by '&' operator.\\
+MISRA-C++ Rule 8-4-4
+
+3060   RULE05_2_5            This expression strips away a 'const' qualifier.\\
+This means that the compiler will not treat the object as constant. Avoid casting away constness. MISRA-C++ Rule 5-2-5
+
+3061   RULE05_2_5            This expression strips away a 'volatile' qualifier.\\
+This means that the compiler will not treat the object as volatile. Avoid casting away volatile qualification. MISRA-C++ Rule 5-2-5
+
+3063   RULE01_0_1            String literal to char * conversions are deprecated.\\
+The implicit conversion from const to non-const qualification for string literals is deprecated. MISRA-C++ Rule 1-0-1
+
+3064   RULE01_0_1            Wide string literal to wchar_t * conversions are deprecated.\\
+The implicit conversion from const to non-const qualification for string literals is deprecated. MISRA-C++ Rule 1-0-1
+
+3070   RULE05_2_3            This expression is a downcast, a base class is cast to a derived class.\\
+Consider adding virtual functions instead. MISRA-C++ Rule 5-2-3
+
+3076   RULE05_2_3            This expression is a downcast, a polymorphic base class is cast to a derived class.\\
+Consider using virtual functions instead. MISRA-C++ Rule 5-2-3
+
+3077   RULE05_2_3            This expression is a checked downcast, a base class is cast to a derived class.\\
+Consider using virtual functions instead. MISRA-C++ Rule 5-2-3
+
+3080   RULE05_2_4            This expression uses old style casts.\\
+Prefer to use the new style casts. MISRA-C++ Rule 5-2-4
+
+3082   RULE05_2_4            This expression uses function-style casts.\\
+Prefer to use the new style casts. MISRA-C++ Rule 5-2-4
+
+3083   RULE05_2_5            This is a const_cast expression.\\
+Minimise the use of const_cast. MISRA-C++ Rule 5-2-5
+
+3085   RULE05_2_7            Cast involving type(s) with data members declared across an access label.\\
+MISRA-C++ Rule 5-2-7
+
+3086   RULE05_2_7            Memcpy involving type(s) with data members declared across an access label.\\
+MISRA-C++ Rule 5-2-7
+
+3087   RULE05_2_7            Call to placement new involving type(s) with data members declared across an access label.\\
+MISRA-C++ Rule 5-2-7
+
+3088   RULE05_2_7            Conversion to 'void*' from type with data members declared across an access label.\\
+MISRA-C++ Rule 5-2-7
+
+3089   RULE05_2_7            Nested struct in union has data members declared across an access label.\\
+MISRA-C++ Rule 5-2-7
+
+3090   RULE05_2_7            Cast involving type(s) with multiple base classes.\\
+MISRA-C++ Rule 5-2-7
+
+3091   RULE05_2_7            Memcpy involving type(s) with multiple base classes.\\
+MISRA-C++ Rule 5-2-7
+
+3092   RULE05_2_7            Conversion to 'void*' from type with multiple base classes.\\
+MISRA-C++ Rule 5-2-7
+
+3093   RULE05_2_7            Call to placement new involving type(s) with multiple base classes.\\
+MISRA-C++ Rule 5-2-7
+
+3094   RULE05_2_7            Nested struct in union has multiple base classes.\\
+MISRA-C++ Rule 5-2-7
+
+3095   RULE01_0_1            This is an illegal downcast from virtual base.\\
+MISRA-C++ Rules 1-0-1, 5-2-2
+3095   RULE05_2_2            This is an illegal downcast from virtual base.\\
+MISRA-C++ Rules 1-0-1, 5-2-2
+
+3096   RULE05_2_2            This is a dangerous downcast from virtual base.\\
+MISRA-C++ Rule 5-2-2
+
+3103   RULE05_2_7            Cast involving type(s) with base classes.\\
+MISRA-C++ Rule 5-2-7
+
+3104   RULE01_0_1            #pragma '%1s' has invalid arguments.\\
+Please refer to QAC++ help for details. MISRA-C++ Rule 1-0-1
+
+3105   RULE05_2_7            Memcpy involving type(s) with base classes.\\
+MISRA-C++ Rule 5-2-7
+
+3106   RULE05_2_7            Conversion to 'void*' from type with base classes.\\
+MISRA-C++ Rule 5-2-7
+
+3107   RULE05_2_7            Call to placement new involving type(s) with base classes.\\
+MISRA-C++ Rule 5-2-7
+
+3108   RULE05_2_7            Nested struct in union has base classes.\\
+MISRA-C++ Rule 5-2-7
+
+3122   RULE4_10_1            'NULL' macro being used for an integral expression.\\
+MISRA-C++ Rule 4-10-1
+
+3123   RULE15_1_2            Do not throw 'NULL'.\\
+MISRA-C++ Rule 15-1-2
+
+3124   RULE4_10_2            Literal '0' being used for the null-pointer-constant.\\
+MISRA-C++ Rule 4-10-2
+
+3220   RULE05_0_1            Builtin object '%1s' is modified and accessed between sequence points.\\
+The value may not be what is expected. MISRA-C++ Rule 5-0-1
+
+3221   RULE05_0_1            Builtin argument '%1s' is modified and accessed between sequence points.\\
+Do not rely on the order of evaluation of arguments to a function. MISRA-C++ Rule 5-0-1
+
+3222   RULE05_0_1            Class type operand '%1s' is modified and accessed between sequence points.\\
+The value may not be what is expected. MISRA-C++ Rule 5-0-1
+
+3223   RULE05_0_1            Class type argument '%1s' is modified and accessed between sequence points.\\
+Do not rely on the order of evaluation of arguments to a function. MISRA-C++ Rule 5-0-1
+
+3224   RULE19_3_1            This is using errno.\\
+MISRA-C++ Rule 19-3-1
+
+3230   RULE5_14_1            The right hand side of this operator has side effects.\\
+MISRA-C++ Rule 5-14-1
+
+3240   RULE05_3_4            The operand of 'sizeof' has side effects that will not be performed at run-time.\\
+These side effects will not be performed as the 'sizeof' operation is performed at compile time. MISRA-C++ Rule 5-3-4
+
+3270   RULE06_2_2            Avoid comparing floating types for equality ( == or != ).\\
+MISRA-C++ Rule 6-2-2
+
+3291   RULE01_0_1            The use of calling the increment operator (++) on a variable of 'bool' type is deprecated.\\
+Prefer to assign 'true' to the variable instead. MISRA-C++ Rule 1-0-1
+
+3322   RULE05_8_1            The right hand side operand of the shift operator is too large.\\
+The behaviour of a shift operator is undefined if the right hand side operand is greater than or equal to the number of bits in the left hand side operand. MISRA-C++ Rule 5-8-1
+
+3323   RULE05_8_1            The left hand operand before promotion has less bits than are being shifted, result is always zero.\\
+MISRA-C++ Rule 5-8-1
+
+3330   serious_leaks         This object is also used as pointer to non-array.
+
+3331   serious_leaks         This object is also used as pointer to array.
+
+3332   serious_leaks         This object is also used as a pointer to old C-style allocated memory.
+
+3334   serious_leaks         This object is also used as a pointer to new style allocated memory.
+
+3336   RULE14_5_1            This call may be hijacked via template argument to one of the types.\\
+MISRA-C++ Rule 14-5-1
+
+3340   RULE5_18_1            This is using the comma operator.\\
+MISRA-C++ Rule 5-18-1
+
+3341   RULE5_18_1            This is using a user declared comma operator.\\
+MISRA-C++ Rule 5-18-1
+
+3348   RULE5_18_1            This is using the comma operator in a for loop expression.\\
+MISRA-C++ Rule 5-18-1
+
+3349   RULE5_18_1            This is using a user declared comma operator in a for loop expression.\\
+MISRA-C++ Rule 5-18-1
+
+3352   RULE5_18_1            This is using the comma operator in global scope.\\
+MISRA-C++ Rule 5-18-1
+
+3353   RULE5_18_1            This is using a user declared comma operator in global scope.\\
+MISRA-C++ Rule 5-18-1
+
+3360   RULE5_2_10            Pre-increment used as a sub-expression.\\
+MISRA-C++ Rule 5-2-10
+
+3361   RULE5_2_10            Post-increment used as a sub-expression.\\
+MISRA-C++ Rule 5-2-10
+
+3362   RULE5_2_10            Pre-decrement used as a sub-expression.\\
+MISRA-C++ Rule 5-2-10
+
+3363   RULE5_2_10            Post-decrement used as a sub-expression.\\
+MISRA-C++ Rule 5-2-10
+
+3364   RULE5_2_10            Pre-increment used as a sub-expression in the global scope.\\
+MISRA-C++ Rule 5-2-10
+
+3365   RULE5_2_10            Post-increment used as a sub-expression in the global scope.\\
+MISRA-C++ Rule 5-2-10
+
+3366   RULE5_2_10            Pre-decrement used as a sub-expression in the global scope.\\
+MISRA-C++ Rule 5-2-10
+
+3367   RULE5_2_10            Post-decrement used as a sub-expression in the global scope.\\
+MISRA-C++ Rule 5-2-10
+
+3368   RULE5_2_10            Pre-increment used as a sub-expression in a for loop.\\
+MISRA-C++ Rule 5-2-10
+
+3369   RULE5_2_10            Post-increment used as a sub-expression in a for loop.\\
+MISRA-C++ Rule 5-2-10
+
+3370   RULE5_2_10            Pre-decrement used as a sub-expression in a for loop.\\
+MISRA-C++ Rule 5-2-10
+
+3371   RULE5_2_10            Post-decrement used as a sub-expression in a for loop.\\
+MISRA-C++ Rule 5-2-10
+
+3501   RULE15_1_1            Constructor of this thrown type may throw an exception.\\
+Uncaught exceptions in constructors of types being thrown will cause the program to terminate. MISRA-C++ Rule 15-1-1
+
+3502   RULE15_1_1            Throw expression calls a function which may throw an exception.\\
+MISRA-C++ Rule 15-1-1
+
+3503   RULE15_1_1            New may throw an exception.\\
+MISRA-C++ Rule 15-1-1
+
+3504   RULE15_1_1            Array new calls default constructor which may throw an exception.\\
+MISRA-C++ Rule 15-1-1
+
+3505   RULE15_0_2            This is throwing a pointer.\\
+It is recommended that you distinguish errors by throwing an object of unique type. MISRA-C++ Rule 15-0-2
+
+3600   RULE2_13_2            This 'int' literal is an octal number.\\
+MISRA-C++ Rule 2-13-2
+
+3604   RULE2_13_3            This literal is implicitly unsigned.\\
+MISRA-C++ Rule 2-13-3
+
+3700   RULE05_0_2            Possible precedence confusion between '%1s' and '%2s'.\\
+Insert parentheses for clarity. MISRA-C++ Rules 5-0-2, 5-2-1
+3700   RULE05_2_1            Possible precedence confusion between '%1s' and '%2s'.\\
+Insert parentheses for clarity. MISRA-C++ Rules 5-0-2, 5-2-1
+
+3701   RULE05_2_1            This syntax for array indexing may be confusing.\\
+Prefer the more usual syntax 'pointer[int]'. MISRA-C++ Rule 5-2-1
+
+3702   RULE05_0_2            Possible precedence confusion between relational operator '%1s' and '%2s'.\\
+Insert parentheses for clarity. MISRA-C++ Rules 5-0-2, 5-2-1
+3702   RULE05_2_1            Possible precedence confusion between relational operator '%1s' and '%2s'.\\
+Insert parentheses for clarity. MISRA-C++ Rules 5-0-2, 5-2-1
+
+3703   RULE05_0_2            Possible precedence confusion between '%1s' and '%2s' in expression involving sizeof.\\
+Insert parentheses for clarity. MISRA-C++ Rule 5-0-2
+
+3705   RULE5_0_15            This is using pointer arithmetic.\\
+MISRA-C++ Rule 5-0-15
+
+3706   RULE5_0_15            This is applying the subscript operator to a pointer value.\\
+MISRA-C++ Rule 5-0-15
+
+3708   RULE00_4_2            Expression(s) with floating point type used as operand(s) to '%1s'.\\
+MISRA-C++ Rule 0-4-2
+
+3709   RULE04_5_1            Expression(s) with type bool used as operand(s) to '%1s'.\\
+MISRA-C++ Rule 4-5-1
+
+3710   RULE04_5_2            Expression(s) with enum type used as operand(s) to '%1s'.\\
+MISRA-C++ Rule 4-5-2
+
+3711   RULE04_5_3            Expression(s) with character type used as operand(s) to '%1s'.\\
+MISRA-C++ Rule 4-5-3
+
+3712   RULE04_5_3            Character other than literal '0' being subtracted from integral value.\\
+MISRA-C++ Rule 4-5-3
+
+3713   RULE04_5_3            Character other than literal '0' being added to integral value.\\
+MISRA-C++ Rule 4-5-3
+
+3714   RULE04_5_3            Value added to '0' is out of range.\\
+MISRA-C++ Rule 4-5-3
+
+3715   RULE5_0_12            Be aware than an implicit conversion occurs between plain char and unsigned char.\\
+MISRA-C++ Rule 5-0-12
+
+3716   RULE5_0_12            Be aware than an implicit conversion occurs between plain char and signed char.\\
+MISRA-C++ Rule 5-0-12
+
+3800   RULE14_8_2            Non-template function chosen in preference to specialized function template.\\
+MISRA-C++ Rule 14-8-2
+
+3840   RULE5_2_12            Array type is used as a pointer type argument in the function call.\\
+MISRA-C++ Rule 5-2-12
+
+3843   RULE14_8_1            Overload set contains templates and explicitly specialized templates that are similar.\\
+MISRA-C++ Rule 14-8-1
+
+3844   RULE14_8_1            Overload set contains templates and explicitly specialized templates.\\
+MISRA-C++ Rule 14-8-1
+
+3902   RULE06_2_1            This call to the assignment operator is a subexpression.\\
+MISRA-C++ Rule 6-2-1
+
+3903   RULE06_2_1            This call to the assignment operator in non-local scope is a subexpression.\\
+MISRA-C++ Rule 6-2-1
+
+3904   RULE06_2_1            This call to the assignment operator is a subexpression of a comma operator.\\
+MISRA-C++ Rule 6-2-1
+
+3905   RULE06_2_1            This call to the assignment operator is a subexpression of a comma operator in a for expression.\\
+MISRA-C++ Rule 6-2-1
+
+4003   RULE01_0_1            This is a jump past initialisation of objects.\\
+Jumping past initialisations causes objects to have undefined values. MISRA-C++ Rule 1-0-1
+
+4009   RULE06_6_4            Multiple break statements found in loop.\\
+Break statements used to terminate loops are against structured programming principles. MISRA-C++ Rule 6-6-4
+
+4010   RULE06_4_6            This switch statement has no default label.\\
+Use a default clause to catch any unexpected situations. MISRA-C++ Rule 6-4-6
+
+4011   RULE06_4_5            Statements after this case label fall through.\\
+Continuing the control flow to the next case label is unstructured. MISRA-C++ Rule 6-4-5
+
+4012   RULE06_4_6            The default label is not the last label of this switch.\\
+MISRA-C++ Rule 6-4-6
+
+4013   RULE06_4_4            This case label is not in the immediate statement/block of its switch statement.\\
+MISRA-C++ Rule 6-4-4
+
+4015   RULE06_4_7            The switch expression is of 'bool' type.\\
+MISRA-C++ Rule 6-4-7
+
+4016   RULE06_4_8            The switch statement contains no case labels.\\
+MISRA-C++ Rule 6-4-8
+
+4020   RULE06_6_5            Multiple exit points found.\\
+MISRA-C++ Rule 6-6-5
+
+4023   RULE01_0_1            At least one path through the function does not end with return.\\
+MISRA-C++ Rules 1-0-1, 8-4-3
+4023   RULE08_4_3            At least one path through the function does not end with return.\\
+MISRA-C++ Rules 1-0-1, 8-4-3
+
+4026   RULE07_5_1            This returns a handle to local data.\\
+When the function returns, the object may have been destroyed. Using this handle will then cause unexpected behaviour. MISRA-C++ Rule 7-5-1
+
+4027   RULE07_5_1            This returns a handle to a function parameter.\\
+When the function returns, the object may have been destroyed. Using this handle will then cause unexpected behaviour. MISRA-C++ Rule 7-5-1
+
+4028   RULE07_5_3            This returns a handle to a function reference parameter.\\
+Make sure that calls to this function provide a parameter that has a longer lifetime than the returned value. MISRA-C++ Rule 7-5-3
+
+4030   RULE15_3_6            This exception is derived from an exception caught above.\\
+MISRA-C++ Rule 15-3-6
+
+4031   RULE15_3_5            This catch clause does not use a reference to the thrown object.\\
+MISRA-C++ Rule 15-3-5
+
+4032   RULE15_5_1            Uncaught 'throw' expression in destructor.\\
+MISRA-C++ Rule 15-5-1
+
+4033   RULE15_3_5            This catch clause does not use a class type object.\\
+MISRA-C++ Rule 15-3-5
+
+4034   RULE15_3_7            This catch-all exception handler should be the last.\\
+MISRA-C++ Rule 15-3-7
+
+4035   RULE15_3_4            This throws an exception of type '%1s' which is not listed in the exception specification.\\
+MISRA-C++ Rules 15-3-4, 15-5-3
+4035   RULE15_5_3            This throws an exception of type '%1s' which is not listed in the exception specification.\\
+MISRA-C++ Rules 15-3-4, 15-5-3
+
+4036   RULE15_3_4            This function call may result in an exception which is not listed in the exception specification.\\
+MISRA-C++ Rules 15-3-4, 15-5-3
+4036   RULE15_5_3            This function call may result in an exception which is not listed in the exception specification.\\
+MISRA-C++ Rules 15-3-4, 15-5-3
+
+4037   RULE15_3_2            This throw in main will cause the program to terminate.\\
+MISRA-C++ Rules 15-3-2, 15-5-3
+4037   RULE15_5_3            This throw in main will cause the program to terminate.\\
+MISRA-C++ Rules 15-3-2, 15-5-3
+
+4038   RULE15_3_2            Uncaught exception in main will cause the program to terminate.\\
+MISRA-C++ Rules 15-3-2, 15-5-3
+4038   RULE15_5_3            Uncaught exception in main will cause the program to terminate.\\
+MISRA-C++ Rules 15-3-2, 15-5-3
+
+4039   RULE15_5_2            The following type is not thrown by the function: '%1s'.\\
+MISRA-C++ Rule 15-5-2
+
+4052   RULE12_1_2            Base class '%1s' is not initialised in initialiser list.\\
+MISRA-C++ Rule 12-1-2
+
+4054   RULE12_1_2            This constructor does not have an initialisation list.\\
+MISRA-C++ Rule 12-1-2
+
+4060   RULE06_4_1            This 'if' statement does not contain a block.\\
+MISRA-C++ Rule 6-4-1
+
+4061   RULE06_4_1            The 'else' part of this 'if' statement does not contain a block.\\
+MISRA-C++ Rule 6-4-1
+
+4062   RULE06_3_1            This 'while' statement does not contain a block.\\
+MISRA-C++ Rule 6-3-1
+
+4063   RULE06_3_1            This 'for' statement does not contain a block.\\
+MISRA-C++ Rule 6-3-1
+
+4064   RULE06_3_1            This 'do' statement does not contain a block.\\
+MISRA-C++ Rule 6-3-1
+
+4065   RULE06_3_1            This 'switch' statement does not contain a block.\\
+MISRA-C++ Rule 6-3-1
+
+4066   RULE06_3_1            This 'case' label is not followed by a label or a block.\\
+MISRA-C++ Rule 6-3-1
+
+4068   RULE06_3_1            This 'default' label is not followed by a label or a block.\\
+MISRA-C++ Rules 6-3-1, 6-4-1
+4068   RULE06_4_1            This 'default' label is not followed by a label or a block.\\
+MISRA-C++ Rules 6-3-1, 6-4-1
+
+4070   RULE06_4_2            This if-else-if chain is not terminated by else.\\
+MISRA-C++ Rule 6-4-2
+
+4080   RULE00_1_1            This statement cannot be reached.\\
+MISRA-C++ Rule 0-1-1
+
+4100   RULE01_0_1            Illegal user error number %1s\\
+MISRA-C++ Rule 1-0-1
+
+4107   RULE08_0_1            This is declaring multiple variables in the same declaration statement.\\
+MISRA-C++ Rule 8-0-1
+
+4108   RULE08_0_1            This is declaring multiple variables in the same declaration statement with different types.\\
+MISRA-C++ Rule 8-0-1
+
+4109   RULE08_0_1            This is defining multiple types in the same type definition.\\
+MISRA-C++ Rule 8-0-1
+
+4110   RULE08_0_1            This is defining multiple types in the same type definition for different types.\\
+MISRA-C++ Rule 8-0-1
+
+4113   RULE03_4_1            The declaration of object '%1s' can be moved to this nested scope.\\
+MISRA-C++ Rule 3-4-1
+
+4200   RULE08_5_1            Variable '%1s' is accessed but is not set.\\
+MISRA-C++ Rule 8-5-1
+
+4208   RULE00_1_3            Variable '%1s' is never used.\\
+MISRA-C++ Rules 0-1-3, 0-1-4, 0-1-6
+4208   RULE00_1_4            Variable '%1s' is never used.\\
+MISRA-C++ Rules 0-1-3, 0-1-4, 0-1-6
+4208   RULE00_1_6            Variable '%1s' is never used.\\
+MISRA-C++ Rules 0-1-3, 0-1-4, 0-1-6
+
+4211   RULE09_3_3            This non const member function does not modify any member data.\\
+MISRA-C++ Rule 9-3-3
+
+4212   RULE09_3_3            This non static member function does not access any member data.\\
+MISRA-C++ Rule 9-3-3
+
+4213   RULE07_1_2            This pointer to non const parameter is not modified.\\
+MISRA-C++ Rule 7-1-2
+
+4222   RULE5_17_1            This binary operator is not implemented in terms of its assignment version.\\
+MISRA-C++ Rule 5-17-1
+
+4231   RULE06_5_5            The starting value of the scalar type control variable '%1s' is not set in the initialisation expression.\\
+Control variables should be declared and initialised in the for loop, rather than in code prior to the loop. MISRA-C++ Rule 6-5-5
+
+4232   RULE06_5_1            Multiple scalar loop control variables found: '%1s'.\\
+Multiple control variables can be confusing. MISRA-C++ Rules 6-5-1, 6-5-6
+4232   RULE06_5_6            Multiple scalar loop control variables found: '%1s'.\\
+Multiple control variables can be confusing. MISRA-C++ Rules 6-5-1, 6-5-6
+
+4234   RULE06_5_1            Variable '%1s' of floating type used as loop control variable.\\
+Do not use floating type objects as loop indices, as this may lead to unexpected results due to limited machine precision. MISRA-C++ Rule 6-5-1
+
+4235   RULE06_5_3            Scalar control loop variable '%1s' modified in loop block.\\
+Modifying control variables in the body of the loop is confusing and error-prone. MISRA-C++ Rule 6-5-3
+
+4243   RULE06_5_1            Multiple class type loop control variables found: '%1s'.\\
+Multiple control variables can be confusing. MISRA-C++ Rules 6-5-1, 6-5-6
+4243   RULE06_5_6            Multiple class type loop control variables found: '%1s'.\\
+Multiple control variables can be confusing. MISRA-C++ Rules 6-5-1, 6-5-6
+
+4244   RULE06_5_1            This loop has both scalar control variables '%2s' and class type control variables '%1s'.\\
+Multiple control variables can be confusing. MISRA-C++ Rules 6-5-1, 6-5-6
+4244   RULE06_5_6            This loop has both scalar control variables '%2s' and class type control variables '%1s'.\\
+Multiple control variables can be confusing. MISRA-C++ Rules 6-5-1, 6-5-6
+
+4260   RULE12_1_1            The virtual function is called in constructor without qualifier.\\
+Failing to specify qualifier can lead to unexpected behaviour. MISRA-C++ Rule 12-1-1
+
+4261   RULE12_1_1            The virtual function is called in destructor without qualifier.\\
+Failing to specify qualifier can lead to unexpected behaviour. MISRA-C++ Rule 12-1-1
+
+4273   RULE12_1_1            This function call leads to calling a virtual function in the constructor.\\
+MISRA-C++ Rule 12-1-1
+
+4274   RULE12_1_1            This function call leads to calling a virtual function in the destructor.\\
+MISRA-C++ Rule 12-1-1
+
+4275   RULE12_1_1            This is a dynamic_cast expression in a constructor.\\
+MISRA-C++ Rule 12-1-1
+
+4276   RULE12_1_1            This is a dynamic_cast expression in a destructor.\\
+MISRA-C++ Rule 12-1-1
+
+4277   RULE12_1_1            This function call leads to a dynamic_cast expression in a constructor.\\
+MISRA-C++ Rule 12-1-1
+
+4278   RULE12_1_1            This function call leads to a dynamic_cast expression in a destructor.\\
+MISRA-C++ Rule 12-1-1
+
+4279   RULE12_1_1            This is a typeid expression in a constructor.\\
+MISRA-C++ Rule 12-1-1
+
+4280   RULE12_1_1            This is a typeid expression in a destructor.\\
+MISRA-C++ Rule 12-1-1
+
+4281   RULE12_1_1            This function call leads to a typeid expression in a constructor.\\
+MISRA-C++ Rule 12-1-1
+
+4282   RULE12_1_1            This function call leads to a typeid expression in a destructor.\\
+MISRA-C++ Rule 12-1-1
+
+4290   RULE06_5_5            '%1s' of scalar type is modified in the conditional expression.\\
+The loop control variable should be declared or initialised in the initialisation expression, accessed in the conditional expression and modified in the loop increment expression. MISRA-C++ Rule 6-5-5
+
+4292   RULE06_5_5            Boolean '%1s' is modified in the loop iteration expression.\\
+The loop iteration expression should only be used to modify the loop control variable. MISRA-C++ Rule 6-5-5
+
+4300   RULE01_0_1            The label '%1s' does not exist.\\
+MISRA-C++ Rule 1-0-1
+
+4306   RULE01_0_1            Switch has multiple default labels.\\
+MISRA-C++ Rule 1-0-1
+
+4325   RULE00_1_6            Variable '%1s' is not accessed further.\\
+MISRA-C++ Rule 0-1-6
+
+4327   RULE0_1_11            Argument '%1s' is never used.\\
+MISRA-C++ Rule 0-1-11
+
+4623   RULE09_3_1            This const function returns a non-const handle to member data.\\
+Users of the returned handle may alter the state of the object. MISRA-C++ Rule 9-3-1
+
+4624   RULE07_5_3            This returns a handle to a function const reference parameter.\\
+Make sure that calls to this function provide a parameter that has a longer lifetime than the returned value. MISRA-C++ Rule 7-5-3
+
+4625   RULE09_3_2            This function returns a non-const handle to data pointed to by a private or protected member, in a class performing shallow copy.\\
+Users of the returned handle may alter the state of the object. MISRA-C++ Rule 9-3-2
+
+4626   RULE09_3_2            This const function returns a non-const handle to data pointed to by a member, in a class performing shallow copy.\\
+Users of the returned handle may alter the state of the object, in a class performing shallow copy. MISRA-C++ Rule 9-3-2
+
+4627   RULE09_3_2            This function returns a non-const handle to data pointed to by a private or protected member.\\
+Users of the returned handle may alter the state of the object. MISRA-C++ Rule 9-3-2
+
+4628   RULE09_3_2            This const function returns a non-const handle to data pointed to by a member.\\
+Users of the returned handle may alter the state of the object. MISRA-C++ Rule 9-3-2
+
+4631   RULE15_5_1            The code in the destructor may throw an exception.\\
+MISRA-C++ Rule 15-5-1
+
+4633   RULE15_3_1            The code in the destructor for this object with static storage duration may throw an exception.\\
+Uncaught exceptions in destructor for an object with static storage duration will cause the program to terminate. MISRA-C++ Rule 15-3-1
+
+4634   RULE15_3_1            The code in the constructor for this non-local object with static storage duration may throw an exception.\\
+Uncaught exceptions in constructor for a non-local object with static storage duration will cause the program to terminate. MISRA-C++ Rule 15-3-1
+
+4635   RULE15_1_3            This rethrow expression is outside a catch block.\\
+MISRA-C++ Rules 15-1-3, 15-5-3
+4635   RULE15_5_3            This rethrow expression is outside a catch block.\\
+MISRA-C++ Rules 15-1-3, 15-5-3
+
+4636   RULE15_5_3            This function call in namespace scope may cause the program to terminate.\\
+MISRA-C++ Rule 15-5-3
+
+4637   RULE15_5_3            throw in namespace scope will cause the program to terminate.\\
+MISRA-C++ Rule 15-5-3
+
+4638   RULE15_5_3            A throw specification has no meaning for the global main.\\
+MISRA-C++ Rule 15-5-3
+
+4646   RULE15_5_2            The following type is not thrown by the virtual function: '%1s'.\\
+MISRA-C++ Rule 15-5-2
+
+4647   RULE15_0_3            Jumping into a try block or handler.\\
+MISRA-C++ Rule 15-0-3
+
+4651   RULE01_0_1            Member object '%1s' of reference type must be initialised in initialiser list.\\
+MISRA-C++ Rule 1-0-1
+
+4690   RULE12_1_1            Class RTTI used here.\\
+MISRA-C++ Rule 12-1-1
+
+5018   RULE18_2_1            The macro offsetof shall not be used.\\
+MISRA-C++ Rule 18-2-1
+
+5020   RULE17_0_5            The setjmp macro and the longjmp function shall not be used.\\
+MISRA-C++ Rule 17-0-5
+
+5023   RULE18_0_2            The library functions atof, atoi and atol from library <cstdlib> shall not be used.\\
+MISRA-C++ Rule 18-0-2
+
+5024   RULE18_0_3            The library functions abort, exit, getenv and system from library <cstdlib> shall not be used.\\
+MISRA-C++ Rule 18-0-3
+
+5025   RULE18_0_4            The time handling functions of library <ctime> shall not be used.\\
+MISRA-C++ Rule 18-0-4
+
+5026   RULE16_0_1            #include directives in a file shall only be preceded by other preprocessor directives or comments.\\
+MISRA-C++ Rule 16-0-1
+
+5029   RULE18_0_5            The unbounded functions of library <cstring> shall not be used.\\
+MISRA-C++ Rule 18-0-5
+
+5053   RULE2_13_4            Literal '%s' has lowercase letter(s) in suffix.\\
+MISRA-C++ Rule 2-13-4
+
+5118   RULE18_4_1            Dynamic heap memory allocation shall not be used.\\
+MISRA-C++ Rule 18-4-1
+
+5123   RULE18_7_1            The signal handling facilities of <csignal> shall not be used.\\
+MISRA-C++ Rule 18-7-1
+
+5127   RULE27_0_1            The stream input/output library <cstdio> shall not be used.\\
+MISRA-C++ Rule 27-0-1
+
+5171   RULE17_0_1            Macro definition of reserved id '%s'.\\
+MISRA-C++ Rule 17-0-1
+
+5172   RULE17_0_1            Macro definition of cpp keyword '%s'.\\
+MISRA-C++ Rule 17-0-1
+
+5173   RULE17_0_1            Macro definition of standard library function '%s'.\\
+MISRA-C++ Rule 17-0-1
+
+5174   RULE17_0_1            Macro definition of standard library macro '%s'.\\
+MISRA-C++ Rule 17-0-1
+
+5175   RULE17_0_1            Macro definition of standard library object '%s'.\\
+MISRA-C++ Rule 17-0-1
+
+5176   RULE17_0_1            Macro undef of reserved id '%s'.\\
+MISRA-C++ Rule 17-0-1
+
+5177   RULE17_0_1            Macro undef of cpp keyword '%s'.\\
+MISRA-C++ Rule 17-0-1
+
+5178   RULE17_0_1            Macro undef of standard library function '%s'.\\
+MISRA-C++ Rule 17-0-1
+
+5179   RULE17_0_1            Macro undef of standard library macro '%s'.\\
+MISRA-C++ Rule 17-0-1
+
+5180   RULE17_0_1            Macro undef of standard library object '%s'.\\
+MISRA-C++ Rule 17-0-1
+
+5181   RULE17_0_2            Reuse of name of standard library macro '%s'.\\
+MISRA-C++ Rule 17-0-2
+
+5182   RULE17_0_2            Reuse of name of standard library object '%s'.\\
+MISRA-C++ Rule 17-0-2
+
+5183   RULE17_0_3            This is an overridding of standard library function '%s'.\\
+MISRA-C++ Rule 17-0-3
+
+5186   RULE18_0_4            #include of library <ctime> or <time.h>.\\
+MISRA-C++ Rule 18-0-4
+
+5187   RULE18_7_1            #include of library <csignal> or <signal.h>.\\
+MISRA-C++ Rule 18-7-1
+
+5188   RULE27_0_1            #include of library <cstdio> or <stdio.h>.\\
+MISRA-C++ Rule 27-0-1
+
+6001   NCC_MACRO	     Conti NamingConventions for macros violated (R288).\\
+<Package indication>_<Datatype>_<Name>  (Package indication -> (2..5 characters in upper cases); Datatype -> v, ui8, si8, ui16, si16, ui32, si32, f32, f64, s, e, u, b, fctp combined with p.., a.., pa.., pp.., cp.., ca.., cpa.., cpp..; Name -> Macro name (Upper cases letters, numbers and underscores are allowed)
+
+6002   NCC_VAR_LOC           Conti NamingConventions for local variables violated.\\
+<Datatype>_<Name>  (Datatype -> v, ui8, si8, ui16, si16, ui32, si32, f32, f64, s, e, u, b, fctp combined with p.., a.., pa.., pp.., cp.., ca.., cpa.., cpp..)
+
+6003   NCC_VAR_GLOB          Conti NamingConventions for global variables violated (R290).\\
+<Package indication>_<Datatype>_<Name>  (Package indication -> (2..5 characters in upper cases); Datatype -> v, ui8, si8, ui16, si16, ui32, si32, f32, f64, s, e, u, b, fctp combined with p.., a.., pa.., pp.., cp.., ca.., cpa.., cpp..)
+
+6004   NCC_FCT               Conti NamingConventions for functions violated (R279).\\
+<Package indication>_<Datatype>_<Function name>  (Package indication -> (2..5 characters in upper cases); Datatype -> v, ui8, si8, ui16, si16, ui32, si32, f32, f64, s, e, u, b, fctp combined with p.., a.., pa.., pp.., cp.., ca.., cpa.., cpp..)
+
+6005   NCC_TYPE              Conti NamingConventions for types violated (R285).\\
+<Package indication>_t_<Datatype><Name>  (Package indication -> (2..5 characters in upper cases); Datatype -> v, ui8, si8, ui16, si16, ui32, si32, f32, f64, s, e, u, b, fctp combined with p.., a.., pa.., pp.., cp.., ca.., cpa.., cpp..)
+
+7002   HIS_METRICS_STPTH     HIS metrics check: amount of non-cyclic paths - minimum number of necessary test cases.\\
+HIS metrics 1.2:             STPTH has to be in range of 1 - 80.
+
+7003   HIS_METRICS_STGTO     HIS metrics check: number of goto-statements.\\
+HIS metrics 1.3:             STGTO must not be > 0.
+
+7004   HIS_METRICS_STCYC     HIS metrics check: cyclomatic complexitiy.\\
+HIS metrics 1.4:             STCYC has to be in range of 1 - 20.
+
+7007   HIS_METRICS_STPAR     HIS metrics check: number of function parameters.\\
+HIS metrics 1.7:             STPAR must not be > 10.
+
+7009   HIS_METRICS_STMIF     HIS metrics check: function nesting level.\\
+HIS metrics 1.9:             STMIF must not be > 8.
+
+7012   METRICS_STXLN         Info: number of executable lines per function.\\
+HIS metrics 1.12:             STXLN must not be > 200.
+
+7013   METRICS_STTPP         Info: number of executable lines per file.\\
+HIS metrics 1.11:             STTPP must not be > 750.
+

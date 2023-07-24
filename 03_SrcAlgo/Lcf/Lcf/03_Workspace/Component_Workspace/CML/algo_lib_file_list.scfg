@@ -1,0 +1,196 @@
+# Note:
+# 1. Replace cml with component name in lowercase.
+# 2. Update each variable according to the existing 
+#    source files (relative to 04_Engineering/01_Source_Code/cml) and 
+#    include paths (relative to the directory where 
+#    SConstruct is located in, i.e. starting with "#").
+# 3. Update project specific files with respect to project_path
+# ----------------------------------------------------------------------------------------
+
+# config file containing algo source file list
+
+Import("project_name")
+
+engineering_path = "#../../../"
+
+cml_algo_sources_project_specific = ''
+cml_wrapper_sources = ''
+
+cml_wrapper_sources_project_specific = ''
+cml_algo_include_paths_project_specific = ''
+cml_algo_common_include_paths_project_specific = ''
+
+###################################################
+# LIB SOURCE FILES
+###################################################
+
+# algo source files
+cml_algo_sources = """
+ bayes/cml_bayes.c
+ complex/cml_complex.c
+ fourier/cml_fourier.c
+ interpol/cml_interpol.c
+ kalman/cml_kafi.c
+ matrix/cml_mat.c
+ misc/cml_misc.c
+ matrix/cml_mtrx.c
+ radar/cml_radar.c
+ stat/cml_stat.c
+ trigo/cml_trigo.c
+ exp/cml_exp.c
+ vector/cml_vector.c
+"""
+# algo source files for the project "project_name"
+if project_name.upper().startswith('MFC5J3') or project_name.upper().startswith('HFL110') or project_name.upper().startswith('MFC510') or project_name.upper().startswith('ARS441'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/<project_name>/<component_name>"
+    cml_algo_sources_project_specific = """
+    """
+
+
+# Concatenate algo source files lists     
+project_path                           = "../../00_Projects/" + project_name + "/CML/"
+cml_algo_sources_project_specific_list = [project_path + rel_path for rel_path in cml_algo_sources_project_specific.split()]
+cml_algo_sources                       = '\n'.join(cml_algo_sources.split() + cml_algo_sources_project_specific_list)
+
+
+
+
+###################################################
+# PDO TOOL SOURCES FOR SDL FILE GENERATION
+###################################################
+# algo pdo source files (C files for creating SDL file)
+cml_algo_pdo_sources = """
+"""
+
+# algo ti_eve_arp32 source files
+cml_algo_ti_eve_arp32_sources = """
+"""
+
+###################################################
+# LIB INCLUDE PATHS
+###################################################
+# relative path with respect to "04_Engineering/01_Source_Code/<component_name>"
+
+cml_algo_include_paths = """
+    .
+    ../../03_Workspace/Component_Workspace/CML_sim/
+    ../../03_Workspace/Component_Workspace/CML_sim/
+    ../../03_Workspace/Component_Workspace/CML_sim/
+"""
+# algo wrapper sources to be analysed by qac
+cml_wrapper_sources = """
+"""
+
+# algo include paths for the project "project_name"
+if project_name.upper().startswith('MFC5J3') or project_name.upper().startswith('HFL110') or project_name.upper().startswith('MFC510') or project_name.upper().startswith('ARS441'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/<project_name>/<component_name>"
+    cml_algo_include_paths_project_specific = """
+    .
+    """
+
+project_path                                 = engineering_path + "00_Projects/" + project_name + "/CML/"
+source_path                                  = engineering_path + "01_Source_Code/CML/"
+cml_algo_include_paths_project_specific_list = [project_path + rel_path for rel_path in cml_algo_include_paths_project_specific.split()]
+cml_algo_include_paths_list                  = [source_path + rel_path for rel_path in cml_algo_include_paths.split()]
+cml_algo_include_paths                       = '\n'.join(cml_algo_include_paths_list + cml_algo_include_paths_project_specific_list)
+###################################################
+# COMMON INCLUDE PATHS
+###################################################
+#relative path of the project specific files with respect to "04_Engineering/01_Source_Code/"
+# algo common include paths
+if project_name.upper().startswith('MFC5J3') or project_name.upper().startswith('HFL110') or project_name.upper().startswith('ARS441'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/<project_name>/<component_name>"
+    cml_algo_common_include_paths = """
+#../../../01_Source_Code/common/RTA
+#../../../01_Source_Code/common/MTSI
+#../../../01_Source_Code/common/GLOB
+#../../../01_Source_Code/common/GLOB_DPU
+#../../../01_Source_Code/common/GLOB/GLOB_DPU
+#../../../00_Projects/common/GLOB_DPU
+#../../../00_Projects/MFC5J3/common/RTE_VH/include
+#../../../00_Projects/MFC5J3/common/RTE_VH/algo
+#../../../00_Projects/MFC5J3/common/RTE_VH/BSW_RTE/01_TransfertoMTS
+#../../../00_Projects/MFC5J3/common/DGM
+#../../../00_Projects/MFC5J3/common/GLOB
+#../../../00_Projects/MFC431HI28/common/RTE_VH/include
+#../../../00_Projects/MFC431HI28/common/GLOB
+#../../../00_Projects/MFC431LO19/common/RTE_VH/include
+#../../../00_Projects/MFC431LO19/common/GLOB
+#../../../00_Projects/MFC431TA19/common/RTE_VH/include
+#../../../00_Projects/MFC431TA19/common/GLOB
+#../../../00_Projects/MFC431LO20/common/RTE_VH/include
+#../../../00_Projects/MFC431LO20/common/RTE_VH/algo
+#../../../00_Projects/MFC431LO20/common/DGM
+#../../../00_Projects/MFC431LO20/common/GLOB
+"""
+#algo common include paths for MFC510 and MFC520 projects
+elif project_name.upper().startswith('MFC510') or project_name.upper().startswith('MFC520'):
+    cml_algo_common_include_paths = """
+#../../../01_Source_Code/common/RTA
+#../../../01_Source_Code/common/MTSI
+#../../../01_Source_Code/common/GLOB
+#../../../01_Source_Code/common/GLOB_DPU
+#../../../00_Projects/common/GLOB_DPU
+#../../../01_Source_Code/common/GLOB/GLOB_RENA53
+#../../../01_Source_Code/externals/sim/include/sim_rte
+#../../../00_Projects/MFC510/common/GLOB
+#../../../00_Projects/MFC510/common/RTE_VH/algo
+#../../../00_Projects/MFC510/DGM/Dgm_Slave
+#../../../00_Projects/MFC510/common/GLOB
+#../../../00_Projects/MFC510/stubs
+#../../../00_Projects/MFC510/stubs_sil
+#../../../00_Projects/MFC510/RTE_EB/include
+#../../../00_Projects/MFC510/DPUSERVICE
+#../../../00_Projects/MFC510EVS/common/GLOB
+#../../../01_Source_Code/common/GLOB/GLOB_RENA53
+#../../../00_Projects/MFC520/common/RTE_VH/algo
+#../../../00_Projects/MFC520/DGM/Dgm_Slave
+#../../../00_Projects/MFC520/common/GLOB
+#../../../00_Projects/MFC520/stubs
+#../../../00_Projects/MFC520/RTE_EB/include
+#../../../00_Projects/MFC520/DPUSERVICE
+#../../../00_Projects/MFC520/stubs_sil
+#../../../00_Projects/MFC520EVS/common/GLOB
+"""  
+else :
+    cml_algo_common_include_paths =""" """
+
+cml_algo_include_paths = """
+ ../cml/
+ bayes
+ complex
+ fourier
+ interpol
+ kalman
+ matrix
+ misc
+ matrix
+ radar
+ stat
+ trigo
+ exp
+ vector 
+ stl
+ stl/algorithm
+ stl/container
+ stl/math
+"""
+
+
+
+cml_sim_swc_pdo_sources=""
+
+# algo common include paths for the project "project_name"
+#relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+cml_algo_common_include_paths_project_specific = ("""common/DGM
+                                                  common/GLOB_VH
+													common/RTE_VH/algo
+                                                    CML
+                                                    common/GLOB
+													common/RTE_VH/include"""
+													)
+project_path = "#../../../00_Projects/" + project_name + "/"
+cml_algo_common_include_paths_project_specific_list = cml_algo_common_include_paths_project_specific.split()
+cml_algo_common_include_paths_project_specific_list = [project_path + rel_path for rel_path in cml_algo_common_include_paths_project_specific_list]
+cml_algo_common_include_paths_list = cml_algo_common_include_paths.split()
+cml_algo_common_include_paths = '\n'.join(cml_algo_common_include_paths_list + cml_algo_common_include_paths_project_specific_list)

@@ -1,0 +1,111 @@
+// COMPANY:   Continental Automotive
+// COMPONENT: DPUFF
+// VERSION:   $Revision: 1.1 $
+
+/// Defines the clusters that will be used by the MDB (Multicore DataBase).
+/// This particular instance of this file is a test file used by the t_mdb.cpp unit test.
+/// Production code will have its own instance of both this and the mdb_database.cpp file
+
+/// Indicates that the file mdb_database.cpp is compiled, is only used in Compiler.h for RCAR3 R7 core
+#define MDB_DATABASE_COMPILATION
+
+#include <DPUFF/ga/mdb_database.h>
+#include <DPUFF/mdb/mdb.h>
+#include "stddef.h" // needed for macro offsetof, can be removed as soon as RO 1025612 is implemented
+
+#if CFG_ENABLED(DPUFF_MDB_USING_CFG_PROJECT)
+  #include <cfg_project.h>
+  #include <Rte_Ext_Type.h>
+#else
+  #include <Rte_Algo_Type.h>
+#endif
+
+#if CFG_ENABLED(MDB_MASTER_ENABLED) /* Clusters data is allocated only on MDB master core */
+//****************************************************************************************************
+//**                                 MDB cluster payload data                                       **
+//****************************************************************************************************
+// PRQA S 2641 ++
+// 2017-06-20; uidv8881;
+// summary: Msg(3:2641) Object with external linkage not first declared in a header file.
+// reason: static keyword would fix this problem (internal linkage), but the symbols are needed
+// in map-file for testing purpose, therefore stay with external linkage and suppress the warning
+/*!<codegen_start:CLUSTER_PAYLOAD>*/
+/*!<codegen_end:CLUSTER_PAYLOAD>*/
+
+//****************************************************************************************************
+//**                                   MDB cluster DMA data                                         **
+//****************************************************************************************************
+// PRQA S 1021 ++
+// 18.04.2017; uidg6511;
+// summary: Msg(3:1021) This macro is replaced with a literal.;
+// reason: The macros are not defined here, but used.
+/*!<codegen_start:CLUSTER_DMA>*/
+/*!<codegen_end:CLUSTER_DMA>*/
+// PRQA S 1021 --
+// PRQA S 2641 --
+
+//****************************************************************************************************
+//**                               MDB cluster configuration table                                  **
+//****************************************************************************************************
+
+/// The MDB database itself.  The array of SCluster structures is made const to prevent accidental writing as
+/// it needs to be the same on all cores
+SECTION_DATA_IMPL("mdb.config.lists")
+const SCluster MDB_a_Clusters[MDB_e_CLUSTER_NUM_CLUSTERS] =
+{
+/*!<codegen_start:CLUSTER_CONFIG>*/
+/*!<codegen_end:CLUSTER_CONFIG>*/
+};
+
+//****************************************************************************************************
+//**                              MDB DMA data configuration table                                  **
+//****************************************************************************************************
+
+/// This is the extended cluster configuration list to setup clusters which references
+/// DMA data. Clusters that do not handle DMA data do not need to be configured here.
+// PRQA S 5018 ++
+// 19.04.2017; uidg6511;
+// summary: Msg(4:5018) The macro offsetof shall not be used.;
+// reason: offsetof is used on purpose. The clusters are heterogeneous. Moreover, all clusters have a different structure.
+//         The code in the mdb is generic (i.e. it reads/writes the clusters without knowing their actual structures).
+//         Therefore, using offsetof is the only way to provide the mdb with the information necessary for reading/writing
+//         the elements of the structures.
+//         Suppression requested in Issue 845234.
+SECTION_DATA_IMPL("mdb.config.lists")
+const SDmaConfigEntry MDB_a_ClusterConfigDma[] =
+{
+/*!<codegen_start:CLUSTER_CONFIG_DMA>*/
+/*!<codegen_end:CLUSTER_CONFIG_DMA>*/
+};
+// PRQA S 5018 --
+#endif
+
+//****************************************************************************************************
+//**                             Other MDB configuration data                                       **
+//****************************************************************************************************
+
+/// This is the MDB configuration list descriptor, which will be stored in shared memory. It contains
+/// references to all MDB configuration specific data, such as cluster configuration lists. The master
+/// MDB is responsible for linking/loading this into memory, so it can be accessed by the other cores.
+#if CFG_ENABLED(MDB_MASTER_ENABLED)
+SECTION_DATA_IMPL("mdb.config.descriptor")
+const MDB_ConfigDescriptor_t MDB_Config = {
+  MDB_CFGDESC_MAGIC_NUM,                                                ///< Config-List identifier
+  (MDB_pint)MDB_a_Clusters,                                             ///< u_ClusterList (uint value representing a pointer)
+  (sizeof(MDB_a_Clusters))/(sizeof(MDB_a_Clusters[0])),                 ///< u_ClusterListEntries
+  (MDB_pint)MDB_a_ClusterConfigDma,                                     ///< u_DmaConfigList (uint value representing a pointer)
+  (sizeof(MDB_a_ClusterConfigDma))/(sizeof(MDB_a_ClusterConfigDma[0])), ///< u_DmaConfigListEntries
+};
+#else
+   #if CFG_ENABLED(DPUFF_MDB_USE_REF_TO_DESCRIPTOR)
+const MDB_ConfigDescriptor_t &MDB_Config = DPUFF_MDB_CONFIG_DESC_LINKER_SYMBOL;
+
+// MDB_ConfigDummy_ only needed to have the discription of type MDB_ConfigDescriptor_t in elf-file
+// perhaps a error/problem in compiler/linker
+// linker discards this variable
+MDB_ConfigDescriptor_t MDB_ConfigDummy_; 
+   #else
+/* On slave cores, the symbol 'MDB_Config' will be provided by the linker command file! */
+  #endif
+#endif
+

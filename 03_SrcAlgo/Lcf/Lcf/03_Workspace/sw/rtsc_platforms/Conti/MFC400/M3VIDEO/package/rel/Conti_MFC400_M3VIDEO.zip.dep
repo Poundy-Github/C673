@@ -1,0 +1,36 @@
+Conti_MFC400_M3VIDEO.zip: Platform.xdc
+Platform.xdc:
+Conti_MFC400_M3VIDEO.zip: Platform.xs
+Platform.xs:
+Conti_MFC400_M3VIDEO.zip: config.bld
+config.bld:
+Conti_MFC400_M3VIDEO.zip: package/.vers_b160
+package/.vers_b160:
+Conti_MFC400_M3VIDEO.zip: package/.vers_g180
+package/.vers_g180:
+Conti_MFC400_M3VIDEO.zip: package/.vers_r170
+package/.vers_r170:
+Conti_MFC400_M3VIDEO.zip: package/.xdc-z52
+package/.xdc-z52:
+Conti_MFC400_M3VIDEO.zip: package/Conti.MFC400.M3VIDEO.ccs
+package/Conti.MFC400.M3VIDEO.ccs:
+Conti_MFC400_M3VIDEO.zip: package/Conti.MFC400.M3VIDEO.sch
+package/Conti.MFC400.M3VIDEO.sch:
+Conti_MFC400_M3VIDEO.zip: package/Conti_MFC400_M3VIDEO.class
+package/Conti_MFC400_M3VIDEO.class:
+Conti_MFC400_M3VIDEO.zip: package/Conti_MFC400_M3VIDEO.java
+package/Conti_MFC400_M3VIDEO.java:
+Conti_MFC400_M3VIDEO.zip: package/build.cfg
+package/build.cfg:
+Conti_MFC400_M3VIDEO.zip: package/package.bld.xml
+package/package.bld.xml:
+Conti_MFC400_M3VIDEO.zip: package/package.defs.h
+package/package.defs.h:
+Conti_MFC400_M3VIDEO.zip: package/package_Conti.MFC400.M3VIDEO.c
+package/package_Conti.MFC400.M3VIDEO.c:
+Conti_MFC400_M3VIDEO.zip: package.bld
+package.bld:
+Conti_MFC400_M3VIDEO.zip: package.xdc
+package.xdc:
+Conti_MFC400_M3VIDEO.zip: project.pj
+project.pj:

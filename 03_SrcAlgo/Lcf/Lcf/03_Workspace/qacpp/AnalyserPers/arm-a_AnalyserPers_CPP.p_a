@@ -1,0 +1,140 @@
+-rem ----- Include path for project files -----
+##PROJ_INCLUDE##
+
+-rem ----- Include paths for the compiler -----
+-i "##COMP_INCLUDE##"
+-i "##COMP_INCLUDE##\..\..\lib\gcc\arm-none-eabi\4.7.3\include"
+-i "##COMP_INCLUDE##\c++\4.7.3"
+-i "##COMP_INCLUDE##\c++\4.7.3\arm-none-eabi"
+
+-rem ----- Suppression of 3rd party files -----
+-rem To suppress warnings from files (usually 3rd party), simply add the directory
+-rem or individual files to your SConscript file using a line similar to the following:
+-rem
+-rem addException('04_Engineering/01_Source_Code/BAI')
+-rem
+-rem The PROJ_QUIET macro below will be replaced with the files referred to
+-rem in the call to addException()
+##PROJ_QUIET##
+
+-rem ----- Suppression of compiler files ----
+-q "##COMP_INCLUDE##"
+-q "##COMP_INCLUDE##\..\..\lib\gcc\arm-none-eabi\4.7.3\include"
+-q "##COMP_INCLUDE##\c++\4.7.3"
+-q "##COMP_INCLUDE##\c++\4.7.3\arm-none-eabi"
+
+-rem ----- Compiler defines -----
+##COMP_DEFINES##
+-d __IEEE_LITTLE_ENDIAN
+
+-rem ----- Flags for the operation of QAC itself -----
+-rem %s
+-po "close_name::any_case"
+-po "close_name::ignore=['_']"
+-po "close_name::similar=['8B','1lIi','0O','nh','5S','Z2']"
+-d "__cplusplus"
+-d "_DAVINCI"
+-d "_DM648"
+-d "_TMS320C6400_PLUS"
+-d "GB_DSP"
+-d "NDEBUG"
+-d "TARGET_DSP"
+-d "USE_QUOTE_INCLUDES"
+-d SECTION_ALIGN_IMPL(alignment)=
+-d SECTION_CODE_IMPL(section)=
+-d SECTION_DATA_IMPL(section)=
+-d ti_sysbios_family_arm_a15_Cache_enable(type)=
+-d "__typeof__(x)=unsigned int"
+-d "__is_empty(x)=0"
+-d "__FLT_EPSILON__=1.192092896e-07F"
+-d "__FLT_MAX__=3.402823466e+38F"
+-d "__FLT_MIN__=1.175494351e-38F"
+-tab 2
+-wc "abort=5024"
+-wc "asctime=5025"
+-wc "atof=5023"
+-wc "atoi=5023"
+-wc "atol=5023"
+-wc "clock=5025"
+-wc "ctime=5025"
+-wc "difftime=5025"
+-wc "exit=5024"
+-wc "getenv=5024"
+-wc "gmtime=5025"
+-wc "localtime=5025"
+-wc "longjmp=5020"
+-wc "mktime=5025"
+-wc "setjmp=5020"
+-wc "strcat=5029"
+-wc "strchr=5029"
+-wc "strcmp=5029"
+-wc "strcpy=5029"
+-wc "strcspn=5029"
+-wc "strftime=5025"
+-wc "strlen=5029"
+-wc "strpbrk=5029"
+-wc "strrchr=5029"
+-wc "strspn=5029"
+-wc "strstr=5029"
+-wc "strtok=5029"
+-wc "system=5024"
+-wc "time=5025"
+-wc calloc=5118
+-wc clearerr=5127
+-wc fclose=5127
+-wc feof=5127
+-wc ferror=5127
+-wc fflush=5127
+-wc fgetc=5127
+-wc fgetpos=5127
+-wc fgets=5127
+-wc fopen=5127
+-wc fprintf=5127
+-wc fputc=5127
+-wc fputs=5127
+-wc fread=5127
+-wc free=5118
+-wc freopen=5127
+-wc fscanf=5127
+-wc fseek=5127
+-wc fsetpos=5127
+-wc ftell=5127
+-wc fwrite=5127
+-wc getc=5127
+-wc getchar=5127
+-wc gets=5127
+-wc malloc=5118
+-wc perror=5127
+-wc printf=5127
+-wc putc=5127
+-wc putchar=5127
+-wc puts=5127
+-wc raise=5123
+-wc realloc=5118
+-wc remove=5127
+-wc rename=5127
+-wc rewind=5127
+-wc scanf=5127
+-wc setbuf=5127
+-wc setvbuf=5127
+-wc signal=5123
+-wc sprintf=5127
+-wc sscanf=5127
+-wc tmpfile=5127
+-wc tmpnam=5127
+-wc ungetc=5127
+-wc vfprintf=5127
+-wc vprintf=5127
+-wc vsprintf=5127
+-en ASC
+-thresh "STCYC>20:7004"
+-thresh "STGTO>0:7003"
+-thresh "STMIF>8:7009"
+-thresh "STPAR>5:7007"
+-thresh "STPTH<1:7002"
+-thresh "STPTH>80:7002"
+-thresh "STTLN>750:7013"
+-thresh "STXLN>200:7012"
+-liw 2
+-wk delete=5118
+-wk new=5118

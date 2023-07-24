@@ -1,0 +1,68 @@
+# Note:
+# 1. Rename this file and replace xxx with component name in lowercase.
+# 2. Replace xxx with component name in lowercase.
+# 3. Update each variable according to the existing source files and include paths.
+# ----------------------------------------------------------------------------------------
+
+# config file containing source files in PC sim wrapper
+
+import re
+
+Import("project_name")
+base_name = re.search(r'[A-Za-z]+\d+', project_name).group(0)
+
+if ('MFC431' in project_name) | ('MFC510' in project_name) | ('MFC520' in project_name):
+	gia_sim_swc_source_files = """
+	../../../../01_Source_Code/GIA_sim/sim_swc_wrapper/sim_swc_image_timestamp_fix.cpp
+	../../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Converter/HLA/sim_hla_mfc300rtewrp.cpp
+	../../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Converter/HLA/hlar_input/sim_hlar_input_data.cpp
+	../../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Converter/HLA/common_interface/sim_interface_hla.cpp
+	../../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Include/viscr/viscr_matrix.cpp
+	../../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Include/viscr/viscr_rotation.cpp
+	../../../../01_Source_Code/GIA_sim/sim_swc_wrapper/sim_swc_mfc_wrapper.cpp
+	../../../../01_Source_Code/GIA_sim/sim_swc_wrapper/sim_swc_mfc_wrapper_dll.cpp
+	../../../../01_Source_Code/GIA_sim/sim_swc_wrapper/stdafx.cpp
+	"""
+	
+	gia_sim_swc_include_paths = """
+	#../../../01_Source_Code/GIA_sim/sim_swc_wrapper/common_wrapper/rte/
+	#../../../01_Source_Code/GIA_sim/sim_swc_wrapper/
+	#../../../00_Projects/%s/common/DGM/
+	#../../../00_Projects/%s/DGM/Dgm_Master/
+	#../../../00_Projects/%s/DGM/Dgm_Slave/
+	#../../../00_Projects/%s/DPUSERVICE/
+	#../../../00_Projects/%s/stubs/
+	#../../../00_Projects/%s/stubs_sil/
+  #../../../00_Projects/%s/common/GLOB/
+  #../../../00_Projects/%s/common/RTE_VH/algo/
+  #../../../00_Projects/%s/common/RTE_VH/include/
+  #../../../00_Projects/%s/GIA_sim/sim_swc_sil_input_adapter
+	#../../../01_Source_Code/common/RTA/
+	#../../../01_Source_Code/RTA/
+	#../../../01_Source_Code/common/GLOB/
+	#../../../01_Source_Code/common/MTSI/
+	#../../../01_Source_Code/common/GLOB/GLOB_DPU/
+	#../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Converter/HLA/
+	#../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Converter/HLA/hlar_input/
+	#../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Converter/HLA/
+	#../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Include/mfc310Hla/
+	#../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Include/viscr/
+	#../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Include/
+	#../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Include/mfc310Hla/function/
+	#../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Converter/HLA/mfc3_type/
+	#../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Converter/HLA/hlar_input/
+	#../../../01_Source_Code/GIA_sim/sim_swc_wrapper/Converter/HLA/
+	#../../../01_Source_Code/externals/sim_extensions/
+	#../../../01_Source_Code/externals/sim/include/sim_rte/
+	#../../../01_Source_Code/externals/sim/include/sim_rte_legacy/
+	""" %(base_name, base_name,base_name, base_name, base_name, base_name, base_name, base_name, base_name, base_name)
+
+	
+	gia_sim_swc_pdo_sources = """
+	../../../../01_Source_Code/gia/frame/gia_measfreeze_data.c
+	"""
+	
+else:
+	gia_sim_swc_source_files = " "
+	gia_sim_swc_include_paths = " "
+	gia_sim_swc_pdo_sources  = " "

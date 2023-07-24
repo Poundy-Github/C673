@@ -1,0 +1,1161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-0-3.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2023-06-26T16:43:17+08:00">
+      <SHORT-NAME>CanSystem</SHORT-NAME>
+      <ELEMENTS>
+        <SYSTEM T="2022-11-17T10:28:34+08:00">
+          <SHORT-NAME>CanSystem</SHORT-NAME>
+          <FIBEX-ELEMENTS>
+            <FIBEX-ELEMENT-REF-CONDITIONAL>
+              <FIBEX-ELEMENT-REF DEST="ECU-INSTANCE">/CanSystem/ECUINSTANCES/DebugNode</FIBEX-ELEMENT-REF>
+            </FIBEX-ELEMENT-REF-CONDITIONAL>
+            <FIBEX-ELEMENT-REF-CONDITIONAL>
+              <FIBEX-ELEMENT-REF DEST="ECU-INSTANCE">/CanSystem/ECUINSTANCES/EcuTestNode</FIBEX-ELEMENT-REF>
+            </FIBEX-ELEMENT-REF-CONDITIONAL>
+            <FIBEX-ELEMENT-REF-CONDITIONAL>
+              <FIBEX-ELEMENT-REF DEST="I-SIGNAL-I-PDU">/CanSystem/PDUS/Pdu_CounterIn</FIBEX-ELEMENT-REF>
+            </FIBEX-ELEMENT-REF-CONDITIONAL>
+            <FIBEX-ELEMENT-REF-CONDITIONAL>
+              <FIBEX-ELEMENT-REF DEST="I-SIGNAL-I-PDU">/CanSystem/PDUS/Pdu_CounterOut</FIBEX-ELEMENT-REF>
+            </FIBEX-ELEMENT-REF-CONDITIONAL>
+            <FIBEX-ELEMENT-REF-CONDITIONAL>
+              <FIBEX-ELEMENT-REF DEST="I-SIGNAL">/CanSystem/ISIGNALS/CounterIn</FIBEX-ELEMENT-REF>
+            </FIBEX-ELEMENT-REF-CONDITIONAL>
+            <FIBEX-ELEMENT-REF-CONDITIONAL>
+              <FIBEX-ELEMENT-REF DEST="I-SIGNAL">/CanSystem/ISIGNALS/CounterOut</FIBEX-ELEMENT-REF>
+            </FIBEX-ELEMENT-REF-CONDITIONAL>
+            <FIBEX-ELEMENT-REF-CONDITIONAL>
+              <FIBEX-ELEMENT-REF DEST="CAN-FRAME">/CanSystem/FRAMES/Pdu_CounterIn</FIBEX-ELEMENT-REF>
+            </FIBEX-ELEMENT-REF-CONDITIONAL>
+            <FIBEX-ELEMENT-REF-CONDITIONAL>
+              <FIBEX-ELEMENT-REF DEST="CAN-FRAME">/CanSystem/FRAMES/Pdu_CounterOut</FIBEX-ELEMENT-REF>
+            </FIBEX-ELEMENT-REF-CONDITIONAL>
+            <FIBEX-ELEMENT-REF-CONDITIONAL>
+              <FIBEX-ELEMENT-REF DEST="CAN-CLUSTER">/CanSystem/CLUSTERS/CanNetwork</FIBEX-ELEMENT-REF>
+            </FIBEX-ELEMENT-REF-CONDITIONAL>
+          </FIBEX-ELEMENTS>
+          <MAPPINGS>
+            <SYSTEM-MAPPING T="2023-06-26T17:04:57+08:00" UUID="ac37d281-8f12-4230-8be0-22a935289479">
+              <SHORT-NAME>CanSystem</SHORT-NAME>
+              <SW-IMPL-MAPPINGS>
+                <SWC-TO-IMPL-MAPPING UUID="5ff12db0-e885-43af-b9ff-2bd70caa0b3e">
+                  <SHORT-NAME>AebDs_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/AebDs/AbsDsImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/AebDs</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="48b1c1dd-b0fe-4087-835d-5b69b922704b">
+                  <SHORT-NAME>BswM_OsApplication_C0_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/AUTOSAR_BswM/SwcImplementations/BswMImplementation_OsApplication_C0</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/BswM_OsApplication_C0_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="10d58aee-338a-4a19-a95a-e3e73b0d1ad8">
+                  <SHORT-NAME>BswM_OsApplication_C1_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/AUTOSAR_BswM/SwcImplementations/BswMImplementation_OsApplication_C1</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/BswM_OsApplication_C1_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="b5e7f89a-ed22-4fae-9998-f9db47aaa53a">
+                  <SHORT-NAME>BswM_OsApplication_C2_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/AUTOSAR_BswM/SwcImplementations/BswMImplementation_OsApplication_C2</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/BswM_OsApplication_C2_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="8a897185-559c-4b6c-8e4b-f6a2fcd29980">
+                  <SHORT-NAME>BswM_OsApplication_C3_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/AUTOSAR_BswM/SwcImplementations/BswMImplementation_OsApplication_C3</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/BswM_OsApplication_C3_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="29ffc32e-4dbe-4c16-8ae6-1f7bbb89ba62">
+                  <SHORT-NAME>Cdd_EvAdc_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/EvAdc/EvAdcImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Cdd_EvAdc</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="c0bcf86c-8af7-4d39-9c62-1c41f022475d">
+                  <SHORT-NAME>Cdm_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Cdm/CdmImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Cdm_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="a44baeb1-eebc-47d0-b5a1-b77c13797675">
+                  <SHORT-NAME>ComM_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/EB_ComM/SwcImplementations/SwcImplementation_0</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/ComM_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="9941c901-9764-48cb-acc8-b3bf1e04d32c">
+                  <SHORT-NAME>Comco_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Comco/Comco_Impl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Comco</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="421f8254-6550-470a-9b00-ca8fc242cb8c">
+                  <SHORT-NAME>Cpr_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Cpr/CprImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Cpr_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="a13a5847-c299-4780-b179-6b4b31bfc613">
+                  <SHORT-NAME>Cps_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Cps/CpsImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Cps_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="bd59aaa7-02c5-4a7e-bdbe-ccdabd9796ef">
+                  <SHORT-NAME>CtCdSPI_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/CtCdSPI/Impl_CtCdSPI</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/CtCdSPI</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="54e7dc47-e7a9-495e-86d9-48f320ac0394">
+                  <SHORT-NAME>Dcm_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/EB_Dcm/SwcImplementations/DcmImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Dcm_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="d2fdaf5f-7c7a-49dd-a299-b04948236406">
+                  <SHORT-NAME>Dem_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/EB_Dem/SwcImplementations/DemImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Dem_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="4552c372-c753-4c53-a147-53e5dfb61ff4">
+                  <SHORT-NAME>DevelopmentErrorTracer_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/AUTOSAR_Det/Implementation</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/DevelopmentErrorTracer_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="dfabefe9-55bc-4de0-88f7-e44b64d80500">
+                  <SHORT-NAME>Dsm_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Dsm/DsmImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Dsm_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="97ad11a4-2ca9-4817-8865-8f7e7b4d4839">
+                  <SHORT-NAME>EcuM_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/EB_EcuM/SwcImplementations/EcuMImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/EcuM_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="7f34ac7b-c184-4809-b4a7-73fc526995b4">
+                  <SHORT-NAME>Esh_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Esh/Esh_Impl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Esh</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="a1e10043-decd-46ed-ad62-210c4c220b1c">
+                  <SHORT-NAME>Esm_Core1_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Esm_Core1/EsmImpl_Core1</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Esm_Core1_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="edc68a6d-0092-4b80-ac93-562a6a33c42f">
+                  <SHORT-NAME>Esm_Core2_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Esm_Core2/EsmImpl_Core2</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Esm_Core2_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="c542ccff-1266-4227-982e-539e38bec682">
+                  <SHORT-NAME>Esm_Core3_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Esm_Core3/EsmImpl_Core3</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Esm_Core3_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="3ed6388e-a068-4e81-a5b4-a25f46ba1222">
+                  <SHORT-NAME>Esm_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Esm/EsmImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Esm_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="7a43eb0c-bce9-49aa-bb97-3d3e181e35ca">
+                  <SHORT-NAME>FSMonitor_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/FSMonitor/FSMonitor_Impl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/FSMonitor_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="ed1cca32-fb92-48f5-9544-4dbe99e8d35c">
+                  <SHORT-NAME>FctAdapter_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/FctAdapter/FctAdapterImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/FctAdapter_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="013db9fd-39a2-456b-8642-22909ce7e5df">
+                  <SHORT-NAME>Fcu_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Fcu/FcuImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Fcu_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="0c79a376-7abc-4f52-a589-ab669bbfc92d">
+                  <SHORT-NAME>FiM_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/EB_FiM/SwcImplementations/SwcImplementation_0</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/FiM_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="92d1c765-d11c-49ac-8c18-f88bd89f8c0c">
+                  <SHORT-NAME>HeartbeatDetImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/HeartbeatDet/HeartbeatDetImplementation</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/HeartbeatDet</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="eb30679e-35e7-47c4-9672-4aea80b8e23d">
+                  <SHORT-NAME>HlaAdapter_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/HlaAdapter/HlaAdapterImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/HlaAdapter_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="039306ee-6a82-4d1f-a9c2-3e536f423a06">
+                  <SHORT-NAME>LcfAdapter_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/LcfAdapter/LcfAdapterImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/LcfAdapter_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="06e532fe-7863-4df7-95f8-b45675c46c37">
+                  <SHORT-NAME>Logging_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Logging/Logging_Impl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Logging</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="48512dcf-eff2-4f36-9bf1-b8868b4c3388">
+                  <SHORT-NAME>Med_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Med/MedImplementation</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Med_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="f83f7b04-c3f3-49bb-84bd-4319b4d3fb6e">
+                  <SHORT-NAME>ModM_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/ModM_Package/ModM_Impl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/ModM</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="3608e667-1fd0-4d73-93b5-f7535da6a252">
+                  <SHORT-NAME>MtsiAdapter_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/MtsiAdapter/MtsiAdapterImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/MtsiAdapter_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="fd774b8a-f6e5-46e0-b7f5-8e3ae3ea6f0f">
+                  <SHORT-NAME>Nvm_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/EB_NvM/SwcImplementations/NvMImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Nvm_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="47f0e995-c52d-408e-8206-e3c62aee376f">
+                  <SHORT-NAME>Qsm_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Qsm/QsmImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Qsm_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="25dc90df-c13b-41f5-bcda-447a05a2be30">
+                  <SHORT-NAME>RtaAdapter_C0_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/RtaAdapter/RtaAdapter_C0_Impl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/RtaAdapter_C0</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="d9c3134a-b97a-472d-af64-ad28b7f36110">
+                  <SHORT-NAME>RtaAdapter_C1_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/RtaAdapter/RtaAdapter_C1_Impl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/RtaAdapter_C1</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="0da7a5b0-3b48-46fd-b00b-3ba7e08ff96e">
+                  <SHORT-NAME>RtaAdapter_C2_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/RtaAdapter/RtaAdapter_C2_Impl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/RtaAdapter_C2</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="a6b0f60f-97b3-4894-b843-994e85513dc6">
+                  <SHORT-NAME>RtaAdapter_C3_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/RtaAdapter/RtaAdapter_C3_Impl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/RtaAdapter_C3</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="d81490e3-743f-4001-b358-5c5419ce1ae0">
+                  <SHORT-NAME>Sdc_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Sdc/SdcImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Sdc_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="a70ad3f0-6e36-4bd2-a760-bcc2b189321d">
+                  <SHORT-NAME>Sed_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/Sed/SedImplementation</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Sed_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="48dca1bd-616f-45c3-b464-13ebaecade25">
+                  <SHORT-NAME>SpiSync_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/SpiSync/SpiSyncImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/SpiSync_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="bc695dfa-4a5a-4688-ae6e-81b8322ab016">
+                  <SHORT-NAME>StbM_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/EB_StbM/SwcImplementations/StbMImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/StbM_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING T="2023-01-30T16:34:15+08:00" UUID="e73a79de-1478-4158-9c9f-cae6e2be3dc6">
+                  <SHORT-NAME>Time_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/CscPlatform/TimeImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Time_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="106fd83f-96f7-49a0-9e5f-4df75fbf3814">
+                  <SHORT-NAME>TsaAdapter_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/TsaAdapter/TsaAdapterImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/TsaAdapter_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="390d978d-c9e3-40ea-9e79-3b21f422f030">
+                  <SHORT-NAME>VdyAdapter_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/VdyAdapter/VdyAdapterImpl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/VdyAdapter_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="328cd6fd-7179-4b19-be71-29947fae480b">
+                  <SHORT-NAME>VoltMonI_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/VoltageMonitor/VoltageMonitor_Impl</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/VoltMonI</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="7d60ba0c-b96a-4688-b146-52678a0e86d0">
+                  <SHORT-NAME>WdgM_CORE_0_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/EB_WdgM/SwcImplementations/SwcImplementation_CORE_0</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/WdgM_CORE_0_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+                <SWC-TO-IMPL-MAPPING UUID="bda4c409-f8da-47dc-b5ff-05f1ff96a1b3">
+                  <SHORT-NAME>WdgM_CORE_1_Prototype_ImplMapping</SHORT-NAME>
+                  <COMPONENT-IMPLEMENTATION-REF DEST="SWC-IMPLEMENTATION">/EB_WdgM/SwcImplementations/SwcImplementation_CORE_1</COMPONENT-IMPLEMENTATION-REF>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/WdgM_CORE_1_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                </SWC-TO-IMPL-MAPPING>
+              </SW-IMPL-MAPPINGS>
+              <SW-MAPPINGS>
+                <SWC-TO-ECU-MAPPING T="2023-06-26T17:04:57+08:00" UUID="a6d0bb37-c361-4cc0-8463-0988a979406b">
+                  <SHORT-NAME>EcuTestNodeMapping</SHORT-NAME>
+                  <COMPONENT-IREFS>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/StbM_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/SpiSync_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Time_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/TsaAdapter_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Fcu_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/HlaAdapter_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/EcuM_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/MtsiAdapter_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/BswM_OsApplication_C2_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/FiM_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Med_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/BswM_OsApplication_C1_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/BswM_OsApplication_C3_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/CtCdSPI</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/FSMonitor_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Dem_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/ComM_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Sdc_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/DevelopmentErrorTracer_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Esm_Core3_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Cdm_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/LcfAdapter_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/VdyAdapter_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Cpr_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Esm_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Dsm_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Esm_Core1_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Esm_Core2_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/BswM_OsApplication_C0_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Sed_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/FctAdapter_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Dcm_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Cps_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/RtaAdapter_C3</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/RtaAdapter_C0</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/RtaAdapter_C1</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/RtaAdapter_C2</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/VoltMonI</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Comco</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Esh</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Cdd_EvAdc</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Qsm_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Nvm_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/HeartbeatDet</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/ModM</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/WdgM_CORE_1_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/WdgM_CORE_0_Prototype</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/Logging</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                    <COMPONENT-IREF>
+                      <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/CanSystem/CanSystem/TopLevelComposition</CONTEXT-COMPOSITION-REF>
+                      <TARGET-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TopLevelComposition/TopLevelComposition/AebDs</TARGET-COMPONENT-REF>
+                    </COMPONENT-IREF>
+                  </COMPONENT-IREFS>
+                  <ECU-INSTANCE-REF DEST="ECU-INSTANCE">/CanSystem/ECUINSTANCES/EcuTestNode</ECU-INSTANCE-REF>
+                </SWC-TO-ECU-MAPPING>
+              </SW-MAPPINGS>
+            </SYSTEM-MAPPING>
+          </MAPPINGS>
+          <ROOT-SOFTWARE-COMPOSITIONS>
+            <ROOT-SW-COMPOSITION-PROTOTYPE T="2022-11-17T10:28:34+08:00" UUID="1f7c676a-9e1e-4f0a-9757-0d942a22a489">
+              <SHORT-NAME>TopLevelComposition</SHORT-NAME>
+              <SOFTWARE-COMPOSITION-TREF DEST="COMPOSITION-SW-COMPONENT-TYPE">/TopLevelComposition/TopLevelComposition</SOFTWARE-COMPOSITION-TREF>
+            </ROOT-SW-COMPOSITION-PROTOTYPE>
+          </ROOT-SOFTWARE-COMPOSITIONS>
+          <SYSTEM-VERSION>1.0.0</SYSTEM-VERSION>
+        </SYSTEM>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="f6cbc620-5b78-4c42-bf4d-965940496580">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_AdsUDLCStatus</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="9baf0856-4209-40ce-8526-a9aed81a7a83">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_AdsUDLCStatus_Status</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="2e505a57-3fce-4b56-b31a-8005d442eca0">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_BrakePressureSimulator</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="c1342277-d043-4b77-96b4-ebfeebb75953">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_BrakePressureSimulator_Status</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="96b6f207-9e60-4210-a302-0cb9cc27082d">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EPS_APA_EpasFAILED</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="2d90335d-f4bf-404f-acba-7cfcf8affeee">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EPS_APA_EpasFAILED_Status</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="101c3e12-cfaa-46a6-a1de-663d172af8f0">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EPS_ActualMotorTorq</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="bd7c2e21-ce59-45e0-8764-2bbae9e2627c">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EPS_ActualMotorTorq_Status</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="e7fdc293-29ac-49bc-ac73-fd2c46238fd5">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EPS_ActualTorsionBarTorq</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="11566eed-0edd-4858-b139-82775baba3a3">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EPS_ActualTorsionBarTorq_Status</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="d7e3c1aa-8893-4977-8118-c46a4492dbb6">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EPS_MeasuredTorsionBarTorqValid</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="ae6a6a19-8075-490f-9386-f53eb4905992">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EPS_Pinionang_Valid</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="9c0b70b8-0ddb-436b-9c4a-5d1e1429645a">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EPS_fault_state</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="bd16c995-d590-468f-a491-3c2e9bd98eb9">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EPS_fault_state_Status</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="b18dd54b-c53f-442f-9b8e-c4d537348996">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_ESP_LatAccelValid</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="55e27737-2e2c-42bc-b843-a641c8d2176e">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_ESP_LongAccelValid</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="f518beaf-fdc6-4e0e-bfbe-a85501c9bcb4">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_ESP_YawRateValid</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="21cfeae9-2a64-49ad-8cfb-e4b3d969d0d0">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EpsConcussAvailabilityStatus</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="e4639527-b309-4224-9b8c-1ec1fa16edc9">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EpsConcussAvailabilityStatus_Status</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="65775aa9-a396-44fa-bce1-139ac94b7c56">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EpsFaild</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="c16b67f5-e021-4399-b90c-dbaae4ef79f4">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EpsFaild_Status</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+        <SYSTEM-SIGNAL T="2023-06-26T16:43:17+08:00" UUID="9befd0db-8f21-4bf8-8a7b-c8f4c318a187">
+          <SHORT-NAME>sig_RP_Cpr_Chassis_Data_EpsIACCabortreason</SHORT-NAME>
+        </SYSTEM-SIGNAL>
+      </ELEMENTS>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>CLUSTERS</SHORT-NAME>
+          <ELEMENTS>
+            <CAN-CLUSTER>
+              <SHORT-NAME>CanNetwork</SHORT-NAME>
+              <CAN-CLUSTER-VARIANTS>
+                <CAN-CLUSTER-CONDITIONAL>
+                  <PHYSICAL-CHANNELS>
+                    <CAN-PHYSICAL-CHANNEL>
+                      <SHORT-NAME>CanChannel</SHORT-NAME>
+                      <COMM-CONNECTORS>
+                        <COMMUNICATION-CONNECTOR-REF-CONDITIONAL>
+                          <COMMUNICATION-CONNECTOR-REF DEST="CAN-COMMUNICATION-CONNECTOR">/CanSystem/ECUINSTANCES/DebugNode/Conn_DebugNode</COMMUNICATION-CONNECTOR-REF>
+                        </COMMUNICATION-CONNECTOR-REF-CONDITIONAL>
+                        <COMMUNICATION-CONNECTOR-REF-CONDITIONAL>
+                          <COMMUNICATION-CONNECTOR-REF DEST="CAN-COMMUNICATION-CONNECTOR">/CanSystem/ECUINSTANCES/EcuTestNode/Conn_EcuTestNode</COMMUNICATION-CONNECTOR-REF>
+                        </COMMUNICATION-CONNECTOR-REF-CONDITIONAL>
+                      </COMM-CONNECTORS>
+                      <FRAME-TRIGGERINGS>
+                        <CAN-FRAME-TRIGGERING>
+                          <SHORT-NAME>FT_Pdu_CounterIn</SHORT-NAME>
+                          <FRAME-PORT-REFS>
+                            <FRAME-PORT-REF DEST="FRAME-PORT">/CanSystem/ECUINSTANCES/DebugNode/Conn_DebugNode/FP_FT_Pdu_CounterIn_Conn_DebugNode_Tx</FRAME-PORT-REF>
+                            <FRAME-PORT-REF DEST="FRAME-PORT">/CanSystem/ECUINSTANCES/EcuTestNode/Conn_EcuTestNode/FP_FT_Pdu_CounterIn_Conn_EcuTestNode_Rx</FRAME-PORT-REF>
+                          </FRAME-PORT-REFS>
+                          <FRAME-REF DEST="CAN-FRAME">/CanSystem/FRAMES/Pdu_CounterIn</FRAME-REF>
+                          <CAN-ADDRESSING-MODE>STANDARD</CAN-ADDRESSING-MODE>
+                          <IDENTIFIER>256</IDENTIFIER>
+                        </CAN-FRAME-TRIGGERING>
+                        <CAN-FRAME-TRIGGERING>
+                          <SHORT-NAME>FT_Pdu_CounterOut</SHORT-NAME>
+                          <FRAME-PORT-REFS>
+                            <FRAME-PORT-REF DEST="FRAME-PORT">/CanSystem/ECUINSTANCES/DebugNode/Conn_DebugNode/FP_FT_Pdu_CounterOut_Conn_DebugNode_Rx</FRAME-PORT-REF>
+                            <FRAME-PORT-REF DEST="FRAME-PORT">/CanSystem/ECUINSTANCES/EcuTestNode/Conn_EcuTestNode/FP_FT_Pdu_CounterOut_Conn_EcuTestNode_Tx</FRAME-PORT-REF>
+                          </FRAME-PORT-REFS>
+                          <FRAME-REF DEST="CAN-FRAME">/CanSystem/FRAMES/Pdu_CounterOut</FRAME-REF>
+                          <CAN-ADDRESSING-MODE>STANDARD</CAN-ADDRESSING-MODE>
+                          <IDENTIFIER>272</IDENTIFIER>
+                        </CAN-FRAME-TRIGGERING>
+                      </FRAME-TRIGGERINGS>
+                      <I-SIGNAL-TRIGGERINGS>
+                        <I-SIGNAL-TRIGGERING>
+                          <SHORT-NAME>ST_CounterIn_Pdu_CounterIn</SHORT-NAME>
+                          <I-SIGNAL-PORT-REFS>
+                            <I-SIGNAL-PORT-REF DEST="I-SIGNAL-PORT">/CanSystem/ECUINSTANCES/DebugNode/Conn_DebugNode/SP_ST_CounterIn_Pdu_CounterIn_Conn_DebugNode_Tx</I-SIGNAL-PORT-REF>
+                            <I-SIGNAL-PORT-REF DEST="I-SIGNAL-PORT">/CanSystem/ECUINSTANCES/EcuTestNode/Conn_EcuTestNode/SP_ST_CounterIn_Pdu_CounterIn_Conn_EcuTestNode_Rx</I-SIGNAL-PORT-REF>
+                          </I-SIGNAL-PORT-REFS>
+                          <I-SIGNAL-REF DEST="I-SIGNAL">/CanSystem/ISIGNALS/CounterIn</I-SIGNAL-REF>
+                        </I-SIGNAL-TRIGGERING>
+                        <I-SIGNAL-TRIGGERING>
+                          <SHORT-NAME>ST_CounterOut_Pdu_CounterOut</SHORT-NAME>
+                          <I-SIGNAL-PORT-REFS>
+                            <I-SIGNAL-PORT-REF DEST="I-SIGNAL-PORT">/CanSystem/ECUINSTANCES/DebugNode/Conn_DebugNode/SP_ST_CounterOut_Pdu_CounterOut_Conn_DebugNode_Rx</I-SIGNAL-PORT-REF>
+                            <I-SIGNAL-PORT-REF DEST="I-SIGNAL-PORT">/CanSystem/ECUINSTANCES/EcuTestNode/Conn_EcuTestNode/SP_ST_CounterOut_Pdu_CounterOut_Conn_EcuTestNode_Tx</I-SIGNAL-PORT-REF>
+                          </I-SIGNAL-PORT-REFS>
+                          <I-SIGNAL-REF DEST="I-SIGNAL">/CanSystem/ISIGNALS/CounterOut</I-SIGNAL-REF>
+                        </I-SIGNAL-TRIGGERING>
+                      </I-SIGNAL-TRIGGERINGS>
+                      <PDU-TRIGGERINGS>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>PT_Pdu_CounterIn</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/CanSystem/ECUINSTANCES/DebugNode/Conn_DebugNode/PP_PT_Pdu_CounterIn_Conn_DebugNode_Tx</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/CanSystem/ECUINSTANCES/EcuTestNode/Conn_EcuTestNode/PP_PT_Pdu_CounterIn_Conn_EcuTestNode_Rx</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="I-SIGNAL-I-PDU">/CanSystem/PDUS/Pdu_CounterIn</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                        <PDU-TRIGGERING>
+                          <SHORT-NAME>PT_Pdu_CounterOut</SHORT-NAME>
+                          <I-PDU-PORT-REFS>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/CanSystem/ECUINSTANCES/DebugNode/Conn_DebugNode/PP_PT_Pdu_CounterOut_Conn_DebugNode_Rx</I-PDU-PORT-REF>
+                            <I-PDU-PORT-REF DEST="I-PDU-PORT">/CanSystem/ECUINSTANCES/EcuTestNode/Conn_EcuTestNode/PP_PT_Pdu_CounterOut_Conn_EcuTestNode_Tx</I-PDU-PORT-REF>
+                          </I-PDU-PORT-REFS>
+                          <I-PDU-REF DEST="I-SIGNAL-I-PDU">/CanSystem/PDUS/Pdu_CounterOut</I-PDU-REF>
+                        </PDU-TRIGGERING>
+                      </PDU-TRIGGERINGS>
+                    </CAN-PHYSICAL-CHANNEL>
+                  </PHYSICAL-CHANNELS>
+                  <SPEED>100</SPEED>
+                </CAN-CLUSTER-CONDITIONAL>
+              </CAN-CLUSTER-VARIANTS>
+            </CAN-CLUSTER>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>ECUINSTANCES</SHORT-NAME>
+          <ELEMENTS>
+            <ECU-INSTANCE>
+              <SHORT-NAME>DebugNode</SHORT-NAME>
+              <COM-CONFIGURATION-GW-TIME-BASE>0.005</COM-CONFIGURATION-GW-TIME-BASE>
+              <COM-CONFIGURATION-RX-TIME-BASE>0.005</COM-CONFIGURATION-RX-TIME-BASE>
+              <COM-CONFIGURATION-TX-TIME-BASE>0.005</COM-CONFIGURATION-TX-TIME-BASE>
+              <COM-ENABLE-MDT-FOR-CYCLIC-TRANSMISSION>false</COM-ENABLE-MDT-FOR-CYCLIC-TRANSMISSION>
+              <COMM-CONTROLLERS>
+                <CAN-COMMUNICATION-CONTROLLER>
+                  <SHORT-NAME>DebugNode</SHORT-NAME>
+                  <CAN-COMMUNICATION-CONTROLLER-VARIANTS>
+                    <CAN-COMMUNICATION-CONTROLLER-CONDITIONAL>
+                      <CAN-CONTROLLER-ATTRIBUTES>
+                        <CAN-CONTROLLER-CONFIGURATION-REQUIREMENTS></CAN-CONTROLLER-CONFIGURATION-REQUIREMENTS>
+                      </CAN-CONTROLLER-ATTRIBUTES>
+                    </CAN-COMMUNICATION-CONTROLLER-CONDITIONAL>
+                  </CAN-COMMUNICATION-CONTROLLER-VARIANTS>
+                </CAN-COMMUNICATION-CONTROLLER>
+              </COMM-CONTROLLERS>
+              <CONNECTORS>
+                <CAN-COMMUNICATION-CONNECTOR>
+                  <SHORT-NAME>Conn_DebugNode</SHORT-NAME>
+                  <COMM-CONTROLLER-REF DEST="CAN-COMMUNICATION-CONTROLLER">/CanSystem/ECUINSTANCES/DebugNode/DebugNode</COMM-CONTROLLER-REF>
+                  <ECU-COMM-PORT-INSTANCES>
+                    <FRAME-PORT>
+                      <SHORT-NAME>FP_FT_Pdu_CounterIn_Conn_DebugNode_Tx</SHORT-NAME>
+                      <COMMUNICATION-DIRECTION>OUT</COMMUNICATION-DIRECTION>
+                    </FRAME-PORT>
+                    <FRAME-PORT>
+                      <SHORT-NAME>FP_FT_Pdu_CounterOut_Conn_DebugNode_Rx</SHORT-NAME>
+                      <COMMUNICATION-DIRECTION>IN</COMMUNICATION-DIRECTION>
+                    </FRAME-PORT>
+                    <I-PDU-PORT>
+                      <SHORT-NAME>PP_PT_Pdu_CounterIn_Conn_DebugNode_Tx</SHORT-NAME>
+                      <COMMUNICATION-DIRECTION>OUT</COMMUNICATION-DIRECTION>
+                    </I-PDU-PORT>
+                    <I-PDU-PORT>
+                      <SHORT-NAME>PP_PT_Pdu_CounterOut_Conn_DebugNode_Rx</SHORT-NAME>
+                      <COMMUNICATION-DIRECTION>IN</COMMUNICATION-DIRECTION>
+                    </I-PDU-PORT>
+                    <I-SIGNAL-PORT>
+                      <SHORT-NAME>SP_ST_CounterIn_Pdu_CounterIn_Conn_DebugNode_Tx</SHORT-NAME>
+                      <COMMUNICATION-DIRECTION>OUT</COMMUNICATION-DIRECTION>
+                    </I-SIGNAL-PORT>
+                    <I-SIGNAL-PORT>
+                      <SHORT-NAME>SP_ST_CounterOut_Pdu_CounterOut_Conn_DebugNode_Rx</SHORT-NAME>
+                      <COMMUNICATION-DIRECTION>IN</COMMUNICATION-DIRECTION>
+                    </I-SIGNAL-PORT>
+                  </ECU-COMM-PORT-INSTANCES>
+                </CAN-COMMUNICATION-CONNECTOR>
+              </CONNECTORS>
+              <SLEEP-MODE-SUPPORTED>false</SLEEP-MODE-SUPPORTED>
+              <WAKE-UP-OVER-BUS-SUPPORTED>false</WAKE-UP-OVER-BUS-SUPPORTED>
+            </ECU-INSTANCE>
+            <ECU-INSTANCE>
+              <SHORT-NAME>EcuTestNode</SHORT-NAME>
+              <COM-CONFIGURATION-GW-TIME-BASE>0.005</COM-CONFIGURATION-GW-TIME-BASE>
+              <COM-CONFIGURATION-RX-TIME-BASE>0.005</COM-CONFIGURATION-RX-TIME-BASE>
+              <COM-CONFIGURATION-TX-TIME-BASE>0.005</COM-CONFIGURATION-TX-TIME-BASE>
+              <COM-ENABLE-MDT-FOR-CYCLIC-TRANSMISSION>true</COM-ENABLE-MDT-FOR-CYCLIC-TRANSMISSION>
+              <COMM-CONTROLLERS>
+                <CAN-COMMUNICATION-CONTROLLER>
+                  <SHORT-NAME>EcuTestNode</SHORT-NAME>
+                  <CAN-COMMUNICATION-CONTROLLER-VARIANTS>
+                    <CAN-COMMUNICATION-CONTROLLER-CONDITIONAL>
+                      <CAN-CONTROLLER-ATTRIBUTES>
+                        <CAN-CONTROLLER-CONFIGURATION-REQUIREMENTS></CAN-CONTROLLER-CONFIGURATION-REQUIREMENTS>
+                      </CAN-CONTROLLER-ATTRIBUTES>
+                    </CAN-COMMUNICATION-CONTROLLER-CONDITIONAL>
+                  </CAN-COMMUNICATION-CONTROLLER-VARIANTS>
+                </CAN-COMMUNICATION-CONTROLLER>
+              </COMM-CONTROLLERS>
+              <CONNECTORS>
+                <CAN-COMMUNICATION-CONNECTOR>
+                  <SHORT-NAME>Conn_EcuTestNode</SHORT-NAME>
+                  <COMM-CONTROLLER-REF DEST="CAN-COMMUNICATION-CONTROLLER">/CanSystem/ECUINSTANCES/EcuTestNode/EcuTestNode</COMM-CONTROLLER-REF>
+                  <ECU-COMM-PORT-INSTANCES>
+                    <FRAME-PORT>
+                      <SHORT-NAME>FP_FT_Pdu_CounterIn_Conn_EcuTestNode_Rx</SHORT-NAME>
+                      <COMMUNICATION-DIRECTION>IN</COMMUNICATION-DIRECTION>
+                    </FRAME-PORT>
+                    <FRAME-PORT>
+                      <SHORT-NAME>FP_FT_Pdu_CounterOut_Conn_EcuTestNode_Tx</SHORT-NAME>
+                      <COMMUNICATION-DIRECTION>OUT</COMMUNICATION-DIRECTION>
+                    </FRAME-PORT>
+                    <I-PDU-PORT>
+                      <SHORT-NAME>PP_PT_Pdu_CounterIn_Conn_EcuTestNode_Rx</SHORT-NAME>
+                      <COMMUNICATION-DIRECTION>IN</COMMUNICATION-DIRECTION>
+                    </I-PDU-PORT>
+                    <I-PDU-PORT>
+                      <SHORT-NAME>PP_PT_Pdu_CounterOut_Conn_EcuTestNode_Tx</SHORT-NAME>
+                      <COMMUNICATION-DIRECTION>OUT</COMMUNICATION-DIRECTION>
+                    </I-PDU-PORT>
+                    <I-SIGNAL-PORT>
+                      <SHORT-NAME>SP_ST_CounterIn_Pdu_CounterIn_Conn_EcuTestNode_Rx</SHORT-NAME>
+                      <COMMUNICATION-DIRECTION>IN</COMMUNICATION-DIRECTION>
+                    </I-SIGNAL-PORT>
+                    <I-SIGNAL-PORT>
+                      <SHORT-NAME>SP_ST_CounterOut_Pdu_CounterOut_Conn_EcuTestNode_Tx</SHORT-NAME>
+                      <COMMUNICATION-DIRECTION>OUT</COMMUNICATION-DIRECTION>
+                    </I-SIGNAL-PORT>
+                  </ECU-COMM-PORT-INSTANCES>
+                </CAN-COMMUNICATION-CONNECTOR>
+              </CONNECTORS>
+              <SLEEP-MODE-SUPPORTED>false</SLEEP-MODE-SUPPORTED>
+              <WAKE-UP-OVER-BUS-SUPPORTED>false</WAKE-UP-OVER-BUS-SUPPORTED>
+            </ECU-INSTANCE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>FRAMES</SHORT-NAME>
+          <ELEMENTS>
+            <CAN-FRAME>
+              <SHORT-NAME>Pdu_CounterIn</SHORT-NAME>
+              <FRAME-LENGTH>1</FRAME-LENGTH>
+              <PDU-TO-FRAME-MAPPINGS>
+                <PDU-TO-FRAME-MAPPING>
+                  <SHORT-NAME>PduToFrame_Pdu_CounterIn_0</SHORT-NAME>
+                  <PACKING-BYTE-ORDER>MOST-SIGNIFICANT-BYTE-LAST</PACKING-BYTE-ORDER>
+                  <PDU-REF DEST="I-SIGNAL-I-PDU">/CanSystem/PDUS/Pdu_CounterIn</PDU-REF>
+                  <START-POSITION>0</START-POSITION>
+                </PDU-TO-FRAME-MAPPING>
+              </PDU-TO-FRAME-MAPPINGS>
+            </CAN-FRAME>
+            <CAN-FRAME>
+              <SHORT-NAME>Pdu_CounterOut</SHORT-NAME>
+              <FRAME-LENGTH>1</FRAME-LENGTH>
+              <PDU-TO-FRAME-MAPPINGS>
+                <PDU-TO-FRAME-MAPPING>
+                  <SHORT-NAME>PduToFrame_Pdu_CounterOut_0</SHORT-NAME>
+                  <PACKING-BYTE-ORDER>MOST-SIGNIFICANT-BYTE-LAST</PACKING-BYTE-ORDER>
+                  <PDU-REF DEST="I-SIGNAL-I-PDU">/CanSystem/PDUS/Pdu_CounterOut</PDU-REF>
+                  <START-POSITION>0</START-POSITION>
+                </PDU-TO-FRAME-MAPPING>
+              </PDU-TO-FRAME-MAPPINGS>
+            </CAN-FRAME>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>ISIGNALS</SHORT-NAME>
+          <ELEMENTS>
+            <I-SIGNAL>
+              <SHORT-NAME>CounterIn</SHORT-NAME>
+              <DATA-TYPE-POLICY>PORT-INTERFACE-DEFINITION</DATA-TYPE-POLICY>
+              <LENGTH>8</LENGTH>
+              <NETWORK-REPRESENTATION-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </NETWORK-REPRESENTATION-PROPS>
+              <SYSTEM-SIGNAL-REF DEST="SYSTEM-SIGNAL">/CanSystem/SYSSIGNALS/CounterIn</SYSTEM-SIGNAL-REF>
+            </I-SIGNAL>
+            <I-SIGNAL>
+              <SHORT-NAME>CounterOut</SHORT-NAME>
+              <DATA-TYPE-POLICY>PORT-INTERFACE-DEFINITION</DATA-TYPE-POLICY>
+              <LENGTH>8</LENGTH>
+              <NETWORK-REPRESENTATION-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </NETWORK-REPRESENTATION-PROPS>
+              <SYSTEM-SIGNAL-REF DEST="SYSTEM-SIGNAL">/CanSystem/SYSSIGNALS/CounterOut</SYSTEM-SIGNAL-REF>
+            </I-SIGNAL>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>PDUS</SHORT-NAME>
+          <ELEMENTS>
+            <I-SIGNAL-I-PDU>
+              <SHORT-NAME>Pdu_CounterIn</SHORT-NAME>
+              <LENGTH>1</LENGTH>
+              <I-PDU-TIMING-SPECIFICATIONS>
+                <I-PDU-TIMING>
+                  <TRANSMISSION-MODE-DECLARATION>
+                    <TRANSMISSION-MODE-CONDITIONS>
+                      <TRANSMISSION-MODE-CONDITION>
+                        <DATA-FILTER>
+                          <DATA-FILTER-TYPE>ALWAYS</DATA-FILTER-TYPE>
+                        </DATA-FILTER>
+                        <I-SIGNAL-IN-I-PDU-REF DEST="I-SIGNAL-TO-I-PDU-MAPPING">/CanSystem/PDUS/Pdu_CounterIn/CounterIn</I-SIGNAL-IN-I-PDU-REF>
+                      </TRANSMISSION-MODE-CONDITION>
+                    </TRANSMISSION-MODE-CONDITIONS>
+                    <TRANSMISSION-MODE-TRUE-TIMING>
+                      <EVENT-CONTROLLED-TIMING>
+                        <NUMBER-OF-REPETITIONS>1</NUMBER-OF-REPETITIONS>
+                        <REPETITION-PERIOD>
+                          <VALUE>1.0</VALUE>
+                        </REPETITION-PERIOD>
+                      </EVENT-CONTROLLED-TIMING>
+                    </TRANSMISSION-MODE-TRUE-TIMING>
+                  </TRANSMISSION-MODE-DECLARATION>
+                </I-PDU-TIMING>
+              </I-PDU-TIMING-SPECIFICATIONS>
+              <I-SIGNAL-TO-PDU-MAPPINGS>
+                <I-SIGNAL-TO-I-PDU-MAPPING>
+                  <SHORT-NAME>CounterIn</SHORT-NAME>
+                  <I-SIGNAL-REF DEST="I-SIGNAL">/CanSystem/ISIGNALS/CounterIn</I-SIGNAL-REF>
+                  <PACKING-BYTE-ORDER>MOST-SIGNIFICANT-BYTE-LAST</PACKING-BYTE-ORDER>
+                  <START-POSITION>0</START-POSITION>
+                </I-SIGNAL-TO-I-PDU-MAPPING>
+              </I-SIGNAL-TO-PDU-MAPPINGS>
+              <UNUSED-BIT-PATTERN>0</UNUSED-BIT-PATTERN>
+            </I-SIGNAL-I-PDU>
+            <I-SIGNAL-I-PDU>
+              <SHORT-NAME>Pdu_CounterOut</SHORT-NAME>
+              <LENGTH>1</LENGTH>
+              <I-PDU-TIMING-SPECIFICATIONS>
+                <I-PDU-TIMING>
+                  <TRANSMISSION-MODE-DECLARATION>
+                    <TRANSMISSION-MODE-CONDITIONS>
+                      <TRANSMISSION-MODE-CONDITION>
+                        <DATA-FILTER>
+                          <DATA-FILTER-TYPE>ALWAYS</DATA-FILTER-TYPE>
+                        </DATA-FILTER>
+                        <I-SIGNAL-IN-I-PDU-REF DEST="I-SIGNAL-TO-I-PDU-MAPPING">/CanSystem/PDUS/Pdu_CounterOut/CounterOut</I-SIGNAL-IN-I-PDU-REF>
+                      </TRANSMISSION-MODE-CONDITION>
+                    </TRANSMISSION-MODE-CONDITIONS>
+                    <TRANSMISSION-MODE-TRUE-TIMING>
+                      <EVENT-CONTROLLED-TIMING>
+                        <NUMBER-OF-REPETITIONS>1</NUMBER-OF-REPETITIONS>
+                        <REPETITION-PERIOD>
+                          <VALUE>1.0</VALUE>
+                        </REPETITION-PERIOD>
+                      </EVENT-CONTROLLED-TIMING>
+                    </TRANSMISSION-MODE-TRUE-TIMING>
+                  </TRANSMISSION-MODE-DECLARATION>
+                </I-PDU-TIMING>
+              </I-PDU-TIMING-SPECIFICATIONS>
+              <I-SIGNAL-TO-PDU-MAPPINGS>
+                <I-SIGNAL-TO-I-PDU-MAPPING>
+                  <SHORT-NAME>CounterOut</SHORT-NAME>
+                  <I-SIGNAL-REF DEST="I-SIGNAL">/CanSystem/ISIGNALS/CounterOut</I-SIGNAL-REF>
+                  <PACKING-BYTE-ORDER>MOST-SIGNIFICANT-BYTE-LAST</PACKING-BYTE-ORDER>
+                  <START-POSITION>0</START-POSITION>
+                </I-SIGNAL-TO-I-PDU-MAPPING>
+              </I-SIGNAL-TO-PDU-MAPPINGS>
+              <UNUSED-BIT-PATTERN>0</UNUSED-BIT-PATTERN>
+            </I-SIGNAL-I-PDU>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>SYSSIGNALS</SHORT-NAME>
+          <ELEMENTS>
+            <SYSTEM-SIGNAL>
+              <SHORT-NAME>CounterIn</SHORT-NAME>
+              <DYNAMIC-LENGTH>false</DYNAMIC-LENGTH>
+            </SYSTEM-SIGNAL>
+            <SYSTEM-SIGNAL>
+              <SHORT-NAME>CounterOut</SHORT-NAME>
+              <DYNAMIC-LENGTH>false</DYNAMIC-LENGTH>
+            </SYSTEM-SIGNAL>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

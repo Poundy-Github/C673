@@ -1,0 +1,65 @@
+entry &CORENAME
+
+if "&CORENAME"=="ca53"
+(
+    system.cpu RCARV3M
+    SYStem.JtagClock CTCK 10MHz
+    CORE.ASSIGN 1. 2. ; Cortex-A53, both cores - only with newer T32 version!
+    SYStem.memaccess dap		; allow dap access
+    
+    ; wait for A53 being powered by R7 core (after 250ms)
+    SYStem.Option WaitReset 250ms
+    SYStem.Option ResBreak off
+    
+    ; mmu does not allow SW breakpoints
+    break.IMPLementation.Program Onchip
+)
+else if "&CORENAME"=="ca53_1"
+(
+    system.cpu R8A77950
+    SYStem.JtagClock CTCK 10MHz
+    CORE.ASSIGN 2. ; Cortex-A53, 1nd core
+    SYStem.memaccess dap		; allow dap access
+)
+else if "&CORENAME"=="ca53_2"
+(
+    system.cpu R8A77950
+    SYStem.JtagClock CTCK 10MHz
+    CORE.ASSIGN 4. ; Cortex-A53, 2nd core
+    SYStem.memaccess dap		; allow dap access
+)
+else if "&CORENAME"=="cr7"
+(
+	system.cpu RCARV3M-CR7
+	system.memaccess dap
+
+	; workaround for system.up issue
+	SYStem.Option WaitReset 22ms
+	SYStem.Option ResBreak off
+
+	; configure HSSTP tracer
+	if Analyzer()
+	(
+		TPIU.PortSize 4Lane
+		TPIU.PortClock 1000Mbps
+		Trace.PortType V3M
+		SystemTrace.Method Analyzer
+	)
+)
+else
+(
+	error "Unknown Core ID"
+)
+
+; Interrupts shall be disabled when single-stepping
+sys.Option IMASKHLL ON
+sys.Option IMASKASM ON
+
+; Synchronize core debug state with other cores
+SYnch.MasterGo ON
+SYnch.MasterBreak ON
+SYnch.SlaveGo ON
+SYnch.SlaveBreak ON
+
+; Add button to toggle debug sync
+MENU.AddTool "Toggle multicore debug synchronization" "SYN,g" "do ..\..\platforms\rcar_v3m\toggle_synch.cmm"

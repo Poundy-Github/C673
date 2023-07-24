@@ -1,0 +1,86 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Update each variable according to the existing 
+#    source files (relative to this directory) and 
+#    include paths (relative to the directory where 
+#    SConstruct is located in, i.e. starting with "#").
+# ----------------------------------------------------------------------------------------
+
+# config file containing algo source file list
+Import("project_name")
+# algo source files
+gia_algo_sources = """
+"""
+
+# algo pdo source files (C files for creating SDL file)
+gia_algo_pdo_sources = """
+"""
+
+# algo ti_eve_arp32 source files
+gia_algo_ti_eve_arp32_sources = """
+"""
+
+# algo wrapper sources to be analysed by qac
+gia_wrapper_sources = """
+"""
+
+# algo include paths
+gia_algo_include_paths = """
+#../../../01_Source_Code/cct/
+#../../../01_Source_Code/CML/
+#../../../01_Source_Code/CML/bayes/
+#../../../01_Source_Code/CML/complex/
+#../../../01_Source_Code/CML/fourier/
+#../../../01_Source_Code/CML/interpol/
+#../../../01_Source_Code/CML/kalman/
+#../../../01_Source_Code/CML/matrix/
+#../../../01_Source_Code/CML/misc/
+#../../../01_Source_Code/CML/stat/
+#../../../01_Source_Code/CML/stl/
+#../../../01_Source_Code/CML/stl/algorithm/
+#../../../01_Source_Code/CML/stl/container/
+#../../../01_Source_Code/CML/stl/math/
+#../../../01_Source_Code/CML/trigo/
+#../../../01_Source_Code/CML/vector/
+#../../../01_Source_Code/gia/
+#../../../01_Source_Code/gia/frame/
+"""
+
+
+# algo common include paths
+if 'MFC' in project_name:
+	gia_algo_common_include_paths = """
+	#../../../../01_Source_Code/common
+	#../../../../00_Projects/%s/common
+	#../../../../00_Projects/%s/common/GLOB_VH
+	#../../../../01_Source_Code/common/MTSI
+	#../../../../00_Projects/%s/common/DGM
+	#../../../../00_Projects/%s/common/RTE_VH/include
+	#../../../../00_Projects/%s/common/RTE_VH/algo
+	#../../../../01_Source_Code/common/RTA/
+	#../../../../01_Source_Code/RTA/
+	""" %(project_name, project_name, project_name, project_name, project_name)
+	if project_name == 'MFC510' or project_name == 'MFC520':
+		gia_algo_common_include_paths = '\n'.join(algo_common_include_paths_list)
+else:
+	gia_algo_common_include_paths = " "
+
+
+# algo ti_eve_arp32 include paths
+gia_algo_ti_eve_arp32_include_paths = """
+#../../../01_Source_Code/algo/xxx/ti_eve_arp32/inc
+#../../../01_Source_Code/algo/xxx/ti_eve_arp32/src
+"""
+
+# exclude paths for qac
+qac_exclude_paths = """
+#../../../01_Source_Code/common
+#../../../01_Source_Code/common/rte
+"""
+
+# algo polyspace addtional source files
+gia_algo_ps_additional_sources = """
+"""
+# algo polyspace additional include paths
+gia_algo_ps_additional_include_paths = """
+"""

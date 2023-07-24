@@ -1,0 +1,36 @@
+TRQ interface 
+Found in folder: latdmc_veh
+Proj:MFC431 
+Iuc existing: YES, in folder latdmc_iuc
+
+Mamba config file: config_MQ4BBQ.m
+DMC_TYPE = 2 in init_generic_had.m for DMC on Iuc part
+DMC_TYPE = 3 in init_generic_had.m for DMC on Soc part
+
+************************************
+TRQ interface 
+Found in folder: latdmc_veh_trq   ---->latdmc_veh_trq = latdmc_veh + latdmc_iuc
+Proj:ADC420HA10
+Iuc existing: NO
+
+Mamba config file: config_ADCU.m
+DMC_TYPE = 1 in init_generic_had.m for complete DMC on Soc
+
+************************************
+ANGLE interface
+Found in folder: latdmc_veh_ang
+Proj:MFC431LO19, MFC431SW19, MFC431VA10, MFC431TA19
+Iuc existing: NO
+
+Mamba config file: config_6V1BAG.m
+DMC_TYPE = 3 in init_generic_had.m for DMC on Soc part
+
+************************************
+SteerTRQ interface:
+Found in folder: latdmc_veh_strq
+Proj:MFC431SC19
+Iuc existing: YES, latdmc_iuc_strq
+
+Mamba config file: config_SC19.m
+DMC_TYPE = 2 in init_generic_had.m for DMC on Iuc part
+DMC_TYPE = 3 in init_generic_had.m for DMC on Soc part

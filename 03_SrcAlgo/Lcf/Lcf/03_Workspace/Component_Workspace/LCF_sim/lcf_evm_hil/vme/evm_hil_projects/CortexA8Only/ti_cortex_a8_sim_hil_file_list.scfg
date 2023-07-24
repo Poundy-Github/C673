@@ -1,0 +1,16 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Update each variable according to the existing source files and include paths.
+# ----------------------------------------------------------------------------------------
+
+# config file containing TI Cortex A8 sim hil source file list
+
+# Cortex A8 sim hil source files
+cortex_a8_sim_hil_sources = """
+CortexA8_EvmHilWrapper.cpp
+"""
+
+# Cortex A8 sim hil include paths
+cortex_a8_sim_hil_include_paths = """
+#../lcf_sim/lcf_evm_hil/vme/evm_hil_projects/CortexA8Only/
+"""

@@ -1,0 +1,45 @@
+// Copyright (C) Continental AG
+// All Rights Reserved
+// COMPONENT: IPC
+// VERSION:   $Revision: 1.1 $
+
+// generated part RTE Wrapper for IPC.
+
+#include <IPC_BASE/IPC_DataBaseConfig/ipc_rteWrapperGen.h>
+#include <IPC_MASTER/IPC_DbInterfaceWrapper/IPC_RteInterfaceWrapper/ipc_rteWrapper.h>
+#include <Rte_IpcPxy.h>
+
+// QA-C Settings
+// PRQA S 3211 ++
+// 11.05.2017; uidg6511;
+// summary: Msg(2:3211) The global identifier 'IpcRteMappingTable' is defined here but is not used in this translation unit.;
+// reason: This generated file contains only definition of global variables, which are not used here.
+
+// PRQA S 313 ++
+// 11.05.2017; uidg6511;
+// summary: Msg(3:0313) Casting to different function pointer type.;
+// reason: array of pointers of functions with each one different type. Cast to one common type.
+
+// PRQA S 7013 ++
+// 11.05.2017; uidg6511;
+// summary: Msg(3:7013) Info: number of executable lines per file.;
+// reason: generated file with many clusters.
+
+// PRQA S 7001 ++
+// 11.05.2017; uidg6511;
+// summary: Msg(3:7001) HIS metrics check: comment density violated.;
+// reason: no useless comment and doxygen documentation in header file
+
+/// IPC RTE Mapping Table for assigning RTE read and write functions to cluster ids.
+// Mapping Table must be sorted by ascending Cluster ID.
+// In case clusters are not to be sent over IPC, there shall be NULL-Pointers for Read/Write functions.
+const IpcRteMappingTableEntry IpcRteMappingTable[IPC_E_NUM_CLUSTERS] = {
+/*!<codegen_start:IPC_RTE_MAPPING_TABLE_C>*/
+/*!<codegen_end:IPC_RTE_MAPPING_TABLE_C>*/
+};
+
+// PRQA S 3211 --
+// PRQA S 313 --
+
+/*!<codegen_start:IPC_RTE_WRAPPER_FUNCTIONS_C>*/
+/*!<codegen_end:IPC_RTE_WRAPPER_FUNCTIONS_C>*/

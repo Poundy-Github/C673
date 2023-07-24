@@ -1,0 +1,194 @@
+#.........................................................................
+# Naming conventions from the A.D.C. - Codinguidline PKit ADAS 2.1
+#.........................................................................
+
+# Scope
+# Name: scope
+# Value: string from list
+# This restricts the rule in terms of scope of the identifier. Note that scope and linkage are often confused.
+# Value Description
+# N function scope – labels
+# F file
+# B block
+# P function prototype
+# When omitted, the rule applies to identifiers with any scope. Combinations of these values can be obtained by separating entries with commas or spaces.
+
+# Linkage
+# Name: linkage
+# Value: string from list
+# This restricts the rule in terms of the linkage of the identifier.
+# Value Description
+# I internal
+# X external
+# N none – local or typedef
+# When omitted, the rule applies to identifiers with any linkage.
+
+# Type
+# Name: type
+# Value Description
+# n  - signed
+# u  - unsigned
+# c  - char
+# s  - short
+# i  - integer
+# l  - long
+# ll - long long
+# fs - float
+# ff - double
+# fl - long double
+# pX - pointer to X
+# g  - pointer to void
+
+#.........................................................................
+#R (233) The following Datatype prefixes are allowed:
+#.........................................................................
+# (p)_...  Pointer
+# (a)_...  Array
+# (u)_...  unsigned
+# (s)_...  signed
+# (f)_...  float
+# (v)_...  void
+# (r)_...  reference
+# (p|a|u|s|f|v|r)_
+
+#.........................................................................
+# Local variables
+#.........................................................................
+# <Datatype>_<Name>
+# Datatype           -> Datatype prefix
+# Name               -> Several alphanumeric indications for the identification of the type. Upper and lower cases could be used.
+# Pointers:
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^pnc$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^puc$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^pns$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^pus$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^pni$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^pui$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^pnl$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^pul$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^pnll$', 'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^pull$', 'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^pfs$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^pff$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^pfl$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^p\\.$', 'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6000}
+# Unsigned:
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^uc$',   'pattern':'^((i|j|k|l|ii)|(u_([a-z_0-9A-Z])+))$', 'message':6001}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^us$',   'pattern':'^((i|j|k|l|ii)|(u_([a-z_0-9A-Z])+))$', 'message':6001}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^ui$',   'pattern':'^((i|j|k|l|ii)|(u_([a-z_0-9A-Z])+))$', 'message':6001}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^ul$',   'pattern':'^((i|j|k|l|ii)|(u_([a-z_0-9A-Z])+))$', 'message':6001}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^ull$',  'pattern':'^((i|j|k|l|ii)|(u_([a-z_0-9A-Z])+))$', 'message':6001}
+# Signed:
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^nc$',   'pattern':'^((i|j|k|l|ii)|(s_([a-z_0-9A-Z])+))$', 'message':6002}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^ns$',   'pattern':'^((i|j|k|l|ii)|(s_([a-z_0-9A-Z])+))$', 'message':6002}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^ni$',   'pattern':'^((i|j|k|l|ii)|(s_([a-z_0-9A-Z])+))$', 'message':6002}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^nl$',   'pattern':'^((i|j|k|l|ii)|(s_([a-z_0-9A-Z])+))$', 'message':6002}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^nll$',  'pattern':'^((i|j|k|l|ii)|(s_([a-z_0-9A-Z])+))$', 'message':6002}
+# Array:
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'(\\[[0-9]*,[a-z]*\\])',   'pattern':'^((a_([a-z_0-9A-Z])+))$', 'message':6003}
+# Floats:
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^fs$',  'pattern':'^((f_([a-z_0-9A-Z])+))$', 'message':6004}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^ff$',  'pattern':'^((f_([a-z_0-9A-Z])+))$', 'message':6004}
+rule={'space':'OV', 'scope':'B', 'linkage':'N', 'type':'^fl$',  'pattern':'^((f_([a-z_0-9A-Z])+))$', 'message':6004}
+
+#.........................................................................
+# private global variables
+#.........................................................................
+# <Datatype>_<Name>
+# Datatype           -> Datatype prefix
+# Name               -> Several alphanumeric indications for the identification of the type. Upper and lower cases could be used.
+
+# Pointers:
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^pnc$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^puc$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^pns$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^pus$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^pni$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^pui$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^pnl$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^pul$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^pnll$', 'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^pull$', 'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^pfs$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^pff$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^pfl$',  'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^p\\.$', 'pattern':'^(p_([a-z_0-9A-Z])+)$', 'message':6010}
+# Unsigned:
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^uc$',   'pattern':'^((u_([a-z_0-9A-Z])+))$', 'message':6011}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^us$',   'pattern':'^((u_([a-z_0-9A-Z])+))$', 'message':6011}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^ui$',   'pattern':'^((u_([a-z_0-9A-Z])+))$', 'message':6011}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^ul$',   'pattern':'^((u_([a-z_0-9A-Z])+))$', 'message':6011}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^ull$',  'pattern':'^((u_([a-z_0-9A-Z])+))$', 'message':6011}
+# Signed:
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^nc$',   'pattern':'^((s_([a-z_0-9A-Z])+))$', 'message':6012}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^ns$',   'pattern':'^((s_([a-z_0-9A-Z])+))$', 'message':6012}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^ni$',   'pattern':'^((s_([a-z_0-9A-Z])+))$', 'message':6012}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^nl$',   'pattern':'^((s_([a-z_0-9A-Z])+))$', 'message':6012}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^nll$',  'pattern':'^((s_([a-z_0-9A-Z])+))$', 'message':6012}
+# Array:
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'(\\[[0-9]*,[a-z]*\\])',   'pattern':'^((a_([a-z_0-9A-Z])+))$', 'message':6013}
+# Floats:
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^fs$',  'pattern':'^((f_([a-z_0-9A-Z])+))$', 'message':6014}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^ff$',  'pattern':'^((f_([a-z_0-9A-Z])+))$', 'message':6014}
+rule={'space':'OV', 'scope':'F', 'linkage':'I', 'type':'^fl$',  'pattern':'^((f_([a-z_0-9A-Z])+))$', 'message':6014}
+
+#.........................................................................
+# public global variables
+#.........................................................................
+# <Package indication>_<Datatype>_<Name>
+# Package indication -> Package indication (2..10 characters in upper cases)
+# Datatype           -> Datatype prefix
+# Name               -> Several alphanumeric indications for the identification of the type. Upper and lower cases could be used.
+# Pointers:
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^pnc$',  'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^puc$',  'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^pns$',  'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^pus$',  'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^pni$',  'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^pnc$',  'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^pui$',  'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^pnl$',  'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^pul$',  'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^pnll$', 'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^pull$', 'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^pfs$',  'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^pff$',  'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^pfp$',  'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^p\\.$', 'pattern':'^(([A-Z0-9]{2,10})(_p_([a-z_0-9A-Z])+))$', 'message':6020}
+# Unsigned:
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^uc$',   'pattern':'^(([A-Z0-9]{2,10})(_u_([a-z_0-9A-Z])+))$', 'message':6021}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^us$',   'pattern':'^(([A-Z0-9]{2,10})(_u_([a-z_0-9A-Z])+))$', 'message':6021}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^ui$',   'pattern':'^(([A-Z0-9]{2,10})(_u_([a-z_0-9A-Z])+))$', 'message':6021}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^ul$',   'pattern':'^(([A-Z0-9]{2,10})(_u_([a-z_0-9A-Z])+))$', 'message':6021}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^ull$',  'pattern':'^(([A-Z0-9]{2,10})(_u_([a-z_0-9A-Z])+))$', 'message':6021}
+# Signed:
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^nc$',   'pattern':'^(([A-Z0-9]{2,10})(_s_([a-z_0-9A-Z])+))$', 'message':6022}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^ns$',   'pattern':'^(([A-Z0-9]{2,10})(_s_([a-z_0-9A-Z])+))$', 'message':6022}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^ni$',   'pattern':'^(([A-Z0-9]{2,10})(_s_([a-z_0-9A-Z])+))$', 'message':6022}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^nl$',   'pattern':'^(([A-Z0-9]{2,10})(_s_([a-z_0-9A-Z])+))$', 'message':6022}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^nll$',  'pattern':'^(([A-Z0-9]{2,10})(_s_([a-z_0-9A-Z])+))$', 'message':6022}
+# Array:
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'(\\[[0-9]*,[a-z]*\\])',   'pattern':'^(([A-Z0-9]{2,10})(_a_([a-z_0-9A-Z])+))$', 'message':6023}
+# Floats:
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^fs$',  'pattern':'^(([A-Z0-9]{2,10})(_f_([a-z_0-9A-Z])+))$', 'message':6024}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^ff$',  'pattern':'^(([A-Z0-9]{2,10})(_f_([a-z_0-9A-Z])+))$', 'message':6024}
+rule={'space':'OV', 'scope':'F', 'linkage':'X', 'type':'^fl$',  'pattern':'^(([A-Z0-9]{2,10})(_f_([a-z_0-9A-Z])+))$', 'message':6024}
+
+#.........................................................................
+# private Functions
+#.........................................................................
+# <Datatype return value>_<Function Name>
+# Datatype return value -> Datatype prefix
+# Function Name         -> Several alphanumeric indications for the identification of the function containing the action and the descriptive name. Upper and lower cases could be used.
+
+rule={'space':'OF', 'linkage':'I', 'pattern':'^(p|a|u|s|f|v|r)_([a-z_0-9A-Z]+)$', 'message':6030}
+
+#.........................................................................
+# public Functions
+#.........................................................................
+# <Package indication>_<Datatype return value>_<Function Name>
+# Package indication    -> Package indication (2..10 characters in upper cases)
+# Datatype return value -> Datatype prefix
+# Function Name         -> Several alphanumeric indications for the identification of the function containing the action and the descriptive name. Upper and lower cases could be used.
+
+rule={'space':'OF', 'linkage':'X', 'pattern':'^([A-Z0-9]{2,10})_(p|a|u|s|f|v|r)_([a-z_0-9A-Z]+)$', 'message':6040}

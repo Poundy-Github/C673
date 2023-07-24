@@ -1,0 +1,15 @@
+
+# Replace xxx with the component name
+# Make True/False as required for the component
+
+component_name = "xxx"
+	
+# For simulation plugins
+sim = True
+if sim:
+	sim_dict = {
+	"sim_swc" : True,
+	"sim_swc_vis" : False,
+	"sim_adapt" : False
+	}
+		

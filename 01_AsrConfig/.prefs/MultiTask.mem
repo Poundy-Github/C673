@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<memento version="1.0" lastmodified="Mar 7, 2023 5:33:32 PM">
+    <MultiTask>
+        <__metadata>
+            <TreeAndTableEditor_Grp __expanded="true"/>
+            <TableGroup __expanded="true"/>
+            <Table __width="100 100 100 180 180" __visible="yyyyy"/>
+            <description __desc="Execute multiple tasks in specified order"/>
+        </__metadata>
+        <Table>
+            <__ StopOnError="true" Action="Generate mode"
+                StopOnWarning="false" Parameter="generate_swcd"/>
+            <__ StopOnError="true" Action="Run importer"
+                StopOnWarning="false" Parameter="Imp_Swcd"/>
+            <__ StopOnError="true" Action="Run unattended wizard"
+                StopOnWarning="false" Parameter="EcuExtractCreator"/>
+        </Table>
+    </MultiTask>
+</memento>

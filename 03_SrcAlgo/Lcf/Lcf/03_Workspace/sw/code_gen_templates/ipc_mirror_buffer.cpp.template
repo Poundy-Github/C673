@@ -1,0 +1,30 @@
+// Copyright (C) Continental AG
+// All Rights Reserved
+// COMPONENT: IPC
+// VERSION:   $Revision: 1.1 $
+/// @file     ipc_mirror_buffer.cpp
+/// @brief    Defines per each cluster, a buffer used for slicing
+
+#include <IPC_SLAVE/ipc_mirror_buffer.h>
+#include <IPC_BASE/IPC_DataBaseConfig/ipc_mirror_buffer_cfg.h>
+
+#if CFG_ENABLED(CFG_CLUSTER_CHUNKING)
+static t_clusterSwapBuffer s_clusterSwapBuffer;
+
+
+// PRQA S 5018 ++ // 2017-04-20; uidg6511; summary: Msg(4:5018) The macro offsetof shall not be used.;
+// reason: offsetof is used on purpose. The swap buffer if heterogeneous. Moreover, the code in the IPC is generic and the
+//         swap buffer changes often depending on which algos are running. Therefore, using offsetof is the only way
+//         to provide the IPC with the information necessary to access the elements of the swap buffer.
+//         Suppression requested in Issue 845229.
+
+// PRQA S 3705 ++ // 2019-02-01; uib12158; summary: Msg(3:3705) This is using pointer arithmetic.
+// reason: There is no other way to handle this. Also there is no risk in doing this.
+
+void* a_accessArray[] =
+{
+/*!<codegen_start:IPC_MIRROR_BUFFER_ACCESS_ARRAY>*/
+/*!<codegen_end:IPC_MIRROR_BUFFER_ACCESS_ARRAY>*/
+};
+// PRQA S 3705,5018 --
+#endif

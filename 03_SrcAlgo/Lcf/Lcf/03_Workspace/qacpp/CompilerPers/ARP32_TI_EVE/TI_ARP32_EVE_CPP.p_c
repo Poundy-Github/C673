@@ -1,0 +1,47 @@
+-audi-
+-aicpm+
+-atanpc-
+-accd-
+-atncrb-
+-sdep-
+-ptp-
+-dpft-
+-ifn-
+-sig-
+-duc99dilt-
+-rvrb+
+-pp32bt-
+-sd "__ARP32__=1"
+-sd "__ARP32_V200__=1"
+-sd "__ARRAY_OPERATORS=1"
+-sd "__attribute__=_ignore_paren"
+-sd "__COMPILER_VERSION__=1000008"
+-sd "__complex__(T)=__qacpp_complex__<T>"
+-sd "__cplusplus=199711L"
+-sd "__DATE__=_PRL_STRINGIFY(Dec 13 2018)"
+-sd "__edg_front_end__=1"
+-sd "__EDG_IA64_ABI_USE_VARIANT_INT_STATIC_INIT_GUARD=1"
+-sd "__EDG_IA64_ABI_VARIANT_CTORS_AND_DTORS_RETURN_THIS=1"
+-sd "__EDG_IA64_ABI=1"
+-sd "__EDG_RUNTIME_USES_NAMESPACES=1"
+-sd "__EDG_VERSION__=303"
+-sd "__inline=inline"
+-sd "__little_endian__=1"
+-sd "__PTRDIFF_T_TYPE__=int"
+-sd "__signed_chars__=1"
+-sd "__SIZE_T_TYPE__=unsigned"
+-sd "__STDC__=1"
+-sd "__TI_COMPILER_VERSION__=1000008"
+-sd "__TI_EABI__=1"
+-sd "__TI_GNU_ATTRIBUTE_SUPPORT__=1"
+-sd "__TI_STRICT_ANSI_MODE__=1"
+-sd "__TI_STRICT_FP_MODE__=1"
+-sd "__TI_WCHAR_T_BITS__=32"
+-sd "__TIME__=_PRL_STRINGIFY(13:35:42)"
+-sd "__WCHAR_T_TYPE__=unsigned int"
+-sd "_Pragma=_ignore_paren"
+-sd "_PRL_STRINGIFY(x)=#x"
+-sd "restrict="
+-sl+
+-sa+
+-mrtnd 200

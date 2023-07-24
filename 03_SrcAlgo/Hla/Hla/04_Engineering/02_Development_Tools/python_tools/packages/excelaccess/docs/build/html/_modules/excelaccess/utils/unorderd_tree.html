@@ -1,0 +1,283 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>excelaccess.utils.unorderd_tree &#8212; ExcelAccess 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for excelaccess.utils.unorderd_tree</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@author: uidq3472</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+
+
+<div class="viewcode-block" id="TreeNode"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.unorderd_tree.TreeNode">[docs]</a><span class="k">class</span> <span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Base class for a node in a tree-like structure.</span>
+<span class="sd">    </span>
+<span class="sd">    :param str title: header field</span>
+<span class="sd">    :param parent: parent element if there is one</span>
+<span class="sd">    :type parent: TreeNode or None</span>
+<span class="sd">    :param int row_index: row index of this field for better determination and for indexing of data</span>
+<span class="sd">    :param int col_index: column index of this field for better determination and for indexing of data</span>
+<span class="sd">    :param int col_offset: absolute column offset if table does not start at 0 in Excel</span>
+<span class="sd">    :param int row_offset: absolute row offset if table does not start at 0 in Excel</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">row_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">col_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">col_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor of TreeNode class. </span>
+<span class="sd">        </span>
+<span class="sd">        TODO: docu + better solution for information in here? more general? e.g. dict to store stuff</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_offset</span> <span class="o">=</span> <span class="n">col_offset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_offset</span> <span class="o">=</span> <span class="n">row_offset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_index</span> <span class="o">=</span> <span class="n">col_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_index</span> <span class="o">=</span> <span class="n">row_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">childs</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>  <span class="c1"># (title, node)</span>
+
+<div class="viewcode-block" id="TreeNode.add_child"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.unorderd_tree.TreeNode.add_child">[docs]</a>    <span class="k">def</span> <span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds a child to the calling node.</span>
+<span class="sd">        </span>
+<span class="sd">        :param TreeNode child: a child node to be added</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">title</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">childs</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">childs</span><span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">title</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span>
+            <span class="c1"># root column offset; if we need to compute relative instead of absolute indices</span>
+            <span class="n">child</span><span class="o">.</span><span class="n">row_offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_index</span>
+            <span class="n">child</span><span class="o">.</span><span class="n">col_offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_index</span>
+            <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="TreeNode.get_child"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.unorderd_tree.TreeNode.get_child">[docs]</a>    <span class="k">def</span> <span class="nf">get_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child_title</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the node&#39;s title.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: node&#39;s title</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">childs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">child_title</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TreeNode.get_abs_row"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.unorderd_tree.TreeNode.get_abs_row">[docs]</a>    <span class="k">def</span> <span class="nf">get_abs_row</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the absolut row index.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: absolute row index</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_index</span></div>
+
+<div class="viewcode-block" id="TreeNode.get_abs_col"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.unorderd_tree.TreeNode.get_abs_col">[docs]</a>    <span class="k">def</span> <span class="nf">get_abs_col</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the absolut column index.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: absolute column index</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_index</span></div>
+
+<div class="viewcode-block" id="TreeNode.get_rel_row"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.unorderd_tree.TreeNode.get_rel_row">[docs]</a>    <span class="k">def</span> <span class="nf">get_rel_row</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the relative row index. I.d. subtracting the row offset.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: relative row index</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_index</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_offset</span></div>
+
+<div class="viewcode-block" id="TreeNode.get_rel_col"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.unorderd_tree.TreeNode.get_rel_col">[docs]</a>    <span class="k">def</span> <span class="nf">get_rel_col</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the relative column index. I.d. subtracting the column offset.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: relative column index</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_index</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_offset</span></div></div>
+
+
+<div class="viewcode-block" id="RootNode"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.unorderd_tree.RootNode">[docs]</a><span class="k">class</span> <span class="nc">RootNode</span><span class="p">(</span><span class="n">TreeNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Inherited class of TreeNode. Its purpose is only too provide an empty base root. That is needed because of flat header hierarchies.</span>
+<span class="sd">    </span>
+<span class="sd">    :param int col_offset: absolute column offset if table does not start at 0 in Excel</span>
+<span class="sd">    :param int row_offset: absolute row offset if table does not start at 0 in Excel</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">TreeNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;RootNode&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">col_offset</span><span class="o">=</span><span class="n">col_offset</span><span class="p">,</span> <span class="n">row_offset</span><span class="o">=</span><span class="n">row_offset</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="search"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.unorderd_tree.search">[docs]</a><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ordered_titles_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;TODO: fill ; make for more than one &#39;path&#39;?&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ordered_titles_list</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">node</span>
+    <span class="n">child</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get_child</span><span class="p">(</span><span class="n">ordered_titles_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">child</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">ordered_titles_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">search</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">ordered_titles_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span></div>
+
+
+<div class="viewcode-block" id="get_leave_nodes"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.unorderd_tree.get_leave_nodes">[docs]</a><span class="k">def</span> <span class="nf">get_leave_nodes</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns leave nodes starting at the given node.</span>
+<span class="sd">    </span>
+<span class="sd">    :param TreeNode node: the node to start at</span>
+<span class="sd">    :return: list of leave nodes</span>
+<span class="sd">    :rtype: list(TreeNode)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">leaves</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">childs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># has child nodes, cannot be a leave</span>
+        <span class="n">leaves</span> <span class="o">=</span> <span class="n">leaves</span> <span class="k">if</span> <span class="n">leaves</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">childs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">leaves</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">get_leave_nodes</span><span class="p">(</span><span class="n">child</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">leaves</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># node is a leave</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">node</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="print_tree"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.unorderd_tree.print_tree">[docs]</a><span class="k">def</span> <span class="nf">print_tree</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dpth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">retfunc</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Prints a tree.</span>
+<span class="sd">    </span>
+<span class="sd">    :param src: tree node</span>
+<span class="sd">    :type: TreeNode</span>
+<span class="sd">    :param int dpth: depth of indent</span>
+<span class="sd">    :param retfunc: lambda for return type, defaults to node.title</span>
+<span class="sd">    :return: string representation of a tree</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">retfunc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">retfunc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">node</span><span class="p">:</span> <span class="n">node</span><span class="o">.</span><span class="n">title</span>
+
+    <span class="n">tabs</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="nb">max</span><span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">*</span> <span class="mi">4</span>  <span class="c1"># or 2 or 8 or...</span>
+    <span class="n">brace</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%s%s%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;[&#39;</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="s1">&#39;]&#39;</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span>
+
+    <span class="n">out_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="c1"># if is TreeNode, has a name and a dict of TreeNodes (maybe empty but no matter): recursive call</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">TreeNode</span><span class="p">):</span>
+        <span class="n">out_str</span> <span class="o">+=</span> <span class="n">tabs</span><span class="p">(</span><span class="n">dpth</span><span class="p">)</span> <span class="o">+</span> <span class="n">brace</span><span class="p">(</span><span class="n">retfunc</span><span class="p">(</span><span class="n">src</span><span class="p">),</span> <span class="n">dpth</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">out_str</span> <span class="o">+=</span> <span class="n">print_tree</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">childs</span><span class="p">,</span> <span class="n">dpth</span><span class="p">,</span> <span class="n">retfunc</span><span class="p">)</span>
+    <span class="c1"># if is OrderedDict there might be more nodes inside</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">OrderedDict</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">src</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">out_str</span> <span class="o">+=</span> <span class="n">print_tree</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dpth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">retfunc</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">out_str</span></div>
+
+
+<div class="viewcode-block" id="get_leave_lambda"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.unorderd_tree.get_leave_lambda">[docs]</a><span class="k">def</span> <span class="nf">get_leave_lambda</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">retfunc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns leave nodes starting at the given node.</span>
+<span class="sd">    </span>
+<span class="sd">    :param TreeNode node: the node to start at</span>
+<span class="sd">    :param retfunc: lambda for return type</span>
+<span class="sd">    :return: list of leave nodes</span>
+<span class="sd">    :rtype: list(TreeNode)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">leaves</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">childs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># has child nodes, cannot be a leave</span>
+        <span class="n">leaves</span> <span class="o">=</span> <span class="n">leaves</span> <span class="k">if</span> <span class="n">leaves</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">childs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">leave_val</span> <span class="o">=</span> <span class="n">get_leave_lambda</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">retfunc</span><span class="p">)</span>
+            <span class="n">leaves</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">leave_val</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">leave_val</span><span class="p">,</span> <span class="s2">&quot;__iter__&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="n">leave_val</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">leaves</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># node is a leave</span>
+        <span class="k">return</span> <span class="n">retfunc</span><span class="p">(</span><span class="n">node</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_leave_lambda_dict"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.unorderd_tree.get_leave_lambda_dict">[docs]</a><span class="k">def</span> <span class="nf">get_leave_lambda_dict</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">retfunc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns leave nodes starting at the given node.</span>
+<span class="sd">    </span>
+<span class="sd">    :param TreeNode node: the node to start at</span>
+<span class="sd">    :param retfunc: lambda for return type</span>
+<span class="sd">    :return: dict</span>
+<span class="sd">    :rtype: dict()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">leaves</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">childs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># has child nodes, cannot be a leave</span>
+        <span class="n">leaves</span> <span class="o">=</span> <span class="n">leaves</span> <span class="k">if</span> <span class="n">leaves</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">childs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">leaves</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">get_leave_lambda_dict</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">retfunc</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">leaves</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># node is a leave</span>
+        <span class="k">return</span> <span class="n">retfunc</span><span class="p">(</span><span class="n">node</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, uidq3472.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

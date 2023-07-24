@@ -1,0 +1,81 @@
+* This file specifies all metrics produced by QAC.
+* The Metric browser and other viewing reports use this information.
+*
+* This file can be edited but must be in the following format where each field
+* is separated by white space:
+*
+*       Field 1:                Metric name
+*       Field 2:                Metric description - must be within quotes
+*       Field 3:                Group (1=function metrics, 3=file metrics)
+*       Field 4:                Minimum range value
+*       Field 5:                Maximum range value
+*
+*
+<S>STAKI        "STAKI: Akiyama's criterion"                            1       1       20
+<S>STAV1        "STAV1: Average size of statement in function"          1       4.0     20.0
+<S>STAV2        "STAV2: Average size of statement in function"          1       4.0     20.0
+<S>STAV3        "STAV3: Average size of statement in function"          1       4.0     20.0
+<S>STBAK        "STBAK: Number of backwards jumps"                      1       0       0
+<S>STBME        "STBME: Embedded programmer months"                     3       1       2
+<S>STBMO        "STBMO: Organic programmer months"                      3       1       2
+<S>STBMS        "STBMS: Semi-detached programmer months"                3       1       2
+<S>STBUG        "STBUG: Residual bugs (token-based est.)"               3       5       10
+<S>STCAL        "STCAL: Number of functions called from function."      1       0       12
+<S>STCDN        "STCDN: Comment to code ratio"                          3       0.2     10.0
+<S>STCYC        "STCYC: Cyclomatic complexity"                          1       1       20
+<S>STDEV        "STDEV: Est. development (programmer-days)"             3       0       1
+<S>STDIF        "STDIF: Program difficulty"                             3       1       12
+<S>STECT        "STECT: Number of external variables declared"          3       0       1
+<S>STEFF        "STEFF: Program effort"                                 3       1       2
+<S>STELF        "STELF: Number of dangling ELSE IF's"                   1       0       0
+<S>STFCO        "STFCO: Estimated function coupling"                    3       1       2
+<S>STFN1        "STFN1: Number of operator occurrences in function"     1       10      100
+<S>STFN2        "STFN2: Number of operand occurrences in function"      1       10      100
+<S>STFNC        "STFNC: Number of functions in file"                    3       1       1
+<S>STGTO        "STGTO: Number of GOTO's"                               1       0       0
+<S>STHAL        "STHAL: Halstead prediction of n"                       3       1       2
+<S>STKDN        "STKDN: Knot density"                                   1       0       1
+<S>STKNT        "STKNT: Knot count"                                     1       0       1
+<S>STLCT        "STLCT: Number of local variables declared"             1       1       2
+<S>STLIN        "STLIN: Number of code lines"                           1       1       200
+<S>STLOP        "STLOP: Number of logical operators"                    1       0       10
+<S>STM07        "STM07: Essential Cyclomatic Complexity"                1       1       4
+<S>STM19        "STM19: Number of exit points"                          1       0       1
+<S>STM20        "STM20: Number of operand occurrences"                  3       10      100
+<S>STM21        "STM21: Number of operator occurrences"                 3       10      100
+<S>STM22        "STM22: Number of statements"                           3       100     200
+<S>STM28        "STM28: Number of non-header comments"                  3       10      80
+<S>STM29        "STM29: Number of functions calling this function"      1       0       5
+<S>STM33        "STM33: Number of internal comments"                    3       10      80
+<S>STMCC        "STMCC: Myer's interval"                                1       1       10
+<S>STMIF        "STMIF: Deepest level of nesting"                       1       0       8
+<S>STMOB        "STMOB: Code portability as percentage"                 3       98      100
+<S>STOPN        "STOPN: Number of distinct operands"                    3       10      100
+<S>STOPT        "STOPT: Number of distinct operators"                   3       10      100
+<S>STPAR        "STPAR: Number of function parameters"                  1       0       10
+<S>STPBG        "STPBG: Residual bugs (STPTH-based est.)"               1       0       0
+<S>STPDN        "STPDN: Path density (STPTH/STXLN)"                     1       1       100
+<S>STPRT        "STPRT: Est. porting (programmer-days)"                 3       0       1
+<S>STPTH        "STPTH: Estimated static program paths"                 1       0       80
+<S>STRET        "STRET: Number of return points in function"            1       1       1
+<S>STSCT        "STSCT: Number of static variables declared"            3       0       1
+<S>STSHN        "STSHN: Shannon information content(bits)"              3       10      50
+<S>STST1        "STST1: Number of statements in function"               1       1       50
+<S>STST2        "STST2: Number of statements in function"               1       1       50
+<S>STSUB        "STSUB: Number of function calls"                       1       1       10
+<S>STTDE        "STTDE: Embedded total months"                          3       1       2
+<S>STTDO        "STTDO: Organic total months"                           3       1       2
+<S>STTDS        "STTDS: Semi-detached total months"                     3       1       2
+<S>STTLN        "STTLN: Total preprocessed code lines"                  3       1       750
+<S>STTOT        "STTOT: Total number of tokens used"                    3       10      50
+<S>STTPP        "STTPP: Total unpreprocessed code lines"                3       1       750
+<S>STUNR        "STUNR: Number of unreachable statements"               1       0       0
+<S>STUNV        "STUNV: Unused or non-reused variables"                 1       0       1
+<S>STVAR        "STVAR: Total number of variables"                      3       10      50
+<S>STVOL        "STVOL: Program volume (bits)"                          3       10      100
+<S>STXLN        "STXLN: Number of executable lines"                     1       1       200
+<S>STZIP        "STZIP: Zipf prediction of n"                           3       0       1
+<S>STNRA        "STNRA: Number of Recursions Across project"            4       0       0
+<S>STNEA        "STNEA: Number of Entry points Across project"          4       1       1
+<S>STNFA        "STNFA: Number of Functions Across project"             4       50      100
+<S>STCYA        "STCYA: Cyclomatic complexity Across project"           4       100     200

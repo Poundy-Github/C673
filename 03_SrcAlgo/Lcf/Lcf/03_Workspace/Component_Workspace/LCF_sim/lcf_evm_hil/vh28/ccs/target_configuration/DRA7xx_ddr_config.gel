@@ -1,0 +1,862 @@
+/*******************************************************************/
+/* This GEL file is loaded on the command line of Code Composer    */
+/* The StartUp() function is called every time you start           */
+/* Code Composer.  You can customize this function to              */
+/* initialize wait states or to perform other initialization.      */
+/*                                                                 */
+/* DRA7xx DDR Config                                               */
+/*                                                                 */
+/*                                                                 */
+/*******************************************************************/
+
+#define uint32_t                unsigned int
+#define WR_MEM_32(addr, data)   *(uint32_t*)(addr) =(uint32_t)(data)
+#define RD_MEM_32(addr)         *(uint32_t*)(addr)
+#define EMIF1_BASE_ADDR         (0x4C000000)
+#define EMIF2_BASE_ADDR         (0x4D000000)
+
+#define DEBUG_PRINT             (1)
+#define HW_LEVELING_ENABLED     (0) /* REFERENCE ONLY - FULL SUPPORT NOT AVAILABLE YET */
+
+/********************** START DDR3 SETUP *********************************/
+// ITK-RoSt (+49-69-8700008-290): adjust the DDR3 setup according to the ECU
+
+#define EMIF_MODE_DUAL_32       (1)   /* dual emif, 32 bit bandwidth */
+#define EMIF_MODE_SINGLE_32     (2)   /* single emif, 32 bit bandwidth */
+#define EMIF_MODE_SINGLE_16     (3)   /* single emif, 16 bit bandwidth */
+
+uint32_t EMIF_MODE = EMIF_MODE_SINGLE_16;
+/************************ END DDR3 SETUP *********************************/
+
+menuitem "DDR Memory config"
+
+uint32_t SDRAM_TIM_1;
+uint32_t SDRAM_TIM_2;
+uint32_t SDRAM_TIM_3;
+uint32_t LPDDR2_NVM_TIM;
+uint32_t PWR_MGMT_CTRL;
+uint32_t OCP_CONFIG;
+uint32_t IODFT_TLGC;
+uint32_t DLL_CALIB_CTRL;
+uint32_t ZQ_CONFIG;
+uint32_t TEMP_ALERT_CONFIG;
+uint32_t RDWR_LVL_RMP_WIN;
+uint32_t RDWR_LVL_RMP_CTRL;
+uint32_t DDR_PHY_CTRL_1;
+uint32_t DDR_PHY_CTRL_2;
+uint32_t PRI_COS_MAP;
+uint32_t CONNID_COS_1_MAP;
+uint32_t CONNID_COS_2_MAP;
+uint32_t RD_WR_EXEC_THRSH;
+uint32_t COS_CONFIG;
+uint32_t EXT_PHY_CTRL_2;
+uint32_t EXT_PHY_CTRL_3;
+uint32_t EXT_PHY_CTRL_4;
+uint32_t EXT_PHY_CTRL_5;
+uint32_t EXT_PHY_CTRL_6;
+uint32_t EXT_PHY_CTRL_7;
+uint32_t EXT_PHY_CTRL_8;
+uint32_t EXT_PHY_CTRL_9;
+uint32_t EXT_PHY_CTRL_10;
+uint32_t EXT_PHY_CTRL_11;
+uint32_t EXT_PHY_CTRL_12;
+uint32_t EXT_PHY_CTRL_13;
+uint32_t EXT_PHY_CTRL_14;
+uint32_t EXT_PHY_CTRL_15;
+uint32_t EXT_PHY_CTRL_16;
+uint32_t EXT_PHY_CTRL_17;
+uint32_t EXT_PHY_CTRL_18;
+uint32_t EXT_PHY_CTRL_19;
+uint32_t EXT_PHY_CTRL_20;
+uint32_t EXT_PHY_CTRL_21;
+uint32_t EXT_PHY_CTRL_22;
+uint32_t EXT_PHY_CTRL_23;
+uint32_t EXT_PHY_CTRL_24;
+uint32_t EXT_PHY_CTRL_25;
+uint32_t EXT_PHY_CTRL_26;
+uint32_t EXT_PHY_CTRL_27;
+uint32_t EXT_PHY_CTRL_28;
+uint32_t EXT_PHY_CTRL_29;
+uint32_t EXT_PHY_CTRL_30;
+uint32_t SDRAM_REF_CTRL;
+uint32_t SDRAM_CONFIG_2;
+uint32_t SDRAM_CONFIG;
+
+reset_emif_params_ddr3_532()
+{
+    SDRAM_TIM_1        = 0xCCCF36B3;
+    SDRAM_TIM_2        = 0x308F7FDA;
+    SDRAM_TIM_3        = 0x027F88A8;
+    LPDDR2_NVM_TIM     = 0x00000000;
+    PWR_MGMT_CTRL      = 0x00000000;
+    OCP_CONFIG         = 0x0A500000;
+    IODFT_TLGC         = 0x00002011;
+    DLL_CALIB_CTRL     = 0x00050000;
+    ZQ_CONFIG          = 0x0007190B;
+    TEMP_ALERT_CONFIG  = 0x00000000;
+    RDWR_LVL_RMP_WIN   = 0x00000000;
+
+    if(HW_LEVELING_ENABLED)
+    {
+        RDWR_LVL_RMP_CTRL  = 0x80000000;
+        DDR_PHY_CTRL_1     = 0x0024400A;
+    }
+    else
+    {
+        RDWR_LVL_RMP_CTRL  = 0x00000000;
+        DDR_PHY_CTRL_1     = 0x0E24400A;
+    }
+
+    DDR_PHY_CTRL_2     = 0x00000000;
+    PRI_COS_MAP        = 0x00000000;
+    CONNID_COS_1_MAP   = 0x00000000;
+    CONNID_COS_2_MAP   = 0x00000000;
+    RD_WR_EXEC_THRSH   = 0x00000305;
+    COS_CONFIG         = 0x00FFFFFF;
+
+    //GATE
+    EXT_PHY_CTRL_2     = 0x00BB00BB;
+    EXT_PHY_CTRL_3     = 0x00BB00BB;
+    EXT_PHY_CTRL_4     = 0x00BB00BB;
+    EXT_PHY_CTRL_5     = 0x00BB00BB;
+    EXT_PHY_CTRL_6     = 0x00BB00BB;
+
+    //RD_DQS
+    EXT_PHY_CTRL_7     = 0x00440044;
+    EXT_PHY_CTRL_8     = 0x00440044;
+    EXT_PHY_CTRL_9     = 0x00440044;
+    EXT_PHY_CTRL_10    = 0x00440044;
+    EXT_PHY_CTRL_11    = 0x00440044;
+
+    //WR_DATA
+    EXT_PHY_CTRL_12    = 0x007F007F;
+    EXT_PHY_CTRL_13    = 0x007F007F;
+    EXT_PHY_CTRL_14    = 0x007F007F;
+    EXT_PHY_CTRL_15    = 0x007F007F;
+    EXT_PHY_CTRL_16    = 0x007F007F;
+
+    //WR_DQS
+    EXT_PHY_CTRL_17    = 0x00600060;
+    EXT_PHY_CTRL_18    = 0x00600060;
+    EXT_PHY_CTRL_19    = 0x00600060;
+    EXT_PHY_CTRL_20    = 0x00600060;
+    EXT_PHY_CTRL_21    = 0x00600060;
+
+    EXT_PHY_CTRL_22    = 0x00000000;
+    EXT_PHY_CTRL_23    = 0x00600020;
+    EXT_PHY_CTRL_24    = 0x40010080;
+    EXT_PHY_CTRL_25    = (0x40|(0x40<<7)|(0x40<<14)|(0x40<<21));//0x08102040;
+
+    EXT_PHY_CTRL_26    = 0x00000000;
+    EXT_PHY_CTRL_27    = 0x00000000;
+    EXT_PHY_CTRL_28    = 0x00000000;
+    EXT_PHY_CTRL_29    = 0x00000000;
+    EXT_PHY_CTRL_30    = 0x00000000;
+
+    SDRAM_REF_CTRL     = 0x00001035;
+    SDRAM_CONFIG_2     = 0x08000000;
+    SDRAM_CONFIG       = 0x61851AB2;
+}
+
+reset_emif_params_ddr3_400()
+{
+    reset_emif_params_ddr3_532();
+}
+
+reset_emif_params_ddr2_400()
+{
+    reset_emif_params_ddr3_532();
+}
+
+set_emif1_params_ddr3_532_16bit()
+{
+    SDRAM_TIM_1        = 0xCCCF36B3;
+    SDRAM_TIM_2        = 0x308F7FDA;
+    SDRAM_TIM_3        = 0x027F88A8;
+    ZQ_CONFIG          = 0x0007190B;
+    if(HW_LEVELING_ENABLED)
+    {
+        RDWR_LVL_RMP_CTRL  = 0x80000000;
+        DDR_PHY_CTRL_1     = 0x0024400A;
+    }
+    else
+    {
+        RDWR_LVL_RMP_CTRL  = 0x00000000;
+        DDR_PHY_CTRL_1     = 0x0E24400A;
+    }
+    SDRAM_REF_CTRL     = 0x00001035;
+    SDRAM_CONFIG       = 0x61855AB2;
+}
+
+set_emif1_params_ddr3_532_32bit()
+{
+    SDRAM_TIM_1        = 0xCCCF36B3;
+    SDRAM_TIM_2        = 0x308F7FDA;
+    SDRAM_TIM_3        = 0x027F88A8;
+    ZQ_CONFIG          = 0x0007190B;
+    if(HW_LEVELING_ENABLED)
+    {
+        RDWR_LVL_RMP_CTRL  = 0x80000000;
+        DDR_PHY_CTRL_1     = 0x0024400A;
+    }
+    else
+    {
+        RDWR_LVL_RMP_CTRL  = 0x00000000;
+        DDR_PHY_CTRL_1     = 0x0E24400A;
+    }
+    SDRAM_REF_CTRL     = 0x00001035;
+    SDRAM_CONFIG       = 0x61851AB2;
+}
+
+set_emif2_params_ddr3_532()
+{
+    SDRAM_TIM_1        = 0xCCCF36B3;
+    SDRAM_TIM_2        = 0x308F7FDA;
+    SDRAM_TIM_3        = 0x027F88A8;
+    ZQ_CONFIG          = 0x0007190B;
+    if(HW_LEVELING_ENABLED)
+    {
+        RDWR_LVL_RMP_CTRL  = 0x80000000;
+        DDR_PHY_CTRL_1     = 0x0024400A;
+    }
+    else
+    {
+        RDWR_LVL_RMP_CTRL  = 0x00000000;
+        DDR_PHY_CTRL_1     = 0x0E24400A;
+    }
+    SDRAM_REF_CTRL     = 0x00001035;
+    SDRAM_CONFIG       = 0x61851B32;
+}
+
+set_emif1_params_ddr3_400()
+{
+    SDRAM_TIM_1        = 0xCCCF36B3;
+    SDRAM_TIM_2        = 0x308F7FDA;
+    SDRAM_TIM_3        = 0x027F88A8;
+    ZQ_CONFIG          = 0x0007190B;
+    if(HW_LEVELING_ENABLED)
+    {
+        RDWR_LVL_RMP_CTRL  = 0x80000000;
+        DDR_PHY_CTRL_1     = 0x0020400A;
+    }
+    else
+    {
+        RDWR_LVL_RMP_CTRL  = 0x00000000;
+        DDR_PHY_CTRL_1     = 0x0E20400A;
+    }
+    SDRAM_REF_CTRL     = 0x00001035;
+    SDRAM_CONFIG       = 0x61851AB2;
+}
+
+set_emif2_params_ddr3_400()
+{
+    SDRAM_TIM_1        = 0xCCCF36B3;
+    SDRAM_TIM_2        = 0x308F7FDA;
+    SDRAM_TIM_3        = 0x027F88A8;
+    ZQ_CONFIG          = 0x0007190B;
+    if(HW_LEVELING_ENABLED)
+    {
+        RDWR_LVL_RMP_CTRL  = 0x80000000;
+        DDR_PHY_CTRL_1     = 0x0020400A;
+    }
+    else
+    {
+        RDWR_LVL_RMP_CTRL  = 0x00000000;
+        DDR_PHY_CTRL_1     = 0x0E20400A;
+    }
+    SDRAM_REF_CTRL     = 0x00001035;
+    SDRAM_CONFIG       = 0x61851B32;
+}
+
+set_emif1_params_ddr2_400()
+{
+    SDRAM_TIM_1        = 0x6AAB159A;
+    SDRAM_TIM_2        = 0x123713D2;
+    SDRAM_TIM_3        = 0x02B18297;
+    ZQ_CONFIG          = 0x000B190B;
+    RDWR_LVL_RMP_CTRL  = 0x00000000;
+    DDR_PHY_CTRL_1     = 0x0E20400A;
+    SDRAM_REF_CTRL     = 0x00000C30;
+    SDRAM_CONFIG       = 0x59821A22;
+}
+
+
+EMIF_Config(uint32_t base_addr)
+{
+    uint32_t loop_cnt;
+
+    WR_MEM_32(base_addr + 0x00000018, SDRAM_TIM_1);
+    WR_MEM_32(base_addr + 0x0000001C, SDRAM_TIM_1);
+    WR_MEM_32(base_addr + 0x00000020, SDRAM_TIM_2);
+    WR_MEM_32(base_addr + 0x00000024, SDRAM_TIM_2);
+    WR_MEM_32(base_addr + 0x00000028, SDRAM_TIM_3);
+    WR_MEM_32(base_addr + 0x0000002C, SDRAM_TIM_3);
+    WR_MEM_32(base_addr + 0x00000030, LPDDR2_NVM_TIM);
+    WR_MEM_32(base_addr + 0x00000034, LPDDR2_NVM_TIM);
+    WR_MEM_32(base_addr + 0x00000038, PWR_MGMT_CTRL);
+    WR_MEM_32(base_addr + 0x0000003C, PWR_MGMT_CTRL);
+    WR_MEM_32(base_addr + 0x00000054, OCP_CONFIG);
+    WR_MEM_32(base_addr + 0x00000060, IODFT_TLGC);
+    WR_MEM_32(base_addr + 0x00000098, DLL_CALIB_CTRL);
+    WR_MEM_32(base_addr + 0x0000009C, DLL_CALIB_CTRL);
+    WR_MEM_32(base_addr + 0x000000C8, ZQ_CONFIG);
+    WR_MEM_32(base_addr + 0x000000CC, TEMP_ALERT_CONFIG);
+    WR_MEM_32(base_addr + 0x000000D4, TEMP_ALERT_CONFIG);
+    WR_MEM_32(base_addr + 0x000000D8, RDWR_LVL_RMP_CTRL);
+    WR_MEM_32(base_addr + 0x000000DC, 0x00000000);
+
+    WR_MEM_32(base_addr + 0x000000E4, DDR_PHY_CTRL_1);
+    WR_MEM_32(base_addr + 0x000000E8, DDR_PHY_CTRL_1);
+
+    WR_MEM_32(base_addr + 0x000000EC, DDR_PHY_CTRL_2);
+    WR_MEM_32(base_addr + 0x00000100, PRI_COS_MAP);
+    WR_MEM_32(base_addr + 0x00000104, CONNID_COS_1_MAP);
+    WR_MEM_32(base_addr + 0x00000108, CONNID_COS_2_MAP);
+    WR_MEM_32(base_addr + 0x00000120, RD_WR_EXEC_THRSH);
+    WR_MEM_32(base_addr + 0x00000124, COS_CONFIG);
+
+    if(DDR_PHY_CTRL_1 & 0x00040000)
+    {
+        WR_MEM_32(base_addr + 0x00000200, (0x100|(0x100<<10)|(0x100<<20))); //EXT_PHY_CTRL_1 --
+        WR_MEM_32(base_addr + 0x00000204, (0x100|(0x100<<10)|(0x100<<20))); //EXT_PHY_CTRL_1_SHDW --
+    }
+    else
+    {
+        WR_MEM_32(base_addr + 0x00000200, (0x80|(0x80<<10)|(0x80<<20))); //EXT_PHY_CTRL_1 --
+        WR_MEM_32(base_addr + 0x00000204, (0x80|(0x80<<10)|(0x80<<20))); //EXT_PHY_CTRL_1_SHDW --
+    }
+
+    //GATE
+    WR_MEM_32(base_addr + 0x00000208, EXT_PHY_CTRL_2);
+    WR_MEM_32(base_addr + 0x0000020C, EXT_PHY_CTRL_2);
+    WR_MEM_32(base_addr + 0x00000210, EXT_PHY_CTRL_3);
+    WR_MEM_32(base_addr + 0x00000214, EXT_PHY_CTRL_3);
+    WR_MEM_32(base_addr + 0x00000218, EXT_PHY_CTRL_4);
+    WR_MEM_32(base_addr + 0x0000021C, EXT_PHY_CTRL_4);
+    WR_MEM_32(base_addr + 0x00000220, EXT_PHY_CTRL_5);
+    WR_MEM_32(base_addr + 0x00000224, EXT_PHY_CTRL_5);
+    WR_MEM_32(base_addr + 0x00000228, EXT_PHY_CTRL_6);
+    WR_MEM_32(base_addr + 0x0000022C, EXT_PHY_CTRL_6);
+    //RD_DQS
+    WR_MEM_32(base_addr + 0x00000230, EXT_PHY_CTRL_7);
+    WR_MEM_32(base_addr + 0x00000234, EXT_PHY_CTRL_7);
+    WR_MEM_32(base_addr + 0x00000238, EXT_PHY_CTRL_8);
+    WR_MEM_32(base_addr + 0x0000023C, EXT_PHY_CTRL_8);
+    WR_MEM_32(base_addr + 0x00000240, EXT_PHY_CTRL_9);
+    WR_MEM_32(base_addr + 0x00000244, EXT_PHY_CTRL_9);
+    WR_MEM_32(base_addr + 0x00000248, EXT_PHY_CTRL_10);
+    WR_MEM_32(base_addr + 0x0000024C, EXT_PHY_CTRL_10);
+    WR_MEM_32(base_addr + 0x00000250, EXT_PHY_CTRL_11);
+    WR_MEM_32(base_addr + 0x00000254, EXT_PHY_CTRL_11);
+    //WR_DATA
+    WR_MEM_32(base_addr + 0x00000258, EXT_PHY_CTRL_12);
+    WR_MEM_32(base_addr + 0x0000025C, EXT_PHY_CTRL_12);
+    WR_MEM_32(base_addr + 0x00000260, EXT_PHY_CTRL_13);
+    WR_MEM_32(base_addr + 0x00000264, EXT_PHY_CTRL_13);
+    WR_MEM_32(base_addr + 0x00000268, EXT_PHY_CTRL_14);
+    WR_MEM_32(base_addr + 0x0000026C, EXT_PHY_CTRL_14);
+    WR_MEM_32(base_addr + 0x00000270, EXT_PHY_CTRL_15);
+    WR_MEM_32(base_addr + 0x00000274, EXT_PHY_CTRL_15);
+    WR_MEM_32(base_addr + 0x00000278, EXT_PHY_CTRL_16);
+    WR_MEM_32(base_addr + 0x0000027C, EXT_PHY_CTRL_16);
+    //WR_DQS
+    WR_MEM_32(base_addr + 0x00000280, EXT_PHY_CTRL_17);
+    WR_MEM_32(base_addr + 0x00000284, EXT_PHY_CTRL_17);
+    WR_MEM_32(base_addr + 0x00000288, EXT_PHY_CTRL_18);
+    WR_MEM_32(base_addr + 0x0000028C, EXT_PHY_CTRL_18);
+    WR_MEM_32(base_addr + 0x00000290, EXT_PHY_CTRL_19);
+    WR_MEM_32(base_addr + 0x00000294, EXT_PHY_CTRL_19);
+    WR_MEM_32(base_addr + 0x00000298, EXT_PHY_CTRL_20);
+    WR_MEM_32(base_addr + 0x0000029C, EXT_PHY_CTRL_20);
+    WR_MEM_32(base_addr + 0x000002A0, EXT_PHY_CTRL_21);
+    WR_MEM_32(base_addr + 0x000002A4, EXT_PHY_CTRL_21);
+
+    WR_MEM_32(base_addr + 0x000002A8, EXT_PHY_CTRL_22);
+    WR_MEM_32(base_addr + 0x000002AC, EXT_PHY_CTRL_22);
+    WR_MEM_32(base_addr + 0x000002B0, EXT_PHY_CTRL_23);
+    WR_MEM_32(base_addr + 0x000002B4, EXT_PHY_CTRL_23);
+    WR_MEM_32(base_addr + 0x000002B8, EXT_PHY_CTRL_24);
+    WR_MEM_32(base_addr + 0x000002BC, EXT_PHY_CTRL_24);
+    WR_MEM_32(base_addr + 0x000002C0, EXT_PHY_CTRL_25);
+    WR_MEM_32(base_addr + 0x000002C4, EXT_PHY_CTRL_25);
+
+    WR_MEM_32(base_addr + 0x000002C8, EXT_PHY_CTRL_26);
+    WR_MEM_32(base_addr + 0x000002CC, EXT_PHY_CTRL_26);
+    WR_MEM_32(base_addr + 0x000002D0, EXT_PHY_CTRL_27);
+    WR_MEM_32(base_addr + 0x000002D4, EXT_PHY_CTRL_27);
+    WR_MEM_32(base_addr + 0x000002D8, EXT_PHY_CTRL_28);
+    WR_MEM_32(base_addr + 0x000002DC, EXT_PHY_CTRL_28);
+    WR_MEM_32(base_addr + 0x000002E0, EXT_PHY_CTRL_29);
+    WR_MEM_32(base_addr + 0x000002E4, EXT_PHY_CTRL_29);
+    WR_MEM_32(base_addr + 0x000002E8, EXT_PHY_CTRL_30);
+    WR_MEM_32(base_addr + 0x000002EC, EXT_PHY_CTRL_30);
+
+    WR_MEM_32(base_addr + 0x00000014, SDRAM_REF_CTRL);
+    WR_MEM_32(base_addr + 0x00000010, SDRAM_REF_CTRL);
+    WR_MEM_32(base_addr + 0x0000000C, SDRAM_CONFIG_2);
+    WR_MEM_32(base_addr + 0x00000008, SDRAM_CONFIG);
+
+    if (HW_LEVELING_ENABLED)
+    {
+        if (DEBUG_PRINT)
+        {
+            GEL_TextOut("DEBUG: EMIF1 channel - Launch full leveling\n");
+        }
+
+        //clear error status - FIFO_WE_IN_MISALIGNED
+        WR_MEM_32(base_addr + 0x00000318,
+                  RD_MEM_32(base_addr + 0x00000318) | 0x00000100);
+        WR_MEM_32(base_addr + 0x0000031C,
+                  RD_MEM_32(base_addr + 0x0000031C) | 0x00000100);
+
+        //Disable SDRAM refreshes before leveling
+        WR_MEM_32(base_addr + 0x00000010,
+                  RD_MEM_32(base_addr + 0x00000010) | 0x80000000);
+
+        loop_cnt = 100; while(loop_cnt--); //TBD: This is arbitrary for now
+
+        WR_MEM_32(base_addr + 0x000000DC, 0x80000000);//RDWR_LVL_CTRL - Launch full leveling
+
+        loop_cnt = 100; while(loop_cnt--); //TBD: This is arbitrary for now
+
+        //Enable SDRAM refreshes after leveling
+        WR_MEM_32(base_addr + 0x00000010,
+                  RD_MEM_32(base_addr + 0x00000010) & 0x7FFFFFFF);
+
+        if((RD_MEM_32(base_addr + 0x00000004) & 0x70) != 0x0)
+        {
+            GEL_TextOut("ERROR: HW-Leveling time-out\n");
+        }
+        else
+        {
+            DRA7xx_DDR3_UpdateHWLevelOutput(base_addr);
+        }
+    }
+}
+
+hotmenu DRA7xx_DDR3_532MHz_Config()
+{
+    GEL_TextOut("--->>> DDR3 Initialization is in progress ... <<<---\n");
+
+    /* DDR PLL config */
+    dpll_ddr_config(532);
+
+    // EMIF - DDR Overall Configuration  -
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: Overall DDR configuration\n");
+    }
+
+    // EMIF - DDR IOs CONFIG
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: EMIF1 and EMIF1 DDR IOs config (CTRL_MODULE_CORE_PAD module)\n");
+    }
+
+    WR_MEM_32(0x4A005110, 0x00000000);     // DLL override disable =0 ; enable = 1
+
+    WR_MEM_32(0x4A002E30, 0x80808080);     //CONTROL_DDR3CH1_0 -- channel_1 CMDs / 40Ohm Ron (011) / SR=slowest-3 (111) on CMDs but CLK SR=slow (011) / No pulls (00)
+    WR_MEM_32(0x4A002E34, 0x80808080);     //CONTROL_DDR3CH2_0 -- channel_2 CMDs / 40Ohm Ron (011) / SR=slowest-3 (111) on CMDs but CLK SR=slow (011) / No pulls (00)
+    WR_MEM_32(0x4A002E38, 0x40404040);     //CONTROL_DDRCH1_0 -- channel_1 DATA byte 0+1 / 40Ohm Ron (011) / SR=faster (001) / Pull-up (10) on DQS / No pull (00) on DQ
+    WR_MEM_32(0x4A002E3C, 0x40404040);     //CONTROL_DDRCH1_1 -- channel_1 DATA byte 2+3 / 40Ohm Ron (011) / SR=faster (001) / Pull-up (10) on DQS / No pull (00) on DQ
+    WR_MEM_32(0x4A002E40, 0x40404040);     //CONTROL_DDRCH2_0 -- channel_2 DATA byte 0+1 / 40Ohm Ron (011) / SR=faster (001) / Pull-up (10) on DQS / No pull (00) on DQ
+    WR_MEM_32(0x4A002E44, 0x40404040);     //CONTROL_DDRCH2_1 -- channel_2 DATA byte 2+3 / 40Ohm Ron (011) / SR=faster (001) / Pull-up (10) on DQS / No pull (00) on DQ
+    WR_MEM_32(0x4A002E48, 0x40404040);     //CONTROL_LPDDR2CH1_0 -- channel_1 LPDDR2 CMD PHYs IOs not used on OMAP5432
+    WR_MEM_32(0x4A002E4C, 0x40404040);     //CONTROL_CONTROL_LPDDR2CH1_1 -- channel_1 LPDDR2 CMD PHYs IOs not used on OMAP5432
+
+    WR_MEM_32(0x4A002E50, 0xA2084210);     //DDRIO_0 -- VREF cells (CH1 DQ3/0 INT 2uA / Cap to GND / CMD1/0 DDR3 INT-OUT 32uA / Cap to GND)
+    WR_MEM_32(0x4A002E54, 0x84210840);     //DDRIO_1 -- VREF cells (CH1 OUT 32uA Cap to GND / CH2 DQ3/0 INT 2uA / Cap to GND / CH2 OUT 32uA Cap to GND)
+    WR_MEM_32(0x4A002E58, 0x84210000);     //DDRIO_2 -- VREF cells (LPDDR2 CH1/2 CA INT/OUT - unused on OMAP5432)
+    WR_MEM_32(0x4A002E88, 0xA2000000);     //CONTROL_DDRIO_EXT_0
+
+
+    // EMIF1 and EMIF2 PHYs extra CONFIG - CTRL_MODULE_WKUP
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: DDR PHY config (CTRL_MODULE_WKUP module)\n");
+    }
+
+    WR_MEM_32(0x4AE0C144, 0x0001C1A7); //EMIF1_SDRAM_CONFIG_EXT -- cslice_en[2:0]=111 / Local_odt=01 / dyn_pwrdn=1 / dis_reset=1 / rd_lvl_samples=11 (128)
+    WR_MEM_32(0x4AE0C148, 0x0000C1A7); //EMIF2_SDRAM_CONFIG_EXT -- cslice_en[2:0]=111 / Local_odt=01 / dyn_pwrdn=1 / dis_reset=1 / rd_lvl_samples=11 (128)
+
+    if(0)
+    {
+        WR_MEM_32(0x4AE0CDC8, 0x45145100);     //EFUSE0 -- IOs p/n setting since devices are not yet trimmed
+        WR_MEM_32(0x4AE0CDCC, 0x45145100);     //EFUSE1 -- IOs p/n setting since devices are not yet trimmed
+        WR_MEM_32(0x4AE0CDD0, 0x45145100);     //EFUSE2 -- IOs p/n setting since devices are not yet trimmed
+        WR_MEM_32(0x4AE0CDD4, 0x45145100);     //EFUSE3 -- IOs p/n setting since devices are not yet trimmed
+    }
+
+    // EMIF1 controller CONFIG
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: EMIF1 ctrl + associated DDR PHYs initial config (EMIF1 module)\n");
+    }
+
+    reset_emif_params_ddr3_532();
+    
+    // ITK-RoSt (+49-69-8700008-290): adjust the DDR3 setup according to the ECU => please edit EMIF_MODE at the top of this file!!!
+    if (EMIF_MODE_SINGLE_16 == EMIF_MODE)
+    {
+      set_emif1_params_ddr3_532_16bit();
+    }
+    else
+    {
+      set_emif1_params_ddr3_532_32bit();
+    }
+    
+    EMIF_Config(EMIF1_BASE_ADDR);
+
+    // ITK-RoSt (+49-69-8700008-290): adjust the DDR3 setup according to the ECU => please edit EMIF_MODE at the top of this file!!!
+    if (EMIF_MODE_DUAL_32 == EMIF_MODE)
+    {
+      // EMIF2 controller CONFIG
+      if (DEBUG_PRINT)
+      {
+          GEL_TextOut("DEBUG: EMIF2 ctrl + associated DDR PHYs initial config (EMIF2 module)\n");
+      }
+  
+      reset_emif_params_ddr3_532();
+      set_emif2_params_ddr3_532();
+      EMIF_Config(EMIF2_BASE_ADDR);
+  
+      if (DEBUG_PRINT)
+      {
+          GEL_TextOut("DEBUG: Setting LISA maps in non-interleaved dual-EMIF mode \n");
+      }
+      //MA_LISA_MAP_i
+      WR_MEM_32(0x482AF040, 0x80500100);
+      WR_MEM_32(0x482AF044, 0xA0500200);
+      //DMM_LISA_MAP_i
+      WR_MEM_32(0x4E000040, 0x80500100);
+      WR_MEM_32(0x4E000044, 0xA0500200);
+    }
+    else
+    {
+      /* SINGLE EMIF MODE */
+      if (DEBUG_PRINT)
+      {
+          GEL_TextOut("DEBUG: Setting LISA maps for single-EMIF mode \n");
+      }
+  
+      if (EMIF_MODE_SINGLE_16 == EMIF_MODE)
+      {
+        if (DEBUG_PRINT)
+        {
+            GEL_TextOut("DEBUG: enable 256 MiB (0x80000000-0x8FFFFFFF)\n");
+        }
+    
+        // enable 256 MiB (1st ddr device in bank 1)
+        WR_MEM_32(0x482AF040, 0x80400100);
+        WR_MEM_32(0x4E000040, 0x80400100);
+      }
+      else
+      {
+        if (DEBUG_PRINT)
+        {
+            GEL_TextOut("DEBUG: enable 512 MiB (0x80000000-0x9FFFFFFF)\n");
+        }
+    
+        // enable 512 MiB (both ddr devices in bank 1)
+        WR_MEM_32(0x482AF040, 0x80500100);
+        WR_MEM_32(0x4E000040, 0x80500100);
+      }
+    }
+
+    GEL_TextOut("--->>> DDR3 Initialization is DONE! <<<---\n");
+}
+
+hotmenu DRA7xx_DDR3_400MHz_Config()
+{
+    GEL_TextOut("--->>> DDR3 Initialization is in progress ... <<<---\n");
+
+    /* DDR PLL config */
+    dpll_ddr_config(400);
+
+    // EMIF - DDR Overall Configuration  -
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: Overall DDR configuration\n");
+    }
+
+    // EMIF - DDR IOs CONFIG
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: EMIF1 and EMIF1 DDR IOs config (CTRL_MODULE_CORE_PAD module)\n");
+    }
+
+    WR_MEM_32(0x4A005110, 0x00000000);     // DLL override disable =0 ; enable = 1
+
+    WR_MEM_32(0x4A002E30, 0x80808080);     //CONTROL_DDR3CH1_0 -- channel_1 CMDs / 40Ohm Ron (011) / SR=slowest-3 (111) on CMDs but CLK SR=slow (011) / No pulls (00)
+    WR_MEM_32(0x4A002E34, 0x80808080);     //CONTROL_DDR3CH2_0 -- channel_2 CMDs / 40Ohm Ron (011) / SR=slowest-3 (111) on CMDs but CLK SR=slow (011) / No pulls (00)
+    WR_MEM_32(0x4A002E38, 0x40404040);     //CONTROL_DDRCH1_0 -- channel_1 DATA byte 0+1 / 40Ohm Ron (011) / SR=faster (001) / Pull-up (10) on DQS / No pull (00) on DQ
+    WR_MEM_32(0x4A002E3C, 0x40404040);     //CONTROL_DDRCH1_1 -- channel_1 DATA byte 2+3 / 40Ohm Ron (011) / SR=faster (001) / Pull-up (10) on DQS / No pull (00) on DQ
+    WR_MEM_32(0x4A002E40, 0x40404040);     //CONTROL_DDRCH2_0 -- channel_2 DATA byte 0+1 / 40Ohm Ron (011) / SR=faster (001) / Pull-up (10) on DQS / No pull (00) on DQ
+    WR_MEM_32(0x4A002E44, 0x40404040);     //CONTROL_DDRCH2_1 -- channel_2 DATA byte 2+3 / 40Ohm Ron (011) / SR=faster (001) / Pull-up (10) on DQS / No pull (00) on DQ
+    WR_MEM_32(0x4A002E48, 0x40404040);     //CONTROL_LPDDR2CH1_0 -- channel_1 LPDDR2 CMD PHYs IOs not used on OMAP5432
+    WR_MEM_32(0x4A002E4C, 0x40404040);     //CONTROL_CONTROL_LPDDR2CH1_1 -- channel_1 LPDDR2 CMD PHYs IOs not used on OMAP5432
+
+    WR_MEM_32(0x4A002E50, 0xA2084210);     //DDRIO_0 -- VREF cells (CH1 DQ3/0 INT 2uA / Cap to GND / CMD1/0 DDR3 INT-OUT 32uA / Cap to GND)
+    WR_MEM_32(0x4A002E54, 0x84210840);     //DDRIO_1 -- VREF cells (CH1 OUT 32uA Cap to GND / CH2 DQ3/0 INT 2uA / Cap to GND / CH2 OUT 32uA Cap to GND)
+    WR_MEM_32(0x4A002E58, 0x84210000);     //DDRIO_2 -- VREF cells (LPDDR2 CH1/2 CA INT/OUT - unused on OMAP5432)
+    WR_MEM_32(0x4A002E88, 0xA2000000);     //CONTROL_DDRIO_EXT_0
+
+
+    // EMIF1 and EMIF2 PHYs extra CONFIG - CTRL_MODULE_WKUP
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: DDR PHY config (CTRL_MODULE_WKUP module)\n");
+    }
+
+    WR_MEM_32(0x4AE0C144, 0x0001C1A7); //EMIF1_SDRAM_CONFIG_EXT -- cslice_en[2:0]=111 / Local_odt=01 / dyn_pwrdn=1 / dis_reset=1 / rd_lvl_samples=11 (128)
+    WR_MEM_32(0x4AE0C148, 0x0000C1A7); //EMIF2_SDRAM_CONFIG_EXT -- cslice_en[2:0]=111 / Local_odt=01 / dyn_pwrdn=1 / dis_reset=1 / rd_lvl_samples=11 (128)
+
+    if(0)
+    {
+        WR_MEM_32(0x4AE0CDC8, 0x45145100);     //EFUSE0 -- IOs p/n setting since devices are not yet trimmed
+        WR_MEM_32(0x4AE0CDCC, 0x45145100);     //EFUSE1 -- IOs p/n setting since devices are not yet trimmed
+        WR_MEM_32(0x4AE0CDD0, 0x45145100);     //EFUSE2 -- IOs p/n setting since devices are not yet trimmed
+        WR_MEM_32(0x4AE0CDD4, 0x45145100);     //EFUSE3 -- IOs p/n setting since devices are not yet trimmed
+    }
+
+    // EMIF1 controller CONFIG
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: EMIF1 ctrl + associated DDR PHYs initial config (EMIF1 module)\n");
+    }
+
+    reset_emif_params_ddr3_400();
+    set_emif1_params_ddr3_400();
+    EMIF_Config(EMIF1_BASE_ADDR);
+
+    // EMIF2 controller CONFIG
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: EMIF2 ctrl + associated DDR PHYs initial config (EMIF2 module)\n");
+    }
+
+    reset_emif_params_ddr3_400();
+    set_emif2_params_ddr3_400();
+    EMIF_Config(EMIF2_BASE_ADDR);
+
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: Setting LISA maps in non-interleaved dual-EMIF mode \n");
+    }
+    //MA_LISA_MAP_i
+    WR_MEM_32(0x482AF040, 0x80500100);
+    WR_MEM_32(0x482AF044, 0xA0500200);
+    //DMM_LISA_MAP_i
+    WR_MEM_32(0x4E000040, 0x80500100);
+    WR_MEM_32(0x4E000044, 0xA0500200);
+
+    GEL_TextOut("--->>> DDR3 Initialization is DONE! <<<---\n");
+}
+
+hotmenu DRA7xx_DDR2_400MHz_Config()
+{
+    GEL_TextOut("--->>> DDR2 Initialization is in progress ... <<<---\n");
+
+    /* DDR PLL config */
+    dpll_ddr_config(400);
+
+    // EMIF - DDR Overall Configuration  -
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: Overall DDR configuration\n");
+    }
+
+    // EMIF - DDR IOs CONFIG
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: EMIF1 and EMIF1 DDR IOs config (CTRL_MODULE_CORE_PAD module)\n");
+    }
+
+    WR_MEM_32(0x4A005110, 0x00000000);     // DLL override disable =0 ; enable = 1
+
+    WR_MEM_32(0x4A002E30, 0x80808080);     //CONTROL_DDR3CH1_0 -- channel_1 CMDs / 40Ohm Ron (011) / SR=slowest-3 (111) on CMDs but CLK SR=slow (011) / No pulls (00)
+    WR_MEM_32(0x4A002E34, 0x80808080);     //CONTROL_DDR3CH2_0 -- channel_2 CMDs / 40Ohm Ron (011) / SR=slowest-3 (111) on CMDs but CLK SR=slow (011) / No pulls (00)
+    WR_MEM_32(0x4A002E38, 0x40404040);     //CONTROL_DDRCH1_0 -- channel_1 DATA byte 0+1 / 40Ohm Ron (011) / SR=faster (001) / Pull-up (10) on DQS / No pull (00) on DQ
+    WR_MEM_32(0x4A002E3C, 0x40404040);     //CONTROL_DDRCH1_1 -- channel_1 DATA byte 2+3 / 40Ohm Ron (011) / SR=faster (001) / Pull-up (10) on DQS / No pull (00) on DQ
+    WR_MEM_32(0x4A002E40, 0x40404040);     //CONTROL_DDRCH2_0 -- channel_2 DATA byte 0+1 / 40Ohm Ron (011) / SR=faster (001) / Pull-up (10) on DQS / No pull (00) on DQ
+    WR_MEM_32(0x4A002E44, 0x40404040);     //CONTROL_DDRCH2_1 -- channel_2 DATA byte 2+3 / 40Ohm Ron (011) / SR=faster (001) / Pull-up (10) on DQS / No pull (00) on DQ
+    WR_MEM_32(0x4A002E48, 0x40404040);     //CONTROL_LPDDR2CH1_0 -- channel_1 LPDDR2 CMD PHYs IOs not used on OMAP5432
+    WR_MEM_32(0x4A002E4C, 0x40404040);     //CONTROL_CONTROL_LPDDR2CH1_1 -- channel_1 LPDDR2 CMD PHYs IOs not used on OMAP5432
+
+    WR_MEM_32(0x4A002E50, 0xA2084210);     //DDRIO_0 -- VREF cells (CH1 DQ3/0 INT 2uA / Cap to GND / CMD1/0 DDR3 INT-OUT 32uA / Cap to GND)
+    WR_MEM_32(0x4A002E54, 0x84210840);     //DDRIO_1 -- VREF cells (CH1 OUT 32uA Cap to GND / CH2 DQ3/0 INT 2uA / Cap to GND / CH2 OUT 32uA Cap to GND)
+    WR_MEM_32(0x4A002E58, 0x84210000);     //DDRIO_2 -- VREF cells (LPDDR2 CH1/2 CA INT/OUT - unused on OMAP5432)
+    WR_MEM_32(0x4A002E88, 0xA2000000);     //CONTROL_DDRIO_EXT_0
+
+
+    // EMIF1 and EMIF2 PHYs extra CONFIG - CTRL_MODULE_WKUP
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: DDR PHY config (CTRL_MODULE_WKUP module)\n");
+    }
+
+    WR_MEM_32(0x4AE0C144, 0x0001C1A7); //EMIF1_SDRAM_CONFIG_EXT -- cslice_en[2:0]=111 / Local_odt=01 / dyn_pwrdn=1 / dis_reset=1 / rd_lvl_samples=11 (128)
+
+    if(0)
+    {
+        WR_MEM_32(0x4AE0C5C8, 0x3CF3CF00); //EFUSE0 -- IOs p/n setting since devices are not yet trimmed
+        WR_MEM_32(0x4AE0C5CC, 0x3CF3CF00); //EFUSE1 -- IOs p/n setting since devices are not yet trimmed
+        WR_MEM_32(0x4AE0C5D0, 0x3CF3CF00); //EFUSE2 -- IOs p/n setting since devices are not yet trimmed
+        WR_MEM_32(0x4AE0C5D4, 0x3CF3CF00); //EFUSE3 -- IOs p/n setting since devices are not yet trimmed
+    }
+
+    // EMIF1 controller CONFIG
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: EMIF1 ctrl + associated DDR PHYs initial config (EMIF1 module)\n");
+    }
+
+    reset_emif_params_ddr2_400();
+    set_emif1_params_ddr2_400();
+    EMIF_Config(EMIF1_BASE_ADDR);
+
+    if (DEBUG_PRINT)
+    {
+        GEL_TextOut("DEBUG: Setting LISA maps for single-EMIF mode \n");
+    }
+    //MA_LISA_MAP_i
+    WR_MEM_32(0x482AF040, 0x80400100);
+    //DMM_LISA_MAP_i
+    WR_MEM_32(0x4E000040, 0x80400100);
+
+    // EMIF - DDR Overall Configuration  - COMPLETED
+    GEL_TextOut("--->>> DDR2 Initialization is DONE! <<<---\n");
+}
+
+hotmenu DRA7xx_DDR3_UpdateHWLevelOutput_EMIF1()
+{
+    DRA7xx_DDR3_UpdateHWLevelOutput(EMIF1_BASE_ADDR);
+}
+
+hotmenu DRA7xx_DDR3_UpdateHWLevelOutput_EMIF2()
+{
+    DRA7xx_DDR3_UpdateHWLevelOutput(EMIF2_BASE_ADDR);
+}
+
+DRA7xx_DDR3_UpdateHWLevelOutput(uint32_t base_addr)
+{
+    GEL_TextOut("--->>> Updating slave ratios in EXT_PHY_CTRLx registers as per HW leveling output <<<---\n");
+
+    WR_MEM_32(base_addr+0x000000D8, 0x00000000);
+
+    //RDDQS
+    WR_MEM_32(base_addr+0x00000230, RD_MEM_32(base_addr+0x0000015C));
+    WR_MEM_32(base_addr+0x00000234, RD_MEM_32(base_addr+0x0000015C));
+    WR_MEM_32(base_addr+0x00000238, RD_MEM_32(base_addr+0x00000160));
+    WR_MEM_32(base_addr+0x0000023C, RD_MEM_32(base_addr+0x00000160));
+    WR_MEM_32(base_addr+0x00000240, RD_MEM_32(base_addr+0x00000164));
+    WR_MEM_32(base_addr+0x00000244, RD_MEM_32(base_addr+0x00000164));
+    WR_MEM_32(base_addr+0x00000248, RD_MEM_32(base_addr+0x00000168));
+    WR_MEM_32(base_addr+0x0000024c, RD_MEM_32(base_addr+0x00000168));
+    WR_MEM_32(base_addr+0x00000250, RD_MEM_32(base_addr+0x0000016c));
+    WR_MEM_32(base_addr+0x00000254, RD_MEM_32(base_addr+0x0000016c));
+
+    //FIFOWEN
+    WR_MEM_32(base_addr+0x00000208, RD_MEM_32(base_addr+0x00000170));
+    WR_MEM_32(base_addr+0x0000020c, RD_MEM_32(base_addr+0x00000170));
+    WR_MEM_32(base_addr+0x00000210, RD_MEM_32(base_addr+0x00000174));
+    WR_MEM_32(base_addr+0x00000214, RD_MEM_32(base_addr+0x00000174));
+    WR_MEM_32(base_addr+0x00000218, RD_MEM_32(base_addr+0x00000178));
+    WR_MEM_32(base_addr+0x0000021c, RD_MEM_32(base_addr+0x00000178));
+    WR_MEM_32(base_addr+0x00000220, RD_MEM_32(base_addr+0x0000017c));
+    WR_MEM_32(base_addr+0x00000224, RD_MEM_32(base_addr+0x0000017c));
+    WR_MEM_32(base_addr+0x00000228, RD_MEM_32(base_addr+0x00000180));
+    WR_MEM_32(base_addr+0x0000022c, RD_MEM_32(base_addr+0x00000180));
+
+    //WRDQ
+    WR_MEM_32(base_addr+0x00000258, RD_MEM_32(base_addr+0x00000184));
+    WR_MEM_32(base_addr+0x0000025C, RD_MEM_32(base_addr+0x00000184));
+    WR_MEM_32(base_addr+0x00000260, RD_MEM_32(base_addr+0x00000188));
+    WR_MEM_32(base_addr+0x00000264, RD_MEM_32(base_addr+0x00000188));
+    WR_MEM_32(base_addr+0x00000268, RD_MEM_32(base_addr+0x0000018c));
+    WR_MEM_32(base_addr+0x0000026C, RD_MEM_32(base_addr+0x0000018c));
+    WR_MEM_32(base_addr+0x00000270, RD_MEM_32(base_addr+0x00000190));
+    WR_MEM_32(base_addr+0x00000274, RD_MEM_32(base_addr+0x00000190));
+    WR_MEM_32(base_addr+0x00000278, RD_MEM_32(base_addr+0x00000194));
+    WR_MEM_32(base_addr+0x0000027C, RD_MEM_32(base_addr+0x00000194));
+
+    //WRDQS
+    WR_MEM_32(base_addr+0x00000280, RD_MEM_32(base_addr+0x00000198));
+    WR_MEM_32(base_addr+0x00000284, RD_MEM_32(base_addr+0x00000198));
+    WR_MEM_32(base_addr+0x00000288, RD_MEM_32(base_addr+0x0000019c));
+    WR_MEM_32(base_addr+0x0000028C, RD_MEM_32(base_addr+0x0000019c));
+    WR_MEM_32(base_addr+0x00000290, RD_MEM_32(base_addr+0x000001A0));
+    WR_MEM_32(base_addr+0x00000294, RD_MEM_32(base_addr+0x000001A0));
+    WR_MEM_32(base_addr+0x00000298, RD_MEM_32(base_addr+0x000001A4));
+    WR_MEM_32(base_addr+0x0000029C, RD_MEM_32(base_addr+0x000001A4));
+    WR_MEM_32(base_addr+0x000002A0, RD_MEM_32(base_addr+0x000001A8));
+    WR_MEM_32(base_addr+0x000002A4, RD_MEM_32(base_addr+0x000001A8));
+
+    WR_MEM_32(base_addr+0x000000E4, RD_MEM_32(base_addr + 0x000000E4) | 0x0E000000);
+    WR_MEM_32(base_addr+0x000000E8, RD_MEM_32(base_addr + 0x000000E8) | 0x0E000000);
+    WR_MEM_32(base_addr+0x00000008, RD_MEM_32(base_addr + 0x00000008));
+
+    GEL_TextOut("--->>> HW leveling is now disabled - using slave ratios from EXT_PHY_CTRLx registers <<<---\n");
+}
+
+hotmenu DRA7xx_EMIF1_ECC_Configuration()
+{
+    uint32_t temp;
+    if(HW_LEVELING_ENABLED)
+    {
+        GEL_TextOut("ERROR: ECC with HW Leveling is not supported in current GEL !!\n");
+    }
+    else
+    {
+        GEL_TextOut("--->>> EMIF1 ECC Initialization is in progress ... <<<---\n");
+        GEL_TextOut("DEBUG: Ensure all memory browsers and watch windows accessing DDR are closed!!\n");
+
+        WR_MEM_32(0x4AE0C144, (RD_MEM_32(0x4AE0C144)|0x00010000));
+
+        //EMIF_ECC_ADDRESS_RANGE_1 - 0x80000000 to 0x90000000
+        WR_MEM_32(0x4C000114, 0x0FFF0000);
+        //EMIF_ECC_ADDRESS_RANGE_2 - 0x90000000 to 0xA0000000
+        WR_MEM_32(0x4C000118, 0x1FFF1000);
+
+        //EMIF_ECC_CTRL_REG - Enable ECC on both ranges
+        WR_MEM_32(0x4C000110, 0xC0000003);
+
+        GEL_TextOut("DEBUG: Initialize all ECC enabled memory before any read access!!\n");
+        GEL_TextOut("--->>> EMIF1 ECC Initialization is DONE! <<<---\n");
+    }
+}
+
+hotmenu DRA7xx_EMIF1_Enable_Narrow_Mode()
+{
+    GEL_TextOut("--->>> EMIF1 Narrow Mode Initialization is in progress ... <<<---\n");
+
+    WR_MEM_32(0x4C000008, (RD_MEM_32(0x4C000008)|0x00004000));
+
+    GEL_TextOut("--->>> EMIF1 Narrow Mode Initialization is DONE! <<<---\n");
+}
+
+hotmenu DRA7xx_EMIF2_Enable_Narrow_Mode()
+{
+    GEL_TextOut("--->>> EMIF2 Narrow Mode Initialization is in progress ... <<<---\n");
+
+    WR_MEM_32(0x4D000008, (RD_MEM_32(0x4D000008)|0x00004000));
+
+    GEL_TextOut("--->>> EMIF2 Narrow Mode Initialization is DONE! <<<---\n");
+}
+
+hotmenu DRA7xx_EMIF1_EMIF2_Interleave_128byte()
+{
+  if (EMIF_MODE_DUAL_32 == EMIF_MODE)
+  {
+    GEL_TextOut("--->>> EMIF1/2 Interleaving (2x512MB, 128 byte interleaving) is in progress ... <<<---\n");
+    WR_MEM_32(0x482AF040, 0x80640300);
+    WR_MEM_32(0x482AF044, 0x00000000);
+    WR_MEM_32(0x4E000040, 0x80640300);
+    WR_MEM_32(0x4E000044, 0x00000000);
+    GEL_TextOut("--->>> EMIF1/2 Interleaving is in DONE! ... <<<---\n");
+  }
+  else
+  {
+    GEL_TextOut("--->>> EMIF1/2 Interleaving is not suported in single EMIF mode! ... <<<---\n");
+  }
+}

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+  <BuildComponentCfg Component="gia">
+    <Build name="gia_sim_swc_sil_input_adapter" filter="sim" desc="sim dll environment" execute="scons" sconstruct_dir=".\"  attrib="-j 4">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="gia_sim_swc_wrapper" filter="sim" desc="sim dll environment" execute="scons" sconstruct_dir=".\"  attrib="-j 4">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="gia_adapter" filter="sim" desc="sim dll environment" execute="scons" sconstruct_dir=".\"  attrib="-j 4">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="gia_sim_swc_fct_cpar" filter="sim" desc="sim dll environment" execute="scons" sconstruct_dir=".\"  attrib="-j 4">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="gia_sim_swc_yaw_rate_workaround" filter="sim" desc="sim dll environment" execute="scons" sconstruct_dir=".\"  attrib="-j 4">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="gia_ide_msvc" filter="ide" desc="create msvc" execute="scons" sconstruct_dir=".\"  attrib="">
+      <BuildType type="*"/>
+    </Build>
+  </BuildComponentCfg>

@@ -1,0 +1,69 @@
+#-----------------------
+# variant configuration
+#-----------------------
+
+# create release variant
+release_variant = "release"
+release_ccflags = "/EHsc /nologo /c /Zi /errorReport:prompt /O2 /Oy- /FD /MD /Zp4 /fp:except /fp:strict /W4 /WX"
+release_cppdefines = ["WIN32", "_WINDOWS", "_USRDLL", "_WINDLL", "_MBCS", "NDEBUG", "SIMPLG_EXPORTS", "_CRT_SECURE_NO_WARNINGS", "_CRT_SECURE_NO_DEPRECATE", "CFG_PROJECT=release"]
+release_linkflags = "/NOLOGO /DLL /INCREMENTAL:NO /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /MACHINE:X86 /DEBUG"
+release_libpaths = []
+release_libs = []
+
+# create debug variant
+debug_variant = "debug"
+debug_ccflags = "/EHsc /nologo /c /Zi /errorReport:prompt /Od /Oy- /Gm /RTC1 /MDd /Zp4 /fp:except /fp:strict /W4 /WX"
+debug_cppdefines = ["WIN32", "_WINDOWS", "_USRDLL", "_WINDLL", "_MBCS", "_DEBUG", "SIMALGO_EXPORTS", "SIMPLG_EXPORTS", "_CRT_SECURE_NO_WARNINGS", "_CRT_SECURE_NO_DEPRECATE", "CFG_PROJECT=Debug"]
+debug_linkflags = "/NOLOGO /DLL /INCREMENTAL:NO /MACHINE:X86 /DEBUG"
+debug_libpaths = []
+debug_libs = []
+
+# variable containing compiler flags, defines and linker flags for all variants
+# when creating additional variant beside "release" and "debug", the variant must be added in this variable
+variant_list = [
+[release_variant, release_ccflags, release_cppdefines, release_linkflags, release_libpaths, release_libs],
+[debug_variant,   debug_ccflags,   debug_cppdefines,   debug_linkflags, debug_libpaths, debug_libs],
+]
+
+#-----------------------
+# naming configuration
+#-----------------------
+
+# target name used by scons for building the target. The complete name will be "{component_name}_{scons_target_name}", for example "sib_sim_swc"
+scons_target_name = "sim_swc_hil_client"
+
+# name of the generated visual C++ project
+vc_project_name = "hil_client"
+
+# folder name containing this scfg file and the visual C++ project. Usually the folder name is the same as the visual C++ project name.
+folder_name = "sim_swc_hil_client"
+
+# name of the DLL. Usually the DLL name is the same as the visual C++ project name.
+target_dll_name = "sim_hil_client"
+
+# component name used in the xxx_sim folder name, for flexibility. 
+# The complete folder name will be "{component_name_for_sim_folder}_sim", for example "sib_sim"
+component_name_for_sim_folder = "cct"
+
+#-----------------------
+# doxygen configuration
+#-----------------------
+
+# determine if doxygen is built
+generate_doxygen = False
+
+# doxygen config file name
+doxy_file_name = ""
+
+# target name used by scons doxygen. The complete name will be "{component_name}_{scons_doxygen_target_name}", for example "sib_doxy"
+scons_doxygen_target_name = ""
+
+#-----------------------
+# sim algo library configuration
+#-----------------------
+
+# determine if algo library is built
+generate_algo_lib = False
+
+# determine if release algo library is copied to Deliverables folder
+copy_algo_lib_to_deliverables = False

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<html>
+    <style>
+        section {float: left; width: 50%}
+        body { padding: 10px }
+    </style>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+	<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js"></script>
+	<script >
+		new Clipboard('#button');
+	</script>
+	
+    <header>
+		<p><a href=".." ><h2>main index page</h2></a></p>
+		<h1 >Output Index Page</h1>
+		<p>
+			Output Path: <span id="tocopy">{{out_dir}}</span>
+			<button id="button" class="btn btn-default" data-clipboard-target="#tocopy"><span class="glyphicon glyphicon-copy"></span></button>
+		</p>
+	</header>
+    <section>
+        <p><h3>Varying values:</h3></p>
+        <ul>
+		{% for result_set in result_sets %}
+			{% if result_set.diff_flag %}
+            <li><a href="{{result_set.out_filename}}.html" >{{result_set.out_filename}}</a></li>
+			{% endif %}
+		{% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <p><h3>Files without differences in values:</h3></p>
+        <ul>
+		{% for result_set in result_sets %}
+			{% if not result_set.diff_flag %}
+            <li><a href="{{result_set.out_filename}}.html" >{{result_set.out_filename}}</a></li>
+			{% endif %}
+		{% endfor %}
+        </ul>
+    </section>
+</html>

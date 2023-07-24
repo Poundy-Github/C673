@@ -1,0 +1,36 @@
+#-----------------------
+# variant config
+#-----------------------
+
+# create release variant
+release_variant = "release"
+release_ccflags = "--optimizer_interlist --opt_for_speed=5 -k --debug_software_pipeline --display_error_number --diag_warning=225"
+release_cppdefines = ["EVM_HIL", "_NDEBUG", "NDEBUG"]
+#release_linkflags = "--reread_libs --warn_sections --display_error_number --rom_model"
+release_linkflags = "--reread_libs --warn_sections --display_error_number --rom_model --unused_section_elimination=on"
+release_libpaths = ["#../../../04_Build/algo/hla/ti_c66xx/release/"]
+release_libs = ["hla_c66xx_release.lib"]
+release_lcffile = ["#../hla_sim/hla_evm_hil/vh28/generic/CommonSoC/SharedRAM.cmd", "#../hla_sim/hla_evm_hil/vh28/generic/CommonSoC/SharedRAM_EVE.cmd"]
+
+# create debug variant
+debug_variant = "debug"
+debug_ccflags = "--display_error_number --diag_warning=225"
+debug_cppdefines = ["EVM_HIL", "_DEBUG", "DEBUG"]
+debug_linkflags = "--reread_libs --warn_sections --display_error_number --rom_model"
+debug_libpaths = ["#../../../04_Build/algo/hla/ti_c66xx/debug/"]
+debug_libs = ["hla_c66xx_debug.lib"]
+debug_lcffile = ["#../hla_sim/hla_evm_hil/vh28/generic/CommonSoC/SharedRAM.cmd", "#../hla_sim/hla_evm_hil/vh28/generic/CommonSoC/SharedRAM_EVE.cmd"]
+
+
+# variable containing compiler flags, defines and linker flags for all variants
+# when creating additional variant beside "release" and "debug", the variant must be added in this variable
+variant_list = [
+[release_variant, release_ccflags, release_cppdefines, release_linkflags, release_libpaths, release_libs, release_lcffile],
+[debug_variant,   debug_ccflags,   debug_cppdefines,   debug_linkflags, debug_libpaths, debug_libs, debug_lcffile],
+]
+
+# out file name
+outfile_name = "HLA_C66xx_EvmHilWrapper.out"
+
+# ccs project name
+ccs_project_name = "HLA_TI_C66xx_EvmHilWrapper"

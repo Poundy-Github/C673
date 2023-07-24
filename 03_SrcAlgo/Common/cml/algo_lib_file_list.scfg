@@ -1,0 +1,52 @@
+# Note:
+# 1. Replace cml with component name in lowercase.
+# 2. Update each variable according to the existing 
+#    source files (relative to this directory) and 
+#    include paths (relative to the directory where 
+#    SConstruct is located in, i.e. starting with "#").
+# ----------------------------------------------------------------------------------------
+
+# config file containing algo source file list
+
+# algo source files
+cml_algo_sources = """
+./cml_bayes.c
+./cml_complex.c
+./cml_fourier.c
+./cml_interpol.c
+./cml_kafi.c
+./cml_mat.c
+./cml_misc.c
+./cml_mtrx.c
+./cml_stat.c
+./cml_trigo.c
+./cml_vector.c
+./cml_radar.c
+"""
+
+# algo pdo source files (C files for creating SDL file)
+cml_algo_pdo_sources = """
+"""
+
+# algo ti_eve_arp32 source files
+cml_algo_ti_eve_arp32_sources = """
+"""
+
+# algo wrapper sources to be analysed by qac
+cml_wrapper_sources = """
+"""
+
+# algo include paths
+cml_algo_include_paths = """
+#../../../01_Source_Code/algo/cml
+"""
+
+# algo common include paths
+cml_algo_common_include_paths = """
+#../../../01_Source_Code/common
+#../../../01_Source_Code/common/GLOB_VH
+#../../../01_Source_Code/common/RTE_VH/algo
+#../../../01_Source_Code/common/RTE_VH/include
+"""
+
+cml_sim_swc_pdo_sources=""

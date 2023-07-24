@@ -1,0 +1,173 @@
+##############
+# COMMON PATHS
+##############
+
+# The command used to execute scons. If this is a pure ETK SCT installation
+# then leave it set to "". If you need to run scons by some non-standard
+# method then put the whole of the command, including paths here. Paths 
+# should be absolute. *Do not* specify command line options here.
+#
+#scons_cmd =File(workspace_dir + "/algo/" + component_name + "/scons.bat").abspath
+scons_cmd=""
+
+unit_test_dir = "modtests"
+cantata_unit_test_dir ="cantata_tests/" + component_name
+cantata_ide_path = build_dir + "/algo/" + component_name + "_unittests/" + "/workspace"
+kernel_path = source_code_dir + "/algo/" + component_name
+common_path = source_code_dir + "/common"
+rte_path    = common_path + "/rte"
+relative_unit_test_path = "05_Test_Environment/algo/" + unit_test_dir + "/" + cantata_unit_test_dir + "/"
+unit_test_path = testing_dir + relative_unit_test_path
+unit_test_report_path = testing_dir + "02_Reports/algo/" + unit_test_dir + "/" + cantata_unit_test_dir +"/"
+build_unit_test_path = build_dir + relative_unit_test_path
+framework_path = unit_test_path + "Framework/"
+dummy_src_dir = "DummySrc/"
+
+# Paths relative to the scons execution directory
+relative_ut_path_scons = "../../../../05_Testing/05_Test_Environment/algo/" + unit_test_dir + "/" + cantata_unit_test_dir + "/"
+
+# Paths relative to the unittests directory:
+relative_kernel_path_ut = "../../../../../../04_Engineering/01_Source_Code/algo/" + component_name + "/"
+
+# Paths relative to the unittests\<unit_test_dir>\ directories:
+relative_kernel_path = "../" + relative_kernel_path_ut
+
+# This is a seriously silly relative-to-self path but it does at least trick
+# the MSVC builder into creating a more sensible folder hierarchy in the MSVC
+# project file.
+ide_relative_unit_test_path = "../../../../../../../05_Testing/05_Test_Environment/algo/"+unit_test_dir+"/" + cantata_unit_test_dir + "/"
+ide_relative_framework_path = ide_relative_unit_test_path+"Framework/"
+
+###################
+# TARGETS
+###################
+unit_test_target = component_name+"_unittests"
+
+###################
+# SOURCE FILE LISTS
+###################
+
+# Put your standard unit test framework files here
+#
+# e.g. (from LD project):
+#
+#framework_headers = [
+#    "ConstructorStubs.h",
+#    "StaticConstStubs.h",
+#    "TestScriptControl.h",
+#    "VirtualStubs.h" ]
+
+framework_headers = []
+
+# Specifies if the source file under
+# test is included directly in the
+# test script.
+#
+# eg: #include "pv_egomotion.c"
+#
+# If so, then the source file under
+# test is not compiled separately.
+#
+# This is particular of use to 
+# C projects, where to gain access
+# to static functions and variables,
+# the .c file is included in the test
+# script, instead of the .h file.
+# = 0, source file not included in test script
+# = 1, source file included in test script
+source_included_in_test_script = 0
+
+# 'source_included_in_test_script' dictionary to store flag for each utprogram
+# or use 'source_included_in_test_script' as default
+# Note: set /instance/com.ipl.products.eclipse.cantpp.testscript/com.ipl.products.eclipse.cantpp.testscript.TestScriptGenerationPreferencePage.static_variable_access before test script generation
+utprograms_source_included_in_test_script = {}
+
+########################
+# COMPILER CONFIGURATION
+########################
+
+# Source and object file extensions
+#source_ext = '.cpp'
+source_ext = '.c'
+object_ext = '.obj'
+object_ext_mingw = '.o'
+# list of all supported source file extensions
+source_ext_list = [".c", ".cpp"]
+
+# Some C projects specify the /TP flag 
+# (compile as C++). This confuses
+# Cantata as it then generates C++ style
+# test scripts. This is harmless, in that
+# the test scripts will still build and run
+# but it does lead to annoying Eclipse IDE
+# warnings. To make Cantata generate C style
+# test scripts, set disable_tp_flag to 1.
+disable_tp_flag = 0
+
+# For components containing multiple algos,
+# additional defines per algo can be setup
+# here. The ut_additional_defines list is
+# indexed by algo_name_list.
+# eg: ut_additional_defines = [["CB_MODULE"], ["SCB_MODULE"]]
+ut_additional_defines = [[""]]
+
+# Switch between msvc and gcc
+# 1 = MSVC
+# 0 = gcc
+use_msvc = 0
+
+# GCC compiler sections for C and C++
+compiler_section_gcc = "x86-Win32-gcc4.6.2-bundled"
+compiler_section_gpp = "x86-Win32-gpp4.6.2-bundled"
+
+
+
+##############
+# HTML REPORTS 
+##############
+
+# Flag to allow enabling/disabling of HTML reports.
+# 0 = do not generate, 1 = generate
+generate_html_reports = 1
+
+# Use the -data option to append workspace directory
+# Useful for large test reports > 100 MB
+generate_html_use_data_option = 0
+
+#################################################
+# list of file extensions
+# to search for in module test source directory
+# and copy to module test execution directory
+# and copy to VS debugger working directory
+# for example ut_ref_file_exts = [".csv"]
+#################################################
+ut_ref_file_exts = []
+
+#################################################
+# list of file extensions
+# to search for in module test execution directory
+# and copy to module test source directory
+# example : ut_res_file_exts = [".flo"]
+#################################################
+ut_res_file_exts = []
+
+#########################################
+# LIST OF UNIT TESTS - ADD NEW TESTS HERE
+#########################################
+
+# Put your list of unit tests here.
+# They take the form of the filename of the unit under test
+# without extension.
+#
+# e.g. (from LD project):
+#
+#utprograms = ['LDCamera',
+#              'LDLTMHState',
+#              'LDPlausibilityMeasures',
+#              'LDPMCamera',
+#              'LDPMRoadStructures',
+#              'LDPMVehicleDynamics',
+#              'LDTravelJournal',
+#              'LDVehicle']
+
+utprograms = []

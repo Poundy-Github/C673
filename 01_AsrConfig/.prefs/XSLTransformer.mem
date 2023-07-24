@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<memento version="1.0" lastmodified="Mar 22, 2022 3:01:18 PM">
+    <XSLTransformer TextFieldOutputMementoId="outputXSLT">
+        <__metadata>
+            <GroupWidget __expanded="true"/>
+            <BrowseFieldWidgetInput/>
+            <TextFieldId_Folder __radix="DEC" __separators="false"/>
+            <BrowseFieldWidgetXslt __radix="DEC" __separators="false"/>
+            <FieldXsltImportMementoId/>
+            <FieldOutputMementoID/>
+            <BrowseFieldWidgetOutput __radix="DEC" __separators="false"/>
+        </__metadata>
+    </XSLTransformer>
+</memento>

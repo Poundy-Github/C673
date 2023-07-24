@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3_STRICT_COMPACT.xsd">
+
+
+
+
+
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>AUTOSAR_StbM</SHORT-NAME>
+      <ELEMENTS/>
+      <AR-PACKAGES>
+
+        <AR-PACKAGE>
+          <SHORT-NAME>PortInterfaces</SHORT-NAME>
+          <ELEMENTS>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <CLIENT-SERVER-INTERFACE>
+              <SHORT-NAME>StbM_GlobalTime_Slave_StbMSynchronizedTimeBase_0</SHORT-NAME>
+              <IS-SERVICE>true</IS-SERVICE>
+              <OPERATIONS>
+
+                <CLIENT-SERVER-OPERATION>
+                  <!-- !LINKSTO StbM.ASR20-11.SWS_StbM_00247.GetCurrentTime,1 -->
+                  <SHORT-NAME>GetCurrentTime</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>timeStampPtr</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeStampType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>userDataPtr</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_UserDataType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/StbM_GlobalTime_Slave_StbMSynchronizedTimeBase_0/E_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/StbM_GlobalTime_Slave_StbMSynchronizedTimeBase_0/E_NOT_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                
+                
+
+
+
+
+                <!-- !LINKSTO StbM.ASR20-11.SWS_StbM_00247.GetRateDeviation,1 -->
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>GetRateDeviation</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>rateDeviation</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_RateDeviationType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/StbM_GlobalTime_Slave_StbMSynchronizedTimeBase_0/E_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/StbM_GlobalTime_Slave_StbMSynchronizedTimeBase_0/E_NOT_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+
+                <!-- !LINKSTO StbM.ASR20-11.SWS_StbM_00247.GetTimeBaseStatus,1 -->
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>GetTimeBaseStatus</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>syncTimeBaseStatusPtr</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeBaseStatusType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>offsetTimeBaseStatusPtr</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeBaseStatusType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/StbM_GlobalTime_Slave_StbMSynchronizedTimeBase_0/E_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/StbM_GlobalTime_Slave_StbMSynchronizedTimeBase_0/E_NOT_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+                
+                <!-- !LINKSTO StbM.ASR20-11.SWS_StbM_00247.GetTimeLeap,1 -->
+                <CLIENT-SERVER-OPERATION>
+                  <SHORT-NAME>GetTimeLeap</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE>
+                      <SHORT-NAME>timeJump</SHORT-NAME>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_StbM/ImplementationDataTypes/StbM_TimeDiffType</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <POSSIBLE-ERROR-REFS>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/StbM_GlobalTime_Slave_StbMSynchronizedTimeBase_0/E_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_StbM/PortInterfaces/StbM_GlobalTime_Slave_StbMSynchronizedTimeBase_0/E_NOT_OK</POSSIBLE-ERROR-REF>
+                  </POSSIBLE-ERROR-REFS>
+                </CLIENT-SERVER-OPERATION>
+
+
+              </OPERATIONS>
+
+              <POSSIBLE-ERRORS>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_OK</SHORT-NAME>
+                  <ERROR-CODE>0</ERROR-CODE>
+                </APPLICATION-ERROR>
+                <APPLICATION-ERROR>
+                  <SHORT-NAME>E_NOT_OK</SHORT-NAME>
+                  <ERROR-CODE>1</ERROR-CODE>
+                </APPLICATION-ERROR>
+              </POSSIBLE-ERRORS>
+
+            </CLIENT-SERVER-INTERFACE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

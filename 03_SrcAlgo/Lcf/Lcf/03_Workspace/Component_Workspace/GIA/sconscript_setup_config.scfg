@@ -1,0 +1,157 @@
+import os
+
+component_name = os.environ ["component"]
+
+execfile('../GSCons_project_config.scfg')
+
+features = [
+    {
+        "name" : "sconstruct",
+        "copy" : True,
+        "dest_folder" : workspace_path + component_name,
+        "source" : ["sconstruct/SConstruct"]
+    },
+    {
+        "name" : "fingerprint",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name,
+        "source" : ["fingerprint/SConscript_fingerprint.py"]
+    },	
+    {
+        "name" : "eve_lib",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name + "/ti_eve_arp32",
+        "source" : ["algo/lib_env_ti_arp32/SConscript.py"]
+    },
+    {
+        "name" : "dsp_lib",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name + "/ti_dsp_c674x",
+        "source" : ["algo/lib_env_ti_c674x/SConscript.py"]
+    },
+    {
+        "name" : "vh28_dsp_lib",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name + "/ti_dsp_c66xx",
+        "source" : ["algo/lib_env_ti_c66xx/SConscript.py"]
+    },
+    {
+        "name" : "cortex_a8_lib",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name + "/ti_arm_cortex_a8",
+        "source" : ["algo/lib_env_ti_cortex_a8/SConscript.py"]
+    },
+    {
+        "name" : "cortex_a15_lib",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name + "/ti_arm_cortex_a15",
+        "source" : ["algo/lib_env_ti_cortex_a15/SConscript.py"]
+    },
+    {
+        "name" : "cortex_m3_lib",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name + "/ti_arm_cortex_m3",
+        "source" : ["algo/lib_env_ti_cortex_mx/SConscript.py"]
+    },
+    {
+        "name" : "cortex_m4_lib",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name + "/ti_arm_cortex_m4",
+        "source" : ["algo/lib_env_ti_cortex_mx/SConscript.py"]
+    },
+    {
+        "name" : "lib",
+        "copy" : True,
+        "dest_folder" : source_code_path + component_name,
+        "source" : ["algo/lib/SConscript.py"]
+    },
+    {
+        "name" : "evm_hil",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name + "_sim/"+ component_name + "_evm_hil/vme/evm_hil_projects",
+        "source" : ["evm_hil/evm_hil_env/SConscript.py"]
+    },
+    {
+        "name" : "evm_hil_arp32",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name + "_sim/"+ component_name + "_evm_hil/vme/evm_hil_projects/arp32",
+        "source" : ["evm_hil/evm_hil_ti_arp32/SConscript_arp32env.py", 
+                    "evm_hil/evm_hil_ti_arp32/SConscript.py"]
+    },
+    {
+        "name" : "evm_hil_c674x",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name + "_sim/"+ component_name + "_evm_hil/vme/evm_hil_projects/C674x",
+        "source" : ["evm_hil/evm_hil_ti_c674x/SConscript_c674xenv.py", 
+                    "evm_hil/evm_hil_ti_c674x/SConscript.py"]
+    },
+    {
+        "name" : "evm_hil_cortexA8",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name + "_sim/"+ component_name + "_evm_hil/vme/evm_hil_projects/CortexA8",
+        "source" : ["evm_hil/evm_hil_ti_cortex_a8/SConscript_cortexa8env.py", 
+                    "evm_hil/evm_hil_ti_cortex_a8/SConscript.py"]
+    },
+    {
+        "name" : "vme_evm_hil_cortexM3",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name + "_sim/"+ component_name + "_evm_hil/vme/evm_hil_projects/CortexM3",
+        "source" : ["evm_hil/evm_hil_ti_cortex_m3/SConscript_cortexm3env.py", 
+                    "evm_hil/evm_hil_ti_cortex_m3/SConscript.py"]
+    },
+    {
+        "name" : "evm_hil_cortexA8only",
+        "copy" : False,
+        "dest_folder" : workspace_path + component_name + "_sim/"+ component_name + "_evm_hil/vme/evm_hil_projects/CortexA8Only",
+        "source" : ["evm_hil/evm_hil_ti_cortex_a8/SConscript_cortexa8onlyenv.py", 
+                    "evm_hil/evm_hil_ti_cortex_a8/SConscript.py"]
+    },
+    {
+        "name" : "sim",
+        "copy" : True,
+        "dest_folder" : workspace_path + component_name + "_sim",
+        "source" : ["sim/sim_sconscript/SConscript_sim.py"]
+    },     
+    {
+        "name" : "sim_swc_sil_input_adapter",
+        "copy" : True,
+        "dest_folder" : workspace_path + component_name + "_sim/sim_swc_sil_input_adapter",
+        "source" : ["sim/sim_env/SConscript_simenv.py",
+                    "sim/sim_swc/SConscript.py"]
+    },
+    {
+        "name" : "sim_swc_wrapper",
+        "copy" : True,
+        "dest_folder" : workspace_path + component_name + "_sim/sim_swc_wrapper",
+        "source" : ["sim/sim_env/SConscript_simenv.py",
+                    "sim/sim_swc/SConscript.py"]
+    },
+    {
+        "name" : "sim_swc_mfc_to_srlcam_converter",
+        "copy" : True,
+        "dest_folder" : workspace_path + component_name + "_sim/sim_swc_mfc_to_srlcam_converter",
+        "source" : ["sim/sim_env/SConscript_simenv.py",
+                    "sim/sim_swc/SConscript.py"]
+    },
+    {
+        "name" : "adapter",
+        "copy" : True,
+        "dest_folder" : workspace_path + component_name + "_sim/adapter",
+        "source" : ["sim/sim_env/SConscript_simenv.py",
+                    "sim/sim_adapt/SConscript.py"]
+    },
+    {
+        "name" : "sim_adapter",
+        "copy" : True,
+        "dest_folder" : workspace_path + component_name + "_sim/sim_adapter",
+        "source" : ["sim/sim_env/SConscript_simenv.py",
+                    "sim/sim_adapt/SConscript.py"]
+    },
+    {
+        "name" : "sim_swc_fct_cpar",
+        "copy" : True,
+        "dest_folder" : workspace_path + component_name + "_sim/sim_swc_fct_cpar",
+        "source" : ["sim/sim_env/SConscript_simenv.py",
+                    "sim/sim_adapt/SConscript.py"]
+    },
+]

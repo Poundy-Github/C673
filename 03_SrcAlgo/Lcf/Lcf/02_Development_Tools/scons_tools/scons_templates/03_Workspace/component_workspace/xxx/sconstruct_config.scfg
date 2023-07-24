@@ -1,0 +1,121 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Add other folders which should be writable in writeable_dir.
+# 3. Fill eve_used with True if there is Arp32 library.
+# 4. Fill ca8_used with True if there is Cortex A8 library.
+# 5. Fill ecu_hil_wrapper_used with False if there is no HIL wrapper.
+# ----------------------------------------------------------------------------------------
+
+# define component name
+component_name = "xxx"
+
+# unit test directory
+unit_test_dir = "modtests"
+
+# list of write protected directories which should be writable 
+writeable_dir = [source_code_dir, 
+                 workspace_dir + "Component_Workspace/" + component_name + "_sim/" + component_name + "_evm_hil/vme/evm_hil_projects/", 
+                 workspace_dir + "Component_Workspace/" + component_name + "_sim/" + component_name + "_evm_hil/vme/generic/evm_sw/", 
+                 build_dir,
+                 deliverables_dir, 
+                 testing_dir, 
+                 "#../" + component_name + "_sim/sim_swc_" + component_name + "/doxygen/"]
+
+#--------------------------------------------------------------------------------------
+# switch on/off features
+#--------------------------------------------------------------------------------------
+# define if fingerprint should be generated (default: False)
+generate_fingerprint = False
+				 
+# define if dsp with c674x is used in this component (default: True)
+c674x_used = True
+
+# define if dsp with c66xx is used in this component (default: False)
+c66xx_used = False
+
+# define if eve is used in this component (default: False)
+eve_used = False
+
+# define if Cortex A8 lib is built (default: False)
+ca8_used = False
+
+# define if Cortex A15 lib is build (default: False)
+ca15_used = False
+
+# define if GCC is used for ARM (the default is using TI compiler)
+gcc_used = False
+
+# define if ecu hil_wrapper is available (default: True)
+ecu_hil_wrapper_used = True
+ecu_hil_wrapper_vh28_used = False
+
+# define if ARP32 miniapp is used (default: False)
+eve_hil_miniapp_used = False
+
+# define if unit test is available
+include_unit_test = False
+
+# support AutoRelease
+autorel_support = False
+
+# generate Polyspace
+generate_ps = False
+
+# specify exception handler for GSCons is needed.
+exception_handler = False
+
+# generate visual studio 2010 solution
+generate_vs2010 = False
+
+# Disable/Enable fp:strict flag (default enable: False)
+no_fpstrict = False
+
+#--------------------------------------------------------------------------------------
+# define algo/component specific project lists
+#--------------------------------------------------------------------------------------
+
+# list of algo name in this component, when there is more than one algo in one component
+# if algo_name_list is not defined, the default value is the component_name
+algo_name_list = [component_name]
+
+# define list of source folders for simulation targets to be built,
+# Note 1: the following definitions are merely examples, please adapt according to component
+# paths have to be relative to 03_Workspace/algo/xxx_sim!
+# Note 2: All paths need to be relative to SConstruct, i.e. start with "#" (#=SConstruct-location)
+
+# if there is one algo in the component (default):
+sim_proj_list = ["#../" + component_name + "_sim/sim_swc_" + component_name,
+                 "#../" + component_name + "_sim/sim_swc_" + component_name + "_vis",
+                 ]   
+                 
+# if there are multiple algos in one component (e.g. CB), create a dictionary as follows:
+sim_proj_list = {algo_1 :   ["#../" + component_name + "_sim/sim_swc_" + component_name,
+                             "#../" + component_name + "_sim/sim_swc_" + component_name + "_vis"
+                            ],
+                 algo_2 :   ["#../" + component_name + "_sim/sim_swc_" + component_name,
+                             "#../" + component_name + "_sim/sim_swc_" + component_name + "_vis"
+                            ] 
+                }
+sim_proj_list_defines = {algo_1 : ["DEFINE1"],
+                         algo_2 : ["DEFINE2"]               
+                        }    
+                 
+# if there are simulation components necessary for the component, which are not shared in the project, 
+# use the following variable for the definition:
+
+# if there is one algo in the component (default):
+utils_proj_list = ["#../../" + component_name + "_utils/cipp_sim",
+                  ]             
+
+# if there are multiple algos in one component, create a dictionary similar as above:               
+utils_proj_list = {mono_algo_name :    ["#../blockage_sim/sim_hil_wrapper/",
+                                       ],
+                   stereo_algo_name :  ["#../blockage_sim/sim_hil_wrapper/",
+                                       ]
+                  }   
+
+# 64bit targets to be compiled - only in case of one algo                  
+utils64_proj_list = ["#../../" + component_name + "_utils/srsubcolorGen"]                     
+                  
+# if certain additional targets/alias are required for the vs solution, include them here:        
+sim_target_list = ["alias1", "alias2"]

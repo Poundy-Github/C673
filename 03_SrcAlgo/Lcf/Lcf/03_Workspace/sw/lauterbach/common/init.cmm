@@ -1,0 +1,11 @@
+global &gCORENAME &gPROJECTNAME &gBASEPATH &gPLATFORM
+
+; Do platform/core init
+do &(gBASEPATH)\platforms\&(gPLATFORM)\init.cmm &gCORENAME
+
+; Common toolbar init
+do &(gBASEPATH)\common\toolbar.cmm
+
+; Load command history and window layout
+do &(gBASEPATH)\common\load_settings.cmm history
+do &(gBASEPATH)\common\load_settings.cmm settings

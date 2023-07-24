@@ -1,0 +1,43 @@
+entry &CORENAME
+
+if "&CORENAME"=="arm-m_0"
+(
+    system.cpu TDA3XIPU-CORE0
+    sys.JC rtck
+    system.memaccess dap
+    sys.Option DUALPORT ON
+)
+else if "&CORENAME"=="arm-m_1"
+(
+    system.cpu TDA3XIPU-CORE1
+    system.memaccess dap
+    sys.Option DUALPORT ON
+)
+else if "&CORENAME"=="dsp_0"
+(
+    system.cpu TDA3XDSP1
+    sys.JC rtck					; use adaptive clock as some higher fixed freq's fail
+    sys.Option DUALPORT ON
+)
+else if "&CORENAME"=="dsp_1"
+(
+    system.cpu TDA3XDSP2
+    sys.JC rtck					; use adaptive clock as some higher fixed freq's fail
+    sys.Option DUALPORT ON
+)
+else if "&CORENAME"=="eve_0"
+(
+    system.cpu TDA3XEVE
+    SYStem.CONFIG.CORE 9. 1.
+    ;SYStem.CONFIG COREDEBUG.Base AHB:0x42083000
+    ;SYStem.CONFIG NJCR 9.
+    system.memaccess dap
+)
+else
+(
+	error "Unknown Core ID"
+)
+
+; Interrupts shall be disabled when single-stepping
+sys.Option IMASKHLL ON
+sys.Option IMASKASM ON

@@ -1,0 +1,2 @@
+
+      /* No memory sections defined */

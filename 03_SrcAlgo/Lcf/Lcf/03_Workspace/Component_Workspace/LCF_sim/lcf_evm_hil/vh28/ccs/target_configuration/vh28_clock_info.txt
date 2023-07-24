@@ -1,0 +1,74 @@
+CortexA15_0: GEL Output: --->>> Reading DPLL configurations...<<<---
+CortexA15_0: GEL Output:        Frequency values are as per M/N/etc...
+CortexA15_0: GEL Output: 	MPU:
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 speed is 500 MHz
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 is ACTIVE
+
+CortexA15_0: GEL Output: 	CORE:
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 speed is 532 MHz
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 is GATED
+
+CortexA15_0: GEL Output: 	ABE:
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 speed is 190 MHz
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 is GATED
+
+CortexA15_0: GEL Output: 	IVA:
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 speed is 388 MHz
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 is ACTIVE
+
+CortexA15_0: GEL Output: 	DDR:
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 speed is 532 MHz
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 is ACTIVE
+
+CortexA15_0: GEL Output: 	DSP:
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 speed is 500 MHz
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 is ACTIVE
+
+CortexA15_0: GEL Output: 	EVE:
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 speed is 500 MHz
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 is ACTIVE
+
+CortexA15_0: GEL Output: 	GMAC:
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 speed is 250 MHz
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 is ACTIVE
+
+CortexA15_0: GEL Output: 	GPU:
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 speed is 425 MHz
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 is GATED
+
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 	PER:
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 speed is 96 MHz
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 is GATED
+
+CortexA15_0: GEL Output: 	PCIE:
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 speed is 100 MHz
+CortexA15_0: GEL Output: 		DPLL CLKOUT_M2 is GATED
+
+CortexA15_0: GEL Output: 	Clock inputs to different modules:
+CortexA15_0: GEL Output: 		IPU1 functional clock is from CORE DPLL (CLKOUTX2_H22).
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		IPU1 CPU speed is 212 MHz
+
+CortexA15_0: GEL Output: 		IPU2 functional clock is from CORE DPLL (CLKOUTX2_H22).
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		IPU2 CPU speed is 212 MHz
+
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		GPU CORE clock is from CORE DPLL (CLKOUTX2_H14).
+CortexA15_0: GEL Output: 		GPU CORE clock speed is 0 MHz
+CortexA15_0: GEL Output: 		DPLL in LOCK_MODE mode
+CortexA15_0: GEL Output: 		GPU HYD clock is from CORE DPLL (CLKOUTX2_H14).
+CortexA15_0: GEL Output: 		GPU HYD clock speed is 0 MHz
+CortexA15_0: GEL Output: --->>> Reading DPLL configurations...done<<<---

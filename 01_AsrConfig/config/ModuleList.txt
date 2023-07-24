@@ -1,0 +1,5 @@
+
+Mcu;Aurix2GAS422
+McalLib;Aurix2GAS422
+ResourceM;Aurix2GAS422
+

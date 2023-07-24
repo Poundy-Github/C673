@@ -1,0 +1,2110 @@
+import os
+import sys
+import SCons
+from shutil import copy
+import ntpath
+import subprocess
+from shutil import copyfile
+import stat
+import shutil
+import hashlib
+
+
+tools_path = 'c:\\Tools\\'
+
+Repository(GetLaunchDir())
+
+
+# Set the needed tool versions for the product
+#
+# This function will set the compiler version, the sysbios version and xdc-tool version
+# We want to have the possibility to update the tool versions independently for each product
+# First... set the default tool versions (generic versions...normally the same for all projects)
+# Second... set the project specific tool versions (different to default)
+def set_tool_versions_for_product():
+    global gcc_arm_compiler_version
+    global ti_arm_compiler_version
+    global ti_arp32_compiler_version
+    global ti_c6000_compiler_version
+    global ti_bios_version
+    global ti_xdc_tool_version
+    global ti_bios_path
+    global ti_xdc_tool_path
+    
+    # Read the product information that was passed in on the command line
+    product = ARGUMENTS.get('product', 0)
+    
+    # Tool versions (default versions)
+    gcc_arm_compiler_version      = '4.7_2012q4'
+    ti_arm_compiler_version       = '5.1.5'
+    ti_arp32_compiler_version     = '1.0.8'
+    ti_c6000_compiler_version     = '7.4.24'
+    ti_bios_version               = '6.70.01.03'
+    ti_xdc_tool_version           = '3.50.05.12'
+    
+    # Project specific tool versions
+    # Keep the following if-structur and use it at a tool update
+#    if product in ['mfc431', 'mfc431ta19', 'mfc431hi28', 'mfc431lo19','mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']:
+#    if product in ['ars441']:
+    if product in ['hfl110', 'hfl110ta10']:
+        global ti_sdk_version
+        global ti_ndk_version
+        global ti_nsp_version
+        global ti_sdk_path
+        global ti_ndk_path
+        global ti_nsp_path
+        
+        ti_sdk_version   = '3.03.00.00_beta'
+        ti_ndk_version   = 'ndk_2_24_02_31'
+        ti_nsp_version   = 'nsp_gmacsw_4_15_00_00'
+        
+        ti_sdk_path      = os.path.join(r"C:\Tools\ti_sdk", ti_sdk_version)    
+        ti_ndk_path      = ti_sdk_path
+        ti_ndk_path      = os.path.join(ti_ndk_path, ti_ndk_version)   
+        ti_nsp_path      = ti_sdk_path
+        ti_nsp_path      = os.path.join(ti_nsp_path, ti_nsp_version)
+
+
+    ti_bios_path     = os.path.join(r"C:\Tools\ti_bios", ti_bios_version)
+    ti_xdc_tool_path = os.path.join(r"C:\Tools\ti_xdc", ti_xdc_tool_version)
+
+    print ' '	
+    print 'Tool versions for product ' + product + ':'
+    print 'gcc arm compiler version:        ' + gcc_arm_compiler_version
+    print 'ti  arm compiler version:        ' + ti_arm_compiler_version
+    print 'ti  c6000 compiler version:      ' + ti_c6000_compiler_version
+    print 'ti  arp32 compiler version:      ' + ti_arp32_compiler_version
+    print 'ti  bios version:                ' + ti_bios_version
+    print 'ti  xdc tool version:            ' + ti_xdc_tool_version
+    if product in ['hfl110', 'hfl110ta10']:
+        print 'ti  sdk version:                 ' + ti_sdk_version
+        print 'ti  ndk version:                 ' + ti_ndk_version
+        print 'ti  nsp version:                 ' + ti_nsp_version
+    print ' '
+
+
+
+# Pre compiles kfiles and links them to a libary
+#
+# This function will add a single file or a directory to the list of files to be excluded from the
+# static code scanner's results.  If a directory is specified then its contents will be recursively
+# added to the exception list.
+#
+# @param    exception   The relative path to the file or directory to be added to the exception list
+def addkfiles(*arg):
+    print "#################### generating K-Files #################### "
+    library_path = os.path.normpath(arg[0])
+    relative_k_files_path = os.path.normpath(arg[1])
+    relative_k_file_include_path = os.path.normpath(arg[2])
+    k_files = arg[3:]
+
+    launch_dir = os.path.normpath(GetLaunchDir())
+    kfile_path = os.path.join(launch_dir, relative_k_files_path)
+
+    build_dir = create_build_dir(relative_k_files_path)
+    os.chdir(build_dir)
+
+    kfile_include_path = relative_k_file_include_path.split(' ')
+    kfile_include_path = [os.path.join(launch_dir, path) for path in kfile_include_path]
+ 
+    generate_files_from_k_files(k_files, build_dir, kfile_path,
+                                kfile_include_path)
+
+    copy_generated_header_files_into_source_code(build_dir, kfile_path)
+
+    create_k_file_library(build_dir, library_name=ntpath.basename(library_path))
+
+    remove_generated_files(build_dir, library_name=ntpath.basename(library_path))
+
+    os.chdir(launch_dir)
+
+
+def remove_generated_files(build_dir, library_name):
+    for filename in os.listdir(build_dir):
+        if filename.endswith('.k'):
+            common_filename = os.path.splitext(os.path.basename(filename))[0]
+            os.remove(common_filename + ".obj")
+            os.remove(common_filename + ".c")
+            os.remove(common_filename + ".h")
+            os.remove(common_filename + ".k")
+
+
+def create_build_dir(relative_k_files_path):
+    build_dir = os.path.normpath(os.path.join(out_dir, relative_k_files_path))
+    if not os.path.exists(build_dir):
+        print "Creating Buildpath" + build_dir
+        os.makedirs(build_dir)
+    return build_dir
+
+
+def generate_files_from_k_files(k_files, build_dir, kfile_path, kfile_include_path):
+    """
+    Generate c, h and obj files from k files.
+    """
+    compiler_executable_path = os.path.normpath(CompilerEve().executable_path)
+    compiler_include_path = os.path.normpath(CompilerEve().include_path)
+
+    # make the list of compiler defines available for k file generation
+    k_flags = ''
+    cflags = env['CFLAGS'].split()
+    for flag in cflags:
+        if flag[0:9] == '--define=':
+            flag = flag[9:]
+            k_flags += ' -d' + flag
+
+    # create obj files from k files
+    for k_file in k_files:
+        print "# Compiling  " + k_file
+        copyfile(src=os.path.join(kfile_path, k_file),
+                 dst=os.path.join(build_dir, k_file))
+
+        cmd = compiler_executable_path + " -O3 --symdebug:none -kv --opt_for_speed=5 -kh --silicon_version=v210 -lu" \
+                                       + k_flags + " -I \"" + compiler_include_path + "\""
+
+        for include_path in kfile_include_path:
+            cmd += " -I \"" + include_path + "\" "
+        cmd += " " + k_file
+        os.system(cmd)
+
+
+def copy_generated_header_files_into_source_code(build_dir, kfile_path):
+    for filename in os.listdir(build_dir):
+        if filename.endswith('.h'):
+            input_file = os.path.join(build_dir, filename)
+            output_file = os.path.join(kfile_path, filename)
+            if os.path.exists(output_file):
+                os.chmod(output_file, stat.S_IWRITE)
+            copy(input_file, output_file)
+
+
+def create_k_file_library(build_dir, library_name):
+    os.chdir(build_dir)
+    if os.path.exists(library_name):
+        os.remove(library_name)
+    obj_files = ''
+    for filename in os.listdir(build_dir):
+        if filename.endswith('.k'):
+            obj_files += os.path.splitext(os.path.basename(filename))[0] + ".obj "
+    cmd = os.path.normpath(CompilerEve().archive_executable_path) + " a " + library_name + " " + obj_files
+    os.system(cmd)
+
+
+def setBaseProject(bp):
+    global base_project
+    base_project = bp
+
+
+def addIncludePath(include_paths, a_project):
+    include_path_string = ""
+    if a_project is not None:
+        for a_path in include_paths:
+            a_path = a_path.replace('$product', a_project)
+            include_path_string += a_path + '\n'
+
+    return include_path_string
+
+
+def addSources(a_source, a_project):
+    if a_project is not None:
+        for path, a_file in a_source:
+            path = path.replace('$product', a_project)
+            addFiles(path, a_file)
+
+
+def addSourceDir(a_dir, a_project):
+    if a_project is not None:
+        for path, a_file in a_dir:
+            path = path.replace('$product', a_project)
+            addDirs(path, a_file)
+
+
+def addLibraries(a_lib, a_project):
+    if a_project is not None:
+        for path in a_lib:
+            path = path.replace('$product', a_project)
+            addLibrary(path)
+
+
+def addComponentDefine(defines):
+    for value in defines:
+        addCompilerDefine(value)
+
+
+def addCompilerDefine(value):
+    env.Replace(CFLAGS=env['CFLAGS'] + Compiler().add_define(value))
+
+
+def addLinkerDefine(value):
+    env.Replace(LINKFLAGS=env['LINKFLAGS'] + Compiler().add_define(value))
+
+
+def appendConfiguroDefine(define):
+    Compiler().append_configuro_define(define)
+
+
+def addDirs(directory, wildcards):
+    global source
+    global source_dirs
+
+    abs_directory = os.path.join(GetLaunchDir(), directory)
+
+    tmp_directory = abs_directory.replace('$product', product)
+    if not os.path.exists(tmp_directory):  # if the path doesn't exist in this project, check the base project
+        tmp_directory = abs_directory.replace('$product', base_project)
+        if not os.path.exists(tmp_directory):
+            print 'Warning: Source directory does not exist: ' + abs_directory
+            return
+
+    if isinstance(wildcards, basestring):
+        wildcards = [wildcards]
+
+    found = set()
+    for root, ignore_dirs, ignore_files in os.walk(tmp_directory):
+        source_dirs.append(root)
+        for wildcard in wildcards:
+            full_path = os.path.join(root, wildcard)
+            file_list = Glob(os.path.relpath(full_path, GetLaunchDir()))
+            if file_list is not None and file_list != []:
+                found.add(wildcard)
+                source += file_list
+
+    for wildcard in wildcards:
+        if wildcard not in found:
+            print "WARNING: No matches for wildcard \"" + wildcard + "\" in " + tmp_directory + "."
+
+
+## Adds a file or directory to the static code scanner's exception list
+#
+# This function will add a single file or a directory to the list of files to be excluded from the
+# static code scanner's results.  If a directory is specified then its contents will be recursively
+# added to the exception list.
+#
+# @param    exception   The relative path to the file or directory to be added to the exception list
+def addException(exception):
+    exceptions.append(exception)
+
+
+def addFiles(directory, wildcards):
+    global source
+    global source_dirs
+
+    abs_directory = os.path.join(GetLaunchDir(), directory)
+
+    tmp_directory = abs_directory.replace('$product', product)
+    if not os.path.exists(tmp_directory):  # if the path doesn't exist in this project, check the base project
+        tmp_directory = abs_directory.replace('$product', base_project)
+        if not os.path.exists(tmp_directory):
+            print 'Warning: Source directory does not exist: ' + abs_directory
+            return
+
+    source_dirs.append(tmp_directory)
+
+    if isinstance(wildcards, basestring):
+        wildcards = [wildcards]
+
+    for wildcard in wildcards:
+        full_path = os.path.join(tmp_directory, wildcard)
+        file_list = Glob(os.path.relpath(full_path, GetLaunchDir()))
+        if file_list is None or file_list == []:
+            print 'Warning: No source found that matches ' + full_path
+        else:
+            source += file_list
+
+
+## Adds a user specified library to the list of libraries that will be linked into the output file.
+#
+# This function will add a library to a list of libraries to be linked into the output file, optionally
+# performing some variable replacement on the names of the libraries passed in or to the paths to those
+# names.  The variables recognised are as follows:
+#
+# $product  => Replaced with the name of the product for which the compilation is being performed
+def addLibrary(library_path, library_name=''):
+    # Replace variables such as $lib_ext and $product with their real values
+    library_path = Compiler().replace_variables(library_path)
+
+    # If the library name was not specified then assume that the library is specified with a relative path
+    # and add it directly to the library list
+    _LIBS = env['_LIBFLAGS']
+    if library_name == '':
+        _LIBS = add_library_element(_LIBS, library_name, library_path)
+
+    # Otherwise assume that one or more library names were passed in, to be added to a single library path
+    else:
+        _LIBDIRS = env['_LIBDIRFLAGS']
+
+        # If the library path was not already added to the library path list then add it now
+        if _LIBDIRS.find(library_path) < 0:
+            _LIBDIRS += Compiler().add_library_path(library_path)
+            env.Replace(_LIBDIRFLAGS=_LIBDIRS)
+
+        # If a list of library names was passed in then iterate through them all and add them to the list
+        if type(library_name) == list:
+            for library in library_name:
+                _LIBS = add_library_element(_LIBS, library, library_path)
+        # Otherwise a single library name was just passed in
+        else:
+            _LIBS = add_library_element(_LIBS, library_name, library_path)
+
+    env.Replace(_LIBFLAGS=_LIBS)
+
+
+def add_library_element(_LIBS, library_name, library_path):
+    library_name = Compiler().replace_variables(library_name)
+
+    _LIBS = Compiler().add_library_element(_LIBS, library_name if library_name != '' else library_path)
+
+    # Add the library to the list of libraries so that their timestamps can be checked later on
+    user_libs.append((library_path + '/' + library_name) if library_name != '' else library_path)
+    return _LIBS
+
+
+## Creates a listing file containing a list of all directories, files and defines used for compiling.
+#
+# This function will create a file in the same directory as the output file, with the same name as the
+# output file but with a .lst extension, which contains a list of all of the directories scanned
+# for source and header files, a list of all source files included in the build and a list of all
+# preprocessor symbols defined by the build scripts for the core being built.
+def create_list_file():
+    try:
+        with open(list_file, 'w') as output_file:
+            write_paths_into(output_file, 'source_directories', source_dirs)
+            write_paths_into(output_file, 'include_directories', include_dirs)
+            write_paths_into(output_file, 'c_source_files', source, '.c')
+            write_paths_into(output_file, 'cpp_source_files', source, '.cpp')
+            write_paths_into(output_file, 's_source_files', source, '.s')
+
+            cflags = env['CFLAGS'].split()
+
+            write_cflags_into(output_file, cflags)
+            write_cflags_define_into(output_file, cflags)
+
+    except IOError:
+        print 'Warning: Unable to write to list file ' + list_file
+
+
+# Write all CFLAGS to output_file, regardless of what they are
+def write_cflags_into(output_file, cflags):
+    output_file.write('cflags {\n')
+    for flag in cflags:
+        output_file.write('\t' + flag + '\n')
+    output_file.write('}\n\n')
+
+
+# Write just the CFLAGS that define a symbol to output_file
+def write_cflags_define_into(output_file, cflags):
+    output_file.write('defines {\n')
+    for flag in cflags:
+        if flag[:9] == '--define=':
+            output_file.write('\t' + flag[9:] + '\n')
+        elif flag[:2] == '-D':
+            output_file.write('\t' + flag[2:] + '\n')
+    output_file.write('}\n')
+
+
+## Convert a TI SYS/BIOS options file to QAC format.
+#
+# This function is used when a TC SYS/BIOS options file is present in the build and will read
+# it in, parse it, find any -I and -D options and write them out to the QAC Analyser Personality
+# file that was passed into the function.
+#
+# @param    optionsFileName     The name of the options file to be read in
+# @param    outputFile          A handle to the QAC Analyser Personality file to which to write
+def convert_options_file(options_file_name, output_file):
+    # Try to open the SYS/BIOS options file
+    try:
+        with open(options_file_name, 'r') as options_file:
+
+            # All options are on one line so read them in and split them into tokens
+            line = options_file.read().strip()
+            tokens = line.split(' ')
+
+            # Iterate through the list of tokens and, for any include paths or compiler defines that are
+            # detected, convert them to the correct format and output them to the output file
+            for token in tokens:
+                if token[0:2] == '-I':
+                    token = '-i ' + token[2:]
+                    token = token.replace('/', '\\')
+                    output_file.write(token + '\n')
+                elif token[0:2] == '-D':
+                    token = '-d ' + token[2:]
+                    token = token.replace('/', '\\')
+
+                    # Now we must do a horrific hack, due to QAC being fussy about defining file names
+                    # using the -d switch.
+                    # SYS/BIOS defines the xdc_cfg__xheader__ macro with "\"<path>\""
+                    # but this is not supported and the only working method is to use "<path>",
+                    # so we have to convert this now.  However, due to "" having different
+                    # semantics to <> when used with the #include statement, we must be careful to only do this for the
+                    # xdc_cfg__xheader__ variable
+                    if token.find('xdc_cfg__xheader__') >= 0:
+                        token = token.replace('"\\"', '"<')
+                        token = token.replace('\\""', '>"')
+
+                    output_file.write(token + '\n')
+
+    except IOError:
+        # The options file does not exist so simply continue without doing anything
+        pass
+
+
+## Creates a QAC Analyser Personality specific to the project.
+#
+# This function will read from the template file:
+#
+# '04_Engineering/03_Workspace/qac(pp)/AnalyserPers/<core>_AnalyserPers(_C|_CPP).p_a'
+#
+# And will write it into a temporary file that will be read by QAC in order to perform an analysis.
+# This personality file describes the include directories to be searched (both for our own header files
+# and for C compiler header files) and the options to be used for the QAC analysis.  A different template
+# from a different directory will be used for C or C++, as determined by the type parameter.
+#
+# @param    type        The type of personality being created.  This should be either 'c' or 'cpp'
+def create_qac_personality(extension):
+    launch_dir = GetLaunchDir()
+
+    # Determine the output directory, depending on the type of personality being created.  C or C++ will
+    # result in 'qac' and 'qacpp' respectively
+    qac_directory = 'qa' + extension + '/'
+
+    if len(launch_dir) >= 2 and launch_dir[1] == ':':
+        launch_dir = launch_dir[0].lower() + launch_dir[1:]
+
+    engineering_dir_dos = launch_dir + '\\04_Engineering'
+    engineering_dir = launch_dir + '/04_Engineering'
+    output_dir = engineering_dir + '/03_Workspace/' + qac_directory + '_cnf'
+
+    # Change to the project's root directory to ensure that everything is created in the correct place
+    old_dir = os.getcwd()
+    os.chdir(launch_dir)
+
+    # Create the output directory if it does not already exist
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    # Strip out any trailing core number to obtain the generic core name, to be used for creating the
+    # name of the analyser personality
+    core_name = target
+    core_name = core_name.replace('_0', '')
+    core_name = core_name.replace('_1', '')
+    core_name = core_name.replace('_2', '')
+
+    # Depending on whether we are generating a personality for C or C++, the base name of the analyser personality
+    # template is slightly different, so decide on it now
+    analyser_pers_name = '_AnalyserPers_' + extension.upper() + '.p_a'
+
+    # Open the Analyser Personality template file and the Analyser Personality output file
+    try:
+        analyser_template_name = engineering_dir + '/03_Workspace/' + qac_directory + 'AnalyserPers/' \
+                                 + core_name + analyser_pers_name
+        with open(analyser_template_name, 'r') as template_file:
+
+            try:
+                analyser_name = output_dir + '/' + product + '_' + target + analyser_pers_name
+                with open(analyser_name, 'w') as output_file:
+                    # Iterate through the template file, writing its lines to the output file
+                    # and replacing any ## keywords with the appropriate output
+                    for line in template_file:
+                        # The list of directories set using the setIncludePath() function from SConscript
+                        if line.strip() == '##PROJ_INCLUDE##':
+                            # Iterate through the list of project include directories
+                            # and output each one to the output file, making the include path relative
+                            # to the directory from which QAC is executed and taking into
+                            # account that QAC only works with DOS style path separators
+                            for item in include_dirs:
+                                item = str(item).replace(engineering_dir_dos, '..\\..')
+                                item = item.replace('/', '\\')
+                                output_file.write('-i "' + item + '"\n')
+                        # Compiler preprocessor defines
+                        elif line.find('##COMP_DEFINES##') >= 0:
+                            # Get the flags passed to the compiler and split them into a list of tokens.
+                            # We take these from the environment (env) rather than the base CFLAGS list
+                            # (compiler['CFLAGS']) as the SConscript
+                            # may have added some new project specific flags to the environment
+                            flags = env['CFLAGS'].split()
+
+                            # Iterate through the list of flags and for any that are compiler defines, starting with
+                            # "-D" or
+                            # "--define=", output them to the QAC personality file in the required format
+                            for flag in flags:
+                                if flag[0:2] == '-D':
+                                    flag = flag[2:]
+                                    output_file.write('-d ' + flag + '\n')
+                                elif flag[0:9] == '--define=':
+                                    flag = flag[9:]
+                                    output_file.write('-d ' + flag + '\n')
+
+                            # Read in the TI options file and add its options to the output file
+                            options_file_name = '04_Engineering/04_Build/out/' + product \
+                                                + '/release_' + target + '/configPkg/compiler.opt'
+                            convert_options_file(options_file_name, output_file)
+                        elif line.find('##COMP_INCLUDE##') >= 0:
+                            line = line.replace('##COMP_INCLUDE##', Compiler().include_path)
+                            output_file.write(line)
+                        elif line.find('##PROJ_QUIET##') >= 0:
+                            # For each file or directory in the exception list,
+                            # create a fully qualified path to the relative directory or file passed in from SConscript,
+                            #  convert it to a relative path and add it to the
+                            # Analyser Personality output file
+                            for exception in exceptions:
+                                exception = launch_dir + '\\' + exception.replace('/', '\\')
+                                exception = exception.replace(engineering_dir_dos, '..\\..')
+                                output_file.write('-q "' + exception + '"\n')
+                        else:
+                            # Write the line to the Analyser Personality output file,
+                            # but only if it is not a -rem statement, as
+                            # the command line version of QAC does not understand this!
+                            if line.strip()[0:4] != '-rem':
+                                output_file.write(line)
+            except IOError:
+                print 'Error: Unable to create or write to QAC Analyser Personality file'
+
+                sys.exit(1)
+
+    except IOError:
+        # The template file does not exist so simply continue without doing anything
+        pass
+
+    os.chdir(old_dir)
+
+
+## remove duplicates from a list. Reason for this was a Jira story where some files were picked up twice.
+#
+# This is only a fix for the symptoms.
+# The Problem is located in the Sconscript files where files are selected once via wildcard
+# and once explicite
+# @param list
+def remove_duplicates(a_list):
+    new_list = list(set(a_list))
+    if len(a_list) > len(new_list):
+        print '\n*** Duplicated Files found  ***'
+        import collections
+        print [item.__str__() for item, count in collections.Counter(a_list).items() if count > 1]
+        print '\n*** Duplicated Files found  ***'
+
+    return new_list
+
+
+## Creates a QAC Project file specific to the project.
+#
+# This function will read from the template file:
+#
+# '04_Engineering/03_Workspace/qac(pp)/Templates/<core>.qacprj'
+#
+# And will write it into a temporary file that will be read by QAC in order to perform an analysis.
+# This project file describes the source files to be analysed.  A different directory will be used for
+# C or C++, as determined by the type parameter.
+#
+# @param    type        The type of project being created.  This should be either 'c' or 'cpp'
+def create_qac_project(type_extension):
+    directory_template = []
+    launch_dir = GetLaunchDir()
+
+    extension = '.' + type_extension
+    output_directory = 'qa' + type_extension + '/'
+
+    # transform path like c: to C:
+    if len(launch_dir) >= 2 and launch_dir[1] == ':':
+        launch_dir = launch_dir[0].upper() + launch_dir[1:]
+
+    engineering_dir = launch_dir + '\\04_Engineering'
+
+    # Change to the project's root directory to ensure that everything is created in the correct place
+    old_dir = os.getcwd()
+    os.chdir(launch_dir)
+
+    # Strip out any trailing core number to obtain the generic core name, to be used for creating the
+    # name of core's analyser personality
+    core_name = target
+    core_name = core_name.replace('_0', '')
+    core_name = core_name.replace('_1', '')
+    core_name = core_name.replace('_2', '')
+
+    # Open the Project template file and the Project output file
+    try:
+        template_name = launch_dir + '/04_Engineering/03_Workspace/' + output_directory + 'Templates/' \
+                        + core_name + '.qacprj'
+        with open(template_name, 'r') as template_file:
+            try:
+                project_name = launch_dir + '/04_Engineering/03_Workspace/' + output_directory + '_' + product + '_' \
+                               + target + '.prj'
+                with open(project_name, 'w') as output_file:
+
+                    # Iterate through the template file, searching for the "StartProjectMarker" keyword,
+                    # and writing the lines to the output file.
+                    # The lines before this keyword represent the header of the Project file, and are output only once
+                    for line in template_file:
+                        if line.strip() != 'StartProjectMarker':
+                            output_file.write(line)
+                        else:
+                            break
+
+                    # The rest of the template file represents a block of text
+                    # that is output one time for each directory that is to be scanned.
+                    # Add the "StartProjectMarker" line to a list and then read the rest of the file
+                    # into that list so that it can be used later
+                    directory_template.append(line)
+
+                    for line in template_file:
+                        directory_template.append(line)
+
+                    # Iterate through the list of source files and determine which directories are used.
+                    # Add these directories to a list
+                    # and for each directory attach a list of files in that directory that are to be built.
+                    # The list of source files is sorted alphabetically,
+                    # meaning that they are already grouped by directory, which makes this process easier
+                    directories = []
+                    files = []
+                    last_directory = ''
+
+                    for source_file in source:
+                        source_file = str(source_file)
+                        # Remove relative directory of scons files
+                        source_file = source_file.replace("\\04_Engineering\\03_Workspace\\sw\\make", "")
+                        components = os.path.split(source_file)
+
+                        # If the directory of the current file is the same as the last one
+                        # then add the file to the current file
+                        # list, but only if it is of the required type and is not on the exception list
+                        if components[0] == last_directory:
+                            if source_file[-len(extension):] == extension:
+                                # Obtain the relative path of the directory that contains the file
+                                dir_name = os.path.dirname(source_file[len(launch_dir) + 1:])
+                                dir_name = dir_name.replace('\\', '/')
+
+                                # Add the file to the list of files
+                                # only if it is not in a directory on the exception list
+                                if exceptions.count(dir_name) == 0:
+                                    files.append(source_file)
+                        # Otherwise add the file list to the list of directories and make a new empty file list
+                        else:
+                            # Only append the file list if it contains any entries
+                            if len(files) > 0:
+                                directories.append(files)
+
+                            # Save the name of the current directory from which we are now adding files
+                            last_directory = components[0]
+
+                            # And make a new empty file list and add the current file to it,
+                            # but only if it is of the required type
+                            files = []
+
+                            if source_file[-len(extension):] == extension:
+                                # Obtain the relative path of the directory that contains the file
+                                dir_name = os.path.dirname(source_file[len(launch_dir) + 1:])
+                                dir_name = dir_name.replace('\\', '/')
+
+                                # Add the file to the list of files
+                                # only if it is not in a directory on the exception list
+                                if exceptions.count(dir_name) == 0:
+                                    files.append(source_file)
+
+                    # At the completion of the loop above,
+                    # the list of files from the last directory is still waiting to be added
+                    # to the directory list, so do this now
+                    if len(files) > 0:
+                        directories.append(files)
+
+                    # Sort the directories to make it easier to find them in the QAC window.
+                    # This will also result in all project specific directories being grouped together
+                    directories.sort()
+
+                    # We now have our list of directories (each of which contains a list of files)
+                    # so iterate through this list and, for each directory, output the text block that is stored
+                    # in the directory_template list, replacing any ## keywords found with the appropriate output
+                    for directory in directories:
+                        source_file = str(directory[0])
+                        components = os.path.split(source_file)
+
+                        # Convert the fully qualified path to a relative path so that it is portable between machines
+                        relative_file = source_file.replace(engineering_dir, '..\\..')
+
+                        for line in directory_template:
+                            write_line = True
+
+                            # The name of the directory being scanned, to be displayed in the QAC GUI
+                            if line.find('##FOLDER_NAME##') >= 0:
+                                add_directories = False
+                                folder_name = ''
+
+                                # For the name of the directory being scanned,
+                                # we want to display the relative path name of the file,
+                                # starting from either the 01_Source_Code or 00_Projects directory.
+                                # Start by breaking the path to the file up into individual components
+                                tokens = components[0].split('\\')
+
+                                # Now scan through the tokens and filter out all until 01_Source_Code or 00_Projects
+                                # are found (to discard the first part of the path)
+                                # and concatenate the remaining directories together to get the display name
+                                for token in tokens:
+                                    if add_directories:
+                                        folder_name = folder_name + '/' + token
+
+                                    if token == '00_Projects' or token == '01_Source_Code':
+                                        add_directories = True
+
+                                # Strip out the unwanted '/' at the start of the path
+                                # and write the path into the output line
+                                line = line.replace('##FOLDER_NAME##', folder_name[1:])
+
+                                # If nothing was added then we probably have a source directory in a place
+                                # that is not allowed by the CM plan, so display a warning
+                                if not add_directories:
+                                    print 'Warning: Found possibly illegal directory:'
+                                    print components[0].replace(launch_dir, '')[1:]
+
+                            # The relative path to the directory being scanned,
+                            # from the root directory of the build unit.
+                            # This is usually used for creating an output path for the report
+                            # that matches the input path of the file(s) being scanned
+                            if line.find('##RELATIVE_SOURCE_PATH##') >= 0:
+                                if source_file.find(launch_dir) >= 0:
+                                    relative_path = os.path.dirname(source_file[len(launch_dir) + 1:])
+                                    line = line.replace('##RELATIVE_SOURCE_PATH##', relative_path)
+                                else:
+                                    line = line.replace('##RELATIVE_SOURCE_PATH##', '')
+                                    # print 'Error: Unable to determine path to file'
+
+                                    # sys.exit(1)
+
+                            # A list of all source files in the current directory to be scanned
+                            if line.find('##C_SOURCE_FILES##') >= 0:
+                                for source_file in directory:
+                                    # Convert the fully qualified path to a relative path
+                                    # so that it is portable between machines
+                                    relative_file = source_file.replace(engineering_dir, '..\\..')
+                                    output_file.write(relative_file)
+                                    output_file.write('\n')
+
+                                write_line = False
+
+                            # The name of the product being scanned
+                            if line.find('##PRODUCT_NAME##') >= 0:
+                                line = line.replace('##PRODUCT_NAME##', product)
+
+                            # The root directory of the build unit being scanned
+                            if line.find('##ROOT_DIRECTORY##') >= 0:
+                                line = line.replace('##ROOT_DIRECTORY##', '..\\..\\..')
+
+                            # The full path to the directory containing the source to be scanned
+                            if line.find('##SOURCE_PATH##') >= 0:
+                                line = line.replace('##SOURCE_PATH##', os.path.dirname(relative_file))
+
+                            # The name of the target being scanned
+                            if line.find('##TARGET_NAME##') >= 0:
+                                line = line.replace('##TARGET_NAME##', target)
+
+                            # QAC requires that the output path for the reports already exists
+                            # or it will fail to scan the file with a non obvious error.
+                            # Check to see if this line represents the output path for the
+                            # directory to be scanned and, if so, create the output path if it doesn't already exist
+                            tokens = line.split('=')
+
+                            if len(tokens) == 2 and tokens[0] == 'OutputPath':
+                                # Convert the output path to a fully qualified path for the creation of the directory
+                                output_path = launch_dir + '\\' + tokens[1].replace('..\\..\\..', '')
+                                output_path = output_path.replace('\\', '/').strip()
+
+                                if not os.path.exists(output_path):
+                                    os.makedirs(output_path)
+
+                            # And write the modified line to the output file, if required
+                            if write_line:
+                                output_file.write(line)
+
+            except IOError:
+                print 'Error: Unable to create or write to QAC Project file'
+                sys.exit(1)
+
+    except IOError:
+        # The template file does not exist so simply continue without doing anything
+        pass
+
+    os.chdir(old_dir)
+
+
+def compile(target_file):
+    global app_config_file
+    global list_file
+    global source
+
+    generate_compiler_options_file(include_dirs)
+    env.SConsignFile(".sconsign."+target+".dblite")
+
+    force_link = False
+
+    # Python needs fully qualified file names for its querying functions
+    qualified_app_config_file = os.path.join(GetLaunchDir(), app_config_file)
+    qualified_config_pkg_linker_file = os.path.join(GetLaunchDir(), Compiler().config_pkg_linker_file)
+
+    # Create the SYS/BIOS configuration, but only if the project uses SYS/BIOS,
+    # which is indicated by the presence of an 'app.cfg' file in the core's configuration directory
+    if os.path.exists(qualified_app_config_file):
+        run_configuro = False
+        
+        # If not available generate md5_hash.txt
+        if not os.path.isfile(os.path.join(GetLaunchDir(), product_dir + '/md5_hash_' + target + '.txt')):
+            f = open(os.path.join(GetLaunchDir(), product_dir + '/md5_hash_' + target + '.txt'), "w")
+            f.write("C001CAFE")
+            f.close()
+
+        # Open md5_hash.txt
+        f = open(os.path.join(GetLaunchDir(), product_dir + '/md5_hash_' + target + '.txt'), "r")
+        md5_hash_saved = f.readline()
+        f.close()
+
+        # Open, close, read file and calculate MD5 on its contents
+        with open(qualified_app_config_file) as file_to_check:
+            # Read contents of the file
+            data = file_to_check.read()
+            # Pipe contents of the file through
+            md5_hash_returned = hashlib.md5(data).hexdigest()
+
+        # Finally compare original MD5 with freshly calculated
+        if md5_hash_saved != md5_hash_returned:
+            f = open(os.path.join(GetLaunchDir(), product_dir + '/md5_hash_' + target + '.txt'), "w")
+            f.write(md5_hash_returned)
+            f.close()  
+            run_configuro = True
+            print "MD5 hash of app.cfg different. SYS/BIOS build needed."
+        
+        # If Configuro has not yet been run or if it has been run but the app.cfg file has been updated then run it now,
+        if not os.path.exists(qualified_config_pkg_linker_file):
+            run_configuro = True
+
+        if run_configuro:
+            # Change to the directory from which scons was launched
+            # and run the configuro command to generate the SYS/BIOS library.
+            # This is required as at this point of the processing, the CWD is the target directory
+            old_dir = os.getcwd()
+            os.chdir(GetLaunchDir())
+
+            print 'Creating SYS/BIOS support library ...'
+
+            # Only process the SYS/BIOS configuration if we are not performing a fast list file generation command
+            if not list_only:
+                # Because it is tricky to integrate Configuro into the dependency system,
+                # we will force a clean of the output directory
+                # and a full rebuild of the system whenever we change the SYS/BIOS configuration,
+                # unless the keepbios option has been specified
+                if keep_bios:
+                    force_link = True
+                else:
+                    # delete out_dir needs remove read only attribute
+                    RemoveReadOnly = SCons.Action.ActionFactory(remove_read_only, remove_read_only_str)
+                    env.Execute(RemoveReadOnly(out_dir))
+                    env.Execute(Delete(out_dir))
+
+                result = Compiler().execute_command(env)
+
+                if result != 0:
+                    print '\n*** Unable to create SYS/BIOS support library - aborting ***'
+                    Exit(1)
+
+            # Change back to the default directory
+            os.chdir(old_dir)
+
+    # Before beginning to build,
+    # sort the list into alphabetical order so that the build is reproducible on all machines.
+    # Without this sort, the order of compilation would be dependent upon the underlying filesystem.
+    # The nodes in the source list are of type SCons.Node.FS.File so we use a key to sort on the file name itself
+    # (without this key, the sorted results are incorrect)
+    source = remove_duplicates(source)
+    source.sort(key=source_sort)
+
+    # Only perform the build if we are not performing a fast list file generation command
+    if list_only == 0:
+        program = env.Program(target=target_file, source=source)
+        env.Clean(program, out_dir)
+
+        Compiler().depends_and_prepare_linker_file(env, program)
+
+        Compiler().depends_and_prepare_memory_layout_file(env, program)
+
+        out_file = Compiler().get_out_file(env, target_file)
+        Compiler().generate_better_map_file(env, target_file, out_file)
+
+        # If any user specified libraries were found to be out of date or if the 'keep_bios' command line option was
+        # passed in then delete the output file to force a relink
+        if force_link or Compiler().check_library_dependencies(out_file):
+            Compiler().force_rebuild(env, target_file, out_file)
+
+    # Save information about such things as the include paths etc.
+    create_list_file()
+
+    # Create QAC configuration files for C files
+    create_qac_project('c')
+    create_qac_personality('c')
+
+    # And create QAC configuration files for C++ files
+    create_qac_project('cpp')
+    create_qac_personality('cpp')
+
+
+def remove_read_only(output_file):
+    try:
+        os.chmod(output_file, stat.S_IWRITE)
+    except WindowsError:
+        #  file does not exist so no change needed
+        pass
+
+
+def remove_read_only_str(output_file):
+    return output_file + " is no more read only"
+
+
+## Returns the launch directory as a Unix formatted path (ie. d:/Source/SMFC/... rather than d:\Source\SMFC\...).
+#
+# This function is required for building fully qualified paths to files as most of the GCC related executables do
+# not work with backslashes ('\') and only work with forward slashes ('/') even when running under Windows.  So
+# instead of calling the built in SCons GetLaunchDir() function to obtain the launch directory, call this function
+# which does the same thing but returns a path that contains Unix style path separators.
+def compute_launch_dir_unix():
+    ret_val = GetLaunchDir().replace('\\', '/')
+
+    # For unknown reasons, when run from a DOS prompt,
+    # launch_dir_unix returns a lower case drive letter but when run
+    # from CCS it returns an upper case drive letter!  SCons thus considers this to be a change and rebuilds the entire
+    # core.  So check to see if a drive letter is included in the returned path and if so, convert it to lower case so
+    # that compilation may be done both at the DOS prompt and from CCS without causing unnecessary rebuilds
+    if len(ret_val) >= 2 and ret_val[1] == ':':
+        ret_val = ret_val[0].lower() + ret_val[1:]
+
+    return ret_val
+
+
+## Removes a single file from the list of files to be compiled.
+#
+# This function will remove files from the list of files to be compiled. The directory path passed in
+# combined with the file name must exactly match the name of the file to be removed. Like all
+# SCons support functions, this function can resolve the standard configuration variables such as $project in all
+# paths and filenames.
+#
+# @param    directory   The directory in which the file to be removed resides
+# @param    wildcards   A wildcard (string) or a list of wildcards
+def removeFiles(directory, wildcards):
+    global source
+
+    if isinstance(wildcards, basestring):
+        wildcards = [wildcards]
+
+    abs_directory = os.path.join(GetLaunchDir(), directory)
+
+    for replacement in [product, base_project]:
+        tmp_directory = abs_directory.replace('$product', replacement)
+        if os.path.exists(tmp_directory):
+            for wildcard in wildcards:
+                full_path = os.path.join(tmp_directory, wildcard)
+                file_list = Glob(os.path.relpath(full_path, GetLaunchDir()))
+                if file_list is None or file_list == []:
+                    print 'Warning: No source found that matches ' + full_path + " when removing files."
+                else:
+                    anything_removed = False
+                    for f in file_list:
+                        if f in source:
+                            anything_removed = True
+                            source.remove(f)
+                    if not anything_removed:
+                        print 'Warning: No file in the current source list that matches ' + full_path \
+                              + " that could be removed."
+            break
+
+
+def setCompiler(name):
+    global env
+
+    compiler_name = name.replace('-', '_')
+
+    my_compiler = Compiler(compiler_name)
+    my_compiler.set_env(env)
+
+    env.Replace(CCFLAGS='')
+    env.Replace(PROGSUFFIX='.out')
+
+    # Replace the displaying of the compiler and linker command line output with some nice messages
+    env.Replace(ASCOMSTR="Assembling ${SOURCES.file} ...")
+    env.Replace(CCCOMSTR="Compiling   ${SOURCES.file} ...")
+    env.Replace(CXXCOMSTR=env['CCCOMSTR'])
+    env.Replace(LINKCOMSTR="Linking ${TARGET.file} for " + product + " ...")
+
+    # And increase the maximum line length that is used before a temporary file is used.
+    # This needs to be quite high or there will be a problem with GCC tripping over backslashes
+    # being used in the temporary file.  It would be better if this was 8192 bytes,
+    # but this causes the GCC linker to fail as it cannot handle line lengths that are longer than ~ 8000 bytes.
+    # The fundamental problem here is that GCC does not work with backslashes,
+    # the GCC linker does work with them, and SCons when running on Windows
+    # insists on using backslashes if it uses a temporary file but uses forward slashes when using the command line.
+    # 8000 bytes is the deep magic that manages to satisfy all requirements.
+    # Here be dragons - don't mess with this value if you don't want to play with their fire breathing!
+    env.Replace(MAXLINELENGTH=8000)
+
+
+# Update:25.04. Sysroot was not sufficient so we switch to optionsFile
+# Update:20.04: When adding the Algo includes the total command length exceeded the 8000 characters.
+# To resolve this issues for arm-gcc. The Sysroot was introduced and
+# set to  GetLaunchDir() + 04_Engineering . So that all includes could be switched to relative path.
+# Since this is only possible for Gcc. A switch was introduced so that
+# this relative includes are only used for arm-gcc compiler.
+def setIncludePath(include_paths):
+    global include_dirs
+
+    translations = [('$chipset', chipset),
+                    ('$device', device)]
+    for what, to in translations:
+        include_paths = include_paths.replace(what, to)
+
+    include_paths = Split(include_paths)
+    for inc_path in include_paths:
+        inc_path = inc_path.replace("/", "\\")
+        qualified_directory = os.path.join(GetLaunchDir(), inc_path)
+        for replacement in [product, base_project]:
+            tmp_dir = qualified_directory.replace('$product', replacement)
+            if os.path.exists(tmp_dir):
+                if tmp_dir not in include_dirs:
+                    include_dirs.append(tmp_dir)
+                else:
+                    pass  # we already have that folder in the includeDirs, don't add it again.
+                break
+        else:
+            print 'Warning: Include path does not exist: ' + inc_path \
+                  + ((', neither in ' + product + ' nor in the base project: ' + base_project + '.')
+                     if '$product' in inc_path else '.')
+
+    Compiler().add_specific_include_path(include_dirs)
+
+    env.Replace(CPPPATH=include_dirs)
+
+
+def generate_compiler_options_file(the_include_dirs):
+    # Generate a compiler options files with all the include path
+    try:
+        print"----------------open file:" + compiler_options + "--------------"
+        with open(compiler_options, 'a') as output_file:
+            for line in the_include_dirs:
+                line = line.replace("\\", "/")  # replace \ with / since in the options file the gcc likes to have /
+                output_file.write("-I " + line + "\n")
+    except IOError:
+        print 'Error: Unable to create or write to ' + compiler_options
+
+
+## Returns the fully qualified file name represented by the node.
+#
+# This function is used by the sorting functionality to ensure that the sort is performed on the file names
+# themselves, rather than the SCons.Node.FS.File structure.
+def source_sort(file_node):
+    return file_node.rstr()
+
+
+## Writes a list of files or directories to the listing file.
+#
+# This function iterates through a list of paths (directories or files) passed in and writes each one
+# to the listing file.  It can optionally accept a file extension and, if given, will only write
+# entries that end with this extension.
+def write_paths_into(output_file, title, paths, extension=''):
+    output_file.write(title + ' {\n')
+
+    for item in paths:
+        item = str(item)
+        if extension == '' or item[-len(extension):] == extension:
+            # Remove relative directory of scons files
+            item = item.replace("\\04_Engineering\\03_Workspace\\sw\\make", "")
+            output_file.write('\t' + os.path.normpath(item) + '\n')
+
+    output_file.write('}\n\n')
+
+
+class Compiler(object):
+    instance = None
+
+    def __new__(cls, compiler_name=''):  # __new__ always a classmethod
+        if not Compiler.instance:
+            Compiler.instance = Compiler.set_compiler(compiler_name)
+        return Compiler.instance
+
+    @classmethod
+    def set_compiler(cls, compiler_name):
+        compilers = {
+            'arm_a': CompilerArmA,
+            'arm_a_gcc': CompilerArmAGcc,
+            'dsp': CompilerDsp,
+            'eve': CompilerEve,
+            'arm_m': CompilerArmM
+        }
+
+        return compilers.get(compiler_name)()  # one instance of the class
+
+
+class Configuro(object):
+    set_tool_versions_for_product()
+    executable = ti_xdc_tool_path + '\\xs.exe'
+
+    def __init__(self, xdcpath='', target='', compiler_path='', platform='ca8', options=None):
+        self.xdcpath = xdcpath
+        self.target = target
+        self.compiler_path = compiler_path
+        self.platform = platform
+        self.options = options
+        self.defines = self.add_define('chipset=' + device) \
+                       + self.add_define('family=' + family) \
+                       + self.add_define('product=' + product)
+
+    def append_define(self, define):
+        self.defines += self.add_define(define)
+
+    @staticmethod
+    def add_define(value):
+        return ' -D=' + value
+
+    @property
+    def command(self):
+        command = '@"' + self.executable + '" --xdcpath="' + self.xdcpath + '" xdc.tools.configuro -q -o ' + \
+                  config_pkg_dir + self.defines + ' -t ' + self.target + ' -p ' + self.platform + ' -r release' + \
+                  ' -c ' + self.compiler_path + self.compile_options + ' "' + app_config_file + '"'
+
+        # The Configuro command needs to be slightly tweaked to according to the target
+        # so that it looks in the target's project directory (ie. 04_Engineering/03_Workspace/cores/arm-a_0).
+        # RTSC platforms are shared between cores of the same type, as is the rest of the Configuro command line;
+        #  this is the only part of the command line that needs to change so we do it here
+        return command.replace('$target', target)
+
+    @property
+    def compile_options(self):
+        if self.options is not None:
+            return ' --compileOptions "' + self.options + '"'
+        return ''
+
+    def execute(self, environment):
+        return environment.Execute(self.command)
+
+
+class ConfiguroNull(Configuro):
+    def __init__(self):
+        Configuro.__init__(self)
+
+    @property
+    def command(self):
+        return ''
+
+
+class ConfiguroArmA0(Configuro):
+    def __init__(self, xdcpath='', target='', compiler_path='', platform='ca8', options=None):
+        Configuro.__init__(self, xdcpath=xdcpath, target=target, compiler_path=compiler_path, platform=platform,
+                           options=options)
+        self.defines = ''
+
+    def append_define(self, define):
+        pass
+
+
+class CompilerDefault(object):
+    def __init__(self, name, version, exe, archive_exe=''):
+        self.name = name
+        self.version = version
+        self.exe = exe
+        self.archive_exe = archive_exe
+
+        self._BaseCFLAGS, self._BaseLFLAGS, self._DSPBaseCFLAGS, self._SBLBaseCFLAGS = self.compute_common_flags()
+        self.dict = self.compute_config()
+        self.configuro = self.create_configuro()
+
+    def create_configuro(self):
+        return ConfiguroNull()
+
+    @property
+    def compiler_path(self):
+        return tools_path + self.name + '\\' + self.version
+
+    @property
+    def compiler_path_slash(self):
+        return self.compiler_path.replace('\\', '/')
+
+    @property
+    def AS(self):
+        return '@' + self.executable_path
+
+    @property
+    def executable_path(self):
+        return self.compiler_path + '\\bin\\' + self.exe
+
+    @property
+    def archive_executable_path(self):
+        return self.compiler_path + '\\bin\\' + self.archive_exe
+
+    @property
+    def LPATH(self):
+        return self.dict['LPATH'].replace('/release', '/debug') if debug else self.dict['LPATH']
+
+    @property
+    def map_file(self):
+        return out_dir + '/' + target + '.map'
+
+    @property
+    def memory_layout_file_name(self):
+        return 'memory_soc0.cmd'
+
+    @property
+    def memory_layout_template_file(self):
+        if base_project in ['ars441', 'hfl110', 'hfl130', 'mfc5j3']:
+            return launch_dir_unix + '/04_Engineering/00_Projects/' + product + '/MEMMAP_DPU/' + self.memory_layout_file_name
+        else:
+            return launch_dir_unix + '/04_Engineering/00_Projects/' + product + '/' + self.memory_layout_file_name
+
+    @property
+    def memory_layout_file(self):
+        return out_dir + '/' + self.memory_layout_file_name
+
+    @property
+    def linker_file(self):
+        return linker_template_file
+
+    @property
+    def config_pkg_linker_file(self):
+        return config_pkg_dir + '/linker.cmd'
+
+    @staticmethod
+    def add_define(value):
+        return ' --define=' + value
+
+    @property
+    def include_path(self):
+        return self.compiler_path + '\\include'
+
+    @staticmethod
+    def get_dump_map_file(target_file):
+        return out_dir + '/' + target_file + '_objdump.map'
+
+    @staticmethod
+    def get_out_file(environment, target_file):
+        return out_dir + '/' + target_file + environment['PROGSUFFIX']
+
+    def append_configuro_define(self, define):
+        self.configuro.append_define(define)
+
+    def set_env(self, environment):
+        environment.Replace(_LIBFLAGS=self.dict['LIBS'])
+
+        environment.Replace(LINK=self.dict['LINK'])
+
+        environment.Replace(ASFLAGS=self.dict['CFLAGS'])
+        environment.Replace(CFLAGS=self.dict['CFLAGS'])
+
+        environment.Replace(CC=self.dict['CC'])
+
+        environment.Replace(CCCOM=self.dict['CCCOM'])
+        environment.Replace(CXXCOM=self.dict['CCCOM'])
+        environment.Replace(ASCOM=self.dict['CCCOM'])
+
+        environment.Replace(AS=self.AS)
+
+        environment.Replace(LINKFLAGS=self.dict['LFLAGS'])
+
+        environment.Replace(_LIBDIRFLAGS=self.LPATH)
+
+        environment.Replace(INCPREFIX='-I=')
+        environment.Replace(TEMPFILEPREFIX='-@')
+
+        if target == 'sbl' or target == 'sbl_loop' or target == 'presbl':
+            link_com = self.link_com_sbl
+        elif target == 'eve_memtest':
+            link_com = self.link_com_eve_memtest
+        else:
+            link_com = self.link_com_default
+
+        environment.Replace(LINKCOM=link_com)
+
+        environment.Replace(_CPPINCFLAGS='$( ${_concat(INCPREFIX, CPPPATH, INCSUFFIX, __env__)} $)')
+
+    @property
+    def link_com_sbl(self):
+        return '${TEMPFILE("$LINK $LINKFLAGS -l' + ' $_LIBDIRFLAGS $_PDB $SOURCES $_LIBFLAGS ' + self.linker_file \
+               + ' ' + self.memory_layout_file + ' -o $TARGET -m ' + self.map_file + '")}'
+
+    @property
+    def link_com_eve_memtest(self):
+        return '${TEMPFILE("$LINK $LINKFLAGS $_LIBDIRFLAGS $_PDB $SOURCES $_LIBFLAGS ' + self.linker_file + ' ' \
+               + ' -o $TARGET -m ' + self.map_file + '")}'
+
+    @property
+    def link_com_default(self):
+        return '${TEMPFILE("$LINK $LINKFLAGS -l' + self.config_pkg_linker_file \
+               + ' $_LIBDIRFLAGS $_PDB $SOURCES $_LIBFLAGS ' + self.linker_file + ' ' + self.memory_layout_file \
+               + ' -o $TARGET -m ' + self.map_file + '")}'
+
+    def execute_command(self, environment):
+        return self.configuro.execute(environment)
+
+    def compute_common_flags(self):
+        if debug:
+            _BaseCFLAGS = ' -g'
+            _DSPBaseCFLAGS = ' -g'
+            _SBLBaseCFLAGS = ' -g'
+        else:
+            _BaseCFLAGS = ' -O2'
+            _DSPBaseCFLAGS = ' -O3 --optimize_with_debug --opt_for_speed=5'
+            _SBLBaseCFLAGS = ' -O3'
+
+        if device == 'mid':
+            family_defines = self.add_define('TI814X') + self.add_define('TI814X_FAMILY_BUILD')
+        elif device == 'high':
+            family_defines = self.add_define('TDA2XX_FAMILY_BUILD')
+        else:
+            family_defines = self.add_define('TDA3XX_FAMILY_BUILD')
+
+        _BaseCFLAGS += family_defines
+        _DSPBaseCFLAGS += family_defines
+
+        parameters_defines = self.parameters_defines
+
+        _BaseCFLAGS += parameters_defines
+        _DSPBaseCFLAGS += parameters_defines
+        _SBLBaseCFLAGS += parameters_defines
+        _BaseLFLAGS = parameters_defines
+
+        # If assembly language output has been requested then add these options to the base CFLAGS.  This works for all
+        # TI compilers - for GCC we will replace this with the GCC flags later on
+        if assembly:
+            _BaseCFLAGS += ' --c_src_interlist --keep_asm'
+            _DSPBaseCFLAGS += ' --c_src_interlist --keep_asm'
+
+        if debug:
+            _BaseLFLAGS += self.add_define('DEBUG')
+        return _BaseCFLAGS, _BaseLFLAGS, _DSPBaseCFLAGS, _SBLBaseCFLAGS
+
+    @property
+    def parameters_defines(self):
+        defines = self.add_define('TARGET_' + target.upper().replace('-', '_')) \
+                  + self.add_define('PRODUCT_' + product.upper()) \
+                  + self.add_define('CHIPSET_' + device.upper())
+        return defines
+
+    ## Adds a single library to the list of libraries to be linked.
+    #
+    # This function will add a library to an already existing list of libraries.  It is a convenience function
+    # that can be called to ensure that the library is added in a way that works for all compilers.  The library
+    # passed in can be a library name by itself or it can contain a relative path to the library.
+    #
+    # @param    libraryList     The list of libraries to which to add the new library
+    # @param    libraryName     The name of the library to be added to the list
+    @staticmethod
+    def add_library_element(library_list, library_name):
+        ret_val = library_list + ' -l"' + launch_dir_unix + '/' + library_name + '"'
+        return ret_val
+
+    @staticmethod
+    def add_library_path(library_path):
+        return ' -i"' + library_path + '"'
+
+    def generate_better_map_file(self, environment, target_file, out_file):
+        pass
+
+    ## Checks timestamps of dependent libraries and forces a relink if they are newer than the output file.
+    #
+    # This function will scan through the list of libraries that were added by the user via the addLibrary()
+    # function and will check to see if their timestamps are newer than that of the target output file.  If
+    # one or more library timestamps are newer then it will set the forceLink command line argument in order
+    # to force a relink of the output file.
+    @staticmethod
+    def check_library_dependencies(output_file):
+        dependencies_found = False
+
+        # Only check the libraries' timestamps if the output file exists
+        if os.path.exists(output_file):
+            # Iterate through the list of dependent libraries.  These are in the list as relative paths but
+            # need to be made fully qualified as SCons changes its directory as it progresses through the build
+            for library in user_libs:
+                print 'Checking lib: ' + library
+                library = launch_dir_unix + '/' + library
+
+                # Ignore libraries that don't have a path (such as the EDMA LDD or starterware library) as these
+                # are considered OS libraries that never change.  It is mostly user oriented libraries such as
+                # algorithm libraries that we are interested in here
+                if os.path.exists(library):
+                    if os.path.getmtime(library) > os.path.getmtime(output_file):
+                        print library + ' is out of date - forcing relink'
+                        dependencies_found = True
+        print 'Dependencies found and forcing relink: ' + str(dependencies_found)
+        return dependencies_found      
+
+    def force_rebuild(self, environment, target_file, out_file):
+        # Determine the names of the output file and the second .map file (used only by GCC builds)
+        dump_map_file = self.get_dump_map_file(target_file)
+        if os.path.exists(out_file):
+            os.remove(out_file)
+
+        # If the objdump generated map file exists then delete it or else SCons will not perform the post build step
+        if os.path.exists(dump_map_file):
+            os.remove(dump_map_file)
+
+    ## Parses a string and resolves all standard configuration variables found.
+    #
+    # This function is used by all other SCons functions that need to resolve configuration variables such as
+    # $project to their required values, in order to compile for the current target.  All functions that need
+    # to perform this resolving should call this function, to ensure consistency of variable handling.
+    #
+    # @param    path    The path containing the variables to be resolved
+    # @return   The path passed in but with all variables resolved to their values for the current target
+    @staticmethod
+    def replace_variables(path):
+        # Now replace the standard product variable that has a value for all projects
+        path = path.replace('$product', product)
+        return path
+
+    def depends_and_prepare_memory_layout_file(self, environment, program):
+        environment.Depends(program, self.memory_layout_file)
+        self.prepare_memory_layout_file()
+
+    ## Parses the template memory layout file and replaces macros with suitable keywords for GNU and TI compilers.
+    #
+    # This function is used to take care of the (thankfully few) compiler specific differences between linker.cmd files.
+    # It works by scanning the template memory layout file for %keywords% and replacing them with the appropriate value
+    # that can be used by the GNU or TI comiler.  The processed output file will be written in the target core's output
+    # directory and will then be passed to the linker at link time, instead of the source linker template file.
+    def prepare_memory_layout_file(self):
+        with open(self.memory_layout_template_file, 'r') as input_file:
+            with open(self.memory_layout_file, 'w') as output_file:
+                # Scan through the input file for lines that contain %keywords%
+                # and, if found, replace them with a keyword suitable for the target compiler
+                for line in input_file:
+                    line = self.replace_for_memory_layout_file(line)
+                    output_file.write(line)
+
+    @staticmethod
+    def replace_for_memory_layout_file(line):
+        # Replace all known keywords
+        line = line.replace('%origin%', 'START')
+        line = line.replace('%length%', 'SIZE')
+        line = line.replace('%sections%', '')
+        line = line.replace('%obrace%', '')
+        line = line.replace('%cbrace%', '')
+        return line
+
+    def depends_and_prepare_linker_file(self, environment, program):
+        environment.Depends(program, self.linker_file)
+
+    def add_specific_include_path(self, some_include_dirs):
+        pass
+
+
+class CompilerArmA(CompilerDefault):
+    def __init__(self):
+        CompilerDefault.__init__(self, name='ti_arm', version=ti_arm_compiler_version, exe='armc1.exe')
+
+    def compute_config(self):
+        _CC = self.AS
+        _LINK = _CC
+        _CCCOM = '${TEMPFILE("$CC $CCFLAGS $_CCCOMCOM $CFLAGS -fe $TARGET -fr ' + out_dir + ' -fs ' + out_dir \
+                 + ' $SOURCES.abspath --asm_directory=$TARGET.dir")}'
+        _CFLAGS = self._BaseCFLAGS + ' -mv7A8 --gen_func_subsections --code_state=32 --abi=eabi -me --gcc' \
+                                     ' --diag_warning=225 --diag_error=10210 --diag_error=262 --diag_error=891' \
+                                     ' --diag_error=10247 --display_error_number --float_support=VFPv3 --cmd_file="' \
+                  + config_pkg_compiler_file + '"'
+        _LFLAGS = '-q -mv7A8 --code_state=32 --float_support=VFPv3 --abi=eabi -me -g --gcc --diag_warning=225 ' \
+                  '--display_error_number -z --reread_libs --warn_sections --rom_model' + self._BaseLFLAGS
+        _LIBS = '-l"' + self.compiler_path + '\\lib\\libc.a"'
+        _LPATH = '-i' + self.compiler_path + '\\include'
+
+        # If the device is Vision Low then alter the EDMA3 library path to pick up the correct libraries
+        if device == 'low':
+            _LPATH = _LPATH.replace('/tda2xx', '/tda3xx')
+        config = dict(CC=_CC, LINK=_LINK, CCCOM=_CCCOM, CFLAGS=_CFLAGS, LFLAGS=_LFLAGS, LPATH=_LPATH, LIBS=_LIBS)
+        return config
+
+    def create_configuro(self):
+        return ConfiguroArmA0(xdcpath= ti_bios_path + '/packages;'
+                                      '04_Engineering/03_Workspace/sw/rtsc_platforms/Conti/MFC400;'
+                                      '04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/osc',
+                              target='ti.targets.arm.elf.A8Fnv',
+                              compiler_path=self.compiler_path,
+                              platform='ca8',
+                              options='-g --optimize_with_debug')
+
+
+class CompilerArmAGcc(CompilerDefault):
+    def __init__(self):
+        CompilerDefault.__init__(self, name='gcc_arm', version=gcc_arm_compiler_version, exe='arm-none-eabi-gcc.exe')
+
+    @property
+    def linker_file(self):
+        return out_dir + '/' + os.path.basename(linker_template_file)
+
+    @property
+    def link_com_sbl(self):
+        return '${TEMPFILE("$LINK $LINKFLAGS $_LIBDIRFLAGS $_PDB $SOURCES.posix ' + ' -Wl,-T' \
+               + self.memory_layout_file + ' -Wl,-T' + self.linker_file \
+               + ' -Wl,--start-group $_LIBFLAGS -Wl,--end-group -o $TARGET.posix -Wl,-Map,' + self.map_file + '")}'
+
+    @property
+    def link_com_default(self):
+        return '${TEMPFILE("$LINK $LINKFLAGS $_LIBDIRFLAGS $_PDB $SOURCES.posix ' + ' -Wl,-T' \
+               + self.memory_layout_file \
+               + ' -Wl,-T' + self.linker_file + ' -Wl,-T' + self.config_pkg_linker_file \
+               + ' -Wl,--start-group $_LIBFLAGS -Wl,--end-group -o $TARGET.posix -Wl,-Map,' + self.map_file + '")}'
+
+    @property
+    def include_path(self):
+        return self.compiler_path + '\\arm-none-eabi\\include'
+
+    def compute_config(self):
+        _CC = self.AS
+        _LINK = _CC
+        if target == 'sbl' or target == 'sbl_loop' or target == 'presbl':
+            with open(compiler_options, "w") as myfile:
+                # ensure for every call of Construct that we create a clean new compiler_options file
+                myfile.write("")
+            _CCCOM = '${TEMPFILE("$CC $CCFLAGS $CFLAGS $_CCCOMCOM -o $TARGET  @\\"' \
+                     + compiler_options.replace("\\", "\\\\") + '\\" ' + ' $SOURCES.abspath")}'
+        else:
+            print "-------------------------Adding: " + config_pkg_compiler_file + " to " + compiler_options \
+                  + "--------------------------------"
+            with open(compiler_options, "w") as myfile:
+                # ensure for every call of Construct that we create a clean new compiler_options file
+                # if we have other CompilerOptions files add them at the beginning.
+                myfile.write("@" + config_pkg_compiler_file + "\n")
+            _CCCOM = '${TEMPFILE("$CC $CCFLAGS $CFLAGS $_CCCOMCOM -o $TARGET  @\\"' \
+                     + compiler_options.replace("\\", "\\\\") + '\\" ' + ' $SOURCES.abspath")}'
+        _CFLAGS = self._BaseCFLAGS + ' -c -mfloat-abi=hard -mabi=aapcs -mfpu=neon -Wall -Wextra -Wno-comment' \
+                  + self.add_define('CA8_GNU') + ' -ffunction-sections -fdata-sections '
+        _LFLAGS = ' -mfloat-abi=hard' + self.add_define('CA8_GNU') \
+                  + ' -g -Wall -nostartfiles -static -Wl,--gc-sections' \
+                  + self._BaseLFLAGS
+        _LIBS = '-Wl,--start-group -lgcc -lc -lm -lstdc++ -lnosys -Wl,--end-group'
+        # For GCC we have to use different options to generate assembly listings, so replace the TI options with
+        # GCC ones.  For GCC we will also not link the output file any more so use a NULL linker script for this
+        if assembly:
+            _CFLAGS = _CFLAGS.replace('--c_src_interlist --keep_asm', '-Wa,-aslh=$TARGET')
+            _LINK = '04_Engineering\\03_Workspace\\make\\scons_null_link.bat'
+        if device == 'mid':
+            _CFLAGS += ' -mcpu=cortex-a8'
+            _LPATH = '-L"' + ti_xdc_tool_path + '/packages/gnu/targets/arm/libs/install-native/' \
+                     'arm-none-eabi/lib/fpu"' \
+                     ' -L"04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/drv/lib/a8/release"' \
+                     ' -L"04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/rm/lib/ti814x-evm/a8/release"'
+        else:
+            _CFLAGS += ' -mcpu=cortex-a15'
+            _LPATH = '-L"' + ti_xdc_tool_path + '/packages/gnu/targets/arm/libs/install-native/' \
+                     'arm-none-eabi/lib/fpu"' \
+                     ' -L"04_Engineering/04_Build/tools/starterware/binary/drivers/lib/tda2xx/a15/release"' \
+                     ' -L"04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/drv/lib/a15/release"' \
+                     ' -L"04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/rm/lib/tda2xx-evm/a15/release"'
+
+        # For the SBL we are writing over compiler and linker flags and libraries as they differ from the SoC building.
+        if target == 'sbl' or target == 'sbl_loop' or target == 'presbl':
+            if device == 'mid':
+                _CFLAGS = self._SBLBaseCFLAGS + ' -c -mcpu=cortex-a8 -mtune=cortex-a8 -march=armv7-a -mfloat-abi=hard' \
+                                                ' -ffunction-sections -fdata-sections -Wall -specs="rdimon.specs" -MMD -MP'
+                _LPATH = '-L"04_Engineering/04_Build/tools/gcc-arm-none-eabi/arm-none-eabi/lib/fpu" '
+                _LIBS = '-Wl,--start-group -lgcc -lc -lnosys -Wl,--end-group'
+            else:
+                _CFLAGS = self._SBLBaseCFLAGS \
+                          + ' -c -mcpu=cortex-a15 -mfloat-abi=hard -ffunction-sections -fdata-sections -Wall' \
+                            ' -specs="rdimon.specs" -MMD -MP'
+                _LPATH = ''
+                _LIBS = ''
+
+        # If the device is Vision Low then alter the EDMA3 library path to pick up the correct libraries
+        if device == 'low':
+            _LPATH = _LPATH.replace('/tda2xx', '/tda3xx')
+        config = dict(CC=_CC, LINK=_LINK, CCCOM=_CCCOM, CFLAGS=_CFLAGS, LFLAGS=_LFLAGS, LPATH=_LPATH, LIBS=_LIBS)
+        return config
+
+    def create_configuro(self):
+        # Create some defines to pass into Configuro
+        # so that the app.cfg script knows the chipset and product for which it is being compiled
+        return Configuro(xdcpath= ti_bios_path + '/packages;'
+                                 + '04_Engineering/03_Workspace/sw/rtsc_platforms'
+                                 + ('/Conti/MFC400' if device == 'mid' else '')
+                                 + ';'
+                                 + '04_Engineering/04_Build/tools/edma3_lld/packages;'
+                                   '04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/osc',
+                         target='gnu.targets.arm.A8F' if device == 'mid' else 'gnu.targets.arm.A15F',
+                         platform='ca8' if device == 'mid' else 'Conti.MFC400.Vayu_CA15_0',
+                         compiler_path=self.compiler_path)
+
+    @staticmethod
+    def add_define(value):
+        return ' -D' + value
+
+    @staticmethod
+    def add_library_element(library_list, library_name):
+        ret_val = library_list + ' -l":' + launch_dir_unix + '/' + library_name + '"'
+        return ret_val
+
+    @staticmethod
+    def add_library_path(library_path):
+        return ' -L"' + library_path + '"'
+
+    def generate_better_map_file(self, environment, target_file, out_file):
+        # Determine the second .map file (used only by GCC builds)
+        dump_map_file = self.get_dump_map_file(target_file)
+
+        # Add a custom post build step that will allow us to generate a more readable map file
+        # than the default one generated by GCC
+        # Add the command as a dependency to be executed at the end
+        command = Command(dump_map_file, out_file,
+                          Action(self.make_more_readable_map_file, 'Generating $TARGET from $SOURCES')
+                          )
+        environment.Depends(command, DEFAULT_TARGETS)
+
+    ## Runs GCC's objdump.exe, which produces a more readable .map file than GCC itself.
+    #
+    # This is a helper function that is invoked after building, but only for builds using the GCC compiler.
+    # It will execute # GCC's objdump.exe utility to generate a second map file that will be placed
+    # in the output directory along side the one already produced.  T
+    # his map file is much more readable than the default one generated by GCC.
+    def make_more_readable_map_file(self, target, source, env):
+        # build a command string that can be used to execute objdump.exe
+        command = self.compiler_path_slash + '/bin/arm-none-eabi-objdump.exe --all-headers ' + out_dir \
+                  + '/' + source[0].name
+        command = command.replace('/', '\\')
+
+        # Normally we would use SCons's env.Execute() function but that does not allow redirection of the output
+        # from stdout to a file.
+        # So we will use Python's subprocess module along with a file handle to the target .map file instead
+        with open(target[0].path, 'w+') as target_file:
+            subprocess.call(command, stdout=target_file)
+
+    @staticmethod
+    def replace_variables(path):
+        path = CompilerDefault.replace_variables(path)
+
+        # Now replace the lib_ext variable, as appropriate for the current compiler
+        if device == 'mid':
+            path = path.replace('$lib_ext', 'aa8fg')
+        else:
+            path = path.replace('$lib_ext', 'aa15fg')
+
+        return path
+
+    @staticmethod
+    def replace_for_memory_layout_file(line):
+        # Replace all known keywords
+        line = line.replace('%origin%', 'ORIGIN')
+        line = line.replace('%length%', 'LENGTH')
+        line = line.replace('%sections%', 'SECTIONS')
+        line = line.replace('%obrace%', '{')
+        line = line.replace('%cbrace%', '}')
+        return line
+
+    def depends_and_prepare_linker_file(self, environment, program):
+        CompilerDefault.depends_and_prepare_linker_file(self, environment, program)
+        self.prepare_linker_file()
+
+    def prepare_linker_file(self):
+        linker_exe = env.subst('$LINK')[1:].replace('\\', '/')
+        linker_defines = env.subst('$LINKFLAGS')
+        # -E only preprocessor -P without numbering -x c to consider input_file as a c file and not as a linker file
+        cmd = linker_exe + ' -E -P -x c  -o ' + self.linker_file + ' ' + linker_defines + ' ' + linker_template_file
+        subprocess.call(cmd)
+
+    def set_env(self, environment):
+        CompilerDefault.set_env(self, environment)
+        # The TI compilers are able to output assembly listings alongside the object files, but GCC cannot do this.
+        # It outputs assembly language *instead* of objects, so we will get it to use the .S suffix to reflect this
+        if assembly:
+            environment.Replace(OBJSUFFIX='.S')
+
+        environment.Replace(INCPREFIX='-I ')
+        environment.Replace(TEMPFILEPREFIX='@')
+        environment.Replace(_CPPINCFLAGS="")
+
+
+class CompilerDsp(CompilerDefault):
+    def __init__(self):
+        CompilerDefault.__init__(self, name='ti_c6000', version=ti_c6000_compiler_version, exe='cl6x.exe')
+
+    def compute_config(self):
+        _CC = self.AS
+        _LINK = _CC
+        _CCCOM = '${TEMPFILE("$CC $CCFLAGS $_CCCOMCOM $CFLAGS -fe $TARGET -fr ' + out_dir + ' -fs ' + out_dir \
+                 + ' $SOURCES.abspath --asm_directory=$TARGET.dir")}'
+        _CFLAGS = self._DSPBaseCFLAGS \
+                  + ' --abi=eabi --gen_func_subsections --define=USE_OLD_ADC_CODING_STYLE_TYPEDEFS' \
+                    ' --display_error_number --diag_warning=225 --diag_suppress=1 --diag_suppress=9 --diag_suppress=383 --diag_suppress=2019 --diag_suppress=230 --diag_wrap=off --cmd_file="' \
+                  + config_pkg_compiler_file + '"'
+        _LFLAGS = '-q --abi=eabi -g --diag_warning=225 --diag_error=10281 --display_error_number -z --reread_libs --warn_sections ' \
+                  '--diag_wrap=off --rom_model' + self._BaseLFLAGS
+        _LIBS = '-llibc.a'
+        _LPATH = '-i' + self.compiler_path + '\\lib'
+        if device == 'mid':
+            _CFLAGS += ' -mv6740'
+        else:
+            _CFLAGS += ' -mv6600'
+
+        # If the device is Vision Low then alter the EDMA3 library path to pick up the correct libraries
+        if device == 'low':
+            _LPATH = _LPATH.replace('/tda2xx', '/tda3xx')
+        config = dict(CC=_CC, LINK=_LINK, CCCOM=_CCCOM, CFLAGS=_CFLAGS, LFLAGS=_LFLAGS, LPATH=_LPATH, LIBS=_LIBS)
+        return config
+
+    def create_configuro(self):
+        if device != 'mid':
+            if target == 'dsp_1':
+                platform = 'Vayu_DSP1'
+            else:
+                platform = 'Vayu_DSP'
+        else:
+            platform = 'dsp'
+
+        return Configuro(xdcpath= ti_bios_path + '/packages;'
+                                 '04_Engineering/03_Workspace/sw/xdc_packages;'
+                                 '04_Engineering/03_Workspace/sw/rtsc_platforms/Conti/MFC400;' \
+                                 '04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/osc',
+                         target='ti.targets.elf.C674' if device == 'mid' else 'ti.targets.elf.C66',
+                         platform=platform,
+                         compiler_path=self.compiler_path,
+                         options='-g --optimize_with_debug')
+
+    @staticmethod
+    def replace_variables(path):
+        path = CompilerDefault.replace_variables(path)
+
+        # Now replace the lib_ext variable, as appropriate for the current compiler
+        if device == 'mid':
+            path = path.replace('$lib_ext', 'ae674')
+        else:
+            path = path.replace('$lib_ext', 'ae66')
+
+        return path
+
+
+class CompilerEve(CompilerDefault):
+    def __init__(self):
+        CompilerDefault.__init__(self, name='ti_arp32', version=ti_arp32_compiler_version, exe='cl-arp32.exe',
+                                 archive_exe='ar-arp32.exe')
+
+    def compute_config(self):
+        _CC = self.AS + " "
+        _LINK = _CC
+        _CCCOM = '${TEMPFILE("$CC $CCFLAGS $_CCCOMCOM $CFLAGS -fe $TARGET -fr ' + out_dir + ' -fs ' + out_dir \
+                 + ' $SOURCES.abspath --asm_directory=$TARGET.dir")}'
+        _CFLAGS = self._BaseCFLAGS + ' -v210 --define=__ARP32__ --diag_warning=225 --diag_suppress=1 --diag_suppress=9 --diag_suppress=383 --diag_suppress=2019 --diag_suppress=230 --display_error_number'
+        _LFLAGS = '-q -v210 -g --gen_func_subsections --diag_warning=225 --display_error_number -z --reread_libs' \
+                  ' --warn_sections --rom_model' + self._BaseLFLAGS
+        _LPATH = '-i' + self.compiler_path + '\\lib'
+        _LIBS = '-llibc.a'
+        config = dict(CC=_CC, LINK=_LINK, CCCOM=_CCCOM, CFLAGS=_CFLAGS, LFLAGS=_LFLAGS, LPATH=_LPATH, LIBS=_LIBS)
+        return config
+
+    @property
+    def link_com_default(self):
+        return '${TEMPFILE("$LINK $LINKFLAGS $_LIBDIRFLAGS $_PDB $SOURCES $_LIBFLAGS ' + self.linker_file + ' ' \
+               + self.memory_layout_file + ' -o $TARGET -m ' + self.map_file + '")}'
+
+    def add_specific_include_path(self, some_include_dirs):
+        some_include_dirs.append(self.compiler_path_slash + '/include')
+        some_include_dirs.append(self.compiler_path_slash + '/include/vcop')
+
+
+class CompilerArmM(CompilerDefault):
+    def __init__(self):
+        CompilerDefault.__init__(self, name='ti_arm', version=ti_arm_compiler_version, exe='armcl.exe')
+
+    def create_configuro(self):
+        return Configuro(xdcpath= ti_bios_path + '/packages;'
+                                 '04_Engineering/03_Workspace/sw/rtsc_platforms;'
+                                 '04_Engineering/04_Build/tools/edma3_lld/packages;'
+                                 '04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/osc;'
+                                 + (ti_ndk_path + '/packages;' + ti_nsp_path + '/packages;' if product in ['hfl110', 'hfl110ta10'] else ''),
+                         target='ti.targets.arm.elf.M3' if device == 'mid' else 'ti.targets.arm.elf.M4',
+                         platform='Conti.MFC400.M3VPSS' if target == 'arm-m_1' else 'Conti.MFC400.M3VIDEO',
+                         compiler_path=self.compiler_path,
+                         options='-g --optimize_with_debug')
+
+    def compute_config(self):
+        _CC = self.AS
+        _LINK = _CC
+        _CCCOM = '${TEMPFILE("$CC $CCFLAGS $_CCCOMCOM $CFLAGS -fe $TARGET -fr ' + out_dir + ' -fs ' + out_dir \
+                 + ' $SOURCES.abspath --asm_directory=$TARGET.dir")}'
+        _CFLAGS = self._BaseCFLAGS + ' --gen_func_subsections --abi=eabi -me' \
+                  + self.add_define('USE_OLD_ADC_CODING_STYLE_TYPEDEFS') + self.add_define('VPS_VIP_BUILD') \
+                  + ' --diag_suppress=193 --diag_error=10210 --diag_error=262 --diag_error=891 --diag_error=10247 --diag_suppress=1 --diag_suppress=9 --diag_suppress=383 --diag_suppress=230 --diag_suppress=2019' \
+                    ' --display_error_number --cmd_file="' + config_pkg_compiler_file + '"'
+        _LFLAGS = '-q --abi=eabi -me -g --diag_error=10210 --diag_error=262 --diag_error=891 --diag_error=10247' \
+                  ' --display_error_number -z --reread_libs --warn_sections --rom_model' + self._BaseLFLAGS
+        _LIBS = '-llibc.a'
+        _LPATH = '-i' + self.compiler_path + '\\lib'
+        if device == 'mid':
+            _CFLAGS += ' -mv7M3'
+        else:
+            _CFLAGS += ' -mv7M4'
+
+        # For the SBL we are writing over compiler and linker flags as they differ from the SoC building.
+        if target == 'sbl' or target == 'sbl_loop' or target == 'presbl':
+            _CFLAGS = self._SBLBaseCFLAGS + ' -mv7M4 --code_state=16 --abi=eabi -me --display_error_number' \
+                                            ' --diag_warning=225 --diag_wrap=off'
+            _LFLAGS = ' -mv7M4 --code_state=16 --abi=eabi -me --display_error_number --diag_warning=225' \
+                      ' --diag_wrap=off -z  -m"SBL.map" --heap_size=0x800 --stack_size=0x800 --reread_libs' \
+                      ' --warn_sections --display_error_number --diag_suppress=10063 --diag_wrap=off' \
+                      ' --xml_link_info="SBL_linkInfo.xml" --entry_point=sbl_start' \
+                      ' --retain=SblIPU1Core1Init --rom_model'
+            # Following doesn't seem to work for whatever reason.
+            # As a workaround there's full "libc.a" include path in the SConscript_sbl for now.
+            #   _LPATH = ' -i"04_Engineering/04_Build/tools/arm/lib"'
+            #   _LIBS = ' -llibc.a'
+            _LPATH = ''
+            _LIBS = '-l"' + self.compiler_path + '\\lib\\libc.a"'
+
+        # If the device is Vision Low
+        # then alter the EDMA3 and starterware library paths to pick up the correct libraries
+        if device == 'low':
+            _LPATH = _LPATH.replace('/tda2xx', '/tda3xx')
+        config = dict(CC=_CC, LINK=_LINK, CCCOM=_CCCOM, CFLAGS=_CFLAGS, LFLAGS=_LFLAGS, LPATH=_LPATH, LIBS=_LIBS)
+        return config
+
+    @staticmethod
+    def replace_variables(path):
+        path = CompilerDefault.replace_variables(path)
+
+        # Now replace the lib_ext variable, as appropriate for the current compiler
+        if device == 'mid':
+            path = path.replace('$lib_ext', 'aem3')
+        else:
+            path = path.replace('$lib_ext', 'aem4')
+
+        return path
+
+    def add_specific_include_path(self, some_include_dirs):
+        if target == 'sbl' or target == 'sbl_loop' or target == 'presbl':
+          some_include_dirs.append(self.compiler_path_slash + '/include')
+        else:
+          pass
+
+
+## Depending on the target device
+#  set the chipset variable so that it can be used for replacing $chipset in SConscript files
+def compute_chipset(a_device):
+    if a_device == 'low':
+        a_chipset = 'tda3xx'
+    elif a_device == 'mid':
+        a_chipset = 'ti814x'
+    else:
+        a_chipset = 'tda2xx'
+    return a_chipset
+
+
+## Perform some checks to see if the product being compiled is one of the original lead products or a follow up
+# product that conforms to the new naming convention.  Based on these findings, create a family name that can
+# be checked in the SCons scripts.  As above, we will default to building for SMFC400"""
+def compute_family(a_product):
+    # "lower()" for MFC4T0 legacy reasons
+    if a_product.lower().startswith('mfc') or a_product.startswith('hfl'):
+        a_family = 'mono'
+    elif a_product.startswith('ars'):
+        a_family = 'radar'
+    else:
+        a_family = 'stereo'
+    return a_family
+
+
+def compute_out_dir(a_target, a_product, a_launch_dir_unix):
+    the_out_dir = a_launch_dir_unix + '/04_Engineering/04_Build/out/' + a_product.lower()
+    if debug:
+        the_out_dir += '/debug_' + a_target
+    else:
+        the_out_dir += '/release_' + a_target
+
+    # Create the output directory, so that it can be written into by functions and tools that depend on it
+    # already being there
+    if not os.path.exists(the_out_dir):
+        try:
+            os.makedirs(the_out_dir)
+        except os.error:
+            print 'Warning: Unable to create output directory'
+    return the_out_dir
+
+ 
+def compute_product_dir(a_target, a_product, a_launch_dir_unix):
+    the_product_dir = a_launch_dir_unix + '/04_Engineering/04_Build/out/' + a_product.lower()
+    return the_product_dir
+    
+
+def compute_linker_template_file(a_target, a_device):
+    # For the SBL linkerFiles are also different, so we'll be setting that correctly here
+    a_linker_template_path = launch_dir_unix + '/04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/'
+    if a_target == 'sbl' or a_target == 'sbl_loop':
+        if a_device == 'low':
+            a_linker_template_path += 'mc_vl/linker_sbl.cmd'
+        else:
+            a_linker_template_path += 'mc_vh/linker_sbl.cmd'
+    elif a_target == 'presbl':
+        if a_device == 'low':
+            a_linker_template_path += 'mc_vl/linker_' + a_target + '.cmd'
+    elif a_target == 'eve_memtest':
+        if a_device == 'high':
+            a_linker_template_path += 'mc_vh/linker_' + a_target + '.cmd'
+        elif a_device == 'low':
+            a_linker_template_path += 'mc_vl/linker_' + a_target + '.cmd'
+    else:
+        a_linker_template_path += 'mc/linker_' + a_target + '.cmd'
+    return a_linker_template_path
+
+
+def export_public_functions():
+    Export('addException')
+    Export('addCompilerDefine')
+    Export('addLinkerDefine')
+    Export('appendConfiguroDefine')
+    Export('addDirs')
+    Export('addFiles')
+    Export('addSourceDir')
+    Export('addLibrary')
+    Export('addLibraries')
+    Export('compile')
+    Export('removeFiles')
+    Export('setCompiler')
+    Export('setIncludePath')
+    Export('setBaseProject')
+    Export('addkfiles')
+    Export('addIncludePath')
+    Export('addSources')
+    Export('addComponentDefine')
+
+
+def export_public_variables():
+    Export('device')
+    Export('env')
+    Export('family')
+    Export('product')
+    Export('unit_test_only')
+
+
+def launch_sconscript(a_target, a_out_dir):
+    conscript_file = 'SConscript_' + a_target
+    print 'Launching SConscript file ' + conscript_file
+    SConscript(conscript_file, variant_dir=a_out_dir, duplicate=0)
+
+
+def launch_sconscript_cantata(a_product, a_target):
+    enable_cantata = ARGUMENTS.get('enable_cantata')
+    if enable_cantata is not None:
+        cantata_base_dir = os.path.join(GetLaunchDir(), '04_Engineering/04_Build/ModuleTests',
+                                        a_product.lower(), a_target, 'Cantata').replace(os.sep, '/')
+        Export('config_pkg_compiler_file')
+        Export('cantata_base_dir')
+        Export('source')
+        SConscript('Sconscript_cantata', variant_dir=cantata_base_dir, duplicate=0)
+
+
+def launch_sconscript_courage(a_product, a_target):
+    courage_parameters = ARGUMENTS.get('courage_parameters')
+    if courage_parameters is not None:
+        courage_base_dir = \
+            os.path.join(GetLaunchDir(), '04_Engineering/04_Build/ModuleTests',
+                         a_product.lower(), a_target).replace(os.sep, '/')
+        Export('config_pkg_compiler_file')
+        SConscript('Sconscript_courage', variant_dir=courage_base_dir, duplicate=0)
+
+# Helper function to check tool version
+def check_tool_version( file_line, tool_name, tool_version ):
+    retrun_value = 0
+    if (tool_name in file_line):
+        if (tool_version not in file_line):
+            # inform user about the tool version change
+            print ' '
+            print 'Tool version change:             ' + tool_name + ' changed to ' + tool_version
+            retrun_value = 1
+    return retrun_value
+
+# At every build check the the tool versions from the last build with the current build
+# if tool version has / versions have changed...delete the necessary output directories to force a rebuild of it
+# store the tool versions info of the build in a file and 
+# store it under '04_Engineering\04_Build\out\<product> for example 'mfc431' 
+def check_tool_versions(a_target, a_product, a_launch_dir_unix):
+    out_dir_product = a_launch_dir_unix + '/04_Engineering/04_Build/out/' + a_product.lower()
+    filepath_in = out_dir_product + '/tool_versions.txt'
+    fault_cnt = 0
+    # Check if tool version file exists
+    if os.path.exists(filepath_in):
+        file_in = open(filepath_in, "r")
+        for line in file_in:
+            fault_cnt += check_tool_version(line, 'ti_bios_version'          , ti_bios_version          )
+            fault_cnt += check_tool_version(line, 'ti_xdc_tool_version'      , ti_xdc_tool_version      )
+            fault_cnt += check_tool_version(line, 'gcc_arm_compiler_version' , gcc_arm_compiler_version )
+            fault_cnt += check_tool_version(line, 'ti_arm_compiler_version'  , ti_arm_compiler_version  )
+            fault_cnt += check_tool_version(line, 'ti_arp32_compiler_version', ti_arp32_compiler_version)
+            fault_cnt += check_tool_version(line, 'ti_c6000_compiler_version', ti_c6000_compiler_version)
+        file_in.close()
+    else:
+        # The tool version info is not available...force a rebuild 
+        fault_cnt = 1  
+    if fault_cnt != 0:
+        # delete the needed out directory and update the file "tool_versions.txt"
+        if os.path.exists(out_dir_product):
+            print ' '
+            print 'Delete all in out directory:     ' + out_dir_product
+            print ' '
+            for dirnames in os.listdir(out_dir_product):
+                sub_directory = out_dir_product + '/' + dirnames
+                if os.path.exists(sub_directory):
+                    os.chmod(sub_directory, stat.S_IWRITE)
+                    if os.path.isfile(sub_directory):
+                        os.remove(sub_directory)               # remove the file
+                    elif os.path.isdir(sub_directory):
+                        shutil.rmtree(sub_directory)           # remove dir and all contains
+                    else:
+                        print 'Not possible to delete:          ' + sub_directory
+        else:
+            # Create out directory
+            os.makedirs(out_dir_product)
+
+        print 'Update tool version file:        ' + filepath_in
+        print ' '
+        print ' '
+
+        with open(filepath_in, "w") as file_out:
+            file_out.write('ti_bios_version           = ' + ti_bios_version + '\n')
+            file_out.write('ti_xdc_tool_version       = ' + ti_xdc_tool_version + '\n')
+            file_out.write('gcc_arm_compiler_version  = ' + gcc_arm_compiler_version + '\n')
+            file_out.write('ti_arm_compiler_version   = ' + ti_arm_compiler_version + '\n')
+            file_out.write('ti_arp32_compiler_version = ' + ti_arp32_compiler_version + '\n')
+            file_out.write('ti_c6000_compiler_version = ' + ti_c6000_compiler_version + '\n')
+            file_out.close()
+
+# ################################## MAIN #############################
+# Avoid warnings about missing Visual Studio compiler, which we don't need anyway
+SCons.Warnings.suppressWarningClass(SCons.Warnings.VisualCMissingWarning)
+
+exceptions = []
+include_dirs = []
+source = []
+source_dirs = []
+user_libs = []
+
+# Read any arguments that were passed in on the command line
+assembly = bool(int(ARGUMENTS.get('assembly', 0)))
+debug = bool(int(ARGUMENTS.get('debug', 1)))
+keep_bios = bool(int(ARGUMENTS.get('keepbios', 0)))
+list_only = bool(int(ARGUMENTS.get('listonly', 0)))
+device = ARGUMENTS.get('chipset', 0)
+product = ARGUMENTS.get('product', 0)
+target = ARGUMENTS.get('target', 0)
+unit_test_only = bool(int(ARGUMENTS.get('unit_test_only', 0)))
+
+family = compute_family(product)
+chipset = compute_chipset(device)
+base_project = 'mfc5J3'
+
+env = Environment(ENV=os.environ)
+
+launch_dir_unix = compute_launch_dir_unix()
+
+check_tool_versions(target, product, launch_dir_unix)
+
+out_dir = compute_out_dir(target, product, launch_dir_unix)
+product_dir = compute_product_dir(target, product, launch_dir_unix)
+
+# File for storing arm-gcc compiler options. To overcome the cmdline size limit
+compiler_options = os.path.join(GetLaunchDir(), "compilerOptions")
+app_config_file = launch_dir_unix + '/04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/osc/app_' + target + '.cfg'
+config_pkg_dir = out_dir + '/configPkg'
+config_pkg_compiler_file = config_pkg_dir + '/compiler.opt'
+
+linker_template_file = compute_linker_template_file(target, device)
+
+list_file = out_dir + '/' + target + '.lst'
+
+export_public_functions()
+export_public_variables()
+
+launch_sconscript(target, out_dir)
+launch_sconscript_cantata(product, target)
+launch_sconscript_courage(product, target)

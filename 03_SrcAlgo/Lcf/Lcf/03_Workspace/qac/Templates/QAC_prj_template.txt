@@ -1,0 +1,12 @@
+VersionTag45
+ProjectDataflowFile=C:\Tools\QAC\8.1.1-R\personalities\Preset_3.p_d
+StartProjectMarker
+FolderName=%s
+SourcePath=.\..\..\..\..\..\..\04_Engineering\01_Source_Code\%s
+OutputPath=.\output\
+SubsPers=.\..\common\MessagePers\ADAS_%s.p_s
+AnalPers=%s_AnalyserPers_%s.p_a
+CompPers=%s
+%s
+EndContainedFilesMarker
+EndSubProjectMarker

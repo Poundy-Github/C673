@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00045.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2022-01-08T15:01:08+08:00" UUID="761d9f4f-b565-46c4-b7d2-752d9838620b">
+      <SHORT-NAME>HeartbeatDet</SHORT-NAME>
+      <ELEMENTS>
+        <COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE T="2022-01-08T15:15:12+08:00" UUID="bcdd1592-ccff-499b-afdf-b08f30b7ce46">
+          <SHORT-NAME>HeartbeatDet</SHORT-NAME>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR T="2022-09-28T20:41:24+08:00" UUID="307e1f53-c76b-48ed-8927-8af0d1b50569">
+              <SHORT-NAME>HeartbeatDet_IB_1</SHORT-NAME>
+              <EVENTS>
+                <INIT-EVENT T="2022-09-28T20:41:24+08:00" UUID="8bdabcaf-4ffa-4db3-b76a-3ac3d1a484e9">
+                  <SHORT-NAME>Cdd_HeartbeatDet_InitFunction_InitEvent</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/HeartbeatDet/HeartbeatDet/HeartbeatDet_IB_1/Cdd_HeartbeatDet_InitFunction</START-ON-EVENT-REF>
+                </INIT-EVENT>
+                <TIMING-EVENT T="2022-09-28T20:40:44+08:00" UUID="d35e65e2-f559-4d5f-a470-a596143218a9">
+                  <SHORT-NAME>Cdd_HeartbeatDet_MainFunction_TimingEvent</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/HeartbeatDet/HeartbeatDet/HeartbeatDet_IB_1/Cdd_HeartbeatDet_MainFunction</START-ON-EVENT-REF>
+                  <PERIOD>0.005</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY T="2022-09-28T20:41:24+08:00" UUID="DCE:7e378802-10b7-415e-84ad-0447232f1d58">
+                  <SHORT-NAME>Cdd_HeartbeatDet_InitFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Cdd_HeartbeatDet_InitFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2022-09-28T20:40:44+08:00" UUID="DCE:6413afd3-cb64-442c-83d0-d9345ef88c2f">
+                  <SHORT-NAME>Cdd_HeartbeatDet_MainFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Cdd_HeartbeatDet_MainFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION T="2021-12-30T10:37:55+08:00" UUID="1cd36975-ce46-4c3d-97a5-9c900221f81f">
+          <SHORT-NAME>HeartbeatDetImplementation</SHORT-NAME>
+          <CODE-DESCRIPTORS>
+            <CODE T="2021-12-30T10:35:18+08:00" UUID="43a66001-f755-4612-977d-ec2959bdfa1d">
+              <SHORT-NAME>CodeGen</SHORT-NAME>
+              <ARTIFACT-DESCRIPTORS>
+                <AUTOSAR-ENGINEERING-OBJECT T="2021-12-30T10:35:06+08:00">
+                  <SHORT-LABEL>HeartbeatDet_C</SHORT-LABEL>
+                  <CATEGORY>SWSRC</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+                <AUTOSAR-ENGINEERING-OBJECT T="2021-12-30T10:35:18+08:00">
+                  <SHORT-LABEL>HeartbeatDet_H</SHORT-LABEL>
+                  <CATEGORY>SWHDR</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+              </ARTIFACT-DESCRIPTORS>
+            </CODE>
+          </CODE-DESCRIPTORS>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <RESOURCE-CONSUMPTION T="2021-12-30T10:38:47+08:00" UUID="DCE:34399a30-0220-4a05-8a4e-b4dc4bf535dc">
+            <SHORT-NAME>HeartbeatDet_Resource</SHORT-NAME>
+            <MEMORY-SECTIONS>
+              <MEMORY-SECTION T="2021-12-26T13:27:58+08:00" UUID="d238fe13-c0b3-4c40-bed7-4d0e29744227">
+                <SHORT-NAME>CODE</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2021-12-26T13:29:44+08:00" UUID="a548b957-00ba-4b2a-a451-23ecc9bb32b2">
+                <SHORT-NAME>VAR_UNSPECIFIED</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/VAR</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+            </MEMORY-SECTIONS>
+          </RESOURCE-CONSUMPTION>
+          <SW-VERSION>0.0.1</SW-VERSION>
+          <VENDOR-ID>0</VENDOR-ID>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/HeartbeatDet/HeartbeatDet/HeartbeatDet_IB_1</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-0-3.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>DemoApplication</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>CompuMethods</SHORT-NAME>
+          <ELEMENTS>
+            <COMPU-METHOD>
+              <SHORT-NAME>ComM_ModeTypeValues</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>NO_COMMUNICATION</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>SILENT_COMMUNICATION</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FULL_COMMUNICATION</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>ConstantSpecifications</SHORT-NAME>
+          <ELEMENTS>
+            <CONSTANT-SPECIFICATION>
+              <SHORT-NAME>CONST_0c0f918b8f394b8586f853bd5</SHORT-NAME>
+              <VALUE-SPEC>
+                <NUMERICAL-VALUE-SPECIFICATION>
+                  <SHORT-LABEL>CONST_0c0f918b8f394b8586f853bd5</SHORT-LABEL>
+                  <VALUE>0</VALUE>
+                </NUMERICAL-VALUE-SPECIFICATION>
+              </VALUE-SPEC>
+            </CONSTANT-SPECIFICATION>
+            <CONSTANT-SPECIFICATION>
+              <SHORT-NAME>CONST_951406b330e947ed9394eb477</SHORT-NAME>
+              <VALUE-SPEC>
+                <NUMERICAL-VALUE-SPECIFICATION>
+                  <SHORT-LABEL>CONST_951406b330e947ed9394eb477</SHORT-LABEL>
+                  <VALUE>0</VALUE>
+                </NUMERICAL-VALUE-SPECIFICATION>
+              </VALUE-SPEC>
+            </CONSTANT-SPECIFICATION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>ImplementationDataTypes</SHORT-NAME>
+          <ELEMENTS>
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>ComM_ModeType</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DemoApplication/CompuMethods/ComM_ModeTypeValues</COMPU-METHOD-REF>
+                    <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE T="2022-03-11T16:50:03+08:00">
+          <SHORT-NAME>PortInterfaces</SHORT-NAME>
+        </AR-PACKAGE>
+        <AR-PACKAGE T="2022-03-11T16:49:34+08:00">
+          <SHORT-NAME>SwComponentTypes</SHORT-NAME>
+          <ELEMENTS>
+            <COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE T="2021-09-22T13:27:05+08:00" UUID="a6df046f-101d-4fe2-b1b2-c86294ea2c58">
+              <SHORT-NAME>CtCdSPI</SHORT-NAME>
+              <INTERNAL-BEHAVIORS>
+                <SWC-INTERNAL-BEHAVIOR T="2021-09-19T10:57:56+08:00" UUID="ef4c6967-3d50-4c79-a2a0-0f4ddf9fc4ad">
+                  <SHORT-NAME>CtCdSPI_IB</SHORT-NAME>
+                  <ADMIN-DATA><SDGS><SDG GID="_conversion"><SDG GID="INIT-EVENT"><SDG GID="SHORT-NAME"><SD GID="_mixed">CtCdSPI_Init_Event</SD></SDG><SDG GID="START-ON-EVENT-REF"><SD GID="_mixed">/DemoApplication/SwComponentTypes/CtCdSPI/CtCdSPI_IB/CtCdSPI_Init</SD><SD GID="DEST">RUNNABLE-ENTITY</SD></SDG><SD GID="_mixed">
+                      
+                      
+                    </SD><SD GID="T">2021-09-19T10:56:47+08:00</SD><SD GID="UUID">949a384f-9527-417d-b115-e5d027c6fedc</SD></SDG><SD GID="_path">INIT-EVENT@1/EVENTS@2</SD><SD GID="_target">org.artop.aal.autosar411</SD></SDG></SDGS></ADMIN-DATA><EVENTS>
+                    <TIMING-EVENT T="2021-09-19T11:05:01+08:00" UUID="b82b4158-bf09-4e7e-b8bf-7ab080c23c6c">
+                      <SHORT-NAME>CtCdSPI_5ms_Event</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/DemoApplication/SwComponentTypes/CtCdSPI/CtCdSPI_IB/CtCdSPI_5ms</START-ON-EVENT-REF>
+                      <PERIOD>0.005</PERIOD>
+                    </TIMING-EVENT>
+                    
+                  </EVENTS>
+                  <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+                  <RUNNABLES>
+                    <RUNNABLE-ENTITY T="2021-09-22T13:27:05+08:00" UUID="DCE:4c036d8f-d359-457e-abf7-c15f43a03d4d">
+                      <SHORT-NAME>CtCdSPI_5ms</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>CtCdSPI_5ms</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY T="2021-09-19T10:56:47+08:00" UUID="DCE:33b57bcb-5b3c-4406-81a1-c39c80f11a19">
+                      <SHORT-NAME>CtCdSPI_Init</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>CtCdSPI_Init</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                  </RUNNABLES>
+                  <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+                </SWC-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE>
+            <COMPOSITION-SW-COMPONENT-TYPE T="2022-03-11T16:47:40+08:00">
+              <SHORT-NAME>TopLevelComposition</SHORT-NAME>
+              <COMPONENTS>
+                <SW-COMPONENT-PROTOTYPE T="2021-09-19T10:55:50+08:00" UUID="d8c6d211-127d-4c28-9a66-62df2d1e8b92">
+                  <SHORT-NAME>CtCdSPI</SHORT-NAME>
+                  <TYPE-TREF DEST="COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE">/DemoApplication/SwComponentTypes/CtCdSPI</TYPE-TREF>
+                </SW-COMPONENT-PROTOTYPE>
+              </COMPONENTS>
+            </COMPOSITION-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE T="2022-03-11T16:47:40+08:00">
+          <SHORT-NAME>SwcImplementations</SHORT-NAME>
+          <ELEMENTS>
+            <SWC-IMPLEMENTATION T="2021-09-19T10:58:33+08:00" UUID="bec7a8dc-0075-428c-a7c8-dc7a6b2c3aa6">
+              <SHORT-NAME>Impl_CtCdSPI</SHORT-NAME>
+              <CODE-DESCRIPTORS>
+                <CODE T="2021-09-19T10:58:54+08:00" UUID="df566fb2-be6f-4b6c-9000-b232b3684fa4">
+                  <SHORT-NAME>SRC</SHORT-NAME>
+                  <ARTIFACT-DESCRIPTORS>
+                    <AUTOSAR-ENGINEERING-OBJECT T="2021-09-19T10:58:54+08:00">
+                      <SHORT-LABEL>EngObject</SHORT-LABEL>
+                      <CATEGORY>SWSRC</CATEGORY>
+                    </AUTOSAR-ENGINEERING-OBJECT>
+                  </ARTIFACT-DESCRIPTORS>
+                </CODE>
+              </CODE-DESCRIPTORS>
+              <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+              <RESOURCE-CONSUMPTION T="2021-11-09T17:24:48+08:00">
+                <SHORT-NAME>Resource</SHORT-NAME>
+                <MEMORY-SECTIONS>
+                  <MEMORY-SECTION T="2021-11-10T13:12:16+08:00">
+                    <SHORT-NAME>CODE</SHORT-NAME>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+                  </MEMORY-SECTION>
+                </MEMORY-SECTIONS>
+              </RESOURCE-CONSUMPTION>
+              <SW-VERSION>1.0.0</SW-VERSION>
+              <VENDOR-ID>0</VENDOR-ID>
+              <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/DemoApplication/SwComponentTypes/CtCdSPI/CtCdSPI_IB</BEHAVIOR-REF>
+            </SWC-IMPLEMENTATION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

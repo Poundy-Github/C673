@@ -1,0 +1,28 @@
+---
+# This is the configurationInput file in which all relevant information must be collected, like outputPath, required files, ...
+# This file has to be provided as an argument to the generator.
+#
+# The paths can be given either as absolute paths or as relative paths.
+# In case there are relative path are delivered it is important that a referencePath is given at generator call (optional parameter -r).
+# All provided relPath have to be then relative to given referencePath, that the absolute path can be determined in the generator.
+# The format of given information is really important, especially the names on the left hand side.
+# It has to be always of the following format:
+#
+# <name> : <value>
+#
+# Just subtitute the <#######> in below lines with real texts/paths.
+
+
+  project                     : <The ProjectName>
+  build_unit                  : <The name of the buildUnit>
+  output_path_src             : <The outputPath - where to find the generated RTE source files and where to find/store to the Rte_Trace_Hooks.c file>
+  output_path_incl            : <The outputPath - where to find the generated RTE header files and where to find/store to the Rte_Trace_Hooks.h file>
+  gen_cfg_path                : <The path where to find/store the generator config files eg. RteInstr_BasisConfig.py>
+  rte_check_in_dir_path_src   : <The checkIn directory of generated RTE source files (This may be the same like output_path_src but this is not
+                                 necessarily the case in all projects )>
+  rte_check_in_dir_path_incl  : <The checkIn directory of generated RTE header files (This may be the same like output_path_incl but this is not
+                                 necessarily the case in all projects )>
+  rte_gen_type                : <The following rteGenerators are supported: RTE_GEN_TYPE_TRESOS, RTE_GEN_TYPE_DA_VINCI>
+  os_cfg_file                 : <The osConfigFile (incl. path) containing the osTaskID definitions like Mk_gen_user.h (ElektroBitSafetyOs) or Os_Types_Lcfg.h (VectorOs)>
+  os_type                     : <The os which is used. It can be one of the following: OS_TYPE_EB_S, OS_TYPE_EB, OS_TYPE_VECTOR>
+

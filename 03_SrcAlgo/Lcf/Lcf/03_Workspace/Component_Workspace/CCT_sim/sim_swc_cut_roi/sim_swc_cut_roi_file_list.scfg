@@ -1,0 +1,33 @@
+# config file containing source files in sim_swc_cut_roi
+
+sim_swc_cut_roi_source_files = """
+base_decoder.cpp
+cut_roi_decoder.cpp
+sim_swc_cut_roi.cpp
+stdafx.cpp
+"""
+
+sim_swc_cut_roi_include_file_paths = """
+#../../../01_Source_Code/cct/
+#../../../01_Source_Code/CML/bayes
+#../../../01_Source_Code/CML/complex
+#../../../01_Source_Code/CML/fourier
+#../../../01_Source_Code/CML/interpol
+#../../../01_Source_Code/CML/kalman
+#../../../01_Source_Code/CML/matrix
+#../../../01_Source_Code/CML/misc
+#../../../01_Source_Code/CML/stat
+#../../../01_Source_Code/CML/stl
+#../../../01_Source_Code/CML/stl/algorithm
+#../../../01_Source_Code/CML/stl/container
+#../../../01_Source_Code/CML/stl/math
+#../../../01_Source_Code/CML/trigo
+#../../../01_Source_Code/CML/vector
+#../cct_sim/sim_swc_cut_roi/
+#../../../01_Source_Code/externals/sim/include/ctk/
+#../../../01_Source_Code/externals/sim/include/sim_kernel/
+#../../../01_Source_Code/externals/sim/include/sim_swc/
+#../../../01_Source_Code/externals/sim/include/sim_adapter/
+#../../../01_Source_Code/externals/sim_extensions/
+#../../../01_Source_Code/externals/wtl/include/
+"""

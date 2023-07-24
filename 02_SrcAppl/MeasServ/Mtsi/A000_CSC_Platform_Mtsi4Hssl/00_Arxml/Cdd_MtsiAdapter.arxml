@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00045.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2022-03-10T17:19:38+08:00" UUID="d338b4f0-c903-44a6-907f-1fd25c7d8b15">
+      <SHORT-NAME>MtsiAdapter</SHORT-NAME>
+      <ELEMENTS>
+        <COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE T="2022-09-07T16:24:17+08:00" UUID="499fcc29-26b9-4fe2-a6f6-6db48ea9e7dc">
+          <SHORT-NAME>MtsiAdapter</SHORT-NAME>
+          <LONG-NAME T="2022-03-10T17:09:00+08:00">
+            <L-4 T="2022-03-10T17:09:00+08:00" L="FOR-ALL">MTSI Adapter</L-4>
+          </LONG-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE T="2022-06-20T14:17:31+08:00" UUID="7a6d521a-8b8a-4011-a0d7-07076c268178">
+              <SHORT-NAME>PP_MtsiAdapter_MtsMeasFreezeData</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_MtsMeasFreezeData</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2022-09-07T16:23:47+08:00" UUID="8a1bc2d0-63db-4aa7-a4f8-61a2aa89b32c">
+              <SHORT-NAME>ppMtsiTxCallback</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CDD_MTSI_Cbk_IF</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2022-09-07T16:24:17+08:00" UUID="989e0692-b2eb-489c-9729-209ac1d72908">
+              <SHORT-NAME>rpMtsiTxCallback</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CDD_MTSI_Cbk_IF</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR T="2022-09-07T16:26:01+08:00" UUID="436b6029-a041-4522-99da-9c93693f222c">
+              <SHORT-NAME>MtsiAdapter_IB</SHORT-NAME>
+              <EVENTS>
+                <OPERATION-INVOKED-EVENT T="2022-09-07T16:26:01+08:00" UUID="855712a2-d458-44d1-952c-40b857dd6e92">
+                  <SHORT-NAME>CDD_MTSI_Callback_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/MtsiAdapter/MtsiAdapter/MtsiAdapter_IB/CDD_MTSI_Callback</START-ON-EVENT-REF>
+                  <OPERATION-IREF T="2022-09-07T16:26:01+08:00">
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/MtsiAdapter/MtsiAdapter/ppMtsiTxCallback</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CDD_MTSI_Cbk_IF/CDD_MTSI_Callback</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <INIT-EVENT T="2022-03-10T17:10:54+08:00" UUID="0ca9dac4-861a-4da5-ac07-400d28f5ba1a">
+                  <SHORT-NAME>InitEvent_MtsiAdapter_InitFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/MtsiAdapter/MtsiAdapter/MtsiAdapter_IB/MtsiAdapter_InitFunction</START-ON-EVENT-REF>
+                </INIT-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="191e1d9c-ca92-4cc2-88d7-2b08c776d6b8">
+                  <SHORT-NAME>MeasFreezeData_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/MtsiAdapter/MtsiAdapter/MtsiAdapter_IB/MtsiAdapter_MeasFreezeData</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/MtsiAdapter/MtsiAdapter/PP_MtsiAdapter_MtsMeasFreezeData</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_MtsMeasFreezeData/MeasFreezeData</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <TIMING-EVENT T="2022-11-18T12:55:50+08:00" UUID="8a0881b5-8fbb-406f-94c6-6e7c431f8d52">
+                  <SHORT-NAME>TimingEvent_MtsiAdapter_MainFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/MtsiAdapter/MtsiAdapter/MtsiAdapter_IB/MtsiAdapter_MainFunction</START-ON-EVENT-REF>
+                  <PERIOD>0.02</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY T="2022-09-07T16:26:24+08:00" UUID="DCE:f3a25fd4-77b3-4a9b-ab3b-d80e78aaae85">
+                  <SHORT-NAME>CDD_MTSI_Callback</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SERVER-CALL-POINTS>
+                    <ASYNCHRONOUS-SERVER-CALL-POINT T="2022-09-07T16:26:24+08:00" UUID="fc9b4d57-6f26-4699-8c4a-f2a8e111ecb5">
+                      <SHORT-NAME>ascp_CDD_MTSI_Callback</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/MtsiAdapter/MtsiAdapter/rpMtsiTxCallback</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CDD_MTSI_Cbk_IF/CDD_MTSI_Callback</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </ASYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>CDD_MTSI_Callback</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2022-03-10T17:10:54+08:00" UUID="DCE:88f90e76-028c-4720-b14b-4aeb82c02248">
+                  <SHORT-NAME>MtsiAdapter_InitFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>MtsiAdapter_InitFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2022-03-10T17:12:02+08:00" UUID="DCE:4a99fcc2-35f3-42ec-b97e-87470f1bea90">
+                  <SHORT-NAME>MtsiAdapter_MainFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>MtsiAdapter_MainFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2022-06-20T14:18:01+08:00" UUID="86f0bd69-ecb8-4494-ba5e-4f196c23e702">
+                  <SHORT-NAME>MtsiAdapter_MeasFreezeData</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>MtsiAdapter_MeasFreezeData</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </COMPLEX-DEVICE-DRIVER-SW-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION T="2022-03-10T17:19:38+08:00" UUID="c3ee5ada-2752-4dc0-b010-2f11ae57a8c8">
+          <SHORT-NAME>MtsiAdapterImpl</SHORT-NAME>
+          <CODE-DESCRIPTORS>
+            <CODE T="2022-03-10T17:18:22+08:00" UUID="947280b1-c3cb-4f58-9e4e-e0b5834ed599">
+              <SHORT-NAME>CodeGen</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/MtsiAdapter/MtsiAdapter/MtsiAdapter_IB/MtsiAdapter_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/MtsiAdapter/MtsiAdapter/MtsiAdapter_IB/MtsiAdapter_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/MtsiAdapter/MtsiAdapter/MtsiAdapter_IB/MtsiAdapter_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/MtsiAdapter/MtsiAdapter/MtsiAdapter_IB/MtsiAdapter_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <ARTIFACT-DESCRIPTORS>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-03-10T17:18:22+08:00">
+                  <SHORT-LABEL>SWSRC</SHORT-LABEL>
+                  <CATEGORY>SWSRC</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-03-10T17:18:22+08:00">
+                  <SHORT-LABEL>SWHDR</SHORT-LABEL>
+                  <CATEGORY>SWHDR</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+              </ARTIFACT-DESCRIPTORS>
+            </CODE>
+          </CODE-DESCRIPTORS>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <RESOURCE-CONSUMPTION T="2022-03-10T17:19:07+08:00" UUID="DCE:88f2b3ef-bd5b-4f7a-808a-98a9fd5baf91">
+            <SHORT-NAME>Resource</SHORT-NAME>
+            <MEMORY-SECTIONS>
+              <MEMORY-SECTION T="2021-12-26T13:27:58+08:00" UUID="6473ab58-24fe-461a-89f8-e7cf2476e741">
+                <SHORT-NAME>CODE</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2021-12-26T13:29:44+08:00" UUID="a100364d-9c56-4cec-bb90-bfd3863fdd8d">
+                <SHORT-NAME>VAR_UNSPECIFIED</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/VAR</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+            </MEMORY-SECTIONS>
+          </RESOURCE-CONSUMPTION>
+          <SW-VERSION>0.0.1</SW-VERSION>
+          <VENDOR-ID>0</VENDOR-ID>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/MtsiAdapter/MtsiAdapter/MtsiAdapter_IB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

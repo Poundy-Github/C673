@@ -1,0 +1,69 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. When needed, additional file list can be added (the path should be relative to the
+#    folder containing SConstruct).
+# 3. Include all required source files in sim_adapter_src.
+# 4. Include all required include paths in sim_adapter_cpp_path.
+# 5. Put path to the header file containing algo version in algo_version_file.
+# 6. Add library paths which are used for all variants in external_lib_paths.
+# 7. Add libraries which are used for all variants in external_lib.
+# 8. When generate_sdl is True, fill pdo_src_list with list of C source files and fill 
+#    PDO_TOOL_OPTIONS_SIM with PDO option.
+# ----------------------------------------------------------------------------------------
+
+# read file list containing source files and include paths
+execfile(File("#../GIA_sim/sim_swc_fct_cpar/sim_swc_fct_cpar_file_list.scfg").abspath)
+execfile(File("#../FCT/algo_lib_file_list.scfg").abspath)
+execfile(File("#../../../02_Development_Tools/scons_tools/scons_common_config/externals_include_file_list.scfg").abspath)
+execfile(File("#../../../01_Source_Code/externals/sim_extensions/sim_extension_file_list.scfg").abspath)
+
+#-------------------------
+# source
+#-------------------------
+
+# source files to build sim_adapter_cpar
+sim_adapter_src = (Split(sim_swc_fct_cpar_source_files)
+                   )
+
+# include paths to build sim_adapter_cpar
+sim_adapter_cpp_path = (Split(sim_swc_fct_cpar_include_paths) + 
+                        Split(externals_include_paths) + 
+                        Split(fct_algo_common_include_paths) + 
+                        Split(fct_algo_include_paths))
+                        
+                    
+print sim_adapter_cpp_path
+
+algo_version_file = ("sim_swc_cparfct_version.h")
+                    
+#-------------------------
+# library
+#-------------------------
+
+# external library paths
+external_lib_paths = ["#../../../../05_Testing/06_Test_Tools/mts/lib/", 
+                      "#../../../01_Source_Code/externals/sim/lib/"]
+
+# external libraries
+external_lib = ["kernel32.lib", "user32.lib", "gdi32.lib", "winspool.lib", 
+                "comdlg32.lib", "advapi32.lib", "shell32.lib", "ole32.lib", 
+                "oleaut32.lib", "uuid.lib", "odbc32.lib", "odbccp32.lib"]
+
+#version_file = ("#../../../01_Source_Code/fct/frame/fct_ver.h")
+
+#-------------------------
+# sdl
+#-------------------------
+# determine if sdl file is generated here, not in the library  (default: False)
+generate_sdl = False
+
+#-------------------------
+# dll
+#-------------------------
+# determine if rc file must be patched
+patch_rc_file = True
+
+# compiler include path required by pdo_scan when generating sdl file
+compiler_include_paths = """
+C:/LegacyApp/VisualStudio2010/VC/INCLUDE
+"""

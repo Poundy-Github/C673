@@ -1,0 +1,20 @@
+ all                                          > 
+   cct_algo                                   > 
+     cct_algo_pc                              > algo lib: pc
+   cct_ide                                    > 
+     cct_ide_msvc                             > 
+       cct_ide_msvc_sim_swc_cut_roi           > MSVC: sim_swc_cut_roi
+       cct_ide_msvc_sim_swc_hil_client        > MSVC: sim_swc_hil_client
+       cct_ide_msvc_sim_swc_vis_image         > MSVC: sim_swc_vis_image
+       cct_ide_msvc_sim_swc_vis_perspectives  > MSVC: sim_swc_vis_perspectives
+       cct_ide_msvc_sim_swc_vis_rt_range      > MSVC: sim_swc_vis_rt_range
+       cct_ide_msvc_sim_swc_vis_velodyne      > MSVC: sim_swc_vis_velodyne
+   cct_sim                                    > 
+     cct_sim_pc                               > 
+       cct_sim_swc_cut_roi                    > PC sim: sim_swc_cut_roi
+       cct_sim_swc_hil_client                 > PC sim: sim_swc_hil_client
+       cct_sim_swc_vis_image                  > PC sim: sim_swc_vis_image
+       cct_sim_swc_vis_perspectives           > PC sim: sim_swc_vis_perspectives
+       cct_sim_swc_vis_rt_range               > PC sim: sim_swc_vis_rt_range
+       cct_sim_swc_vis_velodyne               > PC sim: sim_swc_vis_velodyne
+ unzip_tools                                  > unzip ti_tools

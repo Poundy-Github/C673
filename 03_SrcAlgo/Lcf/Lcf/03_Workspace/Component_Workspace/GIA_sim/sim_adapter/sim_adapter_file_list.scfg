@@ -1,0 +1,129 @@
+# Note:
+# 1. Rename this file and replace xxx with component name in lowercase.
+# 2. Replace xxx with component name in lowercase.
+# 3. Update each variable according to the existing source files and include paths.
+# ----------------------------------------------------------------------------------------
+
+# config file containing source files in PC sim wrapper
+
+Import("project_name")
+
+if 'ARS510' in project_name:
+    
+    gia_generated_source_files = """
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/aln/sim_conv_aln_azimuthcorrection.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/aln/sim_conv_aln_monitoring.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/aln/sim_conv_aln_rtebswin.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/aln/sim_conv_aln_rtebswout.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/aln/sim_conv_aln_rtenvm.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/aln/sim_conv_aln_rtereqhwconfig.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/aln/sim_conv_aln_siminit.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/aln/sim_conv_aln_siminitmon.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/aln/sim_conv_aln_syncref.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/awv/sim_conv_awvw_dtkodierungfkt.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/awv/sim_conv_bremsung.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/awv/sim_conv_dtffipar.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/awv/sim_conv_dtkvpar.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/awv/sim_conv_em_objectlist_custom.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/awv/sim_conv_fahrpedalwert.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/awv/sim_conv_perfdegr.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/em/sim_conv_em_bswemctrldata.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/em/sim_conv_em_objectlist_base_cam.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/em/sim_conv_em_objectlist_cam_vw.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/em/sim_conv_em_objectlist_mcam.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/em/sim_conv_em_objectlist_mcam_rt.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/em/sim_conv_em_objectlist_mcam_tja.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/em/sim_conv_em_objectlist_scam.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/em/sim_conv_productionparameter.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/em/sim_conv_road.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_acc_lever.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_bswalgo_param.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_cp_traj_state.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_dim_input_custom.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_dim_input_generic.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_dw_input_custom.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_fct_cam_lane_input_data.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_fct_custom_input.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_fct_sen_error_out.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_fct_veh_custom_input.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_head_input_custom.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_head_input_generic.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_long_ctrl_input.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_navi_input_data.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/sim_conv_si_curveobs_init.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/frs/sim_conv_frs_frsbswctrldata.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rhc/sim_conv_rhc_adj_hw_config.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rhc/sim_conv_rhc_bswin.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rsp/sim_conv_FPGA_StaticPeakList.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rsp/sim_conv_rsp_inputactl.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rsp/sim_conv_rsp_specbeamcmplxlist.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rsp/sim_conv_rsp1_nacom.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rsp/sim_conv_rsp1_noise.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rsp/sim_conv_rsp1_peaklist.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rsp/sim_conv_RSP1_PreClusterList.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rsp/sim_conv_rsp1_preclusterlistheader.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rsp/sim_conv_RSP1_RoadBeamList.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rsp/sim_conv_RSP1_syncref.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rsp/sim_conv_RSP2_ClusterList.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/rsp/sim_conv_rsp2_noise.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/vdy/sim_conv_vdy_input_data_veh_sig.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/vdy/sim_conv_VdyCtrlData.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/vdy/sim_conv_vdyerrors.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/vdy/sim_conv_veh_dyn.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/vdy/sim_conv_veh_par.cpp
+    """
+    
+    sim_adapter_source_files = """
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/sim_adapter_main.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/sim_adapter_dll.cpp
+    ../../../../00_Projects/ARS510/GIA_sim/sim_adapter/stdafx.cpp
+    """
+    
+    
+    
+    sim_adapter_source_files += gia_generated_source_files
+    
+    sim_adapter_include_file_paths = """
+	#../../../01_Source_Code/externals/zlib/contrib/
+	#../../../01_Source_Code/externals/zlib/old/
+	#../../../01_Source_Code/externals/ctk/lib/
+	#../../../01_Source_Code/externals/libpng/projects/vstudio/
+	#../../../01_Source_Code/externals/sim/include/ctk/
+	#../../../01_Source_Code/externals/wtl/
+	#../../../01_Source_Code/externals/ctk/include/
+	#../../../01_Source_Code/externals/sim/
+	#../../../01_Source_Code/externals/sim_extensions/
+	#../../../01_Source_Code/externals/libpng/
+	#../../../01_Source_Code/externals/libpng/projects/visualc71/Win32_DLL_Debug/
+	#../../../01_Source_Code/externals/zlib/zlibbin/
+	#../../../01_Source_Code/externals/zlib/contrib/dotzlib/
+	#../../../01_Source_Code/externals/libpng/projects/visualc71/Win32_LIB_Release/
+	#../../../01_Source_Code/externals/
+	#../../../01_Source_Code/externals/ctk/
+	#../../../01_Source_Code/externals/libpng/projects/visualc71/Win32_DLL_Release/
+	#../../../01_Source_Code/externals/zlib/
+	#../../../01_Source_Code/externals/libpng/projects/
+	#../../../01_Source_Code/externals/sim/include/
+	#../../../01_Source_Code/externals/sim/include/sim_kernel/
+	#../../../01_Source_Code/externals/sim/include/sim_adapter/
+	#../../../01_Source_Code/externals/libpng/projects/visualc71/Win32_LIB_Debug/
+	#../../../01_Source_Code/externals/zlib/contrib/vstudio/
+	#../../../01_Source_Code/externals/libpng/projects/visualc71/
+	#../../../01_Source_Code/externals/libpng/contrib/pngminim/
+	#../../../01_Source_Code/externals/libpng/contrib/
+    #../../../00_Projects/ARS510/GIA_sim/sim_adapter/
+    #../../../00_Projects/ARS510/GIA_sim/sim_adapter/aln/
+    #../../../00_Projects/ARS510/GIA_sim/sim_adapter/awv/
+    #../../../00_Projects/ARS510/GIA_sim/sim_adapter/em/
+    #../../../00_Projects/ARS510/GIA_sim/sim_adapter/fct/
+    #../../../00_Projects/ARS510/GIA_sim/sim_adapter/frs/
+    #../../../00_Projects/ARS510/GIA_sim/sim_adapter/include/
+    #../../../00_Projects/ARS510/GIA_sim/sim_adapter/rhc/
+    #../../../00_Projects/ARS510/GIA_sim/sim_adapter/rsp/
+    #../../../00_Projects/ARS510/GIA_sim/sim_adapter/vdy/
+    """
+	
+else:
+	 sim_adapter_source_files = " "
+	 sim_adapter_include_file_paths = " "
+	 print('SIM_ADAPTER is for ARS projects only')

@@ -1,0 +1,129 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Update each variable according to the existing 
+#    source files (relative to 04_Engineering/01_Source_Code/xxx) and 
+#    include paths (relative to the directory where 
+#    SConstruct is located in, i.e. starting with "#").
+# 3. Update project specific files with respect to project_path
+# ----------------------------------------------------------------------------------------
+
+# config file containing algo source file list
+
+Import("project_name")
+
+xxx_algo_sources_project_specific = ''
+xxx_wrapper_sources_project_specific = ''
+xxx_algo_include_paths_project_specific = ''
+xxx_algo_common_include_paths_project_specific = ''
+
+xxx_algo_sources = """
+frame/xxx_main.cpp
+"""
+
+# algo source files for the project "project_name"
+if project_name == 'MFCxxx':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	xxx_algo_sources_project_specific = ("""XXX/sw_support/xxx_cpar_init.c""")
+	
+if project_name == 'MFCxxxccyy':
+	#relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	xxx_algo_sources_project_specific = ("""
+	XXX/sw_support/xxx_cpar_init.c
+	XXX/sw_support/xxx_cpar_init2.c
+	""")
+	
+project_path = "../../00_Projects/" + project_name + "/"       
+xxx_algo_sources_project_specific_list = xxx_algo_sources_project_specific.split()
+xxx_algo_sources_project_specific_list = [project_path + rel_path for rel_path in xxx_algo_sources_project_specific_list]
+xxx_algo_sources_list = xxx_algo_sources.split()
+xxx_algo_sources = '\n'.join(xxx_algo_sources_list + xxx_algo_sources_project_specific_list)
+
+# algo pdo source files (C files for creating SDL file)
+xxx_algo_pdo_sources = """
+frame/xxx_pdo_tags_file.c
+"""
+
+# algo ti_eve_arp32 source files
+xxx_algo_ti_eve_arp32_sources = """
+ti_eve_arp32/src/xxx_kernel.k
+ti_eve_arp32/src/xxx_frame.c
+"""
+
+# algo wrapper sources to be analysed by qac
+xxx_wrapper_sources = """
+../00_Custom/xxx_wrp/xxx_wrp_main.c
+"""
+
+# algo wrapper sources for the project "project_name"
+if project_name == 'MFCxxx':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	xxx_wrapper_sources_project_specific = ("""XXX/xxx_wrpoutputs.c
+										XXX/xxx_wrp.c
+										XXX/xxx_wrp_error_check.c
+										XXX/xxx_wrp_output_checks.c"""
+										)
+
+project_path = "../../00_Projects/" + project_name + "/"       
+xxx_wrapper_sources_project_specific_list = xxx_wrapper_sources_project_specific.split()
+xxx_wrapper_sources_project_specific_list = [project_path + rel_path for rel_path in xxx_wrapper_sources_project_specific_list]
+xxx_wrapper_sources_list = xxx_wrapper_sources.split()
+xxx_wrapper_sources = '\n'.join(xxx_wrapper_sources_list + xxx_wrapper_sources_project_specific_list)
+
+# algo include paths
+xxx_algo_include_paths = """
+#../../../01_Source_Code/xxx
+#../../../01_Source_Code/xxx/frame
+#../../../01_Source_Code/00_Custom/xxx
+"""
+
+# algo include paths for the project "project_name"
+if project_name == 'MFCxxx':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	xxx_algo_include_paths_project_specific = ("""XXX
+                                           XXX/sw_support"""
+										   )
+project_path = "#../../../00_Projects/" + project_name + "/"
+xxx_algo_include_paths_project_specific_list = xxx_algo_include_paths_project_specific.split()
+xxx_algo_include_paths_project_specific_list = [project_path + rel_path for rel_path in xxx_algo_include_paths_project_specific_list]
+xxx_algo_include_paths_list = xxx_algo_include_paths.split()
+xxx_algo_include_paths = '\n'.join(xxx_algo_include_paths_list + xxx_algo_include_paths_project_specific_list)
+
+# algo common include paths
+xxx_algo_common_include_paths = """
+#../../../01_Source_Code/common
+#../../../01_Source_Code/common/rte
+"""
+
+# algo common include paths for the project "project_name"
+if project_name == 'MFCxxx':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	xxx_algo_common_include_paths_project_specific = ("""common/DGM
+                                                  common/GLOB_VH
+													common/RTE_VH/algo
+													common/RTE_VH/include"""
+													)
+project_path = "#../../../00_Projects/" + project_name + "/"
+xxx_algo_common_include_paths_project_specific_list = xxx_algo_common_include_paths_project_specific.split()
+xxx_algo_common_include_paths_project_specific_list = [project_path + rel_path for rel_path in xxx_algo_common_include_paths_project_specific_list]
+xxx_algo_common_include_paths_list = xxx_algo_common_include_paths.split()
+xxx_algo_common_include_paths = '\n'.join(xxx_algo_common_include_paths_list + xxx_algo_common_include_paths_project_specific_list)
+
+# algo ti_eve_arp32 include paths
+xxx_algo_ti_eve_arp32_include_paths = """
+#../../../01_Source_Code/xxx/ti_eve_arp32/inc
+#../../../01_Source_Code/xxx/ti_eve_arp32/src
+"""
+
+# exclude paths for qac
+qac_exclude_paths = """
+#../../../01_Source_Code/common
+#../../../01_Source_Code/common/rte
+"""
+
+# algo polyspace addtional source files
+xxx_algo_ps_additional_sources = """
+"""
+# algo polyspace additional include paths
+xxx_algo_ps_additional_include_paths = """
+
+"""

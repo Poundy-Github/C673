@@ -1,0 +1,9 @@
+[submodule "00_Projects/MFC5J3/common/RTE_VH/BSW_RTE"]
+	path = 00_Projects/MFC5J3/common/RTE_VH/BSW_RTE
+	url = git@github-am.geo.conti.de:ADAS/02_MFC5J3_C385_Transfer2Mts.git
+[submodule "00_Projects/MFC5J3CN15/common/RTE_VH/BSW_RTE"]
+	path = 00_Projects/MFC5J3CN15/common/RTE_VH/BSW_RTE
+	url = git@github-am.geo.conti.de:ADAS/02_MFC5J3_C385_Transfer2Mts.git
+[submodule "01_Source_Code/externals"]
+	path = 01_Source_Code/externals
+	url = git@github-am.geo.conti.de:ADAS/MFC5J3_Externals_Code.git

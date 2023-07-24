@@ -1,0 +1,60 @@
+# read file list containing source files and include paths
+execfile(File("#../cct_sim/sim_swc_cct/sim_swc_cct_file_list.scfg").abspath)
+execfile(File("#algo_lib_file_list.scfg").abspath)
+execfile(File("#../../../02_Development_Tools/scons_tools/scons_common_config/externals_include_file_list.scfg").abspath)
+execfile(File("#../../../01_source_code/externals/sim_extensions/sim_extension_file_list.scfg").abspath)
+
+#-------------------------
+# source
+#-------------------------
+
+# source files to build sim_swc  
+sim_swc_src = (Split(cct_sim_swc_source_files) + 
+               Split(sim_extension_source_files) + 
+               Split(sim_extension_algo_service_source_files) + 
+               Split(cct_algo_source_files) +
+               Split(pc_algo_source_files))
+
+# include paths to build sim_swc
+sim_swc_cpp_path = (Split(cct_sim_swc_include_paths) + 
+                    Split(externals_include_paths) + 
+                    Split(sim_extension_include_files_path) +
+                    Split(cct_algo_include_paths) + 
+                    Split(cct_algo_common_include_paths))
+
+# header file containing algo version
+algo_version_file = ("#../../../01_Source_Code/cct/cct_ver.h")
+
+#-------------------------
+# library
+#-------------------------
+
+# external library paths
+external_lib_paths = ["#../../../../05_Testing/06_Test_Tools/mts/lib/", 
+                      "#../../../01_source_code/externals/sim/lib/"]
+
+# external libraries
+external_lib = ["kernel32.lib", "user32.lib", "gdi32.lib", "winspool.lib", 
+                "comdlg32.lib", "advapi32.lib", "shell32.lib", "ole32.lib", 
+                "oleaut32.lib", "uuid.lib", "odbc32.lib", "odbccp32.lib"]
+
+#-------------------------
+# sdl
+#-------------------------
+
+# determine if sdl file is generated here, not in the library
+generate_sdl = False
+
+# pdo source
+pdo_src_list = Split("")
+
+# PDO tool option for sim DLL                       
+PDO_TOOL_OPTIONS_SIM = ("")
+
+# determine if rc file must be patched
+patch_rc_file = False
+
+# compiler include path required by pdo_scan when generating sdl file
+compiler_include_paths = """
+C:/LegacyApp/VisualStudio2010/VC/INCLUDE
+"""

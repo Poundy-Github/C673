@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<memento version="1.0" lastmodified="Jul 29, 2020 3:16:57 PM">
+    <HandleId CHECK_CanControllerId_Can_Aurix2GAS422="true"
+        CHECK_DemIndicatorID_Dem_TS_TxDxM6I0R0="true"
+        CHECK_DemEventId_Dem_TS_TxDxM6I0R0="true"
+        CHECK_ComHandleId_TxSignalGroupCom_TS_TxDxM6I3R0="true"
+        CHECK_AdjacentLayer_PduR_TS_TxDxM5I3R0="true"
+        CHECK_ComHandleId_RxSignalAndGroupSignal_Com_TS_TxDxM6I3R0="true"
+        CHECK_CanIfTxPduId_CanIf_TS_TxDxM6I10R0="true"
+        CHECK_ComHandleId_TxSignalAndGroupSignalCom_TS_TxDxM6I3R0="true"
+        CHECK_ComIPduHandleId_RxIPdu_Com_TS_TxDxM6I3R0="true"
+        CHECK_ComIPduHandleId_TxIPdu_PrioSortCom_TS_TxDxM6I3R0="true"
+        CHECK_ComHandleId_RxSignalGroupCom_TS_TxDxM6I3R0="true"
+        CHECK_ComIPduHandleId_TxIPdu_Com_TS_TxDxM6I3R0="true"
+        CHECK_PduRRoutingPathGroupId_PduR_TS_TxDxM5I3R0="true"
+        CHECK_CanObjectId_Can_Aurix2GAS422="true"
+        CHECK_DemClientId_Dem_TS_TxDxM6I0R0="true"
+        CHECK_DemEnableConditionId_Dem_TS_TxDxM6I0R0="true"
+        CHECK_ComIPduGroupHandleId_Com_TS_TxDxM6I3R0="true"
+        CHECK_CanIfCanRxPduId_CanIf_TS_TxDxM6I10R0="true"
+        CHECK_CanIfCtrlId_CanIf_TS_TxDxM6I10R0="true" CHECK_PduId_EcuC_TS_TxDxM5I0R0="true">
+        <__metadata/>
+    </HandleId>
+</memento>

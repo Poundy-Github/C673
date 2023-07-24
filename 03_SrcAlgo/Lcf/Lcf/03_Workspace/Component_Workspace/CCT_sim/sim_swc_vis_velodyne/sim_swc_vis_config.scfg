@@ -1,0 +1,35 @@
+# read file list containing source files and include paths
+execfile(File("#../cct_sim/sim_swc_vis_velodyne/sim_swc_vis_velodyne_file_list.scfg").abspath)
+execfile(File("#algo_lib_file_list.scfg").abspath)
+execfile(File("#../../../02_Development_Tools/scons_tools/scons_common_config/externals_include_file_list.scfg").abspath)
+
+#-------------------------
+# source
+#-------------------------
+
+# source files to build sim_swc_vis
+sim_swc_vis_src = (Split(sim_swc_vis_velodyne_source_files))
+
+# include paths to build sim_swc_vis
+sim_swc_vis_cpp_path = (Split(sim_swc_vis_velodyne_include_file_paths) + 
+                        Split(externals_include_paths) + 
+                        Split(cct_algo_common_include_paths) + 
+                        Split(cct_algo_include_paths))
+
+#-------------------------
+# library
+#-------------------------
+
+# external library paths
+external_lib_paths = ["#../../../../05_Testing/06_Test_Tools/mts/lib/", 
+                      "#../../../01_Source_Code/externals/sim/lib/"]
+
+# external libraries
+external_lib = ["kernel32.lib", "user32.lib", "gdi32.lib", "winspool.lib", 
+                "comdlg32.lib", "advapi32.lib", "shell32.lib", "ole32.lib", 
+                "oleaut32.lib", "uuid.lib", "odbc32.lib", "odbccp32.lib"]
+
+version_file = ("#../cct_sim/sim_swc_vis_velodyne/sim_swc_vis_velodyne_version.h")
+
+# patch rc file
+patch_rc_file = False

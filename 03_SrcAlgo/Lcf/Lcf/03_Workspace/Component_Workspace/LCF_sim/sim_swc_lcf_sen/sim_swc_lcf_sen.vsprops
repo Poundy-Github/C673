@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="sim_swc_lcf_sen"
+	OutputDirectory="..\..\..\..\..\05_Testing\06_Test_Tools\mts_measurement\dll\algo\lcf_sim"
+	IntermediateDirectory="$(ConfigurationName)"
+	DeleteExtensionsOnClean="*.obj;*.ilk;*.tlb;*.tli;*.tlh;*.tmp;*.rsp;*.pgc;*.pgd;*.dat;*.sdl;$(TargetPath)"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories=".;..\..\..\..\..\05_Testing\06_Test_Tools\mts\include;..\..\externals\sim\include\sim_swc;..\..\externals\sim\include\gdv;..\..\externals\sim\include\ctk;..\..\externals\sim\include\sim_kernel;..\..\externals\sim\include\sim_adapter;..\..\externals\sim_extensions;..\..\..\..\01_Source_Code\common;..\..\..\..\01_Source_Code\common\rte;..\..\..\..\01_Source_Code\algo\00_Custom\frame_sen;..\..\..\..\01_Source_Code\algo\00_Custom\frame_veh;..\..\externals\sim\include\sim_rte"
+		PreprocessorDefinitions="WIN32;_WINDOWS;_USRDLL;SIMPLG_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CFG_PROJECT=$(ConfigurationName)"
+		StructMemberAlignment="3"
+		FloatingPointModel="0"
+		FloatingPointExceptions="true"
+		AssemblerListingLocation="$(IntDir)\"
+		ObjectFile="$(IntDir)\"
+		ProgramDataBaseFileName="$(IntDir)\"
+		WarningLevel="4"
+		BrowseInformation="1"
+		UsePrecompiledHeader="0"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		SuppressStartupBanner="true"
+		OutputFile="$(OutDir)\$(ProjectName).dll"
+		ProgramDatabaseFile="$(OutDir)\$(TargetName).pdb"
+		MapFileName="$(IntDir)\$(TargetName).map"
+		AdditionalDependencies="$(IntDir)\$(TargetName).res"
+		ImportLibrary="$(IntDir)\$(TargetName).lib"
+		AdditionalLibraryDirectories="..\..\..\..\..\05_Testing\06_Test_Tools\mts\lib;..\..\externals\sim\lib;"
+		GenerateDebugInformation="true"
+		GenerateMapFile="true"
+		TargetMachine="1"
+		LinkIncremental="1"
+	/>
+	<Tool
+		Name="VCPreBuildEventTool"
+		Description="Make DLL and PDB writeable ..."
+		CommandLine="attrib -r $(TargetDir)\$(TargetName).pdb &gt; NUL&#x0D;&#x0A;attrib -r $(TargetDir)\$(TargetName).dll &gt; NUL"
+	/>
+	<Tool
+		Name="VCPreLinkEventTool"
+		Description="Build Resources ..."
+		CommandLine="rc /d &quot;NDEBUG&quot; /d &quot;_VC80_UPGRADE=0x0600&quot; /l 0x407 /I&quot;..\..\..\..\01_Source_Code\algo\00_Custom\frame_sen\&quot; /fo&quot;$(IntDir)/$(TargetName).res&quot;  $(TargetName).rc&#x0D;&#x0A;echo Make DLL and PDB writeable&#x0D;&#x0A;attrib -r $(TargetDir)\$(TargetName).pdb &gt; NUL&#x0D;&#x0A;attrib -r $(TargetDir)\$(TargetName).dll &gt; NUL&#x0D;&#x0A;"
+	/>
+	<Tool
+		Name="VCBscMakeTool"
+		SuppressStartupBanner="true"
+		OutputFile="$(IntDir)/$(TargetName).bsc"
+	/>
+	<Tool
+		Name="VCResourceCompilerTool"
+		Culture="1033"
+		AdditionalIncludeDirectories="&amp;quot;$(IntDir)&amp;quot;"
+	/>
+	<Tool
+		Name="VCMIDLTool"
+		MkTypLibCompatible="false"
+	/>
+</VisualStudioPropertySheet>

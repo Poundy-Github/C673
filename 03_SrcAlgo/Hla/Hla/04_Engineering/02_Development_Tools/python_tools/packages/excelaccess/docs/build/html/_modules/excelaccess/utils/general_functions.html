@@ -1,0 +1,274 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>excelaccess.utils.general_functions &#8212; ExcelAccess 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for excelaccess.utils.general_functions</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@author: uidq3472</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">execute_on_import</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+<div class="viewcode-block" id="local_packages"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.general_functions.local_packages">[docs]</a><span class="k">def</span> <span class="nf">local_packages</span><span class="p">(</span><span class="n">site_packages_paths</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">logging_level</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Adds given paths to sys.path in order to provide imports of packages from other directories. Could also be moved outside a function to be directly executed on import</span>
+<span class="sd">    </span>
+<span class="sd">    :param site_packages_paths: (relative) path(s) to site-package(s)</span>
+<span class="sd">    :type site_packages_paths: str or list(str)</span>
+<span class="sd">    :param logging_level: logging level to be used, defaults to logging.NOTSET</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: look for better solution</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="kn">import</span> <span class="nn">logging</span>
+    <span class="kn">import</span> <span class="nn">os.path</span>
+
+    <span class="k">if</span> <span class="n">site_packages_paths</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">defs</span> <span class="k">import</span> <span class="n">site_packages_paths</span>
+    <span class="k">if</span> <span class="n">logging_level</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">logging_level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span>
+
+    <span class="c1"># set up logging</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging_level</span><span class="p">)</span>
+    <span class="c1"># avoid multiple handlers respectively logs</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">):</span>
+        <span class="n">stream_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+        <span class="n">stream_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging_level</span><span class="p">)</span>
+        <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;(l.</span><span class="si">%(lineno)d</span><span class="s2">) - </span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(name)s</span><span class="s2"> - </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">stream_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">stream_handler</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sys.path (unmodified): </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+
+    <span class="c1">#  check for iterator (list)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">site_packages_paths</span><span class="p">,</span> <span class="s2">&quot;__iter__&quot;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">site_packages_path</span> <span class="ow">in</span> <span class="n">site_packages_paths</span><span class="p">:</span>
+            <span class="n">add_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="n">site_packages_path</span><span class="p">))</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Adding &#39;</span><span class="si">{0}</span><span class="s2">&#39; so sys.path.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">add_path</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="n">add_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">add_path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># only one path</span>
+        <span class="n">add_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="n">site_packages_paths</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">add_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">add_path</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Adding &#39;</span><span class="si">{0}</span><span class="s2">&#39; so sys.path.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">site_packages_paths</span><span class="p">)))</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sys.path (modified): </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">))</span></div>
+
+
+<span class="k">if</span> <span class="n">execute_on_import</span><span class="p">:</span>
+    <span class="n">local_packages</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="recursive_print"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.general_functions.recursive_print">[docs]</a><span class="k">def</span> <span class="nf">recursive_print</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dpth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Recursively prints nested elements.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="c1"># src = unicode(src).encode(&quot;utf-8&quot;)</span>
+    <span class="c1">#  if unicode is needed</span>
+    <span class="n">tabs</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="nb">max</span><span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">*</span> <span class="mi">4</span>  <span class="c1"># or 2 or 8 or...</span>
+    <span class="n">brace</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%s%s%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;[&#39;</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="s1">&#39;]&#39;</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span>
+
+    <span class="n">out_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">src</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">out_str</span> <span class="o">+=</span> <span class="n">tabs</span><span class="p">(</span><span class="n">dpth</span><span class="p">)</span> <span class="o">+</span> <span class="n">brace</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">dpth</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">out_str</span> <span class="o">+=</span> <span class="n">recursive_print</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dpth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">litem</span> <span class="ow">in</span> <span class="n">src</span><span class="p">:</span>
+            <span class="n">out_str</span> <span class="o">+=</span> <span class="n">recursive_print</span><span class="p">(</span><span class="n">litem</span><span class="p">,</span> <span class="n">dpth</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">key</span><span class="p">:</span>
+            <span class="n">out_str</span> <span class="o">+=</span> <span class="n">tabs</span><span class="p">(</span><span class="n">dpth</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">src</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">out_str</span> <span class="o">+=</span> <span class="n">tabs</span><span class="p">(</span><span class="n">dpth</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;- </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">src</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="k">return</span> <span class="n">out_str</span></div>
+
+
+<div class="viewcode-block" id="get_dict_key_for_name"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.general_functions.get_dict_key_for_name">[docs]</a><span class="k">def</span> <span class="nf">get_dict_key_for_name</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Simply returns the provided string as lowercase string. (in order to have a centralized convention)</span>
+<span class="sd">    </span>
+<span class="sd">    :param str name: name string</span>
+<span class="sd">    :return: name string lowercase</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_doxygen"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.general_functions.get_doxygen">[docs]</a><span class="k">def</span> <span class="nf">get_doxygen</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">brief</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">param_desc</span><span class="p">,</span> <span class="n">return_val</span><span class="p">,</span> <span class="n">line_border</span><span class="p">,</span> <span class="n">line_start</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;creates and returns a doygen as formatted string TODO: fill better&quot;&quot;&quot;</span>
+    <span class="c1"># return get_doxygen2(fn_name, fn_name, brief, [description, param, fn_name, brief], param, param, param, param,</span>
+    <span class="c1">#                     param_desc, return_val, line_border, line_start)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\n</span><span class="s2">/* *******************************************************************************</span>
+<span class="s2">  @fn             </span><span class="si">{fn_name}</span><span class="s2"> */ /*!</span>
+
+<span class="s2">  @brief          </span><span class="si">{brief}</span><span class="s2"></span>
+
+<span class="s2">  @description    </span><span class="si">{description}</span><span class="s2"></span>
+
+<span class="s2">  @param[in]      </span><span class="si">{param_line}</span><span class="s2"></span>
+
+<span class="s2">  @return         </span><span class="si">{return_val}</span><span class="s2"></span>
+<span class="s2">******************************************************************************** */&quot;&quot;&quot;</span>
+    <span class="n">fn_name</span> <span class="o">=</span> <span class="n">fn_name</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">line_border</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">fn_name</span><span class="p">)</span> <span class="o">-</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">buf</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{param}</span><span class="s2">       </span><span class="si">{param_desc}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="n">param</span><span class="p">,</span> <span class="n">param_desc</span><span class="o">=</span><span class="n">param_desc</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fn_name</span><span class="o">=</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">brief</span><span class="o">=</span><span class="n">split_lines</span><span class="p">(</span><span class="n">brief</span><span class="p">,</span> <span class="n">line_border</span><span class="p">,</span> <span class="n">line_start</span><span class="p">),</span>
+                    <span class="n">description</span><span class="o">=</span><span class="n">split_lines</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="n">line_border</span><span class="p">,</span> <span class="n">line_start</span><span class="p">),</span> <span class="n">param</span><span class="o">=</span><span class="n">param</span><span class="p">,</span>
+                    <span class="n">param_line</span><span class="o">=</span><span class="n">split_lines</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">line_border</span><span class="p">,</span> <span class="n">line_start</span><span class="p">),</span> <span class="n">return_val</span><span class="o">=</span><span class="n">return_val</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_doxygen2"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.general_functions.get_doxygen2">[docs]</a><span class="k">def</span> <span class="nf">get_doxygen2</span><span class="p">(</span><span class="n">brief</span><span class="p">,</span> <span class="n">pre</span><span class="p">,</span> <span class="n">post</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="nb">globals</span><span class="p">,</span> <span class="n">in_out_cor</span><span class="p">,</span> <span class="n">callseq</span><span class="p">,</span> <span class="n">testmthd</span><span class="p">,</span> <span class="n">traceab</span><span class="p">,</span> <span class="n">line_border</span><span class="p">,</span>
+                 <span class="n">line_start</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;TODO: fill; more generation instead of hardcoding?; move defs to defs.py?&quot;&quot;&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()</span>
+    <span class="n">params_list</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;brief&quot;</span><span class="p">,</span> <span class="s2">&quot;  </span><span class="se">\\</span><span class="s2">brief            </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;pre&quot;</span><span class="p">,</span> <span class="s2">&quot;  </span><span class="se">\\</span><span class="s2">pre              </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="s2">&quot;  </span><span class="se">\\</span><span class="s2">post             </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;param&quot;</span><span class="p">,</span> <span class="s2">&quot;  </span><span class="se">\\</span><span class="s2">param[in]        </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;ret&quot;</span><span class="p">,</span> <span class="s2">&quot;  </span><span class="se">\\</span><span class="s2">return           </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;globals&quot;</span><span class="p">,</span> <span class="s2">&quot;  </span><span class="se">\\</span><span class="s2">globals          </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;in_out_cor&quot;</span><span class="p">,</span> <span class="s2">&quot;  </span><span class="se">\\</span><span class="s2">InOutCorrelation </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;callseq&quot;</span><span class="p">,</span> <span class="s2">&quot;  </span><span class="se">\\</span><span class="s2">callsequence     </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;testmthd&quot;</span><span class="p">,</span> <span class="s2">&quot;  </span><span class="se">\\</span><span class="s2">testmethod       </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;traceab&quot;</span><span class="p">,</span> <span class="s2">&quot;  </span><span class="se">\\</span><span class="s2">traceability     </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="n">line_first</span> <span class="o">=</span> <span class="s2">&quot;/** ************************************************************************************************&quot;</span>
+    <span class="n">line_end</span> <span class="o">=</span> <span class="s2">&quot;***************************************************************************************************/&quot;</span>
+
+    <span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">doxygen</span> <span class="ow">in</span> <span class="n">params_list</span><span class="p">:</span>
+        <span class="n">param_buf</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">param_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">param_buf</span><span class="p">,</span> <span class="s2">&quot;__iter__&quot;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">param_buf</span><span class="p">:</span>
+                <span class="n">content</span> <span class="o">+=</span> <span class="n">doxygen</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">split_lines</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">line_border</span><span class="p">,</span> <span class="n">line_start</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">param_buf</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                    <span class="n">content</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">+=</span> <span class="n">doxygen</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">split_lines</span><span class="p">(</span><span class="n">param_buf</span><span class="p">,</span> <span class="n">line_border</span><span class="p">,</span> <span class="n">line_start</span><span class="p">))</span>
+        <span class="n">content</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">param_name</span> <span class="o">==</span> <span class="n">params_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="n">frame</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="si">{start}</span><span class="se">\n</span><span class="si">{content}{end}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">line_first</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">line_end</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">frame</span></div>
+
+
+<div class="viewcode-block" id="split_lines"><a class="viewcode-back" href="../../../excelaccess.utils.html#excelaccess.utils.general_functions.split_lines">[docs]</a><span class="k">def</span> <span class="nf">split_lines</span><span class="p">(</span><span class="n">string_to_split</span><span class="p">,</span> <span class="n">line_border</span><span class="p">,</span> <span class="n">line_start</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;TODO: fill; split lines of doxygen-header in order to keep all text in the line length borders specified for doxygen TODO: fill better&quot;&quot;&quot;</span>
+    <span class="n">string_to_split</span> <span class="o">=</span> <span class="n">string_to_split</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">used_indices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">string_to_split</span><span class="p">):</span>
+        <span class="c1"># in unrealistic case of every time leading to breaking point branch and every time 0, which would create an infinite loop</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">used_indices</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">used_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+        <span class="c1"># split line if there is a space char at the end or right after it; otherwise look for next space to the &quot;left&quot;</span>
+        <span class="c1"># if there is one, use it as breaking point; if there&#39;s not, just cut the line at the border (then there seems to be a very large single word</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string_to_split</span><span class="p">)</span> <span class="o">-</span> <span class="n">line_border</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">string_to_split</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">line_border</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot; &quot;</span> <span class="ow">or</span> <span class="n">string_to_split</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">line_border</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot; &quot;</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string_to_split</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">line_border</span><span class="p">])</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="n">line_border</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">breaking_point</span> <span class="o">=</span> <span class="n">string_to_split</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">line_border</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">breaking_point</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string_to_split</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">breaking_point</span><span class="p">])</span>
+                    <span class="n">i</span> <span class="o">=</span> <span class="n">breaking_point</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string_to_split</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">line_border</span><span class="p">])</span>
+                    <span class="n">i</span> <span class="o">+=</span> <span class="n">line_border</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string_to_split</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">line_border</span><span class="p">])</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="n">line_border</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="n">line_start</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, uidq3472.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

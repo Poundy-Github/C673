@@ -1,0 +1,43 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Fill {variant}_ccflags with required compiler flags.
+#    The value in this template is only for example.
+# 3. Fill {variant}_cppdefines with required preprocessor defines.
+#    The value in this template is only for example.
+#    Each preprocessor define must be written as string and separated with ,
+# 4. When additional variant is created, add it in the variant_list. Otherwise, the
+#    variant will not be created.
+# ----------------------------------------------------------------------------------------
+
+#-----------------------
+# variant configuration
+#-----------------------
+
+# create release variant
+release_variant = "release"
+if gcc_used:
+    release_ccflags = "-march=armv7-a -mtune=cortex-a8 -mlittle-endian -O3 -ftree-vectorize -ffast-math -mabi=aapcs -fshort-enums -mfpu=neon -mfloat-abi=hard --asm -mvectorize-with-neon-quad"
+    release_cppdefines = []
+else:
+    release_ccflags = "-O2 --neon --display_error_number --diag_warning=225 -mf=5 -k -s -os -on=2 --float_support=vfpv3"
+    release_cppdefines = []
+
+# create debug variant
+debug_variant = "debug"
+if gcc_used:
+    debug_ccflags = "-g -march=armv7-a -mtune=cortex-a8 -mlittle-endian -O3 -ftree-vectorize -ffast-math -mabi=aapcs -fshort-enums -mfpu=neon -mfloat-abi=hard --asm -mvectorize-with-neon-quad"
+    debug_cppdefines = []
+else:
+    debug_ccflags = "-g -O2 --neon --display_error_number --diag_warning=225 -mf=5 -k -s -os -on=2 --float_support=vfpv3"
+    debug_cppdefines = []
+
+
+# variable containing compiler flags, defines for all variants
+# when creating additional variant beside "release" and "debug", the variant must be added in this variable
+variant_list = [
+[release_variant, release_ccflags, release_cppdefines],
+[debug_variant,   debug_ccflags,   debug_cppdefines],
+]
+
+# library name
+target_name = algo_name + "_arm_cortex_a8"

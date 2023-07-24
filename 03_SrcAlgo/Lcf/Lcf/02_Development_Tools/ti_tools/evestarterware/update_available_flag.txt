@@ -1,0 +1,6 @@
+Background info:
+When this file ("update_available_flag.txt") exists, this means, that someone has resynchronized the sandbox
+=> re-extraction is necessary
+
+In this case, unzip_tools.bat will delete the old extracted folders and will extract everything once again!
+

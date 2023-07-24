@@ -1,0 +1,254 @@
+Changes from 2.16.1.2 => 2.16.1.3
+	- Bugfix: memory allocation of bit-fields in combination with pack attributes
+	- Improvement: add support for 'bare' pragma push/pragma pop
+	- Improvement: add special handling for single 'none', 'tbc' and 'tbd' tags in mt-info comments
+	- Improvement: extend support for asm keyword as used with DIAB compiler (rework handling)
+
+Changes from 2.16.1.1 => 2.16.1.2
+	- Bugfix ASAP2 output
+	- Improvement: small memory leak issues fixed
+
+Changes from 2.16 => 2.16.1.1
+	- Command line options can now be specified in a command file, passed in as @filename
+
+Changes from 2.15 => 2.16
+	- Improvement: add rudimentary support for nameless union/struct fields (note: can not use in combination with assignment expressions in comments/initializers)
+	- Add new config option (default enabled) for forcing simple comment tags to single lines 'simple_tag_one_line'
+	- Improvement: add support for #pragma asm / #pragma endasm automatically skipping parsing for contained code
+	- Improvement: when in asm or function skip mode, ignore misplaced hashmarks (as may come from inline asm)
+	- Improvement: add option to control maximum ASAP2 ARRAY_SIZE/NUMBER/MATRIX_DIM output ('asap_max_matrix_size') defaulting to 32767
+	- Improvement: modify ASAP2 output when maximum array/matrix size exceeded: truncate to maximum
+	- Improvement: modify SDL name-scoping: allow same group name to be used in different views
+	- Improvement: modify 'asm' keyword handling in parser: reduce number of parse errors by allowing flexible use in declarations
+
+Changes from 2.14 => 2.15
+	- Improvement: add new config option 'bit_field_auto_type' to support compilers with auto-derived bit-field storage types
+	- Improvement: add new config option 'bit_field_max_comp_size' to support bit-field compression as used by DIAB compiler
+	- Improvement/bugfix: change handling of identical name virtual instances (instead of silent ignore, normal processing with error reporting)
+	
+Changes from 2.13.1.5 => 2.14
+	- Bugfix: 0-width bit-fields on allocation unit boundary calculated wrong size
+	- Improvement: dedicated tracking of definitions of functions
+	- Improvement: add unit string enum output support for SDL 2.0
+	
+Changes from 2.13.1.4 => 2.13.1.5
+	- Improvement/bugfix: map file lexer parser now properly handles underscored variables
+	- Improvement: proper byte-order detection based on map-file
+
+Changes from 2.13.1.3 => 2.13.1.4
+	- Improvement: allow use of simple numeric constants in values expressions
+	- Improvement/fix: modify evaluation of comments for better compatibility with 2.13 and earlier versions (no reset in initializer)
+	- Improvement: add parser config option 'comment_in_initializer', which when enabled sets behaviour to 2.13 and earlier
+	
+Changes from 2.13.1.2 => 2.13.1.3
+	- Bugfix: Work-around for values declarations missing macro resolutions in sub-expressions (array indices/designators)
+	- Improvement: support simple numeric constant expression evaluation
+	- Improvement: dedicated ppc-expression error output handler
+
+Changes from 2.13.1.1 => 2.13.1.2
+	- Add work-around for values parsing of enumerations, where enumerators are also pre-proc object-like macros
+	- Add new configuration option "macro_diff_redef" to specify error reaction on different macro redefinitions
+	- Add new configuration option "glob_empty_stmt" to specify error reaction on empty global statement
+	- Bugfix: emit error message on unmatched/unsupported character in parser configuration file
+	- Bugfix: warnings/error message supression issues with system-includes (no proper tracking of sys inc state)
+	- Improvement: Support C++ style one-line comments in parser config file
+	- Improvement: stricter lexical checking of configuration files (ignored characters generate error)
+	- Improvement: better debug messages with file-location tracking
+
+Changes from 2.13 => 2.13.1.1
+	- Bugfix strings in inactive (pre-processor ignored) pragma lines leading to string mismatching
+	- Update build environment for clean builds of tools under Windows 7 (use Win flex-bison)
+	- Add basic wide-string/wide-character support
+	- Prepare for extended floating point types
+	- Modify default static instantiation behaviour: disable multi-inst per default
+	- Basic support for _Pragma unary operator
+	- Modify byte-order handling (no longer assume default 'motorola' -> leads to differences in XML output)
+	- Improve map-file based layout decoding (set default byte order, representation type etc.)
+	
+Changes from 2.11.1.6 => 2.13
+	- Bugfix multi-file parsing with forward declaration/definition/reference to previously incomplete type leading to crash
+	- Bugfix multi-file parsing preserving previous files pack settings
+	- Improvement: Add work-around for multiply-defined types (silently ignore as most other compilers do)
+	
+Changes from 2.11.1.5 => 2.11.1.6
+	- Bugfix ASAP array constness processing bug
+	- Change default constant ASAP output from measurement object to readonly characteristic
+	- Improvement: Syntax error of missing newline at map file end now properly processed
+
+Changes from 2.11.1.4 => 2.11.1.5
+	- Bugfix: long unit strings crashing SDL output generator
+	- Update: add rudimentary file name based output filtering
+
+Changes from 2.11.1.3 => 2.11.1.4
+	- Bugfix: possible dangling references for special incomplete type scenarios (multi-file parsing or pdo_tool only)
+	- Note: default behaviour for incomplete types has been changed to 'ignore' (no error message)
+
+Changes from 2.11.1.2 => 2.11.1.3
+	- Bugfix: parsing error in struct field declaration did not reset pNLE field pointer leading to crashes
+	- Improvement: Add partial support for typeof keyword & enable it's use for MWCW
+
+Changes from 2.11.1.1 => 2.11.1.2
+	- Bugfix: sizeof(typename) followed by cast expression leading to parse error
+	
+Changes from 2.11 => 2.11.1.1
+	- Bugfix: Access violation on SDL output of two identical types apart from last field
+
+Changes from 2.10 => 2.11
+	- Bugfix: File-name-less GCC-style line number information lead to access violation
+	- Bugfix: Intel-byte order typedef-indirection level differences not resolved correctly in extended type eval mode
+	- Bugfix: MSVC x86 config file 64-bit integer type alignment was incorrectly set to 4 (corrected to 8)
+
+Changes from 2.9.1.8 => 2.10
+	- Bugfix: Access violations on multiple type variants with forward referenced types
+	- Bugfix: Merging of TLE/NLEs
+	- Improvement: Rework type variant handling (several fixes/improvements)
+
+Changes from 2.9.1.7 => 2.9.1.8
+	- Bugfix: Symbol compatibility check results invalid under specific circumstances
+	- Bugfix: Virtual symbol overlap for embedded virtual instances misdetection of overlap
+	- Bugfix: SDL dump of normal object behaviour different from 2.9.1.6 and prior - reworked
+	- Improvement: Additional keyword comment support (@addinfo) - allows flexible extension of individual file formats
+	- Improvement: Tracking of compilation unit for static linkage symbols
+	- Improvement: SDL 2.1 output format extended with minimum/maximum value output
+
+Changes from 2.9.1.6 => 2.9.1.7
+	- Improvement: allow selection of ASAP name lengths of up to 1024/255 (as supported by ASAP 1.60+)
+	- Improvement: add run-time configurable support for virtual-instance based cycleid support (1 cycleid per obj)
+	- Note: the support of the virtual instance-based cycle-id tracking requires a change to the XML Dat format
+
+Changes from 2.9.1.5 => 2.9.1.6
+	- Bugfix: ASAP2 comparisson of linear conversion functions did not detect differences in offsets
+	- Improvement: ignore comment tags consisting only of white-spaces and dashes (to accomodate common practice of setting dashes for n/a values)
+
+Changes from 2.9.1.4 => 2.9.1.5
+	- Improvement: on parsing errors reset comment binding to avoid comments binding to wrong object
+	- Add fine-grained control over generated ASAP object type using pdo-tool config file
+
+Changes from 2.9.1.3 => 2.9.1.4
+	- Bugfix: Virtual objects of sub-structures were not being processed when top-level object did not pass cycle-id filter
+	- Change: modifiy numeric constant class to make it independent of all other sources (allowing use in other projects)
+
+Changes from 2.9.1.2 => 2.9.1.3
+	- Bugfix: EcuExtract enumeration issues with signed enums (NumConst class fixed for handling arbitary comparissons)
+	- Bugfix: Escaped backslashes in string literals
+
+Changes from 2.9.1.1 => 2.9.1.2
+	- Implement initial (beta) version of EcuExtract output & add new options for controlling it
+	- Improvement: long descriptions of compu methods in ASAP output reference types better
+	- Improvement: use variable precission type for representing minimum/maximum in internal calculations
+	- Add command-line and tool-cfg option for supression of scaling/offset for floating-point types
+	
+Changes from 2.9 => 2.9.1.1
+	- Bugfix: long macro replacement list workaround had issues with empty replacement lists, optimized & fixed
+	- Bugfix: line number information sometimes invalid (due to long macro workaround bugs) - fixed
+	- Bugfix: output message from msvc_msg not recognized by 2.9 (but supported by 2.8 and earlier)
+	- Bugfix: end-of-file comment had influence on next input buffer - fixed
+	- Bugfix: sizeof expressions dereferencing type aliased array elements failed - fixed
+	- Bugfix: improve support for large enumerators (in parsing, A2L & SDL output)
+	- Improvement: print multi-line error warning summary only for CC32R and Teves style logging, use short summary for others
+	- Improvement: write raw character code when matching invalid characters in hex
+	- Improvement: add tool configuration option for setting output message format
+	- Improvement: add brief description support (note: changes XML schema!)
+	- Improvement: add special handling for comment '*' symbols at beginning of comment/line
+	- Change: no longer require colon after known doxygen tags (controllable via config file option)
+	- Change: enable parsing of doxygen-style comments at default
+	- Change: set default message output format to MS-VC style
+
+Changes from 2.8 => 2.9
+	- Bugfix: parsing errors in enumerator evaluation expressions with configurations with auto enumeration type
+	- Bugfix: improve support for very long macro replacement lists using multiple buffers
+	- Improvement: fix supported ranges of integer constants
+	- Changed behaviour: include statements at EOF will process include anyway
+	- Changed behaviour: define statements at EOF will be processed anyway
+	- Improvement: Fix a lot of deprecation warnings generated by MS-VS 2008 and newer
+	- Bugfix/Improvement: ASAP2 Better tracing of assigned group names to directories (no duplicating)
+	- Bugfix/improvement: ASAP2 non-identifier conform directory/file-names no longer errors, just warnings
+	- Improvement: add option controlling error reaction for sizeof keyword/cast expression use in pre-processor
+	- Improvement: add options controlling missing whitespace after object-like macro name, EOF in include line, EOF in define line
+	- Improvement: add option for scanner if output shall be generated on error or not (output_on_error)
+	- Add windows resources for icon and version information
+	- Add preliminary extensions to SDL (SDL 2.1) for testing funtionality
+	- Add preliminary (non-functional) EcuExtract generation class
+
+Changes from 2.7 => 2.8
+	- Add support for tool configuration file (new grammar & new options)
+	- Bugfix: Remove accidentally introduced abort on re-specification of same include path
+	- Bugfix: Allow usage of abstract declarators in @values declarations
+	- Bugfix: Default byte-order option mixed up specifications - fixed.
+	- Improvement: Simplify parser-lexer interface, storing comment binding information in class
+	- Improvement: Cleaner output of raw text data in XML database format (spliting into lines)
+	- Bugfix: SDL 2.0 output format inheritence of comment properties fixed
+	- Add support for non-doxygen comments (smart comments)
+	- Add configurable support for reseting comment bindings by blank lines
+	- Add configurable support for merging multiple comments for single object
+	- Add configurable support for reseting comment binding on pre-processor define line
+	- Cleanup character encoding handling: add functions for name-to-enum and enum-to-name
+	- Cleanup output file format handling: add functions for name-to-enum and enum-to-name
+	- Change: for ASAP2 output handle arrays with length=1 the same way as arrays with higher indices
+	- Improvement: Increase internal ASAP2 identifier buffer sizes (newer ASAP versions with longer names)
+	- Bugfix: Fix illegal identifiers being generated on identifier clashes in ASAP output generator
+	- Improvement: map file parser automatically updates typedefs along with instance information
+
+Changes from 2.6 => 2.7
+	- Bugfix: allow pointer dereferencing operations for arrays
+	- Bugfix: when outputing messages in MS-VS format add colon after type (as MS-VC does)
+	- Bugfix: error parsing pre-processor statement after including file with inline EOF
+	- Improvement: greatly improve comment binding through specialized identifier matching rules
+	- Improvement: display line information when detecting object overlaps
+	- Improvement: display line information when incomplete forward references detected
+	- Improvement: extend special desginator values binding to prefix comments/incomplete objs
+	- Improvement: modify binding reset operations for better conditional comments
+	- Improvement: Add support for ordered output mode (allowing easier comparissons)
+	- Improvement: Add support for supressing parsing messages for system includes
+	- Improvement: Add support for specifying include paths in configuration file
+	- Add automatic ASAP2 format string determination with --enable a2l_autoformatstr
+	- Improve configurations: disable warnings for incomplete types
+
+Changes from 2.5 => 2.6
+	- Modify handling of errors in @name tags: accept first identifier (like 2.4.1.1 did) even if followed by junk
+	- Reintroduce dummy -w option with warning message for pdo_scan to avoid abort on unknown option (compatibility)
+	- Fix potential buffer overrun issues with Get_version_string() functions in scan/tool
+	- Add ASAP 2 support for output @name at root level or object level, with option in tool (--enable a2l_name_root_level)
+	- Add missing default ASAP2 format specifier option to tool (--asapformatspec)
+	- Add new enable option "a2l_module_only" for outputing A2L with module part only
+	- If new "a2l_module_only" not set, behave like 2.4.1.1 did: output a project with name 'test' (compatibility)
+	- Modify SDL output to use tab (0x09) character for indentation (better readability)
+	- Bugfix SDL output with @values layout structures (no values output for @values directly bound to NLE, priority of values)
+	- Bugfix DAT reader: accept empty input files
+	- Implement option to set maximum matrix dimensions in A2L output --asapmaxmatrixdim
+	- Implement option to enable/disable using enumerator comments in A2L value tables (a2l_vtab_prefer_comment)
+	- Modify default A2L format to %6.3 (option --asapformatspec can be used to set manual setting)
+	- Disable default A2L group by directory (allow user enable)
+	- Implement A2L grouping by file name (controlled via new option --enable a2l_group_by_file)
+	- Add option --default-byteorder to set default map-file and ASAP2 output byte order
+	- Replace --checkoverlap and --nocheckoverlap with --enable/--disable overlap_check option
+	- Add new option --sdlbytealignment <1,2,4,8> to set default SDL bytealignment & set default to 4
+	- Implement new options --checkrange and --checkvirtrange to allow selectively checking address ranges
+	- Bugfix SDL output filtering: output virtual objects only partially passing filter tests
+	- Update/fix help text output
+	- Rework SDL output to output minimal set of typedefs needed (compact typedefs with same layout)
+
+Changes from 2.4.1.1 => 2.5
+
+	- Fix parsing bug of cast expression followed by unary operation
+	- Fix auto enumeration size issues when maximal negative values used
+	- Fix bit-field masking issues when using in-line enum declaration as bit-field
+	- Fix scanner returning success when disk full and output truncated
+	- Improve support for large numbers (auto unsigned handling, imax/i64 support)
+	- Implement file caching for speed improvement
+	- Improve support for tag name objects (better file location tracking)
+	- Fix variable length type support (auto cloning of type tree)
+	- Add support for #pragma pack
+	- Add values support with list of defines (@values: MACRO1,MACRO2)
+	- Add values layout declaration support (@values with struct/union)
+	- Add forward enumertion referencing support in values declarations (@values: enum FwdTagName)
+	- Implement specialized designators for @values declarations
+	- Add error reaction classes for better control of output messages
+	- Finalize XML Dat file support (fix issues with numbers in XML file location descriptions)
+	- Modify textual Dat file support (no longer require header field, correct auto identification of XML/textdat, better 1.x compatiblity)
+	- Add new checks for common command-line errors with more helpful messages
+	- Implement A2L project/module name options
+	- Add A2L grouping support based on source directory
+	- Extend parser configuration file to support new options (output verbosity, line-number-format, input encoding)
+	- Modify default A2L format to include 8 digits after decimal point & add control option
+	- Modify comment handling (improve error handling)

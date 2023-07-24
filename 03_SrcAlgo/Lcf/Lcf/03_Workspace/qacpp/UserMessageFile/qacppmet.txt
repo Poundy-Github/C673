@@ -1,0 +1,44 @@
+* $Id: qacppmet.txt 1.1 2021/12/14 03:47:20CET Wang, David (Wangd3) none  $
+*
+* This file specifies the metrics and the metric ranges that are used by the
+* metric browser.
+*
+* This file can be edited but must be in the following format where each field 
+* is separated by white space:
+*
+*       Field 1:                Metric name
+*       Field 2:                Metric description - must be within quotes
+*       Field 3:                Group (1=function metrics, 2=class metrics, 
+*                                       3=file metrics)
+*       Field 4:                Minimum range value
+*       Field 5:                Maximum range value
+*  Adopted for MFC310 project according reference of ARS301
+
+<S>STPAR "Number of parameters (STPAR)"            1   0  10
+<S>STCYC "Cyclomatic complexity (STCYC)"           1   1  20
+<S>STMIF "Deepest level of nesting (STMIF)"        1   0   8
+<S>STPTH "Estimated static program paths (STPTH)"  1   0  80
+<S>STLIN "Number of code lines (STLIN)"            1   1 200
+<S>STXLN "Number of executable lines (STXLN)"      1   1 200
+<S>STSUB "Number of function calls (STSUB)"        1   1  10
+<S>STGTO "Number of GOTO's (STGTO)"                1   0   0
+
+<S>STDIT "Deepest inheritance (STDIT)"                 2   0   5
+<S>STNOP "Number of immediate parents (STNOP)"         2   0   1
+<S>STMTH "Number of methods declared in class (STMTH)" 2   2  20
+<S>STNOC "Number of immediate children (STNOC)"        2   1  10
+<S>STRFC "Response for class (STRFC)"                  2   2  50
+<S>STWMC "Weighted methods in class (STWMC)"           2   2 100
+<S>STLCM "Lack of cohesion within class (STLCM)"       2   1   2
+<S>STCBO "Coupling to other classes (STCBO)"           2   1  25
+
+<S>STCDN "Comment to code ratio (STCDN)"               3   0.2  0.8    
+<S>STCCA "Total number of characters (STCCA)"          3   0 100000
+<S>STCCB "Total number of code characters (STCCB)"     3   0 100000
+<S>STCCC "Total number of comment characters (STCCC)"  3   0 100000
+<S>STOPN "Number of distinct operands (STOPN)"         3  10    100
+<S>STOPT "Number of distinct operators (STOPT)"        3  10    100
+<S>STTOT "Total number of tokens used (STTOT)"         3  10     50
+<S>STVAR "Total number of variables (STVAR)"           3  10     50
+<S>STTLN "Total preprocessed code lines (STTLN)"       3 100    150
+<S>STTPP "Total unpreprocessed code lines (STTPP)"     3   1    750

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>C673</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+		<nature>org.artop.aal.workspace.autosarnature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>SwcArxml</name>
+			<type>2</type>
+			<location>C:/ZRMMMM/C673SW/MFC5J3_C673_Mcu_App/01_AsrConfig/SwcArxml</location>
+		</link>
+	</linkedResources>
+</projectDescription>

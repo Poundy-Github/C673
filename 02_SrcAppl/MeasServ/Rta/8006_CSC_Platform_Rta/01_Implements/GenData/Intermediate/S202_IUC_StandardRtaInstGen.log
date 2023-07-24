@@ -1,0 +1,32 @@
+
+
+LogFile of the RteStandardRtaInstrGenerator
+
+Project:   S202
+BuildUnit: IUC
+Date:      13.10.2022 15:14:33
+
+
+
+As prjRefPath the following path has been provided:
+    ->D:\02_WorkSpace\11_S202\S202_RtaIntegration\MFC5J3_S202_Mcu_1
+  
+There are the following inputs given:
+- project                   : S202
+- build_unit                : IUC
+- output_path_src           : D:\02_WorkSpace\11_S202\S202_RtaIntegration\MFC5J3_S202_Mcu_1\01_AsrConfig\source\Swc_Appl\rta\GenData
+- output_path_incl          : D:\02_WorkSpace\11_S202\S202_RtaIntegration\MFC5J3_S202_Mcu_1\01_AsrConfig\source\Swc_Appl\rta\GenData
+- gen_cfg_path              : D:\02_WorkSpace\11_S202\S202_RtaIntegration\MFC5J3_S202_Mcu_1\01_AsrConfig\source\Swc_Appl\rta\GenData
+- rte_check_in_dir_path_src : D:\02_WorkSpace\11_S202\S202_RtaIntegration\MFC5J3_S202_Mcu_1\01_AsrConfig\source\Swc_Appl\rta\GenData
+- rte_check_in_dir_path_incl: D:\02_WorkSpace\11_S202\S202_RtaIntegration\MFC5J3_S202_Mcu_1\01_AsrConfig\source\Swc_Appl\rta\GenData
+- rte_gen_type              : RTE_GEN_TYPE_TRESOS
+- os_cfg_file               : D:\02_WorkSpace\11_S202\S202_RtaIntegration\MFC5J3_S202_Mcu_1\01_AsrConfig\output\generated\include\Os_user.h
+- os_type                   : OS_TYPE_EB
+
+
+!!! Error !!!
+  The generator could not be run successfully due to the folling error:
+
+    -> Rte.c not found, please ensure that it is available at specified output path!
+
+

@@ -1,0 +1,156 @@
+; --------------------------------------------------------------------------------
+; @Title: Debug script for TC397XE on TriBoard-TC27x (any app)
+; @Description:
+;   Allows you to flash your application into memory. Please make sure to
+;   understand the comments in the script!
+; @Keywords: AURIX, Infineon, TriCore
+; @Author: TangXin
+; @Board: TriBoard-TC39x
+; @Copyright: (C) 2018 G-Pulse
+; --------------------------------------------------------------------------------
+
+; configure/program internal flash
+DO tc38x.cmm CPU=TC387QP
+
+; After flashing the symbols can be loaded with:
+;Data.LOAD.Elf *.elf /NoCODE /RelPATH
+
+;assign tricore
+SYStem.DOWN
+CORE.ASSIGN 1,2,3,4
+SYStem.UP
+
+
+;set the ocs for STM
+&CORE0_OCS="D:0xF00010E8"
+&CORE1_OCS="D:0xF00011E8"
+&CORE2_OCS="D:0xF00012E8"
+&CORE3_OCS="D:0xF00013E8"
+
+PER.Set.simple &CORE0_OCS %Long 0x12000000
+PER.Set.simple &CORE1_OCS %Long 0x12000000
+PER.Set.simple &CORE2_OCS %Long 0x12000000
+PER.Set.simple &CORE3_OCS %Long 0x12000000
+
+
+&GTP_CLC="D:0xF0001800"
+PER.Set.simple &GTP_CLC %Long 0x00000000
+SYStem.Option.PERSTOP ON
+; GTP12_OCS.SUS[_P]=0x11
+Per.Set.Field D:0xF00018E8 %Long 0x1F000000 0x11
+
+&EVADC_CLC="D:0xF0020000"
+PER.Set.simple &EVADC_CLC %Long 0x00000000
+;&EVADC_OCS="D:0xF0020028"
+;PER.Set.simple &EVADC_OCS %Long 0x12000000
+Per.Set.Field D:0xF0020028 %Long 0x1F000000 0x11
+
+;runtime memory access
+SYStem.Option DUALPORT ON
+
+;intrusive Runtime memory access
+;SYStem.CpuAccess Enable
+
+
+menu.reprogram
+    (
+        ADD 
+        TOOLBAR
+        (
+            REPLACE
+            TOOLITEM "Core 0" "[
+     BBBBBB
+   BB      BB
+  B          B
+ B     B      B
+ B   BB BB     B
+B   B     B    B
+B   B     B    B
+B  B       B   B
+B  B       B   B
+B   B     B    B
+B   B     B    B
+ B   BB BB    B
+ B     B      B
+  B          B
+   BB      BB
+     BBBBBB
+            ]" "core.select 0"
+            REPLACE                
+            TOOLITEM "Core 1" "[
+     BBBBBB
+   BB      BB
+  B          B
+ B      B     B
+ B      B     B
+B       B      B
+B       B      B
+B       B      B
+B       B      B
+B       B      B
+B       B      B
+ B      B     B
+ B      B     B
+  B          B
+   BB      BB
+     BBBBBB
+            ]" "core.select 1"
+            REPLACE                
+            TOOLITEM "Core 2" "[
+     BBBBBB
+   BB      BB
+  B          B
+ B    BBB     B
+ B   B   B    B
+B         B    B
+B         B    B
+B        B     B
+B       B      B
+B      B       B
+B     B        B
+ B   B        B
+ B   BBBBBB   B
+  B          B
+   BB      BB
+     BBBBBB
+            ]" "core.select 2"
+            REPLACE                
+            TOOLITEM "Core 3" "[
+     BBBBBB
+   BB      BB
+  B          B
+ B            B
+ B    BBBB    B
+B    B    B    B
+B         B    B
+B         B    B
+B     BBBB     B
+B         B    B
+B         B    B
+ B   B    B   B
+ B    BBBB    B
+  B          B
+   BB      BB
+     BBBBBB
+            ]" "core.select 3"
+            REPLACE
+            TOOLITEM "Reset" "R,R"
+            (
+                SYSTEM.RESETTARGET
+                PER.Set D:0xF00010E8 %Long 0x12000000
+                PER.Set D:0xF00011E8 %Long 0x12000000
+                PER.Set D:0xF00012E8 %Long 0x12000000
+            )
+            TOOLITEM "TargetSystem" "[:vpureg]"
+            (
+              TargetSystem.state CoreType CoreState SYnch.Go SYnch.Break InterComName /Global
+            )
+            TOOLITEM "Close all instances" "[=7VlX$s10E0NN02FV0F100yUViSqonGaL1TVWG0@0lfgNRL0]"
+            (
+              IC.executeNoWait OTHERS QUIT
+              QUIT
+            )
+        )
+    )
+
+ENDDO 

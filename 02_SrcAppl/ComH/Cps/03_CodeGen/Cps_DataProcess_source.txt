@@ -1,0 +1,283 @@
+/***********  begin  ***********/
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBActive(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBActive((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBCtrlType(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBCtrlType((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBEnable(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBEnable((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBVehilceHoldReq(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBVehilceHoldReq((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_PrefillActive(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_PrefillActive((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AWBlevel(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AWBlevel((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AWBActive(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AWBActive((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_FCWActive(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_FCWActive((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_ABAlevel(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_ABAlevel((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_ABAActive(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_ABAActive((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_FCWPreWarning(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_FCWPreWarning((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetDeceleration(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetDeceleration((float32 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_OBJ_AEB_ID(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_OBJ_AEB_ID((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetType(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetType((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetDetection(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetDetection((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetLngRange(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetLngRange((float32 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetmode(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetmode((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTextInfo(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTextInfo((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetLatRange(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetLatRange((float32 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetRelSpeed(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetRelSpeed((sint16 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_LLaneDistanceFus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_LLaneDistanceFus((float32 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_RLaneDistanceFus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_RLaneDistanceFus((float32 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_LLaneMarkerType(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_LLaneMarkerType((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_RLaneMarkerType(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_RLaneMarkerType((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_ACC_HostLaneLeftStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_ACC_HostLaneLeftStatus((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_ACC_HostLaneRightStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_ACC_HostLaneRightStatus((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_HostLaneLeftStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_HostLaneLeftStatus((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_HostLaneRightStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_HostLaneRightStatus((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LDWStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LDWStatus((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LDWVibrationWarningReq(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LDWVibrationWarningReq((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LKAStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LKAStatus((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LKATakeoverReq(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LKATakeoverReq((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LASModeSelectionStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LASModeSelectionStatus((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LASWarningModeSelectionSts(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LASWarningModeSelectionSts((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LDWShakeLevStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LDWShakeLevStatus((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_ELKMode(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_ELKMode((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_ELKInterventionMode(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_ELKInterventionMode((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_ELKEnableStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_ELKEnableStatus((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBStatus((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_ACC_LatAngReqActive(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_ACC_LatAngReqActive((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_FCWLatentWarning(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_FCWLatentWarning((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LatAngReqActive(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LatAngReqActive((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LatAngReq(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_LatAngReq((float32 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_ACC_LatAngReq(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_ACC_LatAngReq((float32 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_MotorTorqueMaxLimitRequest(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_MotorTorqueMaxLimitRequest((float32 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_MotorTorqueMinLimitRequest(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_MotorTorqueMinLimitRequest((float32 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Hla_Cps_SignalPhyData_FC_HMALightDistribution(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Hla_Cps_SignalPhyData_FC_HMALightDistribution((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Hla_Cps_SignalPhyData_FC_HMAEnableStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Hla_Cps_SignalPhyData_FC_HMAEnableStatus((boolean *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Hla_Cps_SignalPhyData_FC_HMAStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Hla_Cps_SignalPhyData_FC_HMAStatus((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_Voiceinfo(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Lcf_Cps_SignalPhyData_FC_Voiceinfo((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_FCWSettingStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_FCWSettingStatus((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_FCWStatus(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_FCWStatus((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetAy(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetAy((float32 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetAx(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetAx((float32 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetProb(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetProb((uint8 *)data);
+}
+
+void Ext_Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetLatRelSpeed(void *data)
+{
+Rte_Read_RP_Cps_SRI_TxSignal_Aeb_Cps_SignalPhyData_FC_AEBTargetLatRelSpeed((float32 *)data);
+}
+
+/***********  end  ***********/

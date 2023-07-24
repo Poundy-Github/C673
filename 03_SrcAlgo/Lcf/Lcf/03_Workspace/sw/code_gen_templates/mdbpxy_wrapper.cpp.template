@@ -1,0 +1,64 @@
+// Copyright (C) Continental AG
+// All Rights Reserved
+// COMPONENT: IPC
+// VERSION:   $Revision: 1.1 $
+
+/// generated part of the MDB Wrapper for RTE.
+
+#include <mdbpxy_wrapper.h>
+#include <DPUFF/mdb/mdb.h>
+#include <DPUFF/ga/mdb_cluster.h> // MDB_E_ClusterID
+#include <SYS/sys_mem/sys_mem.h> // memcpy
+
+extern "C" {
+
+void MDBPXY_mainFunction(void)
+{
+  // dummy
+}
+
+__inline__ Std_ReturnType MPW_readFromMdb(void* const p_data, const MDB_E_ClusterID clusterId, const uint32 clusterSize)
+{
+  Std_ReturnType       returnCode    = E_OK;
+  c_mdb&               mdb           = c_mdb::rc_GetInst();
+  c_mdb::t_mdb_InstanceHandle mdbInstHandle;
+  const void* const    p_cluster     = mdb.p_ClusterReadBegin(clusterId, &mdbInstHandle);
+
+  if(p_cluster != NULL)
+  {
+    memcpy(p_data, p_cluster, clusterSize);
+    mdb.v_ClusterReadEnd(clusterId, mdbInstHandle);
+  }
+  else
+  {
+    returnCode = E_NOT_OK;
+  }
+
+  return returnCode;
+}
+
+__inline__ Std_ReturnType MPW_writeToMdb(const void* const p_data, const MDB_E_ClusterID clusterId, const uint32 clusterSize)
+{
+  Std_ReturnType returnCode = E_OK;
+  c_mdb&         mdb        = c_mdb::rc_GetInst();
+  void* const    p_cluster  = mdb.p_ClusterWriteBegin(clusterId);
+
+  if(p_cluster != NULL)
+  {
+    memcpy(p_cluster, p_data, clusterSize);
+    mdb.v_ClusterWriteEnd(clusterId);
+  }
+  else
+  {
+    returnCode = E_NOT_OK;
+  }
+
+  return returnCode;
+}
+
+
+/*!<codegen_start:MDBPXY_WRAPPER_FUNCTIONS_C>*/
+/*!<codegen_end:MDBPXY_WRAPPER_FUNCTIONS_C>*/
+
+}
+

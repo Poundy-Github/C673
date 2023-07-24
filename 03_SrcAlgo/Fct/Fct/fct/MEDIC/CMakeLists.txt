@@ -1,0 +1,29 @@
+target_sources(${PROJECT_NAME}_Algo
+    PRIVATE
+	${CMAKE_CURRENT_SOURCE_DIR}/dim20/dim20_main.c
+	${CMAKE_CURRENT_SOURCE_DIR}/dim20/dim20_output_mgr.c
+	${CMAKE_CURRENT_SOURCE_DIR}/dim20/dim20_input_mgr.c
+	${CMAKE_CURRENT_SOURCE_DIR}/dim20/dim20_hypothesis_mgr.c
+	${CMAKE_CURRENT_SOURCE_DIR}/head20/head20_main.c
+	${CMAKE_CURRENT_SOURCE_DIR}/head20/head20_generic_sm.c
+	${CMAKE_CURRENT_SOURCE_DIR}/head20/head20_mts.c
+	${CMAKE_CURRENT_SOURCE_DIR}/head20/head20_par_fct.c
+	${CMAKE_CURRENT_SOURCE_DIR}/head20/head20_spm.c
+	${CMAKE_CURRENT_SOURCE_DIR}/frame_medic/medic_main.c
+	${CMAKE_CURRENT_SOURCE_DIR}/frame_medic/medic_meas.c
+	${CMAKE_CURRENT_SOURCE_DIR}/frame_medic/medic_algo_control.c
+	${CMAKE_CURRENT_SOURCE_DIR}/frame_medic/medic_io.c
+	${CMAKE_CURRENT_SOURCE_DIR}/frame_medic/medic_pdo_tags.c
+	${CMAKE_CURRENT_SOURCE_DIR}/targetplanner/targetplanner_main.c
+	)
+	
+target_include_directories(${PROJECT_NAME}_Algo
+	 PUBLIC
+	 ${CMAKE_CURRENT_SOURCE_DIR}
+	 ${CMAKE_CURRENT_SOURCE_DIR}/dim20
+	 ${CMAKE_CURRENT_SOURCE_DIR}/head20
+	 ${CMAKE_CURRENT_SOURCE_DIR}/frame_medic
+	 ${CMAKE_CURRENT_SOURCE_DIR}/targetplanner
+	 ${CMAKE_CURRENT_SOURCE_DIR}/../../00_Projects/${MEDIC_PROJECT}/MEDIC
+)
+

@@ -1,0 +1,38 @@
+# read file list containing source files and include paths
+execfile(File("#../lcf_sim/lcf_evm_hil/vh28/evm_hil_projects/CortexM4/ti_cortex_m4_sim_hil_file_list.scfg").abspath)
+execfile(File("#../lcf_sim/lcf_evm_hil/vh28/generic/CommonSoC/ecu_sim_hil_file_list.scfg").abspath)
+execfile(File("#../../../01_Source_Code/algo/lcf/algo_lib_file_list.scfg").abspath)
+execfile(File("#../lcf_sim/lcf_evm_hil/vh28/generic/hil_server/hil_server_file_list.scfg").abspath)
+execfile(File("#../lcf_sim/sim_swc_lcf/sim_swc_lcf_file_list.scfg").abspath)
+
+# sources files list
+ti_cortex_m4_hil_src = (Split(cortex_m4_sim_hil_sources) + 
+                        Split(ecu_sim_hil_sources) + 
+                        Split(hil_server_sources) + 
+                        Split(hil_server_rta_sources))
+
+# include paths list
+ti_cortex_m4_hil_cpp_path = (Split(lcf_algo_include_paths) + 
+                             Split(lcf_algo_common_include_paths) + 
+                             Split(ecu_sim_hil_include_paths) + 
+                             Split(cortex_m4_sim_hil_include_paths) + 
+                             Split(lcf_sim_swc_include_paths) + 
+                             Split(hil_server_include_paths))
+                           #  Split(lcf_algo_ti_eve_arp32_include_paths) +
+                           # ["#../" + component_name + "_sim/" + component_name + "_evm_hil/vh28/platform/"])
+                  
+# include paths list that should be added before compiler include paths
+ti_cortex_m4_prepend_cpp_path = []
+
+# external libraries
+external_lib = ["libc.a"]
+
+# sysbios configuration
+sysbios_cfg = "client.cfg"
+
+# xdctools compiler options
+xs_compiler_options = '--compileOptions "--enum_type=packed"'
+
+# target configuration (used for running simulation in eval board)
+target_configuration = [File("#../lcf_sim/lcf_evm_hil/vh28/ccs/target_configuration/BH560BP_VH28_EVM_DDR3_NDK.ccxml").abspath,
+                        File("#../lcf_sim/lcf_evm_hil/vh28/ccs/target_configuration/BH560V2_VH28_EVM_DDR3_NDK.ccxml").abspath]

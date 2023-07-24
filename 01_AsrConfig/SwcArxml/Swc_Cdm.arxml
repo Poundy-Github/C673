@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00045.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2022-01-23T06:53:36+08:00" UUID="645fc703-3290-4930-908e-d53d3322057c">
+      <SHORT-NAME>Cdm</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SW-COMPONENT-TYPE T="2023-06-09T10:41:45+08:00" UUID="401fb89f-c06a-42c0-abb7-7acc32a206c2">
+          <SHORT-NAME>Cdm</SHORT-NAME>
+          <LONG-NAME T="2022-01-23T06:45:34+08:00">
+            <L-4 L="FOR-ALL">Configuration Data Management</L-4>
+          </LONG-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE T="2023-04-13T19:54:59+08:00" UUID="473ca340-553a-47e7-837b-4a95da0560db">
+              <SHORT-NAME>PP_Cdm_BlockOp</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_CdmBlockOp</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2023-03-16T13:18:34+08:00" UUID="4e469bde-866c-450e-8337-02e1a5738f10">
+              <SHORT-NAME>PP_Cdm_NvmVdyMirror</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_NvM/PortInterfaces/NvMMirror</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2022-01-23T07:13:24+08:00" UUID="1cac452e-01d7-4521-98a0-68099aef7d34">
+              <SHORT-NAME>PP_Cdm_VdyInputNvMData</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_VdyNvMInOutData</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="6533c2c6-25fa-49b3-a030-a9902bd538ed">
+              <SHORT-NAME>PP_Qsm_DsmBlock_SecureUpdateLogOp</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_QsmBlockOp</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="3e871f79-52a2-4197-90ca-a30b78d4f795">
+              <SHORT-NAME>PP_Qsm_DsmBlock_Startup_Flag</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_QsmBlockOp</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="e69199b0-01fd-4e20-985f-c5b7a9a12479">
+              <SHORT-NAME>RP_EvAdc_GetValue_VMON_BATT</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="8356a73a-a76f-42c6-901a-7f9175f57928">
+              <SHORT-NAME>RP_Qsm_DsmBlock_EOLModeGateOp</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_QsmBlockOp</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="8ec8888b-1568-458d-8e64-c051062f6547">
+              <SHORT-NAME>RP_Qsm_DsmBlock_PartNumber_Sector</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_QsmBlockOp</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2022-01-23T07:13:05+08:00" UUID="bda87f3a-1c50-4fa2-8138-fef5a7abfee5">
+              <SHORT-NAME>RP_VdyAdapter_VdyOutputNvMData</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_VdyNvMInOutData</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR T="2023-06-09T10:41:37+08:00" UUID="cfa030d0-b450-40fa-bfca-8a8c16c083fe">
+              <SHORT-NAME>Cdm_IB</SHORT-NAME>
+              <EVENTS>
+                <INIT-EVENT T="2022-01-23T06:46:23+08:00" UUID="bd2b8947-41b4-48cb-b1f2-d8d32e24d553">
+                  <SHORT-NAME>InitEvent_Cdm_InitFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Cdm/Cdm/Cdm_IB/Cdm_InitFunction</START-ON-EVENT-REF>
+                </INIT-EVENT>
+                <TIMING-EVENT T="2022-02-24T10:27:03+08:00" UUID="4a780a3f-8b2b-460d-bda3-617eef9e676e">
+                  <SHORT-NAME>TimingEvent_Cdm_MainFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Cdm/Cdm/Cdm_IB/Cdm_MainFunction</START-ON-EVENT-REF>
+                  <PERIOD>0.01</PERIOD>
+                </TIMING-EVENT>
+                <OPERATION-INVOKED-EVENT T="2023-04-13T19:56:57+08:00" UUID="4ec9ab8e-c20e-4141-87a1-d6a6063850fe">
+                  <SHORT-NAME>oie_PP_Cdm_BlockOp_Cdm_GetErrorStatus</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Cdm/Cdm/Cdm_IB/Cdm_GetErrorStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF T="2023-04-13T19:56:57+08:00">
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Cdm/Cdm/PP_Cdm_BlockOp</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_CdmBlockOp/Cdm_GetErrorStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT T="2023-04-13T19:57:25+08:00" UUID="2bd345c0-9d94-4c02-a9c7-c29aa0b5ccdd">
+                  <SHORT-NAME>oie_PP_Cdm_BlockOp_Cdm_ReadBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Cdm/Cdm/Cdm_IB/Cdm_ReadBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF T="2023-04-13T19:57:25+08:00">
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Cdm/Cdm/PP_Cdm_BlockOp</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_CdmBlockOp/Cdm_ReadBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT T="2023-04-13T19:57:48+08:00" UUID="62b9288b-3807-42ef-8f38-7ce2e41e21fb">
+                  <SHORT-NAME>oie_PP_Cdm_BlockOp_Cdm_WriteBlock</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Cdm/Cdm/Cdm_IB/Cdm_WriteBlock</START-ON-EVENT-REF>
+                  <OPERATION-IREF T="2023-04-13T19:57:48+08:00">
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Cdm/Cdm/PP_Cdm_BlockOp</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_CdmBlockOp/Cdm_WriteBlock</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT T="2023-03-16T13:23:35+08:00" UUID="1f0c1d41-d3b8-45b8-85ae-89310c8486eb">
+                  <SHORT-NAME>oie_PP_Cdm_NvmVdyMirror_ReadRamBlockFromNvm</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Cdm/Cdm/Cdm_IB/Cdm_VdyReadRamBlockMirror</START-ON-EVENT-REF>
+                  <OPERATION-IREF T="2023-03-16T13:23:35+08:00">
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Cdm/Cdm/PP_Cdm_NvmVdyMirror</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMMirror/ReadRamBlockFromNvm</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT T="2023-03-16T13:24:39+08:00" UUID="efc0c805-679f-49f8-ac07-09fea561b80d">
+                  <SHORT-NAME>oie_PP_Cdm_NvmVdyMirror_WriteRamBlockToNvm</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Cdm/Cdm/Cdm_IB/Cdm_VdyWriteBlockMirror</START-ON-EVENT-REF>
+                  <OPERATION-IREF T="2023-03-16T13:24:39+08:00">
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Cdm/Cdm/PP_Cdm_NvmVdyMirror</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_NvM/PortInterfaces/NvMMirror/WriteRamBlockToNvm</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+              </EVENTS>
+              <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY T="2023-04-13T19:56:57+08:00" UUID="DCE:1c58526b-2812-4c91-bb9d-4b117a2a3941">
+                  <SHORT-NAME>Cdm_GetErrorStatus</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Cdm_GetErrorStatus</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-03-16T15:02:17+08:00" UUID="DCE:8857971f-1e03-43ad-a5a4-cd43abc4bda9">
+                  <SHORT-NAME>Cdm_InitFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-SEND-POINTS>
+                    <VARIABLE-ACCESS UUID="112bb0db-f83e-47c1-89cb-2cf4f3e01ae8">
+                      <SHORT-NAME>dsp_VdyNvMInOutData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Cdm/Cdm/PP_Cdm_VdyInputNvMData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyNvMInOutData/VdyNvMInOutData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-SEND-POINTS>
+                  <SYMBOL>Cdm_InitFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-03-16T13:31:49+08:00" UUID="DCE:b82a9a6f-3120-4d48-b098-4de2049b8afd">
+                  <SHORT-NAME>Cdm_MainFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="d5c1ceb0-539d-4b94-b838-a324f67b9ea3">
+                      <SHORT-NAME>scp_GetPhyValue</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/RP_EvAdc_GetValue_VMON_BATT</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="e415a555-0f3d-4271-9c21-15303e2566cf">
+                      <SHORT-NAME>scp_Qsm_GetErrorStatues</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/PP_Qsm_DsmBlock_SecureUpdateLogOp</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_QsmBlockOp/Qsm_GetErrorStatues</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="b32d9a7a-7e31-444a-860c-fb06d6d4c27e">
+                      <SHORT-NAME>scp_Qsm_GetErrorStatues0</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/PP_Qsm_DsmBlock_Startup_Flag</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_QsmBlockOp/Qsm_GetErrorStatues</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="01906b64-723f-4402-a598-3b97e1954f47">
+                      <SHORT-NAME>scp_Qsm_GetErrorStatues1</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/RP_Qsm_DsmBlock_EOLModeGateOp</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_QsmBlockOp/Qsm_GetErrorStatues</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="29ce094d-eb33-4416-9ec2-a9164886ad4c">
+                      <SHORT-NAME>scp_Qsm_GetErrorStatues2</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/RP_Qsm_DsmBlock_PartNumber_Sector</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_QsmBlockOp/Qsm_GetErrorStatues</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="c129e855-4cb3-4bf8-84dd-2d9210fa1ef0">
+                      <SHORT-NAME>scp_Qsm_ReadBlock</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/PP_Qsm_DsmBlock_SecureUpdateLogOp</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_QsmBlockOp/Qsm_ReadBlock</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="bb28e24d-6477-4be4-a1fe-87c1c59cf630">
+                      <SHORT-NAME>scp_Qsm_ReadBlock0</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/PP_Qsm_DsmBlock_Startup_Flag</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_QsmBlockOp/Qsm_ReadBlock</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="0e1c8068-6bcf-4557-a1e9-9b1c3e6f8b61">
+                      <SHORT-NAME>scp_Qsm_ReadBlock1</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/RP_Qsm_DsmBlock_EOLModeGateOp</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_QsmBlockOp/Qsm_ReadBlock</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="0473587c-258b-4127-a1fd-288e24d74e5b">
+                      <SHORT-NAME>scp_Qsm_ReadBlock2</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/RP_Qsm_DsmBlock_PartNumber_Sector</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_QsmBlockOp/Qsm_ReadBlock</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="b32563e8-3dda-47b4-8ad6-ebc727cc9138">
+                      <SHORT-NAME>scp_Qsm_WriteBlock</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/PP_Qsm_DsmBlock_SecureUpdateLogOp</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_QsmBlockOp/Qsm_WriteBlock</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="b4ccc747-4513-45ba-87f6-9d6506ec4658">
+                      <SHORT-NAME>scp_Qsm_WriteBlock0</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/PP_Qsm_DsmBlock_Startup_Flag</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_QsmBlockOp/Qsm_WriteBlock</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="8e3e6b67-bd29-4342-9013-884122d7c009">
+                      <SHORT-NAME>scp_Qsm_WriteBlock1</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/RP_Qsm_DsmBlock_EOLModeGateOp</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_QsmBlockOp/Qsm_WriteBlock</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="5c7ab800-7673-410c-8d23-51fa42ab4e32">
+                      <SHORT-NAME>scp_Qsm_WriteBlock2</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/RP_Qsm_DsmBlock_PartNumber_Sector</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_QsmBlockOp/Qsm_WriteBlock</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>Cdm_MainFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-04-13T19:57:25+08:00" UUID="DCE:02854d95-626d-4bac-a788-656717537d60">
+                  <SHORT-NAME>Cdm_ReadBlock</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Cdm_ReadBlock</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-03-16T15:02:23+08:00" UUID="DCE:90a3993b-52db-4377-be7b-d8ff82d43b29">
+                  <SHORT-NAME>Cdm_VdyReadRamBlockMirror</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Cdm_VdyReadRamBlockMirror</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-03-16T13:31:37+08:00" UUID="DCE:a7855382-98dd-4668-91c4-7f8615d16929">
+                  <SHORT-NAME>Cdm_VdyWriteBlockMirror</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                    <VARIABLE-ACCESS UUID="218d35d3-5e48-4bba-b15c-81f0dfa651a5">
+                      <SHORT-NAME>drparg_VdyNvMInOutData</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Cdm/Cdm/RP_VdyAdapter_VdyOutputNvMData</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_VdyNvMInOutData/VdyNvMInOutData</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                  <SYMBOL>Cdm_VdyWriteBlockMirror</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-04-13T19:57:48+08:00" UUID="DCE:cc5ebd05-e1e5-4fd3-a2f6-e7a80637bcb4">
+                  <SHORT-NAME>Cdm_WriteBlock</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Cdm_WriteBlock</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION T="2022-01-23T06:53:52+08:00" UUID="ffde7374-734f-46c3-814d-7c77bbcb8cd3">
+          <SHORT-NAME>CdmImpl</SHORT-NAME>
+          <CODE-DESCRIPTORS>
+            <CODE T="2022-01-23T06:53:36+08:00" UUID="55d40941-47d1-4397-bf7c-d1dd14b1fdae">
+              <SHORT-NAME>CodeGen</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/Cdm/Cdm/Cdm_IB/Cdm_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/Cdm/Cdm/Cdm_IB/Cdm_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/Cdm/Cdm/Cdm_IB/Cdm_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/Cdm/Cdm/Cdm_IB/Cdm_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <ARTIFACT-DESCRIPTORS>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-01-23T06:53:36+08:00">
+                  <SHORT-LABEL>SWSRC</SHORT-LABEL>
+                  <CATEGORY>SWSRC</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-01-23T06:53:36+08:00">
+                  <SHORT-LABEL>SWHDR</SHORT-LABEL>
+                  <CATEGORY>SWHDR</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+              </ARTIFACT-DESCRIPTORS>
+            </CODE>
+          </CODE-DESCRIPTORS>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <RESOURCE-CONSUMPTION T="2022-01-23T06:54:14+08:00" UUID="DCE:e68f8f5e-76fe-4ce6-9c14-eb386496b41f">
+            <SHORT-NAME>Resource</SHORT-NAME>
+            <MEMORY-SECTIONS>
+              <MEMORY-SECTION T="2021-12-27T13:17:30+08:00" UUID="7b169fd9-6f60-4639-8625-ae3336fa3925">
+                <SHORT-NAME>CODE</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2021-12-27T13:17:30+08:00" UUID="b427d904-5dec-4f7f-9c41-bdea0049c4a3">
+                <SHORT-NAME>VAR_UNSPECIFIED</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/VAR</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+            </MEMORY-SECTIONS>
+          </RESOURCE-CONSUMPTION>
+          <SW-VERSION>0.0.1</SW-VERSION>
+          <VENDOR-ID>0</VENDOR-ID>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/Cdm/Cdm/Cdm_IB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

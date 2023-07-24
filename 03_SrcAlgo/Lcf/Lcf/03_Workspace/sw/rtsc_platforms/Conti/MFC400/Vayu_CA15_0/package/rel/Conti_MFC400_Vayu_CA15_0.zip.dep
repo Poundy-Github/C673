@@ -1,0 +1,34 @@
+Conti_MFC400_Vayu_CA15_0.zip: Platform.xdc
+Platform.xdc:
+Conti_MFC400_Vayu_CA15_0.zip: Platform.xs
+Platform.xs:
+Conti_MFC400_Vayu_CA15_0.zip: config.bld
+config.bld:
+Conti_MFC400_Vayu_CA15_0.zip: package/.vers_b160
+package/.vers_b160:
+Conti_MFC400_Vayu_CA15_0.zip: package/.vers_g180
+package/.vers_g180:
+Conti_MFC400_Vayu_CA15_0.zip: package/.vers_r170
+package/.vers_r170:
+Conti_MFC400_Vayu_CA15_0.zip: package/.xdc-z44
+package/.xdc-z44:
+Conti_MFC400_Vayu_CA15_0.zip: package/Conti.MFC400.Vayu_CA15_0.ccs
+package/Conti.MFC400.Vayu_CA15_0.ccs:
+Conti_MFC400_Vayu_CA15_0.zip: package/Conti.MFC400.Vayu_CA15_0.sch
+package/Conti.MFC400.Vayu_CA15_0.sch:
+Conti_MFC400_Vayu_CA15_0.zip: package/Conti_MFC400_Vayu_CA15_0.class
+package/Conti_MFC400_Vayu_CA15_0.class:
+Conti_MFC400_Vayu_CA15_0.zip: package/Conti_MFC400_Vayu_CA15_0.java
+package/Conti_MFC400_Vayu_CA15_0.java:
+Conti_MFC400_Vayu_CA15_0.zip: package/build.cfg
+package/build.cfg:
+Conti_MFC400_Vayu_CA15_0.zip: package/package.bld.xml
+package/package.bld.xml:
+Conti_MFC400_Vayu_CA15_0.zip: package/package.defs.h
+package/package.defs.h:
+Conti_MFC400_Vayu_CA15_0.zip: package/package_Conti.MFC400.Vayu_CA15_0.c
+package/package_Conti.MFC400.Vayu_CA15_0.c:
+Conti_MFC400_Vayu_CA15_0.zip: package.bld
+package.bld:
+Conti_MFC400_Vayu_CA15_0.zip: package.xdc
+package.xdc:

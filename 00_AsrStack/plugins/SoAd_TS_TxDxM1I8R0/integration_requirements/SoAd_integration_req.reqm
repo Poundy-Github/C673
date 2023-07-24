@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specdocument>
+  <specobjects doctype="lim">
+    <specobject>
+      <id>lim.SoAd.EB_INTREQ_SoAd_0001</id>
+      <status>approved</status>
+      <source>EB integration requirement</source>
+      <version>2</version>
+      <description>The integrator must ensure that SoAd lower layer functions and
+          SoAd main functions do not preempt each other.
+          List of SoAd lower layer functions:
+        <ul>
+          <li>SoAd_RxIndication()</li>
+          <li>SoAd_TxConfirmation()</li>
+          <li>SoAd_TcpTlsAccepted()</li>
+          <li>SoAd_TcpAccepted()</li>
+          <li>SoAd_TcpConnected()</li>
+          <li>SoAd_TcpIpEvent()</li>
+          <li>SoAd_LocalIpAddrAssignmentChg()</li>
+        </ul>
+          List of SoAd main functions:
+          <ul>
+          <li>SoAd_MainFunction()</li>
+          <li>SoAd_MainFunctionTx()</li>
+        </ul>
+          This can be achieved by setting EthIf and Eth driver in polling mode, e.g.
+          by disabling of:
+          <ul>
+          <li>EthIfEnableRxInterrupt</li>
+          <li>EthCtrlEnableRxInterrupt</li>
+          <li>EthIfEnableTxInterrupt</li>
+          <li>EthCtrlEnableTxInterrupt</li>
+        </ul>
+          to enforce that lower layer APIs are called only in the
+          context of main functions. In addition, all Eth stack main functions, e.g.:
+          <ul>
+          <li>EthIf_MainFunctionRx()</li>
+          <li>EthIf_MainFunctionTx()</li>
+          <li>EthIf_MainFunctionState()</li>
+          <li>TcpIp_MainFunction()</li>
+          <li>TcpIp_MainFunctionTx()</li>
+          <li>EthSM_MainFunction()</li>
+          </ul>
+          must be in the same Os task or have the same task priority to eliminate preemption.
+        <pre/>
+          Exception: SoAd_CopyTxData() can be called in the context of
+          SoAd_IfTransmit() and is therefore excluded from this integration requirement.
+        <pre/>This integration requirement also applies to possible other not listed SoAd
+          lower layer functions.
+      </description>
+      <rationale>
+        This limitation reduces code size and execution time by eliminating the need for extensive
+        use of exclusive areas.
+      </rationale>
+    </specobject>
+
+    
+
+    
+    <specobject>
+      <id>lim.SoAd.EB_INTREQ_SoAd_0003</id>
+      <status>approved</status>
+      <source>EB integration requirement</source>
+      <version>2</version>
+      <description>The integrator must ensure that the following SoAd upper layer functions shall
+          not preempt or be preempted by each other or the functions defined in
+          lim.SoAd.EB_INTREQ_SoAd_0001.
+          List of SoAd upper layer functions:
+          <ul>
+          <li>SoAd_SetRemoteAddr()</li>
+          <li>SoAd_SetUniqueRemoteAddr()</li>
+          <li>SoAd_ReleaseRemoteAddr()</li>
+          <li>SoAd_IfRoutingGroupTransmit()</li>
+          <li>SoAd_IfSpecificRoutingGroupTransmit()</li>
+          <li>SoAd_GetSoConId()</li>
+          <li>SoAd_CloseSoCon()</li>
+          <li>SoAd_OpenSoCon()</li>
+          <li>SoAd_RequestIpAddrAssignment()</li>
+          <li>SoAd_ReleaseIpAddrAssignment()</li>
+          <li>SoAd_GetLocalAddr()</li>
+          <li>SoAd_GetPhysAddr()</li>
+          <li>SoAd_GetRemoteAddr()</li>
+          <li>SoAd_EnableRouting()</li>
+          <li>SoAd_EnableSpecificRouting()</li>
+          <li>SoAd_DisableRouting()</li>
+          <li>SoAd_DisableSpecificRouting()</li>
+          <li>SoAd_TpChangeParameter()</li>
+          <li>SoAd_ReadDhcpHostNameOption()</li>
+          <li>SoAd_WriteDhcpHostNameOption()</li>
+          <li>SoAd_GetSoConMode()</li>
+          <li>SoAd_ChangeParameter()</li>
+          <li>SoAd_IsConnectionReady()</li>
+          </ul>
+          Exception: The following functions are excluded:
+          <ul>
+          <li>SoAd_IfTransmit()</li>
+          <li>SoAd_TpTransmit()</li>
+          <li>SoAd_TpCancelTransmit()</li>
+          <li>SoAd_TpCancelReceive()</li>
+          </ul>
+          Exception: A preemption of SoAd upper layer functions with
+          SoAd upper layer functions might be possible if the call occurs in the same
+          context. Example: SoAd_TxConfirmation() calls UL_TxConfirmation(),
+          which calls SoAd_ReleaseRemoteAddr() causing a preemption of
+          SoAd_TxConfirmation() in the same call context.
+        <pre/>
+          This integration requirement also applies to possible other not listed SoAd
+          upper layer functions.
+      </description>
+      <rationale>
+        This limitation reduces code size and execution time by eliminating the need for extensive
+        use of exclusive areas.
+      </rationale>
+    </specobject>
+
+    <specobject>
+      <id>lim.SoAd.EB_INTREQ_SoAd_0004</id>
+      <status>approved</status>
+      <source>EB integration requirement</source>
+      <version>1</version>
+      <description>
+        The reinitialization process shall not interrupt other module functions.
+        If reinitialization of the module is required, the call of
+        SoAd_Init() shall not interrupt other module functions.
+      </description>
+      <rationale>
+        The reinitialization process resets all internal variables. Continuing an interrupted
+        module function after reinitialization can lead to undefined module behavior.
+      </rationale>
+    </specobject>
+
+    
+
+    <specobject>
+      <id>lim.SoAd.EB_INTREQ_SoAd_0006</id>
+      <status>approved</status>
+      <source>EB integration requirement</source>
+      <version>1</version>
+      <description>
+        If SoAd_IfTransmit() with SduDataPtr = NULL_PTR is called for a UDP connection, the
+        optional header and payload to be transmitted must fit into a single UDP frame. It must
+        be ensured that IP fragmentation does not occur. Otherwise a Det error is reported.
+      </description>
+    </specobject>
+
+    
+
+    <specobject>
+      <id>lim.SoAd.EB_INTREQ_SoAd_0008</id>
+      <status>approved</status>
+      <source>EB integration requirement</source>
+      <version>1</version>
+      <description>
+        If SoAd_SetUniqueRemoteAddr() is called, it must be assured that SoAd_ReleaseRemoteAddr()
+        is called as often for the same SoConId before the remote address is released.
+      </description>
+    </specobject>
+
+    <specobject>
+      <id>lim.SoAd.EB_INTREQ_SoAd_0009</id>
+      <status>approved</status>
+      <source>EB integration requirement</source>
+      <version>1</version>
+      <description>
+        If SoAd_SetUniqueRemoteAddr() is called and returns a socket connection set with
+        SoAd_SetRemoteAddr(), it must be assured that SoAd_ReleaseRemoteAddr() is called as often
+        for the same SoConId before the remote address can be set with SoAd_SetRemoteAddr() again.
+      </description>
+    </specobject>
+
+    <specobject>
+      <id>lim.SoAd.EB_INTREQ_SoAd_0010</id>
+      <status>approved</status>
+      <source>EB integration requirement</source>
+      <version>1</version>
+      <description>
+        SoAd performs transmission over a TCP connection as a data stream.
+        If a TP PDU transmission using this TCP connection gets aborted, the TCP connection will be
+        closed.
+        An ongoing transmission for a TP PDU can be aborted either via
+        SoAd_TpCancelTransmit() or by returning BUFREQ_E_NOT_OK
+        for UL_SoAdTpCopyTxData() when requesting available data which will be called before
+        requesting the actual data.
+      </description>
+    </specobject>
+
+    <specobject>
+      <id>lim.SoAd.EB_INTREQ_SoAd_0011</id>
+      <status>approved</status>
+      <source>EB integration requirement</source>
+      <version>1</version>
+      <description>
+        SoAd does not support time-out supervision of upper layer TP transmission data provision.
+        If data are not immediately available, the upper layer must ensure that the call of
+        UL_SoAdTpCopyTxData() does not return BUFREQ_E_OK with available data
+        equal to 0 or BUFREQ_E_BUSY for an infinite time.
+      </description>
+    </specobject>
+
+    <specobject>
+      <id>lim.SoAd.EB_INTREQ_SoAd_0012</id>
+      <status>approved</status>
+      <source>EB integration requirement</source>
+      <version>1</version>
+      <description>
+        The SoAd_IfTransmit() API must be called in a context with higher priority than the
+        priority of SoAd_MainFunction() Os task.
+      </description>
+    </specobject>
+
+    <specobject>
+      <id>lim.SoAd.EB_INTREQ_SoAd_0013</id>
+      <status>approved</status>
+      <source>EB integration requirement</source>
+      <version>1</version>
+      <description>
+        The integrator must ensure for
+        SoAdSocketRoutes and SoAdPduRoutes referring a SoAdSocketConnectionGroup and refer to
+        multiple SoAdRoutingGroups that either all of these SoAdRoutingGroups are only referred
+        by SoAdSocketRoutes and SoAdPduRoutes referring the same SoAdSocketConnectionGroup
+        and can be controlled via SoAd_EnableSpecificRouting() and SoAd_DisableSpecificRouting() and
+        therefore called specific SoAdRoutingGroups
+        or all of these SoAdRoutingGroups are only referred SoAdSocketRoutes and SoAdPduRoutes
+        referring to different SoAdSocketConnectionGroup or SoAdSocketConnection within each
+        SoAdRoutingGroup and can be controlled by SoAd_EnableRouting() and SoAd_DisableRouting()
+        and therefore called global SoAdRoutingGroups.
+        It must be ensured that a SoAdSocketRoutes or SoAdPduRoutes does not refer to a mixture of
+        specific and global SoAdRoutingGroups.
+      </description>
+    </specobject>
+
+  </specobjects>
+</specdocument>

@@ -1,0 +1,32 @@
+# Note:
+# 1. Rename this file and replace xxx with component name in lowercase.
+# 2. Replace xxx with component name in lowercase.
+# 3. Update each variable according to the existing source files and include paths.
+# ----------------------------------------------------------------------------------------
+
+# config file containing source files in PC sim wrapper
+
+
+Import("project_name")
+
+if 'MFC' in project_name:
+
+	gia_sim_swc_source_files = """
+	../../../../01_Source_Code/GIA_sim/sim_swc_yaw_rate_workaround/sim_swc_yaw_rate_workaround.cpp
+	../../../../01_Source_Code/GIA_sim/sim_swc_yaw_rate_workaround/sim_swc_yaw_rate_workaround_dll.cpp
+	../../../../01_Source_Code/GIA_sim/sim_swc_yaw_rate_workaround/stdafx.cpp
+	"""
+	
+	gia_sim_swc_include_paths = """
+	#../../../01_Source_Code/sim_swc_yaw_rate_workaround/
+	#../../../01_Source_Code/externals/sim/include
+	#../../../01_Source_Code/externals/sim/lib
+	#../../../01_Source_Code/externals/sim/include/sim_kernel
+	#../../../00_Projects/%s/common/GLOB/
+	#../../../01_Source_Code/common/GLOB/
+	#../../../01_Source_Code/common/GLOB/GLOB_DPU/
+	""" % (project_name)
+	
+	gia_sim_swc_pdo_sources = """
+	../../../../01_Source_Code/gia/frame/gia_measfreeze_data.cpp
+	"""

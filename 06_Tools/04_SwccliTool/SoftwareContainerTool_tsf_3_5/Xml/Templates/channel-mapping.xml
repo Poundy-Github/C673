@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ChannelMappings xmlns="http://schemas.continental-corporation.com/mts/swc/2016/channel-mapping">
+  <!--Maps a group, interface and cycle id triplet to a channel-->
+  <!--Channels are defined in the channel definition xml-->
+  <!--<ChannelMapping GroupId="0" InterfaceId="1" StartVirtualAddress="0xFFFFFFFF" EndVirtualAddress="0xFFFFFFFF" CycleId="60" ChannelId="1" />-->
+</ChannelMappings>

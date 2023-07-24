@@ -1,0 +1,36 @@
+global &gCORENAME
+global &gDEBUGSYNC_STATE
+
+if "&gDEBUGSYNC_STATE"=="1"
+(
+    print "Disabled debug state synchronization with other Trace32 instance"
+    synch.off
+    synch.connect
+    
+    if "&gCORENAME"=="cr7"
+    (
+        INTERCOM.execute localhost:10001 synch.off
+        INTERCOM.execute localhost:10001 synch.connect
+    )
+    else
+    (
+        INTERCOM.execute localhost:10000 synch.off
+        INTERCOM.execute localhost:10000 synch.connect
+    )
+    &gDEBUGSYNC_STATE="0"
+)
+else
+(
+    print "Enabled debug state synchronization with other Trace32 instance"
+    if "&gCORENAME"=="cr7"
+    (
+        synch.connect localhost:10001
+        INTERCOM.execute localhost:10001 synch.connect localhost:10000
+    )
+    else
+    (
+        synch.connect localhost:10000
+        INTERCOM.execute localhost:10000 synch.connect localhost:10001
+    )
+    &gDEBUGSYNC_STATE="1"
+)

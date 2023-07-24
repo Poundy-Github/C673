@@ -1,0 +1,3732 @@
+"Configuration Container V2.2"
+"Root"
+"Configuration Tree"
+[
+"BuildNumber"
+"BuildNumber"
+"~"
+value "4"
+]
+[
+"Configuration Container"
+"ConfVersion2"
+"Please upgrade to T32Start version >= 2.4.9 to load this .ts2 file!"
+]
+[
+"SubContainer"
+"Settings"
+"~"
+[
+"SubContainer"
+"GlobalSettings"
+"Global Settings"
+[
+"Boolean"
+"FastStart"
+"Fast start"
+value "yes"
+]
+[
+"Int"
+"Delay between start of multiple instances [sec]"
+"~"
+value "10"
+]
+[
+"ListBasedCombo"
+"Replace empty paths"
+"~"
+value "BN"
+]
+[
+"SubContainer"
+"Saving Location"
+"~"
+[
+"ListBasedCombo"
+"Target Type"
+"~"
+value "File"
+]
+[
+"String"
+"File"
+"~"
+value "D:\Sbx\Regular\SW_SMFC400_PR\S00_ALL\04_Engineering\03_Workspace\sw\lauterbach\projects\mfc430\mfc430.ts2"
+]
+]
+]
+[
+"CoreAdvancedOptions"
+"CoreAdvancedOptions"
+"Default Advanced Settings"
+[
+"DirectorySettings"
+"Directories"
+"Paths"
+[
+"String"
+"WorkingPath"
+"~"
+value "."
+]
+[
+"String"
+"SystemPath"
+"~"
+value "%///Configuration/URL_T32PATH%"
+]
+[
+"String"
+"TempPath"
+"~"
+value "D:\Temp"
+]
+[
+"String"
+"HelpPath"
+"~"
+value "%///Configuration/URL_T32PATH%\pdf"
+]
+[
+"String"
+"LicenseFile"
+"~"
+value ""
+]
+[
+"Boolean"
+"Force32"
+"Use only 32-bit executable"
+value "no"
+]
+]
+[
+"LMSettings"
+"LMSettings"
+"License"
+[
+"String"
+"RLMPort"
+"~"
+value "5055"
+]
+[
+"String"
+"RLMServer"
+"~"
+value ""
+]
+[
+"Int"
+"PoolPort"
+"~"
+value "0"
+]
+[
+"CFGItemPath"
+"LicensePodBusDevice"
+"PodBusDevice"
+value ""
+]
+]
+"InterfaceSettings"
+"Interfaces"
+"~"
+[
+"Port"
+"APIPort"
+"API Port"
+[
+"Boolean"
+"APIPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"APIPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"APIPort.PortStartValue"
+"Port Start Value"
+value "20000"
+]
+[
+"Int"
+"APIPort.PortValue"
+"Port Value"
+value "20000"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"IntercomPort"
+"Intercom Port"
+[
+"Boolean"
+"IntercomPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"IntercomPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"IntercomPort.PortStartValue"
+"Port Start Value"
+value "10000"
+]
+[
+"Int"
+"IntercomPort.PortValue"
+"Port Value"
+value "10000"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"GDBPort"
+"GDB Port"
+[
+"Boolean"
+"GDBPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"GDBPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"GDBPort.PortStartValue"
+"Port Start Value"
+value "30000"
+]
+[
+"Int"
+"GDBPort.PortValue"
+"Port Value"
+value "30000"
+]
+[
+"Protocol"
+"Protocol"
+"~"
+value "UDP"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"TCFPort"
+"TCF Port"
+[
+"Boolean"
+"TCFPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"TCFPort.TCFAutoDiscovery"
+"Auto Discovery"
+value "yes"
+]
+[
+"Boolean"
+"TCFPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"TCFPort.PortStartValue"
+"Port Start Value"
+value "1534"
+]
+[
+"Int"
+"TCFPort.PortValue"
+"Port Value"
+value "1534"
+]
+]
+[
+"DisplaySettings"
+"Display"
+"~"
+[
+"String"
+"Title"
+"~"
+value "TRACE32 PowerView for %T %O [%D @ %N]"
+]
+[
+"FontSize"
+"FontSize"
+"~"
+value "SMALL"
+]
+[
+"ClearType"
+"ClearType"
+"~"
+value "DEFAULT"
+]
+[
+"Boolean"
+"FullScreen"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Iconic"
+"~"
+value "no"
+]
+[
+"WindowMode"
+"WindowMode"
+"~"
+value "MDI"
+]
+[
+"Language"
+"Language"
+"~"
+value "EN"
+]
+]
+[
+"InternalSettings"
+"InternalSettings"
+"Internal"
+[
+"Boolean"
+"Debug"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Attach"
+"~"
+value "no"
+]
+[
+"Boolean"
+"MultiCore"
+"~"
+value "no"
+]
+[
+"Boolean"
+"NoSelfTest"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Passive"
+"~"
+value "no"
+]
+[
+"String"
+"T32Executable"
+"~"
+value ""
+]
+[
+"String"
+"SysFCC"
+"~"
+value ""
+]
+[
+"String"
+"SysFCCCPU"
+"~"
+value ""
+]
+[
+"Boolean"
+"Win"
+"WineUseWindowsExecutable"
+value "no"
+]
+]
+[
+"StartupScript"
+"StartupScript"
+"~"
+[
+"ListBasedCombo"
+"Source"
+"~"
+value "File"
+]
+[
+"String"
+"File"
+"~"
+value ""
+]
+[
+"BuiltinScript"
+"BuiltinScript"
+"Built-in Script"
+value ""
+]
+[
+"String"
+"Parameters"
+"~"
+value ""
+]
+]
+]
+]
+[
+"Configuration V2.2"
+"Configuration"
+"Config"
+[
+"Podbus Device Chain"
+"Podbus Device Chain"
+"~"
+[
+"Power Debug USB 2"
+"Power Debug USB 2"
+"~"
+[
+"ListBasedCombo"
+"ConnectionType"
+"~"
+value "USB"
+]
+[
+"USBSettings"
+"USBSettings"
+"USB Settings"
+[
+"USBNodeName"
+"USBNodeName"
+"Device Name"
+value ""
+]
+]
+[
+"CitrixSettings"
+"CitrixSettings"
+"Citrix Settings"
+[
+"CitrixNodeName"
+"Node Name"
+"~"
+value ""
+]
+]
+[
+"USBProxySettings"
+"USBProxySettings"
+"USB Proxy Settings"
+[
+"USBProxyDeviceName"
+"Device Name"
+"~"
+value ""
+]
+[
+"USBProxyNodeName"
+"Node Name"
+"~"
+value ""
+]
+[
+"USBProxyPort"
+"Port"
+"~"
+value "0"
+]
+]
+[
+"Parallel Port Settings"
+"Parallel Port Settings"
+"~"
+[
+"ParallelPortNumber"
+"Port"
+"~"
+value "1"
+]
+[
+"ParallelAccesMode"
+"Access Mode"
+"~"
+value "PARPORT"
+]
+[
+"ParallelConnectionMode"
+"Connection Mode"
+"~"
+value "Standard"
+]
+]
+[
+"Ethernet Settings"
+"Ethernet Settings"
+"~"
+[
+"EthernetNodeName"
+"EthernetNodeName"
+"Node Name / IP Address"
+value ""
+]
+[
+"EthPort"
+"EthPort"
+"Port"
+value "20000"
+]
+[
+"EthHostPort"
+"EthHostPort"
+"Host Port"
+value "0"
+]
+[
+"ETHINCRPORT"
+"ETHINCRPORT"
+"Increment Ports"
+value "no"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+[
+"SMALLBLOCKS"
+"SMALLBLOCKS"
+"Packet Burst Limitation"
+value "no"
+]
+[
+"ETHCOMPRESSION"
+"ETHCOMPRESSION"
+"Compression"
+value "no"
+]
+[
+"ETHDELAY"
+"ETHDELAY"
+"Delay [ms]"
+value "0"
+]
+[
+"EthConnM"
+"EthConnM"
+"Connect Mode"
+value "N"
+]
+[
+"EthContrBased"
+"EthContrBased"
+"Controller Based"
+value "no"
+]
+]
+[
+"Core"
+"Core"
+"arm-a_0"
+[
+"T32Executable"
+"Target"
+"~"
+value "ARM"
+]
+[
+"CoreAdvancedOptions"
+"CoreAdvancedOptions"
+"Advanced Settings"
+[
+"DirectorySettings"
+"Directories"
+"Paths"
+[
+"String"
+"WorkingPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/WorkingPath%"
+]
+[
+"String"
+"SystemPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/SystemPath%"
+]
+[
+"String"
+"TempPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/TempPath%"
+]
+[
+"String"
+"HelpPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/HelpPath%"
+]
+[
+"String"
+"LicenseFile"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/LicenseFile%"
+]
+[
+"Boolean"
+"Force32"
+"Use only 32-bit executable"
+value "no"
+]
+]
+[
+"LMSettings"
+"LMSettings"
+"License"
+[
+"String"
+"RLMPort"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMPort%"
+]
+[
+"String"
+"RLMServer"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMServer%"
+]
+[
+"Int"
+"PoolPort"
+"~"
+value "0"
+]
+"CFGItemPath"
+"LicensePodBusDevice"
+"PodBusDevice"
+value ""
+]
+"InterfaceSettings"
+"Interfaces"
+"~"
+[
+"Port"
+"APIPort"
+"API Port"
+[
+"Boolean"
+"APIPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"APIPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"APIPort.PortStartValue"
+"Port Start Value"
+value "20000"
+]
+[
+"Int"
+"APIPort.PortValue"
+"Port Value"
+value "20000"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"IntercomPort"
+"Intercom Port"
+[
+"Boolean"
+"IntercomPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"IntercomPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"IntercomPort.PortStartValue"
+"Port Start Value"
+value "10000"
+]
+[
+"Int"
+"IntercomPort.PortValue"
+"Port Value"
+value "10000"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"GDBPort"
+"GDB Port"
+[
+"Boolean"
+"GDBPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"GDBPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"GDBPort.PortStartValue"
+"Port Start Value"
+value "30000"
+]
+[
+"Int"
+"GDBPort.PortValue"
+"Port Value"
+value "30000"
+]
+[
+"Protocol"
+"Protocol"
+"~"
+value "UDP"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"TCFPort"
+"TCF Port"
+[
+"Boolean"
+"TCFPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"TCFPort.TCFAutoDiscovery"
+"Auto Discovery"
+value "yes"
+]
+[
+"Boolean"
+"TCFPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"TCFPort.PortStartValue"
+"Port Start Value"
+value "1534"
+]
+[
+"Int"
+"TCFPort.PortValue"
+"Port Value"
+value "1534"
+]
+]
+[
+"DisplaySettings"
+"Display"
+"~"
+[
+"String"
+"Title"
+"~"
+value "T32: arm-a_0"
+]
+[
+"FontSize"
+"FontSize"
+"~"
+value "SMALL"
+]
+[
+"ClearType"
+"ClearType"
+"~"
+value "DEFAULT"
+]
+[
+"Boolean"
+"FullScreen"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Iconic"
+"~"
+value "no"
+]
+[
+"WindowMode"
+"WindowMode"
+"~"
+value "MDI"
+]
+[
+"Language"
+"Language"
+"~"
+value "EN"
+]
+]
+[
+"InternalSettings"
+"InternalSettings"
+"Internal"
+[
+"Boolean"
+"Debug"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Attach"
+"~"
+value "no"
+]
+[
+"Boolean"
+"MultiCore"
+"~"
+value "no"
+]
+[
+"Boolean"
+"NoSelfTest"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Passive"
+"~"
+value "no"
+]
+[
+"String"
+"T32Executable"
+"~"
+value ""
+]
+[
+"String"
+"SysFCC"
+"~"
+value ""
+]
+[
+"String"
+"SysFCCCPU"
+"~"
+value ""
+]
+[
+"Boolean"
+"Win"
+"WineUseWindowsExecutable"
+value "no"
+]
+]
+[
+"StartupScript"
+"StartupScript"
+"~"
+[
+"ListBasedCombo"
+"Source"
+"~"
+value "File"
+]
+[
+"String"
+"File"
+"~"
+value "%///Configuration/URL_INITSCRIPT%"
+]
+[
+"BuiltinScript"
+"BuiltinScript"
+"Built-in Script"
+value ""
+]
+[
+"String"
+"Parameters"
+"~"
+value "arm-a_0"
+]
+]
+]
+[
+"String"
+"T32ID"
+"~"
+value "T32_1000014"
+]
+]
+[
+"Core"
+"Core3"
+"arm-m_0"
+[
+"T32Executable"
+"Target"
+"~"
+value "ARM"
+]
+[
+"CoreAdvancedOptions"
+"CoreAdvancedOptions"
+"Advanced Settings"
+[
+"DirectorySettings"
+"Directories"
+"Paths"
+[
+"String"
+"WorkingPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/WorkingPath%"
+]
+[
+"String"
+"SystemPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/SystemPath%"
+]
+[
+"String"
+"TempPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/TempPath%"
+]
+[
+"String"
+"HelpPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/HelpPath%"
+]
+[
+"String"
+"LicenseFile"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/LicenseFile%"
+]
+[
+"Boolean"
+"Force32"
+"Use only 32-bit executable"
+value "no"
+]
+]
+[
+"LMSettings"
+"LMSettings"
+"License"
+[
+"String"
+"RLMPort"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMPort%"
+]
+[
+"String"
+"RLMServer"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMServer%"
+]
+[
+"Int"
+"PoolPort"
+"~"
+value "0"
+]
+[
+"CFGItemPath"
+"LicensePodBusDevice"
+"PodBusDevice"
+value ""
+]
+]
+"InterfaceSettings"
+"Interfaces"
+"~"
+[
+"Port"
+"APIPort"
+"API Port"
+[
+"Boolean"
+"APIPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"APIPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"APIPort.PortStartValue"
+"Port Start Value"
+value "20000"
+]
+[
+"Int"
+"APIPort.PortValue"
+"Port Value"
+value "20001"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"IntercomPort"
+"Intercom Port"
+[
+"Boolean"
+"IntercomPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"IntercomPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"IntercomPort.PortStartValue"
+"Port Start Value"
+value "10000"
+]
+[
+"Int"
+"IntercomPort.PortValue"
+"Port Value"
+value "10001"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"GDBPort"
+"GDB Port"
+[
+"Boolean"
+"GDBPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"GDBPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"GDBPort.PortStartValue"
+"Port Start Value"
+value "30000"
+]
+[
+"Int"
+"GDBPort.PortValue"
+"Port Value"
+value "30001"
+]
+[
+"Protocol"
+"Protocol"
+"~"
+value "UDP"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"TCFPort"
+"TCF Port"
+[
+"Boolean"
+"TCFPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"TCFPort.TCFAutoDiscovery"
+"Auto Discovery"
+value "yes"
+]
+[
+"Boolean"
+"TCFPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"TCFPort.PortStartValue"
+"Port Start Value"
+value "1534"
+]
+[
+"Int"
+"TCFPort.PortValue"
+"Port Value"
+value "1535"
+]
+]
+[
+"DisplaySettings"
+"Display"
+"~"
+[
+"String"
+"Title"
+"~"
+value "T32: arm-m_0"
+]
+[
+"FontSize"
+"FontSize"
+"~"
+value "SMALL"
+]
+[
+"ClearType"
+"ClearType"
+"~"
+value "DEFAULT"
+]
+[
+"Boolean"
+"FullScreen"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Iconic"
+"~"
+value "yes"
+]
+[
+"WindowMode"
+"WindowMode"
+"~"
+value "MDI"
+]
+[
+"Language"
+"Language"
+"~"
+value "EN"
+]
+]
+[
+"InternalSettings"
+"InternalSettings"
+"Internal"
+[
+"Boolean"
+"Debug"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Attach"
+"~"
+value "no"
+]
+[
+"Boolean"
+"MultiCore"
+"~"
+value "no"
+]
+[
+"Boolean"
+"NoSelfTest"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Passive"
+"~"
+value "no"
+]
+[
+"String"
+"T32Executable"
+"~"
+value ""
+]
+[
+"String"
+"SysFCC"
+"~"
+value ""
+]
+[
+"String"
+"SysFCCCPU"
+"~"
+value ""
+]
+[
+"Boolean"
+"Win"
+"WineUseWindowsExecutable"
+value "no"
+]
+]
+[
+"StartupScript"
+"StartupScript"
+"~"
+[
+"ListBasedCombo"
+"Source"
+"~"
+value "File"
+]
+[
+"String"
+"File"
+"~"
+value "%///Configuration/URL_INITSCRIPT%"
+]
+[
+"BuiltinScript"
+"BuiltinScript"
+"Built-in Script"
+value ""
+]
+[
+"String"
+"Parameters"
+"~"
+value "arm-m_0"
+]
+]
+]
+[
+"String"
+"T32ID"
+"~"
+value "T32_1000026"
+]
+]
+[
+"Core"
+"Core4"
+"arm-m_1"
+[
+"T32Executable"
+"Target"
+"~"
+value "ARM"
+]
+[
+"CoreAdvancedOptions"
+"CoreAdvancedOptions"
+"Advanced Settings"
+[
+"DirectorySettings"
+"Directories"
+"Paths"
+[
+"String"
+"WorkingPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/WorkingPath%"
+]
+[
+"String"
+"SystemPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/SystemPath%"
+]
+[
+"String"
+"TempPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/TempPath%"
+]
+[
+"String"
+"HelpPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/HelpPath%"
+]
+[
+"String"
+"LicenseFile"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/LicenseFile%"
+]
+[
+"Boolean"
+"Force32"
+"Use only 32-bit executable"
+value "no"
+]
+]
+[
+"LMSettings"
+"LMSettings"
+"License"
+[
+"String"
+"RLMPort"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMPort%"
+]
+[
+"String"
+"RLMServer"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMServer%"
+]
+[
+"Int"
+"PoolPort"
+"~"
+value "0"
+]
+"CFGItemPath"
+"LicensePodBusDevice"
+"PodBusDevice"
+value ""
+]
+"InterfaceSettings"
+"Interfaces"
+"~"
+[
+"Port"
+"APIPort"
+"API Port"
+[
+"Boolean"
+"APIPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"APIPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"APIPort.PortStartValue"
+"Port Start Value"
+value "20000"
+]
+[
+"Int"
+"APIPort.PortValue"
+"Port Value"
+value "20002"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"IntercomPort"
+"Intercom Port"
+[
+"Boolean"
+"IntercomPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"IntercomPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"IntercomPort.PortStartValue"
+"Port Start Value"
+value "10000"
+]
+[
+"Int"
+"IntercomPort.PortValue"
+"Port Value"
+value "10002"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"GDBPort"
+"GDB Port"
+[
+"Boolean"
+"GDBPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"GDBPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"GDBPort.PortStartValue"
+"Port Start Value"
+value "30000"
+]
+[
+"Int"
+"GDBPort.PortValue"
+"Port Value"
+value "30002"
+]
+[
+"Protocol"
+"Protocol"
+"~"
+value "UDP"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"TCFPort"
+"TCF Port"
+[
+"Boolean"
+"TCFPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"TCFPort.TCFAutoDiscovery"
+"Auto Discovery"
+value "yes"
+]
+[
+"Boolean"
+"TCFPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"TCFPort.PortStartValue"
+"Port Start Value"
+value "1534"
+]
+[
+"Int"
+"TCFPort.PortValue"
+"Port Value"
+value "1536"
+]
+]
+[
+"DisplaySettings"
+"Display"
+"~"
+[
+"String"
+"Title"
+"~"
+value "T32: arm-m_1"
+]
+[
+"FontSize"
+"FontSize"
+"~"
+value "SMALL"
+]
+[
+"ClearType"
+"ClearType"
+"~"
+value "DEFAULT"
+]
+[
+"Boolean"
+"FullScreen"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Iconic"
+"~"
+value "yes"
+]
+[
+"WindowMode"
+"WindowMode"
+"~"
+value "MDI"
+]
+[
+"Language"
+"Language"
+"~"
+value "EN"
+]
+]
+[
+"InternalSettings"
+"InternalSettings"
+"Internal"
+[
+"Boolean"
+"Debug"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Attach"
+"~"
+value "no"
+]
+[
+"Boolean"
+"MultiCore"
+"~"
+value "no"
+]
+[
+"Boolean"
+"NoSelfTest"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Passive"
+"~"
+value "no"
+]
+[
+"String"
+"T32Executable"
+"~"
+value ""
+]
+[
+"String"
+"SysFCC"
+"~"
+value ""
+]
+[
+"String"
+"SysFCCCPU"
+"~"
+value ""
+]
+[
+"Boolean"
+"Win"
+"WineUseWindowsExecutable"
+value "no"
+]
+]
+[
+"StartupScript"
+"StartupScript"
+"~"
+[
+"ListBasedCombo"
+"Source"
+"~"
+value "File"
+]
+[
+"String"
+"File"
+"~"
+value "%///Configuration/URL_INITSCRIPT%"
+]
+[
+"BuiltinScript"
+"BuiltinScript"
+"Built-in Script"
+value ""
+]
+[
+"String"
+"Parameters"
+"~"
+value "arm-m_1"
+]
+]
+]
+[
+"String"
+"T32ID"
+"~"
+value "T32_1000033"
+]
+]
+[
+"Core"
+"Core2"
+"dsp_0"
+[
+"T32Executable"
+"Target"
+"~"
+value "TMS320C6000"
+]
+[
+"CoreAdvancedOptions"
+"CoreAdvancedOptions"
+"Advanced Settings"
+[
+"DirectorySettings"
+"Directories"
+"Paths"
+[
+"String"
+"WorkingPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/WorkingPath%"
+]
+[
+"String"
+"SystemPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/SystemPath%"
+]
+[
+"String"
+"TempPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/TempPath%"
+]
+[
+"String"
+"HelpPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/HelpPath%"
+]
+[
+"String"
+"LicenseFile"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/LicenseFile%"
+]
+[
+"Boolean"
+"Force32"
+"Use only 32-bit executable"
+value "no"
+]
+]
+[
+"LMSettings"
+"LMSettings"
+"License"
+[
+"String"
+"RLMPort"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMPort%"
+]
+[
+"String"
+"RLMServer"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMServer%"
+]
+[
+"Int"
+"PoolPort"
+"~"
+value "0"
+]
+"CFGItemPath"
+"LicensePodBusDevice"
+"PodBusDevice"
+value ""
+]
+"InterfaceSettings"
+"Interfaces"
+"~"
+[
+"Port"
+"APIPort"
+"API Port"
+[
+"Boolean"
+"APIPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"APIPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"APIPort.PortStartValue"
+"Port Start Value"
+value "20000"
+]
+[
+"Int"
+"APIPort.PortValue"
+"Port Value"
+value "20003"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"IntercomPort"
+"Intercom Port"
+[
+"Boolean"
+"IntercomPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"IntercomPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"IntercomPort.PortStartValue"
+"Port Start Value"
+value "10000"
+]
+[
+"Int"
+"IntercomPort.PortValue"
+"Port Value"
+value "10003"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"GDBPort"
+"GDB Port"
+[
+"Boolean"
+"GDBPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"GDBPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"GDBPort.PortStartValue"
+"Port Start Value"
+value "30000"
+]
+[
+"Int"
+"GDBPort.PortValue"
+"Port Value"
+value "30003"
+]
+[
+"Protocol"
+"Protocol"
+"~"
+value "UDP"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"TCFPort"
+"TCF Port"
+[
+"Boolean"
+"TCFPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"TCFPort.TCFAutoDiscovery"
+"Auto Discovery"
+value "yes"
+]
+[
+"Boolean"
+"TCFPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"TCFPort.PortStartValue"
+"Port Start Value"
+value "1534"
+]
+[
+"Int"
+"TCFPort.PortValue"
+"Port Value"
+value "1537"
+]
+]
+[
+"DisplaySettings"
+"Display"
+"~"
+[
+"String"
+"Title"
+"~"
+value "T32: dsp_0"
+]
+[
+"FontSize"
+"FontSize"
+"~"
+value "SMALL"
+]
+[
+"ClearType"
+"ClearType"
+"~"
+value "DEFAULT"
+]
+[
+"Boolean"
+"FullScreen"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Iconic"
+"~"
+value "yes"
+]
+[
+"WindowMode"
+"WindowMode"
+"~"
+value "MDI"
+]
+[
+"Language"
+"Language"
+"~"
+value "EN"
+]
+]
+[
+"InternalSettings"
+"InternalSettings"
+"Internal"
+[
+"Boolean"
+"Debug"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Attach"
+"~"
+value "no"
+]
+[
+"Boolean"
+"MultiCore"
+"~"
+value "no"
+]
+[
+"Boolean"
+"NoSelfTest"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Passive"
+"~"
+value "no"
+]
+[
+"String"
+"T32Executable"
+"~"
+value ""
+]
+[
+"String"
+"SysFCC"
+"~"
+value ""
+]
+[
+"String"
+"SysFCCCPU"
+"~"
+value ""
+]
+[
+"Boolean"
+"Win"
+"WineUseWindowsExecutable"
+value "no"
+]
+]
+[
+"StartupScript"
+"StartupScript"
+"~"
+[
+"ListBasedCombo"
+"Source"
+"~"
+value "File"
+]
+[
+"String"
+"File"
+"~"
+value "%///Configuration/URL_INITSCRIPT%"
+]
+[
+"BuiltinScript"
+"BuiltinScript"
+"Built-in Script"
+value ""
+]
+[
+"String"
+"Parameters"
+"~"
+value "dsp_0"
+]
+]
+]
+[
+"String"
+"T32ID"
+"~"
+value "T32_1000020"
+]
+]
+[
+"Core"
+"Core5"
+"dsp_1"
+[
+"T32Executable"
+"Target"
+"~"
+value "TMS320C6000"
+]
+[
+"CoreAdvancedOptions"
+"CoreAdvancedOptions"
+"Advanced Settings"
+[
+"DirectorySettings"
+"Directories"
+"Paths"
+[
+"String"
+"WorkingPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/WorkingPath%"
+]
+[
+"String"
+"SystemPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/SystemPath%"
+]
+[
+"String"
+"TempPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/TempPath%"
+]
+[
+"String"
+"HelpPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/HelpPath%"
+]
+[
+"String"
+"LicenseFile"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/LicenseFile%"
+]
+[
+"Boolean"
+"Force32"
+"Use only 32-bit executable"
+value "no"
+]
+]
+[
+"LMSettings"
+"LMSettings"
+"License"
+[
+"String"
+"RLMPort"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMPort%"
+]
+[
+"String"
+"RLMServer"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMServer%"
+]
+[
+"Int"
+"PoolPort"
+"~"
+value "0"
+]
+[
+"CFGItemPath"
+"LicensePodBusDevice"
+"PodBusDevice"
+value ""
+]
+]
+"InterfaceSettings"
+"Interfaces"
+"~"
+[
+"Port"
+"APIPort"
+"API Port"
+[
+"Boolean"
+"APIPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"APIPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"APIPort.PortStartValue"
+"Port Start Value"
+value "20000"
+]
+[
+"Int"
+"APIPort.PortValue"
+"Port Value"
+value "20004"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"IntercomPort"
+"Intercom Port"
+[
+"Boolean"
+"IntercomPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"IntercomPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"IntercomPort.PortStartValue"
+"Port Start Value"
+value "10000"
+]
+[
+"Int"
+"IntercomPort.PortValue"
+"Port Value"
+value "10004"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"GDBPort"
+"GDB Port"
+[
+"Boolean"
+"GDBPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"GDBPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"GDBPort.PortStartValue"
+"Port Start Value"
+value "30000"
+]
+[
+"Int"
+"GDBPort.PortValue"
+"Port Value"
+value "30004"
+]
+[
+"Protocol"
+"Protocol"
+"~"
+value "UDP"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"TCFPort"
+"TCF Port"
+[
+"Boolean"
+"TCFPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"TCFPort.TCFAutoDiscovery"
+"Auto Discovery"
+value "yes"
+]
+[
+"Boolean"
+"TCFPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"TCFPort.PortStartValue"
+"Port Start Value"
+value "1534"
+]
+[
+"Int"
+"TCFPort.PortValue"
+"Port Value"
+value "1538"
+]
+]
+[
+"DisplaySettings"
+"Display"
+"~"
+[
+"String"
+"Title"
+"~"
+value "T32: dsp_1"
+]
+[
+"FontSize"
+"FontSize"
+"~"
+value "SMALL"
+]
+[
+"ClearType"
+"ClearType"
+"~"
+value "DEFAULT"
+]
+[
+"Boolean"
+"FullScreen"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Iconic"
+"~"
+value "yes"
+]
+[
+"WindowMode"
+"WindowMode"
+"~"
+value "MDI"
+]
+[
+"Language"
+"Language"
+"~"
+value "EN"
+]
+]
+[
+"InternalSettings"
+"InternalSettings"
+"Internal"
+[
+"Boolean"
+"Debug"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Attach"
+"~"
+value "no"
+]
+[
+"Boolean"
+"MultiCore"
+"~"
+value "no"
+]
+[
+"Boolean"
+"NoSelfTest"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Passive"
+"~"
+value "no"
+]
+[
+"String"
+"T32Executable"
+"~"
+value ""
+]
+[
+"String"
+"SysFCC"
+"~"
+value ""
+]
+[
+"String"
+"SysFCCCPU"
+"~"
+value ""
+]
+[
+"Boolean"
+"Win"
+"WineUseWindowsExecutable"
+value "no"
+]
+]
+[
+"StartupScript"
+"StartupScript"
+"~"
+[
+"ListBasedCombo"
+"Source"
+"~"
+value "File"
+]
+[
+"String"
+"File"
+"~"
+value "%///Configuration/URL_INITSCRIPT%"
+]
+[
+"BuiltinScript"
+"BuiltinScript"
+"Built-in Script"
+value ""
+]
+[
+"String"
+"Parameters"
+"~"
+value "dsp_1"
+]
+]
+]
+[
+"String"
+"T32ID"
+"~"
+value "T32_1000032"
+]
+]
+[
+"Core"
+"Core6"
+"eve_0"
+[
+"T32Executable"
+"Target"
+"~"
+value "ARP32"
+]
+[
+"CoreAdvancedOptions"
+"CoreAdvancedOptions"
+"Advanced Settings"
+[
+"DirectorySettings"
+"Directories"
+"Paths"
+[
+"String"
+"WorkingPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/WorkingPath%"
+]
+[
+"String"
+"SystemPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/SystemPath%"
+]
+[
+"String"
+"TempPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/TempPath%"
+]
+[
+"String"
+"HelpPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/HelpPath%"
+]
+[
+"String"
+"LicenseFile"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/LicenseFile%"
+]
+[
+"Boolean"
+"Force32"
+"Use only 32-bit executable"
+value "no"
+]
+]
+[
+"LMSettings"
+"LMSettings"
+"License"
+[
+"String"
+"RLMPort"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMPort%"
+]
+[
+"String"
+"RLMServer"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMServer%"
+]
+[
+"Int"
+"PoolPort"
+"~"
+value "0"
+]
+"CFGItemPath"
+"LicensePodBusDevice"
+"PodBusDevice"
+value ""
+]
+"InterfaceSettings"
+"Interfaces"
+"~"
+[
+"Port"
+"APIPort"
+"API Port"
+[
+"Boolean"
+"APIPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"APIPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"APIPort.PortStartValue"
+"Port Start Value"
+value "20000"
+]
+[
+"Int"
+"APIPort.PortValue"
+"Port Value"
+value "20005"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"IntercomPort"
+"Intercom Port"
+[
+"Boolean"
+"IntercomPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"IntercomPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"IntercomPort.PortStartValue"
+"Port Start Value"
+value "10000"
+]
+[
+"Int"
+"IntercomPort.PortValue"
+"Port Value"
+value "10005"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"GDBPort"
+"GDB Port"
+[
+"Boolean"
+"GDBPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"GDBPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"GDBPort.PortStartValue"
+"Port Start Value"
+value "30000"
+]
+[
+"Int"
+"GDBPort.PortValue"
+"Port Value"
+value "30005"
+]
+[
+"Protocol"
+"Protocol"
+"~"
+value "UDP"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"TCFPort"
+"TCF Port"
+[
+"Boolean"
+"TCFPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"TCFPort.TCFAutoDiscovery"
+"Auto Discovery"
+value "yes"
+]
+[
+"Boolean"
+"TCFPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"TCFPort.PortStartValue"
+"Port Start Value"
+value "1534"
+]
+[
+"Int"
+"TCFPort.PortValue"
+"Port Value"
+value "1539"
+]
+]
+[
+"DisplaySettings"
+"Display"
+"~"
+[
+"String"
+"Title"
+"~"
+value "T32: eve_0"
+]
+[
+"FontSize"
+"FontSize"
+"~"
+value "SMALL"
+]
+[
+"ClearType"
+"ClearType"
+"~"
+value "DEFAULT"
+]
+[
+"Boolean"
+"FullScreen"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Iconic"
+"~"
+value "yes"
+]
+[
+"WindowMode"
+"WindowMode"
+"~"
+value "MDI"
+]
+[
+"Language"
+"Language"
+"~"
+value "EN"
+]
+]
+[
+"InternalSettings"
+"InternalSettings"
+"Internal"
+[
+"Boolean"
+"Debug"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Attach"
+"~"
+value "no"
+]
+[
+"Boolean"
+"MultiCore"
+"~"
+value "no"
+]
+[
+"Boolean"
+"NoSelfTest"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Passive"
+"~"
+value "no"
+]
+[
+"String"
+"T32Executable"
+"~"
+value ""
+]
+[
+"String"
+"SysFCC"
+"~"
+value ""
+]
+[
+"String"
+"SysFCCCPU"
+"~"
+value ""
+]
+[
+"Boolean"
+"Win"
+"WineUseWindowsExecutable"
+value "no"
+]
+]
+[
+"StartupScript"
+"StartupScript"
+"~"
+[
+"ListBasedCombo"
+"Source"
+"~"
+value "File"
+]
+[
+"String"
+"File"
+"~"
+value "%///Configuration/URL_INITSCRIPT%"
+]
+[
+"BuiltinScript"
+"BuiltinScript"
+"Built-in Script"
+value ""
+]
+[
+"String"
+"Parameters"
+"~"
+value "eve_0"
+]
+]
+]
+[
+"String"
+"T32ID"
+"~"
+value "T32_1000064"
+]
+]
+[
+"Core"
+"Core7"
+"eve_1"
+[
+"T32Executable"
+"Target"
+"~"
+value "ARP32"
+]
+[
+"CoreAdvancedOptions"
+"CoreAdvancedOptions"
+"Advanced Settings"
+[
+"DirectorySettings"
+"Directories"
+"Paths"
+[
+"String"
+"WorkingPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/WorkingPath%"
+]
+[
+"String"
+"SystemPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/SystemPath%"
+]
+[
+"String"
+"TempPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/TempPath%"
+]
+[
+"String"
+"HelpPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/HelpPath%"
+]
+[
+"String"
+"LicenseFile"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/LicenseFile%"
+]
+[
+"Boolean"
+"Force32"
+"Use only 32-bit executable"
+value "no"
+]
+]
+[
+"LMSettings"
+"LMSettings"
+"License"
+[
+"String"
+"RLMPort"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMPort%"
+]
+[
+"String"
+"RLMServer"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMServer%"
+]
+[
+"Int"
+"PoolPort"
+"~"
+value "0"
+]
+"CFGItemPath"
+"LicensePodBusDevice"
+"PodBusDevice"
+value ""
+]
+"InterfaceSettings"
+"Interfaces"
+"~"
+[
+"Port"
+"APIPort"
+"API Port"
+[
+"Boolean"
+"APIPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"APIPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"APIPort.PortStartValue"
+"Port Start Value"
+value "20000"
+]
+[
+"Int"
+"APIPort.PortValue"
+"Port Value"
+value "20006"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"IntercomPort"
+"Intercom Port"
+[
+"Boolean"
+"IntercomPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"IntercomPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"IntercomPort.PortStartValue"
+"Port Start Value"
+value "10000"
+]
+[
+"Int"
+"IntercomPort.PortValue"
+"Port Value"
+value "10006"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"GDBPort"
+"GDB Port"
+[
+"Boolean"
+"GDBPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"GDBPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"GDBPort.PortStartValue"
+"Port Start Value"
+value "30000"
+]
+[
+"Int"
+"GDBPort.PortValue"
+"Port Value"
+value "30006"
+]
+[
+"Protocol"
+"Protocol"
+"~"
+value "UDP"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"TCFPort"
+"TCF Port"
+[
+"Boolean"
+"TCFPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"TCFPort.TCFAutoDiscovery"
+"Auto Discovery"
+value "yes"
+]
+[
+"Boolean"
+"TCFPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"TCFPort.PortStartValue"
+"Port Start Value"
+value "1534"
+]
+[
+"Int"
+"TCFPort.PortValue"
+"Port Value"
+value "1540"
+]
+]
+[
+"DisplaySettings"
+"Display"
+"~"
+[
+"String"
+"Title"
+"~"
+value "T32: eve_1"
+]
+[
+"FontSize"
+"FontSize"
+"~"
+value "SMALL"
+]
+[
+"ClearType"
+"ClearType"
+"~"
+value "DEFAULT"
+]
+[
+"Boolean"
+"FullScreen"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Iconic"
+"~"
+value "yes"
+]
+[
+"WindowMode"
+"WindowMode"
+"~"
+value "MDI"
+]
+[
+"Language"
+"Language"
+"~"
+value "EN"
+]
+]
+[
+"InternalSettings"
+"InternalSettings"
+"Internal"
+[
+"Boolean"
+"Debug"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Attach"
+"~"
+value "no"
+]
+[
+"Boolean"
+"MultiCore"
+"~"
+value "no"
+]
+[
+"Boolean"
+"NoSelfTest"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Passive"
+"~"
+value "no"
+]
+[
+"String"
+"T32Executable"
+"~"
+value ""
+]
+[
+"String"
+"SysFCC"
+"~"
+value ""
+]
+[
+"String"
+"SysFCCCPU"
+"~"
+value ""
+]
+[
+"Boolean"
+"Win"
+"WineUseWindowsExecutable"
+value "no"
+]
+]
+[
+"StartupScript"
+"StartupScript"
+"~"
+[
+"ListBasedCombo"
+"Source"
+"~"
+value "File"
+]
+[
+"String"
+"File"
+"~"
+value "%///Configuration/URL_INITSCRIPT%"
+]
+[
+"BuiltinScript"
+"BuiltinScript"
+"Built-in Script"
+value ""
+]
+[
+"String"
+"Parameters"
+"~"
+value "eve_1"
+]
+]
+]
+[
+"String"
+"T32ID"
+"~"
+value "T32_1000071"
+]
+]
+]
+[
+"Power Debug USB 2"
+"Power Debug USB 2 2"
+"~"
+[
+"ListBasedCombo"
+"ConnectionType"
+"~"
+value "PodBus"
+]
+[
+"USBSettings"
+"USBSettings"
+"USB Settings"
+[
+"USBNodeName"
+"USBNodeName"
+"Device Name"
+value ""
+]
+]
+[
+"CitrixSettings"
+"CitrixSettings"
+"Citrix Settings"
+[
+"CitrixNodeName"
+"Node Name"
+"~"
+value ""
+]
+]
+[
+"USBProxySettings"
+"USBProxySettings"
+"USB Proxy Settings"
+[
+"USBProxyDeviceName"
+"Device Name"
+"~"
+value ""
+]
+[
+"USBProxyNodeName"
+"Node Name"
+"~"
+value ""
+]
+[
+"USBProxyPort"
+"Port"
+"~"
+value "0"
+]
+]
+[
+"Parallel Port Settings"
+"Parallel Port Settings"
+"~"
+[
+"ParallelPortNumber"
+"Port"
+"~"
+value "1"
+]
+[
+"ParallelAccesMode"
+"Access Mode"
+"~"
+value "PARPORT"
+]
+[
+"ParallelConnectionMode"
+"Connection Mode"
+"~"
+value "Standard"
+]
+]
+[
+"Ethernet Settings"
+"Ethernet Settings"
+"~"
+[
+"EthernetNodeName"
+"EthernetNodeName"
+"Node Name / IP Address"
+value ""
+]
+[
+"EthPort"
+"EthPort"
+"Port"
+value "20000"
+]
+[
+"EthHostPort"
+"EthHostPort"
+"Host Port"
+value "0"
+]
+[
+"ETHINCRPORT"
+"ETHINCRPORT"
+"Increment Ports"
+value "no"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+[
+"SMALLBLOCKS"
+"SMALLBLOCKS"
+"Packet Burst Limitation"
+value "no"
+]
+[
+"ETHCOMPRESSION"
+"ETHCOMPRESSION"
+"Compression"
+value "no"
+]
+[
+"ETHDELAY"
+"ETHDELAY"
+"Delay [ms]"
+value "0"
+]
+[
+"EthConnM"
+"EthConnM"
+"Connect Mode"
+value "N"
+]
+[
+"EthContrBased"
+"EthContrBased"
+"Controller Based"
+value "no"
+]
+]
+[
+"Core"
+"Core"
+"pictus"
+[
+"T32Executable"
+"Target"
+"~"
+value "PowerPC"
+]
+[
+"CoreAdvancedOptions"
+"CoreAdvancedOptions"
+"Advanced Settings"
+[
+"DirectorySettings"
+"Directories"
+"Paths"
+[
+"String"
+"WorkingPath"
+"~"
+value "%///Configuration/URL_MCUWORKSPACE%\gen"
+]
+[
+"String"
+"SystemPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/SystemPath%"
+]
+[
+"String"
+"TempPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/TempPath%"
+]
+[
+"String"
+"HelpPath"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/HelpPath%"
+]
+[
+"String"
+"LicenseFile"
+"~"
+value "%//Settings/CoreAdvancedOptions/Directories/LicenseFile%"
+]
+[
+"Boolean"
+"Force32"
+"Use only 32-bit executable"
+value "no"
+]
+]
+[
+"LMSettings"
+"LMSettings"
+"License"
+[
+"String"
+"RLMPort"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMPort%"
+]
+[
+"String"
+"RLMServer"
+"~"
+value "%//Settings/CoreAdvancedOptions/LMSettings/RLMServer%"
+]
+[
+"Int"
+"PoolPort"
+"~"
+value "0"
+]
+[
+"CFGItemPath"
+"LicensePodBusDevice"
+"PodBusDevice"
+value ""
+]
+]
+"InterfaceSettings"
+"Interfaces"
+"~"
+[
+"Port"
+"APIPort"
+"API Port"
+[
+"Boolean"
+"APIPort.UsePort"
+"Use Port"
+value "yes"
+]
+[
+"Boolean"
+"APIPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "no"
+]
+[
+"Int"
+"APIPort.PortStartValue"
+"Port Start Value"
+value "20010"
+]
+[
+"Int"
+"APIPort.PortValue"
+"Port Value"
+value "20010"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"IntercomPort"
+"Intercom Port"
+[
+"Boolean"
+"IntercomPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"IntercomPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"IntercomPort.PortStartValue"
+"Port Start Value"
+value "10000"
+]
+[
+"Int"
+"IntercomPort.PortValue"
+"Port Value"
+value "10007"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"GDBPort"
+"GDB Port"
+[
+"Boolean"
+"GDBPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"GDBPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"GDBPort.PortStartValue"
+"Port Start Value"
+value "30000"
+]
+[
+"Int"
+"GDBPort.PortValue"
+"Port Value"
+value "30007"
+]
+[
+"Protocol"
+"Protocol"
+"~"
+value "UDP"
+]
+[
+"PACKLEN"
+"PACKLEN"
+"Max UDP Packet Size"
+value "1024"
+]
+]
+[
+"Port"
+"TCFPort"
+"TCF Port"
+[
+"Boolean"
+"TCFPort.UsePort"
+"Use Port"
+value "no"
+]
+[
+"Boolean"
+"TCFPort.TCFAutoDiscovery"
+"Auto Discovery"
+value "yes"
+]
+[
+"Boolean"
+"TCFPort.AutoIncrementPort"
+"Use Auto Increment Port"
+value "yes"
+]
+[
+"Int"
+"TCFPort.PortStartValue"
+"Port Start Value"
+value "1534"
+]
+[
+"Int"
+"TCFPort.PortValue"
+"Port Value"
+value "1541"
+]
+]
+[
+"DisplaySettings"
+"Display"
+"~"
+[
+"String"
+"Title"
+"~"
+value "T32: mcu"
+]
+[
+"FontSize"
+"FontSize"
+"~"
+value "SMALL"
+]
+[
+"ClearType"
+"ClearType"
+"~"
+value "DEFAULT"
+]
+[
+"Boolean"
+"FullScreen"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Iconic"
+"~"
+value "no"
+]
+[
+"WindowMode"
+"WindowMode"
+"~"
+value "MDI"
+]
+[
+"Language"
+"Language"
+"~"
+value "EN"
+]
+]
+[
+"InternalSettings"
+"InternalSettings"
+"Internal"
+[
+"Boolean"
+"Debug"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Attach"
+"~"
+value "no"
+]
+[
+"Boolean"
+"MultiCore"
+"~"
+value "no"
+]
+[
+"Boolean"
+"NoSelfTest"
+"~"
+value "no"
+]
+[
+"Boolean"
+"Passive"
+"~"
+value "no"
+]
+[
+"String"
+"T32Executable"
+"~"
+value ""
+]
+[
+"String"
+"SysFCC"
+"~"
+value ""
+]
+[
+"String"
+"SysFCCCPU"
+"~"
+value ""
+]
+[
+"Boolean"
+"Win"
+"WineUseWindowsExecutable"
+value "no"
+]
+]
+[
+"StartupScript"
+"StartupScript"
+"~"
+[
+"ListBasedCombo"
+"Source"
+"~"
+value "File"
+]
+[
+"String"
+"File"
+"~"
+value "startup.cmm"
+]
+[
+"BuiltinScript"
+"BuiltinScript"
+"Built-in Script"
+value ""
+]
+[
+"String"
+"Parameters"
+"~"
+value ""
+]
+]
+]
+[
+"String"
+"T32ID"
+"~"
+value "T32_1000019"
+]
+]
+]
+]
+[
+"URL"
+"URL_INITSCRIPT"
+"INITSCRIPT"
+value "init.cmm"
+]
+[
+"URL"
+"URL_T32PATH"
+"T32PATH"
+value "C:\Tools\T32_2016-10"
+]
+[
+"URL"
+"URL_MCUWORKSPACE"
+"MCU_WORKSPACE"
+value "D:\Sandboxes\SW_MFC4T0\M11_APPL\04_Engineering\03_Workspace\lauterbach"
+]
+]

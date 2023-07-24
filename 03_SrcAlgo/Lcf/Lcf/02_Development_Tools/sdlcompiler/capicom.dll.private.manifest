@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+
+<assemblyIdentity
+	type="win32"
+	name="capicom.dll.private"
+	version="2.1.0.1" />
+
+<file name = "capicom.dll">
+	<comClass
+        clsid="{A440BD76-CFE1-4D46-AB1F-15F238437A3D}"
+        threadingModel="Both" />
+
+    <typelib 
+		tlbid="{BD26B198-EE42-4725-9B23-AFA912434229}"
+        version="2.0"
+        helpdir="" />
+</file>
+
+<comInterfaceExternalProxyStub
+    name="IEncryptedData"
+    iid="{C4778A66-972F-42E4-87C5-5CC16F7931CA}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{BD26B198-EE42-4725-9B23-AFA912434229}" />
+
+</assembly>

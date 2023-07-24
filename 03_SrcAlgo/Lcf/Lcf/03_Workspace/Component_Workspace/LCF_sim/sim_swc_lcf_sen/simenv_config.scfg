@@ -1,0 +1,109 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Fill {variant}_ccflags with required compiler flags.
+#    The value in this template is only for example.
+# 3. Fill {variant}_cppdefines with required preprocessor defines.
+#    The value in this template is only for example.
+#    Each preprocessor define must be written as string and separated with ,
+# 4. Fill {variant}_linkflags with required linker flags.
+#    The value in this template is only for example.
+# 5. Fill {variant}_libpaths with required library include paths.
+#    The value in this template is only for example.
+# 6. Fill {variant}_libs with required libraries in library include paths.
+#    The value in this template is only for example.
+# 7. When additional variant is created, add it in the variant_list. Otherwise, the
+#    variant will not be created.
+# ----------------------------------------------------------------------------------------
+
+#-----------------------
+# variant configuration
+#-----------------------
+
+# create release variant
+release_variant = "release"
+release_ccflags = "/EHsc /nologo /c /Wp64 /Zi /errorReport:prompt /O2 /FD /MD /fp:except /W4"
+release_cppdefines = ["WIN32", "_WINDOWS", "_USRDLL", "SIMPLG_EXPORTS", "_WINDLL", "_MBCS", "NDEBUG", "_CRT_SECURE_NO_WARNINGS", "_CRT_SECURE_NO_DEPRECATE", "CFG_PROJECT=release", "PC_SIM", "TS_ARCH_FAMILY=TS_ARM64", "TS_ARCH_DERIVATE=TS_ARM64"]
+release_linkflags = "/NOLOGO /DLL /INCREMENTAL:NO /DEBUG /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /MACHINE:X86"
+release_libpaths = ["#../../../04_Build/algo/" + algo_name + "/pc/release/", "#../../../04_Build/algo/cct/pc/release"]
+release_libs = [algo_name + "_algo_pc_release.lib", "cct_algo_pc_release.lib"]
+
+# create debug variant
+debug_variant = "debug"
+debug_ccflags = "/EHsc /nologo /c /Wp64 /Zi /errorReport:prompt /Od /Gm /RTC1 /MDd /fp:except /W4"
+debug_cppdefines = ["WIN32", "_WINDOWS", "_USRDLL", "SIMPLG_EXPORTS", "_WINDLL", "_MBCS", "_DEBUG", "SIMALGO_EXPORTS" "_CRT_SECURE_NO_WARNINGS", "CFG_PROJECT=debug", "_CRT_SECURE_NO_DEPRECATE", "PC_SIM", "TS_ARCH_FAMILY=TS_ARM64", "TS_ARCH_DERIVATE=TS_ARM64"]
+debug_linkflags = "/NOLOGO /DLL /INCREMENTAL:NO /DEBUG /MACHINE:X86"
+debug_libpaths = ["#../../../04_Build/algo/" + algo_name + "/pc/debug/", "#../../../04_Build/algo/cct/pc/release"]
+debug_libs = [algo_name + "_algo_pc_debug.lib","cct_algo_pc_release.lib"]
+
+
+# variable containing compiler flags, defines and linker flags for all variants
+# when creating additional variant beside "release" and "debug", the variant must be added in this variable
+variant_list = [
+[release_variant, release_ccflags, release_cppdefines, release_linkflags, release_libpaths, release_libs],
+[debug_variant,   debug_ccflags,   debug_cppdefines,   debug_linkflags, debug_libpaths, debug_libs],
+]
+
+#-----------------------
+# naming configuration
+#-----------------------
+
+# target name used by scons for building the target. The complete name will be "{component_name/algo_name}_{scons_target_name}", for example "sib_sim_swc"
+scons_target_name = "sim_swc_" + component_name.lower() + "_sen"
+
+# name of the generated visual C++ project
+vc_project_name = "sim_swc_" + algo_name + "_sen"
+
+# folder name containing this scfg file and the visual C++ project. Usually the folder name is the same as the visual C++ project name.
+# example : 03_Workspace\algo\lcf_sim\sim_swc_lcf
+folder_name = "sim_swc_" + algo_name + "_sen"
+
+# folder name containing build results (normally, build_folder_name = folder_name when there is only one algo in a component)
+# example : 04_Build\algo\lcf_sim\sim_swc_lcf
+build_folder_name = "sim_swc_" + algo_name + "_sen"
+
+# name of the DLL. Usually the DLL name is the same as the visual C++ project name.
+# The complete name will be "{target_dll_name}.dll", for example "sim_swc_cb.dll"
+target_dll_name = "sim_swc_" + algo_name + "_sen"
+
+# component name used in the lcf_sim folder name, for flexibility. 
+# The complete folder name will be "{component_name_for_sim_folder}_sim"
+# example : 03_Workspace\algo\lcf_sim
+component_name_for_sim_folder = algo_name
+
+# when there is more than one algo in a component, the algo name is used in the build folder to separate the build results
+# The complete folder name will be "{algo_name_for_build_folder}_sim"
+# example : 04_Build\algo\lcf_sim
+algo_name_for_build_folder = algo_name
+
+#-----------------------
+# doxygen configuration
+#-----------------------
+
+# determine if doxygen is built (default: True)
+generate_doxygen = False
+
+# doxygen config file name
+doxy_file_name = ""
+
+# target name used by scons doxygen. The complete name will be "{component_name}_{scons_doxygen_target_name}", for example "sib_doxy"
+scons_doxygen_target_name = ""
+
+#-----------------------
+# sim algo library configuration
+#-----------------------
+
+# determine if algo library is built (default: True)
+generate_algo_lib = True
+
+# determine if release algo library is copied to Deliverables folder (default: False)
+copy_algo_lib_to_deliverables = True
+
+# For special copy operation (default: False)
+special_copy_operation = False
+
+# If only copy operation is required use the first dictionary set the flag(default: False) to true and give the destination path
+# If copy and rename operation is required use the second dictionary set the flag(default: False) to true, set the destination path, set the new name and set the variant.
+special_copy_dict = [
+                     {'copy_only' : False, 'dest' : ""},
+                     {'copy_rename' : False, 'dest' : "", 'replace_name' : '', 'variant' : ''}
+                     ]

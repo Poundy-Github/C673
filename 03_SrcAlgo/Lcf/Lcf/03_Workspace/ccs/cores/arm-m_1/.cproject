@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule configRelations="2" moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="com.ti.ccstudio.buildDefinitions.TMS470.Default.1728213427.608220886.1313419446">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.ti.ccstudio.buildDefinitions.TMS470.Default.1728213427.608220886.1313419446" moduleId="org.eclipse.cdt.core.settings" name="mfc431">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.rtsc.xdctools.parsers.ErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.ti.ccstudio.errorparser.CoffErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.ti.ccstudio.errorparser.AsmErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.ti.ccstudio.binaryparser.CoffParser" point="org.eclipse.cdt.core.BinaryParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="cmd" artifactName="configPkg/linker" buildProperties="" cleanCommand="${CG_CLEAN_CMD}" description="Vision High" id="com.ti.ccstudio.buildDefinitions.TMS470.Default.1728213427.608220886.1313419446" name="mfc431" parent="com.ti.ccstudio.buildDefinitions.TMS470.Default">
+					<folderInfo id="com.ti.ccstudio.buildDefinitions.TMS470.Default.1728213427.608220886.1313419446." name="/" resourcePath="">
+						<toolChain id="com.ti.ccstudio.buildDefinitions.TMS470_5.0.exe.DebugToolchain.750163244" name="TI Build Tools" superClass="com.ti.ccstudio.buildDefinitions.TMS470_5.0.exe.DebugToolchain" targetTool="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.1923214365">
+							<option id="com.ti.ccstudio.buildDefinitions.core.OPT_TAGS.786201767" superClass="com.ti.ccstudio.buildDefinitions.core.OPT_TAGS" valueType="stringList">
+								<listOptionValue builtIn="false" value="DEVICE_CONFIGURATION_ID=com.ti.ccstudio.deviceModel.TMS470.GenericCortexM3Device"/>
+								<listOptionValue builtIn="false" value="DEVICE_ENDIANNESS=be32"/>
+								<listOptionValue builtIn="false" value="OUTPUT_FORMAT=ELF"/>
+								<listOptionValue builtIn="false" value="CCS_MBS_VERSION=5.1.0.01"/>
+								<listOptionValue builtIn="false" value="RTSC_MBS_VERSION=2.2.0"/>
+								<listOptionValue builtIn="false" value="XDC_VERSION=3.25.0.48"/>
+								<listOptionValue builtIn="false" value="RTSC_PRODUCTS=com.ti.rtsc.SYSBIOS:6.35.1.29;"/>
+								<listOptionValue builtIn="false" value="OUTPUT_TYPE=rtscConfiguration"/>
+							</option>
+							<option id="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION.773591647" name="Compiler version" superClass="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION" value="5.0.4" valueType="string"/>
+							<targetPlatform id="com.ti.ccstudio.buildDefinitions.TMS470_5.0.exe.targetPlatformDebug.2011498743" name="Platform" superClass="com.ti.ccstudio.buildDefinitions.TMS470_5.0.exe.targetPlatformDebug"/>
+							<builder autoBuildTarget="all CORE=${ProjName} CONFIG=${ConfigName} CHIPSET=high" buildPath="${PROJECT_LOC}" cleanBuildTarget="clean CORE=${ProjName} CONFIG=${ConfigName} CHIPSET=high" id="com.ti.ccstudio.buildDefinitions.TMS470_5.0.exe.builderDebug.2071345962" incrementalBuildTarget="all CORE=${ProjName} CONFIG=${ConfigName} CHIPSET=high" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="GNU Make" superClass="com.ti.ccstudio.buildDefinitions.TMS470_5.0.exe.builderDebug"/>
+							<tool id="com.ti.ccstudio.buildDefinitions.TMS470_5.0.exe.compilerDebug.1053247645" name="ARM Compiler" superClass="com.ti.ccstudio.buildDefinitions.TMS470_5.0.exe.compilerDebug">
+								<option id="com.ti.ccstudio.buildDefinitions.TMS470_5.0.compilerID.INCLUDE_PATH.1246981181" name="Add dir to #include search path (--include_path, -I)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_5.0.compilerID.INCLUDE_PATH" valueType="includePath">
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/DPUFF/config"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/RTL"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/00_Custom/fct/dim"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/00_Custom/fct/dim/dim_aldw"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/00_Custom/fct/dim/dim_eba"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/00_Custom/fct/frame"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/00_Custom/fct/frame_veh"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/00_Custom/fct/head"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/00_Custom/fct/lcd"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/00_Custom/fct/lck"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/00_Custom/fct/lka"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/00_Custom/fct/lks"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/00_Custom/fct/udw"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/00_Custom/vdy"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/cct"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/cml"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/fct/dim"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/fct/frame"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/fct/frame_veh"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/fct/head"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/fct/lcd"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/fct/lck"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/fct/lka"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/fct/lks"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/fct/udw"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/rtw"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/algo/sources/vdy"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/common"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/common/DGM"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/common/GLOB_VH"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/common/RTE_VH/algo"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/common/RTE_VH/include"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/00_Projects/mfc431/temporary"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/DPUCOM/icc_vh"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/DPUCOM/ot_vh"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/DPUCOM/xcp"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/DPUFF/et"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/DPUHWIF/gpio_vh"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/DPUHWIF/mc_vh"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/DPUHWIF/titda"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/DPUSERVICE/clg/arm_m"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/MTSI_VH"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/PMA_VH"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/RTA_VH"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/RTL"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/RTL_VH"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/SAP_VH"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/01_Source_Code/common/MTSI"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/04_Build/tools/edma3_lld/packages"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/drv"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/04_Build/tools/starterware/include"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/04_Build/tools/starterware/include/armv7m/tda2xx"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/04_Build/tools/starterware/include/hw"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/04_Build/tools/starterware/include/tda2xx"/>
+									<listOptionValue builtIn="false" value="c:/tools/ti_arm/5.1.5/include"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/03_Workspace/sw/make"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/04_Build/tools/bios/packages"/>
+									<listOptionValue builtIn="false" value="../../../../../../04_Engineering/04_Build/tools/xdctools/packages"/>
+								</option>
+								<option id="com.ti.ccstudio.buildDefinitions.TMS470_5.0.compilerID.DEFINE.1861869115" name="Pre-define NAME (--define, -D)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_5.0.compilerID.DEFINE" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="TDA2XX_FAMILY_BUILD"/>
+									<listOptionValue builtIn="false" value="TARGET_ARM_M_1"/>
+									<listOptionValue builtIn="false" value="PRODUCT_MFC431"/>
+									<listOptionValue builtIn="false" value="CHIPSET_HIGH"/>
+									<listOptionValue builtIn="false" value="COMP_ID_VDY=2U"/>
+									<listOptionValue builtIn="false" value="USE_OLD_ADC_CODING_STYLE_TYPEDEFS"/>
+									<listOptionValue builtIn="false" value="VPS_VIP_BUILD"/>
+									<listOptionValue builtIn="false" value="CORE_M3_1"/>
+								</option>
+								<inputType id="com.ti.ccstudio.buildDefinitions.TMS470_5.0.compiler.inputType__C_SRCS.1430164801" name="C Sources" superClass="com.ti.ccstudio.buildDefinitions.TMS470_5.0.compiler.inputType__C_SRCS"/>
+								<inputType id="com.ti.ccstudio.buildDefinitions.TMS470_5.0.compiler.inputType__CPP_SRCS.1062906967" name="C++ Sources" superClass="com.ti.ccstudio.buildDefinitions.TMS470_5.0.compiler.inputType__CPP_SRCS"/>
+								<inputType id="com.ti.ccstudio.buildDefinitions.TMS470_5.0.compiler.inputType__ASM_SRCS.1983691577" name="Assembly Sources" superClass="com.ti.ccstudio.buildDefinitions.TMS470_5.0.compiler.inputType__ASM_SRCS"/>
+								<inputType id="com.ti.ccstudio.buildDefinitions.TMS470_5.0.compiler.inputType__ASM2_SRCS.1548994504" name="Assembly Sources" superClass="com.ti.ccstudio.buildDefinitions.TMS470_5.0.compiler.inputType__ASM2_SRCS"/>
+							</tool>
+							<tool id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.300035234" name="XDCtools" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool">
+								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.CODEGEN_TOOL_DIR.667331075" name="Compiler tools directory (-c)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.CODEGEN_TOOL_DIR" value="&quot;${CG_TOOL_ROOT}&quot;" valueType="string"/>
+								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.TARGET.318586912" name="Target (-t)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.TARGET" value="ti.targets.arm.elf.M3" valueType="string"/>
+								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM.806931227" name="Platform (-p)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM" value="xdc.platform.generic" valueType="string"/>
+								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM_RAW.1852988098" name="Platform (-p)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM_RAW" value="xdc.platform.generic" valueType="string"/>
+								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.BUILD_PROFILE.901739156" name="Build-profile (-r)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.BUILD_PROFILE" value="release" valueType="string"/>
+								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.XDC_PATH.705782331" name="Package repositories (--xdcpath)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.XDC_PATH" valueType="stringList">
+									<listOptionValue builtIn="false" value="${BIOS_CG_ROOT}/packages"/>
+									<listOptionValue builtIn="false" value="${TARGET_CONTENT_BASE}"/>
+									<listOptionValue builtIn="false" value="${PARENT-5-PROJECT_LOC}/04_Engineering/03_Workspace/sw/rtsc_platforms/Conti/MFC400"/>
+								</option>
+								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.BUILD_CONFIGURATION_FILE.1733841564" name="Build configuration file (-b)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.BUILD_CONFIGURATION_FILE" value="&quot;${PROJECT_ROOT}/tools/xdctools/packages/xdc/bld/config.bld&quot;" valueType="string"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
+					</sourceEntries>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="arm-m_0_test.com.ti.ccstudio.buildDefinitions.TMS470.ProjectType.1192837114" name="ARM" projectType="com.ti.ccstudio.buildDefinitions.TMS470.ProjectType"/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.language.mapping">
+		<project-mappings>
+			<content-type-mapping configuration="" content-type="org.eclipse.cdt.core.asmSource" language="com.ti.ccstudio.core.TIASMLanguage"/>
+			<content-type-mapping configuration="" content-type="org.eclipse.cdt.core.cHeader" language="com.ti.ccstudio.core.TIGCCLanguage"/>
+			<content-type-mapping configuration="" content-type="org.eclipse.cdt.core.cSource" language="com.ti.ccstudio.core.TIGCCLanguage"/>
+			<content-type-mapping configuration="" content-type="org.eclipse.cdt.core.cxxHeader" language="com.ti.ccstudio.core.TIGPPLanguage"/>
+			<content-type-mapping configuration="" content-type="org.eclipse.cdt.core.cxxSource" language="com.ti.ccstudio.core.TIGPPLanguage"/>
+		</project-mappings>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="hfl130"/>
+		<configuration configurationName="mfc431"/>
+		<configuration configurationName="MFC4T0"/>
+		<configuration configurationName="MFC431">
+			<resource resourceType="PROJECT" workspacePath="/arm-m_1"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
+		<buildTargets>
+			<target name="postproc" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>${CCS_UTILS_DIR}/bin/gmake</buildCommand>
+				<buildArguments>-k</buildArguments>
+				<buildTarget>postproc</buildTarget>
+				<stopOnError>false</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>false</runAllBuilders>
+			</target>
+			<target name="all_klocwork" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>${CCS_UTILS_DIR}/bin/gmake</buildCommand>
+				<buildArguments>-k</buildArguments>
+				<buildTarget>all_klocwork CORE=${ProjName} CONFIG=${ConfigName} CHIPSET=mid</buildTarget>
+				<stopOnError>false</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
+		</buildTargets>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration"/>
+</cproject>

@@ -1,0 +1,34 @@
+# config file containing TI C66xx sim hil source file list
+
+# C66xx sim hil source files
+C66xx_sim_hil_sources = """
+C66xx_EvmHilWrapper_cml.cpp
+./cantata_target_testing/csv_parser.cpp
+./cantata_target_testing/test_cml_stl_matrix.cpp
+./cantata_target_testing/test_cml_stl_array.cpp
+./cantata_target_testing/test_cml_stl_array2d.cpp
+./cantata_target_testing/test_cml_stl_vector.cpp
+./cantata_target_testing/test_cml_stl_list.cpp
+./cantata_target_testing/test_cml_stl_point.cpp
+./cantata_target_testing/test_cml_stl_algorithm.cpp
+./cantata_target_testing/test_cml_stl_iterator.cpp
+./cantata_target_testing/test_cml_kafi.cpp
+./cantata_target_testing/test_cml_trigo.cpp
+./cantata_target_testing/test_cml_misc.cpp
+./cantata_target_testing/test_cml_mat.cpp
+./cantata_target_testing/test_cml_mtrx.cpp
+./cantata_target_testing/test_cml_fourier.cpp
+./cantata_target_testing/test_cml_bayes.cpp
+./cantata_target_testing/test_cml_complex.cpp
+./cantata_target_testing/test_cml_interpol.cpp
+./cantata_target_testing/test_cml_stat.cpp
+./cantata_target_testing/test_cml_vector.cpp
+"""
+
+# C66xx sim hil include paths
+C66xx_sim_hil_include_paths = """
+#../cml_sim/cml_evm_hil/vh28/evm_hil_projects/C66xx/
+#../externals/sim_extensions/
+"""
+
+

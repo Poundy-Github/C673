@@ -1,0 +1,48 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. When needed, additional file list can be added (the path should be relative to the
+#    folder containing SConstruct).
+# 3. Include all required source files in sim_swc_vis_src.
+# 4. Include all required include paths in sim_swc_vis_cpp_path.
+# 5. Put path to the header file containing version in version_file.
+# 6. Add library paths which are used for all variants in external_lib_paths.
+# 7. Add libraries which are used for all variants in external_lib.
+# ----------------------------------------------------------------------------------------
+
+# read file list containing source files and include paths
+execfile(File("#../lcf_sim/sim_swc_lcf_vis/sim_swc_lcf_vis_file_list.scfg").abspath)
+execfile(File("#algo_lib_file_list.scfg").abspath)
+execfile(File("#../../../02_Development_Tools/scons_tools/scons_common_config/externals_include_file_list.scfg").abspath)
+execfile(File("#../../../01_Source_Code/externals/sim_extensions/sim_extension_file_list.scfg").abspath)
+
+#-------------------------
+# source
+#-------------------------
+
+# source files to build sim_swc_vis
+sim_swc_vis_src = (Split(lcf_vis_sim_swc_source_files))
+
+# include paths to build sim_swc_vis
+sim_swc_vis_cpp_path = (Split(lcf_vis_sim_swc_include_paths) + 
+                        Split(externals_include_paths) + 
+						Split('vis_gl') + 
+                        Split(lcf_algo_common_include_paths) + 
+                        Split(lcf_algo_include_paths))
+
+#-------------------------
+# library
+#-------------------------
+
+# external library paths
+external_lib_paths = ["#../../../../05_Testing/06_Test_Tools/mts/lib/", 
+                      "#../../../01_Source_Code/externals/sim/lib/"]
+
+# external libraries
+external_lib = ["kernel32.lib", "user32.lib", "gdi32.lib", "winspool.lib", 
+                "comdlg32.lib", "advapi32.lib", "shell32.lib", "ole32.lib", 
+                "oleaut32.lib", "uuid.lib", "odbc32.lib", "odbccp32.lib"]
+
+# header file containing version which will be used to patch rc file
+version_file = ("#../lcf_sim/sim_swc_lcf_vis/sim_swc_lcf_vis_version.h")
+
+patch_rc_file = True

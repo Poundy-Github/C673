@@ -1,0 +1,2 @@
+-po "qar::report_format=html"
+-po "qar::viewing_program=C:\Program Files (x86)\Internet Explorer\iexplore.exe"

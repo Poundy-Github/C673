@@ -1,0 +1,471 @@
+#***************************************************************************************************
+# COMPANY: Continental AG, ADAS, A.D.C. GmbH
+#
+# PROJECT: ETK/SCT_Sconstools
+#
+# COMPONENT: scons_common_scripts
+#
+# MODULE NAME: sconstruct\SConstruct
+#
+# DESCRIPTION: Scons utility script that contains the main entry point for build construction for each   
+#              component. By default, the SCons utility searches for a file named SConstruct, 
+#              Sconstruct or sconstruct (in that order) in the current directory, and reads its 
+#              configuration from the first file found 
+#
+# INITIAL AUTHOR: Hendra.Sasmito-EXT (uidw1406)
+#
+# CREATION DATE: 2013/06/11
+#
+# LAST CHANGE:      $Date: 2021/12/13 21:33:18CET $
+#                   $Author: Wang, David (Wangd3) $
+#
+# CURRENT VERSION:  $Revision: 1.1 $
+#############################################################################
+# CHANGES:                   $Log: SConstruct  $
+# CHANGES:                   Revision 1.1 2021/12/13 21:33:18CET Wang, David (Wangd3) 
+# CHANGES:                   Initial revision
+# CHANGES:                   Member added to project /ADAS/Projects/MFC5xx/MFC5J3/06_Algorithm/DPU/04_Engineering/03_Workspace/Component_Workspace/CML/project.pj
+# CHANGES:                   Revision 1.2 2018/05/11 09:01:04CEST SOLA, HARIKRISHNA (uidm9575) (uidm9575) 
+# CHANGES:                   updated scon build changes for CML library
+# CHANGES:                   Revision 1.67 2017/09/07 11:34:59CEST Bhagawati, Tridip (uidr2134) 
+# CHANGES:                   Command line too long error
+# CHANGES:                   Revision 1.66 2017/07/14 12:36:04CEST Bhagawati, Tridip (uidr2134) 
+# CHANGES:                   [GenScons] Add 'project' parameter in Scons build command for mainstream projects to choose which project to build
+# CHANGES:                   Revision 1.65 2017/05/31 07:44:45CEST Singh, Vishal (uidj9083) 
+# CHANGES:                   .scons.dblite path update
+# CHANGES:                   Revision 1.64 2017/05/30 13:57:16CEST Bhagawati, Tridip (uidr2134) 
+# CHANGES:                   GSCons update for Mainstream
+# CHANGES:                   Revision 1.63 2017/05/30 08:06:03CEST Bhagawati, Tridip (uidr2134) 
+# CHANGES:                   Project based file addition for mainstream
+# CHANGES:                   Revision 1.62 2017/04/28 05:35:29CEST Bhagawati, Tridip (uidr2134) 
+# CHANGES:                   Support Mainstream adaptation
+# CHANGES:                   Revision 1.61 2017/03/30 13:51:13CEST Singh, Vishal (uidj9083) 
+# CHANGES:                   Update for new attrib option
+# CHANGES:                   Revision 1.60 2016/11/30 10:18:03CET Singh, Vishal (uidj9083) 
+# CHANGES:                   Updated for Polyspace 2016a
+# CHANGES:                   Revision 1.59 2016/10/18 12:52:28CEST Bhagawati, Tridip (uidr2134) 
+# CHANGES:                   Visual studio 2010 support fails
+# CHANGES:                   Revision 1.58 2016/10/05 14:27:07CEST Bhagawati, Tridip (uidr2134) 
+# CHANGES:                   updated for the implementation visual studio 2010
+# CHANGES:                   Revision 1.57 2016/07/12 07:09:53CEST Annashamachar, Shwetha (uidj8746) 
+# CHANGES:                   Error and Exception handled in GSCons.
+# CHANGES:                   Revision 1.56 2016/03/04 10:12:04CET Bhagawati, Tridip (uidr2134) 
+# CHANGES:                   Error and Warnings summary report to be provide in build log for the scons targets
+# CHANGES:                   Revision 1.55 2015/11/04 11:27:43CET Bhagawati, Tridip (uidr2134) 
+# CHANGES:                   Build-target for pure ARM-simulation needed
+# CHANGES:                   - Added comments -  uidr2134 [Nov 4, 2015 11:27:43 AM CET]
+# CHANGES:                   Change Package : 392739:1 http://mks-psad:7002/im/viewissue?selection=392739
+# CHANGES:                   Revision 1.54 2015/09/23 16:49:10CEST Fischer-EXT, Andre (uidg5297) 
+# CHANGES:                   remove write protection from ti_tools directory
+# CHANGES:                   --- Added comments ---  uidg5297 [Sep 23, 2015 4:49:11 PM CEST]
+# CHANGES:                   Change Package : 379758:1 http://mks-psad:7002/im/viewissue?selection=379758
+# CHANGES:                   Revision 1.53 2015/09/23 16:22:45CEST Fischer-EXT, Andre (uidg5297) 
+# CHANGES:                   add command for extracting ti-tools
+# CHANGES:                   --- Added comments ---  uidg5297 [Sep 23, 2015 4:22:45 PM CEST]
+# CHANGES:                   Change Package : 379758:1 http://mks-psad:7002/im/viewissue?selection=379758
+# CHANGES:                   Revision 1.52 2015/08/19 14:27:42CEST Fischer-EXT, Andre (uidg5297) 
+# CHANGES:                   restrict the cases, when aliases.txt is generated to scons builds which are not executed from IDE.
+# CHANGES:                   --- Added comments ---  uidg5297 [Aug 19, 2015 2:27:43 PM CEST]
+# CHANGES:                   Change Package : 369119:1 http://mks-psad:7002/im/viewissue?selection=369119
+# CHANGES:                   Revision 1.51 2015/06/29 13:35:45CEST Stark-EXT, Roland (uidw1169) 
+# CHANGES:                   Added support for CortexM3 and M4
+# CHANGES:                   --- Added comments ---  uidw1169 [Jun 29, 2015 1:35:45 PM CEST]
+# CHANGES:                   Change Package : 351977:1 http://mks-psad:7002/im/viewissue?selection=351977
+# CHANGES:                   Revision 1.50 2015/06/26 08:53:55CEST Palanisamy-EXT, Lenin (uidr0826) 
+# CHANGES:                   Add revision label with module description for all GSCons files (Issue 320651)
+# CHANGES:                   --- Added comments ---  uidr0826 [Jun 26, 2015 8:53:55 AM CEST]
+# CHANGES:                   Change Package : 350940:1 http://mks-psad:7002/im/viewissue?selection=350940
+
+#***************************************************************************************************
+
+# SConstruct file
+
+#-------------------------
+# import
+#-------------------------
+import string
+import win32api
+import atexit
+
+#-------------------------
+# read configuration file
+#-------------------------
+execfile(File("#../GSCons_project_config.scfg").abspath)
+# get common scons config containing tool paths
+execfile(File(development_tools_path_from_sconstruct + "scons_tools/scons_common_config/common_config.scfg").abspath)
+execfile(File("#sconstruct_config.scfg").abspath)
+
+#-------------------------
+# read helper files
+#-------------------------
+execfile(File(development_tools_path_from_sconstruct + "scons_tools/scons_adas_extensions/sconstruct_helpers.py").abspath)
+execfile(File(development_tools_path_from_sconstruct + "scons_tools/scons_adas_extensions/help_menu.py").abspath)
+
+#----------------------------------------
+# open write protection for some folders
+#----------------------------------------
+no_attrib = int(ARGUMENTS.get("no_attrib",'0'))
+
+if no_attrib == 0:
+    writeable_dir.append(ti_tools_dir)
+    for dir in writeable_dir:
+        win32api.WinExec("attrib -R -H /S /D %s\*.*" % Dir(dir).abspath)
+
+#-------------------------
+# Build parameters
+#-------------------------
+if COMMAND_LINE_TARGETS == []:
+    tg = ["all"]
+else:
+    tg = COMMAND_LINE_TARGETS
+print "\ntargets being built/cleaned : " + ' '.join(tg)
+
+thread_number = GetOption("num_jobs")
+print "running with -j", GetOption("num_jobs")
+
+cmd_line_defines = (ARGUMENTS.get("define", ""))
+define_list = cmd_line_defines.split(',')
+print "command line defines : " + ' '.join(define_list)
+
+verbose = int(ARGUMENTS.get('verbose', "0"))
+print "verbose output : ", verbose
+
+project_name = (ARGUMENTS.get('project', ""))
+print "project : ", project_name
+
+custom_sim_copy = int(ARGUMENTS.get('custom_sim_copy', '0'))
+if custom_sim_copy:
+    print "custom simulation copy: ", custom_sim_copy
+
+# used to display Generic SCons warning
+exception_handler_file_list=[]
+	
+profile = int(ARGUMENTS.get('profile', "0"))
+help_dict = {}
+SconscriptTimesTable = []
+if profile:
+    print "profile: ", profile
+    execfile(File(development_tools_path_from_sconstruct + "scons_tools/scons_adas_extensions/profile.py").abspath)
+    StartSconscriptEntry('0')
+
+scons_arguments = string.join(map(lambda x: str(x[0]) + "=" + str(x[1]), ARGUMENTS.items()))
+skip_ide_generation = int(ARGUMENTS.get("skip_ide_generation", "0"))
+build_from_ide = int(ARGUMENTS.get("build_from_ide", "0"))
+build_from_vs = int(ARGUMENTS.get("build_from_vs", "0"))
+build_from_ccs = int(ARGUMENTS.get("build_from_ccs", "0"))
+# install_to_deliverables_dir is a flag for selecting which variant will install to Deliverables
+install_to_deliverables_dir = ARGUMENTS.get("install_to_deliverables_dir","release")
+total_errors_warnings = int(ARGUMENTS.get("no_err_warning","0"))
+
+# QAC-parameters
+qac_source = (ARGUMENTS.get("qac_source", ""))
+if not qac_source == "":
+    qac_source_list = qac_source.split(',')
+    qac_mode = "file"
+    print "qac sources : " + ' '.join(qac_source_list)
+else:
+    qac_source_list = []
+    qac_mode = "project"
+    
+qac_cmd_options = (ARGUMENTS.get("qac_options", ""))
+qac_temp_options = qac_cmd_options.split(',')
+qar_temp_format = (ARGUMENTS.get("qar_format", ""))
+if not build_from_ide:
+    if not qac_cmd_options == "":
+        print "qac options : " + " ".join(qac_temp_options)
+    if not qar_temp_format == "":
+        print "qar format : " + qar_temp_format
+
+try:
+    # check eve_hil_miniapp_used
+    eve_hil_miniapp_used
+except NameError:
+    eve_hil_miniapp_used = False
+	
+try:
+    # check exception_handler
+    exception_handler
+except NameError:
+    exception_handler = False
+
+try:
+    # check generate_ps (Polyspace) flag
+    generate_ps
+    # Initialise polyspace
+    ps_module_data = {}	
+except NameError:
+    # default value for generate_ps
+    generate_ps = False
+    # Initialise polyspace
+    ps_module_data = None		
+
+try:
+    # check algo_name_list
+    algo_name_list
+except NameError:
+    # default value for algo_name_list
+    algo_name_list = [component_name]
+
+try:
+    # check fingerprint flag
+    generate_fingerprint
+except NameError:
+    generate_fingerprint = False
+
+try:
+    # check DSP flag
+    c674x_used
+except NameError:
+    # default value for DSP flag
+    c674x_used = True
+
+try:
+    # check Cortex M3 flag
+    cm3_used
+except NameError:
+    # default value for Cortex M3 flag
+    cm3_used = False
+
+try:
+    # check Cortex M4 flag
+    cm4_used
+except NameError:
+    # default value for Cortex M4 flag
+    cm4_used = False
+
+try:
+    # check Cortex A8 flag
+    ca8_used
+except NameError:
+    # default value for Cortex A8 flag
+    ca8_used = False
+
+try:
+    # check Cortex A15 flag
+    ca15_used
+except NameError:
+    # default value for Cortex A15 flag
+    ca15_used = False
+
+try:
+    # check C66xx flag
+    c66xx_used
+except NameError:
+    # default value for C66xx flag
+    c66xx_used = False
+
+try:
+    # check C66xx flag
+    ecu_hil_wrapper_vh28_used
+except NameError:
+    # default value for C66xx flag
+    ecu_hil_wrapper_vh28_used = False
+
+try:
+    # check gcc_used flag
+    gcc_used
+except NameError:
+    # default value for gcc_used flag
+    gcc_used = False
+
+try:
+    # check include_unit_test flag
+    include_unit_test
+except NameError:
+    # default value for include_unit_test
+    include_unit_test = False
+
+try:
+    # check autorel_support flag
+    autorel_support
+except NameError:
+    # default value for autorel_support flag
+    autorel_support = False
+	
+try:
+    # check generate_vs2010 flag
+    generate_vs2010
+except NameError:
+    generate_vs2010 = False
+
+# check whether shared sim-sconscript is used
+if os.path.isfile(File("#../" + component_name + "_sim/SConscript_sim.py").abspath):
+    use_shared_sconscript = True
+else:
+    use_shared_sconscript = False
+
+
+Export("c674x_used", "c66xx_used", "eve_used", "cm3_used", "cm4_used", "ca8_used", "ca15_used", "gcc_used",
+       "skip_ide_generation", "build_from_ide",  "verbose", "use_shared_sconscript", "custom_sim_copy",
+       "qac_mode", "qac_source_list", "qac_temp_options", "qar_temp_format", 
+       "profile", "SconscriptTimesTable", "thread_number", "define_list", "help_dict", "scons_arguments", 
+       "install_to_deliverables_dir", "generate_ps", "eve_hil_miniapp_used","exception_handler","exception_handler_file_list", "generate_vs2010", "ps_module_data", "project_name")
+
+#-------------------------------------
+# Location of temporary SCons database
+#-------------------------------------
+
+SConsignFile(File('.sconsign.dblite').abspath)
+
+#-------------------------------------
+# Extract ti tools from archives
+#-------------------------------------
+ti_tools_unzipped = unzip_archives(ti_zip_files, unzip_dir, junction_dir)
+generate_alias('unzip_tools', ti_tools_unzipped, 'tools', ['unzip ti_tools'])
+
+#----------------------------------
+# build libraries, out files, DLLs
+#----------------------------------
+
+# information for the vs solution is stored in the following lists
+tblds = [] # build products (including pdb, ...)
+tsrcs = [] # c/c++ files used for the build
+tcppp = [] # include paths
+talias = [] # alias
+tcppdefs = [] # defines
+
+# build algo fingerprint and algo libraries
+for algo_name in algo_name_list:
+    if c674x_used:
+        result = SConscript("ti_dsp_c674x/SConscript.py",
+               exports = {"component_name" : component_name, "algo_name" : algo_name})
+        if result and not skip_ide_generation:
+            [tblds, tsrcs, tcppp, talias, tcppdefs] = update_vs_data(tblds, tsrcs, tcppp, talias, tcppdefs,
+                                                           result[0], result[1], result[2], result[3], result[4])
+        if result and generate_fingerprint:
+            SConscript("SConscript_fingerprint.py",
+                    exports = {"algo_name" : algo_name, 
+                               "component_name" : component_name,
+                               "bld" : result[0],
+                               "src": result[1],
+                               "core" : "c674x"
+                               })
+
+    if c66xx_used:
+        result = SConscript("ti_dsp_c66xx/SConscript.py",
+               exports = {"component_name" : component_name, "algo_name" : algo_name})
+        if result and not skip_ide_generation:
+            [tblds, tsrcs, tcppp, talias, tcppdefs] = update_vs_data(tblds, tsrcs, tcppp, talias, tcppdefs,
+                                                           result[0], result[1], result[2], result[3], result[4])
+
+    if cm3_used:
+        # build TI Cortex M3 algo library
+        result = SConscript("ti_arm_cortex_m3/SConscript.py",
+                   exports = {"component_name" : component_name, "algo_name" : algo_name})
+        if result and not skip_ide_generation:
+            [tblds, tsrcs, tcppp, talias, tcppdefs] = update_vs_data(tblds, tsrcs, tcppp, talias, tcppdefs,
+                                                           result[0], result[1], result[2], result[3], result[4])
+
+    if cm4_used:
+        # build TI Cortex M4 algo library
+        result = SConscript("ti_arm_cortex_m4/SConscript.py",
+                   exports = {"component_name" : component_name, "algo_name" : algo_name})
+        if result and not skip_ide_generation:
+            [tblds, tsrcs, tcppp, talias, tcppdefs] = update_vs_data(tblds, tsrcs, tcppp, talias, tcppdefs,
+                                                           result[0], result[1], result[2], result[3], result[4])
+
+    if ca8_used:
+        # build TI Cortex A8 algo library
+        result = SConscript("ti_arm_cortex_a8/SConscript.py",
+                   exports = {"component_name" : component_name, "algo_name" : algo_name})
+        if result and not skip_ide_generation:
+            [tblds, tsrcs, tcppp, talias, tcppdefs] = update_vs_data(tblds, tsrcs, tcppp, talias, tcppdefs,
+                                                           result[0], result[1], result[2], result[3], result[4])
+
+    if ca15_used:
+        # build TI Cortex A15 algo library
+        result = SConscript("ti_arm_cortex_a15/SConscript.py",
+                   exports = {"component_name" : component_name, "algo_name" : algo_name})
+        if result and not skip_ide_generation:
+            [tblds, tsrcs, tcppp, talias, tcppdefs] = update_vs_data(tblds, tsrcs, tcppp, talias, tcppdefs,
+                                                           result[0], result[1], result[2], result[3], result[4])
+
+    if eve_used:
+        # check of ARP32-folder exists
+        if os.path.isdir(Dir("#/ti_eve_arp32").abspath):
+            # build TI ARP32 algo library
+            result = SConscript("ti_eve_arp32/SConscript.py",
+                       exports = {"component_name" : component_name, "algo_name" : algo_name})
+            if result and not skip_ide_generation:
+                [tblds, tsrcs, tcppp, talias, tcppdefs] = update_vs_data(tblds, tsrcs, tcppp, talias, tcppdefs,
+                                                               result[0], result[1], result[2], result[3], result[4])
+            if result and generate_fingerprint:
+                SConscript("SConscript_fingerprint.py",
+                            exports = {"algo_name" : algo_name, 
+                                       "component_name" : component_name,
+                                       "bld" : result[0],
+                                       "src": result[1],
+                                       "core" : "arp32"
+                                       })
+
+# ------------------------------------------------------------------------------------
+# Remark 1: xxx_sim/SConscript_sim.py (shared script) supports the recent vs support
+# for GenericScons; in order to use it, a corresponding "copy"-block needs to be defined
+# in sconscript_setup_config.scfg and the variable "sim_proj_list" needs to be defined in
+# sconscript_config.scfg, see template in scons_tools/scons_templates.
+# Remark 2: xxx_sim/SConscript.py (formerly used component-specific script) provides a vs
+# support, where for each simulation component an independent vs project is set up.
+# The flag "use_shared_sconscript" is therefore utilized in SConscript_simenv.py
+# in order to know which vs solution shall be built.
+# ------------------------------------------------------------------------------------
+if not build_from_ccs:
+    if use_shared_sconscript:
+        SConscript("#../" + component_name + "_sim/SConscript_sim.py",
+                   exports = {"component_name" : component_name,
+                              "algo_name_list" : algo_name_list,
+                              "tblds" : tblds,
+                              "tsrcs" : tsrcs,
+                              "tcppp" : tcppp,
+                              "talias": talias,
+                              "tcppdefs" : tcppdefs})
+
+    if not use_shared_sconscript:
+        SConscript("#../" + component_name + "_sim/SConscript.py",
+                   exports = {"component_name" : component_name})
+
+if not build_from_vs:
+    # VME HIL wrapper
+    if ecu_hil_wrapper_used:
+        for algo_name in algo_name_list:
+            # build sim out files
+            SConscript("#../" + component_name + "_sim/" + component_name +
+                       "_evm_hil/vme/evm_hil_projects/SConscript.py",
+                       exports = {"component_name" : component_name, "algo_name" : algo_name})
+
+    # VH28 HIL wrapper
+    if ecu_hil_wrapper_vh28_used:
+        for algo_name in algo_name_list:
+            # build sim out files
+            SConscript("#../" + component_name + "_sim/" + component_name +
+                       "_evm_hil/vh28/evm_hil_projects/SConscript.py",
+                       exports = {"component_name" : component_name, "algo_name" : algo_name})
+
+# build and execute unit tests
+if include_unit_test:
+    SConscript(testing_dir + "05_Test_Environment/algo/" + unit_test_dir + "/cantata_tests/" + component_name + "/SConscript.py",
+           exports = {"component_name" : component_name, "algo_name_list" : algo_name_list})
+
+if not build_from_ide:
+    if autorel_support:
+      SConscript("autorelease/SConscript.py", exports = {"component_name" : component_name})
+
+# build all when scons is called
+Default("all")
+
+# create alias list for help menu only when NOT executing SCons from IDE
+# Reason: When executing scons from IDE not all parts of SConscripts are read,
+# See Issue 364416 for details.
+if not (build_from_vs or build_from_ccs or build_from_ide):
+    create_help_menu()
+generate_alias('no_target', None)
+
+if profile:
+    FinishSconscriptEntry()
+    PrintSconscriptInfo()
+
+if total_errors_warnings:
+    # show total no of errors and warnings 
+    atexit.register(display_total_errors_warnings, "sconsbuild.log")
+
+# show build status (succeed or failed)
+atexit.register(display_build_status)

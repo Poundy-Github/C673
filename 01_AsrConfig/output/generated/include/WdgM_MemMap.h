@@ -1,0 +1,621 @@
+/**
+ * \file
+ *
+ * \brief AUTOSAR MemMap
+ *
+ * This file contains the implementation of the AUTOSAR
+ * module MemMap.
+ *
+ * \version 1.3.10
+ *
+ * \author Elektrobit Automotive GmbH, 91058 Erlangen, Germany
+ *
+ * Copyright 2005 - 2021 Elektrobit Automotive GmbH
+ * All rights exclusively reserved for Elektrobit Automotive GmbH,
+ * unless expressly agreed to otherwise.
+ */
+
+/*==================[inclusions]=============================================*/
+
+#define MEMMAP_ERROR_WDGM
+
+/*------------------[Start of a module]--------------------------------------*/
+
+/* Memory section macros for WdgM */
+
+#if (defined WDGM_START_SEC_CALLOUT_CODE_ASIL_D)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_CALLOUT_CODE_ASIL_D within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_CALLOUT_CODE_ASIL_D
+    #undef WDGM_START_SEC_CALLOUT_CODE_ASIL_D
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_CALLOUT_CODE_ASIL_D)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_CALLOUT_CODE_ASIL_D)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_CALLOUT_CODE_ASIL_D
+    #undef WDGM_STOP_SEC_CALLOUT_CODE_ASIL_D
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_CALLOUT_CODE_ASIL_D without prior opening WDGM_START_SEC_CALLOUT_CODE_ASIL_D.
+  #endif
+
+#elif (defined WDGM_START_SEC_CODE)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_CODE within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_CODE
+    #undef WDGM_START_SEC_CODE
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_CODE)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_CODE)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_CODE
+    #undef WDGM_STOP_SEC_CODE
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_CODE without prior opening WDGM_START_SEC_CODE.
+  #endif
+
+#elif (defined WDGM_START_SEC_CODE_ASIL_D)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_CODE_ASIL_D within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_CODE_ASIL_D
+    #undef WDGM_START_SEC_CODE_ASIL_D
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_CODE_ASIL_D)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_CODE_ASIL_D)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_CODE_ASIL_D
+    #undef WDGM_STOP_SEC_CODE_ASIL_D
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_CODE_ASIL_D without prior opening WDGM_START_SEC_CODE_ASIL_D.
+  #endif
+
+#elif (defined WDGM_START_SEC_CONST_16)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_CONST_16 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_CONST_16
+    #undef WDGM_START_SEC_CONST_16
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_CONST_16)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_CONST_16)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_CONST_16
+    #undef WDGM_STOP_SEC_CONST_16
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_CONST_16 without prior opening WDGM_START_SEC_CONST_16.
+  #endif
+
+#elif (defined WDGM_START_SEC_CONST_8)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_CONST_8 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_CONST_8
+    #undef WDGM_START_SEC_CONST_8
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_CONST_8)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_CONST_8)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_CONST_8
+    #undef WDGM_STOP_SEC_CONST_8
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_CONST_8 without prior opening WDGM_START_SEC_CONST_8.
+  #endif
+
+#elif (defined WDGM_START_SEC_CONST_ASIL_D_16)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_CONST_ASIL_D_16 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_CONST_ASIL_D_16
+    #undef WDGM_START_SEC_CONST_ASIL_D_16
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_CONST_ASIL_D_16)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_CONST_ASIL_D_16)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_CONST_ASIL_D_16
+    #undef WDGM_STOP_SEC_CONST_ASIL_D_16
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_CONST_ASIL_D_16 without prior opening WDGM_START_SEC_CONST_ASIL_D_16.
+  #endif
+
+#elif (defined WDGM_START_SEC_CONST_ASIL_D_8)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_CONST_ASIL_D_8 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_CONST_ASIL_D_8
+    #undef WDGM_START_SEC_CONST_ASIL_D_8
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_CONST_ASIL_D_8)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_CONST_ASIL_D_8)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_CONST_ASIL_D_8
+    #undef WDGM_STOP_SEC_CONST_ASIL_D_8
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_CONST_ASIL_D_8 without prior opening WDGM_START_SEC_CONST_ASIL_D_8.
+  #endif
+
+#elif (defined WDGM_START_SEC_CONST_ASIL_D_UNSPECIFIED)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_CONST_ASIL_D_UNSPECIFIED within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_CONST_ASIL_D_UNSPECIFIED
+    #undef WDGM_START_SEC_CONST_ASIL_D_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_CONST_ASIL_D_UNSPECIFIED)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_CONST_ASIL_D_UNSPECIFIED)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_CONST_ASIL_D_UNSPECIFIED
+    #undef WDGM_STOP_SEC_CONST_ASIL_D_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_CONST_ASIL_D_UNSPECIFIED without prior opening WDGM_START_SEC_CONST_ASIL_D_UNSPECIFIED.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_CLEARED_16)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_CLEARED_16 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_16
+    #undef WDGM_START_SEC_VAR_CLEARED_16
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_CLEARED_16)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_16)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_16
+    #undef WDGM_STOP_SEC_VAR_CLEARED_16
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_CLEARED_16 without prior opening WDGM_START_SEC_VAR_CLEARED_16.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_CLEARED_32)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_CLEARED_32 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_32
+    #undef WDGM_START_SEC_VAR_CLEARED_32
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_CLEARED_32)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_32)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_32
+    #undef WDGM_STOP_SEC_VAR_CLEARED_32
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_CLEARED_32 without prior opening WDGM_START_SEC_VAR_CLEARED_32.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_CLEARED_ASIL_D_16)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_CLEARED_ASIL_D_16 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_ASIL_D_16
+    #undef WDGM_START_SEC_VAR_CLEARED_ASIL_D_16
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_CLEARED_ASIL_D_16)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_ASIL_D_16)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_ASIL_D_16
+    #undef WDGM_STOP_SEC_VAR_CLEARED_ASIL_D_16
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_CLEARED_ASIL_D_16 without prior opening WDGM_START_SEC_VAR_CLEARED_ASIL_D_16.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_CLEARED_ASIL_D_32)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_CLEARED_ASIL_D_32 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_ASIL_D_32
+    #undef WDGM_START_SEC_VAR_CLEARED_ASIL_D_32
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_CLEARED_ASIL_D_32)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_ASIL_D_32)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_ASIL_D_32
+    #undef WDGM_STOP_SEC_VAR_CLEARED_ASIL_D_32
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_CLEARED_ASIL_D_32 without prior opening WDGM_START_SEC_VAR_CLEARED_ASIL_D_32.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_CLEARED_ASIL_D_8)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_CLEARED_ASIL_D_8 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_ASIL_D_8
+    #undef WDGM_START_SEC_VAR_CLEARED_ASIL_D_8
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_CLEARED_ASIL_D_8)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_ASIL_D_8)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_ASIL_D_8
+    #undef WDGM_STOP_SEC_VAR_CLEARED_ASIL_D_8
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_CLEARED_ASIL_D_8 without prior opening WDGM_START_SEC_VAR_CLEARED_ASIL_D_8.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_CLEARED_ASIL_D_UNSPECIFIED)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_CLEARED_ASIL_D_UNSPECIFIED within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_ASIL_D_UNSPECIFIED
+    #undef WDGM_START_SEC_VAR_CLEARED_ASIL_D_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_CLEARED_ASIL_D_UNSPECIFIED)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_ASIL_D_UNSPECIFIED)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_ASIL_D_UNSPECIFIED
+    #undef WDGM_STOP_SEC_VAR_CLEARED_ASIL_D_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_CLEARED_ASIL_D_UNSPECIFIED without prior opening WDGM_START_SEC_VAR_CLEARED_ASIL_D_UNSPECIFIED.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_CLEARED_GLOBAL_UNSPECIFIED)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_CLEARED_GLOBAL_UNSPECIFIED within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_GLOBAL_UNSPECIFIED
+    #undef WDGM_START_SEC_VAR_CLEARED_GLOBAL_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_CLEARED_GLOBAL_UNSPECIFIED)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_GLOBAL_UNSPECIFIED)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_GLOBAL_UNSPECIFIED
+    #undef WDGM_STOP_SEC_VAR_CLEARED_GLOBAL_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_CLEARED_GLOBAL_UNSPECIFIED without prior opening WDGM_START_SEC_VAR_CLEARED_GLOBAL_UNSPECIFIED.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_CLEARED_UNSPECIFIED)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_CLEARED_UNSPECIFIED within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_UNSPECIFIED
+    #undef WDGM_START_SEC_VAR_CLEARED_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_CLEARED_UNSPECIFIED)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_UNSPECIFIED)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_CLEARED_UNSPECIFIED
+    #undef WDGM_STOP_SEC_VAR_CLEARED_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_CLEARED_UNSPECIFIED without prior opening WDGM_START_SEC_VAR_CLEARED_UNSPECIFIED.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_GLOBAL_32)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_GLOBAL_32 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_GLOBAL_32
+    #undef WDGM_START_SEC_VAR_GLOBAL_32
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_GLOBAL_32)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_GLOBAL_32)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_GLOBAL_32
+    #undef WDGM_STOP_SEC_VAR_GLOBAL_32
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_GLOBAL_32 without prior opening WDGM_START_SEC_VAR_GLOBAL_32.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_INIT_16)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_INIT_16 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_16
+    #undef WDGM_START_SEC_VAR_INIT_16
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_INIT_16)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_16)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_16
+    #undef WDGM_STOP_SEC_VAR_INIT_16
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_INIT_16 without prior opening WDGM_START_SEC_VAR_INIT_16.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_INIT_8)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_INIT_8 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_8
+    #undef WDGM_START_SEC_VAR_INIT_8
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_INIT_8)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_8)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_8
+    #undef WDGM_STOP_SEC_VAR_INIT_8
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_INIT_8 without prior opening WDGM_START_SEC_VAR_INIT_8.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_INIT_ASIL_D_32)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_INIT_ASIL_D_32 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_32
+    #undef WDGM_START_SEC_VAR_INIT_ASIL_D_32
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_INIT_ASIL_D_32)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_32)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_32
+    #undef WDGM_STOP_SEC_VAR_INIT_ASIL_D_32
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_INIT_ASIL_D_32 without prior opening WDGM_START_SEC_VAR_INIT_ASIL_D_32.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_INIT_ASIL_D_8)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_INIT_ASIL_D_8 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_8
+    #undef WDGM_START_SEC_VAR_INIT_ASIL_D_8
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_INIT_ASIL_D_8)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_8)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_8
+    #undef WDGM_STOP_SEC_VAR_INIT_ASIL_D_8
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_INIT_ASIL_D_8 without prior opening WDGM_START_SEC_VAR_INIT_ASIL_D_8.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_INIT_ASIL_D_LOCAL_8)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_INIT_ASIL_D_LOCAL_8 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_LOCAL_8
+    #undef WDGM_START_SEC_VAR_INIT_ASIL_D_LOCAL_8
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_INIT_ASIL_D_LOCAL_8)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_LOCAL_8)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_LOCAL_8
+    #undef WDGM_STOP_SEC_VAR_INIT_ASIL_D_LOCAL_8
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_INIT_ASIL_D_LOCAL_8 without prior opening WDGM_START_SEC_VAR_INIT_ASIL_D_LOCAL_8.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_INIT_ASIL_D_LOCAL_UNSPECIFIED)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_INIT_ASIL_D_LOCAL_UNSPECIFIED within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_LOCAL_UNSPECIFIED
+    #undef WDGM_START_SEC_VAR_INIT_ASIL_D_LOCAL_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_INIT_ASIL_D_LOCAL_UNSPECIFIED)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_LOCAL_UNSPECIFIED)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_LOCAL_UNSPECIFIED
+    #undef WDGM_STOP_SEC_VAR_INIT_ASIL_D_LOCAL_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_INIT_ASIL_D_LOCAL_UNSPECIFIED without prior opening WDGM_START_SEC_VAR_INIT_ASIL_D_LOCAL_UNSPECIFIED.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_INIT_ASIL_D_UNSPECIFIED)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_INIT_ASIL_D_UNSPECIFIED within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_UNSPECIFIED
+    #undef WDGM_START_SEC_VAR_INIT_ASIL_D_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_INIT_ASIL_D_UNSPECIFIED)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_UNSPECIFIED)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_ASIL_D_UNSPECIFIED
+    #undef WDGM_STOP_SEC_VAR_INIT_ASIL_D_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_INIT_ASIL_D_UNSPECIFIED without prior opening WDGM_START_SEC_VAR_INIT_ASIL_D_UNSPECIFIED.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_INIT_GLOBAL_32)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_INIT_GLOBAL_32 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_GLOBAL_32
+    #undef WDGM_START_SEC_VAR_INIT_GLOBAL_32
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_INIT_GLOBAL_32)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_GLOBAL_32)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_INIT_GLOBAL_32
+    #undef WDGM_STOP_SEC_VAR_INIT_GLOBAL_32
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_INIT_GLOBAL_32 without prior opening WDGM_START_SEC_VAR_INIT_GLOBAL_32.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_POWER_ON_CLEARED_ASIL_D_UNSPECIFIED)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_POWER_ON_CLEARED_ASIL_D_UNSPECIFIED within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_POWER_ON_CLEARED_ASIL_D_UNSPECIFIED
+    #undef WDGM_START_SEC_VAR_POWER_ON_CLEARED_ASIL_D_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_POWER_ON_CLEARED_ASIL_D_UNSPECIFIED)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_POWER_ON_CLEARED_ASIL_D_UNSPECIFIED)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_POWER_ON_CLEARED_ASIL_D_UNSPECIFIED
+    #undef WDGM_STOP_SEC_VAR_POWER_ON_CLEARED_ASIL_D_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_POWER_ON_CLEARED_ASIL_D_UNSPECIFIED without prior opening WDGM_START_SEC_VAR_POWER_ON_CLEARED_ASIL_D_UNSPECIFIED.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_POWER_ON_INIT_ASIL_D_16)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_POWER_ON_INIT_ASIL_D_16 within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_POWER_ON_INIT_ASIL_D_16
+    #undef WDGM_START_SEC_VAR_POWER_ON_INIT_ASIL_D_16
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_POWER_ON_INIT_ASIL_D_16)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_POWER_ON_INIT_ASIL_D_16)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_POWER_ON_INIT_ASIL_D_16
+    #undef WDGM_STOP_SEC_VAR_POWER_ON_INIT_ASIL_D_16
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_POWER_ON_INIT_ASIL_D_16 without prior opening WDGM_START_SEC_VAR_POWER_ON_INIT_ASIL_D_16.
+  #endif
+
+#elif (defined WDGM_START_SEC_VAR_POWER_ON_INIT_ASIL_D_UNSPECIFIED)
+  #ifdef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to open section WDGM_START_SEC_VAR_POWER_ON_INIT_ASIL_D_UNSPECIFIED within an already open section.
+  #else
+    #define MEMMAP_SECTION_OPENED
+    #define MEMMAP_SECTION_OPENED_STARTSEC_VAR_POWER_ON_INIT_ASIL_D_UNSPECIFIED
+    #undef WDGM_START_SEC_VAR_POWER_ON_INIT_ASIL_D_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #endif
+#elif (defined WDGM_STOP_SEC_VAR_POWER_ON_INIT_ASIL_D_UNSPECIFIED)
+  #if (defined MEMMAP_SECTION_OPENED) && (defined MEMMAP_SECTION_OPENED_STARTSEC_VAR_POWER_ON_INIT_ASIL_D_UNSPECIFIED)
+    #undef MEMMAP_SECTION_OPENED
+    #undef MEMMAP_SECTION_OPENED_STARTSEC_VAR_POWER_ON_INIT_ASIL_D_UNSPECIFIED
+    #undef WDGM_STOP_SEC_VAR_POWER_ON_INIT_ASIL_D_UNSPECIFIED
+    #undef MEMMAP_ERROR_WDGM
+  #else
+    #undef MEMMAP_ERROR_WDGM
+    #error Tried to close section WDGM_STOP_SEC_VAR_POWER_ON_INIT_ASIL_D_UNSPECIFIED without prior opening WDGM_START_SEC_VAR_POWER_ON_INIT_ASIL_D_UNSPECIFIED.
+  #endif
+
+#endif
+
+#if ((!defined MEMMAP_ERROR_WDGM) && (defined MEMMAP_ERROR))
+  #undef MEMMAP_ERROR
+#elif ((defined MEMMAP_ERROR_WDGM) && (!defined MEMMAP_ERROR))
+  #undef MEMMAP_ERROR_WDGM
+  #error MEMMAP_ERROR_WDGM the included memory section was not defined within the BSW-IMPLEMENTATION of WdgM.
+#endif

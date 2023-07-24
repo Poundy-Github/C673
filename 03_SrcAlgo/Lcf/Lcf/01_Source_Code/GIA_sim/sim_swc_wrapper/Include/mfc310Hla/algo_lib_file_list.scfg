@@ -1,0 +1,124 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Update each variable according to the existing source files and include paths.
+# ----------------------------------------------------------------------------------------
+
+# config file containing algo source file list
+
+# algo source files according to scons config previously used
+hla_algo_sources = ("""
+            analysis/hla_analysis.c
+            analysis/hla_analysischain.c
+            analysis/hla_analysischain_utils.c
+            analysis/hla_atan2.c
+            analysis/hla_analysiscolor.c
+            analysis/hla_analysisicon.c
+            analysis/hla_analysisintensity.c
+            analysis/hla_analysismisc.c
+            analysis/hla_analysisstreetlamps.c
+            analysis/hla_icon.c
+            analysis/hla_lrf_citylight.c
+            analysis/hla_lrf_halogen.c
+            analysis/hla_lrf_redlight.c
+            analysis/hla_lrf_tanhlut.c
+            analysis/hla_lrf_xenonled.c
+            camera/hla_cam_rot.c
+            camera/hla_camera.c
+            camera/hla_hotpixels.c
+            camera/hla_imager.c	    
+            environment/hla_brightness.c
+            environment/hla_brightobjects.c
+	    environment/hla_city.c
+	    environment/hla_highway.c
+            environment/hla_trafficstyle.c
+            environment/hla_tunnel.c
+            function/hlaf.c
+            function/hlaf_cfg.c
+            function/hlaf_decision.c
+            function/hlaf_dimming.c
+            function/hlaf_ecolight.c
+            function/matrix/hlaf_matrix.c
+            function/matrix/hlaf_matrixgfa.c
+            function/matrix/hlaf_matrixcfg.c	    
+            segmentation/hla_segcalc.c
+            segmentation/hla_seglight.c
+            segmentation/hla_seglightfillrte.c
+            segmentation/hla_seglightfilter.c
+            segmentation/hla_seglightutils.c
+            segmentation/hla_segline.c
+            segmentation/hla_segmentation.c
+            segmentation/hla_segregion.c
+            segmentation/hla_segsubimage.c
+            segmentation/hla_segutils.c
+            tracking/hla_lightdist.c
+            tracking/hla_trackdynamic.c
+            tracking/hla_tracking_3d.c
+            tracking/hla_trackmeas.c
+            tracking/hla_trackmodel.c
+            tracking/hla_trackpair.c
+            tracking/hla_trackslam.c
+            tracking/hla_trackstatic.c
+            tracking/hla_trackutils.c
+            hla_cfg.c
+            hla_errorCheck.c
+            hla_main.c
+            hla_pdo_tags_file.c
+""")
+
+# algo pdo source files (C files for creating SDL file)
+hla_algo_pdo_sources = """
+hla_pdo_tags_file.c
+"""
+
+# algo ti_eve_arp32 source files
+# keep .k files (vcop) in front of others (arp32) 
+# since there are header file dependencies of arp32 files towards vcop files
+# which are generated during compilation
+hla_algo_ti_eve_arp32_sources = """
+    ti_eve_arp32/src/hla_eve_lrf_at_vcop.k
+    ti_eve_arp32/src/hla_eve_seg_at_vcop.k
+    ti_eve_arp32/src/hla_eve_edma.c
+    ti_eve_arp32/src/hla_eve_lrf_main.c
+    ti_eve_arp32/src/hla_eve_seg_interpret.c
+    ti_eve_arp32/src/hla_eve_seg_main.c
+    ti_eve_arp32/src/hla_eve.c
+"""
+
+# algo include paths
+hla_algo_include_paths = """
+#../../../01_Source_Code/algo/00_Custom/hla_wrp
+#../../../01_Source_Code/algo/hla
+#../../../01_Source_Code/algo/hla/analysis
+#../../../01_Source_Code/algo/hla/camera
+#../../../01_Source_Code/algo/hla/environment
+#../../../01_Source_Code/algo/hla/function
+#../../../01_Source_Code/algo/hla/function/light
+#../../../01_Source_Code/algo/hla/function/matrix
+#../../../01_Source_Code/algo/hla/function/plus
+#../../../01_Source_Code/algo/hla/function/standard
+#../../../01_Source_Code/algo/hla/segmentation
+#../../../01_Source_Code/algo/hla/tracking
+#../../../01_Source_Code/algo/hla/ti_eve_arp32/inc
+#../../../01_Source_Code/algo/cml
+"""
+
+
+# algo common include paths
+hla_algo_common_include_paths = """
+#../../../01_Source_Code/algo/00_Custom/sw_support/hla
+#../../../01_Source_Code/common
+#../../../01_Source_Code/common/rte
+"""
+
+# algo ti_eve_arp32 include paths
+hla_algo_ti_eve_arp32_include_paths = """
+#../../../01_Source_Code/algo/00_Custom/hla_wrp
+#../../../01_Source_Code/algo/hla
+#../../../01_Source_Code/algo/hla/analysis
+#../../../01_Source_Code/algo/hla/camera
+#../../../01_Source_Code/algo/hla/segmentation
+#../../../01_Source_Code/algo/hla/tracking
+#../../../01_Source_Code/algo/hla/ti_eve_arp32/inc
+#../../../01_Source_Code/algo/hla/ti_eve_arp32/src
+#../../../01_Source_Code/algo/cml
+"""

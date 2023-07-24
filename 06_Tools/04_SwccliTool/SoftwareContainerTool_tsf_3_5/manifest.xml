@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container xmlns="http://schemas.continental-corporation.com/mts/swc/2016/manifest">
+	<Properties>
+		<Version>6.147.50</Version>
+		<BuildType>4</BuildType>
+		<BuildDate>2021-11-19T17:06:53</BuildDate>
+		<ProjectId>MFC431</ProjectId>
+		<Crc>D12463C4</Crc>
+	</Properties>
+	<Metadata>
+		<EntityId/>
+		<EntityName/>
+		<Maintainer>uif07958</Maintainer>
+	</Metadata>
+</Container>

@@ -1,0 +1,36 @@
+dsp.zip: Platform.xdc
+Platform.xdc:
+dsp.zip: Platform.xs
+Platform.xs:
+dsp.zip: config.bld
+config.bld:
+dsp.zip: package/.vers_b160
+package/.vers_b160:
+dsp.zip: package/.vers_g180
+package/.vers_g180:
+dsp.zip: package/.vers_r170
+package/.vers_r170:
+dsp.zip: package/.xdc-z52
+package/.xdc-z52:
+dsp.zip: package/build.cfg
+package/build.cfg:
+dsp.zip: package/dsp.ccs
+package/dsp.ccs:
+dsp.zip: package/dsp.class
+package/dsp.class:
+dsp.zip: package/dsp.java
+package/dsp.java:
+dsp.zip: package/dsp.sch
+package/dsp.sch:
+dsp.zip: package/package.bld.xml
+package/package.bld.xml:
+dsp.zip: package/package.defs.h
+package/package.defs.h:
+dsp.zip: package/package_dsp.c
+package/package_dsp.c:
+dsp.zip: package.bld
+package.bld:
+dsp.zip: package.xdc
+package.xdc:
+dsp.zip: project.pj
+project.pj:

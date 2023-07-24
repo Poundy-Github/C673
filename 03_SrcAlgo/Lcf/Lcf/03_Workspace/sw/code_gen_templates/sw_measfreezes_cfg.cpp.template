@@ -1,0 +1,30 @@
+#ifdef __IPL_CANTPP__
+#define MKSFileName "MKS: $Source: sw_measfreezes_cfg.cpp.template $"
+#define MKSRevision "MKS: $Revision: 1.1 $"
+#endif
+
+#include "glob_type.h"
+#include <DPUFF/ga/sw_measfreezes_cfg.h>
+#include "DPUFF/utils/utils.h"
+#include <IPC_SLAVE/ipc_measfreeze_address.h>
+#if defined(PRODUCT_ARS441)
+  #include <MTSI/glob_comp_id.h>
+#endif
+
+// PRQA S 1021 ++
+// 19.04.2017; uidg6511;
+// summary: Msg(3:1021) This macro is replaced with a literal.;
+// reason: The MST Id is not defined here, only used.
+
+// List of MDB clusters, which have to be sent to MTS
+const SWMF_t_MeasfreezeEntry SWMF_a_MeasListIpc[] =
+{
+/*!<codegen_start:SW_MEASFREEZE_LIST>*/
+/*!<codegen_end:SW_MEASFREEZE_LIST>*/
+};
+// PRQA S 1021 --
+
+// Populate size of list as a constant variable
+/*!<codegen_start:SW_MEASFREEZE_LIST_SIZE>*/
+/*!<codegen_end:SW_MEASFREEZE_LIST_SIZE>*/
+

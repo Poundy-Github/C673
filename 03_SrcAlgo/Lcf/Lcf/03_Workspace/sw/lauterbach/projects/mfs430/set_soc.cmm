@@ -1,0 +1,35 @@
+entry &soc_num &is_dsp
+
+sys.mode down
+
+; Switch to SoC 0 ?
+if &soc_num==0
+(
+    system.CONFIG.DAPIRPRE 6
+    system.CONFIG.DAPDRPRE 1
+    system.CONFIG.DAPIRPOST 0
+    system.CONFIG.DAPDRPOST 0
+    
+    if &is_dsp==1
+    (
+        SYStem.CONFIG IRPRE 6.
+        SYStem.CONFIG DRPRE 1.
+        SYStem.CONFIG IRPOST 0.
+        SYStem.CONFIG DRPOST 0.
+    )
+)
+else
+(
+    system.CONFIG.DAPIRPRE 0
+    system.CONFIG.DAPDRPRE 0
+    system.CONFIG.DAPIRPOST 6
+    system.CONFIG.DAPDRPOST 1
+
+    if &is_dsp==1
+    (
+        SYStem.CONFIG IRPRE 0.
+        SYStem.CONFIG DRPRE 0.
+        SYStem.CONFIG IRPOST 6.
+        SYStem.CONFIG DRPOST 1.
+    )
+)

@@ -1,0 +1,13 @@
+# For sconscript_setup_config.scfg
+workspace_path = "04_Engineering/03_Workspace/Component_Workspace/"
+source_code_path = "04_Engineering/01_Source_Code/"
+cantata_testing_path = "05_Testing/05_Test_Environment/algo/modtests/cantata_tests/"
+
+source_code_path_from_sconstruct = "#../../../01_Source_Code/"
+development_tools_path_from_sconstruct = "#../../../02_Development_Tools/"
+workspace_path_from_sconstruct = "#../../../03_Workspace/Component_Workspace/"
+testing_path_from_sconstruct = "#../../../../05_Testing/"
+deliverables_path_from_sconstruct = "#../../../../../MTS/05_Testing/MTS/mts_measurement/dll/00_Projects/"
+build_path_from_sconstruct = "#../../../04_Build/"
+
+

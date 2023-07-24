@@ -1,0 +1,55 @@
+# read file list
+execfile(File("#../../../01_Source_Code/algo/cct/algo_lib_file_list.scfg").abspath)
+
+# source and include paths for C674x
+c674x_src = Split(cct_algo_sources)
+c674x_cpp_path = Split(cct_algo_include_paths) + Split(cct_algo_common_include_paths)
+# include paths that must be added before compiler includes
+c674x_prepend_cpp_path = []
+
+# source and include paths for CortexA8
+ca8_src = Split(cct_algo_sources)
+ca8_cpp_path = Split(cct_algo_include_paths) + Split(cct_algo_common_include_paths)
+# include paths that must be added before compiler includes
+ca8_prepend_cpp_path = []
+
+# source and include paths for PC sim
+pc_sim_src = Split(cct_algo_sources) + Split(cct_algo_pdo_sources)
+pc_sim_cpp_path = Split(cct_algo_include_paths) + Split(cct_algo_common_include_paths)
+# include paths that must be added before compiler includes
+pc_prepend_cpp_path = []
+
+# source and include paths for Arp32
+arp32_src = []
+arp32_cpp_path = []
+# include paths that must be added before compiler includes
+arp32_prepend_cpp_path = []
+
+# pdo source
+pdo_src_list = []
+
+# pdo source for sim
+pdo_sim_src_list = pdo_src_list
+
+# define if sdl is generated when lib is compiled
+generate_sdl_when_compiling_lib = False
+
+# fingerprint source
+fingerprint_src_list = Split(cct_algo_sources)
+
+# header file containing TASK_ID_(component)
+id_file_path = ""
+
+# task ID
+task_id_define = ""
+
+# PDO tool option for ECU
+PDO_TOOL_OPTIONS_ECU = ("")
+
+# PDO tool option for sim DLL                       
+PDO_TOOL_OPTIONS_SIM = ("")
+
+# compiler include path required by pdo_scan when generating sdl file for sim
+compiler_include_paths = """
+C:/LegacyApp/VisualStudio2005/VC/INCLUDE
+"""

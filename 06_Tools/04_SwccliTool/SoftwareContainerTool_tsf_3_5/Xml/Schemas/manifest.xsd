@@ -1,0 +1,152 @@
+<?xml version="1.0" ?>
+<xs:schema targetNamespace="http://schemas.continental-corporation.com/mts/swc/2016/manifest" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://schemas.continental-corporation.com/mts/swc/2016/manifest"
+           elementFormDefault="qualified">
+  <xs:element name="Container">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        - - manifest.xsd
+        - - PURPOSE:
+        - -     This schema file describes the syntax for the MTS Software Container manifest.xml file that is stored internally to the swc file.
+        - -
+        - -     The manifest file holds information that describes the data exposed by a Software Container.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Properties" type="Manifest.Properties" minOccurs="1" maxOccurs="1" />
+        <xs:element name="Metadata" type="Manifest.Metadata" minOccurs="1" maxOccurs="1" />
+      </xs:sequence>
+      <xs:anyAttribute/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- - - - - - - - - - - - - - - -
+     PROPERTIES
+  - - - - - - - - - - - - - - - - - - -->
+  <xs:complexType name="Manifest.Properties">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        The Properties element is used to provide software container properties.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Version" type="Manifest.Version" minOccurs="1" maxOccurs="1" />
+      <xs:element name="BuildType" type="Manifest.BuildType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="BuildDate" type="Manifest.BuildDate" minOccurs="1" maxOccurs="1" />
+      <xs:element name="ProjectId" type="Manifest.ProjectId" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Crc" type="Manifest.Crc" minOccurs="1" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="Manifest.Version">
+    <xs:annotation>
+      <xs:documentation>
+        Version information from the ECU MTS structure in a number dot format.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Manifest.BuildType">
+    <xs:annotation>
+      <xs:documentation>
+        Build type information from the ECU MTS structure.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:byte">
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Manifest.BuildDate">
+    <xs:annotation>
+      <xs:documentation>
+        Build date and time information from the ECU MTS structure.
+        For example 2002-05-30T09:30:10Z (in UTC time)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:dateTime">
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Manifest.ProjectId">
+    <xs:annotation>
+      <xs:documentation>
+        Project identity information from the ECU MTS structure in hexadecimal format (8 bytes).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="16"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Manifest.Crc">
+    <xs:annotation>
+      <xs:documentation>
+        CRC information from the ECU MTS structure in hexadecimal format.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="Manifest.Metadata">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        The Metadata element is used to provide customer related information.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="EntityId" type="Metadata.EntityId" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Entity identity information</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EntityName" type="Metadata.EntityName" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Entity name information</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Maintainer" type="Metadata.Maintainer" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Manifest maintainer information</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="Metadata.EntityId">
+    <xs:annotation>
+      <xs:documentation>
+        Entity identity information.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="255"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Metadata.EntityName">
+    <xs:annotation>
+      <xs:documentation>
+        Entity name information.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="255"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Metadata.Maintainer">
+    <xs:annotation>
+      <xs:documentation>
+        Maintainer information.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="255"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

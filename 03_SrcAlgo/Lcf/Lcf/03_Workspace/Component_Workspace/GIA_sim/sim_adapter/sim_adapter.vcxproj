@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{13566836-8732-460C-BCC5-526AF4DBB87F}</ProjectGuid>
+    <RootNamespace>sim_adapter</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\..\..\..\04_Build\algo\sim_adapter\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\temp\$(ProjectName)_$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\..\..\..\04_Build\algo\sim_adapter\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\temp\$(ProjectName)_$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\externals\sim\include\sim_adapter;$(ProjectDir)\..\externals\sim\include\sim_kernel;$(ProjectDir)\..\externals\sim_extensions;$(ProjectDir)\include;$(ProjectDir)\aln;$(ProjectDir)\awv;$(ProjectDir)\em;$(ProjectDir)\rsp;$(ProjectDir)\fct;$(ProjectDir)\rhc;$(ProjectDir)\vdy;$(ProjectDir);$(ProjectDir)\frs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_USRDLL;SIMPLG_EXPORTS;ARS3RSPSIMPLG_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>&amp;quot;$(IntDir)&amp;quot;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command>attrib -r  ..\..\..\04_Build\algo\sim_adapter\$(TargetName).*</Command>
+    </PreLinkEvent>
+    <Link>
+      <OutputFile>$(ProjectDir)\..\..\..\04_Build\algo\sim_adapter\$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>..\externals\sim\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>attrib -r  ..\..\..\..\05_Testing\06_Test_Tools\mts_measurement\dll\algo\sim_adapter\$(TargetName).*
+copy $(TargetDir)$(TargetFileName)  $(ProjectDir)..\..\..\..\05_Testing\06_Test_Tools\mts_measurement\dll\algo\sim_adapter
+copy $(TargetDir)$(TargetName).pdb  $(ProjectDir)..\..\..\..\05_Testing\06_Test_Tools\mts_measurement\dll\algo\sim_adapter</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\externals\sim\include\sim_adapter;$(ProjectDir)\..\externals\sim\include\sim_kernel;$(ProjectDir)\..\externals\sim_extensions;$(ProjectDir)\include;$(ProjectDir)\aln;$(ProjectDir)\awv;$(ProjectDir)\em;$(ProjectDir)\rsp;$(ProjectDir)\fct;$(ProjectDir)\frs;$(ProjectDir)\rhc;$(ProjectDir)\vdy;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_USRDLL;SIMPLG_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0407</Culture>
+      <AdditionalIncludeDirectories>&amp;quot;$(IntDir)&amp;quot;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command>attrib -r  ..\..\..\04_Build\algo\sim_adapter\$(TargetName).*</Command>
+    </PreLinkEvent>
+    <Link>
+      <OutputFile>$(ProjectDir)\..\..\..\04_Build\algo\sim_adapter\$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>..\externals\sim\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Message>use copy &amp;quot%3b$(TargetPath)&amp;quot%3b &amp;quot%3b%MTSV22_INSTALL_DIR%&amp;quot%3b or copy &amp;quot%3b$(TargetPath)&amp;quot%3b &amp;quot%3b%MTSV22_PROJ_DLL_DIR%&amp;quot%3b</Message>
+      <Command>attrib -r  ..\..\..\..\05_Testing\06_Test_Tools\mts_measurement\dll\algo\sim_adapter\$(TargetName).*
+copy $(TargetDir)$(TargetFileName)  $(ProjectDir)..\..\..\..\05_Testing\06_Test_Tools\mts_measurement\dll\algo\sim_adapter
+copy $(TargetDir)$(TargetName).pdb  $(ProjectDir)..\..\..\..\05_Testing\06_Test_Tools\mts_measurement\dll\algo\sim_adapter</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="aln\sim_conv_aln_azimuthcorrection.cpp" />
+    <ClCompile Include="aln\sim_conv_aln_monitoring.cpp" />
+    <ClCompile Include="aln\sim_conv_aln_rtebswout.cpp" />
+    <ClCompile Include="aln\sim_conv_aln_rtebswin.cpp" />
+    <ClCompile Include="aln\sim_conv_aln_rtenvm.cpp" />
+    <ClCompile Include="aln\sim_conv_aln_rtereqhwconfig.cpp" />
+    <ClCompile Include="aln\sim_conv_aln_siminit.cpp" />
+    <ClCompile Include="aln\sim_conv_aln_siminitmon.cpp" />
+    <ClCompile Include="aln\sim_conv_aln_syncref.cpp" />
+    <ClCompile Include="awv\sim_conv_awvw_dtkodierungfkt.cpp" />
+    <ClCompile Include="awv\sim_conv_bremsung.cpp" />
+    <ClCompile Include="awv\sim_conv_dtffipar.cpp" />
+    <ClCompile Include="awv\sim_conv_dtkvpar.cpp" />
+    <ClCompile Include="awv\sim_conv_em_objectlist_custom.cpp" />
+    <ClCompile Include="awv\sim_conv_fahrpedalwert.cpp" />
+    <ClCompile Include="awv\sim_conv_perfdegr.cpp" />
+    <ClCompile Include="em\sim_conv_em_bswemctrldata.cpp" />
+    <ClCompile Include="em\sim_conv_em_objectlist_base_cam.cpp" />
+    <ClCompile Include="em\sim_conv_em_objectlist_cam_vw.cpp" />
+    <ClCompile Include="em\sim_conv_em_objectlist_mcam.cpp" />
+    <ClCompile Include="em\sim_conv_em_objectlist_mcam_rt.cpp" />
+    <ClCompile Include="em\sim_conv_em_objectlist_mcam_tja.cpp" />
+    <ClCompile Include="em\sim_conv_em_objectlist_scam.cpp" />
+    <ClCompile Include="em\sim_conv_productionparameter.cpp" />
+    <ClCompile Include="em\sim_conv_road.cpp" />
+    <ClCompile Include="fct\sim_conv_acc_lever.cpp" />
+    <ClCompile Include="fct\sim_conv_bswalgo_param.cpp" />
+    <ClCompile Include="fct\sim_conv_cp_traj_state.cpp" />
+    <ClCompile Include="fct\sim_conv_dim_input_custom.cpp" />
+    <ClCompile Include="fct\sim_conv_dim_input_generic.cpp" />
+    <ClCompile Include="fct\sim_conv_DW_input_custom.cpp" />
+    <ClCompile Include="fct\sim_conv_fct_cam_lane_input_data.cpp" />
+    <ClCompile Include="fct\sim_conv_fct_custom_input.cpp" />
+    <ClCompile Include="fct\sim_conv_fct_sen_error_out.cpp" />
+    <ClCompile Include="fct\sim_conv_fct_veh_custom_input.cpp" />
+    <ClCompile Include="fct\sim_conv_head_input_custom.cpp" />
+    <ClCompile Include="fct\sim_conv_head_input_generic.cpp" />
+    <ClCompile Include="fct\sim_conv_long_ctrl_input.cpp" />
+    <ClCompile Include="fct\sim_conv_navi_input_data.cpp" />
+    <ClCompile Include="fct\sim_conv_si_curveobs_init.cpp" />
+    <ClCompile Include="frs\sim_conv_frs_frsbswctrldata.cpp" />
+    <ClCompile Include="rhc\sim_conv_rhc_adj_hw_config.cpp" />
+    <ClCompile Include="rhc\sim_conv_rhc_bswin.cpp" />
+    <ClCompile Include="rsp\sim_conv_rsp1_nacom.cpp" />
+    <ClCompile Include="rsp\sim_conv_rsp1_noise.cpp" />
+    <ClCompile Include="rsp\sim_conv_rsp1_peaklist.cpp" />
+    <ClCompile Include="rsp\sim_conv_RSP1_PreClusterList.cpp" />
+    <ClCompile Include="rsp\sim_conv_rsp1_preclusterlistheader.cpp" />
+    <ClCompile Include="rsp\sim_conv_RSP1_RoadBeamList.cpp" />
+    <ClCompile Include="rsp\sim_conv_RSP1_syncref.cpp" />
+    <ClCompile Include="rsp\sim_conv_RSP2_ClusterList.cpp" />
+    <ClCompile Include="rsp\sim_conv_rsp2_noise.cpp" />
+    <ClCompile Include="rsp\sim_conv_rsp_inputactl.cpp" />
+    <ClCompile Include="rsp\sim_conv_rsp_specbeamcmplxlist.cpp" />
+    <ClCompile Include="sim_adapter_dll.cpp" />
+    <ClCompile Include="sim_adapter_main.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="rsp\sim_conv_FPGA_StaticPeakList.cpp" />
+    <ClCompile Include="vdy\sim_conv_VdyCtrlData.cpp" />
+    <ClCompile Include="vdy\sim_conv_vdyerrors.cpp" />
+    <ClCompile Include="vdy\sim_conv_vdy_input_data_veh_sig.cpp" />
+    <ClCompile Include="vdy\sim_conv_veh_dyn.cpp" />
+    <ClCompile Include="vdy\sim_conv_veh_par.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="aln\sim_conv_aln_azimuthcorrection.h" />
+    <ClInclude Include="aln\sim_conv_aln_monitoring.h" />
+    <ClInclude Include="aln\sim_conv_aln_rtebswout.h" />
+    <ClInclude Include="aln\sim_conv_aln_rtebswin.h" />
+    <ClInclude Include="aln\sim_conv_aln_rtenvm.h" />
+    <ClInclude Include="aln\sim_conv_aln_rtereqhwconfig.h" />
+    <ClInclude Include="aln\sim_conv_aln_siminit.h" />
+    <ClInclude Include="aln\sim_conv_aln_siminitmon.h" />
+    <ClInclude Include="aln\sim_conv_aln_syncref.h" />
+    <ClInclude Include="awv\sim_conv_awvw_dtkodierungfkt.h" />
+    <ClInclude Include="awv\sim_conv_bremsung.h" />
+    <ClInclude Include="awv\sim_conv_dtffipar.h" />
+    <ClInclude Include="awv\sim_conv_dtkvpar.h" />
+    <ClInclude Include="awv\sim_conv_em_objectlist_custom.h" />
+    <ClInclude Include="awv\sim_conv_fahrpedalwert.h" />
+    <ClInclude Include="awv\sim_conv_perfdegr.h" />
+    <ClInclude Include="em\sim_conv_em_bswemctrldata.h" />
+    <ClInclude Include="em\sim_conv_em_objectlist_base_cam.h" />
+    <ClInclude Include="em\sim_conv_em_objectlist_cam_vw.h" />
+    <ClInclude Include="em\sim_conv_em_objectlist_mcam.h" />
+    <ClInclude Include="em\sim_conv_em_objectlist_mcam_rt.h" />
+    <ClInclude Include="em\sim_conv_em_objectlist_mcam_tja.h" />
+    <ClInclude Include="em\sim_conv_em_objectlist_scam.h" />
+    <ClInclude Include="em\sim_conv_productionparameter.h" />
+    <ClInclude Include="em\sim_conv_road.h" />
+    <ClInclude Include="fct\sim_conv_acc_lever.h" />
+    <ClInclude Include="fct\sim_conv_bswalgo_param.h" />
+    <ClInclude Include="fct\sim_conv_cp_traj_state.h" />
+    <ClInclude Include="fct\sim_conv_dim_input_custom.h" />
+    <ClInclude Include="fct\sim_conv_dim_input_generic.h" />
+    <ClInclude Include="fct\sim_conv_DW_input_custom.h" />
+    <ClInclude Include="fct\sim_conv_fct_cam_lane_input_data.h" />
+    <ClInclude Include="fct\sim_conv_fct_custom_input.h" />
+    <ClInclude Include="fct\sim_conv_fct_sen_error_out.h" />
+    <ClInclude Include="fct\sim_conv_fct_veh_custom_input.h" />
+    <ClInclude Include="fct\sim_conv_head_input_custom.h" />
+    <ClInclude Include="fct\sim_conv_head_input_generic.h" />
+    <ClInclude Include="fct\sim_conv_long_ctrl_input.h" />
+    <ClInclude Include="fct\sim_conv_navi_input_data.h" />
+    <ClInclude Include="fct\sim_conv_si_curveobs_init.h" />
+    <ClInclude Include="frs\sim_conv_frs_frsbswctrldata.h" />
+    <ClInclude Include="include\interfacedriverinput.h" />
+    <ClInclude Include="include\interfaceheadinput.h" />
+    <ClInclude Include="include\interfacevehdyn.h" />
+    <ClInclude Include="include\interfacevehpar.h" />
+    <ClInclude Include="include\interface_RSP1_PreClusterList_ars400.h" />
+    <ClInclude Include="include\interface_rsp_specbeamcmplxlist.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="rhc\sim_conv_rhc_adj_hw_config.h" />
+    <ClInclude Include="rhc\sim_conv_rhc_bswin.h" />
+    <ClInclude Include="rsp\sim_conv_rsp1_nacom.h" />
+    <ClInclude Include="rsp\sim_conv_rsp1_noise.h" />
+    <ClInclude Include="rsp\sim_conv_rsp1_peaklist.h" />
+    <ClInclude Include="rsp\sim_conv_RSP1_PreClusterList.h" />
+    <ClInclude Include="rsp\sim_conv_rsp1_preclusterlistheader.h" />
+    <ClInclude Include="rsp\sim_conv_RSP1_RoadBeamList.h" />
+    <ClInclude Include="rsp\sim_conv_RSP1_syncref.h" />
+    <ClInclude Include="rsp\sim_conv_RSP2_ClusterList.h" />
+    <ClInclude Include="rsp\sim_conv_rsp2_noise.h" />
+    <ClInclude Include="rsp\sim_conv_rsp_inputactl.h" />
+    <ClInclude Include="rsp\sim_conv_rsp_specbeamcmplxlist.h" />
+    <ClInclude Include="sim_adapter_main.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="include\interface_base.h" />
+    <ClInclude Include="include\interface_peak_list_ars400.h" />
+    <ClInclude Include="rsp\sim_conv_FPGA_StaticPeakList.h" />
+    <ClInclude Include="vdy\sim_conv_VdyCtrlData.h" />
+    <ClInclude Include="vdy\sim_conv_vdyerrors.h" />
+    <ClInclude Include="vdy\sim_conv_vdy_input_data_veh_sig.h" />
+    <ClInclude Include="vdy\sim_conv_veh_dyn.h" />
+    <ClInclude Include="vdy\sim_conv_veh_par.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sim_adapter.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

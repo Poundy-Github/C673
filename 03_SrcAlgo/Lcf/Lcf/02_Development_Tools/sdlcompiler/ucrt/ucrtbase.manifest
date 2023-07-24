@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <noInheritable></noInheritable>
+  <assemblyIdentity type="win32" name="ucrtbase" version="10.0.10240.16384" processorArchitecture="x86"/>
+  <file name="ucrtbase.dll"/>
+</assembly>

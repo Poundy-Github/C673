@@ -1,0 +1,37 @@
+// COMPANY:   Continental Automotive
+// COMPONENT: DPUSERVICE
+// VERSION:   $Revision: 1.1 $
+
+///@file
+
+/// declares the size of the largest MDB cluster which shall be CRC protected.
+/// That means only MDB clusters with flag MDB_e_FLAG_CRC are taken into account.
+/// The size is needed for the table of powers for Galois CRC32 calculation algorithm on DSP cores.
+
+#ifndef CRC_MAX_SIZE_MDB_CLUSTER_H
+#define CRC_MAX_SIZE_MDB_CLUSTER_H
+
+#include <Rte_type.h>
+
+
+// PRQA S 2176 ++
+// 2018-02-22; uidw0352
+// summary: Msg(3:2176) This is a union. Use polymorphic classes instead. MISRA-C++ Rule 9-5-1
+// reason: The union is needed to generate the size of the biggest data type at compile time.
+// That would not be possible with a polymorphic class.
+// Type safety and portability is not needed because the union is only used in this file below
+// for determining the value of the variable u_SizeOfLargestMdbCluster.
+
+/// This union is used to find at compile time the maximum size of the largest MDB cluster
+/// which shall be CRC protected.
+typedef union {
+/*!<codegen_start:CRC_PROTECTED_MDB_CLUSTERS_UNION>*/
+/*!<codegen_end:CRC_PROTECTED_MDB_CLUSTERS_UNION>*/
+} CRC_protected_MDB_Clusters_t;
+
+// PRQA S 2176 --
+
+/// This is the size of the largest MDB cluster which shall be CRC protected.
+const uint32 u_SizeOfLargestMdbCluster = sizeof(CRC_protected_MDB_Clusters_t);
+
+#endif // CRC_MAX_SIZE_MDB_CLUSTER_H

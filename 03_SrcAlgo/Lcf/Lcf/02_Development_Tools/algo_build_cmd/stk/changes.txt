@@ -1,0 +1,423 @@
+  stk.hpc
+  -------
+
+  Added Possibility to send Email-Notifications on
+  JobStart and JobCompletion.
+
+
+(2013.11.08) Scripting Toolkit Checkpoint 02.01.00_INT-3
+========================================================
+
+  stk.hpc
+  -------
+
+  BugFix: Get SubtaskFactory working again with new
+          share \\LIFS010\hpc
+
+  Added support for additional ARS4xx Projects.
+
+
+(2013.11.07) Scripting Toolkit Checkpoint 02.01.00_INT-2
+========================================================
+
+  stk.db
+  ------
+  Updated Database interface regarding new db Schema
+  Added new Project Table.
+
+  BugFix in db_enhanced query (removed external interfaces)
+
+
+(2013.10.31) Scripting Toolkit Checkpoint 02.01.00_INT-1
+========================================================
+
+
+  stk.rep
+  -------
+  set up new standard AlgoTestReporter.
+  renamed old pdf reporter to pdf_old.py
+
+
+  stk.hpc
+  -------
+  moved to new hpc share (\\LIFS010\hpc\liss006)
+  enabled priority regulation.
+
+  stk.util
+  --------
+  logger: introducing simplified logger: class StkLogger; old one outputs a deprecation warning
+
+  stk.valf
+  --------
+  signal_extractor: using new StkLogger
+  base_component_ifc: version info added; using class build in defines 
+
+  
+(2013.10.07) Scripting Toolkit Checkpoint 02.00.08_INT-3
+========================================================
+
+  stk.valf
+  --------
+  valf: purge flag neccessary for not cleaning sim output directory
+  FR199155: AD_FR: STK: Extend Error Message when Observer method returns with error value
+  fixes in util/find.py, valf/process_manager.py and valf/valf.py to provide errors during module load
+  new error class ValfError based on StkError in valf/error.py
+  update in stk/error.py: new optional parameter dpth
+  
+  stk.val
+  -------
+  save event filters, improved filters
+  added general switch to store testruns in DB or simply add them to the databus
+  improved deprecated warnings
+  
+  stk.hpc
+  -------
+  fixed mts simulation utils supporting the new folder structure
+
+2013.09.20) Scripting Toolkit Checkpoint 02.00.08_INT-2
+========================================================
+
+Redo Checkpoint because of Error Message during Checkpointing
+  
+
+(2013.09.20) Scripting Toolkit Checkpoint 02.00.08_INT-1
+========================================================  
+
+  stk.hpc
+  -------
+
+  Reogrganisation of internal sturkture.
+  Added section handling to TaskFactoryMTS and SubTaskFaktoryMTS
+
+  stk.mts
+  -------
+
+  FR195174: AD_FR: bpl_xml.py returns empty list when no "Section" Tag is inside.  
+
+
+  stk.valf
+  --------
+
+- signal_extractor.py:
+  - new feature HIL timestamp conversion, documented in valf training slides
+  - new test_signal_extractor with basic HIL tests
+
+- bpl_reader.py:
+  - BugFixes for errors found during implementation of test_bpl_reader
+
+
+(2013.08.08) Scripting Toolkit Checkpoint 02.00.07_INT-4
+========================================================  
+
+  stk.hpc
+  -------
+
+  BugFix for INT3 Checkpoint
+
+  - SubTaskFactoryMTS
+  - SubTaskFactory
+
+(2013.08.08) Scripting Toolkit Checkpoint 02.00.07_INT-3
+========================================================  
+
+  stk.hpc
+  -------
+
+  Added Bpl Support to:
+	- TaskFactoryMTS
+	- SubTaskFactoryMTS
+
+  Added multiple TaskFactory Support to HPC in one Job.
+
+  stk.mts.bpl
+  -----------
+
+  fix class BplList to support extend, append and other list methods
+  
+
+(2013.07.17) Scripting Toolkit Checkpoint 02.00.07_INT-2
+========================================================  
+
+  stk.val.base_events
+  -------------------
+
+  extended asmt.ValAssessment with GetAssesmentState Method
+
+
+  base_events.ValEventDatabaseInterface:
+
+	- Added Initialisation of RecCatalogDB
+	- Added Initialisation of BaseObjDataDB
+	- Added Initialisation fo GenLabelDB
+
+  stk:
+  ----
+
+- changed pylint settings regarding our new guidelines:
+  - Corrected regular expression for Method Names
+  - Corrected regular expression for Function Names.
+
+- marked following classes and functions as deprecated (will be removed until Release 2.0.9)
+
+  - stk.rep.report_base
+	class onFirstPage()
+	class onLaterPage()
+	class ValidationReportBase()
+	class NumberedCanvas()
+	class OverallSummary()
+	class SummaryTestcases()
+	class ValTableOfContent()
+	class ValDocTemplate()
+
+  - stk.val.base_events
+	class ValEventNotImplemented()
+	class ValEventLoader()
+	class ValEventUpdater()
+	class SaveEventDB()
+	class LoadEventAttributesDB()
+	class SetAssessmentID()
+	class SetAssessment()
+	class GetAssesmentComment()
+	class ValStatObstEvent()
+	class ValGenericStateEvent()
+
+  -stk.mks.si
+	class MksSI()
+	class MksSIMember()
+	class MksSIProject()
+	class MksSISandbox()
+
+
+(2013.07.16) Scripting Toolkit Checkpoint 02.00.07_INT-1
+========================================================  
+
+  stk:
+  ----
+
+- marked several classes and functions a deprecated (will be removed until Release 2.0.9)
+
+  stk/hpc:
+  --------
+
+  - Added extension for using the _HPC Folder Name.
+  - New HPCFolder Name is build on _HPC + Numbers from the Server.
+    e.g. _HPC Folder of LIFS006 = _HPC006
+         _HPC Folder of LIFS066 = _HPC066
+  - removed journal-feature in db-ifc of HPC to improve performance.
+  - added SubTask Feature to HPC.
+           
+  stk/valf:
+  =========
+  - valf: add new module/class valf to start validation scripts with .py instead of .bat/.cmd files
+    - process_manager: move instantiation of data_manager from load_configfile into __init__  
+    - add new start scripts to valf_demo.cat_demo
+    - add new test_valf with basic tests
+
+  stk/val:
+  =========
+  - Add Testcase to ValTestrun
+  - Add Support of Testcase Events 
+    - new module events.py supporting eventlists
+    - add Events to testcase / save and load the events
+  - extended Signal and Binary signal class
+    -  Signal Plot and PlotXy
+    - new math functions
+  
+  - Add new column RDID into VAL_EVENTS table (Oracle DB update required, please contact guenther.raedler@continental.corporation.com)
+
+
+(2013.06.01) Scripting Toolkit Checkpoint 02.00.06
+==================================================  
+
+stk/valf:
+  ---------
+- add feature "SimSelection" to enter list of indices for particular bpl/cat list selection
+- add option 'assign-port' to set any port value using -a <PortName> <PortValue>
+- move vpc.data-extractor to stk.valf.signal_extractor with addons for MFC SOD
+- also move signal_defs to stk/valf as it is used by signal_extractor
+
+  stk:
+  ----
+
+  AD_FR: 183382 Gauss Ploting error and wrong pylint warning corrections
+  AD_FR: 183260 "ShiftTimelineOfPointPairList" Function
+  
+- Python SQLAlchemy (0.8.1) is needed now to use the stk.
+  Please use package from \\cw01.contiwan.com\lndp\didk7746\_public\Tools\python\SQLAlchemy-0.8.1
+    1. Copy package to local disk.
+	2. open cmdprompt in directory.
+	3. type "setup.py install"
+
+  stk/hpc:
+  --------
+
+  - Added SubTask Support for hpc.
+  - Increased Max possible CMDLine Length for Tasks in HPC. (no Limitation)
+  - Added DB Support for HPC Job/Task/SubTask Handling.
+  - Added HPCSim() Class to simulate submit process localy.
+    Also a test.bat File will be created to start the 1. Task localy.
+  - Added new Utils used for ARS4xx Simulation runs
+
+  stk/??????:
+  -----------
+- stk.val.testrun.py
+	- Added changes into TestRunManager Class for managing hirarchichal testrun data with repace functinality
+  	- Fixed bugs in TestRun class for Reload and replace operation of testrun
+
+- fix error in io/dlm.py: empty local signal dict in case of errors instead returning None
+- Added a new file obj/ego.py. Contains a class for
+  the ego motion
+- Added a new package obj/clothoid. Contains functions
+  to handle clothoid objects (Estimation error, event generation).
+- Added a new file db/lbl/genlabel_defs.py. Contains classes
+  with definitions for specific labels. Currently only road type label
+  definitions are included.
+- Modified db/dbenhquery.py. Road type label reading function now
+  uses the label definitions mentionned in genlabel_defs.py.
+- Removed functions from util/helper.py that are now in the clothoid package.
+
+- Added classes to send emails with Smtp and lotus Notes:
+  stk.util.email.smtp
+  stk.util.email.NotesMail
+
+- Added Method: UseGlobalDataFolder() in TaskFactory of Hpc.
+
+
+(2013.04.29) Scripting Toolkit Checkpoint 02.00.05
+==================================================
+
+ - No changes, only problems during checkpointing solved.
+
+
+(2013.04.29) Scripting Toolkit Checkpoint 02.00.04
+==================================================
+
+ - MKS Source Integrity
+	- Added new class stk.mks.si.Si()
+ 	- Added Unittest stk/mks/test_si.py
+ - added cat_demo to 05_Testing/05_Test_Environment/valf_demo
+     example of easy cat reader observer using stk.valf.main.py
+ - updated stk/valf/base_component_wizard.py to create stk 2.0 code
+ - added stk.valf.main.py 
+    - replacement of vpc.validationmain.py
+    - supports valf run without DB connnection
+ - fixed sqlite error in stk.valf.db_connector.py
+    - new default value 
+ - added new Result API
+    - stk.val.asmt.py
+        - added ValAssessment class
+        - added ValAssessmentStates class
+        - added ValAssessmentWorkFlows
+    - stk.val.result.py
+        - added ValResult class 
+        - added ValSaveLoadLevel class
+        - added ValTestcase class
+    - stk.val.testrun.py
+        - added TestRun class
+        - improved input port parser for testrun configurations
+ - stk.db.gbl.gbl.py
+    - extended interface of GetUser() method
+ - stk.db.val.val.py
+    - added new method GetResultDescriptorInfoForTestrun()
+    - added classname column into result type table
+        --> update in Databases required
+ - stk.db.sqlite_db
+    - added classname column into result type table 
+
+(2013.04.16) Scripting Toolkit Checkpoint 02.00.03
+==================================================
+ - Removed pylint Errors
+ - Fixed Pep8 Messages.
+ - ......
+
+
+(2013.03.22) Scripting Toolkit Checkpoint 02.00.02
+==================================================
+ - Updates in hpc (Error handling for copy results)
+ - Updates in db (changed some interfaces)
+ - ......
+
+(2013.03.05) Scripting Toolkit Checkpoint 02.00.01
+==================================================
+ - Added a bunch of modules into stk, to 
+   support the different validations from the 
+   single Teams.
+
+
+(2013.01.25) Scripting Toolkit Checkpoint 02.00.00
+==================================================
+ - First official Release for stk 2.0
+ - Changed stk to package structure.
+
+
+(2012.10.26) Scripting Toolkit Checkpoint 01.19.01
+==================================================
+ - HPC: Prevent AppStarter from Chrash when using no 
+        Static cfg File.
+ - HPC: Corrected CommandLine Usage of App Starter
+        (Removed -c without arg)
+
+
+(2012.10.04) Scripting Toolkit Checkpoint 01.19.00
+==================================================
+ - HPC: Added separate Exit Code for CPU IDLE and I/O Idle.
+ - HPC: Changed rule when Application will be killed.
+        CPU Idle is depending from I/O idle.
+ - HPC: BugFix for Atomatic replacemanet -> Added import
+
+
+(2012.09.19) Scripting Toolkit Checkpoint 01.18.07
+==================================================
+ - HPC: Automatic replacement (lifs010 -> lifs010s) for fast server connection added.
+ - HPC: App_Watcher: Extended Appwatcher to watch on the started 
+        Application and all the started subprocesses.
+
+
+(2012.09.07) Scripting Toolkit Checkpoint 01.18.06
+==================================================
+
+ - HPC: MTS_Final_Check: BugFix solves chrash in Database Query.
+ - HPC: AppStarter: Added I/O watching to app watcher.
+ - HPC: Improved dynamic parameter handling. No problems with spaces anymore.
+ - HPC: AppStarter: Introduced possibility to define a pre task which will run before the actual application.
+ - HPC: AppStarter: Fix for small issues in app watcher.
+ - HPC: AppStarter: Moved app watching in seperate process.
+ - HPC: AppStarter: Introduced new error code for script malfunction.
+ - HPC: AppStarter BugFix: Copying of StdOut and StdErr Files works again.
+ - HPC: BugFix for re-set Current Working Dir in app_starter.py
+
+(2012.08.03) Scripting Toolkit Checkpoint 01.18.05
+==================================================
+ - HPC: Added Current Working Directory Feature
+ - HPC: Limited JobName to 32 Character
+ - HPC: Inserted Check for max CMDLine for Task for 480 Characters.
+ - HPC: Added Relative call to App Starter
+ - HPC: Added Rel parameter app.cfg
+
+
+(2012.08.03) Scripting Toolkit Checkpoint 01.18.04
+==================================================
+ - HPC: BugFix in App_Starter. MultiThreading caused
+        RaceCondition to Copy results twice or not.
+        
+
+
+(2012.08.02) Scripting Toolkit Checkpoint 01.18.03
+==================================================
+ - HPC: Added Application Watcher to AppStarter.
+        When CPULoad of Application is longer than
+        ~7 min under 2%, Application will be Killed.
+
+
+(2012.08.02) Scripting Toolkit Checkpoint 01.18.02
+==================================================
+ - HPC: Check After Application call after Chrashdump.
+        If Chrash detected, Error Code will be -101.
+
+
+(2012.08.01) Scripting Toolkit Checkpoint 01.18.01
+==================================================
+ - HPC: Added correct Exit Code at Cancel Task in app_starter.py
+ - HPC: Removed unused mts_starter in hpc/utils/__init__.py
+ - HPC: Added the possibility to limit the max used number of cores or nodes for a job.
+ - HPC: BugFix: Replaced self.__JobName with self.JobName in stk_hpc.py

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<html>
+    <style>
+        section table, th, td { 
+			border: 1px solid black; 
+			border-collapse: collapse;
+		}
+		
+        th, td {
+			text-align: center; font-weight: bold
+		}
+		
+        body {
+			padding: 10px
+		}
+		
+        section.details2ul {
+			vertical-align: top; display: inline-block; width: 45%
+		}
+    </style>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        
+        function showhide() {
+            $('tr.redundant').toggle()
+        }
+        
+        function runBat() {
+            var shell = new ActiveXObject("WScript.Shell");
+            var path = 'C:/Users/uidq3472/Envs/CompCsvFlask/Project/output/2016-05-30_10-39-57.404000/start_mts_with_bgl.bat';
+            shell.run(path,1,false);
+        }
+        
+        $(function isIEorEDGE(){
+            if ((navigator.appName == 'Microsoft Internet Explorer') || (navigator.appName == 'Netscape' && navigator.appVersion.indexOf('Trident') > -1)) {
+                $('#batBtn').show();
+            } else {
+                $('#batBtn').hide();
+            }
+        });
+        
+        $(document).ready(function(){
+            $('#detailsbtn').on('click', function () {
+                $(this).find('.glyphicon').toggleClass('glyphicon-menu-down glyphicon-menu-up');
+            });
+        });
+        
+    </script>
+
+    <header>
+        <p><a href="index.html" ><h2>index page</h2></a></p>
+        <button id="detailsbtn" class="btn btn-default" data-toggle="collapse" data-target="#details" style="margin-bottom: 10px"><span class="glyphicon glyphicon-menu-down"></span> show details</button>
+        <details id="details" class="collapse">
+            <section class="details2ul">
+            <h4 >Parameters:</h4>
+			<ul>
+			{% for arg in args_list %}
+				<li>{{arg}}</li>
+			{% endfor %}
+			</ul>
+            </section>
+            <section class="details2ul">
+            <h4 >Input Files:</h4>
+                <ul>
+                    <li><a href="{{dir_file_ref}}" >{{filename_ref}} (Reference)</a></li>
+                    <li><a href="{{dir_file_new}}" >{{filename_new}} (Comparision)</a></li>
+                </ul>
+            </section>
+        </details>
+    </header>
+
+    <section style="overflow-x:auto;">
+        <p>nd = no deviation, ad = acceptable deviation, ud = unacceptable deviation (all with respect to given parameters, e.g. delay)</p>
+        <button class="btn btn-default" onclick="runBat()" id="batBtn" style="margin-bottom: 10px"><span class="glyphicon glyphicon-forward"></span> run mts</button>
+		{% if show_redundant %}
+		<input type="checkbox" onchange="showhide()" checked>show redundant table rows</checkbox>
+		{% endif %}
+        <table style="width:100%">
+		{% if header %}
+            <tr>
+				<th>#f1</th>
+				<th>#f2</th>
+			{% for header in headers %}
+                <th>{{header}}</th>
+			{% endfor %}
+            </tr>
+		{% endif %}
+		{% for result in result_list %}
+			{% if not result[1] %}
+            <tr>
+				<td>{{loop.index0 + offset0}}</td>
+				<td>{{loop.index0 + offset1}}</td>
+			{% for value in result[0] %}
+                <td style="background-color: {{value.diff_state}}">{{value.result_value}}</td>
+			{% endfor %}
+			</tr>
+			{% elif (result[1] and show_redundant)%}
+			<tr class="redundant">
+				<td>{{loop.index0 + offset0}}</td>
+				<td>{{loop.index0 + offset1}}</td>
+			{% for value in result[0] %}
+                <td style="background-color: {{value.diff_state}}">{{value.result_value}}</td>
+			{% endfor %}
+			</tr>
+			{% endif %}
+		{% endfor %}
+        </table>
+    </section>
+</html>

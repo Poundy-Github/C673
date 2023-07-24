@@ -1,0 +1,62 @@
+// T32_1000026 Mon Mar 19 09:36:25 2018
+
+B::
+
+TOOLBAR   ON
+STATUSBAR ON
+FramePOS -1.1429,0.0,,,Maximized
+WinPAGE.RESet
+
+WinPAGE.Create P000
+WinCLEAR
+
+WinPOS 0.0 0.0 100. 5. 0. 0. W000
+VAR.WATCH IC_s_MeasData
+
+VAR.ADDWATCH CompressedSafeSection
+VAR.ADDWATCH ispIntTrace
+VAR.ADDWATCH pCfg
+VAR.ADDWATCH a_rtaBuffer
+VAR.ADDWATCH m_eventQueue
+VAR.ADDWATCH IspHandler::m_eventQueueBuffer
+VAR.ADDWATCH IspHandler::m_eventQueue
+VAR.ADDWATCH a_MDB_e_CL_ISP_IMAGE_ODD_Y
+VAR.ADDWATCH a_MDB_e_CL_ISP_IMAGE_ODD_UV
+VAR.ADDWATCH a_MDB_e_CL_ISP_IMAGE_EVEN_Y
+VAR.ADDWATCH a_MDB_e_CL_ISP_IMAGE_EVEN_UV
+VAR.ADDWATCH IC_s_MeasData
+
+WinPOS 202.43 55.083 63. 11. 5. 0. W007
+Frame.view /Locals /Caller /core 1
+
+WinPOS 0.28571 55.083 112. 9. 26. 1. W004
+WinTABS 13. 16. 0. 0. 0. 0. 0.
+Break.List
+
+WinPOS 117.71 55.083 79. 11. 5. 0. W001
+Frame.view /Locals /Caller /core 0
+
+WinPOS 0.57143 29.333 127. 19. 24. 1. W006
+WinTABS 10. 22. 25. 62.
+data.list , /core 1
+
+WinPOS 0.28571 0.25 127. 22. 24. 1. W000
+WinTABS 10. 38. 25. 62.
+data.list , /core 0
+
+WinPOS 133.29 29.0 59. 21. 0. 0. W008
+Register /CORE  1
+
+WinPOS 133.14 0.33333 59. 23. 0. 0. W003
+Register /CORE  0
+
+WinPOS 197.71 0.5 68. 47. 0. 0. W002
+var.watch %sp
+
+
+WinPAGE.select P000
+
+sYmbol.SourcePATH.RESet
+
+
+ENDDO

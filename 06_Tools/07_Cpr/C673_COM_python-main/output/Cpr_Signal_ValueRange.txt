@@ -1,0 +1,378 @@
+const uint16 Cpr_Min_VcuAccrPedlPosn = 0;
+const uint16 Cpr_Max_VcuAccrPedlPosn = 1023;
+
+const uint8 Cpr_Min_VcuAccrPedlPosnVld = 0;
+const uint8 Cpr_Max_VcuAccrPedlPosnVld = 1;
+
+const uint8 Cpr_Min_VcuGearPosn = 0;
+const uint8 Cpr_Max_VcuGearPosn = 7;
+
+const uint8 Cpr_Min_VcuVehGearPosnVld = 0;
+const uint8 Cpr_Max_VcuVehGearPosnVld = 1;
+
+const uint8 Cpr_Min_BcmAutHeadLiSts = 0;
+const uint8 Cpr_Max_BcmAutHeadLiSts = 1;
+
+const boolean Cpr_Min_BcmDrvrDoorSts = 0;
+const boolean Cpr_Max_BcmDrvrDoorSts = 1;
+
+const uint8 Cpr_Min_BcmFrntFogLmpSts = 0;
+const uint8 Cpr_Max_BcmFrntFogLmpSts = 3;
+
+const uint8 Cpr_Min_BcmFrntWiperSts = 0;
+const uint8 Cpr_Max_BcmFrntWiperSts = 3;
+
+const uint8 Cpr_Min_BcmHiBeamSts = 0;
+const uint8 Cpr_Max_BcmHiBeamSts = 3;
+
+const boolean Cpr_Min_BcmLeReDoorSts = 0;
+const boolean Cpr_Max_BcmLeReDoorSts = 1;
+
+const uint8 Cpr_Min_BcmLoBeamSts = 0;
+const uint8 Cpr_Max_BcmLoBeamSts = 3;
+
+const boolean Cpr_Min_BcmPassDoorSts = 0;
+const boolean Cpr_Max_BcmPassDoorSts = 1;
+
+const uint8 Cpr_Min_BcmReFoglmpSts = 0;
+const uint8 Cpr_Max_BcmReFoglmpSts = 3;
+
+const boolean Cpr_Min_BcmRiReDoorSts = 0;
+const boolean Cpr_Max_BcmRiReDoorSts = 1;
+
+const uint8 Cpr_Min_BcmTurnIndcrLe = 0;
+const uint8 Cpr_Max_BcmTurnIndcrLe = 3;
+
+const uint8 Cpr_Min_BcmTurnIndcrRi = 0;
+const uint8 Cpr_Max_BcmTurnIndcrRi = 3;
+
+const uint8 Cpr_Min_IP_DISFail = 0;
+const uint8 Cpr_Max_IP_DISFail = 1;
+
+const uint8 Cpr_Min_IP_QDashACCFail = 0;
+const uint8 Cpr_Max_IP_QDashACCFail = 3;
+
+const uint8 Cpr_Min_EspVehSpdVld = 0;
+const uint8 Cpr_Max_EspVehSpdVld = 1;
+
+const boolean Cpr_Min_EspEbdFailr = 0;
+const boolean Cpr_Max_EspEbdFailr = 1;
+
+const boolean Cpr_Min_EspAbsActv = 0;
+const boolean Cpr_Max_EspAbsActv = 1;
+
+const boolean Cpr_Min_EspAbsFailr = 0;
+const boolean Cpr_Max_EspAbsFailr = 1;
+
+const boolean Cpr_Min_EspActvSts = 0;
+const boolean Cpr_Max_EspActvSts = 1;
+
+const boolean Cpr_Min_EspTcsFailr = 0;
+const boolean Cpr_Max_EspTcsFailr = 1;
+
+const uint8 Cpr_Min_ESP_PrefillAvailable = 0;
+const uint8 Cpr_Max_ESP_PrefillAvailable = 1;
+
+const uint8 Cpr_Min_ESP_ABAavailable = 0;
+const uint8 Cpr_Max_ESP_ABAavailable = 1;
+
+const uint8 Cpr_Min_ESP_AEBAvailable = 0;
+const uint8 Cpr_Max_ESP_AEBAvailable = 1;
+
+const boolean Cpr_Min_ESP_AEBdecActive = 0;
+const boolean Cpr_Max_ESP_AEBdecActive = 1;
+
+const uint8 Cpr_Min_ESP_AWBavailable = 0;
+const uint8 Cpr_Max_ESP_AWBavailable = 1;
+
+const uint8 Cpr_Min_WhlSpdFrntLePls = 0;
+const uint8 Cpr_Max_WhlSpdFrntLePls = 254;
+
+const uint8 Cpr_Min_WhlSpdFrntRiPls = 0;
+const uint8 Cpr_Max_WhlSpdFrntRiPls = 254;
+
+const uint8 Cpr_Min_WhlSpdReLePls = 0;
+const uint8 Cpr_Max_WhlSpdReLePls = 254;
+
+const uint8 Cpr_Min_WhlSpdReRiPls = 0;
+const uint8 Cpr_Max_WhlSpdReRiPls = 254;
+
+const uint8 Cpr_Min_WhlSpdLeFrntDir = 0;
+const uint8 Cpr_Max_WhlSpdLeFrntDir = 3;
+
+const uint8 Cpr_Min_WhlSpdLeReDir = 0;
+const uint8 Cpr_Max_WhlSpdLeReDir = 3;
+
+const uint8 Cpr_Min_WhlSpdRiFrntDir = 0;
+const uint8 Cpr_Max_WhlSpdRiFrntDir = 3;
+
+const uint8 Cpr_Min_WhlSpdRiReDir = 0;
+const uint8 Cpr_Max_WhlSpdRiReDir = 3;
+
+const uint16 Cpr_Min_WhlSpdLeFrntData = 0;
+const uint16 Cpr_Max_WhlSpdLeFrntData = 6400;
+
+const uint8 Cpr_Min_WhlSpdLeFrntDataVld = 0;
+const uint8 Cpr_Max_WhlSpdLeFrntDataVld = 1;
+
+const uint16 Cpr_Min_WhlSpdLeReData = 0;
+const uint16 Cpr_Max_WhlSpdLeReData = 6400;
+
+const uint8 Cpr_Min_WhlSpdLeReDataVld = 0;
+const uint8 Cpr_Max_WhlSpdLeReDataVld = 1;
+
+const uint16 Cpr_Min_WhlSpdRiFrntData = 0;
+const uint16 Cpr_Max_WhlSpdRiFrntData = 6400;
+
+const uint8 Cpr_Min_WhlSpdRiFrntDataVld = 0;
+const uint8 Cpr_Max_WhlSpdRiFrntDataVld = 1;
+
+const uint16 Cpr_Min_WhlSpdRiReData = 0;
+const uint16 Cpr_Max_WhlSpdRiReData = 6400;
+
+const uint8 Cpr_Min_WhlSpdRiReDataVld = 0;
+const uint8 Cpr_Max_WhlSpdRiReDataVld = 1;
+
+const uint16 Cpr_Min_EPS_ActualTorsionBarTorq = 0;
+const uint16 Cpr_Max_EPS_ActualTorsionBarTorq = 2046;
+
+const uint16 Cpr_Min_EPS_ActualMotorTorq = 0;
+const uint16 Cpr_Max_EPS_ActualMotorTorq = 4094;
+
+const boolean Cpr_Min_EpsSasCalSts = 0;
+const boolean Cpr_Max_EpsSasCalSts = 1;
+
+const sint16 Cpr_Min_EpsSasSteerAg = -7800;
+const sint16 Cpr_Max_EpsSasSteerAg = 7800;
+
+const boolean Cpr_Min_EpsSasSteerAgVld = 0;
+const boolean Cpr_Max_EpsSasSteerAgVld = 1;
+
+const uint8 Cpr_Min_EpsSteerAgRate = 0;
+const uint8 Cpr_Max_EpsSteerAgRate = 254;
+
+const boolean Cpr_Min_EPS_LatCtrlActive = 0;
+const boolean Cpr_Max_EPS_LatCtrlActive = 1;
+
+const uint8 Cpr_Min_EPS_LatCtrlAvailabilityStatus = 0;
+const uint8 Cpr_Max_EPS_LatCtrlAvailabilityStatus = 3;
+
+const uint16 Cpr_Min_EPS_MeasuredTorsionBarTorque = 0;
+const uint16 Cpr_Max_EPS_MeasuredTorsionBarTorque = 4094;
+
+const boolean Cpr_Min_EPS_MeasuredTorsionBarTorqValid = 0;
+const boolean Cpr_Max_EPS_MeasuredTorsionBarTorqValid = 1;
+
+const uint16 Cpr_Min_EPS_Pinionang = 0;
+const uint16 Cpr_Max_EPS_Pinionang = 14400;
+
+const uint8 Cpr_Min_EPS_ConcussAvailabilityStatus = 0;
+const uint8 Cpr_Max_EPS_ConcussAvailabilityStatus = 3;
+
+const uint8 Cpr_Min_EPS_IACC_abortreason = 0;
+const uint8 Cpr_Max_EPS_IACC_abortreason = 7;
+
+const uint8 Cpr_Min_SrsDrvrBucSwtSts = 0;
+const uint8 Cpr_Max_SrsDrvrBucSwtSts = 3;
+
+const uint8 Cpr_Min_SrsPassBucSwtSts = 0;
+const uint8 Cpr_Max_SrsPassBucSwtSts = 3;
+
+const uint16 Cpr_Min_EspVehSpd = 0;
+const uint16 Cpr_Max_EspVehSpd = 8191;
+
+const boolean Cpr_Min_EPS_Pinionang_Valid = 0;
+const boolean Cpr_Max_EPS_Pinionang_Valid = 1;
+
+const uint8 Cpr_Min_EpsFaild = 0;
+const uint8 Cpr_Max_EpsFaild = 7;
+
+const uint8 Cpr_Min_ACC_IACCHWAMode = 0;
+const uint8 Cpr_Max_ACC_IACCHWAMode = 7;
+
+const uint8 Cpr_Min_ACC_ACCMode = 0;
+const uint8 Cpr_Max_ACC_ACCMode = 7;
+
+const uint8 Cpr_Min_EPS_fault_state = 0;
+const uint8 Cpr_Max_EPS_fault_state = 15;
+
+const uint8 Cpr_Min_EPS_APA_EpasFAILED = 0;
+const uint8 Cpr_Max_EPS_APA_EpasFAILED = 1;
+
+const uint8 Cpr_Min_EspVdcActvSts = 0;
+const uint8 Cpr_Max_EspVdcActvSts = 1;
+
+const boolean Cpr_Min_EspTcsActvSts = 0;
+const boolean Cpr_Max_EspTcsActvSts = 1;
+
+const uint8 Cpr_Min_BcmEmgyLiSts = 0;
+const uint8 Cpr_Max_BcmEmgyLiSts = 3;
+
+const uint8 Cpr_Min_BCM_TurnLightSwitchSts = 0;
+const uint8 Cpr_Max_BCM_TurnLightSwitchSts = 3;
+
+const uint8 Cpr_Min_BCM_BrakeLampError = 0;
+const uint8 Cpr_Max_BCM_BrakeLampError = 1;
+
+const uint16 Cpr_Min_ESP_LatAccel = 0;
+const uint16 Cpr_Max_ESP_LatAccel = 8191;
+
+const uint16 Cpr_Min_ESP_LongAccel = 0;
+const uint16 Cpr_Max_ESP_LongAccel = 8191;
+
+const uint8 Cpr_Min_ESP_YawRateValid = 0;
+const uint8 Cpr_Max_ESP_YawRateValid = 3;
+
+const uint16 Cpr_Min_ESP_YawRate = 0;
+const uint16 Cpr_Max_ESP_YawRate = 16383;
+
+const uint8 Cpr_Min_ESP_LatAccelValid = 0;
+const uint8 Cpr_Max_ESP_LatAccelValid = 3;
+
+const uint8 Cpr_Min_ESP_LongAccelValid = 0;
+const uint8 Cpr_Max_ESP_LongAccelValid = 3;
+
+const uint16 Cpr_Min_IBCU_PFSBrakePressure = 0;
+const uint16 Cpr_Max_IBCU_PFSBrakePressure = 2500;
+
+const uint16 Cpr_Min_IBCU_PlungerBrakePressure = 0;
+const uint16 Cpr_Max_IBCU_PlungerBrakePressure = 2500;
+
+const uint8 Cpr_Min_IbBrkPedlStsGb = 0;
+const uint8 Cpr_Max_IbBrkPedlStsGb = 255;
+
+const uint8 Cpr_Min_IbBrkPedlStsGbVld = 0;
+const uint8 Cpr_Max_IbBrkPedlStsGbVld = 2;
+
+const uint8 Cpr_Min_IBCU_PFSBrakePressureValid = 0;
+const uint8 Cpr_Max_IBCU_PFSBrakePressureValid = 1;
+
+const uint8 Cpr_Min_FR_FRadarCalibrationStatus = 0;
+const uint8 Cpr_Max_FR_FRadarCalibrationStatus = 3;
+
+const uint8 Cpr_Min_FR_RadarFailureStatus = 0;
+const uint8 Cpr_Max_FR_RadarFailureStatus = 7;
+
+const uint8 Cpr_Min_ADS_UDLCStatus = 0;
+const uint8 Cpr_Max_ADS_UDLCStatus = 15;
+
+const uint16 Cpr_Min_RLR_ElkOBJ1_Width = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ1_Width = 1200;
+
+const uint16 Cpr_Min_RLR_ElkOBJ1_Length = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ1_Length = 510;
+
+const uint16 Cpr_Min_RLR_ElkOBJ1_Dy = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ1_Dy = 2047;
+
+const uint16 Cpr_Min_RLR_ElkOBJ1_Dx = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ1_Dx = 8191;
+
+const uint16 Cpr_Min_RLR_ElkOBJ1_RelVy = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ1_RelVy = 1023;
+
+const uint16 Cpr_Min_RLR_ElkOBJ1_RelVx = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ1_RelVx = 4095;
+
+const uint16 Cpr_Min_RLR_ElkOBJ1_RelAx = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ1_RelAx = 511;
+
+const uint8 Cpr_Min_RLR_ElkOBJ1_Location = 0;
+const uint8 Cpr_Max_RLR_ElkOBJ1_Location = 3;
+
+const uint8 Cpr_Min_RLR_ElkOBJ1_ExistProb = 0;
+const uint8 Cpr_Max_RLR_ElkOBJ1_ExistProb = 50;
+
+const uint8 Cpr_Min_RLR_ElkOBJ1_Measured = 0;
+const uint8 Cpr_Max_RLR_ElkOBJ1_Measured = 3;
+
+const uint16 Cpr_Min_RLR_ElkOBJ2_Width = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ2_Width = 1200;
+
+const uint16 Cpr_Min_RLR_ElkOBJ2_Length = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ2_Length = 510;
+
+const uint16 Cpr_Min_RLR_ElkOBJ2_Dy = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ2_Dy = 2047;
+
+const uint16 Cpr_Min_RLR_ElkOBJ2_Dx = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ2_Dx = 8191;
+
+const uint16 Cpr_Min_RLR_ElkOBJ2_RelVy = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ2_RelVy = 1023;
+
+const uint16 Cpr_Min_RLR_ElkOBJ2_RelVx = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ2_RelVx = 4095;
+
+const uint16 Cpr_Min_RLR_ElkOBJ2_RelAx = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ2_RelAx = 511;
+
+const uint8 Cpr_Min_RLR_ElkOBJ2_Location = 0;
+const uint8 Cpr_Max_RLR_ElkOBJ2_Location = 3;
+
+const uint8 Cpr_Min_RLR_ElkOBJ2_ExistProb = 0;
+const uint8 Cpr_Max_RLR_ElkOBJ2_ExistProb = 50;
+
+const uint8 Cpr_Min_RLR_ElkOBJ2_Measured = 0;
+const uint8 Cpr_Max_RLR_ElkOBJ2_Measured = 3;
+
+const uint16 Cpr_Min_RLR_ElkOBJ3_Width = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ3_Width = 1200;
+
+const uint16 Cpr_Min_RLR_ElkOBJ3_Length = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ3_Length = 510;
+
+const uint16 Cpr_Min_RLR_ElkOBJ3_Dy = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ3_Dy = 2047;
+
+const uint16 Cpr_Min_RLR_ElkOBJ3_Dx = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ3_Dx = 8191;
+
+const uint16 Cpr_Min_RLR_ElkOBJ3_RelVy = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ3_RelVy = 1023;
+
+const uint16 Cpr_Min_RLR_ElkOBJ3_RelVx = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ3_RelVx = 4095;
+
+const uint16 Cpr_Min_RLR_ElkOBJ3_RelAx = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ3_RelAx = 511;
+
+const uint8 Cpr_Min_RLR_ElkOBJ3_Location = 0;
+const uint8 Cpr_Max_RLR_ElkOBJ3_Location = 3;
+
+const uint8 Cpr_Min_RLR_ElkOBJ3_ExistProb = 0;
+const uint8 Cpr_Max_RLR_ElkOBJ3_ExistProb = 50;
+
+const uint8 Cpr_Min_RLR_ElkOBJ3_Measured = 0;
+const uint8 Cpr_Max_RLR_ElkOBJ3_Measured = 3;
+
+const uint16 Cpr_Min_RLR_ElkOBJ4_Width = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ4_Width = 1200;
+
+const uint16 Cpr_Min_RLR_ElkOBJ4_Length = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ4_Length = 510;
+
+const uint16 Cpr_Min_RLR_ElkOBJ4_Dy = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ4_Dy = 2047;
+
+const uint16 Cpr_Min_RLR_ElkOBJ4_Dx = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ4_Dx = 8191;
+
+const uint16 Cpr_Min_RLR_ElkOBJ4_RelVy = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ4_RelVy = 1023;
+
+const uint16 Cpr_Min_RLR_ElkOBJ4_RelVx = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ4_RelVx = 4095;
+
+const uint16 Cpr_Min_RLR_ElkOBJ4_RelAx = 0;
+const uint16 Cpr_Max_RLR_ElkOBJ4_RelAx = 511;
+
+const uint8 Cpr_Min_RLR_ElkOBJ4_Location = 0;
+const uint8 Cpr_Max_RLR_ElkOBJ4_Location = 3;
+
+const uint8 Cpr_Min_RLR_ElkOBJ4_ExistProb = 0;
+const uint8 Cpr_Max_RLR_ElkOBJ4_ExistProb = 50;
+
+const uint8 Cpr_Min_RLR_ElkOBJ4_Measured = 0;
+const uint8 Cpr_Max_RLR_ElkOBJ4_Measured = 3;
+

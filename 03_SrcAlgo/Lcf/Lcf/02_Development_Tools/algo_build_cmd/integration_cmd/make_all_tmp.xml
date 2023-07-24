@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+  <BuildConfig>
+  <Component name="Sign Recognition" sname="sr" build="STD_ON">
+    <BuildCfgFile file=".\sr\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Common Camera Toolbox" sname="cct" build="STD_ON">
+  <BuildCfgFile file=".\cct\make.xml" dep="cml" />
+  </Component>  
+  
+  <Component name="Common Math Library" sname="cml" build="STD_ON">
+  <BuildCfgFile file="" dep="" />
+  </Component>
+  
+  <Component name="Camera Blockage" sname="cb" build="STD_ON">
+  <BuildCfgFile file=".\gb\make_cb.xml" dep="cml,cct" />
+  <BuildCfgFile file=".\gb\make_scb.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Common Image Preprocessing" sname="cipp" build="STD_ON">
+  <BuildCfgFile file=".\cipp\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Camera Calibration" sname="ecm" build="STD_ON">
+   <BuildCfgFile file=".\ecm\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Environmental Model" sname="em" build="STD_ON">
+  <BuildCfgFile file=".\em\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="FPGA Expert" sname="fex" build="STD_ON">
+  <BuildCfgFile file=".\fex\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Free Space Detection" sname="fsd" build="STD_ON">
+   <BuildCfgFile file=".\fsd\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Generic Object Detection Stereo" sname="gen" build="STD_ON">
+   <BuildCfgFile file=".\gen\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Global Scheduler" sname="gs" build="STD_ON">
+   <BuildCfgFile file=".\gs\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Light Detection" sname="hla" build="STD_ON">
+  <BuildCfgFile file=".\hla\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Lane Detection Font" sname="ld" build="STD_ON">
+  <BuildCfgFile file=".\ld\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Patch Correlator" sname="pc" build="STD_ON">
+  <BuildCfgFile file=".\pc\make.xml" dep="cml,cct" />
+  </Component>   
+  
+  <Component name="Pedestrian Detection" sname="ped" build="STD_ON">
+  <BuildCfgFile file=".\ped\make.xml" dep="cml,cct,pc" />
+  </Component>  
+  
+  <Component name="PreView" sname="pv" build="STD_ON">
+  <BuildCfgFile file=".\pv\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Stereo Auto Calibration" sname="sac" build="STD_ON">
+  <BuildCfgFile file=".\sac\make.xml" dep="cml,cct,pc" />
+  </Component>  
+  
+  <Component name="Ego Motions Estimation" sname="emo" build="STD_ON">
+  <BuildCfgFile file=".\semo\make.xml" dep="cml,cct" />
+  <BuildCfgFile file=".\memo\make.xml" dep="cml,cct" />
+  </Component> 
+  
+  <Component name="Stereo Image Base" sname="sib" build="STD_ON">
+  <BuildCfgFile file=".\sib\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Traffic Sign Assist" sname="tsa" build="STD_ON">
+  <BuildCfgFile file=".\tsa\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Traffic Light Recognition" sname="tlr" build="STD_ON">
+  <BuildCfgFile file=".\tlr\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Vehicle Detection Mono" sname="vcl" build="STD_ON">
+  <BuildCfgFile file=".\vcl\make.xml" dep="cml,cct,pc" />
+  </Component>  
+  
+  <Component name="Visual Object Detection and Classification Algorithms" sname="vodca" build="STD_ON">
+  <BuildCfgFile file=".\vodca\make.xml" dep="cml,cct" />
+  </Component>  
+  
+    <Component name="FCT" sname="fct" build="STD_ON">
+ 
+    <BuildCfgFile file=".\fct\make.xml" dep="cml,cct" />
+  </Component>  
+  
+  <Component name="Vehicle Dynamics" sname="vdy" build="STD_ON">
+   <BuildCfgFile file=".\vdy_sim\make_vdy_sim.xml" dep="cml,cct" />
+  </Component>  
+     
+   </BuildConfig>

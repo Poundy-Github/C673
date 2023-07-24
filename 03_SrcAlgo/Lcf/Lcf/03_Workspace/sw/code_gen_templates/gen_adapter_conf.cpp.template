@@ -1,0 +1,65 @@
+// COMPANY:   Continental Automotive
+// COMPONENT: DPUFF
+// VERSION:   $Revision: 1.1 $
+
+// Defines adapter configuration for all cores and for all alogs.
+// Defines the requested and provided ports for each cluster.
+
+
+#include <DPUFF/ga/gen_adapter_conf.h>
+
+namespace ga_conf
+{
+/*!<codegen_start:GEN_ADAPTER_CFG_CHECK_CLUSTER_TYPE_CPP>*/
+/*!<codegen_end:GEN_ADAPTER_CFG_CHECK_CLUSTER_TYPE_CPP>*/
+}
+
+// PRQA S 5018 ++
+// 21.04.2017; uidg6511;
+// summary: Msg(4:5018) The macro offsetof shall not be used.;
+// reason: offsetof MUST be used in this file. The requested/provided port lists are
+//         heterogeneous. Moreover, the code in the generic adapter is generic (i.e. it provides functions
+//         to read/write the port structures without knowing their actual structures). Therefore, using offsetof is the only way
+//         to provide the generic adapter with the information necessary for reading/writing the elements of the structures.
+//         Suppression requested in Issue 845229.
+
+/*!<codegen_start:GEN_ADAPTER_CFG_REQ_PORTS_CPP>*/
+/*!<codegen_end:GEN_ADAPTER_CFG_REQ_PORTS_CPP>*/
+
+/*!<codegen_start:GEN_ADAPTER_CFG_PRO_PORTS_CPP>*/
+/*!<codegen_end:GEN_ADAPTER_CFG_PRO_PORTS_CPP>*/
+
+// PRQA S 5018 --
+
+namespace ga_conf
+{
+// PRQA S 4213 ++
+// 21.04.2017; uidg6511;
+// summary: Msg(3:4213) This pointer to non const parameter is not modified.;
+// reason: Exec function are coming from algo and don't have a common signature.
+
+/*!<codegen_start:GEN_ADAPTER_CFG_FUNCTIONS_CPP>*/
+/*!<codegen_end:GEN_ADAPTER_CFG_FUNCTIONS_CPP>*/
+
+// PRQA S 4213 --
+}
+
+// PRQA S 1021 ++
+// 21.04.2017; uidg6511;
+// summary: Msg(3:1021) This macro is replaced with a literal;
+// reason: TASK_ID are defined by MTS and used here.
+
+// PRQA S 3710 ++
+// 21.04.2017; uidg6511;
+// summary: Msg(3:3710) Expression(s) with enum type used as operand(s) to '+'.;
+// reason: this expression belongs to the type enum just because the C enum implementation don't have size of type enum.
+// So GA_MAX_ALGO_ID is computed as size of the type enum, but it is not a part of the enum as set. GA_MAX_ALGO_ID is like const uint32. Also + 1 is correct. Risk: none
+// In order to cover the case if GA_MAX_ALGO_ID == 0.
+
+const t_GA_algoElement GA_PortConfig[GA_MAX_ALGO_ID + 1] = {
+/*!<codegen_start:GEN_ADAPTER_CFG_GA_PORTS>*/
+/*!<codegen_end:GEN_ADAPTER_CFG_GA_PORTS>*/
+  {0u, 0u, 0u, 0u, NULL, NULL, NULL, NULL, NULL, TASK_ID_NULL, GA_e_QL_QM},
+};
+// PRQA S 3710 --
+// PRQA S 1021 --

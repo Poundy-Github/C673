@@ -1,0 +1,432 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>excelaccess.xmldescriptor.xml_creator &#8212; ExcelAccess 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for excelaccess.xmldescriptor.xml_creator</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@author: uidq3472</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># general imports</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">et</span>
+<span class="kn">from</span> <span class="nn">xml.dom</span> <span class="k">import</span> <span class="n">minidom</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">xml_defs</span> <span class="k">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="XMLParser"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser">[docs]</a><span class="k">class</span> <span class="nc">XMLParser</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Reads/Writes XML files in Context of Excel file tasks.</span>
+<span class="sd">    </span>
+<span class="sd">    :param str cfg_xml_path: a (relative) path to a XML configuration file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg_xml_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the XMLParser and gets/handles user input.&quot;&quot;&quot;</span>
+
+        <span class="c1"># set up logging</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+        <span class="c1"># avoid multiple handlers respectively logs</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">):</span>
+            <span class="n">stream_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+            <span class="n">stream_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+            <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;(l.</span><span class="si">%(lineno)d</span><span class="s2">) - </span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(name)s</span><span class="s2"> - </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">stream_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">stream_handler</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Logger initialized.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Logger reused.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># init some vars for this class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cfg_xml</span> <span class="o">=</span> <span class="n">cfg_xml_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xml_root</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_from_file</span><span class="p">()</span>
+
+<div class="viewcode-block" id="XMLParser.init_from_file"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.init_from_file">[docs]</a>    <span class="k">def</span> <span class="nf">init_from_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initiliazes the xml tree from file.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_xml</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg_xml</span><span class="p">)</span>
+        <span class="c1"># log some intermediate results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;Initializing from file.</span><span class="se">\n</span><span class="s2">XML: Sheet-Elements: </span><span class="si">{sheet_elems}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sheet_elems</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()))</span></div>
+
+<div class="viewcode-block" id="XMLParser.init_new"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.init_new">[docs]</a>    <span class="k">def</span> <span class="nf">init_new</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates new xml tree.&quot;&quot;&quot;</span>
+        <span class="c1"># TODO: find correct parameter for below line with warning</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Creating new XML file.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xml_root</span> <span class="o">=</span> <span class="n">et</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="n">xml_root_tag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_xml_attrs</span><span class="p">(</span><span class="n">xml_root_attrs</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">excel_file_path</span><span class="p">]))</span>
+        <span class="c1"># TODO: change line above this like all other</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="n">et</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xml_root</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="XMLParser.write_xml"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.write_xml">[docs]</a>    <span class="k">def</span> <span class="nf">write_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Writes xml tree to .xml-file</span>
+<span class="sd">        </span>
+<span class="sd">        :param str out_path: path (including filename) where output should be saved</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+                <span class="n">xmlfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Could not write XML file.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Wrote XML to file: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">out_path</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="XMLParser.read_xml"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.read_xml">[docs]</a>    <span class="k">def</span> <span class="nf">read_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads xml tree from existing source file.</span>
+<span class="sd">        </span>
+<span class="sd">        :param str file_path: a (relative) path to a XML configuration file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reading XML from file: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># read existing xml file</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xmlfile</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="n">et</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xmlfile</span><span class="p">)</span>
+            <span class="c1"># get xml root element of read xml tree</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">xml_root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Could not read XML from file </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Successfully read XML from file </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns String represenation of the xml tree.&quot;&quot;&quot;</span>
+        <span class="c1"># walk elements and strip blank spaces from them - kind of bugfix for &#39;toprettyxml()&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">())</span>
+        <span class="c1"># get string representation of xml tree and reparse for human readable output</span>
+        <span class="n">rough_string</span> <span class="o">=</span> <span class="n">et</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">(),</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">)</span>
+        <span class="n">reparsed</span> <span class="o">=</span> <span class="n">minidom</span><span class="o">.</span><span class="n">parseString</span><span class="p">(</span><span class="n">rough_string</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">reparsed</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">()</span>
+
+<div class="viewcode-block" id="XMLParser.strip"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.strip">[docs]</a>    <span class="k">def</span> <span class="nf">strip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Removes leading and trailing spaces from elements and their texts.</span>
+<span class="sd">        </span>
+<span class="sd">        :param Element elem: XML element which text is to be stripped</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">elem</span><span class="o">.</span><span class="n">iter</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">elem</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+                <span class="n">elem</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">elem</span><span class="o">.</span><span class="n">tail</span><span class="p">:</span>
+                <span class="n">elem</span><span class="o">.</span><span class="n">tail</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">tail</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="XMLParser.remove"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem_tag</span><span class="p">,</span> <span class="n">elem_parent</span><span class="p">,</span> <span class="n">elem_attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">elem_values</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Looks for an element by its values and removes it from its parent. Returns True if element was found and removed and False if element could not be found.</span>
+<span class="sd">        </span>
+<span class="sd">        :param str elem_tag: tag to be searched</span>
+<span class="sd">        :param Element elem_parent: parent element from which to start to search</span>
+<span class="sd">        :param elem_attrs: xml attribute keys</span>
+<span class="sd">        :type elem_attrs: list(str) or None</span>
+<span class="sd">        :param elem_values: values for each attr key</span>
+<span class="sd">        :type elem_values: list or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">elem_to_rem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_elem</span><span class="p">(</span><span class="n">elem_tag</span><span class="p">,</span> <span class="n">elem_parent</span><span class="p">,</span> <span class="n">elem_attrs</span><span class="p">,</span> <span class="n">elem_values</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">elem_to_rem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">elem_parent</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">elem_to_rem</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="XMLParser.get_excel_path"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.get_excel_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_excel_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the path to Excel file from XML configuration.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: excel file path</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">xml_root</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">excel_path_attr</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="XMLParser.add_excel_config"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.add_excel_config">[docs]</a>    <span class="k">def</span> <span class="nf">add_excel_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds a configuration element to the Excel file tag. Returns a Excel config element in each and every case.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: Excel config element</span>
+<span class="sd">        :rtype: xml.etree.ElementTree.SubElement</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_elem</span><span class="p">(</span><span class="n">root_config_tag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xml_root</span><span class="p">,</span> <span class="n">root_config_attrs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="XMLParser.get_excel_config"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.get_excel_config">[docs]</a>    <span class="k">def</span> <span class="nf">get_excel_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns Excel file tag`s configuration element.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: Excel config element</span>
+<span class="sd">        :rtype: xml.etree.ElementTree.SubElement or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_elem</span><span class="p">(</span><span class="n">root_config_tag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xml_root</span><span class="p">)</span>  <span class="c1"># , root_config_attrs)</span></div>
+
+<div class="viewcode-block" id="XMLParser.add_sheet"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.add_sheet">[docs]</a>    <span class="k">def</span> <span class="nf">add_sheet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds a sheet element if not existing.  Returns a sheet element in each and every case.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: sheet element</span>
+<span class="sd">        :rtype: xml.etree.ElementTree.SubElement</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_elem</span><span class="p">(</span><span class="n">sheet_tag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xml_root</span><span class="p">,</span> <span class="n">sheet_attrs</span><span class="p">,</span> <span class="p">[</span><span class="n">sheet_name</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="XMLParser.get_xml_sheet"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.get_xml_sheet">[docs]</a>    <span class="k">def</span> <span class="nf">get_xml_sheet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a sheet element by its name.</span>
+<span class="sd">        </span>
+<span class="sd">        :param str sheet_name: name of an Excel sheet</span>
+<span class="sd">        :return: sheet element</span>
+<span class="sd">        :rtype: xml.etree.ElementTree.SubElement or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_elem</span><span class="p">(</span><span class="n">sheet_tag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xml_root</span><span class="p">,</span> <span class="n">sheet_attrs</span><span class="p">,</span> <span class="p">[</span><span class="n">sheet_name</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="XMLParser.get_xml_sheets"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.get_xml_sheets">[docs]</a>    <span class="k">def</span> <span class="nf">get_xml_sheets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns all sheet elements.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: list of sheet elements</span>
+<span class="sd">        :rtype: list(xml.etree.ElementTree.SubElement)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_all</span><span class="p">(</span><span class="n">sheet_tag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xml_root</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="XMLParser.get_sheet_config"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.get_sheet_config">[docs]</a>    <span class="k">def</span> <span class="nf">get_sheet_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_elem</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the config of a given sheet.</span>
+<span class="sd">        </span>
+<span class="sd">        :param xml.etree.ElementTree.SubElement sheet_elem:  sheet element where to look for config element</span>
+<span class="sd">        :return sheet config element</span>
+<span class="sd">        :rtype: xml.etree.ElementTree-Subelement</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_elem</span><span class="p">(</span><span class="n">sheet_config_tag</span><span class="p">,</span> <span class="n">sheet_elem</span><span class="p">,</span> <span class="n">sheet_config_attrs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="XMLParser.get_sheet_names"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.get_sheet_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_sheet_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns names of all sheet elements.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: sheet element names</span>
+<span class="sd">        :rtype: list(str)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">sheet</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">sheet_name_attr</span><span class="p">]</span> <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_xml_sheets</span><span class="p">()]</span></div>
+
+<div class="viewcode-block" id="XMLParser.add_table"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.add_table">[docs]</a>    <span class="k">def</span> <span class="nf">add_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_elem</span><span class="p">,</span> <span class="n">table_id</span><span class="p">,</span> <span class="n">table_start</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">table_end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">header_rows</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds a table element if not existing. Returns a table element in each and every case.</span>
+<span class="sd">        </span>
+<span class="sd">        :param xml.etree.ElementTree.SubElement sheet_elem:  sheet element where to add table element</span>
+<span class="sd">        :param int table_id: id of the table</span>
+<span class="sd">        :param str table_start: start cell of table in Excel notation</span>
+<span class="sd">        :param str table_end: end cell of table in Excel notation</span>
+<span class="sd">        :param int header_rows: row count of table header</span>
+<span class="sd">        :return: table element</span>
+<span class="sd">        :rtype: xml.etree.ElementTree.SubElement</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_elem</span><span class="p">(</span><span class="n">table_tag</span><span class="p">,</span> <span class="n">sheet_elem</span><span class="p">,</span> <span class="n">table_attrs</span><span class="p">,</span> <span class="p">[</span><span class="n">table_id</span><span class="p">,</span> <span class="n">table_start</span><span class="p">,</span> <span class="n">table_end</span><span class="p">,</span> <span class="n">header_rows</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="XMLParser.get_table"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.get_table">[docs]</a>    <span class="k">def</span> <span class="nf">get_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_elem</span><span class="p">,</span> <span class="n">table_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retuns a table element below a sheet element by its table id.</span>
+<span class="sd">        </span>
+<span class="sd">        :param xml.etree.ElementTree.SubElement sheet_elem:  sheet element where to look for table element</span>
+<span class="sd">        :param int table_id: id of the table</span>
+<span class="sd">        :return: table element</span>
+<span class="sd">        :rtype: xml.etree.ElementTree.SubElement or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_elem</span><span class="p">(</span><span class="n">table_tag</span><span class="p">,</span> <span class="n">sheet_elem</span><span class="p">,</span> <span class="n">table_attrs</span><span class="p">,</span> <span class="p">[</span><span class="n">table_id</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="XMLParser.get_tables"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.get_tables">[docs]</a>    <span class="k">def</span> <span class="nf">get_tables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_elem</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns all table elements below a sheet_element.</span>
+<span class="sd">        </span>
+<span class="sd">        :param xml.etree.ElementTree.SubElement sheet_elem:  sheet element where to look for table element</span>
+<span class="sd">        :return: list of table elements</span>
+<span class="sd">        :rtype: list(xml.etree.ElementTree.SubElement)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_all</span><span class="p">(</span><span class="n">table_tag</span><span class="p">,</span> <span class="n">sheet_elem</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="XMLParser.add_header"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.add_header">[docs]</a>    <span class="k">def</span> <span class="nf">add_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_elem</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds header element if not existing. Returns a header element in each and every case.</span>
+<span class="sd">        </span>
+<span class="sd">        :param xml.etree.ElementTree.SubElement table_elem:  table element where to add header element</span>
+<span class="sd">        :return: header element</span>
+<span class="sd">        :rtype: xml.etree.ElementTree.SubElement</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_elem</span><span class="p">(</span><span class="n">header_tag</span><span class="p">,</span> <span class="n">table_elem</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="XMLParser.get_header"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.get_header">[docs]</a>    <span class="k">def</span> <span class="nf">get_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_elem</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a header element below a table element.</span>
+<span class="sd">        </span>
+<span class="sd">        :param xml.etree.ElementTree.SubElement table_elem:  table element where to look for header element</span>
+<span class="sd">        :return: header element</span>
+<span class="sd">        :rtype: xml.etree.ElementTree.SubElement or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_elem</span><span class="p">(</span><span class="n">header_tag</span><span class="p">,</span> <span class="n">table_elem</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="XMLParser.add_header_field"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.add_header_field">[docs]</a>    <span class="k">def</span> <span class="nf">add_header_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_elem</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds a header field element to its parent. Which is either a header element or an other header field element. Returns a header field element in each and every case.</span>
+<span class="sd">        </span>
+<span class="sd">        :param xml.etree.ElementTree.SubElement parent_elem: parent element where to add header field element</span>
+<span class="sd">        :param str title: the title of the header field</span>
+<span class="sd">        :return: header element</span>
+<span class="sd">        :rtype: xml.etree.ElementTree.SubElement</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_elem</span><span class="p">(</span><span class="n">header_field_tag</span><span class="p">,</span> <span class="n">parent_elem</span><span class="p">,</span> <span class="n">header_field_attrs</span><span class="p">,</span> <span class="p">[</span><span class="n">title</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="XMLParser.get_header_field"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.get_header_field">[docs]</a>    <span class="k">def</span> <span class="nf">get_header_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_elem</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a header field element below its parent element by its title.</span>
+<span class="sd">        </span>
+<span class="sd">        :param xml.etree.ElementTree.SubElement parent_elem: parent element where to look for header field element</span>
+<span class="sd">        :param str title: the title of the header field</span>
+<span class="sd">        :return: header element</span>
+<span class="sd">        :rtype: xml.etree.ElementTree.SubElement or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_elem</span><span class="p">(</span><span class="n">header_field_tag</span><span class="p">,</span> <span class="n">parent_elem</span><span class="p">,</span> <span class="n">header_field_attrs</span><span class="p">,</span> <span class="p">[</span><span class="n">title</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="XMLParser.get_header_fields"><a class="viewcode-back" href="../../../excelaccess.xmldescriptor.html#excelaccess.xmldescriptor.xml_creator.XMLParser.get_header_fields">[docs]</a>    <span class="k">def</span> <span class="nf">get_header_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_elem</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns all header field elements below a parent element.</span>
+<span class="sd">        </span>
+<span class="sd">        :param xml.etree.ElementTree.SubElement parent_elem: parent element where to look for header field elements</span>
+<span class="sd">        :return: list fo header elements        </span>
+<span class="sd">        :rtype: list(xml.etree.ElementTree.SubElement)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_all</span><span class="p">(</span><span class="n">header_field_tag</span><span class="p">,</span> <span class="n">parent_elem</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_elem_tag</span><span class="p">,</span> <span class="n">_elem_parent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns all elements bewlo a parent element.</span>
+<span class="sd">        </span>
+<span class="sd">        :param str _elem_tag: xml tag of an element</span>
+<span class="sd">        :param xml.etree.ElementTree.SubElement _elem_parent: parent element where to look for the xml tag</span>
+<span class="sd">        :return: list of elements of specified tag</span>
+<span class="sd">        :rtype: list(xml.etree.ElementTree.SubElement)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">_elem_parent</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">_elem_tag</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_elem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_elem_tag</span><span class="p">,</span> <span class="n">_elem_parent</span><span class="p">,</span> <span class="n">_elem_attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_elem_values</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns an element below a parent element by its attributes and values if provided. Returns an element in each and every case.</span>
+<span class="sd">        </span>
+<span class="sd">        :param str _elem_tag: xml tag of an element</span>
+<span class="sd">        :param xml.etree.ElementTree.SubElement _elem_parent: parent element where to look for the xml tag</span>
+<span class="sd">        :param list _elem_attrs: list of attributes for specified tag</span>
+<span class="sd">        :type _elem_attrs: list or None</span>
+<span class="sd">        :param list _elem_values: list of values for attributes</span>
+<span class="sd">        :type _elem_values: list or None</span>
+<span class="sd">        :return: element of specified tag</span>
+<span class="sd">        :rtype: xml.etree.ElementTree.SubElement or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">_elem_attrs</span> <span class="ow">and</span> <span class="n">_elem_values</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">_elem_attrs</span><span class="p">,</span> <span class="s2">&quot;__iter__&quot;</span><span class="p">):</span>
+                <span class="n">_elem_attrs</span> <span class="o">=</span> <span class="p">[</span><span class="n">_elem_attrs</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">_elem_values</span><span class="p">,</span> <span class="s2">&quot;__iter__&quot;</span><span class="p">):</span>
+                <span class="n">_elem_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">_elem_values</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;attrs: </span><span class="si">{0}</span><span class="s2">; values: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_elem_attrs</span><span class="p">,</span> <span class="n">_elem_values</span><span class="p">))</span>
+            <span class="n">_xpath_str</span> <span class="o">=</span> <span class="s2">&quot;.//</span><span class="si">{tag}{attrs}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tag</span><span class="o">=</span><span class="n">_elem_tag</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="p">[</span><span class="s2">&quot;[@</span><span class="si">{0}</span><span class="s2">=</span><span class="se">\&quot;</span><span class="si">{1}</span><span class="se">\&quot;</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">_elem_attrs</span><span class="p">,</span> <span class="n">_elem_values</span><span class="p">)]))</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">_elem_parent</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">_xpath_str</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;XPATH: </span><span class="si">{0}</span><span class="s2">; Elements: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_xpath_str</span><span class="p">,</span>
+                                                                 <span class="n">val</span><span class="p">))</span>
+            <span class="c1"># TODO: make this pretty? mabye utility function for logging return values with *args?</span>
+            <span class="k">return</span> <span class="n">val</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_elem_parent</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">_elem_tag</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_add_elem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_elem_tag</span><span class="p">,</span> <span class="n">_elem_parent</span><span class="p">,</span> <span class="n">_elem_attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_elem_values</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds an element to a given parent element with provided attributes and values.</span>
+<span class="sd">        </span>
+<span class="sd">        :param str _elem_tag: xml tag of an element</span>
+<span class="sd">        :param xml.etree.ElementTree.SubElement _elem_parent: parent element where to look for the xml tag</span>
+<span class="sd">        :param list _elem_attrs: list of attributes for specified tag</span>
+<span class="sd">        :type _elem_attrs: list or None</span>
+<span class="sd">        :param list _elem_values: list of values for attributes</span>
+<span class="sd">        :type _elem_values: list or None</span>
+<span class="sd">        :return: element of specified tag</span>
+<span class="sd">        :rtype: xml.etree.ElementTree.SubElement</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_elem</span><span class="p">(</span><span class="n">_elem_tag</span><span class="p">,</span> <span class="n">_elem_parent</span><span class="p">,</span> <span class="n">_elem_attrs</span><span class="p">,</span> <span class="n">_elem_values</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_elem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_elem</span> <span class="o">=</span> <span class="n">et</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">_elem_parent</span><span class="p">,</span> <span class="n">_elem_tag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_xml_attrs</span><span class="p">(</span><span class="n">_elem_attrs</span><span class="p">,</span> <span class="n">_elem_values</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">_elem</span>
+
+    <span class="k">def</span> <span class="nf">_get_xml_attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_elem_attrs</span><span class="p">,</span> <span class="n">_elem_values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns attributes as a dictionary, populated with provided values or a default value.</span>
+<span class="sd">        </span>
+<span class="sd">        :param list _elem_attrs: list of attributes</span>
+<span class="sd">        :type _elem_attrs: list</span>
+<span class="sd">        :param list _elem_values: list of values for attributes</span>
+<span class="sd">        :type _elem_values: list or None</span>
+<span class="sd">        :param _default: default value if value list is shorter than attribute list</span>
+<span class="sd">        :type _default: whichever value one uses</span>
+<span class="sd">        :return: dictionary of combined attributes and values</span>
+<span class="sd">        :rtype: dict(str, str)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">_default</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_default</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">_elem_values</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_elem_values</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">_elem_values</span><span class="p">,</span> <span class="s2">&quot;__iter__&quot;</span><span class="p">):</span>
+            <span class="n">_elem_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">_elem_values</span><span class="p">]</span>
+        <span class="n">attrs_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">_elem_attrs</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">_elem_attrs</span><span class="p">):</span>
+                <span class="n">attrs_dict</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">_elem_values</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">_elem_values</span><span class="p">))</span> <span class="k">else</span> <span class="n">_default</span>
+        <span class="k">return</span> <span class="n">attrs_dict</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, uidq3472.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

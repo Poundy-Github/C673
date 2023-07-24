@@ -1,0 +1,12 @@
+ all                        > 
+   lcf_algo                 > 
+     lcf_algo_pc            > algo lib: pc
+   lcf_ide                  > 
+     lcf_ide_msvc           > MSVC project
+   lcf_sdl                  > sdl-files
+   lcf_sim                  > 
+     lcf_sim_pc             > 
+       lcf_sim_swc_lcf_sen  > PC sim: sim_swc_lcf_sen
+       lcf_sim_swc_lcf_veh  > PC sim: sim_swc_lcf_veh
+       lcf_sim_swc_vis      > PC sim: sim_swc_vis
+ unzip_tools                > unzip ti_tools

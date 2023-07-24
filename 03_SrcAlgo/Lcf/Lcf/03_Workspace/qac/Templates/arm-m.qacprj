@@ -1,0 +1,10 @@
+StartProjectMarker
+FolderName=##FOLDER_NAME##
+SourcePath=##SOURCE_PATH##
+OutputPath=##ROOT_DIRECTORY##\04_Engineering\04_Build\qac\##PRODUCT_NAME##\##TARGET_NAME##\##RELATIVE_SOURCE_PATH##
+SubsPers=MessagePers\ADAS_C.p_s
+AnalPers=_cnf\##PRODUCT_NAME##_##TARGET_NAME##_AnalyserPers_C.p_a
+CompPers=CompilerPers\TMS470_TI_ARM\CodeComposer_TMS470_ARM_C.p_c
+##C_SOURCE_FILES##
+EndContainedFilesMarker
+EndProjectMarker

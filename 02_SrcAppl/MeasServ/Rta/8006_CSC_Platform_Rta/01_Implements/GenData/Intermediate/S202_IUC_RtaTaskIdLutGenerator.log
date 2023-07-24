@@ -1,0 +1,30 @@
+
+    
+LogFile of the RtaTaskIdLutGenerator
+
+Project:   S202
+BuildUnit: IUC
+Date:      18.11.2022 14:21:05
+
+
+As prjRefPath the following path has been provided:
+    ->..\..\..
+  
+There are the following inputs given:
+- project      : S202
+- build_unit   : IUC
+- output_path  : ..\..\..\01_AsrConfig\source\Swc_Appl\rta\GenData
+- os_dir_path  : ..\..\..\01_AsrConfig\output\generated\include
+- rta_taskids_h: ..\..\..\01_AsrConfig\source\Swc_Appl\rta\GenData\os_rta_task_ids.h
+- os_type      : OS_TYPE_EB
+
+
+rtaTaskIdLutGenerator successfully run! 
+
+
+-------------------------------------------------------------------
+
+The TaskLut for RTA has been updated. Please check in the file 
+  ..\..\..\01_AsrConfig\source\Swc_Appl\rta\GenData/os_rta_taskid_lut_cfg.h 
+-------------------------------------------------------------------
+

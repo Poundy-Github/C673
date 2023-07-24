@@ -1,0 +1,12 @@
+# For release:
+# -------------------------------------------------------------------------------
+# 1. Perform a full build.
+# 2. Copy the hashsums (variables ul_FP_XXXAlgo1-4) from 
+#    04_Build/algo/xxx/fingerprint/XXXAlgoFingerprint.h.
+# 3. Paste them into a new dictionary entry as the examples below.
+# 4. If necessary remove the "U" in order to make the type "L" instead of "UL".
+# -------------------------------------------------------------------------------
+
+Versions = {
+    (0x6b9153a8L, 0x7ea41940L, 0x9ad586b1L, 0xe082f396L) : ("Test case",  0,   0, 1),
+}

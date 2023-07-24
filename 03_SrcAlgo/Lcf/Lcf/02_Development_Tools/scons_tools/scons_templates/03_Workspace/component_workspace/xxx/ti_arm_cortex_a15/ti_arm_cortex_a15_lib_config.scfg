@@ -1,0 +1,34 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Fill {variant}_ccflags with required compiler flags.
+#    The value in this template is only for example (!)
+# 3. Fill {variant}_cppdefines with required preprocessor defines.
+#    The value in this template is only for example.
+#    Each preprocessor define must be written as string and separated with ,
+# 4. When additional variant is created, add it in the variant_list. Otherwise, the
+#    variant will not be created.
+# ----------------------------------------------------------------------------------------
+
+#-----------------------
+# variant configuration
+#-----------------------
+
+# create release variant
+release_variant = "release"
+release_ccflags = "-mlittle-endian -O3 -fno-tree-vectorize -mabi=aapcs -mfpu=neon -mfloat-abi=hard"
+release_cppdefines = []
+
+# create debug variant
+debug_variant = "debug"
+debug_ccflags = "-mlittle-endian -g -mabi=aapcs -mfpu=neon -mfloat-abi=hard"
+debug_cppdefines = []
+
+# variable containing compiler flags, defines for all variants
+# when creating additional variant beside "release" and "debug", the variant must be added in this variable
+variant_list = [
+[release_variant, release_ccflags, release_cppdefines],
+[debug_variant,   debug_ccflags,   debug_cppdefines],
+]
+
+# library name
+target_name = algo_name + "_arm_cortex_a15"

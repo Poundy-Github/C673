@@ -1,0 +1,17 @@
+#Tue Sep 24 14:42:12 CEST 2013
+/instance/com.ipl.products.eclipse.cantpp.core/com.ipl.products.eclipse.cantpp.core.cfg_section_c=x86-Win32-gcc4.6.2-bundled
+/instance/com.ipl.products.eclipse.cantpp.testscript/com.ipl.products.eclipse.cantpp.testscript.global_data_preferences=_iob;stderr;stdin;stdout
+/instance/com.ipl.products.eclipse.cantpp.testscript/com.ipl.products.eclipse.cantpp.testscript.ruleset_preferences=**RSLOC**Entry Point Coverage.cpp;**RSLOC**Entry Point & Call Return Coverage.cpp;**RSLOC**Entry Point & Basic Block Coverage.cpp;**RSLOC**Entry Point & Statement Coverage.cpp;**RSLOC**Entry Point, Statement & Call Return Coverage.cpp;**RSLOC**Entry Point, Statement, Call Return & Decision Coverage.cpp;**RSLOC**DO-178B-ED-12B Level C Coverage.cpp;**RSLOC**DO-178B-ED-12B Level B Coverage.cpp;**RSLOC**DO-178B-ED-12B Level A Coverage.cpp;**RSLOC**Report all coverage metrics.cpp;
+/instance/com.ipl.products.eclipse.cantpp.testscript/com.ipl.products.eclipse.cantpp.testscript.TestScriptGenerationPreferencePage.static_function_access=true
+/instance/com.ipl.products.eclipse.cantpp.core/com.ipl.products.eclipse.cantpp.core.cfg_section_cpp=x86-Win32-gpp4.6.2-bundled
+\!/=
+/instance/com.ipl.products.eclipse.cantpp.testscript/com.ipl.products.eclipse.cantpp.testscript.default_ruleset_name=DO-178B/ED-12B Level B Coverage
+file_export_version=3.0
+/instance/com.ipl.products.eclipse.cantpp.core/com.ipl.products.eclipse.cantpp.core.generate_makefile_testscripts=false
+/instance/com.ipl.products.eclipse.cantpp.testscript/com.ipl.products.eclipse.cantpp.testscript.TestScriptGenerationPreferencePage.friends=true
+@com.ipl.products.eclipse.cantpp.testscript=6.2.0.201301131539_RELEASE_6_2_5
+/instance/com.ipl.products.eclipse.cantpp.testscript/com.ipl.products.eclipse.cantpp.testscript.setup_preferences=-    Currently using manually selected preferences.
+/instance/com.ipl.products.eclipse.cantpp.testscript/com.ipl.products.eclipse.cantpp.testscript.TestScriptGenerationPreferencePage.static_variable_access=true
+/instance/com.ipl.products.eclipse.cantpp.testscript/com.ipl.products.eclipse.cantpp.testscript.TestScriptGenerationPreferencePage.max_log_size=0
+@com.ipl.products.eclipse.cantpp.core=6.2.0.201301131539_RELEASE_6_2_5
+/instance/com.ipl.products.eclipse.cantpp.core/com.ipl.products.eclipse.cantpp.core.max_file_size_preference=1000000

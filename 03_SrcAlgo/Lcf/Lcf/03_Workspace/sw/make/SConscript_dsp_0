@@ -1,0 +1,1169 @@
+
+Import('*')
+
+setCompiler('dsp')
+base_project = 'not-set'
+
+with open('../components_build_info.txt', 'a') as f:
+    print >> f, '   '
+    print >> f, 'Building DSP_0'
+
+UseCompAlgo = False
+
+ALL = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20','hfl110', 'hfl110ta10','mfc431sc19', 'mfc431sw19', 'mfc431va10', 'mfc431va21', 'mfc431bd10']
+if product in ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'hfl110', 'hfl110ta10', 'mfc431sc19','mfc431sw19', 'mfc431va10', 'mfc431va21', 'mfc431bd10']:
+    CFG_LOAD_GEN = False
+else:
+    CFG_LOAD_GEN = True
+
+CFG_ICC_OT = False
+
+
+if product == 'ars441':
+  base_project = 'ars441'
+
+elif product in ['mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']:
+    base_project = 'mfc431'
+    UseCompAlgo = False
+    if product != base_project:
+        addCompilerDefine('PRODUCT_MFC431')
+        appendConfiguroDefine('product=mfc431')
+        addLinkerDefine('PRODUCT_MFC431')
+
+elif product in ['hfl110', 'hfl110ta10']:
+  base_project = 'hfl110'
+  UseCompAlgo = False
+
+else:
+  base_project = product
+
+setBaseProject(base_project)
+
+
+class  Component:
+    global product
+    global base_project
+    DONOTUSEFOR = []
+    OVERRIDEFOR = []
+
+    INCLUDE    = []
+    SOURCE     = []
+    SOURCE_DIR = []
+    COMPDEF    = []
+    LIBS       = []
+    USEFROM    = None
+
+    def AddComp ( self ):
+        self.USEFROM  = None    if product in self.DONOTUSEFOR else base_project    # Component blacklist. Add product if component not wanted default is usage of BaseProject
+        self.USEFROM  = product if product in self.OVERRIDEFOR else self.USEFROM    # Component override for application project. Add product if you want your own (not baseProject) as application project
+
+        pstr  = "{0: <30}".format("Component " + self.__class__.__name__ )
+        pstr += "{0: ^20}".format([ 'from Base ' + base_project, 'from this '+ product, 'not used' ][ [ base_project, product, None ].index(self.USEFROM) ] )
+        print pstr
+
+        with open('../components_build_info.txt', 'a') as f:
+            print >> f, pstr
+
+        incPath = ""
+        if self.USEFROM != None:
+            incPath = "\n".join(
+            [ Path.replace('$usedfrom', self.USEFROM )                      for Path       in self.INCLUDE]) + '\n'
+            [ addFiles(    Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE     ]
+            [ addDirs(     Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE_DIR ]
+            [ addLibrary(  Path.replace('$usedfrom', self.USEFROM )       ) for Path       in self.LIBS       ]
+            [ addCompilerDefine(Define)                                     for Define     in self.COMPDEF    ]
+        return incPath
+
+
+################# Component Example ##############
+# As default component is taken from base_project location, only if entered in OVERRIDEFOR it is taken from product location
+#
+#class NAME(Component):
+#  DONOTUSEFOR = ['example'] <- Enter your project name if you don't want to build this component
+#  OVERRIDEFOR = ['example'] <- Enter your project name if you wan't this component from product location, and not from base_project location.
+#
+#  INCLUDE    = ['$usedfrom/include1,                <- Enter your include Path here. $usedfrom will be replaced.
+#                'include2]
+#  SOURCE     = [['$usedfrom/path1', ['*.c']],       <- Enter your source files here filename or pattern ( e.g *.c). $usedfrom will be replaced.
+#                ['path2', ['file1.cpp','file2.s']]]
+#  SOURCE_DIR = [['path1', ['*.c']]]                <- Enter your source dir here. It will recursively search for filename or pattern ( e.g *.c)
+#  COMPDEF    = ['define1','define2']               <- Enter your Component Defines here
+#  LIBS       = ['path1']                           <- Enter your Librarry Path here ( only path supported )
+
+
+
+################# Component Common #################
+class DPUCOMMON(Component):
+
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']
+
+  INCLUDE = [
+                '04_Engineering/00_Projects/$usedfrom',
+                '04_Engineering/00_Projects/'+base_project,  # For relative include paths first the product is searched and then the base
+                '04_Engineering/00_Projects/$usedfrom/common/DGM',
+                '04_Engineering/00_Projects/$usedfrom/common/GLOB',
+                '04_Engineering/01_Source_Code/common/GLOB',
+                '04_Engineering/01_Source_Code/common/GLOB/GLOB_DPU',
+                '04_Engineering/01_Source_Code/common/MTSI',
+                '04_Engineering/01_Source_Code/common/RTA'
+            ]
+
+################# Component SYS ##############
+class SYS(Component):
+  INCLUDE=['']
+  SOURCE = [['04_Engineering/01_Source_Code/sys/sys_mem/sys_mem_no_spe', ['Sys_Mem_NoSPE.c']]]
+
+
+################# Component DPURTE ##############
+class DPURTE(Component):
+
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']
+
+  COMPDEF=['NDEBUG']
+  
+  if device == 'low':
+    INCLUDE = [
+                '04_Engineering/00_Projects/$usedfrom/common/RTE_VL/include',
+                '04_Engineering/00_Projects/$usedfrom/common/RTE_VL/algo'
+               ]
+  else:
+    INCLUDE = [
+                '04_Engineering/00_Projects/$usedfrom/common/RTE_VH/include',
+                '04_Engineering/00_Projects/$usedfrom/common/RTE_VH/algo'
+               ]
+
+
+
+################# Component DPUFF #################
+class DPUFF(Component):
+  OVERRIDEFOR = ['hfl110ta10', 'mfc431lo19', 'mfc431lo20', 'mfc431ta19','mfc431sc19']
+  INCLUDE = [
+                '04_Engineering/00_Projects/$usedfrom/DPUFF/config',
+                '04_Engineering/01_Source_Code/DPUFF/et',
+                '04_Engineering/01_Source_Code/DPUFF/mdb'
+            ]
+
+  SOURCE =  [
+                ['04_Engineering/00_Projects/$usedfrom/DPUFF/eveclient', ['eve_algo_cfg.c']],
+                ['04_Engineering/00_Projects/$usedfrom/DPUFF/ga',        ['mdb_database.cpp', 'gen_adapter_conf.cpp']],
+                ['04_Engineering/01_Source_Code/DPUFF/et',              ['*.cpp']],
+                ['04_Engineering/01_Source_Code/DPUFF/eveclient',       ['eve_client.cpp']],
+                ['04_Engineering/01_Source_Code/DPUFF/ga',              ['generic_adapter.cpp']],
+                ['04_Engineering/01_Source_Code/DPUFF/mdb',             ['mdb.cpp']]
+            ]
+
+  if product not in ['ars441']:
+    SOURCE += [ ['04_Engineering/01_Source_Code/DPUFF/services',        ['image_fingerprint_service.cpp']]]
+
+  if product == 'ars441':
+    INCLUDE += [ '04_Engineering/00_Projects/$usedfrom/DPUFF/ga']
+    SOURCE += [ ['04_Engineering/00_Projects/$usedfrom/DPUFF/ga',       ['dummy_algo_wrapper.cpp']]]
+
+
+
+################# Component Algo #################
+class DPUALGO(Component):
+  DONOTUSEFOR = []
+
+  OVERRIDEFOR = []
+
+  LIBS    = []
+  INCLUDE = []
+  SOURCE  = []
+
+  if product == 'ars441':
+    COMPDEF = ['TI_DSP', 'CML_OPT_c66x']
+    INCLUDE += [
+                '04_Engineering/00_Projects/$usedfrom/algo/sources',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/ga',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/ec',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/emlib',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/vc',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/gppp',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/pcc',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/cd',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/cp',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/cp/cp_cd',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/cp/cp_si',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/emp',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/fip',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/frame',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/frame_sen',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/si',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/spm',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/ga',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/gs',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/pd',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/rc',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/algo_common',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/cml',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/bit_array',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/general',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/grid',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/histogram',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/jpda',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/size',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/gppp',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/gppp/gpfex_feature_extraction',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/gppp/gpprd_prediction',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/gppp/gpseg_segmentation',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/gppp/gpupd_update_process',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/border',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/classification/class',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/classification/dynprop',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/classification/mirrors',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/classification/phantoms',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/detection_proc',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/mov_tracking/association',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/mov_tracking/clustering',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/mov_tracking/features',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/mov_tracking/filtering',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/mov_tracking/heading',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/mov_tracking/management',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/mov_tracking/quality',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/output',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/stat_tracking',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/stat_tracking/association',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/stat_tracking/clustering',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/stat_tracking/features',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/stat_tracking/filtering',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/stat_tracking/management',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/stat_tracking/management/split',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/od/stat_tracking/quality',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/vc',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/vc/vced_elevation_distribution',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/vc/vcept_elevation_peak_trend',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/vc/vcgo_ground_objects',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/vc/vcne_near_exist',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/vc/vcnfr_near_far_ratio',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/vc/vcpc_pattern_classification',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/vc/vcpre_preprocessing',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/vc/vcpv_preceding_vehicle',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/vc/vcrt_rcs_trend',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/vc/vcvt_velocity_trend',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/pcc',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/pcc/pccca_candidate_attributes',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/pcc/pcccs_candidate_selection',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/pcc/pccct_cluster_trajectory',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/pcc/pccof_observer_fusion',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/pcc/pccop_object_preprocessing',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/pcc/pccpo_property_observer',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/pcc/pccsa_situation_analysis',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/pcc/pccto_trajectory_observer',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fct/cd',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fct/cp',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fct/emp',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fct/fip',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fct/frame',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fct/frame_sen',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fct/si',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fct/spm',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/custom',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpsacc_advanced_cruise_control',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpsacc_advanced_cruise_control/custom',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpscom_common',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpscom_common/custom',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpseba_emergency_brake_assist',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpseba_emergency_brake_assist/custom',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpsout_output',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpsout_output/custom',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpsprio_object_prioritization',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpsprio_object_prioritization/custom',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpsseg_segment_prioritization',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpsseg_segment_prioritization/custom',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpsseg_segment_prioritization/frsprio_exec/include',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/fps/fpsobs_observer',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gfrs/swu_freespace_description/include',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gp',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gp/common/include',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gp/swu_grid_fusion/include',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gp/swu_grid_post_processing/include',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gs',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/pd',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/pd/pd_blockage',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/pd/pd_damping',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/rc/rc1'
+               ]
+
+  if product == 'ars441':
+    SOURCE_DIR = [
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/pcc',        ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/vc',         ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/cd',        ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/cp/cp_cd',  ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/cp/cp_si',  ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/fip',       ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/frame_sen', ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/si',        ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/fct/spm',       ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/pd',            ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/cml',                     ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib',                ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/em/od',                   ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/em/vc',                   ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/em/pcc',                  ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/fct/cd',                  ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/fct/cp',                  ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/fct/emp',                 ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/fct/fip',                 ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/fct/frame_sen',           ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/fct/si',                  ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/fct/spm',                 ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/fps',                     ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/fps',                     ['*.cpp']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['ga_static_mem.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['ga_rc1_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['fps_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['ga_meas.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['gfrs_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['od_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['vc_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['pcc_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['pd_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/gfrs',                    ['*.cpp']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/gp',                      ['*.cpp']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/gs',                      ['*.cpp']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/pd',                      ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/rc/rc1',                  ['*.c']]				
+                 ]
+
+
+################# Component DPUSERVICE #################
+class DPUSERVICE(Component):
+  INCLUDE = [
+                '04_Engineering/01_Source_Code/DPUSERVICE',
+                '04_Engineering/01_Source_Code/DPUSERVICE/services',
+                '04_Engineering/01_Source_Code/DPUSERVICE/tim',
+                '04_Engineering/00_Projects/$usedfrom/DPUSERVICE'
+            ]
+  SOURCE =  [
+                ['04_Engineering/00_Projects/$usedfrom/DPUSERVICE/mems',      ['mem_service_cfg.cpp','memory_cfg.cpp']],
+                ['04_Engineering/01_Source_Code/DPUSERVICE/crc',                  ['*.cpp']],
+                ['04_Engineering/01_Source_Code/DPUSERVICE/tim',                  ['multi_timer.cpp']],
+                ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/edma',       ['edma_cfg_dsp_0.cpp', 'algoedma_service.cpp', 'edma_handler.cpp', 'edma_memcpy.cpp', 'edma_os_functions.cpp', 'iedma_cfg.cpp']],
+                ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/mems',       ['mem_service.cpp', 'shared_memory_manager.cpp']],
+                ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/tim',        ['system_clock.cpp', 'timer_driver.cpp']],
+            ]
+
+  if CFG_LOAD_GEN:
+    INCLUDE +=  ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/clg/dsp']
+
+  if CFG_LOAD_GEN:
+    SOURCE +=   [['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/clg/dsp',   [ '*.c', '*.asm' ]]]
+
+
+
+################# Component DPUINFRA #################
+class DPUINFRA(Component):
+  INCLUDE = ['04_Engineering/01_Source_Code/DPUINFRA',
+             '04_Engineering/00_Projects/$usedfrom/DPUINFRA'
+            ]
+
+  SOURCE =  [
+                ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/oscfg',        ['sysbios_wrapper_mapping.c']],
+                ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/infra',        [ 'state_manager.cpp', 'synchronised_startup.cpp','core_init_dsp_0.cpp' ]],
+                ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/infra',        [ 'SOC_Common_CPP_Infrastructure_Pkg.cpp', 'SOC_DSP_CPP_Infrastructure_Pkg.cpp', 'system_adapter.cpp' ]],
+                ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/osw',          [ 'sysbios_wrapper.cpp' ]]
+            ]
+
+
+
+################# Component Misc #################
+class DPUMISC(Component):
+  INCLUDE = [
+                '04_Engineering/01_Source_Code/DPUSBL/if',
+                '04_Engineering/01_Source_Code',
+                '04_Engineering/01_Source_Code/DPUIPC',
+                '04_Engineering/01_Source_Code/RTA',
+                '04_Engineering/00_Projects/$usedfrom/RTA',
+                '04_Engineering/04_Build/tools/edma3_lld/packages',
+                '04_Engineering/04_Build/tools/starterware/include',
+                '04_Engineering/04_Build/tools/starterware/include/hw',
+                '04_Engineering/04_Build/tools/starterware/include/pm',
+                '04_Engineering/04_Build/tools/starterware/pm/pmhal/common',
+                '04_Engineering/04_Build/tools/starterware/include/c66x',
+                '04_Engineering/04_Build/tools/starterware/system_config/c66x'
+            ]
+  # VH/VL independent
+  INCLUDE += [
+                '04_Engineering/00_Projects/$usedfrom/MTSI_VH',
+                '04_Engineering/01_Source_Code/MTSI_VH',
+                '04_Engineering/01_Source_Code/RTA_VH',
+                '04_Engineering/01_Source_Code/RTL',
+                '04_Engineering/01_Source_Code/RTL_VH',
+                '04_Engineering/00_Projects/$usedfrom/RTL'
+             ]
+  if device == 'low':
+    INCLUDE += [
+                '04_Engineering/04_Build/tools/starterware/include/tda3xx',
+                '04_Engineering/04_Build/tools/starterware/include/tda3xx/hw',
+                '04_Engineering/04_Build/tools/starterware/include/c66x/$chipset',
+                '04_Engineering/01_Source_Code/SAP_VL'
+               ]
+  else:
+    INCLUDE += [
+                '04_Engineering/04_Build/tools/starterware/include/tda2xx',
+                '04_Engineering/04_Build/tools/starterware/include/tda2xx/hw',
+                '04_Engineering/04_Build/tools/starterware/include/c66x/$chipset',
+                '04_Engineering/01_Source_Code/SAP_VH'
+               ]
+  SOURCE =  [
+                ['04_Engineering/01_Source_Code/DGM/Dgm_SlaveHandler',  [ 'dem_handler_base.cpp', 'dem_handler_slave.cpp' ]],
+                #['04_Engineering/01_Source_Code/DPUMMU',                [ 'system_mmu.cpp' ]],
+            ]
+  # VH/VL independent:
+  SOURCE += [
+                ['04_Engineering/01_Source_Code/RTL',                   [ '*.c' ]],
+                ['04_Engineering/01_Source_Code/RTL_VH',                [ 'error_tracker.cpp' ]],
+                ['04_Engineering/00_Projects/$usedfrom/RTL',            [ '*.c' ]],
+                ['04_Engineering/01_Source_Code/MTSI_VH',               [ 'adapter_meas.cpp', 'meas_service.cpp', 'meas_service_buffered.cpp' ]],
+                ['04_Engineering/01_Source_Code/RTA_VH',                [ '*.cpp'  ]],
+                ['04_Engineering/01_Source_Code/RTA',                   [ '*.c' ]]
+            ]
+
+  LIBS = []
+  if device == 'low':
+    LIBS += [
+            '04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/rm/lib/tda3xx-evm/66/release/edma3_lld_rm.$lib_ext',
+            '04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/drv/lib/66/release/edma3_lld_drv.$lib_ext',
+            '04_Engineering/04_Build/tools/starterware/binary/drivers/lib/tda3xx/66/release/starterware_hal.$lib_ext'
+            ]
+  else:
+    LIBS += [
+            '04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/rm/lib/tda2xx-evm/66/release/edma3_lld_rm.$lib_ext',
+            '04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/drv/lib/66/release/edma3_lld_drv.$lib_ext',
+            '04_Engineering/04_Build/tools/starterware/binary/drivers/lib/tda2xx/66/release/starterware_hal.$lib_ext',
+            '04_Engineering/04_Build/tools/starterware/binary/pm/pmhal/lib/tda2xx/66/debug/starterware_pm_hal.ae66',
+            '04_Engineering/04_Build/tools/starterware/binary/pm/pmlib/lib/tda2xx/66/debug/starterware_pm_lib.ae66',
+            '04_Engineering/04_Build/tools/starterware/binary/system_config/lib/tda2xx/66/debug/sys_config.ae66'
+            ]
+
+
+
+################# Component DPUCOM #################
+class DPUCOM(Component):
+
+  CFG_IOB_MODE = product in ['mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']
+
+  INCLUDE = ['04_Engineering/01_Source_Code/DPUCOM/xcp']
+  if device == 'low':
+    INCLUDE += ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vl']
+  else:
+    INCLUDE += ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vh']
+      
+  if CFG_IOB_MODE:
+      INCLUDE += ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/iob\n']
+
+  SOURCE =  [
+                ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc',            [ 'icc_mailbox.cpp', 'icc_messages.cpp' ]],
+                ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/xcp',            [ 'xcp_service.cpp']],
+                ['04_Engineering/01_Source_Code/DPUCOM/xcp',                      [ 'xcp_validation_testing.cpp' ]]
+            ]
+  if CFG_ICC_OT:
+    SOURCE +=   [['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/ot',            [ '*.cpp' ]]]
+  if device == 'low':
+    SOURCE +=   [['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vl',        [ '*.cpp' ]]]
+  else:
+    SOURCE +=   [['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vh',        [ '*.cpp' ]]]
+    
+  if CFG_IOB_MODE:
+    SOURCE +=   [['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/iob',            [ 'iob_test.cpp', 'SharpnessTest.c' ]]]
+
+
+
+
+################# Component DPUHWIF #################
+class DPUHWIF(Component):
+  INCLUDE = ['04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/titda',
+             '04_Engineering/01_Source_Code/DPUHWIF'
+            ]
+  if device == 'low':
+    INCLUDE += [
+                '04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/gpio_vl'
+               ]
+  else:
+    INCLUDE += [
+                '04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/gpio_vh'
+               ]
+
+
+
+################# Component DPUST #################
+class DPUST(Component):
+  INCLUDE = []
+  SOURCE =  [
+             ['04_Engineering/00_Projects/$usedfrom/DPUST/monitors',            [ 'monitoring_cfg.cpp',
+                                                                                  'dsp_edc_cfg.cpp' ]],
+             ['04_Engineering/00_Projects/$usedfrom/DPUST/fatalerrorhandling',  [ 'cat2_error_reaction_cfg.cpp' ]],
+             ['04_Engineering/01_Source_Code/DPUST/alutest',                    [ 'c_alu_test_dsp.s' ]],
+             ['04_Engineering/01_Source_Code/DPUST/fatalerrorhandling',         [ 'cat2_error_reaction.cpp' ]],
+             ['04_Engineering/01_Source_Code/DPUST/monitors',                   [ 'monitor_adapter.cpp',
+                                                                                  'monitor_adapter_dsp_0.cpp',
+                                                                                  'task_monitor.cpp',
+                                                                                  'sections_monitor.cpp',
+                                                                                  'dsp_exception_return_hook.asm',
+                                                                                  'dsp_edc.cpp',
+                                                                                  'dsp_edc_helper.cpp' ]],
+             ['04_Engineering/01_Source_Code/DPUST/safetymanager',              [ 'safety_manager_base.cpp',
+                                                                                  'safety_manager_dummy.cpp',
+                                                                                  'service_function_wrappers.cpp',
+                                                                                  'safety_manager_dsp_c66x.cpp',
+                                                                                  'swe.asm' ]],
+             ['04_Engineering/01_Source_Code/DPUST/mmu',                        ['system_mmu.cpp']],
+             ['04_Engineering/01_Source_Code/DPUST/firewall',                   [ 'xmc.cpp' ]]
+            ]
+
+
+################# Component GS #################
+class GS(Component):
+  DONOTUSEFOR = ['ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19', 'mfc431sw19', 'mfc431bd10']
+  
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/gs',
+           '04_Engineering/01_Source_Code/gs']
+
+  if product not in ['hfl110', 'hfl110ta10']:
+    SOURCE=[['04_Engineering/01_Source_Code/gs', ['*.cpp']]]
+
+
+
+################# Component CCT #################
+class CCT(Component):
+    DONOTUSEFOR  = ['ars441']
+
+    COMPDEF=['CCT_USE_INTRINSICS']
+
+    INCLUDE=['04_Engineering/01_Source_Code/cct']
+    SOURCE=[['04_Engineering/01_Source_Code/cct',['*.cpp']]]
+
+
+
+################# Component CML #################
+class CML(Component):
+  DONOTUSEFOR  = ['ars441']
+
+  if product in ['hfl110', 'hfl110ta10']:
+    COMPDEF = ['CML_USE_INTRINSICS', 'CML_OPT_c66x']
+  else:
+    COMPDEF = ['CML_USE_INTRINSICS']
+
+  INCLUDE=['04_Engineering/01_Source_Code/cml',
+           '04_Engineering/01_Source_Code/cml/bayes',
+           '04_Engineering/01_Source_Code/cml/exp',
+           '04_Engineering/01_Source_Code/cml/complex',
+           '04_Engineering/01_Source_Code/cml/fourier',
+           '04_Engineering/01_Source_Code/cml/interpol',
+           '04_Engineering/01_Source_Code/cml/kalman',
+           '04_Engineering/01_Source_Code/cml/matrix',
+           '04_Engineering/01_Source_Code/cml/misc',
+           '04_Engineering/01_Source_Code/cml/radar',
+           '04_Engineering/01_Source_Code/cml/stat',
+           '04_Engineering/01_Source_Code/cml/stl',
+           '04_Engineering/01_Source_Code/cml/stl/algorithm',
+           '04_Engineering/01_Source_Code/cml/stl/container',
+           '04_Engineering/01_Source_Code/cml/stl/math',
+           '04_Engineering/01_Source_Code/cml/',
+           '04_Engineering/01_Source_Code/cml/trigo',
+           '04_Engineering/01_Source_Code/cml/vector']
+  SOURCE=[['04_Engineering/01_Source_Code/cml/bayes',   ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/complex', ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/exp',     ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/fourier', ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/interpol',['*.c']],
+          ['04_Engineering/01_Source_Code/cml/kalman',  ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/matrix',  ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/misc',    ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/radar',   ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/stat',    ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/trigo',   ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/vector',  ['*.c']]]
+
+
+
+################# Component GEN #################
+class GEN(Component):
+    DONOTUSEFOR  = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']
+
+    INCLUDE=['04_Engineering/00_Projects/$usedfrom/ga',
+             '04_Engineering/01_Source_Code/gen',
+             '04_Engineering/01_Source_Code/gen/clustering',
+             '04_Engineering/01_Source_Code/gen/common',
+             '04_Engineering/01_Source_Code/gen/filter',
+             '04_Engineering/01_Source_Code/gen/frame',
+             '04_Engineering/01_Source_Code/gen/manager',
+             '04_Engineering/01_Source_Code/gen/motion',
+             '04_Engineering/01_Source_Code/gen/preprocessor',
+             '04_Engineering/01_Source_Code/gen/targetfactory'
+             ]
+    SOURCE=[['04_Engineering/01_Source_Code/gen',               ['*.cpp']],
+            ['04_Engineering/01_Source_Code/gen/clustering',    ['*.cpp']],
+            ['04_Engineering/01_Source_Code/gen/common',        ['*.cpp']],
+            ['04_Engineering/01_Source_Code/gen/filter',        ['*.cpp']],
+            ['04_Engineering/01_Source_Code/gen/frame',         ['*.cpp']],
+            ['04_Engineering/01_Source_Code/gen/manager',       ['*.cpp']],
+            ['04_Engineering/01_Source_Code/gen/motion',        ['*.cpp']],
+            ['04_Engineering/01_Source_Code/gen/preprocessor',  ['*.cpp']],
+            ['04_Engineering/01_Source_Code/gen/targetfactory', ['*.cpp']]
+            ]
+
+
+
+################# Component GSM #################
+class GSM(Component):
+    DONOTUSEFOR  = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']
+
+    INCLUDE=['04_Engineering/00_Projects/$usedfrom/ga',
+             '04_Engineering/01_Source_Code/gsm',
+             '04_Engineering/01_Source_Code/gsm/frame',
+             '04_Engineering/01_Source_Code/gsm/grid',
+             '04_Engineering/01_Source_Code/gsm/ti-lib',
+             '04_Engineering/02_Development_Tools/ti_tools/c6x_simulator'
+             ]
+    SOURCE=[['04_Engineering/01_Source_Code/gsm',               ['*.cpp']],
+            ['04_Engineering/01_Source_Code/gsm/frame',         ['*.cpp']]
+            ]
+
+
+################# Component LSD #################
+class LSD(Component):
+  DONOTUSEFOR = ['hfl110', 'hfl110ta10', 'ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19', 'mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/ga',
+           '04_Engineering/00_Projects/$usedfrom/lsd',
+           '04_Engineering/00_Projects/$usedfrom/lsd/classifier',
+           '04_Engineering/00_Projects/$usedfrom/lsd/eve',
+           '04_Engineering/00_Projects/$usedfrom/lsd/eve/segmentation',
+           '04_Engineering/00_Projects/$usedfrom/lsd/parameters',
+           '04_Engineering/00_Projects/$usedfrom/lsd/sw_support',
+           '04_Engineering/01_Source_Code/lsd',
+           '04_Engineering/01_Source_Code/lsd/analysis',
+           '04_Engineering/01_Source_Code/lsd/environment',
+           '04_Engineering/01_Source_Code/lsd/frame',
+           '04_Engineering/01_Source_Code/lsd/segmentation',
+           '04_Engineering/01_Source_Code/lsd/segmentation/color',
+           '04_Engineering/01_Source_Code/lsd/segmentation/intensity',
+           '04_Engineering/01_Source_Code/lsd/sw_support',
+           '04_Engineering/01_Source_Code/lsd/tracking',
+           '04_Engineering/01_Source_Code/lsd/utils'
+           ]
+
+  SOURCE=[['04_Engineering/00_Projects/$usedfrom/lsd/classifier',       [ '*.c']],
+          ['04_Engineering/00_Projects/$usedfrom/lsd/parameters',       [ '*.c']],
+          ['04_Engineering/00_Projects/$usedfrom/lsd/sw_support',       [ '*.c']],
+          ['04_Engineering/01_Source_Code/lsd/analysis',                [ '*.c']],
+          ['04_Engineering/01_Source_Code/lsd/environment',             [ '*.c']],
+          ['04_Engineering/01_Source_Code/lsd/frame',                   [ '*.c']],
+          ['04_Engineering/01_Source_Code/lsd/segmentation',            [ '*.c']],
+          ['04_Engineering/01_Source_Code/lsd/segmentation/color',      [ '*.c']],
+          ['04_Engineering/01_Source_Code/lsd/segmentation/intensity',  [ '*.c']],
+          ['04_Engineering/01_Source_Code/lsd/sw_support',              [ '*.c']],
+          ['04_Engineering/01_Source_Code/lsd/tracking',                [ '*.c']],
+          ['04_Engineering/01_Source_Code/lsd/utils',                   [ '*.c']]
+          ]
+
+
+
+
+################# Component PDM #################
+class PDM(Component):
+    DONOTUSEFOR  = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']
+
+    COMPDEF=['PDM_TARGET_DSP']
+
+    INCLUDE=['04_Engineering/00_Projects/$usedfrom/pdm',
+             '04_Engineering/01_Source_Code/pdm',
+             '04_Engineering/01_Source_Code/cct',
+             '04_Engineering/01_Source_Code/cml',
+             '04_Engineering/01_Source_Code/pdm/frame',
+             '04_Engineering/01_Source_Code/pdm/ti_eve_arp32',
+             '04_Engineering/01_Source_Code/pdm/shared_helpers']
+    SOURCE=[['04_Engineering/01_Source_Code/pdm',['pdm.cpp','pdm_common.cpp','pdm_fog_spray_detection.cpp','pdm_rain_snow_detection.cpp','pdm_soft_blockage_detection.cpp','pdm_hard_blockage_detection.cpp','pdm_slabo_detection.cpp','pdm_range_estimation.cpp','pdm_heater_washer_request.cpp']]]
+
+
+
+
+
+################# Component PFC #################
+class PFC(Component):
+  DONOTUSEFOR  = ['hfl110', 'hfl110ta10', 'ars441']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/pfc',
+           '04_Engineering/01_Source_Code/pfc',
+           '04_Engineering/01_Source_Code/pfc/frame',
+           '04_Engineering/01_Source_Code/pfc/kernel',
+           '04_Engineering/01_Source_Code/pfc/ti_eve_arp32/inc',
+           '04_Engineering/01_Source_Code/pfc/ti_eve_arp32/src'
+           ]
+
+  SOURCE=[['04_Engineering/01_Source_Code/pfc', ['pfc_utils.c']],
+          ['04_Engineering/01_Source_Code/pfc/frame', ['pfc_main.cpp', 'pfc_measfreeze_data.c', 'pfc_safety.cpp']],
+          ['04_Engineering/01_Source_Code/pfc/kernel', ['profile.c', 'pfc_algo.cpp', 'pfc_call_eve.cpp', 'pfc_compute_smooth_fast.cpp', 'pfc_correspondenceManager.cpp', 'pfc_hypoMap.cpp', 'pfc_meas.cpp', 'pfc_service.cpp', 'pfc_wavelet_haar44.cpp']]
+          ]
+
+
+
+################# Component CIPP #################
+class CIPP(Component):
+  DONOTUSEFOR  = ['hfl110', 'hfl110ta10', 'ars441']
+  OVERRIDEFOR = ['mfc431sc19']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/ga',
+           '04_Engineering/00_Projects/$usedfrom/cipp',
+           '04_Engineering/01_Source_Code/cipp',
+           '04_Engineering/01_Source_Code/cipp/RefCore',
+           '04_Engineering/01_Source_Code/cipp/ti_eve_arp32/inc',
+           '04_Engineering/01_Source_Code/cipp/ti_eve_arp32/src'
+           ]
+  SOURCE=[['04_Engineering/01_Source_Code/cipp/RefCore', ['*.c', '*.cpp']]]
+
+
+
+################# Component FAMO #################
+class FAMO(Component):
+  DONOTUSEFOR  = ['ars441', 'hfl110', 'hfl110ta10']
+  OVERRIDEFOR = ['mfc431ta19','mfc431','mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']
+  
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/FAMO',
+           '04_Engineering/01_Source_Code/famo',
+           '04_Engineering/01_Source_Code/famo/frame',
+           '04_Engineering/01_Source_Code/famo/gen',
+           '04_Engineering/01_Source_Code/famo/gen/acal',
+           '04_Engineering/01_Source_Code/famo/gen/base',
+           '04_Engineering/01_Source_Code/famo/gen/cb',
+           '04_Engineering/01_Source_Code/famo/gen/cb',
+           '04_Engineering/01_Source_Code/famo/gen/cipp',
+           '04_Engineering/01_Source_Code/famo/gen/ecm',
+           '04_Engineering/01_Source_Code/famo/gen/em',
+           '04_Engineering/01_Source_Code/famo/gen/emo',
+           '04_Engineering/01_Source_Code/famo/gen/famo',
+           '04_Engineering/01_Source_Code/famo/gen/fct',
+           '04_Engineering/01_Source_Code/famo/gen/fex',
+           '04_Engineering/01_Source_Code/famo/gen/fsd',
+           '04_Engineering/01_Source_Code/famo/gen/gen',
+           '04_Engineering/01_Source_Code/famo/gen/hla',
+           '04_Engineering/01_Source_Code/famo/gen/lcf',
+           '04_Engineering/01_Source_Code/famo/gen/ld',
+           '04_Engineering/01_Source_Code/famo/gen/lsd',
+           '04_Engineering/01_Source_Code/famo/gen/map',
+           '04_Engineering/01_Source_Code/famo/gen/pc',
+           '04_Engineering/01_Source_Code/famo/gen/pfc',
+           '04_Engineering/01_Source_Code/famo/gen/pv',
+           '04_Engineering/01_Source_Code/famo/gen/rum',
+           '04_Engineering/01_Source_Code/famo/gen/sac',
+           '04_Engineering/01_Source_Code/famo/gen/sib',
+           '04_Engineering/01_Source_Code/famo/gen/sr',
+           '04_Engineering/01_Source_Code/famo/gen/tlr',
+           '04_Engineering/01_Source_Code/famo/gen/tsa',
+           '04_Engineering/01_Source_Code/famo/gen/udw',
+           '04_Engineering/01_Source_Code/famo/gen/vdy',
+           '04_Engineering/01_Source_Code/famo/gen/vodca',
+           '04_Engineering/01_Source_Code/famo/plausiChecks',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/acal',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/cb',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/cipp',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/combi',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/ecm',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/em',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/emo',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/famo',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/fct',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/fex',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/fsd',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/gen',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/hla',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/lcf',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/ld',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/lsd',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/map',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/pc',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/pfc',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/pv',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/rum',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/sac',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/sib',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/sr',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/tlr',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/tsa',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/udw',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/vdy',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/vodca'
+           ]
+		   
+  if product in ['hfl110', 'hfl110ta10']:
+      INCLUDE += ['04_Engineering/01_Source_Code/famo/gen/gsm',
+                '04_Engineering/01_Source_Code/famo/gen/liqor',
+                '04_Engineering/01_Source_Code/famo/gen/pca',
+                '04_Engineering/01_Source_Code/famo/gen/pdm',
+                '04_Engineering/01_Source_Code/famo/gen/poc',
+                '04_Engineering/01_Source_Code/famo/gen/gen',
+                '04_Engineering/01_Source_Code/famo/gen/tp'] 
+
+				
+  SOURCE=[['04_Engineering/01_Source_Code/famo/frame', ['*.c']]]
+
+
+
+################# Component FAMO_reduced #################
+class FAMO_reduced(Component):
+  DONOTUSEFOR  = ['hfl110', 'hfl110ta10', 'ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']
+
+  INCLUDE=['04_Engineering/01_Source_Code/famo_reduced',
+           '04_Engineering/01_Source_Code/famo_reduced/frame',
+           '04_Engineering/01_Source_Code/famo_reduced/gen',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/acal',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/base',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/cb',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/cb',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/cipp',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/ecm',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/em',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/emo',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/famo',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/fct',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/fex',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/fsd',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/gen',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/hla',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/lcf',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/ld',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/lsd',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/map',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/pc',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/pfc',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/pv',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/rum',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/sac',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/sib',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/sr',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/tlr',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/tsa',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/udw',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/vdy',
+           '04_Engineering/01_Source_Code/famo_reduced/gen/vodca',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/acal',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/cb',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/cipp',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/combi',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/ecm',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/em',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/emo',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/famo',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/fct',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/fex',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/fsd',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/gen',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/hla',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/lcf',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/ld',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/lsd',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/map',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/pc',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/pfc',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/pv',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/rum',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/sac',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/sib',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/sr',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/tlr',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/tsa',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/udw',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/vdy',
+           '04_Engineering/01_Source_Code/famo_reduced/plausiChecks/vodca'
+           ]
+  SOURCE=[['04_Engineering/01_Source_Code/famo_reduced',        ['*.cpp']],
+          ['04_Engineering/01_Source_Code/famo_reduced/frame',  ['*.c']]
+          ]
+
+
+################# Component LD #################
+class LD(Component):
+  DONOTUSEFOR  = ['hfl110', 'hfl110ta10', 'ars441']
+
+  COMPDEF=['LD_MONO_HIGH', '__DSP_SW']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/LD',
+           '04_Engineering/01_Source_Code/ld',
+           '04_Engineering/01_Source_Code/ld/LD_wrp',
+           '04_Engineering/01_Source_Code/ld/sw_support',
+           '04_Engineering/01_Source_Code/ld/ti_eve_arp32',
+           '04_Engineering/01_Source_Code/ld/ti_eve_arp32/inc',
+           '04_Engineering/01_Source_Code/ld/ti_eve_arp32/src',
+           '04_Engineering/01_Source_Code/PC/common'
+           ]
+
+  SOURCE=[['04_Engineering/01_Source_Code/ld',              [ 'LDExitsDetector.cpp', 'LDArcCot.c', 'LDMath.cpp', 'LDDebugCommon.cpp', 'LDDebugCompare.cpp', 'LaneDetectionAlgo.cpp', 'LDBottDot.cpp', 'LDDashedSegmentSensor.cpp', 'LDDashedSegmentTracker.cpp', 'LDDetectAmbiguousSituation.cpp', 'LDEgoSpeedCanSensor.cpp', 'LDEgoSpeedFlowSensor.cpp', 'LDFeature.cpp', 'LDFeatures.cpp', 'LDFeatureList.cpp', 'LDFeatureMember.cpp', 'LDFeatureMemberOfMarker.cpp', 'LDFeatureMemberOfBotDot.cpp', 'LDFeatureMemberOfCatsEye.cpp', 'LDFeatureMemberOfRoadEdge.cpp', 'LDGuardRailDetector.cpp', 'LDHistogram.cpp', 'LDInterface.cpp', 'LDLaneBoundaries.cpp', 'LDLaneBoundaryConfidence.cpp', 'LDLaneBoundarySignatures.cpp', 'LDLaneBoundarySensor.cpp', 'LDLaneBoundarySensorVertical.cpp', 'LDLaneBoundaryTracker.cpp', 'LDLaneSensor.cpp', 'LDLaneSensorFlow.cpp', 'LDLaneSensorTangent.cpp', 'LDLaneTracker.cpp', 'LDLaneTrackers.cpp', 'LDLaneConfidence.cpp', 'LDLTMHState.cpp', 'LDLTMHStateType.cpp', 'LDLTMHStateInvalid.cpp', 'LDLTMHStateDoubleSided.cpp', 'LDLTMHStateDoubleSidedSingle.cpp', 'LDLTMHStateLeftSideOnly.cpp', 'LDLTMHStateRightSideOnly.cpp', 'LDMarkerColor.cpp', 'LDMatrix.cpp', 'LDObstacleEdgeFlowSensor.cpp', 'LDObstacleInsideFlowSensor.cpp', 'LDObstacleTracker.cpp', 'LDPitchSensor.cpp', 'LDPreprocess.cpp', 'LDRollAngleCalculator.cpp', 'LDScan.cpp', 'LDScanLine.cpp', 'LDService.cpp', 'LDSpeedSensor.cpp', 'LDUDUtKalman.cpp', 'LDUDUtMatrix.cpp', 'LDVehicle.cpp', 'LDYawRateDisposer.cpp', 'LDYawRateEstimator.cpp', 'LDYawRateEstimatorSensor.cpp', 'LDCamera.cpp', 'LDCameraAxis.cpp', 'LDPitchYawAxis.cpp', 'LDYawAxis.cpp', 'LDPitchAxis.cpp', 'LDRollAxis.cpp', 'LDLens.cpp', 'LDProjection.cpp', 'LDCameraPosition.cpp', 'LDCameraTryState.cpp', 'LDPlausibilityMeasures.cpp', 'LDPlausibilityObserver.cpp', 'LDPMCamera.cpp', 'LDAdjacentLanes.cpp', 'LDPMVehicleDynamics.cpp', 'LDPMRoadStructures.cpp', 'LDTravelJournal.cpp', 'LDJournalObserver.cpp', 'LDRoadEdge.cpp', 'LDNewtonRaphson.cpp', 'LDEdgeLinking.cpp', 'LDEdgeLinkTLBUpdate.cpp', 'LDStatusAndError.cpp', 'LDHashLibrary.cpp', 'LDLocalMap.cpp', 'LDPMImage.cpp', 'LDPolynomialFitting.cpp', 'LDFDLAlgo.cpp', 'LDClothoidTangentSensor.cpp', 'LDclothoidtracker.cpp', 'LDPMFusion.cpp', 'LDDerivedClothoid.cpp', 'LDDerivedClothoidSensor.cpp', 'LDRoadDirection.cpp', 'LDRoadDetection.cpp', 'LDCatsEyes.cpp', 'ld_pdo_tags_file.c', 'LDUsabilityIndicators.cpp', 'LDHeightProfile.cpp']],
+          ['04_Engineering/01_Source_Code/ld/ld_wrp',       [ 'ld_main.cpp']],
+          ['04_Engineering/01_Source_Code/ld/sw_support',   [ 'ld_cpar_init.c', 'ld_nvm_convert.c', 'ld_nvm_init.c']]
+          ]
+
+
+
+################# Component ECM #################
+class ECM(Component):
+  DONOTUSEFOR = ['ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/ecm/frame',
+           '04_Engineering/00_Projects/$usedfrom/ecm/sw_support',
+           '04_Engineering/01_Source_Code/ecm/frame',
+           '04_Engineering/01_Source_Code/ecm/kernel'
+           ]
+
+  SOURCE=[['04_Engineering/00_Projects/$usedfrom/ecm/sw_support',   ['ecm_cpar_init.c', 'ecm_nvm_convert.c', 'ecm_nvm_init.c']],
+          ['04_Engineering/01_Source_Code/ecm/frame',               ['ecm_calib.cpp', 'ecm_extraction.cpp', 'ecm_manager.cpp', 'ecm_math.cpp']],
+          ['04_Engineering/01_Source_Code/ecm/kernel',              [ 'ecm_main.cpp', 'ecm_wrapper.cpp', 'ecm_reports.cpp', 'ecm_inputvalidations.cpp', 'ecm_pdo_tags_file.c', 'ecm_blobfiltering.cpp']],
+          ]
+    
+  if product in ['hfl110', 'hfl110ta10']:
+    SOURCE += [['04_Engineering/01_Source_Code/ecm/frame',          ['ecm_manager_hfl.cpp', 'ecm_extraction_hfl.cpp', 'ecm_calib_hfl.cpp']]]
+
+
+
+################# Component CB #################
+class CB(Component):
+  DONOTUSEFOR = ['hfl110', 'hfl110ta10', 'ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19', 'mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']
+
+  COMPDEF=['TARGET_VME_DSP', 'CB_MODULE']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/cb',
+           '04_Engineering/00_Projects/$usedfrom/cb/sw_support',
+           '04_Engineering/01_Source_Code/cml/trigo',
+           '04_Engineering/01_Source_Code/cb',
+           '04_Engineering/01_Source_Code/cb/ti_eve_arp32/inc',
+           '04_Engineering/01_Source_Code/cb/ti_eve_arp32/src'
+           ]
+
+  SOURCE=[['04_Engineering/00_Projects/$usedfrom/cb',               [ 'cb_main.c', 'cb_par.c']],
+          ['04_Engineering/00_Projects/$usedfrom/cb/sw_support',    [ 'gb_cpar_init.c']],
+          ['04_Engineering/01_Source_Code/cb',                      [ 'gb_brightness_detector.cpp', 'gb_cracked_windshield_detector.cpp', 'gb_param.cpp', 'gb_algo.cpp', 'gb_algo_factory.cpp', 'gb_diff_ratio_algo.cpp', 'gb_fog_far_range_detector.cpp', 'gb_freeze_detector.cpp', 'gb_glaring_detector.cpp', 'gb_glaring_br_detector.cpp', 'gb_glaring_be_bp_detector.cpp', 'gb_glaring_sunray.cpp', 'gb_glaring_sunray_detector.cpp', 'gb_glaring_lane.cpp', 'gb_glaring_ln_detector.cpp', 'gb_fusion.cpp', 'gb_haar_transform.cpp', 'gb_haar_transform_DM648.cpp', 'gb_haar_transform_PPC5675K.cpp', 'gb_haar_algo.cpp', 'gb_main.cpp', 'gb_manager.cpp', 'gb_bright_dark_detection.cpp', 'gb_disparity_algo.cpp', 'gb_extra_detector_factory.cpp', 'gb_extra_detector.cpp', 'gb_visibility_range_detector.cpp', 'gb_blockage_detector.cpp', 'gb_blockage_haar_detector.cpp', 'gb_condensation_haar_detector.cpp', 'gb_part_blockage_detector.cpp', 'gb_haar_part_blockage_detector.cpp', 'gb_part_blockage_floxel_detector.cpp', 'gb_part_blockage_radial_detector.cpp', 'gb_hla_blockage_detector.cpp', 'gb_heavy_rain_detector.cpp', 'gb_floxel_algo.cpp', 'gb_errorCheck.cpp', 'gb_blockage_haar_floxel_detector.cpp', 'gb_fog_detector.cpp', 'gb_fog_close_range_detector.cpp', 'gb_rain_detector.cpp', 'gb_fusion_Haar_PowerFlow.cpp', 'gb_pf_blockage.cpp']]
+          ]
+
+
+
+################# Component LCF #################
+class LCF(Component):
+  DONOTUSEFOR  = ['hfl110', 'hfl110ta10', 'ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19', 'mfc431sw19', 'mfc431va10', 'mfc431va21', 'mfc431bd10']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/ga',
+           '04_Engineering/00_Projects/$usedfrom/LCF',
+           '04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU',
+           '04_Engineering/01_Source_Code/LCF',
+           '04_Engineering/01_Source_Code/common/LCF/RTW/',
+		   '04_Engineering/01_Source_Code/LCF/Common',
+           '04_Engineering/01_Source_Code/LCF/Common/SDA',
+		   '04_Engineering/01_Source_Code/LCF/Common/utils',
+           '04_Engineering/01_Source_Code/LCF/Common/sw_support',
+           '04_Engineering/01_Source_Code/LCF/LCF_MFC431x/DPU',
+           '04_Engineering/01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_SEN',
+           '04_Engineering/01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_VEH'
+           ]
+
+  if product in ['mfc431ta19']:
+    INCLUDE += ['04_Engineering/00_Projects/$usedfrom/LCF/DDROC',
+                '04_Engineering/01_Source_Code/LCF/LATDMC/latdmc_veh_ang']
+				
+  if product in ['mfc431sc19']:
+    INCLUDE += ['04_Engineering/01_Source_Code/LCF/LATDMC/latdmc_veh_strq']
+	
+  if product in ['mfc431lo19', 'mfc431lo20', 'mfc431sw19', 'mfc431va10', 'mfc431va21']:
+    INCLUDE += ['04_Engineering/01_Source_Code/LCF/LATDMC/latdmc_veh_ang']
+	
+  if product not in ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sw19', 'mfc431sc19', 'mfc431va10', 'mfc431va21']:
+    INCLUDE += ['04_Engineering/01_Source_Code/LCF/LATDMC/latdmc_veh']
+	
+  SOURCE=[['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU',			[ 'paramlvc.c', 'LCFSEN/LCFSEN.c', 'LCFVEH/LCFVEH.c', 'LCFPRM/LCFPRM_data.c']],
+		  ['04_Engineering/01_Source_Code/LCF/Common',				    [ 'lcf_sen_pdo_tags_file.c', 'lcf_veh_pdo_tags_file.c']],
+          ['04_Engineering/01_Source_Code/LCF/Common/SDA',				[ 'bitop.c', 'calm_main.c', 'ecmath_main.c', 'f32_calm_main.c', 'f32_math_main.c']],
+          ['04_Engineering/01_Source_Code/LCF/Common/utils',			[ 'cml_adapted.c']],
+          ['04_Engineering/01_Source_Code/LCF/Common/sw_support',		[ 'lcf_cpar_init.c', 'lcf_nvm_init.c', 'lcf_nvm_convert.c']],
+          ['04_Engineering/01_Source_Code/LCF/CTRSC/CSCLTA',			[ 'CSCLTA.c']],
+          ['04_Engineering/01_Source_Code/LCF/DRVMN',					[ 'DRVMNVEH.c', 'DRMDAE/DRMDAE.c', 'DRMHOD/DRMHOD.c']],
+          ['04_Engineering/01_Source_Code/LCF/LATDMC',					[ 'latdmc_wrp.c' ]],
+          ['04_Engineering/01_Source_Code/LCF/LCF_MFC431x/DPU',     	[ 'FRAME_SEN/lcf_sen_main.c', 'FRAME_VEH/lcf_veh_main.c']],
+          ['04_Engineering/01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV',	[ 'LCFRCVSEN.c', 'LCFRCVSEN_common.c', 'LCFRCVVEH.c', 'LCFRCVVEH_common.c']],
+          ['04_Engineering/01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND',	[ 'LCFSNDSEN.c', 'LCFSNDSEN_common.c', 'LCFSNDVEH.c', 'LCFSNDVEH_common.c']],
+          ['04_Engineering/01_Source_Code/LCF/LCFERR',                  [ 'errio_veh.c', 'err_veh.c', 'err_sen.c', 'errio_sen.c']],
+          ['04_Engineering/01_Source_Code/LCF/MDCTR/MCTLFC',			[ 'MCTLFC.c']],
+          ['04_Engineering/01_Source_Code/LCF/TRJCTR',                  [ 'TCTCDC/TCTCDC.c', 'TCTCLM/TCTCLM.c', 'TCTDTE/TCTDTE.c', 'TCTFFC/TCTFFC.c', 'TCTLGC/TCTLGC.c', 'TCTEST/TCTEST.c']],
+          ['04_Engineering/01_Source_Code/LCF/TRJPLN',                  [ 'TRJPLNVEH.c', 'TPLCEN/TPLCEN.c', 'TPLFBT/TPLFBT.c', 'TPLFRT/TPLFRT.c', 'TPLLCO/TPLLCO.c', 'TPLTJC/TPLTJC.c', 'TPLFBT/calFrenetBackTransformation.c', 'TPLFRT/calFrenetTransformation.c', 'TPLTJC/calOptTrajektorie.c']],
+          ['04_Engineering/01_Source_Code/LCF/VDPR/VDPDRV',				[ 'VDPDRV.c']]
+          ]
+	
+  if product in ['mfc431ta19']:
+    SOURCE += [['04_Engineering/00_Projects/$usedfrom/LCF/DDROC/DROTMC',	[ 'DROTMC.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/HMIOC/HMOTMC',	[ 'HMOTMC.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LTASA/LTAMGR',	[ 'LTAMGR.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ABPR',					[ 'v1ABPRSEN.c', 'ABPLBP/ABPLBP.c', 'ABPREP/ABPREP.c', 'ABPLBP/polyfitLCF.c', 'ABPLBP/crvKalmanFilter.c', 'ABPLBP/laneKalmanFilter_Left.c', 'ABPLBP/laneKalmanFilter_Right.c', 'ABPLBP/laneKalmanFilter_Center.c', 'ABPREP/roadEdgeKalmanFilter_Left.c', 'ABPREP/roadEdgeKalmanFilter_Right.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ODPR',                    [ 'ODPRSEN.c', 'ODPFOP/ODPFOP.c', 'ODPOOP/ODPOOP.c', 'ODPOOK/ODPOOK.c',  'ODPOOS/ODPOOS.c', 'ODPFOH/ODPFOH.c', 'ODPILE/ODPILE.c', 'ODPFOH/objTraceKalmanFilter.c', 'ODPFOH/polyfitTgtObjectClothoid.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/TMCSCT',			[ 'TMCSCTSEN.c', 'TSCLDA/TSCLDA.c', 'TSCLTA/TSCLTA.c', 'TSCCTR/TSCCTR.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU',			[ 'LCFRCV/LCFRCVSEN_custom.c', 'LCFRCV/LCFRCVVEH_custom.c', 'LCFSND/LCFSNDSEN_custom.c', 'LCFSND/LCFSNDVEH_custom.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU/LCFERR',	[ 'LCFERR_VehCustom.c', 'ERRIO_VehCustom.c', 'ERRIO_SenCustom.c', 'LCFERR_SenCustom.c']],
+               ['04_Engineering/01_Source_Code/LCF/LATDMC/latdmc_veh_ang',   [ 'DMC_Lat_Brake.c',  'DMC_Lat_DYC_Dynamic_Compensation_Filter.c',  'DMC_Lat_DYC_Dynamic_Compensation_Filter_data.c',  'DMC_Lat_LAT_Delta_F_Offset_Switch.c', 'DMC_Lat_LAT_Delta_F_Offset_Switch_data.c',  'DMC_Lat_LAT_Dmc_Status_Defintion.c',  'DMC_Lat_LAT_Kappa_Filter.c',  'DMC_Lat_SAC_Accuracy_Calculation.c',  'DMC_Lat_SAC_Angle_Command_Fading.c', 'DMC_Lat_SAC_Friction_Compensation.c',  'DMC_Lat_SAC_Yaw_Rate_Control.c',  'DMC_Lat_SAT_Angle_Command_Saturation.c',  'DMC_Lat_SAT_Angle_Command_Saturation_data.c',  'DMC_Lat_TDF_Torque_Derating_Function.c',  'DMC_Lat_TDF_Torque_Derating_Function_data.c',  'DMC_Long.c',  'DMC_Soc.c',  'DMC_Soc_data.c',  'DMC_Soc_Lat.c',  'DMC_Soc_Lat_data.c',  'DMC_Soc_Lat_LAT_Kinematic_Signals_Arbiter.c',  'DMC_Soc_Lat_LAT_Stiffness_Definition.c',  'DMC_Soc_Lat_Loop_Gain_Correction.c',  'DMC_Soc_Lat_MOT_Modulation_Torque.c',  'DMC_Soc_Lat_SAC_Proportional_Factor_Derating.c',  'DMC_Soc_Lat_SAC_Steer_Angle_Cmd_Controller.c',  'DMC_Soc_LAT_Yaw_Rate_Offset_Compensation.c',  'intrp1d_fu32fl.c',  'linsearch_u8f.c',  'look1_ifbu16n6lftu16n10DfIf_binlcs.c',  'look1_ifbu16n6lftu16n12dfif_binlcs.c',  'look1_ifbu16n6lftu16n5DfIf_binlcs.c',  'look1_ifbu16n6lftu16n9DfIf_binlcs.c',  'look1_iflf_binlc.c',  'look1_iflf_binlx.c',  'look1_iflfIs32_binlc.c',  'look1_is16lftf_binlc.c',  'look1_is16lfts16n10DfIf_binlcr.c', 'look1_ifbu16n10lftu16n10DfIf_binlcs.c', 'plook_u8ff_linc.c',  'rt_look1d32.c',  'rt_look32.c',  'rt_roundf.c',  'sde_memset.c']],
+               ['04_Engineering/01_Source_Code/LCF/TRJCTR',					[ 'TRJCTRVEH.c']],
+               ['04_Engineering/01_Source_Code/LCF/TJASA',					[ 'v1TJASASEN.c', 'TJASTM/TJASTM.c', 'TJATTG/TJATTG.c', 'TJATVG/TJATVG.c', 'TJAGEN/TJAGEN.c', 'TJALKA/TJALKA.c', 'TJAOBF/TJAOBF.c', 'TJACMB/TJACMB.c', 'TJACMB/fusionKalmanFilter.c']],
+			   ['04_Engineering/01_Source_Code/LCF/LDPSA',                  [ 'LDPSASEN.c', 'DPLSIA/DPLSIA.c', 'DPLSMI/DPLSMI.c', 'DPLSMW/DPLSMW.c', 'DPLTTG/DPLTTG.c', 'DPLTVG/DPLTVG.c']],
+               ['04_Engineering/01_Source_Code/LCF/LDPOCSA',				[ 'LDPOCSASEN.c', 'DPODOO/DPODOO.c', 'DPOSIA/DPOSIA.c', 'DPOTTG/DPOTTG.c', 'DPOTVG/DPOTVG.c', 'DPOCND/DPOCND.c', 'DPOSMI/DPOSMI.c', 'DPOSMW/DPOSMW.c']],
+               ['04_Engineering/01_Source_Code/LCF/RDPSA',					[ 'RDPSASEN.c', 'DPRSMW/DPRSMW.c', 'DPRSIA/DPRSIA.c', 'DPRSMI/DPRSMI.c', 'DPRTTG/DPRTTG.c', 'DPRTVG/DPRTVG.c']]]
+  
+  if product in ['mfc431lo19']:
+    SOURCE += [['04_Engineering/00_Projects/$usedfrom/LCF/HMIOC/HMOLCO',	[ 'HMOLCO.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCOSCT/LSCCTR',	[ 'LSCCTR.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ABPR',					[ 'v1ABPRSEN.c', 'ABPLBP/ABPLBP.c', 'ABPREP/ABPREP.c', 'ABPLBP/polyfitLCF.c', 'ABPLBP/crvKalmanFilter.c', 'ABPLBP/laneKalmanFilter_Left.c', 'ABPLBP/laneKalmanFilter_Right.c', 'ABPLBP/laneKalmanFilter_Center.c', 'ABPREP/roadEdgeKalmanFilter_Left.c', 'ABPREP/roadEdgeKalmanFilter_Right.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ODPR',                    [ 'v2ODPRSEN.c', 'ODPFOP/ODPFOP.c', 'ODPFOH/ODPFOH.c','ODPFOH/objTraceKalmanFilter.c', 'ODPFOH/polyfitTgtObjectClothoid.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU',			[ 'LCFRCV/LCFRCVSEN_custom.c', 'LCFRCV/LCFRCVVEH_custom.c', 'LCFSND/LCFSNDSEN_custom.c', 'LCFSND/LCFSNDVEH_custom.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU/LCFERR',	[ 'LCFERR_VehCustom.c', 'ERRIO_VehCustom.c', 'ERRIO_SenCustom.c', 'LCFERR_SenCustom.c']],
+               ['04_Engineering/01_Source_Code/LCF/LATDMC/latdmc_veh_ang',   [ 'DMC_Soc_Lat_SAC_Damping_Filter.c', 'DMC_Lat_Brake.c',  'DMC_Lat_DYC_Dynamic_Compensation_Filter.c',  'DMC_Lat_DYC_Dynamic_Compensation_Filter_data.c',  'DMC_Lat_LAT_Delta_F_Offset_Switch.c', 'DMC_Lat_LAT_Delta_F_Offset_Switch_data.c',  'DMC_Lat_LAT_Dmc_Status_Defintion.c',  'DMC_Lat_LAT_Kappa_Filter.c', 'DMC_Lat_LAT_Ldp_States.c','look1_ifbu16n6lf_binlc.c', 'DMC_Lat_SAC_Accuracy_Calculation.c',  'DMC_Lat_SAC_Angle_Command_Fading.c', 'DMC_Lat_SAC_Friction_Compensation.c',  'DMC_Lat_SAC_Yaw_Rate_Control.c',  'DMC_Lat_SAT_Angle_Command_Saturation.c',  'DMC_Lat_SAT_Angle_Command_Saturation_data.c',  'DMC_Lat_TDF_Torque_Derating_Function.c',  'DMC_Lat_TDF_Torque_Derating_Function_data.c',  'DMC_Long.c',  'DMC_Soc.c',  'DMC_Soc_data.c',  'DMC_Soc_Lat.c',  'DMC_Soc_Lat_data.c',  'DMC_Soc_Lat_LAT_Kinematic_Signals_Arbiter.c',  'DMC_Soc_Lat_LAT_Stiffness_Definition.c',  'DMC_Soc_Lat_Loop_Gain_Correction.c',  'DMC_Soc_Lat_MOT_Modulation_Torque.c',  'DMC_Soc_Lat_SAC_Proportional_Factor_Derating.c',  'DMC_Soc_Lat_SAC_Steer_Angle_Cmd_Controller.c',  'DMC_Soc_LAT_Yaw_Rate_Offset_Compensation.c',  'intrp1d_fu32fl.c',  'linsearch_u8f.c',  'look1_ifbu16n6lftu16n10DfIf_binlcs.c',  'look1_ifbu16n6lftu16n12dfif_binlcs.c',  'look1_ifbu16n6lftu16n5DfIf_binlcs.c',  'look1_ifbu16n6lftu16n9DfIf_binlcs.c',  'look1_iflf_binlc.c',  'look1_iflf_binlx.c',  'look1_iflfIs32_binlc.c',  'look1_is16lftf_binlc.c',  'look1_is16lfts16n10DfIf_binlcr.c', 'look1_ifbu16n10lftu16n10DfIf_binlcs.c', 'plook_u8ff_linc.c',  'rt_look1d32.c',  'rt_look32.c',  'rt_roundf.c',  'sde_memset.c']],
+               ['04_Engineering/01_Source_Code/LCF/TRJCTR',					[ 'TRJCTRVEH.c']],
+               ['04_Engineering/01_Source_Code/LCF/TJASA',					[ 'v1TJASASEN.c', 'TJASTM/TJASTM.c', 'TJATTG/TJATTG.c', 'TJATVG/TJATVG.c', 'TJAGEN/TJAGEN.c', 'TJALKA/TJALKA.c', 'TJAOBF/TJAOBF.c', 'TJACMB/TJACMB.c', 'TJACMB/fusionKalmanFilter.c']],
+			   ['04_Engineering/01_Source_Code/LCF/LDPSA',                  [ 'LDPSASEN.c', 'DPLSIA/DPLSIA.c', 'DPLSMI/DPLSMI.c', 'DPLSMW/DPLSMW.c', 'DPLTTG/DPLTTG.c', 'DPLTVG/DPLTVG.c']],
+               ['04_Engineering/01_Source_Code/LCF/RDPSA',					[ 'RDPSASEN.c', 'DPRSMW/DPRSMW.c', 'DPRSIA/DPRSIA.c', 'DPRSMI/DPRSMI.c', 'DPRTTG/DPRTTG.c', 'DPRTVG/DPRTVG.c']]]
+			     
+  if product in ['mfc431lo20']:
+    SOURCE += [['04_Engineering/00_Projects/$usedfrom/LCF/HMIOC/HMOLCO',	[ 'HMOLCO.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCOSCT/LSCCTR',	[ 'LSCCTR.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ABPR',					[ 'v1ABPRSEN.c', 'ABPLBP/ABPLBP.c', 'ABPREP/ABPREP.c', 'ABPLBP/polyfitLCF.c', 'ABPLBP/crvKalmanFilter.c', 'ABPLBP/laneKalmanFilter_Left.c', 'ABPLBP/laneKalmanFilter_Right.c', 'ABPLBP/laneKalmanFilter_Center.c', 'ABPREP/roadEdgeKalmanFilter_Left.c', 'ABPREP/roadEdgeKalmanFilter_Right.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ODPR',                    [ 'v2ODPRSEN.c', 'ODPFOP/ODPFOP.c', 'ODPFOH/ODPFOH.c','ODPFOH/objTraceKalmanFilter.c', 'ODPFOH/polyfitTgtObjectClothoid.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU',			[ 'LCFRCV/LCFRCVSEN_custom.c', 'LCFRCV/LCFRCVVEH_custom.c', 'LCFSND/LCFSNDSEN_custom.c', 'LCFSND/LCFSNDVEH_custom.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU/LCFERR',	[ 'LCFERR_VehCustom.c', 'ERRIO_VehCustom.c', 'ERRIO_SenCustom.c', 'LCFERR_SenCustom.c']],
+               ['04_Engineering/01_Source_Code/LCF/LATDMC/latdmc_veh_ang',   [ 'DMC_Soc_Lat_SAC_Damping_Filter.c', 'DMC_Lat_Brake.c',  'DMC_Lat_DYC_Dynamic_Compensation_Filter.c',  'DMC_Lat_DYC_Dynamic_Compensation_Filter_data.c',  'DMC_Lat_LAT_Delta_F_Offset_Switch.c', 'DMC_Lat_LAT_Delta_F_Offset_Switch_data.c',  'DMC_Lat_LAT_Dmc_Status_Defintion.c',  'DMC_Lat_LAT_Kappa_Filter.c', 'DMC_Lat_LAT_Ldp_States.c','look1_ifbu16n6lf_binlc.c', 'DMC_Lat_SAC_Accuracy_Calculation.c',  'DMC_Lat_SAC_Angle_Command_Fading.c', 'DMC_Lat_SAC_Friction_Compensation.c',  'DMC_Lat_SAC_Yaw_Rate_Control.c',  'DMC_Lat_SAT_Angle_Command_Saturation.c',  'DMC_Lat_SAT_Angle_Command_Saturation_data.c',  'DMC_Lat_TDF_Torque_Derating_Function.c',  'DMC_Lat_TDF_Torque_Derating_Function_data.c',  'DMC_Long.c',  'DMC_Soc.c',  'DMC_Soc_data.c',  'DMC_Soc_Lat.c',  'DMC_Soc_Lat_data.c',  'DMC_Soc_Lat_LAT_Kinematic_Signals_Arbiter.c',  'DMC_Soc_Lat_LAT_Stiffness_Definition.c',  'DMC_Soc_Lat_Loop_Gain_Correction.c',  'DMC_Soc_Lat_MOT_Modulation_Torque.c',  'DMC_Soc_Lat_SAC_Proportional_Factor_Derating.c',  'DMC_Soc_Lat_SAC_Steer_Angle_Cmd_Controller.c',  'DMC_Soc_LAT_Yaw_Rate_Offset_Compensation.c',  'intrp1d_fu32fl.c',  'linsearch_u8f.c',  'look1_ifbu16n6lftu16n10DfIf_binlcs.c',  'look1_ifbu16n6lftu16n12dfif_binlcs.c',  'look1_ifbu16n6lftu16n5DfIf_binlcs.c',  'look1_ifbu16n6lftu16n9DfIf_binlcs.c',  'look1_iflf_binlc.c',  'look1_iflf_binlx.c',  'look1_iflfIs32_binlc.c',  'look1_is16lftf_binlc.c',  'look1_is16lfts16n10DfIf_binlcr.c', 'look1_ifbu16n10lftu16n10DfIf_binlcs.c', 'plook_u8ff_linc.c',  'rt_look1d32.c',  'rt_look32.c',  'rt_roundf.c',  'sde_memset.c']],
+               ['04_Engineering/01_Source_Code/LCF/TRJCTR',					[ 'TRJCTRVEH.c']],
+               ['04_Engineering/01_Source_Code/LCF/TJASA',					[ 'v1TJASASEN.c', 'TJASTM/TJASTM.c', 'TJATTG/TJATTG.c', 'TJATVG/TJATVG.c', 'TJAGEN/TJAGEN.c', 'TJALKA/TJALKA.c', 'TJAOBF/TJAOBF.c', 'TJACMB/TJACMB.c', 'TJACMB/fusionKalmanFilter.c']],
+			   ['04_Engineering/01_Source_Code/LCF/LDPSA',                  [ 'LDPSASEN.c', 'DPLSIA/DPLSIA.c', 'DPLSMI/DPLSMI.c', 'DPLSMW/DPLSMW.c', 'DPLTTG/DPLTTG.c', 'DPLTVG/DPLTVG.c']],
+               ['04_Engineering/01_Source_Code/LCF/RDPSA',					[ 'RDPSASEN.c', 'DPRSMW/DPRSMW.c', 'DPRSIA/DPRSIA.c', 'DPRSMI/DPRSMI.c', 'DPRTTG/DPRTTG.c', 'DPRTVG/DPRTVG.c']]]
+			   
+  if product in ['mfc431sw19']:
+      SOURCE += [['04_Engineering/00_Projects/$usedfrom/LCF/HMIOC/HMOSGW',	[ 'HMOSGW.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/SGMWSCT/WSCCTR',	[ 'WSCCTR.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ABPR',					[ 'v1ABPRSEN.c', 'ABPLBP/ABPLBP.c', 'ABPREP/ABPREP.c', 'ABPLBP/polyfitLCF.c', 'ABPLBP/crvKalmanFilter.c', 'ABPLBP/laneKalmanFilter_Left.c', 'ABPLBP/laneKalmanFilter_Right.c', 'ABPLBP/laneKalmanFilter_Center.c', 'ABPREP/roadEdgeKalmanFilter_Left.c', 'ABPREP/roadEdgeKalmanFilter_Right.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ODPR',                    [ 'v1ODPRSEN.c', 'ODPFOP/ODPFOP.c', 'ODPOOP/ODPOOP.c', 'ODPOOK/ODPOOK.c',  'ODPOOS/ODPOOS.c', 'ODPFOH/ODPFOH.c', 'ODPFOH/objTraceKalmanFilter.c', 'ODPFOH/polyfitTgtObjectClothoid.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU',			[ 'LCFRCV/LCFRCVSEN_custom.c', 'LCFRCV/LCFRCVVEH_custom.c', 'LCFSND/LCFSNDSEN_custom.c', 'LCFSND/LCFSNDVEH_custom.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ALCASA',					[ 'ALCASASEN.c', 'LCRSIA/LCRSIA.c', 'LCRSMI/LCRSMI.c', 'LCRTTG/LCRTTG.c',  'LCRTVG/LCRTVG.c']],  
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU/LCFERR',	[ 'LCFERR_VehCustom.c', 'ERRIO_VehCustom.c', 'ERRIO_SenCustom.c', 'LCFERR_SenCustom.c']],
+               ['04_Engineering/01_Source_Code/LCF/LATDMC/latdmc_veh_ang',   [ 'DMC_Soc_Lat_SAC_Damping_Filter.c', 'DMC_Lat_Brake.c',  'DMC_Lat_DYC_Dynamic_Compensation_Filter.c',  'DMC_Lat_DYC_Dynamic_Compensation_Filter_data.c',  'DMC_Lat_LAT_Delta_F_Offset_Switch.c', 'DMC_Lat_LAT_Delta_F_Offset_Switch_data.c', 'DMC_Lat_LAT_Dmc_Status_Defintion.c',  'DMC_Lat_LAT_Kappa_Filter.c', 'DMC_Lat_LAT_Ldp_States.c','look1_ifbu16n6lf_binlc.c',  'DMC_Lat_SAC_Accuracy_Calculation.c',  'DMC_Lat_SAC_Angle_Command_Fading.c', 'DMC_Lat_SAC_Friction_Compensation.c',  'DMC_Lat_SAC_Yaw_Rate_Control.c',  'DMC_Lat_SAT_Angle_Command_Saturation.c',  'DMC_Lat_SAT_Angle_Command_Saturation_data.c',  'DMC_Lat_TDF_Torque_Derating_Function.c',  'DMC_Lat_TDF_Torque_Derating_Function_data.c',  'DMC_Long.c',  'DMC_Soc.c',  'DMC_Soc_data.c',  'DMC_Soc_Lat.c',  'DMC_Soc_Lat_data.c',  'DMC_Soc_Lat_LAT_Kinematic_Signals_Arbiter.c',  'DMC_Soc_Lat_LAT_Stiffness_Definition.c',  'DMC_Soc_Lat_Loop_Gain_Correction.c',  'DMC_Soc_Lat_MOT_Modulation_Torque.c',  'DMC_Soc_Lat_SAC_Proportional_Factor_Derating.c',  'DMC_Soc_Lat_SAC_Steer_Angle_Cmd_Controller.c',  'DMC_Soc_LAT_Yaw_Rate_Offset_Compensation.c',  'intrp1d_fu32fl.c',  'linsearch_u8f.c',  'look1_ifbu16n6lftu16n10DfIf_binlcs.c',  'look1_ifbu16n6lftu16n12dfif_binlcs.c',  'look1_ifbu16n6lftu16n5DfIf_binlcs.c',  'look1_ifbu16n6lftu16n9DfIf_binlcs.c',  'look1_iflf_binlc.c',  'look1_iflf_binlx.c',  'look1_iflfIs32_binlc.c',  'look1_is16lftf_binlc.c',  'look1_is16lfts16n10DfIf_binlcr.c', 'look1_ifbu16n10lftu16n10DfIf_binlcs.c', 'plook_u8ff_linc.c',  'rt_look1d32.c',  'rt_look32.c',  'rt_roundf.c',  'sde_memset.c']],
+               ['04_Engineering/01_Source_Code/LCF/TRJCTR',					[ 'TRJCTRVEH.c']],
+               ['04_Engineering/01_Source_Code/LCF/TJASA',					[ 'v1TJASASEN.c',  'TJASTM/TJASTM.c', 'TJATTG/TJATTG.c', 'TJATVG/TJATVG.c', 'TJAGEN/TJAGEN.c', 'TJALKA/TJALKA.c', 'TJAOBF/TJAOBF.c', 'TJACMB/TJACMB.c', 'TJACMB/fusionKalmanFilter.c']],
+			   ['04_Engineering/01_Source_Code/LCF/LDPSA',                  [ 'LDPSASEN.c', 'DPLSIA/DPLSIA.c', 'DPLSMI/DPLSMI.c', 'DPLSMW/DPLSMW.c', 'DPLTTG/DPLTTG.c', 'DPLTVG/DPLTVG.c']],
+               ['04_Engineering/01_Source_Code/LCF/RDPSA',					[ 'RDPSASEN.c', 'DPRSMW/DPRSMW.c', 'DPRSIA/DPRSIA.c', 'DPRSMI/DPRSMI.c', 'DPRTTG/DPRTTG.c', 'DPRTVG/DPRTVG.c']]]
+  
+  if product in ['mfc431va10']:
+      SOURCE += [['04_Engineering/00_Projects/$usedfrom/LCF/HMIOC/HMODFL',	[ 'HMODFL.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ABPR',					[ 'ABPLBP/ABPLBP.c', 'ABPLBP/polyfitLCF.c', 'ABPLBP/crvKalmanFilter.c', 'ABPLBP/laneKalmanFilter_Left.c', 'ABPLBP/laneKalmanFilter_Right.c', 'ABPLBP/laneKalmanFilter_Center.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU',			[ 'LCFRCV/LCFRCVSEN_custom.c', 'LCFRCV/LCFRCVVEH_custom.c', 'LCFSND/LCFSNDSEN_custom.c', 'LCFSND/LCFSNDVEH_custom.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU/LCFERR',	[ 'LCFERR_VehCustom.c', 'ERRIO_VehCustom.c', 'ERRIO_SenCustom.c', 'LCFERR_SenCustom.c']],
+               ['04_Engineering/01_Source_Code/LCF/LATDMC/latdmc_veh_ang',   [ 'DMC_Soc_Lat_SAC_Damping_Filter.c', 'DMC_Lat_Brake.c',  'DMC_Lat_DYC_Dynamic_Compensation_Filter.c',  'DMC_Lat_DYC_Dynamic_Compensation_Filter_data.c',  'DMC_Lat_LAT_Delta_F_Offset_Switch.c', 'DMC_Lat_LAT_Delta_F_Offset_Switch_data.c', 'DMC_Lat_LAT_Dmc_Status_Defintion.c',  'DMC_Lat_LAT_Kappa_Filter.c', 'DMC_Lat_LAT_Ldp_States.c','look1_ifbu16n6lf_binlc.c',  'DMC_Lat_SAC_Accuracy_Calculation.c',  'DMC_Lat_SAC_Angle_Command_Fading.c', 'DMC_Lat_SAC_Friction_Compensation.c',  'DMC_Lat_SAC_Yaw_Rate_Control.c',  'DMC_Lat_SAT_Angle_Command_Saturation.c',  'DMC_Lat_SAT_Angle_Command_Saturation_data.c',  'DMC_Lat_TDF_Torque_Derating_Function.c',  'DMC_Lat_TDF_Torque_Derating_Function_data.c',  'DMC_Long.c',  'DMC_Soc.c',  'DMC_Soc_data.c',  'DMC_Soc_Lat.c',  'DMC_Soc_Lat_data.c',  'DMC_Soc_Lat_LAT_Kinematic_Signals_Arbiter.c',  'DMC_Soc_Lat_LAT_Stiffness_Definition.c',  'DMC_Soc_Lat_Loop_Gain_Correction.c',  'DMC_Soc_Lat_MOT_Modulation_Torque.c',  'DMC_Soc_Lat_SAC_Proportional_Factor_Derating.c',  'DMC_Soc_Lat_SAC_Steer_Angle_Cmd_Controller.c',  'DMC_Soc_LAT_Yaw_Rate_Offset_Compensation.c',  'intrp1d_fu32fl.c',  'linsearch_u8f.c',  'look1_ifbu16n6lftu16n10DfIf_binlcs.c',  'look1_ifbu16n6lftu16n12dfif_binlcs.c',  'look1_ifbu16n6lftu16n5DfIf_binlcs.c',  'look1_ifbu16n6lftu16n9DfIf_binlcs.c',  'look1_iflf_binlc.c',  'look1_iflf_binlx.c',  'look1_iflfIs32_binlc.c',  'look1_is16lftf_binlc.c',  'look1_is16lfts16n10DfIf_binlcr.c', 'look1_ifbu16n10lftu16n10DfIf_binlcs.c', 'plook_u8ff_linc.c',  'rt_look1d32.c',  'rt_look32.c',  'rt_roundf.c',  'sde_memset.c']],
+               ['04_Engineering/01_Source_Code/LCF/TRJCTR',					[ 'TRJCTRVEH.c']],
+			   ['04_Engineering/01_Source_Code/LCF/LDPSA',                  [ 'v1LDPSASEN.c', 'DPLSIA/DPLSIA.c', 'DPLSMW/DPLSMW.c']],
+               ['04_Engineering/01_Source_Code/LCF/TJASA',					[ 'v2TJASASEN.c',  'TJASTM/TJASTM.c', 'TJATTG/TJATTG.c', 'TJATVG/TJATVG.c', 'TJAGEN/TJAGEN.c', 'TJALKA/TJALKA.c']]]
+  if product in ['mfc431va21']:
+      SOURCE += [['04_Engineering/00_Projects/$usedfrom/LCF/HMIOC/HMODFL',	[ 'HMODFL.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ABPR',					[ 'ABPLBP/ABPLBP.c', 'ABPLBP/polyfitLCF.c', 'ABPLBP/crvKalmanFilter.c', 'ABPLBP/laneKalmanFilter_Left.c', 'ABPLBP/laneKalmanFilter_Right.c', 'ABPLBP/laneKalmanFilter_Center.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU',			[ 'LCFRCV/LCFRCVSEN_custom.c', 'LCFRCV/LCFRCVVEH_custom.c', 'LCFSND/LCFSNDSEN_custom.c', 'LCFSND/LCFSNDVEH_custom.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU/LCFERR',	[ 'LCFERR_VehCustom.c', 'ERRIO_VehCustom.c', 'ERRIO_SenCustom.c', 'LCFERR_SenCustom.c']],
+               ['04_Engineering/01_Source_Code/LCF/LATDMC/latdmc_veh_ang',   [ 'DMC_Soc_Lat_SAC_Damping_Filter.c', 'DMC_Lat_Brake.c',  'DMC_Lat_DYC_Dynamic_Compensation_Filter.c',  'DMC_Lat_DYC_Dynamic_Compensation_Filter_data.c',  'DMC_Lat_LAT_Delta_F_Offset_Switch.c', 'DMC_Lat_LAT_Delta_F_Offset_Switch_data.c', 'DMC_Lat_LAT_Dmc_Status_Defintion.c',  'DMC_Lat_LAT_Kappa_Filter.c', 'DMC_Lat_LAT_Ldp_States.c','look1_ifbu16n6lf_binlc.c',  'DMC_Lat_SAC_Accuracy_Calculation.c',  'DMC_Lat_SAC_Angle_Command_Fading.c', 'DMC_Lat_SAC_Friction_Compensation.c',  'DMC_Lat_SAC_Yaw_Rate_Control.c',  'DMC_Lat_SAT_Angle_Command_Saturation.c',  'DMC_Lat_SAT_Angle_Command_Saturation_data.c',  'DMC_Lat_TDF_Torque_Derating_Function.c',  'DMC_Lat_TDF_Torque_Derating_Function_data.c',  'DMC_Long.c',  'DMC_Soc.c',  'DMC_Soc_data.c',  'DMC_Soc_Lat.c',  'DMC_Soc_Lat_data.c',  'DMC_Soc_Lat_LAT_Kinematic_Signals_Arbiter.c',  'DMC_Soc_Lat_LAT_Stiffness_Definition.c',  'DMC_Soc_Lat_Loop_Gain_Correction.c',  'DMC_Soc_Lat_MOT_Modulation_Torque.c',  'DMC_Soc_Lat_SAC_Proportional_Factor_Derating.c',  'DMC_Soc_Lat_SAC_Steer_Angle_Cmd_Controller.c',  'DMC_Soc_LAT_Yaw_Rate_Offset_Compensation.c',  'intrp1d_fu32fl.c',  'linsearch_u8f.c',  'look1_ifbu16n6lftu16n10DfIf_binlcs.c',  'look1_ifbu16n6lftu16n12dfif_binlcs.c',  'look1_ifbu16n6lftu16n5DfIf_binlcs.c',  'look1_ifbu16n6lftu16n9DfIf_binlcs.c',  'look1_iflf_binlc.c',  'look1_iflf_binlx.c',  'look1_iflfIs32_binlc.c',  'look1_is16lftf_binlc.c',  'look1_is16lfts16n10DfIf_binlcr.c', 'look1_ifbu16n10lftu16n10DfIf_binlcs.c', 'plook_u8ff_linc.c',  'rt_look1d32.c',  'rt_look32.c',  'rt_roundf.c',  'sde_memset.c']],
+               ['04_Engineering/01_Source_Code/LCF/TRJCTR',					[ 'TRJCTRVEH.c']],
+			   ['04_Engineering/01_Source_Code/LCF/LDPSA',                  [ 'LDPSASEN.c', 'DPLSIA/DPLSIA.c', 'DPLSMI/DPLSMI.c', 'DPLSMW/DPLSMW.c', 'DPLTTG/DPLTTG.c', 'DPLTVG/DPLTVG.c']],
+               ['04_Engineering/01_Source_Code/LCF/TJASA',					[ 'v2TJASASEN.c',  'TJASTM/TJASTM.c', 'TJATTG/TJATTG.c', 'TJATVG/TJATVG.c', 'TJAGEN/TJAGEN.c', 'TJALKA/TJALKA.c']]]		   
+  if product in ['mfc431sc19']:
+    SOURCE += [['04_Engineering/00_Projects/$usedfrom/LCF/HMIOC/HMOSAC',	[ 'HMOSAC.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/SAICSCT/SSCCTR',	[ 'SSCCTR.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ABPR',					[ 'v1ABPRSEN.c', 'ABPLBP/ABPLBP.c', 'ABPREP/ABPREP.c', 'ABPLBP/polyfitLCF.c', 'ABPLBP/crvKalmanFilter.c', 'ABPLBP/laneKalmanFilter_Left.c', 'ABPLBP/laneKalmanFilter_Right.c', 'ABPLBP/laneKalmanFilter_Center.c', 'ABPREP/roadEdgeKalmanFilter_Left.c', 'ABPREP/roadEdgeKalmanFilter_Right.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ODPR',                    [ 'v1ODPRSEN.c', 'ODPFOP/ODPFOP.c', 'ODPOOP/ODPOOP.c', 'ODPOOK/ODPOOK.c',  'ODPOOS/ODPOOS.c', 'ODPFOH/ODPFOH.c', 'ODPFOH/objTraceKalmanFilter.c', 'ODPFOH/polyfitTgtObjectClothoid.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU',			[ 'LCFRCV/LCFRCVSEN_custom.c', 'LCFRCV/LCFRCVVEH_custom.c', 'LCFSND/LCFSNDSEN_custom.c', 'LCFSND/LCFSNDVEH_custom.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU/LCFERR',	[ 'LCFERR_VehCustom.c', 'ERRIO_VehCustom.c', 'ERRIO_SenCustom.c', 'LCFERR_SenCustom.c']],
+               ['04_Engineering/01_Source_Code/LCF/LATDMC/latdmc_veh_strq', [ 'DMC_Soc_Lat_SAC_Damping_Filter.c', 'dmc_const.c', 'DMC_Lat_Brake.c', 'DMC_Lat_DYC_Dynamic_Compensation_Filter.c', 'DMC_Lat_DYC_Dynamic_Compensation_Filter_data.c', 'DMC_Lat_LAT_Delta_F_Offset_Switch.c', 'DMC_Lat_LAT_Delta_F_Offset_Switch_data.c', 'dmc_lat_lat_dmc_status_defintion.c', 'DMC_Lat_LAT_Dmc_Status_Filter.c', 'DMC_Lat_LAT_Kappa_Filter.c', 'DMC_Lat_LAT_Ldp_States.c', 'DMC_Lat_SAC_Accuracy_Calculation.c', 'DMC_Lat_SAC_Angle_Command_Fading.c', 'DMC_Lat_SAC_Friction_Compensation.c', 'DMC_Lat_SAC_Yaw_Rate_Control.c', 'DMC_Lat_SAT_Angle_Command_Saturation.c', 'DMC_Lat_SAT_Angle_Command_Saturation_data.c', 'DMC_Lat_TDF_Torque_Derating_Function_Disabled.c', 'DMC_Long.c', 'DMC_Soc.c', 'DMC_Soc_data.c', 'DMC_Soc_Lat.c', 'DMC_Soc_Lat_data.c', 'DMC_Soc_Lat_LAT_Kinematic_Signals_Arbiter.c', 'DMC_Soc_Lat_LAT_Stiffness_Definition.c', 'DMC_Soc_Lat_Loop_Gain_Correction.c', 'DMC_Soc_Lat_MOT_Modulation_Torque.c', 'DMC_Soc_Lat_SAC_Proportional_Factor_Derating.c', 'DMC_Soc_Lat_SAC_Steer_Angle_Cmd_Controller.c', 'DMC_Soc_LAT_Yaw_Rate_Offset_Compensation.c', 'intrp1d_fu32fl.c', 'intrp1d_fu8fl.c', 'linsearch_u8f.c', 'look1_ifbu16n10lftu16n10DfIf_binlcs.c', 'look1_ifbu16n6lf_binlc.c', 'look1_ifbu16n6lftu16n10DfIf_binlcs.c', 'look1_ifbu16n6lftu16n12dfif_binlcs.c', 'look1_ifbu16n6lftu16n5DfIf_binlcs.c', 'look1_ifbu16n6lftu16n9DfIf_binlcs.c', 'look1_iflf_binlc.c', 'look1_iflf_binlx.c', 'look1_iflfIs32_binlc.c', 'look1_is16lftf_binlc.c', 'look1_is16lfts16n10DfIf_binlcr.c', 'plook_u8ff_linc.c', 'rt_look1d32.c', 'rt_look32.c', 'rt_roundf.c', 'sde_memset.c']],
+               ['04_Engineering/01_Source_Code/LCF/TRJCTR',					[ 'TRJCTRVEH.c']],
+               ['04_Engineering/01_Source_Code/LCF/TJASA',					[ 'v1TJASASEN.c',  'TJASTM/TJASTM.c', 'TJATTG/TJATTG.c', 'TJATVG/TJATVG.c', 'TJAGEN/TJAGEN.c', 'TJALKA/TJALKA.c', 'TJAOBF/TJAOBF.c', 'TJACMB/TJACMB.c', 'TJACMB/fusionKalmanFilter.c']],
+			   ['04_Engineering/01_Source_Code/LCF/LDPSA',                  [ 'LDPSASEN.c', 'DPLSIA/DPLSIA.c', 'DPLSMI/DPLSMI.c', 'DPLSMW/DPLSMW.c', 'DPLTTG/DPLTTG.c', 'DPLTVG/DPLTVG.c']],
+               ['04_Engineering/01_Source_Code/LCF/RDPSA',					[ 'v1RDPSASEN.c', 'DPRSIA/DPRSIA.c', 'DPRSMI/DPRSMI.c', 'DPRTTG/DPRTTG.c', 'DPRTVG/DPRTVG.c']]]
+  if product in ['mfc431bd10']:
+    SOURCE += [['04_Engineering/00_Projects/$usedfrom/LCF/HMIOC/HMOBYD',	[ 'HMOBYD.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/BYDSCT/BSCCTR',	[ 'BSCCTR.c']],
+	          ['04_Engineering/01_Source_Code/LCF/ABPR',					[ 'v1ABPRSEN.c', 'ABPLBP/ABPLBP.c', 'ABPREP/ABPREP.c', 'ABPLBP/polyfitLCF.c', 'ABPLBP/crvKalmanFilter.c', 'ABPLBP/laneKalmanFilter_Left.c', 'ABPLBP/laneKalmanFilter_Right.c', 'ABPLBP/laneKalmanFilter_Center.c', 'ABPREP/roadEdgeKalmanFilter_Left.c', 'ABPREP/roadEdgeKalmanFilter_Right.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ODPR',                    [ 'v2ODPRSEN.c', 'ODPFOP/ODPFOP.c', 'ODPFOH/ODPFOH.c','ODPFOH/objTraceKalmanFilter.c', 'ODPFOH/polyfitTgtObjectClothoid.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU',			[ 'LCFRCV/LCFRCVSEN_custom.c', 'LCFRCV/LCFRCVVEH_custom.c', 'LCFSND/LCFSNDSEN_custom.c', 'LCFSND/LCFSNDVEH_custom.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU/LCFERR',	[ 'LCFERR_VehCustom.c', 'ERRIO_VehCustom.c', 'ERRIO_SenCustom.c', 'LCFERR_SenCustom.c']],
+               ['04_Engineering/01_Source_Code/LCF/LATDMC/latdmc_veh',      ['DMC_Soc_Lat_SAC_Damping_Filter.c', 'dmc_lat_brake.c', 'dmc_lat_dyc_dynamic_compensation_filter.c', 'dmc_lat_dyc_dynamic_compensation_filter_data.c', 'DMC_Lat_LAT_Delta_F_Offset_Switch.c', 'DMC_Lat_LAT_Delta_F_Offset_Switch_data.c', 'DMC_Lat_LAT_Dmc_Status_Filter.c', 'DMC_Lat_LAT_Kappa_Filter.c', 'DMC_Lat_LAT_Ldp_States.c', 'DMC_Lat_SAC_Accuracy_Calculation.c', 'dmc_lat_sac_angle_command_fading.c', 'dmc_lat_sac_friction_compensation.c', 'dmc_lat_sac_yaw_rate_control.c', 'DMC_Lat_SAT_Angle_Command_Saturation.c', 'DMC_Lat_SAT_Angle_Command_Saturation_data.c', 'DMC_Lat_TDF_Torque_Derating_Function_Disabled.c', 'dmc_long.c', 'DMC_Soc.c', 'DMC_Soc_data.c', 'DMC_Soc_Lat.c', 'DMC_Soc_Lat_data.c', 'DMC_Soc_Lat_LAT_Kinematic_Signals_Arbiter.c', 'DMC_Soc_Lat_LAT_Stiffness_Definition.c', 'DMC_Soc_Lat_Loop_Gain_Correction.c', 'DMC_Soc_Lat_MOT_Modulation_Torque.c', 'DMC_Soc_Lat_SAC_Proportional_Factor_Derating.c', 'DMC_Soc_Lat_SAC_Steer_Angle_Cmd_Controller.c', 'DMC_Soc_LAT_Yaw_Rate_Offset_Compensation.c', 'intrp1d_fu32fl.c', 'linsearch_u8f.c', 'look1_ifbu16n10lftu16n10DfIf_binlcs.c', 'look1_ifbu16n6lf_binlc.c', 'look1_ifbu16n6lftu16n10DfIf_binlcs.c', 'look1_ifbu16n6lftu16n12dfif_binlcs.c', 'look1_ifbu16n6lftu16n5DfIf_binlcs.c', 'look1_ifbu16n6lftu16n9DfIf_binlcs.c', 'look1_iflf_binlc.c', 'look1_iflf_binlx.c', 'look1_iflfIs32_binlc.c', 'look1_is16lftf_binlc.c', 'look1_is16lfts16n10DfIf_binlcr.c', 'plook_u8ff_linc.c', 'rt_look1d32.c', 'rt_look32.c', 'rt_roundf.c', 'sde_memset.c']],
+               ['04_Engineering/01_Source_Code/LCF/TRJCTR',					[ 'TRJCTRVEH.c']],
+               ['04_Engineering/01_Source_Code/LCF/TJASA',					[ 'v1TJASASEN.c', 'TJASTM/TJASTM.c', 'TJATTG/TJATTG.c', 'TJATVG/TJATVG.c', 'TJAGEN/TJAGEN.c', 'TJALKA/TJALKA.c', 'TJAOBF/TJAOBF.c', 'TJACMB/TJACMB.c', 'TJACMB/fusionKalmanFilter.c']],
+			   ['04_Engineering/01_Source_Code/LCF/LDPSA',                  [ 'LDPSASEN.c', 'DPLSIA/DPLSIA.c', 'DPLSMI/DPLSMI.c', 'DPLSMW/DPLSMW.c', 'DPLTTG/DPLTTG.c', 'DPLTVG/DPLTVG.c']],
+               ['04_Engineering/01_Source_Code/LCF/RDPSA',					[ 'RDPSASEN.c', 'DPRSMW/DPRSMW.c', 'DPRSIA/DPRSIA.c', 'DPRSMI/DPRSMI.c', 'DPRTTG/DPRTTG.c', 'DPRTVG/DPRTVG.c']]]
+	       
+  if product not in ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19', 'mfc431sw19', 'mfc431va10', 'mfc431va21', 'mfc431bd10']:
+    SOURCE += [['04_Engineering/00_Projects/$usedfrom/LCF/LCF_DPU/LCFERR',	[ 'LCFERR_VehCustom.c', 'ERRIO_VehCustom.c', 'ERRIO_SenCustom.c', 'LCFERR_SenCustom.c']],
+               ['04_Engineering/00_Projects/$usedfrom/LCF/HMIOC/HMORQG',	[ 'HMORQG.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ABPR',					[ 'ABPRSEN.c', 'ABPALP/ABPALP.c', 'ABPLBP/ABPLBP.c', 'ABPREP/ABPREP.c', 'ABPLBP/polyfitLCF.c', 'ABPLBP/crvKalmanFilter.c', 'ABPLBP/laneKalmanFilter_Left.c', 'ABPLBP/laneKalmanFilter_Right.c', 'ABPLBP/laneKalmanFilter_Center.c', 'ABPREP/roadEdgeKalmanFilter_Left.c', 'ABPREP/roadEdgeKalmanFilter_Right.c']],
+			   ['04_Engineering/01_Source_Code/LCF/ODPR',                    [ 'ODPRSEN.c', 'ODPFOP/ODPFOP.c', 'ODPOOP/ODPOOP.c', 'ODPOOK/ODPOOK.c',  'ODPOOS/ODPOOS.c', 'ODPFOH/ODPFOH.c', 'ODPILE/ODPILE.c', 'ODPFOH/objTraceKalmanFilter.c', 'ODPFOH/polyfitTgtObjectClothoid.c']],
+               ['04_Engineering/01_Source_Code/LCF/ALCASA',					[ 'ALCASASEN.c', 'LCRSIA/LCRSIA.c', 'LCRSMI/LCRSMI.c', 'LCRTTG/LCRTTG.c',  'LCRTVG/LCRTVG.c']],
+               ['04_Engineering/01_Source_Code/LCF/LDPOCSA',				[ 'LDPOCSASEN.c', 'DPODOO/DPODOO.c', 'DPOSIA/DPOSIA.c', 'DPOTTG/DPOTTG.c', 'DPOTVG/DPOTVG.c', 'DPOCND/DPOCND.c', 'DPOSMI/DPOSMI.c', 'DPOSMW/DPOSMW.c']],
+               ['04_Engineering/01_Source_Code/LCF/RDPSA',					[ 'RDPSASEN.c', 'DPRSMW/DPRSMW.c', 'DPRSIA/DPRSIA.c', 'DPRSMI/DPRSMI.c', 'DPRTTG/DPRTTG.c', 'DPRTVG/DPRTVG.c']],
+               ['04_Engineering/01_Source_Code/LCF/TJASA',					[ 'TJASASEN.c', 'TJASLC/TJASLC.c',  'TJASTM/TJASTM.c', 'TJATTG/TJATTG.c', 'TJATVG/TJATVG.c', 'TJAGEN/TJAGEN.c', 'TJALKA/TJALKA.c', 'TJAOBF/TJAOBF.c', 'TJACMB/TJACMB.c', 'TJACMB/fusionKalmanFilter.c']],
+			   ['04_Engineering/01_Source_Code/LCF/LDPSA',                  [ 'LDPSASEN.c', 'DPLSIA/DPLSIA.c', 'DPLSMI/DPLSMI.c', 'DPLSMW/DPLSMW.c', 'DPLTTG/DPLTTG.c', 'DPLTVG/DPLTVG.c']],
+               ['04_Engineering/01_Source_Code/LCF/LATDMC/latdmc_veh',      ['DMC_Soc_Lat_SAC_Damping_Filter.c', 'dmc_lat_brake.c', 'dmc_lat_dyc_dynamic_compensation_filter.c', 'dmc_lat_dyc_dynamic_compensation_filter_data.c', 'DMC_Lat_LAT_Delta_F_Offset_Switch.c', 'DMC_Lat_LAT_Delta_F_Offset_Switch_data.c', 'DMC_Lat_LAT_Dmc_Status_Filter.c', 'DMC_Lat_LAT_Kappa_Filter.c', 'DMC_Lat_LAT_Ldp_States.c', 'DMC_Lat_SAC_Accuracy_Calculation.c', 'dmc_lat_sac_angle_command_fading.c', 'dmc_lat_sac_friction_compensation.c', 'dmc_lat_sac_yaw_rate_control.c', 'DMC_Lat_SAT_Angle_Command_Saturation.c', 'DMC_Lat_SAT_Angle_Command_Saturation_data.c', 'DMC_Lat_TDF_Torque_Derating_Function_Disabled.c', 'dmc_long.c', 'DMC_Soc.c', 'DMC_Soc_data.c', 'DMC_Soc_Lat.c', 'DMC_Soc_Lat_data.c', 'DMC_Soc_Lat_LAT_Kinematic_Signals_Arbiter.c', 'DMC_Soc_Lat_LAT_Stiffness_Definition.c', 'DMC_Soc_Lat_Loop_Gain_Correction.c', 'DMC_Soc_Lat_MOT_Modulation_Torque.c', 'DMC_Soc_Lat_SAC_Proportional_Factor_Derating.c', 'DMC_Soc_Lat_SAC_Steer_Angle_Cmd_Controller.c', 'DMC_Soc_LAT_Yaw_Rate_Offset_Compensation.c', 'intrp1d_fu32fl.c', 'linsearch_u8f.c', 'look1_ifbu16n10lftu16n10DfIf_binlcs.c', 'look1_ifbu16n6lf_binlc.c', 'look1_ifbu16n6lftu16n10DfIf_binlcs.c', 'look1_ifbu16n6lftu16n12dfif_binlcs.c', 'look1_ifbu16n6lftu16n5DfIf_binlcs.c', 'look1_ifbu16n6lftu16n9DfIf_binlcs.c', 'look1_iflf_binlc.c', 'look1_iflf_binlx.c', 'look1_iflfIs32_binlc.c', 'look1_is16lftf_binlc.c', 'look1_is16lfts16n10DfIf_binlcr.c', 'plook_u8ff_linc.c', 'rt_look1d32.c', 'rt_look32.c', 'rt_roundf.c', 'sde_memset.c']],
+               ['04_Engineering/01_Source_Code/LCF/TRJCTR',					[ 'v1TRJCTRVEH.c', 'TCTDEV/TCTDEV.c']]]
+
+################# Component FORCE_APPL_PRJ_INC #################
+class FORCE_APPL_PRJ_INC(Component):
+  INCLUDE = ['04_Engineering/00_Projects/' + product]
+
+Components = [
+   FORCE_APPL_PRJ_INC(),
+   DPUCOMMON(),
+   DPURTE(),
+   DPUALGO(),
+   DPUFF(),
+   DPUSERVICE(),
+   DPUINFRA(),
+   DPUMISC(),
+   DPUCOM(),
+   DPUHWIF(),
+   DPUST(),
+   CCT(),
+   GEN(),
+   GS(),
+   GSM(),
+   CML(),
+   LSD(),
+   PDM(),
+   PFC(),
+   CIPP(),
+   FAMO(),
+   FAMO_reduced(),
+   LD(),
+   ECM(),
+   CB(),
+   LCF(),
+   SYS()
+  ]
+
+includePath = ""
+
+for i in Components:
+   includePath += i.AddComp()
+
+
+setIncludePath(includePath)
+addCompilerDefine('CORE_DSP_0')
+
+
+if CFG_LOAD_GEN:
+    addCompilerDefine('C66X1')
+
+if unit_test_only == False:
+  compile('dsp_0')
+
+includePathPDO = ""
+launchDir = GetLaunchDir().replace('\\', '/')
+includePathPDO += "\""+launchDir+"/04_Engineering/04_Build/tools/bios/packages/gnu/targets/arm/libs/install-native/arm-none-eabi/include\",\n"
+includePathPDO += "\"C:/tools/gcc_arm/4.7_2012q4/lib/gcc/arm-none-eabi/4.7.3/include\",\n"
+includePathPDO += "\""+launchDir+"/04_Engineering/04_Build/out/"+product+"\",\n"
+includePathPDO += "\",\n".join([ "\""+launchDir+"/"+Path  for Path       in includePath.split()])+"\";"
+outpath = launchDir+'/04_Engineering/04_Build/out/' +  product + '/release_dsp_0'
+with open(outpath+'/dsp_0_include_list.cfg', 'w+') as f:
+	f.write("sys_include_dirs = %s" % includePathPDO)

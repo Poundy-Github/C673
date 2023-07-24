@@ -1,0 +1,903 @@
+******************************************************************************
+                  TI ARM Linker PC v5.2.5                      
+******************************************************************************
+>> Linked Fri Feb 02 14:10:18 2018
+
+OUTPUT FILE NAME:   <flash-writer_vh.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 80517934
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  IRAM_MEM              40300000   0001c000  00000000  0001c000  RWIX
+  MMU_TLB               4031c000   00004000  00000000  00004000  RWIX
+  DDR3_A8               80500000   00100000  00021740  000de8c0  RWIX
+  DDR_SDFBUFF           82000000   02000000  02000000  00000000  RWIX
+  DDR3_DSP              8b000000   02000000  00000000  02000000  RWIX
+  DDR3_M3VPSS           8d000000   01000000  00000000  01000000  RWIX
+  DDR3_M3VIDEO          8e000000   01000000  00000000  01000000  RWIX
+  DDR3_SR0              8f000000   01000000  00000000  01000000  RWIX
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+80500000    80500000    00010308   00000000    rw-
+  80500000    80500000    00010308   00000000    rw- .bss
+80510308    80510308    00007d84   00007d84    r-x
+  80510308    80510308    00007d84   00007d84    r-x .text
+8051808c    8051808c    00004000   00000000    rw-
+  8051808c    8051808c    00004000   00000000    rw- .stack
+8051c090    8051c090    00004000   00000000    rw-
+  8051c090    8051c090    00004000   00000000    rw- .sysmem
+80520090    80520090    00000c2c   00000c2c    r--
+  80520090    80520090    00000c2c   00000c2c    r-- .const
+80520cc0    80520cc0    00000524   00000000    rw-
+  80520cc0    80520cc0    00000524   00000000    rw- .data
+805211e4    805211e4    000002bc   000002bc    r--
+  805211e4    805211e4    000002bc   000002bc    r-- .rodata
+805214a0    805214a0    000002a8   000002a8    r--
+  805214a0    805214a0    000002a8   000002a8    r-- .cinit
+82000000    82000000    02000000   00000000    rw-
+  82000000    82000000    02000000   00000000    rw- sdfbuff
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.bss       0    80500000    00010308     UNINITIALIZED
+                  80500000    00010000     main.obj (.bss:buffer)
+                  80510000    0000013c     qspiflash_driver.obj (.bss:gQspiFlashDevInfo)
+                  8051013c    00000120     rtsv7A8_A_le_v3_eabi.lib : trgmsg.obj (.bss:__CIOBUF_)
+                  8051025c    000000a0                              : defs.obj (.bss:__TI_tmpnams)
+                  805102fc    00000008     (.common:parmbuf)
+                  80510304    00000004     starterware_hal.aa15fg : edma.oa15fg (.bss.regionId)
+
+.TI.noinit 
+*          0    80500000    00000000     UNINITIALIZED
+
+.text      0    80510308    00007d84     
+                  80510308    000018d0     rtsv7A8_A_le_v3_eabi.lib : _printfi.obj (.text)
+                  80511bd8    00000f90     platform_tda2xx_pad_config.obj (.text)
+                  80512b68    00000cec     qspiflash_driver.obj (.text)
+                  80513854    00000c64     qspi_cmd_init.obj (.text)
+                  805144b8    0000063c     rtsv7A8_A_le_v3_eabi.lib : memory.obj (.text)
+                  80514af4    00000548                              : lowlev.obj (.text)
+                  8051503c    000004cc                              : trgdrv.obj (.text)
+                  80515508    00000400     main.obj (.text)
+                  80515908    000002d4     rtsv7A8_A_le_v3_eabi.lib : fopen.obj (.text)
+                  80515bdc    000002b8                              : ull_div32.obj (.text)
+                  80515e94    00000254     platform.obj (.text)
+                  805160e8    00000204     DiskToRAMSpeedup.obj (.text)
+                  805162ec    000001c8     rtsv7A8_A_le_v3_eabi.lib : fputs.obj (.text)
+                  805164b4    000001bc     qspi.obj (.text)
+                  80516670    000001a8     rtsv7A8_A_le_v3_eabi.lib : xdscale.obj (.text)
+                  80516818    00000180                              : memcpy32.obj (.text)
+                  80516998    00000160                              : xdnorm.obj (.text)
+                  80516af8    00000158                              : setvbuf.obj (.text)
+                  80516c50    00000130                              : fflush.obj (.text)
+                  80516d80    00000118                              : _io_perm.obj (.text)
+                  80516e98    00000114                              : i_div32.obj (.text)
+                  80516fac    00000100                              : fputc.obj (.text)
+                  805170ac    000000fc                              : fclose.obj (.text)
+                  805171a8    000000f0                              : u_div32.obj (.text)
+                  80517298    000000b8                              : xdunscal.obj (.text)
+                  80517350    000000b0                              : memset32.obj (.text)
+                  80517400    000000a8                              : fseek.obj (.text)
+                  805174a8    000000a4                              : autoinit.obj (.text)
+                  8051754c    000000a4                              : printf.obj (.text)
+                  805175f0    000000a4                              : trgmsg.obj (.text)
+                  80517694    000000a0                              : copy_decompress_rle.obj (.text)
+                  80517734    00000084                              : atoi.obj (.text)
+                  805177b8    00000084                              : cpy_tbl.obj (.text)
+                  8051783c    00000080                              : ltoa.obj (.text)
+                  805178bc    00000078                              : exit.obj (.text)
+                  80517934    0000006c                              : boot.obj (.text)
+                  805179a0    00000068                              : ldexp.obj (.text)
+                  80517a08    00000064                              : signal.obj (.text)
+                  80517a6c    00000058                              : feraiseexcept.obj (.text)
+                  80517ac4    0000004c                              : raise.obj (.text)
+                  80517b10    00000048                              : strncpy.obj (.text)
+                  80517b58    00000048                              : xdclass.obj (.text)
+                  80517ba0    00000044                              : xferaise.obj (.text)
+                  80517be4    00000034                              : memcmp.obj (.text)
+                  80517c18    00000030                              : frexp.obj (.text)
+                  80517c48    0000002c                              : memccpy.obj (.text)
+                  80517c74    0000002c                              : memchr.obj (.text)
+                  80517ca0    00000028                              : strchr.obj (.text)
+                  80517cc8    00000028                              : strcmp.obj (.text)
+                  80517cf0    00000024                              : _lock.obj (.text)
+                  80517d14    00000020                              : args_main.obj (.text)
+                  80517d34    0000001c                              : strlen.obj (.text)
+                  80517d50    00000018                              : strcpy.obj (.text)
+                  80517d68    00000014                              : copy_decompress_none.obj (.text:decompress:none)
+                  80517d7c    00000010                              : copy_zero_init.obj (.text:decompress:ZI)
+                  80517d8c    00000008                              : copy_decompress_rle.obj (.text:decompress:rle24)
+                  80517d94    00000008                              : pre_init.obj (.text)
+                  80517d9c    00000004                              : i_div0.obj (.text)
+                  80517da0    000000b0     starterware_pm_hal.aa15fg : pmhal_cm.oa15fg (.text.PMHALCMSetCdClockMode)
+                  80517e50    00000094     starterware_hal.aa15fg : edma.oa15fg (.text.EDMA3EnableTransfer)
+                  80517ee4    0000005c                            : edma.oa15fg (.text.EDMA3ClrMissEvt)
+                  80517f40    00000058                            : edma.oa15fg (.text.EDMA3ClrIntr)
+                  80517f98    00000058                            : edma.oa15fg (.text.EDMA3EnableDmaEvt)
+                  80517ff0    00000058                            : edma.oa15fg (.text.EDMA3SetEvt)
+                  80518048    00000024                            : edma.oa15fg (.text.EDMA3SetPaRAM)
+                  8051806c    00000020                            : edma.oa15fg (.text.EDMA3GetIntrStatus)
+
+.stack     0    8051808c    00004000     UNINITIALIZED
+                  8051808c    00004000     --HOLE--
+
+.sysmem    0    8051c090    00004000     UNINITIALIZED
+                  8051c090    00000008     rtsv7A8_A_le_v3_eabi.lib : memory.obj (.sysmem)
+                  8051c098    00003ff8     --HOLE--
+
+.const     0    80520090    00000c2c     
+                  80520090    00000258     platform_tda2xx_pad_config.obj (.const:$P$T0$1)
+                  805202e8    00000150     platform_tda2xx_pad_config.obj (.const:$P$T4$5)
+                  80520438    00000150     platform_tda2xx_pad_config.obj (.const:$P$T5$6)
+                  80520588    00000150     platform_tda2xx_pad_config.obj (.const:$P$T6$7)
+                  805206d8    00000101     rtsv7A8_A_le_v3_eabi.lib : ctype.obj (.const:.string:_ctypes_)
+                  805207d9    00000003     --HOLE-- [fill = 0]
+                  805207dc    000000f0     platform_tda2xx_pad_config.obj (.const)
+                  805208cc    000000a8     platform_tda2xx_pad_config.obj (.const:$P$T7$8)
+                  80520974    000000a8     platform_tda2xx_pad_config.obj (.const:$P$T8$9)
+                  80520a1c    00000078     platform_tda2xx_pad_config.obj (.const:$P$T17$18)
+                  80520a94    0000006c     platform_tda2xx_pad_config.obj (.const:$P$T1$2)
+                  80520b00    00000054     platform_tda2xx_pad_config.obj (.const:$P$T9$10)
+                  80520b54    00000048     platform_tda2xx_pad_config.obj (.const:$P$T16$17)
+                  80520b9c    00000048     platform_tda2xx_pad_config.obj (.const:$P$T18$19)
+                  80520be4    00000048     platform_tda2xx_pad_config.obj (.const:$P$T19$20)
+                  80520c2c    00000048     platform_tda2xx_pad_config.obj (.const:$P$T2$3)
+                  80520c74    00000030     platform_tda2xx_pad_config.obj (.const:$P$T14$15)
+                  80520ca4    0000000c     qspi_cmd_init.obj (.const)
+                  80520cb0    0000000c     qspiflash_driver.obj (.const)
+
+.data      0    80520cc0    00000524     UNINITIALIZED
+                  80520cc0    000000f0     rtsv7A8_A_le_v3_eabi.lib : defs.obj (.data:_ftable)
+                  80520db0    000000d0                              : lowlev.obj (.data)
+                  80520e80    000000b0                              : signal.obj (.data:sigtable)
+                  80520f30    00000080                              : xvalues.obj (.data)
+                  80520fb0    00000024     qspiflash_driver.obj (.data:jedecIdCmd)
+                  80520fd4    00000010     DiskToRAMSpeedup.obj (.data)
+                  80520fe4    00000010     rtsv7A8_A_le_v3_eabi.lib : defs.obj (.data)
+                  80520ff4    0000000c                              : memory.obj (.data)
+                  80521000    00000008                              : _lock.obj (.data)
+                  80521008    00000008                              : exit.obj (.data)
+                  80521010    00000008                              : feraiseexcept.obj (.data)
+                  80521018    00000004     qspiflash_driver.obj (.data)
+                  8052101c    00000004     rtsv7A8_A_le_v3_eabi.lib : errno.obj (.data)
+                  80521020    00000004                              : fopen.obj (.data)
+                  80521024    00000004                              : stkdepth_vars.obj (.data)
+                  80521028    00000040     starterware_pm_hal.aa15fg : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_L4PER_modules)
+                  80521068    00000030                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_L3MAIN1_modules)
+                  80521098    0000002c                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_L4CFG_modules)
+                  805210c4    00000028                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_WKUPAON_modules)
+                  805210ec    00000024                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_L4PER2_modules)
+                  80521110    0000001c                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_COREAON_modules)
+                  8052112c    00000018                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_L3INIT_modules)
+                  80521144    00000010                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_IPU_modules)
+                  80521154    00000010                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_L4SEC_modules)
+                  80521164    0000000c                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_EMIF_modules)
+                  80521170    0000000c                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_L3INSTR_modules)
+                  8052117c    0000000c                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_L4PER3_modules)
+                  80521188    00000008                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_CAM_modules)
+                  80521190    00000008                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_DSS_modules)
+                  80521198    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_ATL_modules)
+                  8052119c    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_CUSTEFUSE_modules)
+                  805211a0    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_DMA_modules)
+                  805211a4    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_DSP1_modules)
+                  805211a8    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_DSP2_modules)
+                  805211ac    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_EMU_modules)
+                  805211b0    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_EVE1_modules)
+                  805211b4    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_EVE2_modules)
+                  805211b8    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_EVE3_modules)
+                  805211bc    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_EVE4_modules)
+                  805211c0    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_GMAC_modules)
+                  805211c4    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_GPU_modules)
+                  805211c8    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_IPU1_modules)
+                  805211cc    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_IPU2_modules)
+                  805211d0    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_IVA_modules)
+                  805211d4    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_MPU_modules)
+                  805211d8    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_PCIE_modules)
+                  805211dc    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_RTC_modules)
+                  805211e0    00000004                               : hw_pmhal_data.oa15fg (.data.PMHAL_PRCM_CD_VPE_modules)
+
+.TI.persistent 
+*          0    80520cc0    00000000     UNINITIALIZED
+
+.rodata    0    805211e4    000002bc     
+                  805211e4    000002bc     starterware_pm_hal.aa15fg : hw_pmhal_data.oa15fg (.rodata.pmhalClockDomainElems)
+
+.cinit     0    805214a0    000002a8     
+                  805214a0    00000281     (.cinit..data.load) [load image, compression = rle]
+                  80521721    00000003     --HOLE-- [fill = 0]
+                  80521724    0000000c     (__TI_handler_table)
+                  80521730    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  80521738    00000010     (__TI_cinit_table)
+
+sdfbuff    0    82000000    02000000     UNINITIALIZED
+                  82000000    02000000     DiskToRAMSpeedup.obj (sdfbuff)
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 80521738 records: 2, size/record: 8, table size: 16
+	.data: load addr=805214a0, load size=00000281 bytes, run addr=80520cc0, run size=00000524 bytes, compression=rle
+	.bss: load addr=80521730, load size=00000008 bytes, run addr=80500000, run size=00010308 bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 80521724 records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_decompress_rle24
+	index: 1, handler: __TI_decompress_none
+	index: 2, handler: __TI_zero_init
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                                 
+-------   ----                                 
+805178bc  C$$EXIT                              
+80517638  C$$IO$$                              
+805160b0  CTRLGetFtRev                         
+805160ac  CTRLGetSiliconRev                    
+80517f40  EDMA3ClrIntr                         
+80517ee4  EDMA3ClrMissEvt                      
+80517f98  EDMA3EnableDmaEvt                    
+80517e50  EDMA3EnableTransfer                  
+8051806c  EDMA3GetIntrStatus                   
+80517ff0  EDMA3SetEvt                          
+80518048  EDMA3SetPaRAM                        
+80516034  EDMAModuleClkConfig                  
+80515790  EDMAVersionGet                       
+80515ff8  GPIO_clock_enable                    
+80515fdc  GPMC_clock_enable                    
+80511c90  HAL_CTRL_ConfigurePadsQspi           
+80515fa8  HAL_CTRL_Control_IO_DSS              
+80515ec0  HAL_CTRL_UnlockMMR                   
+8051549c  HOSTclock                            
+80515434  HOSTclose                            
+805153cc  HOSTgetenv                           
+8051532c  HOSTlseek                            
+805152a0  HOSTopen                             
+8051521c  HOSTread                             
+80515184  HOSTrename                           
+80515124  HOSTtime                             
+805150c0  HOSTunlink                           
+8051503c  HOSTwrite                            
+80512998  I2C1_Pin_Mux                         
+80512ab4  I2C2_Pin_Mux                         
+805128f4  I2C4_Pin_Mux                         
+805128cc  MCASP3_pad_mux_config                
+805128a8  MCSPI1_pad_mux_config                
+80512888  MCSPI2_pad_mux_config                
+805127d4  MMCSD1_Pin_Mux                       
+80512830  MMCSD3_Pin_Mux                       
+805127a8  MMCSD4_Pin_Mux                       
+80512a84  MMCSD_Pin_Mux                        
+80515508  OSD_v_ReverseEndianness              
+80517da0  PMHALCMSetCdClockMode                
+80521198  PMHAL_PRCM_CD_ATL_modules            
+80521188  PMHAL_PRCM_CD_CAM_modules            
+80521110  PMHAL_PRCM_CD_COREAON_modules        
+8052119c  PMHAL_PRCM_CD_CUSTEFUSE_modules      
+805211a0  PMHAL_PRCM_CD_DMA_modules            
+805211a4  PMHAL_PRCM_CD_DSP1_modules           
+805211a8  PMHAL_PRCM_CD_DSP2_modules           
+80521190  PMHAL_PRCM_CD_DSS_modules            
+80521164  PMHAL_PRCM_CD_EMIF_modules           
+805211ac  PMHAL_PRCM_CD_EMU_modules            
+805211b0  PMHAL_PRCM_CD_EVE1_modules           
+805211b4  PMHAL_PRCM_CD_EVE2_modules           
+805211b8  PMHAL_PRCM_CD_EVE3_modules           
+805211bc  PMHAL_PRCM_CD_EVE4_modules           
+805211c0  PMHAL_PRCM_CD_GMAC_modules           
+805211c4  PMHAL_PRCM_CD_GPU_modules            
+805211c8  PMHAL_PRCM_CD_IPU1_modules           
+805211cc  PMHAL_PRCM_CD_IPU2_modules           
+80521144  PMHAL_PRCM_CD_IPU_modules            
+805211d0  PMHAL_PRCM_CD_IVA_modules            
+8052112c  PMHAL_PRCM_CD_L3INIT_modules         
+80521170  PMHAL_PRCM_CD_L3INSTR_modules        
+80521068  PMHAL_PRCM_CD_L3MAIN1_modules        
+80521098  PMHAL_PRCM_CD_L4CFG_modules          
+805210ec  PMHAL_PRCM_CD_L4PER2_modules         
+8052117c  PMHAL_PRCM_CD_L4PER3_modules         
+80521028  PMHAL_PRCM_CD_L4PER_modules          
+80521154  PMHAL_PRCM_CD_L4SEC_modules          
+805211d4  PMHAL_PRCM_CD_MPU_modules            
+805211d8  PMHAL_PRCM_CD_PCIE_modules           
+805211dc  PMHAL_PRCM_CD_RTC_modules            
+805211e0  PMHAL_PRCM_CD_VPE_modules            
+805210c4  PMHAL_PRCM_CD_WKUPAON_modules        
+80512a64  PlatformDCAN1RXSetPinMux             
+80512a30  PlatformDCAN1SetPinMux               
+80512a10  PlatformDCAN2RXSetPinMux             
+805129dc  PlatformDCAN2SetPinMux               
+80516070  PlatformDcanClkConfig                
+80516034  PlatformEDMAWkupDepEnable            
+805129cc  PlatformGPIO1SetPinMux               
+80515ff8  PlatformGPIOClockEnable              
+805129cc  PlatformGPIOInputOutputSetPinMux     
+80515fdc  PlatformGPMCClockEnable              
+80511d74  PlatformGPMCSetPinMux                
+80511d48  PlatformGPMCSetPinMuxAddrLines       
+80515fcc  PlatformGetFtRev                     
+80515fbc  PlatformGetSiliconRev                
+80512998  PlatformI2C1SetPinMux                
+80511d14  PlatformI2C2SetPinMux                
+80512928  PlatformI2C3SetPinMux                
+805128f4  PlatformI2C4SetPinMux                
+805128f0  PlatformI2C5SetPinMux                
+80511ce8  PlatformLCDSetPinMux                 
+80515ef0  PlatformLockMMR                      
+805128cc  PlatformMCASP3SetPinMux              
+805128a8  PlatformMCSPI1SetPinMux              
+80512888  PlatformMCSPI2SetPinMux              
+80511cbc  PlatformMMC1SetPinMux                
+805127d4  PlatformMMCSD1SetPinMux              
+8051285c  PlatformMMCSD2SetPinMux              
+80512830  PlatformMMCSD3SetPinMux              
+805127a8  PlatformMMCSD4SetPinMux              
+80512800  PlatformMMCSDSetPinMux               
+80511c90  PlatformQSPISetPinMux                
+80511c64  PlatformRGMII0SetPinMux              
+8051277c  PlatformRGMII1SetPinMux              
+80511c64  PlatformRGMIISetPinMux               
+80511ed4  PlatformTDA2xxMCSetPinMux            
+80511c30  PlatformUART1SetPinMux               
+80511ea0  PlatformUART2SetPinMux               
+80511ddc  PlatformUART3SetPinMux               
+80511da0  PlatformUART4SetPinMux               
+80511e58  PlatformUARTSetPinMux                
+80511e98  PlatformUartConsoleSetPinMux         
+80515fa8  PlatformUnlockControlIODSS           
+80515ec0  PlatformUnlockMMR                    
+80511c04  PlatformVIN1SetPinMux                
+80511bd8  PlatformVIN2SetPinMux                
+80516620  QSPISetClockControl                  
+8051660c  QSPISetMAddrSpace                    
+80516600  QSPISetMemoryMapSetup                
+805164f4  QSPIWaitIdle                         
+80512df8  QSPI_ConfMAddrSpace                  
+805137a4  QSPI_FlashBlockErase                 
+80513744  QSPI_FlashBlockEraseNonBlocking      
+8051372c  QSPI_FlashFullErase                  
+805136d0  QSPI_FlashFullEraseNonBlocking       
+80512e38  QSPI_FlashStatus                     
+805136b8  QSPI_FlashSubSectorErase             
+8051365c  QSPI_FlashSubSectorEraseNonBlocking  
+80513d14  QSPI_GetDefaultFlashDevInfo          
+8051363c  QSPI_GetDeviceId                     
+805135a4  QSPI_GetDeviceIdExtended             
+8051338c  QSPI_Initialize                      
+805132dc  QSPI_QuadEnable                      
+805131a4  QSPI_QuadEnableNonBlocking           
+80513144  QSPI_ReadCfgMode                     
+80513130  QSPI_ReadSectors                     
+80512fbc  QSPI_ReadSectors_edma                
+80512f90  QSPI_SelClockFrequency               
+805138d0  QSPI_SetDefaultFlashDevInfo          
+80512f78  QSPI_WriteCfgMode                    
+80512f18  QSPI_WriteCfgModeNonBlocking         
+80512ebc  QSPI_WriteEnable                     
+80512e9c  QSPI_WriteSectors                    
+80512e0c  QSPI_WriteSectorsNonBlocking         
+80512b70  QSPI_executeCmd                      
+80512b68  QSPI_seek                            
+805165ec  QSPIconfigIdleMode                   
+805165e4  QSPIgetCommandReg                    
+805165dc  QSPIgetDeviceControl                 
+805165d4  QSPIgetEnabledIntStatus              
+805165c8  QSPIgetMemoryMapSetup                
+805164ec  QSPIgetStatus                        
+805165b8  QSPIgetStatusWordCount               
+805165b0  QSPIintClear                         
+8051659c  QSPIintDisable                       
+80516588  QSPIintEnable                        
+80516580  QSPIintRawStatus                     
+80516578  QSPIintRawStatusClear                
+80516570  QSPIintStatus                        
+80516538  QSPIreadData                         
+80516524  QSPIsetCommandReg                    
+80516510  QSPIsetDeviceControl                 
+805164b4  QSPIwriteData                        
+UNDEFED   SHT$$INIT_ARRAY$$Base                
+UNDEFED   SHT$$INIT_ARRAY$$Limit               
+80520fdc  SPIWRITER_bFinished                  
+80520fd4  SPIWRITER_uFileSize                  
+82000000  SPIWRITER_uSdfBufferWr               
+80520fd8  SPIWRITER_uSdfOffset                 
+8051621c  SPIWRITER_v_FinishedFunc             
+805160e8  SPIWRITER_v_PreFlashHook             
+80511c30  UART_PAD_CONFIG                      
+80511c30  Uart1_Pin_Mux                        
+80511ddc  Uart3_Pin_Mux                        
+80511da0  Uart4_Pin_Mux                        
+80511e10  Uart_Pin_Mux                         
+80517b58  _Dclass                              
+80520f30  _Denorm                              
+80516998  _Dnorm                               
+80516670  _Dscale                              
+80517298  _Dunscale                            
+80520f40  _Eps                                 
+8052101c  _Errno                               
+80521010  _Fenv                                
+80517ba0  _Feraise                             
+80520f50  _Hugeval                             
+80520f60  _Inf                                 
+80520f70  _Nan                                 
+80520f90  _Rteps                               
+80520f80  _Snan                                
+80521014  _Tls_setup__Fenv                     
+80520fa0  _Xbig                                
+80520fa8  _Zero                                
+8051013c  __CIOBUF_                            
+8051c08c  __STACK_END                          
+00004000  __STACK_SIZE                         
+00004000  __SYSMEM_SIZE                        
+80521738  __TI_CINIT_Base                      
+80521748  __TI_CINIT_Limit                     
+80521724  __TI_Handler_Table_Base              
+80521730  __TI_Handler_Table_Limit             
+805174a8  __TI_auto_init                       
+80515a48  __TI_cleanup                         
+80521008  __TI_cleanup_ptr                     
+805170ac  __TI_closefile                       
+80517d68  __TI_decompress_none                 
+80517d8c  __TI_decompress_rle24                
+80516c50  __TI_doflush                         
+8052100c  __TI_dtors_ptr                       
+80520fe4  __TI_ft_end                          
+805116dc  __TI_printfi                         
+80516e20  __TI_rd_ok                           
+80517640  __TI_readmsg                         
+805214a0  __TI_static_base__                   
+8051025c  __TI_tmpnams                         
+805175f0  __TI_writemsg                        
+80516d80  __TI_wrt_ok                          
+80517d7c  __TI_zero_init                       
+80516e98  __aeabi_idiv                         
+80517d9c  __aeabi_idiv0                        
+80516e98  __aeabi_idivmod                      
+80517350  __aeabi_memclr                       
+80517350  __aeabi_memclr4                      
+80517350  __aeabi_memclr8                      
+80516818  __aeabi_memcpy                       
+80516818  __aeabi_memcpy4                      
+80516818  __aeabi_memcpy8                      
+80517354  __aeabi_memset                       
+80517354  __aeabi_memset4                      
+80517354  __aeabi_memset8                      
+80520ff0  __aeabi_stderr                       
+80520fe8  __aeabi_stdin                        
+80520fec  __aeabi_stdout                       
+805171a8  __aeabi_uidiv                        
+805171a8  __aeabi_uidivmod                     
+80515bdc  __aeabi_uldivmod                     
+ffffffff  __binit__                            
+ffffffff  __c_args__                           
+8051808c  __stack                              
+80517d14  _args_main                           
+80517934  _c_int00                             
+805206d8  _ctypes_                             
+80520cc0  _ftable                              
+80521000  _lock                                
+80517d08  _nop                                 
+80517cfc  _register_lock                       
+80517cf0  _register_unlock                     
+8051c090  _sys_memory                          
+80517d94  _system_pre_init                     
+80521004  _unlock                              
+805178c4  abort                                
+80514f14  add_device                           
+80517734  atoi                                 
+ffffffff  binit                                
+80510308  bss_end                              
+80500000  bss_start                            
+80514a9c  calloc                               
+80514e84  close                                
+80511d74  cntrl_core_gpmc_pad_config           
+80511d48  cntrl_core_gpmc_pad_config_addr_lines
+80511d14  cntrl_core_i2c2_pad_config           
+80511ce8  cntrl_core_lcd_pad_config            
+80511cbc  cntrl_core_mmc1_pad_config           
+80515ef4  cntrl_core_pad_configuration         
+80511c90  cntrl_core_qspi_pad_config           
+80511c64  cntrl_core_rgmii_pad_config          
+80511c30  cntrl_core_uart1_pad_config          
+80511c04  cntrl_core_vin1_pad_config           
+80511bd8  cntrl_core_vin2_pad_config           
+80515f78  configure_pad                        
+805177b8  copy_in                              
+805160fc  determineImageSize                   
+805178d0  exit                                 
+80517158  fclose                               
+80517a6c  feraiseexcept                        
+80516cd4  fflush                               
+80515ae0  fopen                                
+80516fac  fputc                                
+805162ec  fputs                                
+80514670  free                                 
+80515a94  freopen                              
+80517c18  frexp                                
+80517400  fseek                                
+80521018  gQspiCmdInitDone                     
+80510000  gQspiFlashDevInfo                    
+805179a0  ldexp                                
+80516170  loadDiskToRAM                        
+80514e40  lseek                                
+8051783c  ltoa                                 
+80515720  main                                 
+80521024  main_func_sp                         
+805145b4  malloc                               
+8051495c  memalign                             
+80517c48  memccpy                              
+80517c74  memchr                               
+80517be4  memcmp                               
+80516818  memcpy                               
+80517360  memset                               
+805144b8  minit                                
+80514d28  open                                 
+805211e4  pmhalClockDomainElems                
+80517554  printf                               
+80516fac  putc                                 
+80517098  putchar                              
+8051647c  puts                                 
+80515544  qspiwriter                           
+80517ac4  raise                                
+80514ce4  read                                 
+805147c8  realloc                              
+80510304  regionId                             
+80514bec  remove                               
+80514c98  remove_device                        
+80514c2c  rename                               
+80516af8  setvbuf                              
+80517a08  signal                               
+80517ca0  strchr                               
+80517cc8  strcmp                               
+80517d50  strcpy                               
+80517d34  strlen                               
+80517b10  strncpy                              
+80514bec  unlink                               
+80515e94  wait                                 
+80514af4  write                                
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                                 
+-------   ----                                 
+00004000  __STACK_SIZE                         
+00004000  __SYSMEM_SIZE                        
+80500000  bss_start                            
+80510000  gQspiFlashDevInfo                    
+8051013c  __CIOBUF_                            
+8051025c  __TI_tmpnams                         
+80510304  regionId                             
+80510308  bss_end                              
+805116dc  __TI_printfi                         
+80511bd8  PlatformVIN2SetPinMux                
+80511bd8  cntrl_core_vin2_pad_config           
+80511c04  PlatformVIN1SetPinMux                
+80511c04  cntrl_core_vin1_pad_config           
+80511c30  PlatformUART1SetPinMux               
+80511c30  UART_PAD_CONFIG                      
+80511c30  Uart1_Pin_Mux                        
+80511c30  cntrl_core_uart1_pad_config          
+80511c64  PlatformRGMII0SetPinMux              
+80511c64  PlatformRGMIISetPinMux               
+80511c64  cntrl_core_rgmii_pad_config          
+80511c90  HAL_CTRL_ConfigurePadsQspi           
+80511c90  PlatformQSPISetPinMux                
+80511c90  cntrl_core_qspi_pad_config           
+80511cbc  PlatformMMC1SetPinMux                
+80511cbc  cntrl_core_mmc1_pad_config           
+80511ce8  PlatformLCDSetPinMux                 
+80511ce8  cntrl_core_lcd_pad_config            
+80511d14  PlatformI2C2SetPinMux                
+80511d14  cntrl_core_i2c2_pad_config           
+80511d48  PlatformGPMCSetPinMuxAddrLines       
+80511d48  cntrl_core_gpmc_pad_config_addr_lines
+80511d74  PlatformGPMCSetPinMux                
+80511d74  cntrl_core_gpmc_pad_config           
+80511da0  PlatformUART4SetPinMux               
+80511da0  Uart4_Pin_Mux                        
+80511ddc  PlatformUART3SetPinMux               
+80511ddc  Uart3_Pin_Mux                        
+80511e10  Uart_Pin_Mux                         
+80511e58  PlatformUARTSetPinMux                
+80511e98  PlatformUartConsoleSetPinMux         
+80511ea0  PlatformUART2SetPinMux               
+80511ed4  PlatformTDA2xxMCSetPinMux            
+8051277c  PlatformRGMII1SetPinMux              
+805127a8  MMCSD4_Pin_Mux                       
+805127a8  PlatformMMCSD4SetPinMux              
+805127d4  MMCSD1_Pin_Mux                       
+805127d4  PlatformMMCSD1SetPinMux              
+80512800  PlatformMMCSDSetPinMux               
+80512830  MMCSD3_Pin_Mux                       
+80512830  PlatformMMCSD3SetPinMux              
+8051285c  PlatformMMCSD2SetPinMux              
+80512888  MCSPI2_pad_mux_config                
+80512888  PlatformMCSPI2SetPinMux              
+805128a8  MCSPI1_pad_mux_config                
+805128a8  PlatformMCSPI1SetPinMux              
+805128cc  MCASP3_pad_mux_config                
+805128cc  PlatformMCASP3SetPinMux              
+805128f0  PlatformI2C5SetPinMux                
+805128f4  I2C4_Pin_Mux                         
+805128f4  PlatformI2C4SetPinMux                
+80512928  PlatformI2C3SetPinMux                
+80512998  I2C1_Pin_Mux                         
+80512998  PlatformI2C1SetPinMux                
+805129cc  PlatformGPIO1SetPinMux               
+805129cc  PlatformGPIOInputOutputSetPinMux     
+805129dc  PlatformDCAN2SetPinMux               
+80512a10  PlatformDCAN2RXSetPinMux             
+80512a30  PlatformDCAN1SetPinMux               
+80512a64  PlatformDCAN1RXSetPinMux             
+80512a84  MMCSD_Pin_Mux                        
+80512ab4  I2C2_Pin_Mux                         
+80512b68  QSPI_seek                            
+80512b70  QSPI_executeCmd                      
+80512df8  QSPI_ConfMAddrSpace                  
+80512e0c  QSPI_WriteSectorsNonBlocking         
+80512e38  QSPI_FlashStatus                     
+80512e9c  QSPI_WriteSectors                    
+80512ebc  QSPI_WriteEnable                     
+80512f18  QSPI_WriteCfgModeNonBlocking         
+80512f78  QSPI_WriteCfgMode                    
+80512f90  QSPI_SelClockFrequency               
+80512fbc  QSPI_ReadSectors_edma                
+80513130  QSPI_ReadSectors                     
+80513144  QSPI_ReadCfgMode                     
+805131a4  QSPI_QuadEnableNonBlocking           
+805132dc  QSPI_QuadEnable                      
+8051338c  QSPI_Initialize                      
+805135a4  QSPI_GetDeviceIdExtended             
+8051363c  QSPI_GetDeviceId                     
+8051365c  QSPI_FlashSubSectorEraseNonBlocking  
+805136b8  QSPI_FlashSubSectorErase             
+805136d0  QSPI_FlashFullEraseNonBlocking       
+8051372c  QSPI_FlashFullErase                  
+80513744  QSPI_FlashBlockEraseNonBlocking      
+805137a4  QSPI_FlashBlockErase                 
+805138d0  QSPI_SetDefaultFlashDevInfo          
+80513d14  QSPI_GetDefaultFlashDevInfo          
+805144b8  minit                                
+805145b4  malloc                               
+80514670  free                                 
+805147c8  realloc                              
+8051495c  memalign                             
+80514a9c  calloc                               
+80514af4  write                                
+80514bec  remove                               
+80514bec  unlink                               
+80514c2c  rename                               
+80514c98  remove_device                        
+80514ce4  read                                 
+80514d28  open                                 
+80514e40  lseek                                
+80514e84  close                                
+80514f14  add_device                           
+8051503c  HOSTwrite                            
+805150c0  HOSTunlink                           
+80515124  HOSTtime                             
+80515184  HOSTrename                           
+8051521c  HOSTread                             
+805152a0  HOSTopen                             
+8051532c  HOSTlseek                            
+805153cc  HOSTgetenv                           
+80515434  HOSTclose                            
+8051549c  HOSTclock                            
+80515508  OSD_v_ReverseEndianness              
+80515544  qspiwriter                           
+80515720  main                                 
+80515790  EDMAVersionGet                       
+80515a48  __TI_cleanup                         
+80515a94  freopen                              
+80515ae0  fopen                                
+80515bdc  __aeabi_uldivmod                     
+80515e94  wait                                 
+80515ec0  HAL_CTRL_UnlockMMR                   
+80515ec0  PlatformUnlockMMR                    
+80515ef0  PlatformLockMMR                      
+80515ef4  cntrl_core_pad_configuration         
+80515f78  configure_pad                        
+80515fa8  HAL_CTRL_Control_IO_DSS              
+80515fa8  PlatformUnlockControlIODSS           
+80515fbc  PlatformGetSiliconRev                
+80515fcc  PlatformGetFtRev                     
+80515fdc  GPMC_clock_enable                    
+80515fdc  PlatformGPMCClockEnable              
+80515ff8  GPIO_clock_enable                    
+80515ff8  PlatformGPIOClockEnable              
+80516034  EDMAModuleClkConfig                  
+80516034  PlatformEDMAWkupDepEnable            
+80516070  PlatformDcanClkConfig                
+805160ac  CTRLGetSiliconRev                    
+805160b0  CTRLGetFtRev                         
+805160e8  SPIWRITER_v_PreFlashHook             
+805160fc  determineImageSize                   
+80516170  loadDiskToRAM                        
+8051621c  SPIWRITER_v_FinishedFunc             
+805162ec  fputs                                
+8051647c  puts                                 
+805164b4  QSPIwriteData                        
+805164ec  QSPIgetStatus                        
+805164f4  QSPIWaitIdle                         
+80516510  QSPIsetDeviceControl                 
+80516524  QSPIsetCommandReg                    
+80516538  QSPIreadData                         
+80516570  QSPIintStatus                        
+80516578  QSPIintRawStatusClear                
+80516580  QSPIintRawStatus                     
+80516588  QSPIintEnable                        
+8051659c  QSPIintDisable                       
+805165b0  QSPIintClear                         
+805165b8  QSPIgetStatusWordCount               
+805165c8  QSPIgetMemoryMapSetup                
+805165d4  QSPIgetEnabledIntStatus              
+805165dc  QSPIgetDeviceControl                 
+805165e4  QSPIgetCommandReg                    
+805165ec  QSPIconfigIdleMode                   
+80516600  QSPISetMemoryMapSetup                
+8051660c  QSPISetMAddrSpace                    
+80516620  QSPISetClockControl                  
+80516670  _Dscale                              
+80516818  __aeabi_memcpy                       
+80516818  __aeabi_memcpy4                      
+80516818  __aeabi_memcpy8                      
+80516818  memcpy                               
+80516998  _Dnorm                               
+80516af8  setvbuf                              
+80516c50  __TI_doflush                         
+80516cd4  fflush                               
+80516d80  __TI_wrt_ok                          
+80516e20  __TI_rd_ok                           
+80516e98  __aeabi_idiv                         
+80516e98  __aeabi_idivmod                      
+80516fac  fputc                                
+80516fac  putc                                 
+80517098  putchar                              
+805170ac  __TI_closefile                       
+80517158  fclose                               
+805171a8  __aeabi_uidiv                        
+805171a8  __aeabi_uidivmod                     
+80517298  _Dunscale                            
+80517350  __aeabi_memclr                       
+80517350  __aeabi_memclr4                      
+80517350  __aeabi_memclr8                      
+80517354  __aeabi_memset                       
+80517354  __aeabi_memset4                      
+80517354  __aeabi_memset8                      
+80517360  memset                               
+80517400  fseek                                
+805174a8  __TI_auto_init                       
+80517554  printf                               
+805175f0  __TI_writemsg                        
+80517638  C$$IO$$                              
+80517640  __TI_readmsg                         
+80517734  atoi                                 
+805177b8  copy_in                              
+8051783c  ltoa                                 
+805178bc  C$$EXIT                              
+805178c4  abort                                
+805178d0  exit                                 
+80517934  _c_int00                             
+805179a0  ldexp                                
+80517a08  signal                               
+80517a6c  feraiseexcept                        
+80517ac4  raise                                
+80517b10  strncpy                              
+80517b58  _Dclass                              
+80517ba0  _Feraise                             
+80517be4  memcmp                               
+80517c18  frexp                                
+80517c48  memccpy                              
+80517c74  memchr                               
+80517ca0  strchr                               
+80517cc8  strcmp                               
+80517cf0  _register_unlock                     
+80517cfc  _register_lock                       
+80517d08  _nop                                 
+80517d14  _args_main                           
+80517d34  strlen                               
+80517d50  strcpy                               
+80517d68  __TI_decompress_none                 
+80517d7c  __TI_zero_init                       
+80517d8c  __TI_decompress_rle24                
+80517d94  _system_pre_init                     
+80517d9c  __aeabi_idiv0                        
+80517da0  PMHALCMSetCdClockMode                
+80517e50  EDMA3EnableTransfer                  
+80517ee4  EDMA3ClrMissEvt                      
+80517f40  EDMA3ClrIntr                         
+80517f98  EDMA3EnableDmaEvt                    
+80517ff0  EDMA3SetEvt                          
+80518048  EDMA3SetPaRAM                        
+8051806c  EDMA3GetIntrStatus                   
+8051808c  __stack                              
+8051c08c  __STACK_END                          
+8051c090  _sys_memory                          
+805206d8  _ctypes_                             
+80520cc0  _ftable                              
+80520f30  _Denorm                              
+80520f40  _Eps                                 
+80520f50  _Hugeval                             
+80520f60  _Inf                                 
+80520f70  _Nan                                 
+80520f80  _Snan                                
+80520f90  _Rteps                               
+80520fa0  _Xbig                                
+80520fa8  _Zero                                
+80520fd4  SPIWRITER_uFileSize                  
+80520fd8  SPIWRITER_uSdfOffset                 
+80520fdc  SPIWRITER_bFinished                  
+80520fe4  __TI_ft_end                          
+80520fe8  __aeabi_stdin                        
+80520fec  __aeabi_stdout                       
+80520ff0  __aeabi_stderr                       
+80521000  _lock                                
+80521004  _unlock                              
+80521008  __TI_cleanup_ptr                     
+8052100c  __TI_dtors_ptr                       
+80521010  _Fenv                                
+80521014  _Tls_setup__Fenv                     
+80521018  gQspiCmdInitDone                     
+8052101c  _Errno                               
+80521024  main_func_sp                         
+80521028  PMHAL_PRCM_CD_L4PER_modules          
+80521068  PMHAL_PRCM_CD_L3MAIN1_modules        
+80521098  PMHAL_PRCM_CD_L4CFG_modules          
+805210c4  PMHAL_PRCM_CD_WKUPAON_modules        
+805210ec  PMHAL_PRCM_CD_L4PER2_modules         
+80521110  PMHAL_PRCM_CD_COREAON_modules        
+8052112c  PMHAL_PRCM_CD_L3INIT_modules         
+80521144  PMHAL_PRCM_CD_IPU_modules            
+80521154  PMHAL_PRCM_CD_L4SEC_modules          
+80521164  PMHAL_PRCM_CD_EMIF_modules           
+80521170  PMHAL_PRCM_CD_L3INSTR_modules        
+8052117c  PMHAL_PRCM_CD_L4PER3_modules         
+80521188  PMHAL_PRCM_CD_CAM_modules            
+80521190  PMHAL_PRCM_CD_DSS_modules            
+80521198  PMHAL_PRCM_CD_ATL_modules            
+8052119c  PMHAL_PRCM_CD_CUSTEFUSE_modules      
+805211a0  PMHAL_PRCM_CD_DMA_modules            
+805211a4  PMHAL_PRCM_CD_DSP1_modules           
+805211a8  PMHAL_PRCM_CD_DSP2_modules           
+805211ac  PMHAL_PRCM_CD_EMU_modules            
+805211b0  PMHAL_PRCM_CD_EVE1_modules           
+805211b4  PMHAL_PRCM_CD_EVE2_modules           
+805211b8  PMHAL_PRCM_CD_EVE3_modules           
+805211bc  PMHAL_PRCM_CD_EVE4_modules           
+805211c0  PMHAL_PRCM_CD_GMAC_modules           
+805211c4  PMHAL_PRCM_CD_GPU_modules            
+805211c8  PMHAL_PRCM_CD_IPU1_modules           
+805211cc  PMHAL_PRCM_CD_IPU2_modules           
+805211d0  PMHAL_PRCM_CD_IVA_modules            
+805211d4  PMHAL_PRCM_CD_MPU_modules            
+805211d8  PMHAL_PRCM_CD_PCIE_modules           
+805211dc  PMHAL_PRCM_CD_RTC_modules            
+805211e0  PMHAL_PRCM_CD_VPE_modules            
+805211e4  pmhalClockDomainElems                
+805214a0  __TI_static_base__                   
+80521724  __TI_Handler_Table_Base              
+80521730  __TI_Handler_Table_Limit             
+80521738  __TI_CINIT_Base                      
+80521748  __TI_CINIT_Limit                     
+82000000  SPIWRITER_uSdfBufferWr               
+ffffffff  __binit__                            
+ffffffff  __c_args__                           
+ffffffff  binit                                
+UNDEFED   SHT$$INIT_ARRAY$$Base                
+UNDEFED   SHT$$INIT_ARRAY$$Limit               
+
+[325 symbols]

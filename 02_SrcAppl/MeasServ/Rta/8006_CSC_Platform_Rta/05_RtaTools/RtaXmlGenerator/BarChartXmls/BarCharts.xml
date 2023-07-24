@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<BarCharts>
+  <BarChart name="PERFORMANCE_COUNT1" chartID="0" chartHeight_lines="6" scaleFactor="2.0" defaultVerticalZoom="5.0"/>
+  <BarChart name="PERFORMANCE_COUNT2" chartID="1" chartHeight_lines="6" scaleFactor="2.0" defaultVerticalZoom="5.0"/>
+  <!-- VH28 statistics collector charts -->
+  <BarChart name="STAT_M4____DDR_IO_KBYTES"  chartID="10" chartHeight_lines="6" scaleFactor="1.0" defaultVerticalZoom="80.0" sumInDerivedChartID="30" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_CA15__DDR_IO_KBYTES"  chartID="11" chartHeight_lines="6" scaleFactor="1.0" defaultVerticalZoom="80.0" sumInDerivedChartID="30" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_DSP1__DDR_IO_KBYTES"  chartID="12" chartHeight_lines="6" scaleFactor="1.0" defaultVerticalZoom="80.0" sumInDerivedChartID="30" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_EVE1__DDR_IO_KBYTES"  chartID="13" chartHeight_lines="6" scaleFactor="1.0" defaultVerticalZoom="80.0" sumInDerivedChartID="30" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_DSP2__DDR_IO_KBYTES"  chartID="14" chartHeight_lines="6" scaleFactor="1.0" defaultVerticalZoom="80.0" sumInDerivedChartID="30" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_EVE2__DDR_IO_KBYTES"  chartID="15" chartHeight_lines="6" scaleFactor="1.0" defaultVerticalZoom="80.0" sumInDerivedChartID="30" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_TPTC0_DDR_IO_KBYTES"  chartID="16" chartHeight_lines="6" scaleFactor="1.0" defaultVerticalZoom="80.0" sumInDerivedChartID="30" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_TPTC1_DDR_IO_KBYTES"  chartID="17" chartHeight_lines="6" scaleFactor="1.0" defaultVerticalZoom="80.0" sumInDerivedChartID="30" ingnoreOverlapTimeUS="300"/>
+
+  <BarChart name="SUMMATION_IO_1_TO_8"  derivedChartID="30" chartHeight_lines="12" scaleFactor="1.0" defaultVerticalZoom="40.0" red="0.92" green="1.0" blue="0.4"/>
+  
+  <BarChart name="STAT_M4____LATENCY_US"  chartID="24" chartHeight_lines="6" scaleFactor="5.0" defaultVerticalZoom="80.0" sumInDerivedChartID="31" ingnoreOverlapTimeUS="300"/>
+  <!-- The scale factor 5.0 leads to a final measure in [us] and is derived according to this formular: sF = 1000/200MHz * 1e6 (200MHz is the frequency of the L3 interconnect) -->
+  <BarChart name="STAT_CA15__LATENCY_US"  chartID="25" chartHeight_lines="6" scaleFactor="5.0" defaultVerticalZoom="80.0" sumInDerivedChartID="31" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_DSP1__LATENCY_US"  chartID="22" chartHeight_lines="6" scaleFactor="5.0" defaultVerticalZoom="80.0" sumInDerivedChartID="31" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_EVE1__LATENCY_US"  chartID="20" chartHeight_lines="6" scaleFactor="5.0" defaultVerticalZoom="80.0" sumInDerivedChartID="31" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_DSP2__LATENCY_US"  chartID="23" chartHeight_lines="6" scaleFactor="5.0" defaultVerticalZoom="80.0" sumInDerivedChartID="31" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_EVE2__LATENCY_US"  chartID="21" chartHeight_lines="6" scaleFactor="5.0" defaultVerticalZoom="80.0" sumInDerivedChartID="31" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_TPTC0_LATENCY_US"  chartID="18" chartHeight_lines="6" scaleFactor="5.0" defaultVerticalZoom="80.0" sumInDerivedChartID="31" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_TPTC1_LATENCY_US"  chartID="19" chartHeight_lines="6" scaleFactor="5.0" defaultVerticalZoom="80.0" sumInDerivedChartID="31" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="SUMMATION_LAT_1_TO_8"  derivedChartID="31" chartHeight_lines="12" scaleFactor="5.0" defaultVerticalZoom="20.0" red="0.92" green="1.0" blue="0.4"/>
+</BarCharts>

@@ -1,0 +1,1210 @@
+import courage_build_option
+import json
+import re
+import os
+import general_courage_test_setup
+import filecmp
+import stat
+import functools
+import logging.config
+import SCons
+from xml.etree import ElementTree
+
+Import('*')
+
+
+OPTION_FILE_NAME = 'test_options.json'
+COURAGE_BASE_DIRECTORY = 'C:/tools/courage/4.19.2'
+COURAGE_SWITCH = '__COURAGE_TEST_SWITCH__'
+DEFINES_PATTERN = '__DEFINES_AUTOMATICALLY_FILLED__'
+logger_file = "courage_logging.cfg"
+
+default_test_frame_name = 'Cou'
+
+dsp_specific_defines = (
+    ('int_least40_t', 'int'),
+    ('uint_least40_t', 'int'),
+    ('far', ''),
+    ('_swap4', ''),
+    ('_packlh2', ''),
+    ('cregister', ''),
+)
+
+
+class Parameters(object):
+    def __init__(self, arguments, test_setup):
+        self.arguments = arguments
+        self.courage_settings = test_setup.GENERAL_BUILD_SETTINGS
+        self.launch_dir = GetLaunchDir()
+        self.components = self.search_components(ARGUMENTS.get('courage_parameters'))
+
+    def search_components(self, parameters):
+        my_components_dict = None
+        parameters_splitted = parameters.split('##')
+        if len(parameters_splitted) > 1:
+            my_components_dict = {}
+            components = parameters_splitted[1].split('#')
+            for component in components:
+                component_splitted = component.split(':')
+                component_name = component_splitted[0]
+                my_components_dict[component_name] = set()
+                if len(component_splitted) > 1:
+                    test_frames_names = component_splitted[1].split('+')
+                    for test_frame in test_frames_names:
+                        my_components_dict[component_name].add(test_frame)
+        return my_components_dict
+
+    @property
+    def product(self):
+        return self.arguments.get('product')
+
+    @property
+    def core(self):
+        return self.arguments.get('target')
+
+    @property
+    def module_test_root(self):
+        return self.courage_settings['MODULE_TEST_ROOT']
+
+    @property
+    def report_root(self):
+        return self.courage_settings['REPORT_ROOT']
+
+    @property
+    def compilers(self):
+        return self.courage_settings['COMPILER_PORTINGS']['COMPILER']
+
+    @property
+    def exclude_paths(self):
+        if self.courage_settings['EXCLUDE_INC_PATH'].get(self.core) is not None:
+            return self.courage_settings['EXCLUDE_INC_PATH'][self.core]
+        return []
+
+
+class ConsoleOutput(object):
+    def __init__(self, console_output_file, test_name, logger):
+        self.console_output_file = console_output_file
+        self.test_name = test_name
+        self.logger = logger
+        self.no_result = True
+
+        self.analyze()
+
+    def analyze(self):
+        self.logger.info("Results for TestFrame " + self.test_name + " begin from " + self.console_output_file)
+        try:
+            with open(self.console_output_file, 'r') as f:
+                lines = f.readlines()
+                self.parse(lines)
+        except Exception:
+            self.logger.error('TestFrame ' + self.test_name + ' failed: no ' + self.console_output_file)
+
+        if self.no_result:
+            self.logger.error('TestFrame ' + self.test_name + ' failed: no result found in' + self.console_output_file)
+
+        self.logger.info("Results for TestFrame " + self.test_name + " end")
+
+    def parse(self, lines):
+        nb_lines_to_be_copied = 0
+        start_copying = False
+        for line in lines:
+
+            if re.search("Run Summary", line):
+                nb_lines_to_be_copied = 4
+
+            if re.search("Function Coverage", line):
+                nb_lines_to_be_copied = 1
+
+            if re.search("Everything is Ok", line):
+                nb_lines_to_be_copied = 1
+
+            if re.search("Started Suite", line):
+                start_copying = True
+
+            if re.search("Finished Suite", line):
+                self.write_detail(line)
+                start_copying = False
+
+            if re.search(r"tests", line):
+                self.write_summary(line)
+            elif re.search(r"^\[", line):
+                self.write_detail(line)
+
+            if start_copying:
+                self.write_detail(line)
+
+            if nb_lines_to_be_copied > 0:
+                self.write_summary(line)
+                nb_lines_to_be_copied -= 1
+
+    def write_detail(self, line):
+        self.no_result = False
+        self.logger.debug(line.replace("\n", ""))
+
+    def write_summary(self, line):
+        self.no_result = False
+        self.logger.info(line.replace("\n", ""))
+
+
+class Composite(object):
+    file_name = 'composites.xml'
+    template_file_name = 'composites.template.xml'
+    include_pattern_begin = '<include_paths>'
+    include_pattern_end = '</include_paths>'
+
+    def __init__(self, env, composite_file, composite_template_file, preprocessor_file, parameters, test_frame):
+        self.env = env
+        self.composite_file = composite_file
+        self.composite_template_file = composite_template_file
+        self.preprocessor_file = preprocessor_file
+        self.parameters = parameters
+        self.test_frame = test_frame
+
+    def create_file(self):
+
+        template_lines = self.copy_lines_from_template()
+
+        template_lines = self.add_defines(template_lines)
+        template_lines = self.add_includes(template_lines)
+        template_lines = self.add_composite_name(template_lines)
+        template_lines = self.add_project_name(template_lines)
+        template_lines = self.add_core_name(template_lines)
+
+        self.write_file(template_lines)
+
+    def write_file(self, template_lines):
+        with open(self.composite_file, 'w') as file_hdr:
+            file_hdr.write(template_lines)
+
+    def copy_lines_from_template(self):
+        with open(self.composite_template_file, 'r') as input_file:
+            template = input_file.read()
+            return template
+
+    def extract_root_dir(self, template_lines):
+        # Extract project root path
+        lines_found = re.findall(r'<project_root_dir>[\w:./\\]+</project_root_dir>', template_lines)
+        if len(lines_found) != 1:
+            print 'ERROR: Could not extract Project Root Path <project_root_dir> from ' + self.composite_template_file
+            return
+        project_root_dir = lines_found[0]\
+            .replace('<project_root_dir>', '')\
+            .replace('</project_root_dir>', '')
+        return project_root_dir
+
+    def add_defines(self, template_lines):
+        str_defines = ''
+        str_defines = self.add_preprocessor_define(str_defines)
+        str_defines = self.add_courage_define(str_defines)
+        str_defines = self.add_dsp_define(str_defines)
+
+        template_lines = template_lines.replace(DEFINES_PATTERN, str_defines)
+        return template_lines
+
+    def add_preprocessor_define(self, str_defines):
+        # Extract and write defines
+        for line in self.preprocessor_define.splitlines():
+            line = remove_comments(line).strip()
+            define = self.search_define(line)
+
+            if define is not None:
+                str_defines += define
+
+        return str_defines
+
+    def search_define(self, line):
+        splits = line.split(' ', 1)
+
+        define = splits[0]
+
+        if len(splits) == 1:
+            value = ''  #  empty value for define without value
+        else:
+            value = splits[1]
+
+        # Checking if value is valid
+        if value.find(' ') != -1 or value.find('(') != -1 or value.find(')') != -1 or define.find('CML_OPT_c66x') >= 0:
+            return
+
+        return self.add_define(define, value)
+
+    def add_courage_define(self, str_defines):
+        # Adding __COURAGE_TEST_SWITCH__ define
+        str_defines += self.add_define(COURAGE_SWITCH, '1')
+        return str_defines
+
+    def add_dsp_define(self, str_defines):
+        if self.parameters.core == 'dsp_0' or self.parameters.core == 'dsp_1':
+            for define in dsp_specific_defines:
+                str_defines += self.add_define(define[0], define[1])
+        return str_defines
+
+    @staticmethod
+    def add_define(define, value):
+        return '<define name="' + define + '">' + value + '</define>' + '\n'
+
+    @property
+    def preprocessor_define(self):
+        with open(self.preprocessor_file, 'r') as f:
+            defines = f.read()
+            defines = defines.replace('#define', '')
+            return defines
+
+    def add_includes(self, template_lines):
+        project_root_dir = self.extract_root_dir(template_lines)
+        if project_root_dir is not None:
+            includes = self.extract_includes(project_root_dir)
+
+        includes_pattern = self.search_include_pattern(template_lines)
+        if includes_pattern is not None and includes is not None:
+            template_lines = template_lines.replace(includes_pattern, includes)
+        return template_lines
+
+    def extract_includes(self, project_root_dir):
+        str_includes = self.include_pattern_begin + '\n'
+
+        temp_str = self.env.subst('$_CPPINCFLAGS')
+        tokens = temp_str.split('-I')
+        for token in tokens:
+            if len(token) > 0:
+                token = token.strip().replace('\\', '/')
+
+                if not self.should_be_excluded(token):
+                    abs_path = os.path.abspath(token)
+                    rel_path = convert_abs_to_rel_path(self.parameters, abs_path, project_root_dir)
+                    includes = '<relpath>' + rel_path + '</relpath>\n'
+                    str_includes += includes
+
+        str_includes += self.include_pattern_end
+        return str_includes
+
+    def should_be_excluded(self, token):
+        for exclude_path in self.parameters.exclude_paths:
+            _token = token.lower()
+            _exclude_path = exclude_path.replace('\\', '/').lower()
+            if _exclude_path in _token:
+                return True
+        return False
+
+    def search_include_pattern(self, template_lines):
+        includes_pattern = re.findall(self.include_pattern_begin + r'\w+' + self.include_pattern_end, template_lines)
+        if len(includes_pattern) != 1:
+            print 'ERROR: Wrong format of ' + self.include_pattern_begin + ' ' + self.composite_template_file
+            return
+
+        return includes_pattern[0]
+
+    def add_composite_name(self, template_lines):
+        template_lines = template_lines.replace('__COMPOSITE_NAME__', self.test_frame.short_name)
+        return template_lines
+
+    def add_project_name(self, template_lines):
+        template_lines = template_lines.replace('__PROJECT__', self.parameters.product.upper())
+        return template_lines
+
+    def add_core_name(self, template_lines):
+        template_lines = template_lines.replace('__CORE_NAME__', default_test_frame_name)
+        return template_lines
+
+
+class EnvironmentComposite(object):
+    def __init__(self, global_env, config_compiler_file, parameters):
+        self.env = self.set_environment(global_env, config_compiler_file)
+        self.parameters = parameters
+
+    def set_environment(self, global_env, config_compiler_file):
+        my_env = Environment(ENV={'PATH': os.environ['PATH']})
+        my_env['CPPDEFPREFIX'] = '-D'
+        my_env['INCPREFIX'] = '-I'
+
+        my_env['CPPPATH'] = global_env['CPPPATH']
+        my_env['COMPILER_PATH'] = global_env.subst(global_env['CC'])
+        try:
+            with open(config_compiler_file, 'r') as f:
+                command_line = f.read()
+                d = global_env.ParseFlags(command_line)
+                my_env['CPPPATH'] += d['CPPPATH']
+        except Exception:
+            pass   # no config_compiler_file for this ject core
+        return my_env
+
+    def add_command(self, target, source, test_frame):
+        action_generate = SCons.Action.ActionFactory(
+            functools.partial(self.create_composite, test_frame=test_frame),
+            lambda env, source, target: 'Generating TARGET')
+        command = self.env.Command(target,
+                                   source,
+                                   Action(functools.partial(self.create_composite, test_frame=test_frame),
+                                          'Generating $TARGET from $SOURCES'))
+        self.env.AlwaysBuild(command)
+
+    def create_composite(self, env, source, target, test_frame):
+        composite_file = str(target[0])
+        preprocessor_file = str(source[0])
+        composite_template_file = str(source[1])
+
+        composite = Composite(env, composite_file, composite_template_file, preprocessor_file,
+                              self.parameters, test_frame)
+        composite.create_file()
+
+
+def convert_abs_to_rel_path(parameters, input_path, proj_root_path):
+    input_path = input_path.replace('\\', '/')
+    if input_path[1] == ':':
+        input_path = input_path[0].upper() + input_path[1:]
+    base_dir = parameters.launch_dir.replace('\\', '/')
+    if base_dir[1] == ':':
+        base_dir = base_dir[0].upper() + base_dir[1:]
+    rel_path = input_path.replace(base_dir, proj_root_path)
+
+    # workaround for includes on C:/Tools *****************************
+    # Hack until a solution for the courage framework is found to handle includes on a different drive than project.
+    # An additional 'cd' with space is added-> in current courage this result in a correct includ pattern for the make file
+    if rel_path[0] == 'C':
+        rel_path = 'cd '+rel_path
+    # End workaround ***************************************************
+    
+    return rel_path
+
+
+def remove_comments(text):
+    def blot_out_non_newlines(input_string):
+        """ Return a string containing only the newline chars contained in input_string 
+        """
+        return "" + ("\n" * input_string.count('\n'))
+
+    def replacer(match):
+        s = match.group(0)
+        if s.startswith('/'):  # Matched string is //...EOL or /*...*/  ==> Blot out all non-newline chars
+            return blot_out_non_newlines(s)
+        else:                  # Matched string is '...' or "..."  ==> Keep unchanged
+            return s
+
+    pattern = re.compile(
+        r'//.*?$|/\*.*?\*/|\'(?:\\.|[^\\\'])*\'|"(?:\\.|[^\\"])*"',
+        re.DOTALL | re.MULTILINE
+    )
+
+    return re.sub(pattern, replacer, text)
+
+
+class EnvironmentCourage(object):
+
+    def __init__(self):
+        self.env = self.set_environment()
+
+    @staticmethod
+    def set_environment():
+        ENV = {'PATH': os.environ['PATH']}
+        my_env = Environment(ENV=ENV)
+
+        my_env['ENV']['SystemDrive'] = os.environ.get('SystemDrive')
+        my_env['ENV']['SystemRoot'] = os.environ.get('SystemRoot')
+        my_env['ENV']['TEMP'] = os.environ.get('TEMP')
+        my_env['ENV']['TMP'] = os.environ.get('TMP')
+        my_env['COURAGE_ROOT_DIR'] = COURAGE_BASE_DIRECTORY
+        my_env['COURAGE_BASE_DIR'] = '$COURAGE_ROOT_DIR/base'
+        my_env['COURAGE_BUILD_DIR'] = '$COURAGE_ROOT_DIR/build'
+        my_env['COURAGE_MK'] = '$COURAGE_BUILD_DIR/cmd/courageMake.cmd'
+        my_env['COURAGE_MK_IF_CATCH'] = '-f $COURAGE_BASE_DIR/courage_if_catch.mk'
+        my_env['COURAGE_MK_IF_ERTOOLS'] = '-f $COURAGE_BASE_DIR/courage_if_ertools.mk'
+        my_env['COURAGE_MK_IF_SIMPLE'] = '-f $COURAGE_BASE_DIR/courage_if_simple.mk'
+        my_env['COURAGE_MK_IF'] = '$COURAGE_MK $COURAGE_MK_IF_SIMPLE'
+        my_env['COURAGE_SMOKE_DIR'] = '$COURAGE_ROOT_DIR/smoke'
+        return my_env
+        
+    def add_command(self, target, sources, commands):
+        my_command = self.env.Command(target, sources, commands)
+        #self.env.AlwaysBuild(my_command)
+
+
+class FileParser(object):
+    def __init__(self, file_name):
+        """init"""
+        self.file_name = file_name
+        self.root = None
+        self.parse()
+
+    def parse(self):
+        """get content as string
+        """
+        try:
+            with open(self.file_name, 'rt') as f:
+                content = f.read().replace('\n', '')
+                self.root = ElementTree.fromstring(content)
+                self.remove_namespace()
+        except IOError:
+            pass
+
+    def remove_namespace(self):
+        """Remove namespace in the passed document in place"""
+        ns = u'{%s}' % self.namespace
+        nsl = len(ns)
+        for elem in self.root.getiterator():
+            if elem.tag.startswith(ns):
+                elem.tag = elem.tag[nsl:]
+
+
+class RevisionFileParser(FileParser):
+    """will read content of revision_info.xml file
+    """
+    namespace = ''
+
+    def __init__(self, file_name):
+        FileParser.__init__(self, file_name)
+
+    @property
+    def file_revision(self):
+        """returns the revision info
+        """
+        if self.root is not None:
+            node = self.root.find("./project/files/pc/M/R")
+            if node is not None:
+                return node.text
+        return 'N/A'
+
+    @property
+    def source_file_name(self):
+        """returns the revision info
+        """
+        if self.root is not None:
+            node = self.root.find("./project/files/pc/M/N")
+            if node is not None:
+                return node.text
+        return 'N/A'
+
+
+class CouXmlParser(FileParser):
+    """this will parse the summary xml file
+    """
+    namespace = 'http://contiautomotive.com/courage/coxml_result'
+
+    def __init__(self, file_name):
+        FileParser.__init__(self, file_name)
+        self.cov_decision = None
+        self.cov_mcdc = None
+        self.cov_statement = None
+        self.cov_function = None
+        self.cov_line = None
+        self.cov_branch = None
+        self.search_cov()
+
+    @property
+    def cov_tool(self):
+        node = self.root.find("./TEST/code_coverages/tool")
+        if node is None:
+            return "N/A"
+        else:
+            return node.text
+
+    @property
+    def is_lcov_used(self):
+        return True if self.cov_tool == 'LCOV' else False
+
+    @property
+    def user_name(self):
+        return self.root.find("./username").text
+
+    @property
+    def failed(self):
+        node = self.root.find("./TEST/tests/failed")
+        if node is None:
+            return "0"
+        else:
+            return node.text
+
+    @property
+    def passed(self):
+        node = self.root.find("./TEST/tests/passed")
+        if node is None:
+            return "0"
+        else:
+            return node.text
+
+    @property
+    def errors(self):
+        node = self.root.find("./log/errors")
+        if node is None:
+            return "0"
+        else:
+            return node.text
+
+
+    @property
+    def name(self):
+        return self.root.find("./composite").attrib["name"]
+
+    def search_cov(self):
+        """search the coverage data
+        """
+        node = self.root.find("./TEST/code_coverages")
+        if node is not None:
+            for cov in node.findall("code_coverage"):
+                self.__setattr__('cov_' + cov.attrib["type"], CoverageResult(cov))
+
+
+class CoverageResult(object):
+    def __init__(self, cov_root=None):
+        if cov_root is None:
+            self.cov = '0'
+            self.lc = '0'
+            self.lt = '0'
+        else:
+            self.cov = cov_root.find('percentage').text
+            self.lc = cov_root.find('hits').text
+            self.lt = cov_root.find('total').text
+
+    def __str__(self):
+        return '%s%% (%s of %s)' % (self.cov, self.lc, self.lt)
+
+
+class CoverageResultNull(CoverageResult):
+    def __init__(self):
+        CoverageResult.__init__(self)
+
+
+class CouData(object):
+    """place to store the COU statistic data for each file
+    """
+
+    def __init__(self, generated, executed, file_name, user='', errors='0', passed='0', failed='0', cov_tool='N/A'):
+        self.user = user
+        self.generated = generated
+        self.executed = executed
+        self.file_name = file_name
+        self.errors = errors
+        self.passed = passed
+        self.failed = failed
+        self.cov_tool = cov_tool
+
+
+class CouDataCTCOrLCOV(CouData):
+    """subclass from CouData to store the CTC data
+    """
+
+    def __init__(self, cov_decision=None, cov_mcdc=None, cov_statement=None, cov_function=None, *args, **kwargs):
+        super(CouDataCTCOrLCOV, self).__init__(*args, **kwargs)
+        self.cov_decision = cov_decision if cov_decision is not None else CoverageResultNull()
+        self.cov_mcdc = cov_mcdc if cov_mcdc is not None else CoverageResultNull()
+        self.cov_statement = cov_statement if cov_statement is not None else CoverageResultNull()
+        self.cov_function = cov_function if cov_function is not None else CoverageResultNull()
+
+
+class CourageTestFrame(object):
+    courage_target = '_DONE'
+    revisions_file_name = 'revision_info.xml'
+
+    def __init__(self, test_frame, component, parameters):
+        self.test_frame = test_frame
+        self.component = component
+        self.parameters = parameters
+
+        self.source_file = test_frame['file_name']
+        self.short_name = test_frame['short_name']
+        self._enabled = test_frame['enabled']
+        self.test_path = test_frame['test_path']
+
+        self.relative_courage_output = self.search_relative_courage_output()
+
+        self._options = None
+        self.additional_includes = '04_Engineering/00_Projects/' + self.parameters.product + '/temporary'
+
+        self._revision_file_parser = None
+
+    @property
+    def relative_path(self):
+        return os.path.join(self.parameters.module_test_root, self.component.name, 'Courage', self.test_path)
+
+    @property
+    def options(self):
+        if self._options is None:
+            file_name = os.path.join(self.parameters.launch_dir, self.relative_path, OPTION_FILE_NAME).replace('\\', '/')
+            try:
+                with open(file_name, 'r') as input_file:
+                    self._options = json.load(input_file)
+            except IOError:
+                print "ERROR: " + file_name + " not found"
+                return
+            except ValueError:
+                print "ERROR: " + file_name + " is not a correct json file. " \
+                                              "enabled should be equal to true or to false " \
+                                              "(lower case and without double quotes). " \
+                                              "All others values need double quotes." \
+                                              "Also, watch out for trailing commas!"
+                return
+        return self._options
+
+    def search_relative_courage_output(self):
+        relative_courage_output = default_test_frame_name
+        try:
+            with open(self.composites_template_file_path, 'r') as input_file:
+                template = input_file.read()
+                found = re.search('__CORE_NAME__', template)
+                if found:
+                    relative_courage_output = default_test_frame_name
+        except:
+            pass
+        return relative_courage_output
+
+    @property
+    def enabled(self):
+        if self._enabled is False:
+            return False
+        if self.options is not None:
+            if self.parameters.product in self.options['EXCLUDED_PROJECTS']:
+                return False
+            if self.parameters.product in self.options['INCLUDED_CORES']:
+                if self.parameters.core not in self.options['INCLUDED_CORES'][self.parameters.product]:
+                    return False
+            if self.parameters.core not in self.options['INCLUDED_CORES']['default']:
+                return False
+        return True
+
+    @enabled.setter
+    def enabled(self, value):
+        self._enabled = value
+
+    @property
+    def target(self):
+        return os.path.join(self.component.name, default_test_frame_name, self.short_name)
+
+    @property
+    def cou_result_dir(self):
+        return os.path.join(self.courage_path, self.component.name)
+
+    @property
+    def composites_file_path(self):
+        return os.path.join(self.parameters.launch_dir, self.relative_path, Composite.file_name).replace('\\', '/')
+
+    @property
+    def composites_template_file_path(self):
+        return os.path.join(self.parameters.launch_dir, self.relative_path, Composite.template_file_name).replace('\\', '/')
+
+    @property
+    def source_file_path(self):
+        return self.parameters.launch_dir.replace('\\', '/') + '/' + self.source_file
+
+    @property
+    def sources(self):
+        return [self.composites_file_path, self.source_file_path]
+
+    @property
+    def courage_path(self):
+        return os.path.join(self.parameters.launch_dir.replace('\\', '/'),
+                            '04_Engineering', '04_Build', 'ModuleTests',
+                            self.parameters.product, self.parameters.core)
+
+    @property
+    def abs_path(self):
+        return os.path.join(self.parameters.launch_dir.replace('\\', '/'), self.relative_path)
+
+    @property
+    def report_path(self):
+        return os.path.join(self.parameters.launch_dir.replace('\\', '/'),
+                            self.parameters.report_root,
+                            self.parameters.product, self.component.name,
+                            'Courage', self.test_path, self.parameters.core)
+
+    @property
+    def courage_output_path(self):
+        return os.path.join(self.courage_path, self.target)
+
+    @property
+    def zip_file_name(self):
+        return self.short_name + '.zip'
+
+    @property
+    def result_file_name(self):
+        return self.short_name + '-summary.xml'
+
+    @property
+    def output_zip_file(self):
+        return os.path.join(self.courage_output_path, 'DONE', self.zip_file_name)
+
+    @property
+    def output_revisions_file(self):
+        return os.path.join(self.courage_output_path, 'DONE', self.revisions_file_name)
+
+    @property
+    def output_result_file(self):
+        return os.path.join(self.courage_output_path, self.result_file_name)
+
+    @property
+    def report_output_result_file(self):
+        return os.path.join(self.report_path, self.result_file_name)
+
+    @property
+    def console_output_file(self):
+        return self.courage_output_path + '/build.log'
+
+    @property
+    def executed(self):
+        return os.path.exists(self.courage_path)
+
+    @property
+    def generated(self):
+        return os.path.isfile(self.output_result_file)
+
+    @property
+    def revision_file_parser(self):
+        if self._revision_file_parser is None:
+            self._revision_file_parser = RevisionFileParser(self.output_revisions_file)
+        return self._revision_file_parser
+
+    @property
+    def file_revision(self):
+        return self.revision_file_parser.file_revision
+
+    @property
+    def source_file_name(self):
+        return self.revision_file_parser.source_file_name
+
+    def add_commands(self, composite_environment, courage_environment):
+        composite_environment.add_command(target=self.composites_file_path,
+                                          source=[os.path.join(self.courage_path, Preprocessor.file_name),
+                                                  self.composites_template_file_path],
+                                          test_frame=self)
+
+        Action_TestFinished = SCons.Action.ActionFactory(self.test_finished, self.test_finished_str)
+        Action_Writable = SCons.Action.ActionFactory(self.make_writable, self.make_writable_str)
+        CopyWithExceptions = SCons.Action.ActionFactory(self.my_copy_func,
+                                                        lambda dest, src: 'Copy("%s", "%s")' % (dest, src),
+                                                        convert=str)
+
+        # Run Courage and move test results from 04_Engineering/05_Testing to 04_Engineering/04_Build
+        commands = ['$COURAGE_MK  -C ' + self.abs_path + ' ' + self.short_name + self.courage_target
+                    + ' COU_RESULTDIR=' + self.cou_result_dir + ' ',
+                    Mkdir(self.report_path),
+
+                    Action_Writable(self.report_path + '/' + self.zip_file_name),
+                    Delete(self.report_path + '/' + self.zip_file_name),
+                    CopyWithExceptions(self.report_path, self.output_zip_file),
+
+                    Action_Writable(self.report_path + '/' + self.result_file_name),
+                    Delete(self.report_path + '/' + self.result_file_name),
+                    CopyWithExceptions(self.report_path, self.output_result_file),
+
+                    Action_Writable(self.report_path + '/' + self.revisions_file_name),
+                    Delete(self.report_path + '/' + self.revisions_file_name),
+                    CopyWithExceptions(self.report_path, self.output_revisions_file),
+
+                    Action_Writable(self.report_path + '/' + self.console_output_file),
+                    Delete(self.report_path + '/' + self.console_output_file),
+                    CopyWithExceptions(self.report_path, self.console_output_file),
+
+                    Action_TestFinished(self.short_name, self.console_output_file)]
+        courage_environment.add_command(self.target, self.sources, commands)
+
+    @staticmethod
+    def my_copy_func(dest, src):
+        try:
+            SCons.Defaults.copy_func(dest, src)
+        except:
+            courage_logger.error('Copy("%s", "%s")' % (dest, src))
+
+    @staticmethod
+    def make_writable(output_file):
+        try:
+            os.chmod(output_file, stat.S_IWRITE)
+        except WindowsError:
+            #  file does not exist so no change needed
+            pass
+
+    @staticmethod
+    def make_writable_str(output_file):
+        return output_file + " is now writable"
+
+    def test_finished(self, test_name, console_output_file):
+        ConsoleOutput(console_output_file, test_name, courage_logger)
+        self.component.test_finished(self)
+
+    def test_finished_str(self, test_name, console_output_file):
+        return "TestFrame " + test_name + " finished"
+
+    @property
+    def results(self):
+        """will parse data and dump the data into class
+        """
+        if not self.generated:
+            return CouDataCTCOrLCOV(generated=self.generated,
+                                    executed=self.executed,
+                                    file_name=self.test_frame)
+
+        cou = CouXmlParser(self.output_result_file)
+
+        return CouDataCTCOrLCOV(cov_decision=cou.cov_decision if cou.cov_decision is not None else cou.cov_branch,
+                                cov_mcdc=cou.cov_mcdc,
+                                cov_statement=cou.cov_statement if cou.cov_statement is not None else cou.cov_line,
+                                cov_function=cou.cov_function,
+                                user=cou.user_name,
+                                generated=self.generated,
+                                executed=self.executed,
+                                file_name=cou.name,
+                                errors=cou.errors,
+                                passed=cou.passed,
+                                failed=cou.failed,
+                                cov_tool=cou.cov_tool)
+
+
+class CourageTestFrameProjectSpecific(CourageTestFrame):
+    def __init__(self, test_frame, component, parameters):
+        CourageTestFrame.__init__(self, test_frame, component, parameters)
+
+    @property
+    def relative_path(self):
+        return os.path.join(self.parameters.module_test_root, 'Project_Specific', self.parameters.product.upper(),
+                            self.component.name, 'Courage', self.test_path)
+
+
+class TestComponent(object):
+    test_frames_file = 'test_frames.json'
+
+    def __init__(self, component, parameters):
+        self.name = component['component']
+        self.enabled = component['enabled']
+        self.parameters = parameters
+
+        courage_logger.info("Component " + self.name + " should be tested.")
+        self.test_frames = {}
+        self.test_frame_result = {}
+        self.composites_file_paths = {}
+        self.add_tests()
+
+    def short_name_from_composites_file_path(self, composites_file_path):
+        return self.composites_file_paths[composites_file_path].short_name
+
+    def add_tests(self):
+        if self.parameters.components is not None:
+            component_from_parameter = self.parameters.components.get(self.name)
+        else:
+            component_from_parameter = None
+
+        file_name = self.testframes_file_name
+        try:
+            with open(file_name, 'r') as input_file:
+                component_setting = json.load(input_file)
+        except ValueError:
+            print "ERROR: " + file_name + " is not a correct json file. " \
+                                          "enabled should be equal to true or to false " \
+                                          "(lower case and without double quotes). " \
+                                          "All others values need double quotes."
+            return
+        except IOError:
+            print "ERROR: " + file_name + " not found"
+            return
+
+        if component_setting['component'] != self.name:
+            print "ERROR: " + file_name + " contains not compliant component name"
+            return
+
+        for test_frame in component_setting['test_frames']:
+            new_test_frame = self.create_test_frame(test_frame)
+
+            if component_from_parameter is not None and len(component_from_parameter) != 0:
+                if test_frame['short_name'] in component_from_parameter:
+                    new_test_frame.enabled = True
+                else:
+                    new_test_frame.enabled = False
+
+            if new_test_frame.enabled:
+                courage_logger.info("  TestFrame " + new_test_frame.short_name
+                                    + " should be tested.")
+                self.test_frames[new_test_frame.short_name] = new_test_frame
+
+    def create_test_frame(self, test_frame):
+        return CourageTestFrame(test_frame, self, self.parameters)
+
+    @property
+    def testframes_file_name(self):
+        return os.path.join(self.parameters.launch_dir, self.parameters.module_test_root, self.name, 'Courage',
+                            self.test_frames_file).replace('\\', '/')
+
+    @property
+    def report_file(self):
+        return os.path.join(self.parameters.launch_dir.replace('\\', '/'),
+                            self.parameters.report_root,
+                            self.parameters.product, self.name,
+                            'Courage', 'cou_summary_' + self.parameters.core + '.txt')
+
+    def add_commands(self, composite_environment):
+        courage_environment = EnvironmentCourage()
+        for test_frame in self.test_frames.values():
+            test_frame.add_commands(composite_environment, courage_environment)
+            self.test_frame_result[test_frame] = False
+
+            self.composites_file_paths[test_frame.composites_file_path] = test_frame  # for search optimization
+
+        # to difficult to do it with scons because of missing summary files
+        # Action_ComponentFinished = SCons.Action.ActionFactory(self.component_finished, self.component_finished_str)
+        #
+        # my_command = env.Command(self.report_file,
+        #                          [test_frame.output_result_file for test_frame in self.test_frames.values()],
+        #                          Action_ComponentFinished(component_name=self.name))
+        # env.AlwaysBuild(my_command)
+
+    def test_finished(self, test_frame):
+        self.test_frame_result[test_frame] = True
+        if len([test_frame for test_frame in self.test_frames.values() if test_frame == False]) == 0:
+            self.summarize_results()
+
+
+    def component_finished(self, component_name):
+        self.summarize_results()
+
+    def component_finished_str(self, component_name):
+        return "TestComponent " + component_name + " summarizing results"
+
+    def summarize_results(self):
+        cou_data = {}
+        for key, test_frame in sorted(self.test_frames.items()):
+            cou_data[test_frame] = test_frame.results
+
+        self.write_results_report(cou_data)
+
+    def write_results_report(self, cou_data):
+        """will create txt file report for CTC Tool results
+        """
+        txt = []
+
+        txt.append("Courage Test Summary for Component " + self.name)
+
+        declc = 0
+        declt = 0
+        funclc = 0
+        funclt = 0
+        statlc = 0
+        statlt = 0
+        mcdclc = 0
+        mcdclt = 0
+
+
+        for cou in cou_data.values():
+            declc += int(cou.cov_decision.lc)
+            declt += int(cou.cov_decision.lt)
+            funclc += int(cou.cov_function.lc)
+            funclt += int(cou.cov_function.lt)
+            statlc += int(cou.cov_statement.lc)
+            statlt += int(cou.cov_statement.lt)
+            mcdclc += int(cou.cov_mcdc.lc)
+            mcdclt += int(cou.cov_mcdc.lt)
+
+        def display_percentage(sum_values, declt):
+            return "{:^5.4}".format((sum_values / float(max(1, declt))) * 100.)
+
+        dl = display_percentage(declc, declt)
+        fl = display_percentage(funclc, funclt)
+        sl = display_percentage(statlc, statlt)
+        ml = display_percentage(mcdclc, mcdclt)
+
+        rep = """
+=========================================================================
+=          Consolidated Coverage Report                                 =
+=========================================================================
+= Metrics       = Statements   = Decision   =  Functions   =  MC / DC   =
+=========================================================================
+= Total         =     %4d     =   %4d      =   %4d        =   %4d
+= Executed      =     %4d     =   %4d      =   %4d        =   %4d
+= Percentage(%%) =    %s     =   %s     =   %s       =   %s
+=========================================================================
+
+""" % (statlt, declt, funclt, mcdclt,
+           statlc, declc, funclc, mcdclc,
+           sl, dl, fl, ml)
+        txt.append(rep)
+
+        txt_format = \
+            '{:5s} | {:150s} | {:12s} | {:11s} | {:13s} | {:9s} | {:15s} | {:15s} | {:22s} | {:22s} | {:22s} | ' \
+            '{:22s} | {:22s} | {:9s}\n'
+        h = ['Sl No',
+             'File Name',
+             'Test Frame',
+             'is Executed',
+             'Report avail.',
+             'Errors',
+             'Passed TCs(No.)',
+             'Failed TCs(No.)',
+             'Statement Cov(%)',
+             'Decision Cov(%)',
+             'Function Cov(%)',
+             'MC/DC Cov(%)',
+             'Tested by',
+             'Cov. Tool']
+        txt.append(txt_format.format(h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7], h[8], h[9], h[10], h[11],
+                                     h[12], h[13]))
+        for counter, test_frame in enumerate(cou_data.keys()):
+            cou = cou_data[test_frame]
+            file_name = '%s (rev:%s)' % (test_frame.source_file_name, test_frame.file_revision)
+            short_name = cou.file_name
+            txt.append(txt_format.format(str(counter + 1),
+                                         file_name,
+                                         short_name,
+                                         str(cou.executed),
+                                         str(cou.generated),
+                                         cou.errors,
+                                         cou.passed,
+                                         cou.failed,
+                                         cou.cov_statement,
+                                         cou.cov_decision,
+                                         cou.cov_function,
+                                         cou.cov_mcdc,
+                                         cou.user,
+                                         cou.cov_tool))
+
+        self.write_file(self.report_file, txt)
+
+    @staticmethod
+    def write_file(output_file, txt_l):
+        """create the TXT file and store the results there.
+        """
+        with open(output_file, 'wb') as f:
+            f.writelines(txt_l)
+
+        msg = "created file %s " % os.path.basename(output_file)
+        courage_logger.info(msg)
+
+
+class TestComponentProjectSpecific(TestComponent):
+    def __init__(self, component, parameters):
+        TestComponent.__init__(self, component, parameters)
+
+    @property
+    def testframes_file_name(self):
+        return os.path.join(self.parameters.launch_dir, self.parameters.module_test_root, 'Project_Specific', self.parameters.product.upper(),
+                            self.name, 'Courage', self.test_frames_file).replace('\\', '/')
+
+    def create_test_frame(self, test_frame):
+        return CourageTestFrameProjectSpecific(test_frame, self, self.parameters)
+
+
+class TestComponents(object):
+    def __init__(self, parameters):
+        self.parameters = parameters
+        self.components = {}
+
+    def add_components(self, components):
+        if self.parameters.components is not None:
+            self.add_components_from_courage_parameters()
+        else:
+            self.add_components_from_options_file(components)
+
+    def add_components_from_options_file(self, components):
+        for component in components['common']:
+            if component['enabled']:
+                new_component = TestComponent(component, self.parameters)
+                self.add_component(new_component)
+
+        # product specific
+        if components.get(self.parameters.product) is not None:
+            for component in components[self.parameters.product]:
+                if component['enabled']:
+                    new_component = TestComponentProjectSpecific(component, self.parameters)
+                    self.add_component(new_component)
+
+    def add_components_from_courage_parameters(self):
+        for component_name in self.parameters.components:
+            component = {'component': component_name, 'enabled': True}
+            new_component = TestComponent(component, self.parameters)
+            self.add_component(new_component)
+
+    def add_component(self, new_component):
+        self.components[new_component.name] = new_component
+
+    def add_commands(self, composite_environment):
+        for component in self.components.values():
+            component.add_commands(composite_environment)
+
+
+class DummyFile(object):
+    file_name = 'dummy.c'
+
+    def __init__(self):
+        pass
+
+    def add_command(self, environment):
+        # this file will be compiled in order to receive the defines used by scons
+        environment.Command(self.file_name, None, 'echo /* dummy */ > $TARGET')
+
+
+class Preprocessor(object):
+    file_name = 'preprocessor.pp'
+    temp_file_name = 'preprocessor.pp_temp'
+
+    def __init__(self, my_dummy_file, parameters):
+        self.dummy_file = my_dummy_file
+        self.parameters = parameters
+
+    def add_command(self, my_env, config_compiler_file):
+        self.add_command_temp_file(config_compiler_file, my_env)
+        #self.add_command_file(my_env)
+
+    def add_command_temp_file(self, config_compiler_file, my_env):
+        command_line = self.prepare_preprocessor_list(
+                                        config_compiler_file, compiler_path=my_env.subst(my_env['CC']))
+        my_command = my_env.Command(self.file_name,
+                                    self.dummy_file.file_name,
+                                    command_line)
+        my_env.AlwaysBuild(my_command)
+
+    def add_command_file(self, my_env):
+        my_command = my_env.Command(self.file_name, self.temp_file_name, self.compare_files)
+        my_env.AlwaysBuild(my_command)
+
+    def compare_files(self, target, source, env):
+        """Only if the output of the code generation reveals changes in the output files, those files will be replaced.
+        If there are no changes, the generated (temporary) files will be deleted.
+        This functionality was implemented in order to avoid unnecessary recompilation because of changed files."""
+        output_file = os.path.join(str(target[0].dir), target[0].name)
+        temp_file = os.path.join(str(source[0].dir), source[0].name)
+
+        if os.path.exists(output_file):
+            # if the files have the same content
+            if filecmp.cmp(temp_file, output_file):
+                os.remove(temp_file)
+            else:
+                self.replace_old_file_by_new_generated_file(temp_file, output_file)
+        else:
+            os.rename(temp_file, output_file)
+
+    def replace_old_file_by_new_generated_file(temp_file, output_file):
+        """remove the old one and rename the new one."""
+        os.chmod(output_file, stat.S_IWRITE)
+        os.remove(output_file)
+        os.rename(temp_file, output_file)
+
+    def prepare_preprocessor_list(self, config_compiler_file, compiler_path):
+        for compiler_key in self.parameters.compilers.keys():
+            if compiler_key.replace('\\', '/').lower() in compiler_path.replace('\\', '/').lower():
+                compiler_dict = self.parameters.compilers[compiler_key]
+                try:
+                    command_line = \
+                        compiler_dict['COMPILER_CMD_FOR_PREPROCESSOR_LIST'](self.parameters.core, config_compiler_file)
+                except:
+                    command_line = compiler_dict['COMPILER_CMD_FOR_PREPROCESSOR_LIST'](self.parameters.core, None)
+                return ' ' + command_line
+        return 'ERROR'
+
+
+# Main
+logging.config.fileConfig(os.path.join(str(env.fs.SConstruct_dir), logger_file))
+courage_logger = logging.getLogger('courage')
+courage_logger.info("Sconscript_courage begin")
+
+parameters = Parameters(ARGUMENTS, general_courage_test_setup)
+
+components = TestComponents(parameters)
+
+components.add_components(components=courage_build_option.courage_components)
+
+dummy_file = DummyFile()
+dummy_file.add_command(env) # the scons env is not needed here
+
+preprocessor = Preprocessor(dummy_file, parameters)
+preprocessor.add_command(env, config_compiler_file=config_pkg_compiler_file)  # the scons env is needed here
+
+environnement_composite = EnvironmentComposite(global_env=env,
+                                               config_compiler_file=config_pkg_compiler_file,
+                                               parameters=parameters)
+
+components.add_commands(environnement_composite)
+
+courage_logger.info("Sconscript_courage end")

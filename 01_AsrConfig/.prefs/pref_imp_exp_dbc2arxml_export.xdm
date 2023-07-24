@@ -1,0 +1,29 @@
+<?xml version='1.0'?>
+<datamodel version="7.0" 
+           xmlns="http://www.tresos.de/_projects/DataModel2/16/root.xsd" 
+           xmlns:a="http://www.tresos.de/_projects/DataModel2/16/attribute.xsd" 
+           xmlns:v="http://www.tresos.de/_projects/DataModel2/06/schema.xsd" 
+           xmlns:d="http://www.tresos.de/_projects/DataModel2/06/data.xsd">
+
+  <d:ctr name="General">
+    <a:a name="DEF" value="XPath:/PreferencesSchema/General"/>
+    <d:lst name="ImportersExporters" type="MAP">
+      <d:ctr name="dbc2arxml_export">
+        <d:var name="Id" value="SysdExporter"/>
+        <d:var name="Mode" value="export"/>
+      </d:ctr>
+    </d:lst>
+  </d:ctr>
+  <d:ctr name="ImporterExporterAdditions">
+    <a:a name="DEF" value="XPath:/PreferencesSchema/ImporterExporterAdditions"/>
+    <d:lst name="SystemDescriptionExporters" type="MAP">
+      <d:ctr name="dbc2arxml_export">
+        <d:var name="ExportContentType" value="4.5.0"/>
+        <d:var name="ExportFile" value="SwcArxml\Private_CAN.arxml"/>
+        <d:var name="ValidationEnabled" value="FALSE"/>
+        <d:var name="ExportUUIDsEnabled" value="FALSE"/>
+      </d:ctr>
+    </d:lst>
+  </d:ctr>
+
+</datamodel>

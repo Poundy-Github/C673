@@ -1,0 +1,16 @@
+Description:
+build_all_dll.bat contains all the DLL build commands for LCF MFC431 platform:
+ call scons -j 8 -c project=proj_name
+ call scons -j 8 lcf_sim_swc_lcf_sen project=proj_name
+ call scons -j 8 lcf_sim_swc_lcf_veh project=proj_name
+ call scons -j 8 lcf_sim_swc_vis project=proj_name
+
+Choose proj_name from list: MFC431, MFC431LO19, MFC431SC19, MFC431SW19, MFC431VA10
+
+How to use it:
+In command line at path ..\04_Engineering\03_Workspace\Component_Workspace\LCF\ type:
+build_all_dll.bat proj_name --> it will compile only for the desired project
+OR
+run the build_all_dll.bat --> it will compile for all the configured projects
+
+In case a new project is needed just copy the text from a another project and replace the project name.

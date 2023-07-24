@@ -1,0 +1,11 @@
+# config file containing TI Cortex M4 sim hil source file list
+
+# Cortex M4 sim hil source files
+cortex_m4_sim_hil_sources = """
+CortexM4_EvmHilWrapper.cpp
+"""
+
+# Cortex M4 sim hil include paths
+cortex_m4_sim_hil_include_paths = """
+#../hla_sim/hla_evm_hil/vh28/evm_hil_projects/CortexM4/
+"""

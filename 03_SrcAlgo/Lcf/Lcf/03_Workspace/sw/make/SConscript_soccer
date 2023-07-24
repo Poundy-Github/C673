@@ -1,0 +1,52 @@
+# Configuration file of soCCer and socGenerator
+#
+# This file will be executed in the context of the class CommonParameters from socParameters.py.
+# Therefore, everything here will be a member of that said config
+
+# This is executed (possibly multiple times) by SoCCer_ProductController.py -> update_self()
+# possible variables in strings:
+#   - $product will be replaced by the currently chosen product (from the product choose dialog)
+#   - $chipset will be replaced by the set chipset
+
+# Prerequisites: __file__ has to be set properly by the calling environment via e.g.:
+# g = globals().copy()
+# g['__file__'] = os.path.abspath(your script file)
+# execfile(fullpath, g, locals())
+
+import os
+
+self.base_project_mapping = { 'mfc431sw19' : 'mfc431',
+                              'mfc431bd10' : 'mfc431',
+			      'mfc431va10' : 'mfc431',
+			      'mfc431va21' : 'mfc431',
+                              'ars441dc13' : 'ars441'}
+
+# Set this to True when we have this structure as when ARS540 was first set up in git(hub).
+# --> Therefore, we have to translate subpaths like e.g. "DPUFF/ga" that would normally be applied to 00_Projects/<project> to
+# APPL\DPUFF\04_Engineering\00_Projects\ARS540BW11\DPUFF\ga instead.
+#      =====                                       ========
+self.has_weird_git_structure   = False
+
+self.sandbox_root_directory    = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../../../..'))
+print(self.sandbox_root_directory)
+# relative to the sandbox root
+self.path_of_project_list      = '04_Engineering/00_Projects'
+# relative path to sandbox root
+self.rel_config_folder         = 'DPUFF/ga'
+
+self.mdb_config_file           = 'function_config_mdb.xml'
+self.add_ga_config_file('function_config_ga.xml')
+self.schedule_config_file      = 'schedule_cfg.xml'
+self.core_config_file          = 'core_cfg.xml'
+self.generation_config_file    = 'generation_cfg.xml'
+
+# relative to sandbox root directory
+self.template_directory        = '04_Engineering/03_Workspace/sw/code_gen_templates'
+
+# relative to sandbox root directory. The output_sub_dir will be applied to that, which is set per file generator
+self.code_output_directory     = '04_Engineering/00_Projects/$base_project'
+self.arxml_output_directory    = '03_Design/03_Code_Generation/Project_Specific/$product/Tresos/conf'
+
+# relative to sandbox root
+self.arxml_input_directory= r'03_Design/03_Code_Generation/Project_Specific/$base_project/GA'
+self.arxml_input_file     = 'AUTOSAR_TRESOS_AlgoTypes.ecuextract'

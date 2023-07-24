@@ -1,0 +1,23 @@
+// COMPANY:   Continental Automotive
+// COMPONENT: IPCBASE
+// VERSION:   $Revision: 1.1 $
+
+///@file
+
+/// Configuration of measfreeze
+
+#ifndef SW_MEASFREEZES_CFG_H
+#define SW_MEASFREEZES_CFG_H
+
+//#include <DPUFF/Config/cfg_project.h>
+#include <IPC_SLAVE/sw_measfreezes_types.h>
+
+///@todo the ipc files are new generated for eall projects, it is possible to remove the same definition in sw_measfreezes_types.h
+/// and to compute with socGenerator SWMF_u_MeasfreezeListSize and define SWMF_t_MeasfreezeEntry extern const SWMF_a_MeasListIpc[SWMF_u_MeasfreezeListSize];
+
+// Configuration
+extern const uint32 SWMF_u_MeasfreezeListSize;
+extern const SWMF_t_MeasfreezeEntry SWMF_a_MeasListIpc[];
+
+#endif //SW_MEASFREEZES_CFG_H
+

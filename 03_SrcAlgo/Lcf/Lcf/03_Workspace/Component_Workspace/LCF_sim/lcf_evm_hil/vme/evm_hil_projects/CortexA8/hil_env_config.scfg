@@ -1,0 +1,58 @@
+# Note:
+# 1. Replace xxx with component name in lowercase and XXX with component name in uppercase.
+# 2. Fill {variant}_ccflags with required compiler flags.
+#    The value in this template is only for example.
+# 3. Fill {variant}_cppdefines with required preprocessor defines.
+#    The value in this template is only for example.
+#    Each preprocessor define must be written as string and separated with ,
+# 4. Fill {variant}_linkflags with required linker flags.
+#    The value in this template is only for example.
+# 5. Fill {variant}_libpaths with required library include paths.
+#    The value in this template is only for example.
+# 6. Fill {variant}_libs with required libraries in library include paths.
+#    The value in this template is only for example.
+# 7. Fill {variant}_lcffile with required linker files.
+#    The value in this template is only for example.
+# 8. When additional variant is created, add it in the variant_list. Otherwise, the
+#    variant will not be created.
+# ----------------------------------------------------------------------------------------
+
+#-----------------------
+# variant config
+#-----------------------
+
+execfile(File("#../../../02_Development_Tools/scons_tools/scons_common_config/common_config.scfg").abspath)
+
+# create release variant
+release_variant = "release"
+release_ccflags = "--code_state=32 --abi=eabi -me -O2 -g --diag_warning=225 --enum_type=packed --float_support=VFPv3"
+release_cppdefines = ["_INCLUDE_NIMU_CODE", "_INCLUDE_IPv6_CODE", "_NDK_EXTERN_CONFIG"]
+release_linkflags = "--reread_libs --warn_sections --rom_model"
+release_libpaths = [pdk_nsp_dm814x_package_dir + "ti/drv/centaurus/lib/release"]
+release_libs = ["ti.drv.centaurus.aea8f"]
+release_lcffile = ["#../lcf_sim/lcf_evm_hil/vme/evm_hil_projects/CommonSoC/SharedRAM.cmd"]
+
+# create debug variant
+debug_variant = "debug"
+debug_ccflags = "--code_state=32 --abi=eabi -me -g --diag_warning=225 --enum_type=packed --float_support=VFPv3"
+debug_cppdefines = ["_INCLUDE_NIMU_CODE", "_INCLUDE_IPv6_CODE", "_NDK_EXTERN_CONFIG"]
+debug_linkflags = "--reread_libs --warn_sections --rom_model"
+debug_libpaths = [pdk_nsp_dm814x_package_dir + "ti/drv/centaurus/lib/debug"]
+debug_libs = ["ti.drv.centaurus.aea8f"]
+debug_lcffile = ["#../lcf_sim/lcf_evm_hil/vme/evm_hil_projects/CommonSoC/SharedRAM.cmd"]
+
+# variable containing compiler flags, defines and linker flags for all variants
+# when creating additional variant beside "release" and "debug", the variant must be added in this variable
+variant_list = [
+[release_variant, release_ccflags, release_cppdefines, release_linkflags, release_libpaths, release_libs, release_lcffile],
+[debug_variant,   debug_ccflags,   debug_cppdefines,   debug_linkflags, debug_libpaths, debug_libs, debug_lcffile],
+]
+
+# out file name
+outfile_name = "client.out"
+
+# ccs project name
+ccs_project_name = algo_name.upper() + "_TI_CortexA8_EvmHilWrapper"
+
+# Use list Obj_Size_cortexA8 for adding more object files used for RAM/ROM calculation e.g Obj_Size_cortexA8 = ["abc.obj", "xyz.obj"]
+# Obj_Size_cortexA8 = []

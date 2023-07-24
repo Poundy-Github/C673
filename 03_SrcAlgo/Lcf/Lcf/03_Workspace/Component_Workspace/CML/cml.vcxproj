@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug_Test|Win32">
+      <Configuration>Debug_Test</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Doxygen|Win32">
+      <Configuration>Doxygen</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_Test|Win32">
+      <Configuration>Release_Test</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C723D647-2992-4C13-A282-1FFCFFF68AFA}</ProjectGuid>
+    <RootNamespace>cml</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Test|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Test|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Doxygen|Win32'">
+    <ConfigurationType>Utility</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_Test|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Test|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\04_Build\algo\cml\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug_Test|Win32'">..\..\..\04_Build\algo\cml\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug_Test|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug_Test|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\04_Build\algo\cml\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_Test|Win32'">..\..\..\04_Build\algo\cml\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_Test|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release_Test|Win32'">false</LinkIncremental>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Doxygen|Win32'">..\..\..\01_Source_Code\algo;..\..\..\01_Source_Code\common;..\..\..\01_Source_Code\common\rte;..\..\..\01_Source_Code\algo\cml;..\..\..\03_Workspace\algo\externals\sim\include\sim_rte;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\..\01_Source_Code\algo\algo_common;..\..\algo\externals\sim\include\sim_rte;..\..\..\01_Source_Code\common;..\..\..\01_Source_Code\common\rte;..\..\..\01_Source_Code\algo\00_Custom\cml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CML_EXPORTS;%(PreprocessorDefinitions); MSVC_PLATFORM;CML_NO_RTE_DEPENDENCY</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
+      <FloatingPointExceptions>true</FloatingPointExceptions>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)cml.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Test|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\..\01_Source_Code\algo\algo_common;..\..\algo\externals\sim\include\sim_rte;..\..\..\01_Source_Code\common;..\..\..\01_Source_Code\common\rte;..\..\..\01_Source_Code\algo\00_Custom\cml;%(AdditionalIncludeDirectories);..\..\..\01_Source_Code\algo\cml</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;_USRDLL;CML_EXPORTS;%(PreprocessorDefinitions); MSVC_PLATFORM;CML_NO_RTE_DEPENDENCY;CML_TEST</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <FloatingPointExceptions>
+      </FloatingPointExceptions>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)cml.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\..\01_Source_Code\algo\algo_common;..\..\algo\externals\sim\include\sim_rte;..\..\..\01_Source_Code\common;..\..\..\01_Source_Code\common\rte;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CML_EXPORTS;%(PreprocessorDefinitions); MSVC_PLATFORM;CML_NO_RTE_DEPENDENCY</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Test|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\..\01_Source_Code\algo\cml;..\..\..\01_Source_Code\algo\algo_common;..\..\algo\externals\sim\include\sim_rte;..\..\..\01_Source_Code\common;..\..\..\01_Source_Code\common\rte;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CML_EXPORTS;%(PreprocessorDefinitions); MSVC_PLATFORM;CML_NO_RTE_DEPENDENCY;CML_TEST</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <FloatingPointModel>Strict</FloatingPointModel>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Doxygen|Win32'">
+    <PreBuildEvent>
+      <Command>make_swc_cml_doxy.bat</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Doxygen|Win32'">
+    <PreBuildEvent>
+      <Message>Call Doxygen</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\01_Source_Code\algo\algo_common\algo_cfg.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\algo_common\algo_constants.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\algo_common\algo_glob.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\algo_common\algo_sensor_params.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\algo_common\algo_type.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_bayes.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_cfg.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_complex.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_const.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_ecu_emul.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_ext.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_ext_cpp.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_fourier.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_interpol.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_kafi.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_mapping.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_mat.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_misc.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_mtrx.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stat.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_algorithm.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_array.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_array2d.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_cmath.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_iterator.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_list.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_matrix.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_memory.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_point.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_type_traits.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_stl_vector.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_trigo.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_type.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_vector.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\algo\cml\cml_ver.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\common\glob_comp_id.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\common\glob_type.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\common\meas_ext.h" />
+    <ClInclude Include="..\..\..\01_Source_Code\common\rte\rte_type.h" />
+    <ClInclude Include="..\externals\sim\include\sim_rte\Compiler.h" />
+    <ClInclude Include="..\externals\sim\include\sim_rte\Platform_Types.h" />
+    <ClInclude Include="..\externals\sim\include\sim_rte\Rte.h" />
+    <ClInclude Include="..\externals\sim\include\sim_rte\std_types.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_bayes.c" />
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_complex.c" />
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_fourier.c" />
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_interpol.c" />
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_kafi.c" />
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_mat.c" />
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_misc.c" />
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_mtrx.c" />
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_stat.c" />
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_trigo.c" />
+    <ClCompile Include="..\..\..\01_Source_Code\algo\cml\cml_vector.c" />
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\C66xx_EvmHilWrapper_cml.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\csv_parser.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_bayes.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_complex.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_fourier.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_interpol.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_kafi.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_mat.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_misc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_mtrx.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stat.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_cmath.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_trigo.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_vector.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_algorithm.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_array2d.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_iterator.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_matrix.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_point.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\cml_sim\cml_evm_hil\vh28\evm_hil_projects\C66xx\cantata_target_testing\test_cml_stl_vector.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

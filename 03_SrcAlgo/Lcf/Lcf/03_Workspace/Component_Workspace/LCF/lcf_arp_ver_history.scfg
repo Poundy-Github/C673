@@ -1,0 +1,12 @@
+# For release:
+# -------------------------------------------------------------------------------
+# 1. Perform a full build.
+# 2. Copy the hashsums (variables ul_FP_LCFAlgoArp1-4) from 
+#    04_Build/algo/lcf/fingerprint/LCFAlgoArpFingerprint.h.
+# 3. Paste them into a new dictionary entry as the examples below.
+# 4. If necessary remove the "U" in order to make the type "L" instead of "UL".
+# -------------------------------------------------------------------------------
+
+Versions = {
+    (0x9555c269L, 0x47deeb3aL, 0x082fd17cL, 0x6d33712dL) : ("Test case",  0,   0, 1)	
+}

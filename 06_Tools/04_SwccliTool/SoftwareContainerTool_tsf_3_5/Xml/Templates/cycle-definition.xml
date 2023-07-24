@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Cycles xmlns="http://schemas.continental-corporation.com/mts/swc/2016/cycle-definition">
+  <!--Cycle definitions-->
+  <!-- <Cycle Name="ARS60Cycle" Id="60" CycleTime="60000" MaxCycleTime="60000" Description="ARS4xx main software/hardware cycle"/>-->
+  <!-- <Cycle Name="RawDataCycle" Id="204" CycleTime="60000" MaxCycleTime="60000" Description="CycleID 204: Raw Data Aquisition"/>-->
+</Cycles>

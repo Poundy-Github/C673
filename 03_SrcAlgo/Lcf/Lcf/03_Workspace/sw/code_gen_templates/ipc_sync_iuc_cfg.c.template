@@ -1,0 +1,157 @@
+// Copyright (C) Continental AG
+// All Rights Reserved
+// COMPONENT: IPC
+// VERSION:   $Revision: 1.1 $
+
+#include <glob_defs.h> // Defines for SWITCH_ON and SWITCH_OFF
+#include <IPC_BASE/IPC_DataBaseConfig/ipc_sync_iuc_cfg.h>
+
+// PRQA S 3211 ++ // 2017-04-20; uidg6511;
+// summary: Msg(2:3211) The global identifier 'IPC_p_IUC_RECEIVE_CLUSTER_LIST' is defined here but is not used in this translation unit.;
+// reason: This generated file contains only definition of global variables, which are not used here.
+
+// Dummy Cluster ID for IuC database
+#define DUMMY_ID 0xFFFFu
+
+// List of all receiveClusters for the IUC. In case the IUC receives any other cluster it does not recognize it as there is no slot received in database.
+// Note: Background of this idea is to make changes concerning ipc database easier. In case it is requested to send a
+// cluster from SOC to IUC, which was not sent up to now this can be done without a database change.
+// For soc it shall be allowed to send all clusters (except those which are received by soc).
+#if IPC_NO_IUC_RECEIVE_CLUSTERS != 0
+
+// PRQA S 3207 ++ // 2018-12-06; uib12158; summary: Msg(3:3207) File scope static, 'IPC_a_IUC_RECEIVE_CLUSTERS', is not used, and could be removed.
+// reason: The variable is used in this file under several compiler flags. Therefore the declaration is valid.
+static const IPC_CLUSTER_ID IPC_a_IUC_RECEIVE_CLUSTERS[IPC_NO_IUC_RECEIVE_CLUSTERS] =
+{
+/*!<codegen_start:IPC_a_IUC_RECEIVE_CLUSTERS>*/
+/*!<codegen_end:IPC_a_IUC_RECEIVE_CLUSTERS>*/
+};
+// PRQA S 3207 --
+#endif // IPC_NO_IUC_RECEIVE_CLUSTERS != 0
+
+#ifdef DB_PLATFORM_MCU
+
+/// Mapping table of clusters in the direction IUC to DPU, sorted by clusterID
+const DB_t_DbMap DB_a_TxMap[IPC_NO_IUC_SEND_CLUSTERS] =
+{
+/*!<codegen_start:DB_a_TxMap>*/
+/*!<codegen_end:DB_a_TxMap>*/
+};
+
+/// Mapping table of clusters in the direction DPU to IUC, sorted by clusterID
+const DB_t_DbMap DB_a_RxMap[IPC_NO_IUC_RECEIVE_CLUSTERS] =
+{
+/*!<codegen_start:DB_a_RxMap>*/
+/*!<codegen_end:DB_a_RxMap>*/
+};
+
+  #if (CFG_IOB_MODE == SWITCH_ON)
+const uint32 ui32_EffectiveDatabaseSize[IPC_NO_OPMODES] =
+{
+  (uint32)sizeof(EFFECTIVE_DATABASE_SIZE_NORMAL_t),
+  (uint32)sizeof(EFFECTIVE_DATABASE_SIZE_IOB_t)
+};
+
+const uint32 ui32_TotalNoOfRelevantClustersOnIUC[IPC_NO_OPMODES] =
+{
+  IPC_NO_IUC_SEND_CLUSTERS_NORMAL + IPC_NO_IUC_RECEIVE_CLUSTERS_NORMAL, // OPMODE NORMAL
+  IPC_NO_IUC_SEND_CLUSTERS_IOB    + IPC_NO_IUC_RECEIVE_CLUSTERS_IOB,    // OPMODE IOB
+};
+  #else //#if (CFG_IOB_MODE == SWITCH_ON)
+
+const IPC_CLUSTER_ID IPC_a_IUC_SEND_CLUSTERS[IPC_NO_IUC_SEND_CLUSTERS] =
+{
+/*!<codegen_start:IPC_a_IUC_SEND_CLUSTERS>*/
+/*!<codegen_end:IPC_a_IUC_SEND_CLUSTERS>*/
+};
+
+  #endif //#if (CFG_IOB_MODE == SWITCH_ON)
+
+  #if (CFG_IOB_MODE == SWITCH_ON)
+static const IPC_CLUSTER_ID IPC_a_IUC_RECEIVE_CLUSTERS_NORMAL[IPC_NO_IUC_RECEIVE_CLUSTERS_NORMAL] =
+{
+/*!<codegen_start:IPC_a_IUC_RECEIVE_CLUSTERS_NORMAL>*/
+/*!<codegen_end:IPC_a_IUC_RECEIVE_CLUSTERS_NORMAL>*/
+};
+
+    #if (IPC_NO_IUC_RECEIVE_CLUSTERS_IOB > 0)
+static const IPC_CLUSTER_ID IPC_a_IUC_RECEIVE_CLUSTERS_IOB[IPC_NO_IUC_RECEIVE_CLUSTERS_IOB] =
+{
+/*!<codegen_start:IPC_a_IUC_RECEIVE_CLUSTERS_IOB>*/
+/*!<codegen_end:IPC_a_IUC_RECEIVE_CLUSTERS_IOB>*/
+};
+    #else // #if (IPC_NO_IUC_RECEIVE_CLUSTERS_IOB > 0)
+const IPC_CLUSTER_ID IPC_a_IUC_RECEIVE_CLUSTERS_IOB = IPC_FORCE_32;
+    #endif // #if (IPC_NO_IUC_RECEIVE_CLUSTERS_IOB > 0)
+
+
+
+static const IPC_CLUSTER_ID IPC_a_IUC_SEND_CLUSTERS_NORMAL[IPC_NO_IUC_SEND_CLUSTERS_NORMAL] =
+{
+/*!<codegen_start:IPC_a_IUC_SEND_CLUSTERS_NORMAL>*/
+/*!<codegen_end:IPC_a_IUC_SEND_CLUSTERS_NORMAL>*/
+};
+
+    #if (IPC_NO_IUC_SEND_CLUSTERS_NORMAL > 0)
+static const IPC_CLUSTER_ID IPC_a_IUC_SEND_CLUSTERS_IOB [IPC_NO_IUC_SEND_CLUSTERS_IOB] =
+{
+/*!<codegen_start:IPC_a_IUC_SEND_CLUSTERS_IOB>*/
+/*!<codegen_end:IPC_a_IUC_SEND_CLUSTERS_IOB>*/
+};
+    #else
+const IPC_CLUSTER_ID IPC_a_IUC_SEND_CLUSTERS_IOB [1] = {IPC_FORCE_32};
+    #endif // (IPC_NO_IUC_SEND_CLUSTERS_NORMAL > 0)
+
+static const IPC_t_ClusterListAndListLength IPC_a_IUC_RECEIVE_CLUSTER_LISTS_NORMAL[IPC_NUMBER_OF_COMM_PARTNERS] =
+{
+  {
+    IPC_a_IUC_RECEIVE_CLUSTERS_NORMAL,
+    IPC_NO_IUC_RECEIVE_CLUSTERS_NORMAL
+  },
+};
+
+static const IPC_t_ClusterListAndListLength IPC_a_IUC_RECEIVE_CLUSTER_LISTS_IOB[IPC_NUMBER_OF_COMM_PARTNERS] =
+{
+  {
+    IPC_a_IUC_RECEIVE_CLUSTERS_IOB,
+    IPC_NO_IUC_RECEIVE_CLUSTERS_IOB
+  },
+};
+
+  #else // (CFG_IOB_MODE == SWITCH_ON)
+
+const IPC_t_ClusterListAndListLength IPC_a_IUC_RECEIVE_CLUSTER_LISTS[IPC_NUMBER_OF_COMM_PARTNERS] =
+{
+  {
+    IPC_a_IUC_RECEIVE_CLUSTERS,
+    IPC_NO_IUC_RECEIVE_CLUSTERS
+  },
+};
+  #endif // (CFG_IOB_MODE == SWITCH_ON)
+
+  #if (CFG_IOB_MODE == SWITCH_ON)
+const IPC_t_ClusterListAndListLength* IPC_a_IUC_RECEIVE_CLUSTER_LISTS[IPC_NO_OPMODES] =
+{
+  IPC_a_IUC_RECEIVE_CLUSTER_LISTS_NORMAL,
+  IPC_a_IUC_RECEIVE_CLUSTER_LISTS_IOB,
+};
+
+const IPC_t_ClusterListAndListLength IPC_a_IUC_SEND_CLUSTERS[IPC_NO_OPMODES] =
+{
+  {
+    IPC_a_IUC_SEND_CLUSTERS_NORMAL,
+    IPC_NO_IUC_SEND_CLUSTERS_NORMAL
+  },
+  {
+    IPC_a_IUC_SEND_CLUSTERS_IOB,
+    IPC_NO_IUC_SEND_CLUSTERS_IOB
+  }
+};
+  #endif
+
+#elif(defined DB_PLATFORM_SOC_MONO)     // #ifdef DB_PLATFORM_MCU
+const IPC_CLUSTER_ID* const IPC_p_IUC_RECEIVE_CLUSTER_LIST = IPC_a_IUC_RECEIVE_CLUSTERS;
+#else                                   // #ifdef DB_PLATFORM_MCU
+  #error "Missing DB cluster sync list mapping for this platform!"
+#endif                                  // #ifdef DB_PLATFORM_MCU
+

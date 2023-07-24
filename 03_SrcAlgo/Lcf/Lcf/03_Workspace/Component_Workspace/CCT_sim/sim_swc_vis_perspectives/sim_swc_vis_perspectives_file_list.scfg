@@ -1,0 +1,20 @@
+# config file containing source files in sim_swc_vis_perspectives
+
+sim_swc_vis_perspectives_source_files = """
+arcBallNavigation.cpp
+sim_perspectives.cpp
+sim_perspectives_dll.cpp
+stdafx.cpp
+crosshair.cpp
+../../../../01_Source_Code/externals/sim_extensions/sim_gl_tools.cpp
+"""
+
+sim_swc_vis_perspectives_include_file_paths = """
+#../../../01_Source_Code/cct/
+#../../../01_Source_Code/externals/sim/include/ctk/
+#../../../01_Source_Code/externals/sim/include/sim_kernel/
+#../../../01_Source_Code/externals/sim/include/sim_swc/
+#../../../01_Source_Code/externals/sim/include/sim_adapter/
+#../cct_sim/sim_swc_vis_perspectives/
+#../../../01_Source_Code/externals/sim_extensions/
+"""

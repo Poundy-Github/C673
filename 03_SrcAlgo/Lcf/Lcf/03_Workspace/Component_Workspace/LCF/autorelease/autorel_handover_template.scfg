@@ -1,0 +1,123 @@
+﻿#*******************************************************************************
+# Configuration file for the automatic release sequence which includes the 
+# generation of a code handover document. Please refer to comments above the 
+# preferences for more information.
+#
+# Initial author:   Roland.Stark-EXT (uidw1169)
+#
+# LAST CHANGE:      $Date: 2021/12/14 01:43:17CET $
+#                   $Author: Wang, David (Wangd3) $
+#
+# CURRENT VERSION:  $Revision: 1.1 $
+#*******************************************************************************
+
+#*******************************************************************************
+#                           STATIC CONFIGURATION
+#*******************************************************************************
+
+#-------------------------------------------------------------------------------
+# Root directory:
+#
+# Root directory of sandbox. This will be used for 3 functions:
+#   * Get an MKS link to the component
+#   * Get the name of the component (project name)
+#   * Location where project configuration (XML files) are expected to be.
+#
+# Usually there is no reason to change it. Please check careful if the functions
+# above are fulfilled before changing that preference.
+#
+sandbox_root = engineering_dir + "../"
+
+#-------------------------------------------------------------------------------
+# Component owner:
+# Name of the owner. Free text that will be passed to the handover document.
+#
+component_owner = "Name of Owner"
+
+#-------------------------------------------------------------------------------
+# Configuration list file:
+# The file name of the xml file containing the list of all xml files that are
+# used for project configuration.
+#
+config_list_file = "shared_project_config_files.xml"
+
+#-------------------------------------------------------------------------------
+# Kind of delivery:
+# Free text that will be passed to handover.
+# "Library" or "Source"
+#
+kind_of_delivery = "Source"
+
+#-------------------------------------------------------------------------------
+# Component release setups:
+# List of available setups. The 'NAME' may be any string and proposed for 
+# selection in the beginning of the auto release process. 'DIRS' is a list of
+# directories in "04_Build\algo\<component>_sim" that will be considered by the
+# auto release script for that particular setup.
+# 'BUILDS' is a list of SCons build target to be re-compiled when algo version
+# number has been modified.
+# Duplicate directories and build targets may occur will be processed only once.
+#
+component_release_setups = (
+{
+  'NAME':'CONFIG 1',
+  'DIRS':[],
+  'BUILDS':[],
+},
+)
+
+# Example:
+# component_release_setups = (
+# {
+  # 'NAME':'C674x-ARP32',
+  # 'DIRS':['ti_c674x', 'ti_arp32'],
+  # 'BUILDS':['cipp_algo_ti_c674x_release', 'cipp_algo_ti_arp32_release'],
+# },
+# {
+  # 'NAME':'C66xx-ARP32',
+  # 'DIRS':['ti_c66xx', 'ti_arp32_vh28e1'],
+  # 'BUILDS':['cipp_algo_ti_c66xx_release', 'cipp_algo_ti_arp32_release'],
+# },
+# )
+
+
+#*******************************************************************************
+#                           DYNAMIC CONFIGURATION
+#*******************************************************************************
+
+#-------------------------------------------------------------------------------
+# Compliance report link:
+# MKS-link to any compliance report. Free text that will be passed to the 
+# handover document.
+#
+compl_report_link = "n/a"
+
+#-------------------------------------------------------------------------------
+# Release list:
+# Colon separated list of MKS release IDs. Those containing "Planned Requests"
+# are investigated for realized or closed issues. Positive findings will be 
+# passed to the handover document. Non-release IDs will be ignored and a message
+# is printed to the console.
+#
+release_id_list = []
+
+# Example:
+# release_id_list = [174366, 186012]
+
+#-------------------------------------------------------------------------------
+# Additional checkpoints:
+# List 
+#
+additional_checkpoints = []
+
+# Example:
+# additional_checkpoints = [
+# {
+  # "LABEL":"AL_SR_WRP_03.00.14",
+  # "LINK":"http://mks-psad:7001/si/viewproject?projectName=/nfs/projekte1/REPOSITORY/Base%5fDevelopment/05%5fAlgorithm/SR%5fSignRecognition/04%5fEngineering/01%5fSource%5fCode/algo/00%5fCustom/sr%5fwrp/project.pj"
+# },
+# {
+  # "LABEL":"SW_COMMON_06.00.00_INT-4",
+  # "LINK":"http://mks-psad:7001/si/viewproject?projectName=/nfs/projekte1/REPOSITORY/Base_Development/05_Algorithm/CIPP_CommonImagePreProcessing/04_Engineering/01_Source_Code/common/rte/project.pj"
+# },
+# ]

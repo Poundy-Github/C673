@@ -1,0 +1,93 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Add other folders which should be writable in writeable_dir.
+# 3. Fill eve_used with True if there is Arp32 library.
+# 4. Fill ca8_used with True if there is Cortex A8 library.
+# 5. Fill ecu_hil_wrapper_used with False if there is no HIL wrapper.
+# ----------------------------------------------------------------------------------------
+
+# define component name
+component_name = "gia"
+
+# unit test directory
+unit_test_dir = "modtests"
+
+# list of write protected directories which should be writable 
+writeable_dir = [source_code_dir, 
+                 #workspace_dir + "algo/" + component_name + "_sim/" + component_name + "_evm_hil/vme/evm_hil_projects/", 
+                 #workspace_dir + "algo/" + component_name + "_sim/" + component_name + "_evm_hil/vme/generic/evm_sw/", 
+                 build_dir,
+                 deliverables_dir, 
+                 testing_dir] 
+                 #"#../" + component_name + "_sim/sim_swc_" + component_name + "/doxygen/"]
+
+#--------------------------------------------------------------------------------------
+# switch on/off features
+#--------------------------------------------------------------------------------------
+# define if fingerprint should be generated (default: False)
+generate_fingerprint = False
+				 
+# define if dsp with c674x is used in this component (default: True)
+c674x_used = False
+
+# define if dsp with c66xx is used in this component (default: False)
+c66xx_used = False
+
+# define if eve is used in this component (default: False)
+eve_used = False
+
+# define if Cortex A8 lib is built (default: False)
+ca8_used = False
+
+# define if Cortex A15 lib is build (default: False)
+ca15_used = False
+
+# define if GCC is used for ARM (the default is using TI compiler)
+gcc_used = False
+
+# define if ecu hil_wrapper is available (default: True)
+ecu_hil_wrapper_used = False
+ecu_hil_wrapper_vh28_used = False
+
+# define if ARP32 miniapp is used (default: False)
+eve_hil_miniapp_used = False
+
+# define if unit test is available
+include_unit_test = False
+
+# support AutoRelease
+autorel_support = False
+
+# generate Polyspace
+generate_ps = False
+
+
+# generate VS 2010 solution
+generate_vs2010 = True
+
+#--------------------------------------------------------------------------------------
+# define algo/component specific project lists
+#--------------------------------------------------------------------------------------
+
+# list of algo name in this component, when there is more than one algo in one component
+# if algo_name_list is not defined, the default value is the component_name
+algo_name_list = [component_name]
+
+# define list of source folders for simulation targets to be built,
+# Note 1: the following definitions are merely examples, please adapt according to component
+# paths have to be relative to 03_Workspace/algo/xxx_sim!
+# Note 2: All paths need to be relative to SConstruct, i.e. start with "#" (#=SConstruct-location)
+
+# if there is one algo in the component (default):
+sim_proj_list = ["#../" + component_name + "_sim/adapter",
+                 "#../" + component_name + "_sim/sim_swc_sil_input_adapter",
+                 "#../" + component_name + "_sim/sim_swc_wrapper",
+                 "#../" + component_name + "_sim/sim_adapter",
+                 "#../" + component_name + "_sim/sim_swc_fct_cpar",
+                 ]
+
+           
+                  
+# if certain additional targets/alias are required for the vs solution, include them here:        
+#sim_target_list = ["alias1", "alias2"]
+sim_target_list = []

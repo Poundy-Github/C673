@@ -1,0 +1,123 @@
+// Copyright (C) Continental AG
+// All Rights Reserved
+// COMPONENT: IPC
+// VERSION:   $Revision: 1.1 $
+
+/// Holds the communication list which describes the data transfer between mcu and mono dsp.
+///
+/// @file
+
+#ifndef IPC_SYNC_CFG_H
+#define IPC_SYNC_CFG_H
+
+#include <common/GLOB/glob_type.h>
+#include <Rte_Type.h>
+#include <Rte_Algo_Type.h>
+
+#if !defined(INFRA_SUBSYSTEM)
+  #include <IPC_BASE/IPC_DataBaseConfig/ipc_meas_types.h>
+  #include <SYS_IPC_CPP_Pkg.h>
+#endif
+
+#include <IPC_BASE/ipcSyncCfgProjectSpecific.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+// PRQA S 1021,1025,1026 ++
+// 2019-05-08; uib12158
+// summary: Msg(3:1021) This macro is replaced with a literal. Use a constant of type 'const int' instead. MISRA-C++ Rule 16-2-2
+// summary: Msg(3:1025) Macro may be used as a literal. Use constants, enumerators, typedefs or inline functions instead. MISRA-C++ Rule 16-2
+// summary: Msg(3:1026) Macro may be used as a constant expression. Use constants, enumerators, typedefs or inline functions instead. MISRA-C++ Rule 16-2-2
+// reason:  Macro is used in compile time or as an array dimension here. Hence, cannot be replaced with constant
+
+/*!<codegen_start:IPC_VERSION_CTRL>*/
+/*!<codegen_end:IPC_VERSION_CTRL>*/
+
+#if(IPC_RTE_TYPE_VERSION != DB_TRANS_TYPE_VERSION)
+  #error "Versions of ipc_sync_cfg.h and Rte_Type.h are not compatible!"
+#endif
+
+/// Number of communication partners we have.
+#define IPC_NUMBER_OF_COMM_PARTNERS (1)
+
+/// Number of ipcTransfers in one 60 ms cycle.
+/*!<codegen_start:NUM_CYCLES>*/
+/*!<codegen_end:NUM_CYCLES>*/
+
+typedef enum tag_IPC_Opmodes_t {
+  IPC_OPMODE_NORMAL = 0,
+  IPC_OPMODE_IOB    = 1,
+  IPC_NO_OPMODES    = 2
+} IPC_Opmodes_t;
+
+/// All custerIDs for the ipc. At generation time this enum is equal to the enum MDB_E_ClusterID.
+// PRQA S 0785 ++ // 2019-05-29 uib12158
+// summary: Msg(4:0785) Identifier matches other macros name(s) in first 31 characters.
+// reason: The new rule set checks for first 63 characters, but the QAF tool does not consider this. An issue (1132316) has been created.
+typedef enum tag_IPC_CLUSTER_ID {
+/*!<codegen_start:IPC_CLUSTER_ID>*/
+/*!<codegen_end:IPC_CLUSTER_ID>*/
+  IPC_FORCE_32 = 0x7FFFFFFF
+} IPC_CLUSTER_ID;
+// PRQA S 0785 --
+
+/// Theses unions are defined in order to use their size as maximun size of a buffer.
+// PRQA S 3629,2176 ++ // 2019-05-09 uib12158
+// summary: Msg(3:3629) Union contains member of floating type.
+// summary: Msg(3:2176) This is a union. Use polymorphic classes instead. MISRA-C++ Rule 9-5-1
+// summary: Msg(4:0785) Identifier matches other macros name(s) in first 31 characters.
+// reason: Ok in this case, as the union is not used to manipulate the clusters but to calculate the biggest cluster.
+/*!<codegen_start:IPC_CLUSTER_UNION>*/
+/*!<codegen_end:IPC_CLUSTER_UNION>*/
+// PRQA S 3629,2176 --
+
+/// All platform ids(MCU, DSP).
+/// @note This is used as a bit field. Therefore only values of 2^n are allowed.
+typedef enum tag_IPC_E_PLATFORM_ID {
+  e_CFG_IPC_INVALID_PLATFORM        = 0,         ///< Platform not valid
+  e_CFG_IPC_MCU                     = 1,         ///< MCU
+  e_CFG_IPC_SOC                     = 2,         ///< SOC
+  e_CFG_IPC_PLATFORM_ID_FORCE_32    = 0x7FFFFFFF ///< Dummy to ensure 32 bit datatype is used
+} IPC_E_PLATFORM_ID;
+
+/// Element for one Cluster decsription entry.
+typedef struct tag_IPC_ClusterDescriptionElement {
+  IPC_CLUSTER_ID    clusterID;
+  uint32            u_PayloadSize;
+  IPC_E_PLATFORM_ID u_Destination;
+} IPC_ClusterDescriptionElement;
+
+/// The number of entries in the notSentList in IPC_ClusterNotSentInfo
+#define NUMBER_CLUSTER_NOT_SENT_ENTRIES 10
+
+/// Entry definition for Clusters that are not sent
+typedef struct tag_IPC_ClusterNotSent {
+  uint32 u_clusterID;   ///< The ID of that cluster which could not be sent
+  uint32 u_commPartner; ///< The commPartner to which the cluster could not be sent. This is bitCoded according to IPC_E_PLATFORM_ID (eg. xxxxxx1x -> e_CFG_IPC_SOC)
+} IPC_ClusterNotSent;
+
+/// Information about not sent clusters
+typedef struct tag_IPC_ClusterNotSentInfo{
+  IPC_ClusterNotSent notSentList[NUMBER_CLUSTER_NOT_SENT_ENTRIES]; ///< The list of clusters which could not be sent since last update
+  boolean b_listOverflow;                                          ///< Flag indicating that the notSentList is full and not all clusters which couldn't be sent could be stored in list
+  uint32  u_noNotSentClustersLastIpc;                              ///< Total number of notSentClusters since last ipc
+  uint32  u_noNotSentClustersTotal;                                ///< Total number of notSentClusters within this power cycle
+} IPC_ClusterNotSentInfo;
+
+/// The ipcSync monitoring data intended for MTS output
+extern IPC_SyncMonitorData IPC_SyncMonData[IPC_NUMBER_OF_COMM_PARTNERS];
+
+/// Constant configuration lists
+extern const IPC_ClusterDescriptionElement IPC_a_CLUSTER_DESCR_LIST[IPC_E_NUM_CLUSTERS];
+extern const IPC_E_PLATFORM_ID             IPC_a_MY_COMM_PARTNERS[IPC_NUMBER_OF_COMM_PARTNERS];
+
+// PRQA S 1021,1025,1026 --
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // IPC_SYNC_CFG_H
+

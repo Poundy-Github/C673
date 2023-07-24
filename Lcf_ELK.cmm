@@ -1,0 +1,305 @@
+// T32 Tue Sep 27 15:57:36 2022
+
+B::
+
+TOOLBAR   ON
+STATUSBAR ON
+FramePOS -10.25,0.35714,,,Maximized
+WinPAGE.RESet
+
+WinPAGE.Create P000
+WinCLEAR
+
+WinPOS -12.25 16.214 0. 0. 16. 2. W031 ICONIC
+Var.PROfile %e Sdc_Perception_AbdOutputData.asLaneBoundary[8].sGeometry.sParameters.sClothoidNear.fValidLengthMeter
+
+WinPOS 2.5 -0.14286 0. 0. 13. 1. W005 ICONIC
+WinTABS 10. 10. 25.
+List P:0xA01B0110
+
+WinPOS 0.0 0.0 0. 0. 13. 1. W001 ICONIC
+WinTABS 10. 10. 25.
+L ABPLBP_SenProcess
+
+WinPOS 11.25 6.4286 121. 5. 0. 1. W025
+WinTABS 20. 250.
+CORE.List
+
+WinPOS 97.625 15.214 136. 26. 13. 1. W038
+WinTABS 10. 10. 25.
+List P:0xA01BA9F4
+
+WinPOS 73.25 10.429 114. 19. 16. 2. W018
+Var.PROfile %e LcfAdapter_AbdOutputData_SenIn.asLaneBoundary[8].sGeometry.sParameters.sClothoidNear.fCurvature
+
+WinPOS 1.5 22.786 95. 13. 16. 2. W004
+Var.PROfile %e LCF_stSenOutData.v1TJASA_SenOutData.TJATTG_SenOutData.S_TJATTG_LeCridrBndLength_met
+
+WinPOS 3.375 -1.1429 139. 26. 13. 1. W008
+WinTABS 10. 10. 25.
+List P:0xA019811C
+
+WinPOS 1.875 1.0714 144. 21. 16. 2. W002
+Var.PROfile %e pLcfVehReqPorts->pVdyOffsets->Swa.State
+
+WinPOS 15.375 13.571 84. 21. 16. 2. W015
+Var.PROfile %e Sdc_Perception_AbdOutputData.eLaneChange
+
+WinPOS 5.625 3.2143 113. 26. 13. 1. W006
+WinTABS 10. 10. 25.
+l DMC_Lat_LAT_Dmc_Status_Defintion
+
+WinPOS -1.625 17.0 96. 21. 16. 2. W010
+Var.PROfile %e Fcu_LcfSenGenericOutputData.LDWSystemState_nu
+
+WinPOS 33.375 36.071 123. 8. 23. 1. W007
+WinTABS 13. 0. 0. 0. 0. 0. 20. 0. 0. 52.
+Break.List
+
+WinPOS 0.0 63.0 68. 47. 13. 1. W011
+WinTABS 10. 10. 25.
+l TJASTM_SenProcess
+
+WinPOS 0.0 0.0 100. 25. 0. 2. W012
+WinTABS 43. 52.
+PERF.List
+
+WinPOS 42.5 6.9286 105. 57. 5. 0. W009
+Frame.view /Locals /Caller
+
+WinPOS 16.875 9.6429 144. 21. 16. 2. W013
+Var.PROfile %e Fcu_LcfGenericInputData.EPS_Toi_Active_nu
+
+WinPOS 17.625 11.143 144. 21. 16. 2. W014
+Var.PROfile %e Cps_SignalPhyData_ACC_LatAngReqActive
+
+WinPOS 93.625 3.1429 129. 39. 16. 2. W003
+Var.PROfile %e (*(TJASTM_SenOutPtr)).S_TJASTM_SysStateTJA_nu
+
+WinPOS 83.875 28.286 144. 27. 16. 2. W017
+Var.PROfile %e Fcu_LcfVehGenericOutputData.LaDMC_StrAngReq_deg
+
+WinPOS 82.25 2.0 144. 21. 16. 2. W016
+Var.PROfile %e LcfAdapter_LcfVehOutputData_VehOut.LaDMC_Status_nu
+
+WinPOS 1.875 1.0714 144. 21. 16. 2. W020
+Var.PROfile %e MCTLFC_SenOutPtr->S_MCTLFC_ControllingFunction_nu
+
+WinPOS 94.25 6.1429 90. 21. 16. 2. W019
+Var.PROfile %e (*(LCRSMI_SenDbgPtr)).S_LCRSMI_SysStateALCA_nu
+
+WinPOS 36.875 7.5714 144. 27. 16. 2. W021
+Var.PROfile %e Cpr_SignalPhyData_ElkObj1_RelVx
+
+WinPOS 65.125 -0.14286 161. 38. 13. 1. W023
+WinTABS 10. 10. 25.
+l Fcu_DataProcess_CalcObstacleTTC
+
+WinPOS -0.75 9.7143 190. 44. 0. 0. W000
+Var.Watch
+
+Var.AddWatch TJAGEN_SenOutPtr
+Var.AddWatch TJALKA_SenDbgPtr
+Var.AddWatch TJASTM_SenOutPtr
+Var.AddWatch TJAGEN_SenDbgPtr
+Var.AddWatch VDPDRV_SenDbgPtr
+Var.AddWatch Debug_Cpr_MainFunction_Counter
+Var.AddWatch Cpr_SignalPhyData_EpsSasSteerAg
+Var.AddWatch Fcu_LcfGenericInputData.SteerHandWheelAngle_rad
+Var.AddWatch ABPLBP_SenDbgPtr
+Var.AddWatch TJASTM_SenDbgPtr
+Var.AddWatch TJAGEN_SenOutPtr
+Var.AddWatch pLcfSenReqPorts->pLcfSenInputFromVehData->Flags.QuStatusTrajPlan_nu
+Var.AddWatch pLcfSenReqPorts->pLcfVehOutputData->LaDMC_Status_nu
+Var.AddWatch pLaDMC_DbgData->LAT_Steer_Angle_Command_deg
+Var.AddWatch pLcfSenReqPorts->pLcfVehOutputData->LaDMC_Status_nu
+Var.AddWatch pLaDMC_DbgData->LAT_Activation_Request_nu
+Var.AddWatch pLaDMC_DbgData->LAT_Activation_Request_Qf_nu
+Var.AddWatch DMC_Lat_LAT_Dmc_Status_Defintion_DWork.lkc_activation_status
+Var.AddWatch pLcfSenReqPorts->pLcfVehOutputData->LaDMC_Status_nu
+Var.AddWatch TPLLCO_VehDbgPtr
+Var.AddWatch TPLCEN_VehDbgPtr
+Var.AddWatch TPLFBT_VehDbgPtr
+Var.AddWatch TCTCLM_VehDbgPtr
+Var.AddWatch LcfAdapter_VehDyn_SenIn
+Var.AddWatch TPLFBT_VehDbgPtr
+Var.AddWatch TPLFBT_VehDbgPtr
+Var.AddWatch TPLTJC_VehDbgPtr
+Var.AddWatch TPLLCO_VehDbgPtr
+Var.AddWatch TPLTJC_VehDbgPtr
+Var.AddWatch TPLCEN_VehOutPtr
+Var.AddWatch Sdc_J3_PerceptionData.Lane.LKA_Right_Lane.data.LKA_LaneA.data.LaneWidthMarking
+Var.AddWatch LCF_CommonParamData.P_ABPLBP_MotCompDeltaQual_perc
+Var.AddWatch LcfAdapter_AbdOutputData_SenIn
+Var.AddWatch ABPLBP_SenDbgPtr
+Var.AddWatch LCF_CommonParamData.P_ABPLBP_DistYLimitStepDtct_met
+Var.AddWatch LCF_CommonParamData.P_TJALKA_DistVeh2LnBndMin_met
+Var.AddWatch pLcfSenReqPorts->pAbdOutputData->asLaneBoundary[8].sGeometry.sParameters.fDistanceMeter
+Var.AddWatch LcfAdapter_LcfVehOutputData_VehOut.Lkas_ActToi_nu
+Var.AddWatch LcfAdapter_LcfVehOutputData_VehOut.LaDMC_StrAngReq_deg
+Var.AddWatch TJAGEN_SenDbgPtr
+Var.AddWatch TJAGEN_SenOutPtr
+Var.AddWatch TJAOBF_SenDbgPtr
+Var.AddWatch Fcu_Lcf_Debug_Enable
+Var.AddWatch (*(LcfAdapter_reqLcfSenPrtData.pAbdOutputData)).sSigHeader.uiTimeStamp
+Var.AddWatch (*(LcfAdapter_reqLcfSenPrtData.pVehDyn)).sSigHeader.uiTimeStamp
+Var.AddWatch Sdc_Perception_AbdOutputData.asLaneBoundary[8].sGeometry.sParameters.fDistanceMeter
+Var.AddWatch Sdc_Perception_AbdOutputData.asLaneBoundary[9].sGeometry.sParameters.fDistanceMeter
+Var.AddWatch Sdc_Perception_AbdOutputData.asLaneBoundary[8].sGeometry.sParameters.fYawAngleRad
+Var.AddWatch Sdc_Perception_AbdOutputData.asLaneBoundary[9].sGeometry.sParameters.fYawAngleRad
+Var.AddWatch Sdc_Perception_AbdOutputData.asLaneBoundary[8].sGeometry.sParameters.sClothoidNear.fCurvature
+Var.AddWatch Sdc_Perception_AbdOutputData.asLaneBoundary[9].sGeometry.sParameters.sClothoidNear.fCurvature
+Var.AddWatch LCFVeh_pstDbgData.LCF_pstVehDbgData.TRJPLN_VehDbgData.TPLCEN_VehDbgData.S_TPLCEN_TrajPlanEnbl_nu
+Var.AddWatch LCFVeh_pstDbgData.LCF_pstVehDbgData.TRJPLN_VehDbgData.TPLFBT_VehDbgData.S_TPLFBT_TrajGuiQualifier_nu
+Var.AddWatch LCFSen_pstDbgData.LCF_stSenDbgData.v1TJASA_SenDbgData.TJATTG_SenDbgData.S_TJATTG_TgtTrajPosY0_met
+Var.AddWatch LCFSen_pstDbgData.LCF_stSenDbgData.v1TJASA_SenDbgData.TJATTG_SenDbgData.S_TJATTG_TgtTrajHeadAng_rad
+Var.AddWatch LCFSen_pstDbgData.LCF_stSenDbgData.v1TJASA_SenDbgData.TJATTG_SenDbgData.S_TJATTG_TgtTrajCrv_1pm
+Var.AddWatch LCFVeh_pstDbgData.LCF_pstVehDbgData.TRJPLN_VehDbgData.TPLFBT_VehDbgData.S_TPLFBT_CurDistY_met
+Var.AddWatch LCFVeh_pstDbgData.LCF_pstVehDbgData.TRJPLN_VehDbgData.TPLFBT_VehDbgData.S_TPLFBT_CurHeading_rad
+Var.AddWatch LCFVeh_pstDbgData.LCF_pstVehDbgData.TRJPLN_VehDbgData.TPLFBT_VehDbgData.S_TPLFBT_TrajDistY_met
+Var.AddWatch LCFVeh_pstDbgData.LCF_pstVehDbgData.TRJPLN_VehDbgData.TPLFBT_VehDbgData.S_TPLFBT_TrajTgtCrv_1pm
+Var.AddWatch LCFVeh_pstDbgData.LCF_pstVehDbgData.TRJCTR_VehDbgData.TCTCLM_VehDbgData.S_TCTCLM_DeltaFCmd_deg
+Var.AddWatch LCFVeh_pstDbgData.LCF_pstVehDbgData.TRJCTR_VehDbgData.TCTCLM_VehDbgData.S_TCTCLM_Ffc_1pm
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.LAT_Steer_Angle_Command_deg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.DYC_Steer_Angle_Feedforward_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.SAC_Arb_Angle_Cmd_Raw_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.SAC_Faded_Angle_Command_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.SAC_Enhanced_Angle_Cmd_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.SAT_Req_Steer_Angle_Max_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.SAC_Delta_F_Sat_Command_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.TDF_Torque_Derating_Factor_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.SAC_Derated_Angle_Command_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.SAC_Angle_Command_Raw_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.SAC_Control_Error_Eps_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.VEH_Delta_F_Oc_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.LAT_Arb_Eps_Torque_Request_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.SAT_Saturated_Angle_Command_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.DYC_Steer_Angle_Feedforward_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.LAT_Tdf_Eps_Torque_Request_dbg
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.SAC_Requested_Damping_Level_delayed
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.VEH_Delta_F_dbg
+Var.AddWatch LCFVeh_pstDbgData.LCF_pstVehDbgData.TRJCTR_VehDbgData.TCTLGC_VehDbgData.S_TCTLGC_DeltaFCmd_deg
+Var.AddWatch LcfAdapter_VehDyn_SenIn.Lateral.YawRate.YawRate
+Var.AddWatch (*(TJASTM_SenOutPtr)).S_TJASTM_SysStateTJA_nu
+Var.AddWatch LcfAdapter_LcfVehOutputData_VehOut.LaDMC_Status_nu
+Var.AddWatch Fcu_LcfGenericInputData.DeltaFSteerAngle_deg
+Var.AddWatch Fcu_LcfGenericInputData.SteerHandWheelAngle_rad
+Var.AddWatch TJAGEN_SenDbgPtr
+Var.AddWatch TJAGEN_SenOutPtr
+Var.AddWatch TJALKA_SenDbgPtr
+Var.AddWatch (*(TJAGEN_SenOutPtr)).S_TJAGEN_Clearance_bool
+Var.AddWatch Fcu_LcfGenericInputData.SteerHandWheelAngle_rad
+Var.AddWatch LCF_CommonParamData.P_ABPLBP_LatDistDevThreshStr_met
+Var.AddWatch LcfAdapter_VehDyn_SenIn
+Var.AddWatch LcfAdapter_VdyOffsets
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.SAC_Arb_Angle_Cmd_Raw_dbg = -218
+Var.AddWatch LCFVeh_pstDbgData.LaDMC_DbgData.SAC_Faded_Angle_Command_dbg = -218
+Var.AddWatch HSSL0COK0_ISR_num
+Var.AddWatch HSSL0COK2_ISR_num
+Var.AddWatch LcfAdapter_LcfSenOutputData_SenOut
+Var.AddWatch Fcu_LcfGenericInputData.EPS_Toi_Active_nu
+Var.AddWatch Fcu_LcfGenericInputData.EPS_Toi_Flt_nu
+Var.AddWatch Fcu_LcfGenericInputData.EPS_Toi_Unavail_nu
+Var.AddWatch Cps_SignalPhyData_ACC_LatAngReqActive
+Var.AddWatch Fcu_LcfVehGenericOutputData.LaDMC_StrAngReq_deg
+Var.AddWatch Fcu_LcfGenericInputData.SteerHandWheelAngle_rad
+Var.AddWatch Cpr_SignalPhyData_SAS_SteeringAngleSpeed
+Var.AddWatch Cpr_SignalPhyData_EPS_MeasuredTorsionBarTorque
+Var.AddWatch Cpr_SignalPhyData_EPS_MeasuredTorsionBarTorqValid
+Var.AddWatch Fcu_LcfGenericInputData.EPS_Toi_Unavail_nu
+Var.AddWatch Fcu_LcfGenericInputData.EPS_Toi_Flt_nu
+Var.AddWatch Fcu_LcfVehGenericOutputData.Lkas_ActToi_nu
+Var.AddWatch Cpr_SignalPhyData_EPS_LatCtrlActive
+Var.AddWatch Cps_SignalPhyData_ACC_LatAngReqActive
+Var.AddWatch LcfAdapter_LcfVehOutputData_VehOut
+Var.AddWatch pLaDMC_DbgData->LADMC_EPS_INTERFACE_ACTIVE_REQ
+Var.AddWatch Cps_SignalPhyData_ACC_LatAngReq
+Var.AddWatch LCRSMI_SenOutPtr
+Var.AddWatch LCRSMI_SenDbgPtr->S_LCRSMI_SysStateALCA_nu
+Var.AddWatch LCRSMI_SenDbgPtr
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_StrgRdySpecific_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_StrgRdyDrvSt_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_StrgRdyFctStCtr_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_StrgRdyFctStErr_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_StrgRdyFctStNotAv_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_StrgRdyFctCustom_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_ALCALightEnable_bool
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_StrgRdyVehSt_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_ALCASwitchEnable_bool
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_ALCASwitch_bool
+Var.AddWatch LcfAdapter_LcfInputData_SenIn
+Var.AddWatch Fcu_LcfGenericInputData.LCA_Active_Left_nu
+Var.AddWatch Fcu_LcfGenericInputData.BSD_Active_Left_nu
+Var.AddWatch LCRSIA_SenDbgPtr
+Var.AddWatch (*(LCRSIA_SenDbgPtr)).S_LCRSIA_SpecificALCA_btf
+Var.AddWatch LCF_CommonParamData.P_DPLSMI_LDPSwitchEnable_bool
+Var.AddWatch LCF_CommonParamData.P_DPLSMI_LDPSwitch_bool
+Var.AddWatch LCRSMI_SenOutPtr->S_LCRSMI_SysStateALCALe_nu
+Var.AddWatch LCRSMI_SenOutPtr->S_LCRSMI_SysStateALCARi_nu
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_ALCALightEnable_bool
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_ALCASwitchEnable_bool
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_ALCASwitch_bool
+Var.AddWatch LCF_CommonParamData.P_LCRSIA_LaneCancelBitmask_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSIA_LaneSafetyBitmask_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSIA_LaneBitmask_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSIA_LaneCancelBitmask_btm
+Var.AddWatch LCRSMI_SenDbgPtr->D_LCRSMI_StrongReady_btf
+Var.AddWatch LCRSMI_SenDbgPtr->D_LCRSMI_WeakReady_btf
+Var.AddWatch DPLSIA_SenDbgPtr->S_DPLSIA_LnBndLeValidLDP_bool
+Var.AddWatch LCRSIA_SenDbgPtr->S_LCRSIA_LnBndLeValidALCA_bool
+Var.AddWatch LCRSMI_SenDbgPtr->D_LCRSMI_StrongReady_btf
+Var.AddWatch LCRSMI_SenDbgPtr->D_LCRSMI_WeakReady_btf
+Var.AddWatch LCF_CommonParamData.Y_LCRSIA_VXCrvThresALCAMax_1pm
+Var.AddWatch LCF_CommonParamData.Y_LCRSIA_VXCrvThresALCAHyst_1pm
+Var.AddWatch Fcu_LcfGenericInputData.LCA_Active_Left_nu
+Var.AddWatch Fcu_LcfGenericInputData.BSD_Active_Left_nu
+Var.AddWatch Fcu_LcfGenericInputData.BSD_Active_Right_nu
+Var.AddWatch Fcu_LcfGenericInputData.LCA_Active_Right_nu
+Var.AddWatch LCRSMI_SenOutPtr->D_LCRSMI_DlcLeThreshold_met
+Var.AddWatch LCRSMI_SenOutPtr->D_LCRSMI_DlcRiThreshold_met
+Var.AddWatch LCRSIA_SenDbgPtr->S_LCRSIA_SideCondALCALe_btf
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_SideCondEnable_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_DlcLimitMin_met
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_DlcLimitMax_met
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_SafeSituationOffset_met
+Var.AddWatch Fcu_LcfGenericInputData.LCA_Warning_Left_nu
+Var.AddWatch Fcu_LcfGenericInputData.LCA_Active_Right_nu
+Var.AddWatch Fcu_LcfGenericInputData.BSD_Warning_Left_nu
+Var.AddWatch Fcu_LcfGenericInputData.BSD_Warning_Right_nu
+Var.AddWatch Fcu_LcfGenericInputData.LCA_Warning_Right_nu
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_TriggerHoldingTime_sec
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_SafeSituationState_btm
+Var.AddWatch ABPLBP_SenDbgPtr->S_ABPLBP_LaneChangeDetected_bool
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_TriggerCondEnable_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_SideCondEnable_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_DlcLimitMin_met
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_QuTrajPlanClearance_btm
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_QuTrajCtrClearance_btm
+Var.AddWatch LcfAdapter_LcfVehOutputData_VehOut.LaDMC_Status_nu
+Var.AddWatch MCTLFC_SenOutPtr->S_MCTLFC_ControllingFunction_nu
+Var.AddWatch (*(LCRSMI_SenDbgPtr)).S_LCRSMI_SysStateALCA_nu
+Var.AddWatch VDPDRV_SenDbgPtr
+Var.AddWatch LCF_CommonParamData.Y_LCRSMI_VXMD1TrigDlc_met
+Var.AddWatch DMC_Lat_LAT_Dmc_Status_Defintion_DWork.is_LKC_Activation_Status
+Var.AddWatch LCF_CommonParamData.P_DPLSMI_LDPSwitchEnable_bool
+Var.AddWatch LCF_CommonParamData.P_DPLSMI_LDPSwitch_bool
+Var.AddWatch LCF_CommonParamData.P_MCTLFC_PriorityVector_nu
+Var.AddWatch LCF_CommonParamData.P_LCRSMI_SafeSituationOffset_met
+Var.AddWatch Fcu_ElkObj1_TTC
+Var.AddWatch Cpr_SignalPhyData_ElkObj1_ExistProb
+Var.AddWatch Cpr_SignalPhyData_ElkObj1_Measured
+Var.AddWatch Cpr_SignalPhyData_ElkObj1_Dx
+Var.AddWatch Cpr_SignalPhyData_ElkObj1_RelVx
+Var.AddWatch Cpr_SignalPhyData_ElkObj1_RelAx
+Var.AddWatch Cpr_SignalPhyData_ElkObj1_Dy
+Var.AddWatch Fcu_ElkObj1_LocationFlag
+
+WinPOS 5.75 1.8571 168. 15. 16. 2. W022
+Var.PROfile %e Fcu_ElkObj1_TTC
+
+WinPOS 5.5 22.857 169. 13. 16. 2. W024
+Var.PROfile %e Fcu_ElkObj1_LocationFlag
+
+WinPAGE.select P000
+
+ENDDO

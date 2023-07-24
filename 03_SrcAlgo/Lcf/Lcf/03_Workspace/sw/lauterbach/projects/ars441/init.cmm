@@ -1,0 +1,14 @@
+entry &CORENAME
+
+global &gCORENAME
+global &gPROJECTNAME
+global &gBASEPATH
+global &gPLATFORM
+
+
+&gCORENAME="&CORENAME"
+&gBASEPATH="../.."
+&gPROJECTNAME="ars441"
+&gPLATFORM="tda3"
+
+do &gBASEPATH\common\init.cmm

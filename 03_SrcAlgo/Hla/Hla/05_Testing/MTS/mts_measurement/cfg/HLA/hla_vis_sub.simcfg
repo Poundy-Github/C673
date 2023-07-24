@@ -1,0 +1,48 @@
+
+; ----- GATEWAYS -----
+
+; optional sim cfg gateway to get reset/init trigger for the plugin if needed
+[SIM Image Right]
+CfgSectionType  = GatewayComponent
+LoadingOrder    = 1
+ExternalObject  = SIM Image Right
+
+[CFG]
+CfgSectionType   = GatewayComponent
+ExternalObject   = SIM Cfg
+
+[SIM CAN]
+CfgSectionType              = GatewayComponent
+LoadingOrder                = 0
+ExternalObject              = SIM CAN
+
+; udex component to receive measfreezes and provide as ports to visu plugin; exclusive way of providing input to this config
+[UDEX]
+CfgSectionType   = UdexComponent
+ExternalObject   = SIM UDEX
+SimUdexDefFile   = hla_vis_sub.simudex
+; the 'DEVICE' alias is filled with a UserDefinedVariable here ... this enables the source definition from the outside to switch between ECU (MFC4xx Device) and SIM (e.g. SIM VFB) as source
+DataSources      = DEVICE = $DEVICE$, DEVICE_REC = $DEVICE_REC$, DEVICE_REC_2 = $DEVICE_REC_2$
+
+; ----- COMPONENTS -----
+
+; TODO: enter correct dll path and draw function name
+; this visu dll should just receive measfreezes via the udex component and provide a render context for drawing an overlay
+; the plugin should make use of the port buffer mechanism to ensure thread locking and data synchronization
+[SIM HLA VIS]
+CfgSectionType   = SimpleComponent
+PluginFile       = $UserPathMeasObj$\$APPLICATION_PATH$\hla_sim\sim_swc_hla_vis.dll
+ParamFile        = $SYNC_PORT$, hla_sync_port.par
+LoadWithErrors   = true
+SimRenderConFile = $UserPathCfg$\hla\hla_vis_sub.simrender
+RenderContexts   = HlaDrawFunc=HLA.Overlay, DrawHlaSubMenu=HLA.Overlay2
+
+
+; ----- CONNECTIONS -----
+[Connections]
+CfgSectionType=CompositeConnection
+SimConFile=hla_vis_sub.simcon
+ComponentInstances = VIS = SIM HLA VIS
+
+; ----- EXPOSED PORTS ----- 
+; !!! THIS CONFIG SHALL NOT HAVE ANY EXPOSED PORTS (NOTE: this config is not used to draw images)

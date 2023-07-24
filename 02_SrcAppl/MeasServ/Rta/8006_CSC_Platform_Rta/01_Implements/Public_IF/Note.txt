@@ -1,0 +1,3 @@
+This folder contains the implementation of:
+
+https://github-am.geo.conti.de/ADAS/adas_embed_mon_if/tree/master/interface/rta/generic

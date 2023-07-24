@@ -1,0 +1,5 @@
+pythonutils
+PIL
+win32
+win32\lib
+wx-2.8-msw-unicode

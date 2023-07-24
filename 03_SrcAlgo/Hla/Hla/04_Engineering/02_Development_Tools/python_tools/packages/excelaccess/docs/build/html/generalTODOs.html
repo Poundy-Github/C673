@@ -1,0 +1,322 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>General TODOs &#8212; ExcelAccess 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="XML-Template for XML-Configuration-File" href="xmltemplate.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="general-todos">
+<h1>General TODOs<a class="headerlink" href="#general-todos" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="besprechung-mit-matthias-im-block-ab-2-08">
+<h2>Besprechung mit Matthias: (im Block ab 2.08.)<a class="headerlink" href="#besprechung-mit-matthias-im-block-ab-2-08" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Testen, ob immer dump oder ganz weglassen</li>
+<li>XML-Template</li>
+<li>Relative paths in xml nehmen</li>
+<li>Header optional oder gar nicht ins xml machen</li>
+<li>Cfg als Angabe in cmd obligatorisch annehmen
+-       Xml (+ excelsheet + path ?)</li>
+<li>Xml eher nach use-cases benennen</li>
+<li>(HLA/)LSD -&gt; Excel-Sheet
+-       Outputcheck generation auf ExcelAccess anpassen
+-       Vorher nochmal mit Matthias abklaeren</li>
+<li>Reader + Datenstruktur</li>
+<li>“Overview” erstellen und digitalisieren
+-       mehr Beschreibungen
+-       Doku (HTML ; z.B. Sphinx)</li>
+<li>Parameter reduzieren und fixer gestalten</li>
+</ul>
+</div>
+<div class="section" id="von-mir-im-block-ab-8-08">
+<h2>Von mir: (im Block ab 8.08.)<a class="headerlink" href="#von-mir-im-block-ab-8-08" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Clear stuff
+-       Refactoring (PEP Standards)
+-       Adapting
+-       Removing
+-       Fixing
+-       Documenting (add/update; update after finishing again)
+-       TODOs
+-       Parameters of classes/methods/functions
+-       Logging (einheitlich gestalten; messages anpassen)</li>
+<li>More “try except” (e.g. all file interactions)</li>
+<li>Implement special cases for headers?</li>
+<li>Extend argparse for this project</li>
+<li>Extract “features”: mit Matthias besprechen</li>
+<li>Tests schreiben</li>
+<li>Check external documents (like word and python package list for this project)</li>
+<li>Differentiate exceptions in more just one “block” (real handling)</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>15.08.17:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Debugging/logging-levels configuration(?) e.g. “verbose” or something; graduating levels of logging in code</li>
+<li>Make “unofficial” stuff “_private”</li>
+<li>Refactor (table) content and header creation (nicht sehr uebersichtlich oder schoen)
+-       Teil-uebersicht machen? Und dann ueberlegen, was Sinn ergibt und implementieren</li>
+<li>TODO-file in Projektverzeichnis (.txt)</li>
+<li>“Module Content” in HTML? Raus oder iwas rein machen?</li>
+<li>Eclipse Plugin zum Erstellen von Diagrammen/Schaubildern?
+-       Z.B. dann pro Modul oder so</li>
+<li>Feature-Struktur ueberlegen (wie modularisieren; Schnittstellen? Etc.)</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>16.08.17:<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Dokumentation:</p>
+<ul class="simple">
+<li>private methods/classes etc.; add documentation script to configure updates to documentation
+-       private classes are ignored until now</li>
+<li>Adapt documentation rtypes and vartypes</li>
+<li>konsistente Beschreibungen</li>
+<li>Add nice package docs in __init__.py (?)</li>
+<li>Docs: add PEP; integrate some links/pages?</li>
+<li>Aufrufstruktur der Skripte ueberlegen</li>
+<li>Styling aendern</li>
+<li>More comments</li>
+<li>Testcases abdecken mit extra Excel file etc. und Testing framework (Tests schreiben)</li>
+<li>Dokumentation
+-       Automatische Aktualisierung der Doku: extra Skript anlegen, das das tut</li>
+<li>add overview diagrams to docs?</li>
+</ul>
+<p>Refactoring:</p>
+<ul>
+<li><p class="first">Redundanzen/hardcoding und sowas entfernen
+-       Altes Zeug entfernen, das man nicht mehr braucht
+-       Utility functions etc. zentral fuer bessere uebersichtlichkeit und Importierbarkeit</p>
+</li>
+<li><p class="first">PEP8 ansehen
+-       “besseres” Python schreiben
+-       Exports
+-       Leading underscores fuer non public stuff</p>
+</li>
+<li><p class="first">Refactoring/Optimierung am Ende
+-       Checks adden, falls fehlend
+-       Arguments verbessern, falls schlecht/falsch (mutable?)</p>
+</li>
+<li><p class="first">XML:
+-       table parameters/attributes: remove/change table_id?</p>
+</li>
+<li><p class="first">Problems:
+- indices for tables: data and header, if there was a blank cell which is ignored</p>
+<blockquote>
+<div><ul class="simple">
+<li>testing for such stuff</li>
+<li>find fix afterwards and keep tests up-to-date</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>Improvements:</p>
+<ul class="simple">
+<li>Leere Spalten in Header “fehlen” …idx adden? (also z.B. einfach reihen-/spalten-index)</li>
+<li>Merged cells effizienter gestalten (eventuell ueber dict pro zeile/spalte oder so)
+-       Consumer functions? (siehe Block, fuer Header etc.)</li>
+<li>Special cases abdecken, z.B. Tabellen-Header-Formate?
+-       Special lines etc.
+-       Divider in Tabellen “ausklammern”</li>
+</ul>
+<p>Features:</p>
+<ul>
+<li><p class="first">Suche:
+-       Regex (basics wie int, float, … gleich bereitstellen?)
+-       Text</p>
+</li>
+<li><p class="first">Parsing:
+-       Auto-find von Headern/Tabellen/ …</p>
+</li>
+<li><p class="first">Visualisierung:
+-       Plotting (extra Package?) z.B. ueber Pandas</p>
+</li>
+<li><p class="first">User input options (siehe Python, config package)</p>
+</li>
+<li><p class="first">Access auch ueber normales xlrd noch moeglich machen! (also dass man einfach die normale lib nutzen kann) (oder auf xlrd mit openpyxl support ummuenzen?)</p>
+</li>
+<li><p class="first">Features an-/abwaehlbar fuer Senkung der Komplexitaet je nach Anspruch
+-       Z.B. keine dumps, nur banales lesen oder so</p>
+</li>
+<li><p class="first">Automatische Verarbeitung von neuen und alten Excel-Files
+-       Speichern aber dann noch ueberlegen, wie das klappen kann</p>
+</li>
+<li><p class="first">Cell-Groups lesen oder nur Teile von Tabellen (in xml z.B. festlegen)
+-       Sachen in Groups zerlegen?</p>
+</li>
+<li><p class="first">Aggregation von columns oder so zu key, um dann Sachen zu suchen(wie in dem Skript fuer ResSheet)</p>
+</li>
+<li><p class="first">Multi-/Crossreference innerhalb von Dateien und ueber Dateien hinweg
+-       Kombi-betrieb, zusammensetzen
+-       Algorithmische Herangehensweise? Besser als das Skript mit den Hashs und Intersections von Index-Listen?</p>
+</li>
+<li><p class="first">Defaults fuer verschiedene Features
+-       Table styles
+-       Header styles
+-       Formatting (z.B. fuer outputs)
+-       Einfach nur Zellen lesen, …etc.</p>
+</li>
+<li><p class="first">Andere Features, je nach Nutzungsgrad der Datei
+-       Haeufige Veraenderung der Datei:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Big overhead, weil jedes Mal alles aktualisiert werden muss</li>
+<li>Also einfach das auch auswaehlbar machen oder so?</li>
+<li>Eventuell in Doku einbringen</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Genereller Output-Generator? (also banale Optionen wie outputten)</p>
+</li>
+<li><p class="first">active key-value naming (e.g. table_id as real id and dict in code)</p>
+</li>
+</ul>
+<p>Ziele:</p>
+<ul class="simple">
+<li>Klassen generalisieren bzw. den Zugriff auf Excel
+-       Alte Skripte daran anpassen
+-       Packagen und in Tools ablegen</li>
+<li>Logging/Errorhandling</li>
+<li>API-like usage -&gt; wrapper schreiben etc.</li>
+</ul>
+<p>Ideen:</p>
+<ul>
+<li><p class="first">Search-Trees oder andere Strukturen suchen und nutzen?</p>
+</li>
+<li><p class="first">Pro Job/File Verzeichnis anlegen und da dumps, xmls etc. speichern
+-       Verzeichnisstruktur und Dateistruktur ueberdenken?</p>
+</li>
+<li><p class="first">Per-table search dicts, global search dicts, inter-ref-search dicts, …
+-       Special dumps, sql, …
+-       Dumps pro sheet, pro table, pro file, pro job, …</p>
+</li>
+<li><p class="first">Merged_cells and stuff nach rows/cols ordnen
+-       Spaeter besser zu verwenden?
+-       Extra infos sinnvoll, die man vorberechnen koennte?</p>
+</li>
+<li><p class="first">Mehrere excel files pro “job” moeglich? (xml root muesste man dann z.B. anpassen)
+-       Anhand dessen dann auch dumps suchen/laden?
+-       In config die dumps unterbringen?
+-       In config features unterbringen?</p>
+<blockquote>
+<div><ul class="simple">
+<li>Config-Tags auch anderweitig verwenden?</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Relative/absolute Zeilen/Spalten (je nachdem dann offsets verwenden) bei Indizierung in Tabellen bei der Suche z.B.</p>
+</li>
+<li><p class="first">Kwargs featured functions/methods</p>
+</li>
+<li><p class="first">ueberlegen ob irgendwie doch automatische Tabellenerkennung moeglich ist?
+-       Oder defaults fuer sheets (in configs z.B. pro sheet einen Standard festlegen fuer header rows, table look etc.)</p>
+</li>
+<li><p class="first">Blaue Kaesten in Block noch aufnehmen/beachten</p>
+</li>
+</ul>
+<p>Fragen:</p>
+<ul class="simple">
+<li>Wie Zeug handlen, das keine (ueblichen) Tabellen sind? Spezielle Zeilen, freier Text…, dafuer extra Tags anlegen und iwie indizierte Speichermoeglichkeit (Dictionary) in der Datenstruktur anlegen?</li>
+<li>Multi-File reading unterstuetzen?</li>
+<li>Verschiedene Formate spaeter durch neue Packages ergaenzen?</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">General TODOs</a><ul>
+<li><a class="reference internal" href="#besprechung-mit-matthias-im-block-ab-2-08">Besprechung mit Matthias: (im Block ab 2.08.)</a></li>
+<li><a class="reference internal" href="#von-mir-im-block-ab-8-08">Von mir: (im Block ab 8.08.)</a></li>
+<li><a class="reference internal" href="#id1">15.08.17:</a></li>
+<li><a class="reference internal" href="#id2">16.08.17:</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="xmltemplate.html" title="previous chapter">XML-Template for XML-Configuration-File</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/generalTODOs.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, uidq3472.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/generalTODOs.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

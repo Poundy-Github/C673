@@ -1,0 +1,881 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Update each variable according to the existing 
+#    source files (relative to 04_Engineering/01_Source_Code/xxx) and 
+#    include paths (relative to the directory where 
+#    SConstruct is located in, i.e. starting with "#").
+# 3. Update project specific files with respect to project_path
+# ----------------------------------------------------------------------------------------
+
+# config file containing algo source file list
+
+Import("project_name")
+
+lcf_algo_sources_project_specific = ''
+lcf_wrapper_sources_project_specific = ''
+lcf_algo_include_paths_project_specific = ''
+lcf_algo_common_include_paths_project_specific = ''
+
+#sources for SEN---
+lcf_algo_sources_sen = """
+Common/SDA/bitop.c
+Common/SDA/calm_main.c
+Common/SDA/ecmath_main.c
+Common/SDA/f32_calm_main.c
+Common/SDA/f32_math.c
+Common/SDA/f32_math_main.c
+Common/utils/cml_adapted.c
+Common/sw_support/lcf_cpar_init.c
+Common/sw_support/lcf_nvm_init.c
+Common/sw_support/lcf_nvm_convert.c
+CTRSC/CSCLTA/CSCLTA.c
+MDCTR/MCTLFC/MCTLFC.c
+VDPR/VDPDRV/VDPDRV.c
+LCFERR/err_sen.c
+LCFERR/errio_sen.c
+"""
+
+#sources for VEH---
+lcf_algo_sources_veh = """
+Common/SDA/bitop.c
+Common/SDA/calm_main.c
+Common/SDA/ecmath_main.c
+Common/SDA/f32_calm_main.c
+Common/SDA/f32_math_main.c
+Common/sw_support/lcf_cpar_init.c
+Common/sw_support/lcf_nvm_init.c
+Common/sw_support/lcf_nvm_convert.c
+DRVMN/DRVMNVEH.c
+DRVMN/DRMHOD/DRMHOD.c
+DRVMN/DRMDAE/DRMDAE.c
+TRJCTR/TCTDTE/TCTDTE.c
+TRJCTR/TCTCDC/TCTCDC.c
+TRJCTR/TCTFFC/TCTFFC.c
+TRJCTR/TCTLGC/TCTLGC.c
+TRJCTR/TCTCLM/TCTCLM.c
+TRJCTR/TCTEST/TCTEST.c
+TRJPLN/TRJPLNVEH.c
+TRJPLN/TPLLCO/TPLLCO.c
+TRJPLN/TPLCEN/TPLCEN.c
+TRJPLN/TPLFRT/TPLFRT.c
+TRJPLN/TPLFRT/calFrenetTransformation.c
+TRJPLN/TPLTJC/TPLTJC.c
+TRJPLN/TPLTJC/calOptTrajektorie.c
+TRJPLN/TPLFBT/TPLFBT.c
+TRJPLN/TPLFBT/calFrenetBackTransformation.c
+LCFERR/err_veh.c
+LCFERR/errio_veh.c
+"""
+lcf_algo_sources = lcf_algo_sources_veh + lcf_algo_sources_sen
+
+# algo source files for the project "project_name"
+if project_name == 'MFC431':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	
+	#sources for SEN---
+	lcf_algo_sources_project_specific_sen = ("""
+	LCF/HMIOC/HMORQG/HMORQG.c
+	LCF/LCF_DPU/LCFSEN/LCFSEN.c
+	LCF/LCF_DPU/LCFPRM/LCFPRM_data.c
+	LCF/LCF_DPU/LCFERR/ERRIO_SenCustom.c
+	LCF/LCF_DPU/LCFERR/LCFERR_SenCustom.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_SEN/lcf_sen_main.c
+	../../01_Source_Code/LCF/ABPR/ABPALP/ABPALP.c
+	../../01_Source_Code/LCF/ABPR/ABPRSEN.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/ABPLBP.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/polyfitLCF.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/crvKalmanFilter.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/laneKalmanFilter_Center.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/laneKalmanFilter_Left.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/laneKalmanFilter_Right.c
+	../../01_Source_Code/LCF/ABPR/ABPREP/ABPREP.c
+	../../01_Source_Code/LCF/ABPR/ABPREP/roadEdgeKalmanFilter_Left.c
+	../../01_Source_Code/LCF/ABPR/ABPREP/roadEdgeKalmanFilter_Right.c
+	../../01_Source_Code/LCF/ALCASA/ALCASASEN.c
+	../../01_Source_Code/LCF/ALCASA/LCRSIA/LCRSIA.c
+	../../01_Source_Code/LCF/ALCASA/LCRSMI/LCRSMI.c
+	../../01_Source_Code/LCF/ALCASA/LCRTTG/LCRTTG.c
+	../../01_Source_Code/LCF/ALCASA/LCRTVG/LCRTVG.c
+	../../01_Source_Code/LCF/LDPOCSA/LDPOCSASEN.c
+	../../01_Source_Code/LCF/LDPOCSA/DPODOO/DPODOO.c
+	../../01_Source_Code/LCF/LDPOCSA/DPOSIA/DPOSIA.c
+	../../01_Source_Code/LCF/LDPOCSA/DPOCND/DPOCND.c
+	../../01_Source_Code/LCF/LDPOCSA/DPOSMI/DPOSMI.c
+	../../01_Source_Code/LCF/LDPOCSA/DPOSMW/DPOSMW.c
+	../../01_Source_Code/LCF/LDPOCSA/DPOTTG/DPOTTG.c
+	../../01_Source_Code/LCF/LDPOCSA/DPOTVG/DPOTVG.c
+	../../01_Source_Code/LCF/LDPSA/LDPSASEN.c
+	../../01_Source_Code/LCF/LDPSA/DPLSIA/DPLSIA.c
+	../../01_Source_Code/LCF/LDPSA/DPLSMI/DPLSMI.c
+	../../01_Source_Code/LCF/LDPSA/DPLSMW/DPLSMW.c
+	../../01_Source_Code/LCF/LDPSA/DPLTTG/DPLTTG.c
+	../../01_Source_Code/LCF/LDPSA/DPLTVG/DPLTVG.c
+	../../01_Source_Code/LCF/ODPR/ODPRSEN.c
+	../../01_Source_Code/LCF/ODPR/ODPOOP/ODPOOP.c
+	../../01_Source_Code/LCF/ODPR/ODPOOK/ODPOOK.c
+	../../01_Source_Code/LCF/ODPR/ODPOOS/ODPOOS.c
+	../../01_Source_Code/LCF/ODPR/ODPFOP/ODPFOP.c
+	../../01_Source_Code/LCF/ODPR/ODPFOH/ODPFOH.c
+	../../01_Source_Code/LCF/ODPR/ODPFOH/objTraceKalmanFilter.c
+	../../01_Source_Code/LCF/ODPR/ODPFOH/polyfitTgtObjectClothoid.c
+	../../01_Source_Code/LCF/ODPR/ODPILE/ODPILE.c
+	../../01_Source_Code/LCF/RDPSA/RDPSASEN.c
+	../../01_Source_Code/LCF/RDPSA/DPRSIA/DPRSIA.c
+	../../01_Source_Code/LCF/RDPSA/DPRSMI/DPRSMI.c
+	../../01_Source_Code/LCF/RDPSA/DPRSMW/DPRSMW.c
+	../../01_Source_Code/LCF/RDPSA/DPRTTG/DPRTTG.c
+	../../01_Source_Code/LCF/RDPSA/DPRTVG/DPRTVG.c
+	../../01_Source_Code/LCF/TJASA/TJASASEN.c
+	../../01_Source_Code/LCF/TJASA/TJACMB/TJACMB.c
+	../../01_Source_Code/LCF/TJASA/TJACMB/fusionKalmanFilter.c
+	../../01_Source_Code/LCF/TJASA/TJALKA/TJALKA.c
+	../../01_Source_Code/LCF/TJASA/TJAOBF/TJAOBF.c
+	../../01_Source_Code/LCF/TJASA/TJASLC/TJASLC.c
+	../../01_Source_Code/LCF/TJASA/TJAGEN/TJAGEN.c
+	../../01_Source_Code/LCF/TJASA/TJASTM/TJASTM.c
+	../../01_Source_Code/LCF/TJASA/TJATTG/TJATTG.c
+	../../01_Source_Code/LCF/TJASA/TJATVG/TJATVG.c
+	""")
+	
+	#sources for VEH---
+	lcf_algo_sources_project_specific_veh = ("""
+	LCF/LCF_DPU/LCFVEH/LCFVEH.c
+	LCF/LCF_DPU/LCFPRM/LCFPRM_data.c
+	LCF/LCF_DPU/paramlvc.c
+	LCF/LCF_DPU/LCFERR/ERRIO_VehCustom.c
+	LCF/LCF_DPU/LCFERR/LCFERR_VehCustom.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_VEH/lcf_veh_main.c
+	../../01_Source_Code/LCF/TRJCTR/v1TRJCTRVEH.c
+	../../01_Source_Code/LCF/TRJCTR/TCTDEV/TCTDEV.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_lat_brake.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_lat_dyc_dynamic_compensation_filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_lat_dyc_dynamic_compensation_filter_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_LAT_Delta_F_Offset_Switch.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_LAT_Delta_F_Offset_Switch_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_LAT_Dmc_Status_Filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_LAT_Kappa_Filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_LAT_Ldp_States.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_SAC_Accuracy_Calculation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_lat_sac_angle_command_fading.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_lat_sac_friction_compensation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_lat_sac_yaw_rate_control.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_SAT_Angle_Command_Saturation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_SAT_Angle_Command_Saturation_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_TDF_Torque_Derating_Function_Disabled.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_long.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_LAT_Kinematic_Signals_Arbiter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_MOT_Modulation_Torque.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_SAC_Steer_Angle_Cmd_Controller.c
+    ../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_LAT_Stiffness_Definition.c
+    ../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_Loop_Gain_Correction.c
+    ../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_SAC_Proportional_Factor_Derating.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_LAT_Yaw_Rate_Offset_Compensation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_SAC_Damping_Filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/intrp1d_fu32fl.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/linsearch_u8f.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_ifbu16n6lftu16n10DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_ifbu16n6lftu16n12dfif_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_ifbu16n6lftu16n5DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_ifbu16n6lftu16n9DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_iflf_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_iflf_binlx.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_is16lftf_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_is16lfts16n10DfIf_binlcr.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_ifbu16n10lftu16n10DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_ifbu16n6lf_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_iflfIs32_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/plook_u8ff_linc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/rt_look1d32.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/rt_look32.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/rt_roundf.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/sde_memset.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_wrp.c
+	""")
+	
+	
+if project_name == 'MFC5J3':
+	#relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	
+	#sources for SEN---
+	lcf_algo_sources_project_specific_sen = ("""
+	LCF/HMIOC/HMODFL/HMODFL.c
+	LCF/MFJSCT/JCNCTR/JCNCTR.c
+	LCF/LCF_DPU/LCFSEN/LCFSEN.c
+	LCF/LCF_DPU/LCFPRM/LCFPRM_data.c
+	LCF/LCF_DPU/LCFRCV/LCFRCVSEN_custom.c
+	LCF/LCF_DPU/LCFSND/LCFSNDSEN_custom.c
+	LCF/LCF_DPU/LCFERR/ERRIO_SenCustom.c
+	LCF/LCF_DPU/LCFERR/LCFERR_SenCustom.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_SEN/lcf_sen_main.c
+    	../../01_Source_Code/LCF/ABPR/v1ABPRSEN.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/ABPLBP.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/polyfitLCF.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/crvKalmanFilter.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/laneKalmanFilter_Center.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/laneKalmanFilter_Left.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/laneKalmanFilter_Right.c
+        ../../01_Source_Code/LCF/ABPR/ABPREP/ABPREP.c
+        ../../01_Source_Code/LCF/ABPR/ABPREP/roadEdgeKalmanFilter_Left.c
+        ../../01_Source_Code/LCF/ABPR/ABPREP/roadEdgeKalmanFilter_Right.c
+    ../../01_Source_Code/LCF/ALCASA/ALCASASEN.c
+	../../01_Source_Code/LCF/ALCASA/LCRSIA/LCRSIA.c
+	../../01_Source_Code/LCF/ALCASA/LCRSMI/LCRSMI.c
+	../../01_Source_Code/LCF/ALCASA/LCRTTG/LCRTTG.c
+	../../01_Source_Code/LCF/ALCASA/LCRTVG/LCRTVG.c
+	../../01_Source_Code/LCF/LDPSA/LDPSASEN.c
+	../../01_Source_Code/LCF/LDPSA/DPLSIA/DPLSIA.c
+	../../01_Source_Code/LCF/LDPSA/DPLSMI/DPLSMI.c
+	../../01_Source_Code/LCF/LDPSA/DPLSMW/DPLSMW.c
+	../../01_Source_Code/LCF/LDPSA/DPLTTG/DPLTTG.c
+	../../01_Source_Code/LCF/LDPSA/DPLTVG/DPLTVG.c
+    	../../01_Source_Code/LCF/ODPR/v2ODPRSEN.c
+        ../../01_Source_Code/LCF/ODPR/ODPFOP/ODPFOP.c
+        ../../01_Source_Code/LCF/ODPR/ODPFOH/ODPFOH.c
+        ../../01_Source_Code/LCF/ODPR/ODPFOH/objTraceKalmanFilter.c
+        ../../01_Source_Code/LCF/ODPR/ODPFOH/polyfitTgtObjectClothoid.c
+        ../../01_Source_Code/LCF/RDPSA/RDPSASEN.c
+        ../../01_Source_Code/LCF/RDPSA/DPRSIA/DPRSIA.c
+        ../../01_Source_Code/LCF/RDPSA/DPRSMI/DPRSMI.c
+        ../../01_Source_Code/LCF/RDPSA/DPRSMW/DPRSMW.c
+        ../../01_Source_Code/LCF/RDPSA/DPRTTG/DPRTTG.c
+        ../../01_Source_Code/LCF/RDPSA/DPRTVG/DPRTVG.c
+	../../01_Source_Code/LCF/TJASA/v1TJASASEN.c
+	../../01_Source_Code/LCF/TJASA/TJASTM/TJASTM.c
+	../../01_Source_Code/LCF/TJASA/TJATTG/TJATTG.c
+	../../01_Source_Code/LCF/TJASA/TJATVG/TJATVG.c
+	../../01_Source_Code/LCF/TJASA/TJAGEN/TJAGEN.c
+	../../01_Source_Code/LCF/TJASA/TJALKA/TJALKA.c
+    	../../01_Source_Code/LCF/TJASA/TJACMB/TJACMB.c
+        ../../01_Source_Code/LCF/TJASA/TJACMB/fusionKalmanFilter.c
+    	../../01_Source_Code/LCF/TJASA/TJAOBF/TJAOBF.c
+	""")
+	
+	#sources for VEH---
+	lcf_algo_sources_project_specific_veh = ("""
+	LCF/LCF_DPU/LCFVEH/LCFVEH.c
+	LCF/LCF_DPU/LCFPRM/LCFPRM_data.c
+	LCF/LCF_DPU/LCFRCV/LCFRCVVEH_custom.c
+	LCF/LCF_DPU/LCFSND/LCFSNDVEH_custom.c
+	LCF/LCF_DPU/LCFERR/ERRIO_VehCustom.c
+	LCF/LCF_DPU/LCFERR/LCFERR_VehCustom.c
+	LCF/LCF_DPU/paramlvc.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_VEH/lcf_veh_main.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_Brake.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_DYC_Dynamic_Compensation_Filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_DYC_Dynamic_Compensation_Filter_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_LAT_Delta_F_Offset_Switch.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_LAT_Delta_F_Offset_Switch_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_LAT_Dmc_Status_Defintion.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_LAT_Kappa_Filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_LAT_Ldp_States.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_ifbu16n6lf_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_SAC_Accuracy_Calculation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_SAC_Angle_Command_Fading.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_SAC_Friction_Compensation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_SAC_Yaw_Rate_Control.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_SAT_Angle_Command_Saturation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_SAT_Angle_Command_Saturation_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_TDF_Torque_Derating_Function.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_TDF_Torque_Derating_Function_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Long.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_LAT_Kinematic_Signals_Arbiter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_LAT_Stiffness_Definition.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_Loop_Gain_Correction.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_MOT_Modulation_Torque.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_SAC_Damping_Filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_SAC_Proportional_Factor_Derating.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_SAC_Steer_Angle_Cmd_Controller.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_LAT_Yaw_Rate_Offset_Compensation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/intrp1d_fu32fl.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/linsearch_u8f.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_ifbu16n6lftu16n10DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_ifbu16n6lftu16n12dfif_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_ifbu16n6lftu16n5DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_ifbu16n6lftu16n9DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_ifbu16n10lftu16n10DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_iflf_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_iflf_binlx.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_iflfIs32_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_is16lftf_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_is16lfts16n10DfIf_binlcr.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/plook_u8ff_linc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/rt_look1d32.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/rt_look32.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/rt_roundf.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/sde_memset.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_wrp.c
+	../../01_Source_Code/LCF/TRJCTR/TRJCTRVEH.c
+	""")
+
+if project_name == 'MFC5J3CN15':
+	#relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	
+	#sources for SEN---
+	lcf_algo_sources_project_specific_sen = ("""
+	LCF/HMIOC/HMODFL/HMODFL.c
+	LCF/MFJSCT/JCNCTR/JCNCTR.c
+	LCF/LCF_DPU/LCFSEN/LCFSEN.c
+	LCF/LCF_DPU/LCFPRM/LCFPRM_data.c
+	LCF/LCF_DPU/LCFRCV/LCFRCVSEN_custom.c
+	LCF/LCF_DPU/LCFSND/LCFSNDSEN_custom.c
+	LCF/LCF_DPU/LCFERR/ERRIO_SenCustom.c
+	LCF/LCF_DPU/LCFERR/LCFERR_SenCustom.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_SEN/lcf_sen_main.c
+    	../../01_Source_Code/LCF/ABPR/v1ABPRSEN.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/ABPLBP.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/polyfitLCF.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/crvKalmanFilter.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/laneKalmanFilter_Center.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/laneKalmanFilter_Left.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/laneKalmanFilter_Right.c
+        ../../01_Source_Code/LCF/ABPR/ABPREP/ABPREP.c
+        ../../01_Source_Code/LCF/ABPR/ABPREP/roadEdgeKalmanFilter_Left.c
+        ../../01_Source_Code/LCF/ABPR/ABPREP/roadEdgeKalmanFilter_Right.c
+    ../../01_Source_Code/LCF/ALCASA/ALCASASEN.c
+	../../01_Source_Code/LCF/ALCASA/LCRSIA/LCRSIA.c
+	../../01_Source_Code/LCF/ALCASA/LCRSMI/LCRSMI.c
+	../../01_Source_Code/LCF/ALCASA/LCRTTG/LCRTTG.c
+	../../01_Source_Code/LCF/ALCASA/LCRTVG/LCRTVG.c
+	../../01_Source_Code/LCF/LDPSA/LDPSASEN.c
+	../../01_Source_Code/LCF/LDPSA/DPLSIA/DPLSIA.c
+	../../01_Source_Code/LCF/LDPSA/DPLSMI/DPLSMI.c
+	../../01_Source_Code/LCF/LDPSA/DPLSMW/DPLSMW.c
+	../../01_Source_Code/LCF/LDPSA/DPLTTG/DPLTTG.c
+	../../01_Source_Code/LCF/LDPSA/DPLTVG/DPLTVG.c
+    	../../01_Source_Code/LCF/ODPR/v2ODPRSEN.c
+        ../../01_Source_Code/LCF/ODPR/ODPFOP/ODPFOP.c
+        ../../01_Source_Code/LCF/ODPR/ODPFOH/ODPFOH.c
+        ../../01_Source_Code/LCF/ODPR/ODPFOH/objTraceKalmanFilter.c
+        ../../01_Source_Code/LCF/ODPR/ODPFOH/polyfitTgtObjectClothoid.c
+        ../../01_Source_Code/LCF/RDPSA/RDPSASEN.c
+        ../../01_Source_Code/LCF/RDPSA/DPRSIA/DPRSIA.c
+        ../../01_Source_Code/LCF/RDPSA/DPRSMI/DPRSMI.c
+        ../../01_Source_Code/LCF/RDPSA/DPRSMW/DPRSMW.c
+        ../../01_Source_Code/LCF/RDPSA/DPRTTG/DPRTTG.c
+        ../../01_Source_Code/LCF/RDPSA/DPRTVG/DPRTVG.c
+	../../01_Source_Code/LCF/TJASA/v1TJASASEN.c
+	../../01_Source_Code/LCF/TJASA/TJASTM/TJASTM.c
+	../../01_Source_Code/LCF/TJASA/TJATTG/TJATTG.c
+	../../01_Source_Code/LCF/TJASA/TJATVG/TJATVG.c
+	../../01_Source_Code/LCF/TJASA/TJAGEN/TJAGEN.c
+	../../01_Source_Code/LCF/TJASA/TJALKA/TJALKA.c
+    	../../01_Source_Code/LCF/TJASA/TJACMB/TJACMB.c
+        ../../01_Source_Code/LCF/TJASA/TJACMB/fusionKalmanFilter.c
+    	../../01_Source_Code/LCF/TJASA/TJAOBF/TJAOBF.c
+	""")
+	
+	#sources for VEH---
+	lcf_algo_sources_project_specific_veh = ("""
+	LCF/LCF_DPU/LCFVEH/LCFVEH.c
+	LCF/LCF_DPU/LCFPRM/LCFPRM_data.c
+	LCF/LCF_DPU/LCFRCV/LCFRCVVEH_custom.c
+	LCF/LCF_DPU/LCFSND/LCFSNDVEH_custom.c
+	LCF/LCF_DPU/LCFERR/ERRIO_VehCustom.c
+	LCF/LCF_DPU/LCFERR/LCFERR_VehCustom.c
+	LCF/LCF_DPU/paramlvc.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_VEH/lcf_veh_main.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_Brake.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_DYC_Dynamic_Compensation_Filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_DYC_Dynamic_Compensation_Filter_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_LAT_Delta_F_Offset_Switch.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_LAT_Delta_F_Offset_Switch_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_LAT_Dmc_Status_Defintion.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_LAT_Kappa_Filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_LAT_Ldp_States.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_ifbu16n6lf_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_SAC_Accuracy_Calculation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_SAC_Angle_Command_Fading.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_SAC_Friction_Compensation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_SAC_Yaw_Rate_Control.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_SAT_Angle_Command_Saturation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_SAT_Angle_Command_Saturation_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_TDF_Torque_Derating_Function.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Lat_TDF_Torque_Derating_Function_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Long.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_LAT_Kinematic_Signals_Arbiter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_LAT_Stiffness_Definition.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_Loop_Gain_Correction.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_MOT_Modulation_Torque.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_SAC_Damping_Filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_SAC_Proportional_Factor_Derating.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_Lat_SAC_Steer_Angle_Cmd_Controller.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/DMC_Soc_LAT_Yaw_Rate_Offset_Compensation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/intrp1d_fu32fl.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/linsearch_u8f.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_ifbu16n6lftu16n10DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_ifbu16n6lftu16n12dfif_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_ifbu16n6lftu16n5DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_ifbu16n6lftu16n9DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_ifbu16n10lftu16n10DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_iflf_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_iflf_binlx.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_iflfIs32_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_is16lftf_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/look1_is16lfts16n10DfIf_binlcr.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/plook_u8ff_linc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/rt_look1d32.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/rt_look32.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/rt_roundf.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang/sde_memset.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_wrp.c
+	../../01_Source_Code/LCF/TRJCTR/TRJCTRVEH.c
+	""")
+
+	
+if project_name == 'MFC431BD10':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	
+	#sources for SEN---
+	lcf_algo_sources_project_specific_sen = ("""	
+	LCF/HMIOC/HMOBYD/HMOBYD.c
+	LCF/BYDSCT/BSCCTR/BSCCTR.c
+	LCF/LCF_DPU/LCFSEN/LCFSEN.c
+	LCF/LCF_DPU/LCFPRM/LCFPRM_data.c
+	LCF/LCF_DPU/LCFRCV/LCFRCVSEN_custom.c
+	LCF/LCF_DPU/LCFSND/LCFSNDSEN_custom.c
+	LCF/LCF_DPU/LCFERR/ERRIO_SenCustom.c
+	LCF/LCF_DPU/LCFERR/LCFERR_SenCustom.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_SEN/lcf_sen_main.c
+	../../01_Source_Code/LCF/ABPR/v1ABPRSEN.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/ABPLBP.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/polyfitLCF.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/crvKalmanFilter.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/laneKalmanFilter_Center.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/laneKalmanFilter_Left.c
+	../../01_Source_Code/LCF/ABPR/ABPLBP/laneKalmanFilter_Right.c
+	../../01_Source_Code/LCF/ABPR/ABPREP/ABPREP.c
+	../../01_Source_Code/LCF/ABPR/ABPREP/roadEdgeKalmanFilter_Left.c
+	../../01_Source_Code/LCF/ABPR/ABPREP/roadEdgeKalmanFilter_Right.c
+	../../01_Source_Code/LCF/LDPSA/LDPSASEN.c
+	../../01_Source_Code/LCF/LDPSA/DPLSIA/DPLSIA.c
+	../../01_Source_Code/LCF/LDPSA/DPLSMI/DPLSMI.c
+	../../01_Source_Code/LCF/LDPSA/DPLSMW/DPLSMW.c
+	../../01_Source_Code/LCF/LDPSA/DPLTTG/DPLTTG.c
+	../../01_Source_Code/LCF/LDPSA/DPLTVG/DPLTVG.c
+	../../01_Source_Code/LCF/ODPR/v2ODPRSEN.c
+	../../01_Source_Code/LCF/ODPR/ODPFOP/ODPFOP.c
+	../../01_Source_Code/LCF/ODPR/ODPFOH/ODPFOH.c
+	../../01_Source_Code/LCF/ODPR/ODPFOH/objTraceKalmanFilter.c
+	../../01_Source_Code/LCF/ODPR/ODPFOH/polyfitTgtObjectClothoid.c
+	../../01_Source_Code/LCF/RDPSA/RDPSASEN.c
+	../../01_Source_Code/LCF/RDPSA/DPRSIA/DPRSIA.c
+	../../01_Source_Code/LCF/RDPSA/DPRSMI/DPRSMI.c
+	../../01_Source_Code/LCF/RDPSA/DPRSMW/DPRSMW.c
+	../../01_Source_Code/LCF/RDPSA/DPRTTG/DPRTTG.c
+	../../01_Source_Code/LCF/RDPSA/DPRTVG/DPRTVG.c
+	../../01_Source_Code/LCF/TJASA/v1TJASASEN.c
+	../../01_Source_Code/LCF/TJASA/TJACMB/TJACMB.c
+	../../01_Source_Code/LCF/TJASA/TJACMB/fusionKalmanFilter.c
+	../../01_Source_Code/LCF/TJASA/TJALKA/TJALKA.c
+	../../01_Source_Code/LCF/TJASA/TJAOBF/TJAOBF.c
+	../../01_Source_Code/LCF/TJASA/TJAGEN/TJAGEN.c
+	../../01_Source_Code/LCF/TJASA/TJASTM/TJASTM.c
+	../../01_Source_Code/LCF/TJASA/TJATTG/TJATTG.c
+	../../01_Source_Code/LCF/TJASA/TJATVG/TJATVG.c
+	""")
+	
+	#sources for VEH---
+	lcf_algo_sources_project_specific_veh = ("""
+	LCF/LCF_DPU/LCFVEH/LCFVEH.c
+	LCF/LCF_DPU/LCFPRM/LCFPRM_data.c
+	LCF/LCF_DPU/paramlvc.c
+	LCF/LCF_DPU/LCFRCV/LCFRCVVEH_custom.c
+	LCF/LCF_DPU/LCFSND/LCFSNDVEH_custom.c
+	LCF/LCF_DPU/LCFERR/ERRIO_VehCustom.c
+	LCF/LCF_DPU/LCFERR/LCFERR_VehCustom.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_VEH/lcf_veh_main.c
+	../../01_Source_Code/LCF/TRJCTR/TRJCTRVEH.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_lat_brake.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_lat_dyc_dynamic_compensation_filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_lat_dyc_dynamic_compensation_filter_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_LAT_Delta_F_Offset_Switch.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_LAT_Delta_F_Offset_Switch_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_LAT_Dmc_Status_Filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_LAT_Kappa_Filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_LAT_Ldp_States.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_SAC_Accuracy_Calculation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_lat_sac_angle_command_fading.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_lat_sac_friction_compensation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_lat_sac_yaw_rate_control.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_SAT_Angle_Command_Saturation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_SAT_Angle_Command_Saturation_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Lat_TDF_Torque_Derating_Function_Disabled.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/dmc_long.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_data.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_LAT_Kinematic_Signals_Arbiter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_MOT_Modulation_Torque.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_SAC_Steer_Angle_Cmd_Controller.c
+    ../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_LAT_Stiffness_Definition.c
+    ../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_Loop_Gain_Correction.c
+    ../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_SAC_Proportional_Factor_Derating.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_LAT_Yaw_Rate_Offset_Compensation.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/DMC_Soc_Lat_SAC_Damping_Filter.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/intrp1d_fu32fl.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/linsearch_u8f.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_ifbu16n6lftu16n10DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_ifbu16n6lftu16n12dfif_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_ifbu16n6lftu16n5DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_ifbu16n6lftu16n9DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_iflf_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_iflf_binlx.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_is16lftf_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_is16lfts16n10DfIf_binlcr.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_ifbu16n10lftu16n10DfIf_binlcs.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_ifbu16n6lf_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/look1_iflfIs32_binlc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/plook_u8ff_linc.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/rt_look1d32.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/rt_look32.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/rt_roundf.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh/sde_memset.c
+	../../01_Source_Code/LCF/LATDMC/latdmc_wrp.c
+	""")
+
+lcf_algo_sources_project_specific = lcf_algo_sources_project_specific_veh + lcf_algo_sources_project_specific_sen
+ 
+project_path = "../../00_Projects/" + project_name + "/"       
+lcf_algo_sources_project_specific_list = lcf_algo_sources_project_specific.split()
+lcf_algo_sources_project_specific_list = [project_path + rel_path for rel_path in lcf_algo_sources_project_specific_list]
+lcf_algo_sources_list = lcf_algo_sources.split()
+lcf_algo_sources = '\n'.join(lcf_algo_sources_list + lcf_algo_sources_project_specific_list)
+
+# algo pdo source files (C files for creating SDL file)
+lcf_algo_pdo_sources = """
+Common/lcf_sen_pdo_tags_file.c
+Common/lcf_veh_pdo_tags_file.c
+"""
+
+# algo wrapper sources for the project "project_name"
+if project_name == 'MFC431':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_algo_pdo_sources_project_specific = ("""
+	""")
+	
+if project_name == 'MFC5J3':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_algo_pdo_sources_project_specific = ("""
+	""")	
+
+if project_name == 'MFC5J3CN15':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_algo_pdo_sources_project_specific = ("""
+	""")
+
+if project_name == 'MFC431BD10':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_algo_pdo_sources_project_specific = ("""
+	""")	
+
+project_path = "../../00_Projects/" + project_name + "/"       
+lcf_algo_pdo_sources_project_specific_list = lcf_algo_pdo_sources_project_specific.split()
+lcf_algo_pdo_sources_project_specific_list = [project_path + rel_path for rel_path in lcf_algo_pdo_sources_project_specific_list]
+lcf_algo_pdo_sources_list = lcf_algo_pdo_sources.split()
+lcf_algo_pdo_sources = '\n'.join(lcf_algo_pdo_sources_list + lcf_algo_pdo_sources_project_specific_list)
+
+# algo ti_eve_arp32 source files
+lcf_algo_ti_eve_arp32_sources = """
+"""
+
+# algo wrapper sources to be analysed by qac
+lcf_wrapper_sources_sen = """
+"""
+lcf_wrapper_sources_veh = """
+LATDMC/latdmc_wrp.c
+"""
+lcf_wrapper_sources = lcf_wrapper_sources_veh + lcf_wrapper_sources_sen
+
+# algo wrapper sources for the project "project_name"
+if project_name == 'MFC431':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_wrapper_sources_project_specific = ("""
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH_common.c
+	""")
+	
+if project_name == 'MFC5J3':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_wrapper_sources_project_specific = ("""
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH_common.c
+	""")
+
+if project_name == 'MFC5J3CN15':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_wrapper_sources_project_specific = ("""
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH_common.c
+	""")
+	
+if project_name == 'MFC431BD10':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_wrapper_sources_project_specific = ("""
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDSEN_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFRCV/LCFRCVVEH_common.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH.c
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/LCFSND/LCFSNDVEH_common.c
+	""")	
+
+project_path = "../../00_Projects/" + project_name + "/"       
+lcf_wrapper_sources_project_specific_list = lcf_wrapper_sources_project_specific.split()
+lcf_wrapper_sources_project_specific_list = [project_path + rel_path for rel_path in lcf_wrapper_sources_project_specific_list]
+lcf_wrapper_sources_list = lcf_wrapper_sources.split()
+lcf_wrapper_sources = '\n'.join(lcf_wrapper_sources_list + lcf_wrapper_sources_project_specific_list)
+
+# algo include paths
+lcf_algo_include_paths_sen = """
+#../../../01_Source_Code/LCF
+#../../../01_Source_Code/LCF/Common/SDA
+#../../../01_Source_Code/LCF/Common/utils
+#../../../01_Source_Code/LCF/Common/sw_support
+"""
+lcf_algo_include_paths_veh = """
+#../../../01_Source_Code/LCF
+#../../../01_Source_Code/LCF/Common/SDA
+#../../../01_Source_Code/LCF/Common/utils
+#../../../01_Source_Code/LCF/Common/sw_support
+"""
+lcf_algo_include_paths = lcf_algo_include_paths_veh + lcf_algo_include_paths_sen
+
+
+# algo include paths for the project "project_name"
+if project_name == 'MFC431':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_algo_include_paths_project_specific_sen = ("""
+	LCF
+	LCF/LCF_DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_SEN
+	""")
+	lcf_algo_include_paths_project_specific_veh = ("""
+	LCF
+	LCF/LCF_DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_VEH
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh
+	""")
+
+
+if project_name == 'MFC5J3':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_algo_include_paths_project_specific_sen = ("""
+	LCF
+	LCF/LCF_DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_SEN
+	""")
+	lcf_algo_include_paths_project_specific_veh = ("""
+	LCF
+	LCF/LCF_DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_VEH
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang
+	""")	
+
+if project_name == 'MFC5J3CN15':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_algo_include_paths_project_specific_sen = ("""
+	LCF
+	LCF/LCF_DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_SEN
+	""")
+	lcf_algo_include_paths_project_specific_veh = ("""
+	LCF
+	LCF/LCF_DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_VEH
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh_ang
+	""")
+	
+
+if project_name == 'MFC431BD10':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_algo_include_paths_project_specific_sen = ("""
+	LCF
+	LCF/LCF_DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_SEN
+	""")
+	lcf_algo_include_paths_project_specific_veh = ("""
+	LCF
+	LCF/LCF_DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU
+	../../01_Source_Code/LCF/LCF_MFC431x/DPU/FRAME_VEH
+	../../01_Source_Code/LCF/LATDMC/latdmc_veh
+	""")	
+	
+	
+lcf_algo_include_paths_project_specific = lcf_algo_include_paths_project_specific_veh + lcf_algo_include_paths_project_specific_sen
+	
+project_path = "#../../../00_Projects/" + project_name + "/"
+lcf_algo_include_paths_project_specific_list = lcf_algo_include_paths_project_specific.split()
+lcf_algo_include_paths_project_specific_list = [project_path + rel_path for rel_path in lcf_algo_include_paths_project_specific_list]
+lcf_algo_include_paths_list = lcf_algo_include_paths.split()
+lcf_algo_include_paths = '\n'.join(lcf_algo_include_paths_list + lcf_algo_include_paths_project_specific_list)
+
+# algo common include paths
+lcf_algo_common_include_paths = """
+#../../../01_Source_Code/common
+#../../../01_Source_Code/common/GLOB
+#../../../01_Source_Code/common/GLOB/GLOB_DPU
+#../../../01_Source_Code/common/GLOB/GLOB_RCARV3M
+#../../../01_Source_Code/common/GLOB/GLOB_RENA53
+#../../../01_Source_Code/common/GLOB/GLOB_RENR7
+#../../../01_Source_Code/common/GLOB/glob_ren
+#../../../01_Source_Code/common/GLOB/glob_rr
+#../../../01_Source_Code/common/GLOB/glob_rru
+#../../../01_Source_Code/common/GLOB/glob_tir4f
+#../../../01_Source_Code/common/MTSI
+#../../../01_Source_Code/common/RTA
+#../../../01_Source_Code/common/LCF/RTW
+#../../../01_Source_Code/cml
+#../../../01_Source_Code/cml/bayes
+#../../../01_Source_Code/cml/complex
+#../../../01_Source_Code/cml/fourier
+#../../../01_Source_Code/cml/interpol
+#../../../01_Source_Code/cml/kalman
+#../../../01_Source_Code/cml/matrix
+#../../../01_Source_Code/cml/misc
+#../../../01_Source_Code/cml/stat
+#../../../01_Source_Code/cml/stl
+#../../../01_Source_Code/cml/trigo
+#../../../01_Source_Code/cml/vector
+#../../../01_Source_Code/cml/exp
+#../../../01_Source_Code/RTA
+#../../../01_Source_Code/RTE_EB_ACG8/include
+"""	
+
+# algo common include paths for the project "project_name"
+if project_name == 'MFC431':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_algo_common_include_paths_project_specific = ("""
+	GA
+	common/DGM
+	common/GLOB
+	common/RTE_VH/algo
+	common/RTE_VH/include
+	""")
+	
+if project_name == 'MFC5J3':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_algo_common_include_paths_project_specific = ("""
+	GA
+	common/DGM
+	common/GLOB
+	common/RTE_VH/algo
+	common/RTE_VH/include
+	common/RTE_VH/BSW_RTE/01_TransfertoMTS
+	""")	
+
+if project_name == 'MFC5J3CN15':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_algo_common_include_paths_project_specific = ("""
+	GA
+	common/DGM
+	common/GLOB
+	common/RTE_VH/algo
+	common/RTE_VH/include
+	common/RTE_VH/BSW_RTE/01_TransfertoMTS
+	""")
+
+if project_name == 'MFC431BD10':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	lcf_algo_common_include_paths_project_specific = ("""
+	GA
+	common/DGM
+	common/GLOB
+	common/RTE_VH/algo
+	common/RTE_VH/include
+	""")	
+	
+    
+project_path = "#../../../00_Projects/" + project_name + "/"
+lcf_algo_common_include_paths_project_specific_list = lcf_algo_common_include_paths_project_specific.split()
+lcf_algo_common_include_paths_project_specific_list = [project_path + rel_path for rel_path in lcf_algo_common_include_paths_project_specific_list]
+lcf_algo_common_include_paths_list = lcf_algo_common_include_paths.split()
+lcf_algo_common_include_paths = '\n'.join(lcf_algo_common_include_paths_list + lcf_algo_common_include_paths_project_specific_list)
+
+# algo ti_eve_arp32 include paths
+lcf_algo_ti_eve_arp32_include_paths = """
+"""
+
+# exclude paths for qac
+qac_exclude_paths = """
+"""
+
+# algo polyspace addtional source files
+lcf_algo_ps_additional_sources = """
+"""
+
+# algo polyspace additional include paths
+lcf_algo_ps_additional_include_paths = """
+"""

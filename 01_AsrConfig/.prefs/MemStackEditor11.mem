@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<memento version="1.0" lastmodified="Jan 9, 2023 9:30:37 AM">
+    <MemStackEditor11 CheckboxEvaluateNVBlockNeedsMemento="true" CheckboxMemoryStackConfiguratorMemento="true">
+        <__metadata>
+            <WIDGET_ID_TABLE_BLOCK_CONFIGURATIONS
+                __width="100 293 250 90 110 158 160 178 210 140" __visible="nyyyyyyyyy"/>
+            <Group_MemAs_2 __expanded="true"/>
+            <SumofEaBlockSizesbytes/>
+            <WIDGET_ID_TEXT_UPDATE_SUM_EA_BLOCK_SIZE __radix="DEC" __separators="false"/>
+            <SumofFeeBlockSizesbytes/>
+            <WIDGET_ID_TEXT_UPDATE_SUM_FEE_BLOCK_SIZE __radix="DEC" __separators="false"/>
+            <WIDGET_ID_TABLE_BLOCK_DESCRIPTORS
+                __width="100 300 90 120 98 110 205 160 90 90 150 90 175" __visible="nyyyyyyyyyyyy"/>
+        </__metadata>
+    </MemStackEditor11>
+</memento>

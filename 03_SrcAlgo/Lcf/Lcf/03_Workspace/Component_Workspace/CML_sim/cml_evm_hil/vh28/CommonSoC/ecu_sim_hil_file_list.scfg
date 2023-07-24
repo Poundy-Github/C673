@@ -1,0 +1,22 @@
+# config file containing ecu common sim hil source file list
+
+# ecu common sim hil source files
+ecu_sim_hil_sources = """
+../../generic/CommonSoC/SharedRAM.cpp
+"""
+
+# ecu common sim hil source files
+ecu_eve_sim_hil_sources = """
+../../generic/CommonSoC/SharedRAM_EVE.c
+"""
+
+# ecu common sim hil include paths
+ecu_sim_hil_include_paths = """
+../../generic/CommonSoC
+../../../common
+"""
+
+# ecu common sim hil cmd file
+ecu_sim_hil_cmd_file = """
+../../generic/CommonSoC/SharedRAM.cmd
+"""

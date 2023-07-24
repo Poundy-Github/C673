@@ -1,0 +1,115 @@
+# config file containing source files in PC sim wrapper
+
+Import("project_name")
+cml_sim_swc_source_files_project_specific = ''
+cml_sim_swc_include_paths_project_specific = ''
+
+###################################################
+# LIB SOURCE FILES
+###################################################
+
+cml_sim_swc_source_files = """
+../../../../01_Source_Code/CML/bayes/cml_bayes.c
+../../../../01_Source_Code/CML/complex/cml_complex.c
+../../../../01_Source_Code/CML/exp/cml_exp.c
+../../../../01_Source_Code/CML/fourier/cml_fourier.c
+../../../../01_Source_Code/CML/interpol/cml_interpol.c
+../../../../01_Source_Code/CML/kalman/cml_kafi.c
+../../../../01_Source_Code/CML/matrix/cml_mat.c
+../../../../01_Source_Code/CML/misc/cml_misc.c
+../../../../01_Source_Code/CML/matrix/cml_mtrx.c
+../../../../01_Source_Code/CML/radar/cml_radar.c
+../../../../01_Source_Code/CML/stat/cml_stat.c
+../../../../01_Source_Code/CML/trigo/cml_trigo.c
+../../../../01_Source_Code/CML/vector/cml_vector.c
+"""
+
+# source files for the project "project_name"
+if project_name.upper().startswith('MFC431') or project_name.upper().startswith('MFC510') or project_name.upper().startswith('ARS441'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+    cml_sim_swc_source_files_project_specific = """
+        
+    """
+project_path                                   = "../../00_Projects/" + project_name + "/"
+cml_sim_swc_source_files_project_specific_list = cml_sim_swc_source_files_project_specific.split()
+cml_sim_swc_source_files_project_specific_list = [project_path + rel_path for rel_path in cml_sim_swc_source_files_project_specific_list]
+cml_sim_swc_source_files_list                  = cml_sim_swc_source_files.split()
+cml_sim_swc_source_files                       = '\n'.join(cml_sim_swc_source_files_list + cml_sim_swc_source_files_project_specific_list)
+###################################################
+# COMMON INCLUDE PATHS
+###################################################
+if project_name.upper().startswith('MFC431') or project_name.upper().startswith('HFL110') or project_name.upper().startswith('ARS441'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+    cml_sim_swc_include_paths = """
+#../CML_sim/sim_swc_cml
+#../../../01_Source_Code/cct/
+#../../../01_Source_Code/CML
+#../../../01_Source_Code/externals/sim/include/sim_edp_lib/
+#../../../01_Source_Code/common/GLOB
+#../../../01_Source_Code/common/GLOB_DPU
+#../../../01_Source_Code/common/GLOB/GLOB_DPU
+#../../../01_Source_Code/common/RTA
+#../../../01_Source_Code/common/MTSI
+#../../../00_Projects/common/GLOB_DPU
+#../../../00_Projects/MFC431/common/RTE_VH/include
+#../../../00_Projects/MFC431/common/RTE_VH/algo
+#../../../00_Projects/MFC431/common/DGM
+#../../../00_Projects/MFC431/common/GLOB
+#../../../00_Projects/MFC431HI28/common/RTE_VH/include
+#../../../00_Projects/MFC431HI28/common/GLOB
+#../../../00_Projects/MFC431LO19/common/RTE_VH/include
+#../../../00_Projects/MFC431LO19/common/GLOB
+#../../../00_Projects/MFC431TA19/common/RTE_VH/include
+#../../../00_Projects/MFC431TA19/common/GLOB
+#../../../00_Projects/MFC431LO20/common/RTE_VH/include
+#../../../00_Projects/MFC431LO20/common/RTE_VH/algo
+#../../../00_Projects/MFC431LO20/common/DGM
+#../../../00_Projects/MFC431LO20/common/GLOB
+"""
+#algo common include paths for MFC510 and MFC520 projects
+elif project_name.upper().startswith('MFC510') or project_name.upper().startswith('MFC520'):
+    cml_sim_swc_include_paths = """
+#../CML_sim/sim_swc_cml
+#../../../01_Source_Code/cct/
+#../../../01_Source_Code/CML
+#../../../01_Source_Code/externals/sim/include/sim_edp_lib/
+#../../../01_Source_Code/common/RTA
+#../../../01_Source_Code/common/MTSI
+#../../../01_Source_Code/common/GLOB
+#../../../01_Source_Code/common/GLOB/GLOB_RENA53
+#../../../01_Source_Code/externals/sim/include/sim_rte
+#../../../00_Projects/MFC510/common/GLOB
+#../../../00_Projects/MFC510/common/RTE_VH/algo
+#../../../00_Projects/MFC510/DGM/Dgm_Slave
+#../../../00_Projects/MFC510/common/GLOB
+#../../../00_Projects/MFC510/stubs
+#../../../00_Projects/MFC510/RTE_EB/include
+#../../../00_Projects/MFC510/DPUSERVICE
+#../../../00_Projects/MFC510EVS/common/GLOB
+#../../../00_Projects/MFC520/common/GLOB
+#../../../00_Projects/MFC520/common/RTE_VH/algo
+#../../../00_Projects/MFC520/DGM/Dgm_Slave
+#../../../00_Projects/MFC520/common/GLOB
+#../../../00_Projects/MFC520/stubs
+#../../../00_Projects/MFC520/RTE_EB/include
+#../../../00_Projects/MFC520/DPUSERVICE
+#../../../00_Projects/MFC520/stubs_sil
+#../../../00_Projects/MFC520EVS/common/GLOB
+"""
+else :
+    cml_sim_swc_include_paths = """ """
+
+# include paths for the project "project_name"
+if project_name.upper().startswith('MFC431') or project_name.upper().startswith('MFC510') or project_name.upper().startswith('ARS441'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+    cml_sim_swc_include_paths_project_specific = """
+        
+    """
+
+project_path                                    = "../../00_Projects/" + project_name + "/"
+cml_sim_swc_include_paths_project_specific_list = cml_sim_swc_include_paths_project_specific.split()
+cml_sim_swc_include_paths_project_specific_list = ["#" + project_path + rel_path for rel_path in cml_sim_swc_include_paths_project_specific_list]
+cml_sim_swc_include_paths_list                  = cml_sim_swc_include_paths.split()
+cml_sim_swc_include_paths                       = '\n'.join(cml_sim_swc_include_paths_list + cml_sim_swc_include_paths_project_specific_list)
+cml_sim_swc_pdo_sources = """
+"""

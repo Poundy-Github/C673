@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{cf9d00bd-83ed-4d61-8244-6caad5fdf308}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{da16835e-c493-4f31-98cf-e1edae517454}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\interfaces">
+      <UniqueIdentifier>{2efb2638-8035-48b4-a022-7c8d8e2c38d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{8c5be955-a60c-4c70-9edd-fccec226bf70}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="rsp">
+      <UniqueIdentifier>{b4b1f17a-5fab-405a-a98d-ff286a484efb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fct">
+      <UniqueIdentifier>{a35516df-b546-48db-b3da-7bf2e6c31000}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{caced586-d3ff-4d5a-8fd3-ab6f4115af3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vdy">
+      <UniqueIdentifier>{a691c390-a7f6-4872-ae30-68e10c0ae35c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rhc">
+      <UniqueIdentifier>{56612e9f-5038-4cc1-822a-4d814f612d65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="aln">
+      <UniqueIdentifier>{4dc5cc68-0224-45f3-a2df-0243e42b0103}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="em">
+      <UniqueIdentifier>{3821e939-19dc-46e4-b856-234515ff583f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="awv">
+      <UniqueIdentifier>{b29ddce5-16b4-434c-8df6-07bafa02aa04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="frs">
+      <UniqueIdentifier>{a4f591e7-ae06-4880-9834-9cb195011bdb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sim_adapter_dll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sim_adapter_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rsp\sim_conv_FPGA_StaticPeakList.cpp">
+      <Filter>rsp</Filter>
+    </ClCompile>
+    <ClCompile Include="rsp\sim_conv_RSP1_PreClusterList.cpp">
+      <Filter>rsp</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_acc_lever.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_cp_traj_state.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_dim_input_custom.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_dim_input_generic.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_fct_custom_input.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_head_input_custom.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_si_curveobs_init.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_bswalgo_param.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="vdy\sim_conv_veh_dyn.cpp">
+      <Filter>vdy</Filter>
+    </ClCompile>
+    <ClCompile Include="vdy\sim_conv_veh_par.cpp">
+      <Filter>vdy</Filter>
+    </ClCompile>
+    <ClCompile Include="rsp\sim_conv_RSP2_ClusterList.cpp">
+      <Filter>rsp</Filter>
+    </ClCompile>
+    <ClCompile Include="rhc\sim_conv_rhc_adj_hw_config.cpp">
+      <Filter>rhc</Filter>
+    </ClCompile>
+    <ClCompile Include="aln\sim_conv_aln_rtebswin.cpp">
+      <Filter>aln</Filter>
+    </ClCompile>
+    <ClCompile Include="em\sim_conv_em_bswemctrldata.cpp">
+      <Filter>em</Filter>
+    </ClCompile>
+    <ClCompile Include="rhc\sim_conv_rhc_bswin.cpp">
+      <Filter>rhc</Filter>
+    </ClCompile>
+    <ClCompile Include="rsp\sim_conv_rsp_inputactl.cpp">
+      <Filter>rsp</Filter>
+    </ClCompile>
+    <ClCompile Include="rsp\sim_conv_rsp_specbeamcmplxlist.cpp">
+      <Filter>rsp</Filter>
+    </ClCompile>
+    <ClCompile Include="aln\sim_conv_aln_rtebswout.cpp">
+      <Filter>aln</Filter>
+    </ClCompile>
+    <ClCompile Include="aln\sim_conv_aln_azimuthcorrection.cpp">
+      <Filter>aln</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_fct_sen_error_out.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="vdy\sim_conv_VdyCtrlData.cpp">
+      <Filter>vdy</Filter>
+    </ClCompile>
+    <ClCompile Include="vdy\sim_conv_vdyerrors.cpp">
+      <Filter>vdy</Filter>
+    </ClCompile>
+    <ClCompile Include="em\sim_conv_em_objectlist_scam.cpp">
+      <Filter>em</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_long_ctrl_input.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="aln\sim_conv_aln_syncref.cpp">
+      <Filter>aln</Filter>
+    </ClCompile>
+    <ClCompile Include="aln\sim_conv_aln_siminitmon.cpp">
+      <Filter>aln</Filter>
+    </ClCompile>
+    <ClCompile Include="em\sim_conv_em_objectlist_mcam.cpp">
+      <Filter>em</Filter>
+    </ClCompile>
+    <ClCompile Include="aln\sim_conv_aln_rtenvm.cpp">
+      <Filter>aln</Filter>
+    </ClCompile>
+    <ClCompile Include="rsp\sim_conv_RSP1_RoadBeamList.cpp">
+      <Filter>rsp</Filter>
+    </ClCompile>
+    <ClCompile Include="rsp\sim_conv_RSP1_syncref.cpp">
+      <Filter>rsp</Filter>
+    </ClCompile>
+    <ClCompile Include="rsp\sim_conv_rsp1_nacom.cpp">
+      <Filter>rsp</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_fct_veh_custom_input.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="aln\sim_conv_aln_monitoring.cpp">
+      <Filter>aln</Filter>
+    </ClCompile>
+    <ClCompile Include="rsp\sim_conv_rsp2_noise.cpp">
+      <Filter>rsp</Filter>
+    </ClCompile>
+    <ClCompile Include="vdy\sim_conv_vdy_input_data_veh_sig.cpp">
+      <Filter>vdy</Filter>
+    </ClCompile>
+    <ClCompile Include="em\sim_conv_em_objectlist_cam_vw.cpp">
+      <Filter>em</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_navi_input_data.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="em\sim_conv_productionparameter.cpp">
+      <Filter>em</Filter>
+    </ClCompile>
+    <ClCompile Include="awv\sim_conv_awvw_dtkodierungfkt.cpp">
+      <Filter>awv</Filter>
+    </ClCompile>
+    <ClCompile Include="awv\sim_conv_fahrpedalwert.cpp">
+      <Filter>awv</Filter>
+    </ClCompile>
+    <ClCompile Include="awv\sim_conv_dtkvpar.cpp">
+      <Filter>awv</Filter>
+    </ClCompile>
+    <ClCompile Include="awv\sim_conv_dtffipar.cpp">
+      <Filter>awv</Filter>
+    </ClCompile>
+    <ClCompile Include="awv\sim_conv_em_objectlist_custom.cpp">
+      <Filter>awv</Filter>
+    </ClCompile>
+    <ClCompile Include="awv\sim_conv_perfdegr.cpp">
+      <Filter>awv</Filter>
+    </ClCompile>
+    <ClCompile Include="awv\sim_conv_bremsung.cpp">
+      <Filter>awv</Filter>
+    </ClCompile>
+    <ClCompile Include="rsp\sim_conv_rsp1_noise.cpp">
+      <Filter>rsp</Filter>
+    </ClCompile>
+    <ClCompile Include="rsp\sim_conv_rsp1_preclusterlistheader.cpp">
+      <Filter>rsp</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_head_input_generic.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="em\sim_conv_em_objectlist_mcam_tja.cpp">
+      <Filter>em</Filter>
+    </ClCompile>
+    <ClCompile Include="aln\sim_conv_aln_siminit.cpp">
+      <Filter>aln</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_fct_cam_lane_input_data.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+    <ClCompile Include="em\sim_conv_em_objectlist_mcam_rt.cpp">
+      <Filter>em</Filter>
+    </ClCompile>
+    <ClCompile Include="em\sim_conv_em_objectlist_base_cam.cpp">
+      <Filter>em</Filter>
+    </ClCompile>
+    <ClCompile Include="rsp\sim_conv_rsp1_peaklist.cpp">
+      <Filter>rsp</Filter>
+    </ClCompile>
+    <ClCompile Include="em\sim_conv_road.cpp">
+      <Filter>em</Filter>
+    </ClCompile>
+    <ClCompile Include="frs\sim_conv_frs_frsbswctrldata.cpp">
+      <Filter>frs</Filter>
+    </ClCompile>
+    <ClCompile Include="aln\sim_conv_aln_rtereqhwconfig.cpp">
+      <Filter>aln</Filter>
+    </ClCompile>
+    <ClCompile Include="fct\sim_conv_DW_input_custom.cpp">
+      <Filter>fct</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sim_adapter_main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rsp\sim_conv_FPGA_StaticPeakList.h">
+      <Filter>rsp</Filter>
+    </ClInclude>
+    <ClInclude Include="rsp\sim_conv_RSP1_PreClusterList.h">
+      <Filter>rsp</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_acc_lever.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_cp_traj_state.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_dim_input_custom.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_dim_input_generic.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_fct_custom_input.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_head_input_custom.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_si_curveobs_init.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_bswalgo_param.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface_base.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interfaceheadinput.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface_peak_list_ars400.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface_RSP1_PreClusterList_ars400.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interfacedriverinput.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interfacevehdyn.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interfacevehpar.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="vdy\sim_conv_veh_dyn.h">
+      <Filter>vdy</Filter>
+    </ClInclude>
+    <ClInclude Include="vdy\sim_conv_veh_par.h">
+      <Filter>vdy</Filter>
+    </ClInclude>
+    <ClInclude Include="rsp\sim_conv_RSP2_ClusterList.h">
+      <Filter>rsp</Filter>
+    </ClInclude>
+    <ClInclude Include="rhc\sim_conv_rhc_adj_hw_config.h">
+      <Filter>rhc</Filter>
+    </ClInclude>
+    <ClInclude Include="aln\sim_conv_aln_rtebswin.h">
+      <Filter>aln</Filter>
+    </ClInclude>
+    <ClInclude Include="em\sim_conv_em_bswemctrldata.h">
+      <Filter>em</Filter>
+    </ClInclude>
+    <ClInclude Include="rhc\sim_conv_rhc_bswin.h">
+      <Filter>rhc</Filter>
+    </ClInclude>
+    <ClInclude Include="rsp\sim_conv_rsp_inputactl.h">
+      <Filter>rsp</Filter>
+    </ClInclude>
+    <ClInclude Include="rsp\sim_conv_rsp_specbeamcmplxlist.h">
+      <Filter>rsp</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface_rsp_specbeamcmplxlist.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="aln\sim_conv_aln_rtebswout.h">
+      <Filter>aln</Filter>
+    </ClInclude>
+    <ClInclude Include="aln\sim_conv_aln_azimuthcorrection.h">
+      <Filter>aln</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_fct_sen_error_out.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="vdy\sim_conv_VdyCtrlData.h">
+      <Filter>vdy</Filter>
+    </ClInclude>
+    <ClInclude Include="vdy\sim_conv_vdyerrors.h">
+      <Filter>vdy</Filter>
+    </ClInclude>
+    <ClInclude Include="em\sim_conv_em_objectlist_scam.h">
+      <Filter>em</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_long_ctrl_input.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="aln\sim_conv_aln_syncref.h">
+      <Filter>aln</Filter>
+    </ClInclude>
+    <ClInclude Include="aln\sim_conv_aln_siminitmon.h">
+      <Filter>aln</Filter>
+    </ClInclude>
+    <ClInclude Include="em\sim_conv_em_objectlist_mcam.h">
+      <Filter>em</Filter>
+    </ClInclude>
+    <ClInclude Include="aln\sim_conv_aln_rtenvm.h">
+      <Filter>aln</Filter>
+    </ClInclude>
+    <ClInclude Include="rsp\sim_conv_RSP1_RoadBeamList.h">
+      <Filter>rsp</Filter>
+    </ClInclude>
+    <ClInclude Include="rsp\sim_conv_RSP1_syncref.h">
+      <Filter>rsp</Filter>
+    </ClInclude>
+    <ClInclude Include="rsp\sim_conv_rsp1_nacom.h">
+      <Filter>rsp</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_fct_veh_custom_input.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="aln\sim_conv_aln_monitoring.h">
+      <Filter>aln</Filter>
+    </ClInclude>
+    <ClInclude Include="rsp\sim_conv_rsp2_noise.h">
+      <Filter>rsp</Filter>
+    </ClInclude>
+    <ClInclude Include="vdy\sim_conv_vdy_input_data_veh_sig.h">
+      <Filter>vdy</Filter>
+    </ClInclude>
+    <ClInclude Include="em\sim_conv_em_objectlist_cam_vw.h">
+      <Filter>em</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_navi_input_data.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="em\sim_conv_productionparameter.h">
+      <Filter>em</Filter>
+    </ClInclude>
+    <ClInclude Include="awv\sim_conv_awvw_dtkodierungfkt.h">
+      <Filter>awv</Filter>
+    </ClInclude>
+    <ClInclude Include="awv\sim_conv_fahrpedalwert.h">
+      <Filter>awv</Filter>
+    </ClInclude>
+    <ClInclude Include="awv\sim_conv_dtkvpar.h">
+      <Filter>awv</Filter>
+    </ClInclude>
+    <ClInclude Include="awv\sim_conv_dtffipar.h">
+      <Filter>awv</Filter>
+    </ClInclude>
+    <ClInclude Include="awv\sim_conv_em_objectlist_custom.h">
+      <Filter>awv</Filter>
+    </ClInclude>
+    <ClInclude Include="awv\sim_conv_perfdegr.h">
+      <Filter>awv</Filter>
+    </ClInclude>
+    <ClInclude Include="awv\sim_conv_bremsung.h">
+      <Filter>awv</Filter>
+    </ClInclude>
+    <ClInclude Include="rsp\sim_conv_rsp1_noise.h">
+      <Filter>rsp</Filter>
+    </ClInclude>
+    <ClInclude Include="rsp\sim_conv_rsp1_preclusterlistheader.h">
+      <Filter>rsp</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_head_input_generic.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="em\sim_conv_em_objectlist_mcam_tja.h">
+      <Filter>em</Filter>
+    </ClInclude>
+    <ClInclude Include="aln\sim_conv_aln_siminit.h">
+      <Filter>aln</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_fct_cam_lane_input_data.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+    <ClInclude Include="em\sim_conv_em_objectlist_mcam_rt.h">
+      <Filter>em</Filter>
+    </ClInclude>
+    <ClInclude Include="em\sim_conv_em_objectlist_base_cam.h">
+      <Filter>em</Filter>
+    </ClInclude>
+    <ClInclude Include="rsp\sim_conv_rsp1_peaklist.h">
+      <Filter>rsp</Filter>
+    </ClInclude>
+    <ClInclude Include="em\sim_conv_road.h">
+      <Filter>em</Filter>
+    </ClInclude>
+    <ClInclude Include="frs\sim_conv_frs_frsbswctrldata.h">
+      <Filter>frs</Filter>
+    </ClInclude>
+    <ClInclude Include="aln\sim_conv_aln_rtereqhwconfig.h">
+      <Filter>aln</Filter>
+    </ClInclude>
+    <ClInclude Include="fct\sim_conv_DW_input_custom.h">
+      <Filter>fct</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sim_adapter.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

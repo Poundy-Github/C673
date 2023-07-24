@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<memento version="1.0" lastmodified="Mar 22, 2022 3:01:15 PM">
+    <SplittableImp MementoIncludeOrExportFilePattern="Exclude"
+        AutoCalculated="false" MementoImportStrategy="Merge"
+        TextFieldImportMementoId="splitconfig"
+        TextFieldForExcludedOrIncludedPatterns="*_STUDIO_CALCULATED.arxml"
+        Recommended="false" Default="false"
+        MementoAutosarVersionComboBox="4.0.3" Imported="false"
+        TextFieldExportMementoId="splitconfig" ManuallyEdited="true" PreConfigured="false">
+        <__metadata>
+            <GroupWidget __expanded="true"/>
+            <BrowseFieldWidgetImportLabel/>
+            <TextFieldId __radix="DEC" __separators="false"/>
+            <BrowseFieldWidgetImport/>
+            <LabelForTextFieldExcludeOrInclude/>
+            <TextFieldForExcludedOrIncludedPatterns __radix="DEC" __separators="false"/>
+            <LabelForComboExcludeOrInclude/>
+            <ComboBoxForExcludedOrIncludedPatterns __radix="DEC" __separators="false"/>
+            <LabelImportStrategy/>
+            <ComboImportStrategy __radix="DEC" __separators="false"/>
+        </__metadata>
+    </SplittableImp>
+</memento>

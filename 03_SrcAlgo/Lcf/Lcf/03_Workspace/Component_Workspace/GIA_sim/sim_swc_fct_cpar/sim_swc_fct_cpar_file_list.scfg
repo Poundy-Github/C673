@@ -1,0 +1,96 @@
+# Note:
+# 1. Rename this file and replace xxx with component name in lowercase.
+# 2. Replace xxx with component name in lowercase.
+# 3. Update each variable according to the existing source files and include paths.
+# 4. Update project specific files with respect to project_path
+# ----------------------------------------------------------------------------------------
+
+# config file containing source files in PC sim wrapper
+
+Import("project_name")
+
+
+sim_swc_fct_cpar_source_files = """
+"""
+
+# source files for the project "project_name"
+if (project_name == 'ARS510'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	sim_swc_fct_cpar_source_files_project_specific = ("""
+        ../../../../00_Projects/ARS510/JOINT/sim_adapter_fct_cpar/stdafx.cpp
+        ../../../../00_Projects/ARS510/JOINT/sim_adapter_fct_cpar/sim_swc_cparfct_dll.cpp
+        ../../../../00_Projects/ARS510/JOINT/sim_adapter_fct_cpar/sim_swc_cparfct.cpp
+	""")
+elif (project_name == 'MFC431') | (project_name == 'MFC431HI28') | (project_name == 'MFC431TA19')  | (project_name == 'MFC431LO19') | (project_name == 'MFC431LO20') | (project_name == 'MFC431SC19') | (project_name == 'MFC431SW19') | (project_name == 'MFC431VA10') | (project_name == 'MFC431BD10') | (project_name == 'MFC431VA21'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	sim_swc_fct_cpar_source_files_project_specific = ("""
+        ../../../../00_Projects/MFC431/GIA_sim/sim_swc_fct_cpar/stdafx.cpp
+        ../../../../00_Projects/MFC431/GIA_sim/sim_swc_fct_cpar/sim_swc_cparfct_dll.cpp
+        ../../../../00_Projects/MFC431/GIA_sim/sim_swc_fct_cpar/sim_swc_cparfct.cpp
+	""")
+elif (project_name == 'MFC510'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	sim_swc_fct_cpar_source_files_project_specific = ("""
+        ../../../../00_Projects/MFC510/GIA_sim/sim_swc_fct_cpar/stdafx.cpp
+        ../../../../00_Projects/MFC510/GIA_sim/sim_swc_fct_cpar/sim_swc_cparfct_dll.cpp
+        ../../../../00_Projects/MFC510/GIA_sim/sim_swc_fct_cpar/sim_swc_cparfct.cpp
+	""")
+
+elif (project_name == 'MFC520'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	sim_swc_fct_cpar_source_files_project_specific = ("""
+        ../../../../00_Projects/MFC520/GIA_sim/sim_swc_fct_cpar/stdafx.cpp
+        ../../../../00_Projects/MFC520/GIA_sim/sim_swc_fct_cpar/sim_swc_cparfct_dll.cpp
+        ../../../../00_Projects/MFC520/GIA_sim/sim_swc_fct_cpar/sim_swc_cparfct.cpp
+	""")	
+
+elif (project_name == 'MFC525') | (project_name == 'MFC525CM10'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	sim_swc_fct_cpar_source_files_project_specific = ("""
+        ../../../../00_Projects/MFC525/GIA_sim/sim_swc_fct_cpar/stdafx.cpp
+        ../../../../00_Projects/MFC525/GIA_sim/sim_swc_fct_cpar/sim_swc_cparfct_dll.cpp
+        ../../../../00_Projects/MFC525/GIA_sim/sim_swc_fct_cpar/sim_swc_cparfct.cpp
+	""")	
+	
+project_path = ""       
+sim_swc_fct_cpar_source_files_project_specific_list = sim_swc_fct_cpar_source_files_project_specific.split()
+sim_swc_fct_cpar_source_files_project_specific_list = [project_path + rel_path for rel_path in sim_swc_fct_cpar_source_files_project_specific_list]
+sim_swc_fct_cpar_source_files_list = sim_swc_fct_cpar_source_files.split()
+sim_swc_fct_cpar_source_files = '\n'.join(sim_swc_fct_cpar_source_files_list + sim_swc_fct_cpar_source_files_project_specific_list)
+
+
+sim_swc_fct_cpar_include_paths = """
+"""
+
+# include paths for the project "project_name"
+if (project_name == 'ARS510'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	sim_swc_fct_cpar_include_paths_project_specific = ("""
+        #../../../00_Projects/ARS510/JOINT/sim_adapter_fct_cpar
+	""")
+elif (project_name == 'MFC431') | (project_name == 'MFC431HI28') | (project_name == 'MFC431TA19') | (project_name == 'MFC431LO19') | (project_name == 'MFC431LO20') | (project_name == 'MFC431SC19') | (project_name == 'MFC431SW19') | (project_name == 'MFC431VA10') | (project_name == 'MFC431BD10') | (project_name == 'MFC431VA21'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	sim_swc_fct_cpar_include_paths_project_specific = ("""
+        #../00_Projects/MFC431/GIA_sim/sim_swc_fct_cpar
+	""")
+
+elif (project_name == 'MFC510'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	sim_swc_fct_cpar_include_paths_project_specific = ("""
+        #../00_Projects/MFC510/GIA_sim/sim_swc_fct_cpar
+	""")
+
+elif (project_name == 'MFC520'):
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	sim_swc_fct_cpar_include_paths_project_specific = ("""
+        #../00_Projects/MFC520/GIA_sim/sim_swc_fct_cpar
+	""")
+	
+project_path = ""       
+sim_swc_fct_cpar_include_paths_project_specific_list = sim_swc_fct_cpar_include_paths_project_specific.split()
+sim_swc_fct_cpar_include_paths_project_specific_list = [project_path + rel_path for rel_path in sim_swc_fct_cpar_include_paths_project_specific_list]
+sim_swc_fct_cpar_include_paths_list = sim_swc_fct_cpar_include_paths.split()
+sim_swc_fct_cpar_include_paths = '\n'.join(sim_swc_fct_cpar_include_paths_list + sim_swc_fct_cpar_include_paths_project_specific_list)
+
+sim_swc_fct_cpar_pdo_sources = """
+"""

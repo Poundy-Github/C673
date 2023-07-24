@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><?mso-infoPathSolution PIVersion="1.0.0.0" name="urn:schemas-microsoft-com:office:infopath:BuildDescriptionForm:" language="de" href="file:///C:\LegacyApp\TD4\bin\xml\1.9\xsn\BuildDescriptionForm.xsn" solutionVersion="1.0.0.323" productVersion="15.0.0" ?><?mso-application progid="InfoPath.Document"?><BuildDescription version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:my="http://schemas.microsoft.com/office/infopath/2003/myXSD/2010-05-04T17:53:56" xmlns:xd="http://schemas.microsoft.com/office/infopath/2003">
+    <CMInfo>
+        <Author>$Author: Wang, David (Wangd3) $</Author>
+        <Date>$Date: 2021/12/14 03:54:02CET $</Date>
+        <Workfile>$Workfile$</Workfile>
+        <Revision>$Revision: 1.1 $</Revision>
+    </CMInfo>
+    <Comment>Builddescription for MFC4xx</Comment>
+    <BuildEnvironment>
+        <TD4Version>14.2.0</TD4Version>
+        <EclipseVersion>17.2.0</EclipseVersion>
+        <PluginsVersion></PluginsVersion>
+    </BuildEnvironment>
+    <PlatformIDOrder>PLATFORM_1</PlatformIDOrder>
+
+    <Platforms>
+        <Platform>
+            <PlatformID>PLATFORM_1</PlatformID>
+            <PlatformName>x8x_GHS_MS</PlatformName>
+            <PlatformVersion></PlatformVersion>
+            <Tools>
+                <Tool>
+                    <ToolName>doxygen</ToolName>
+                    <ToolVersion>1.8.14</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool><Tool>
+                    <ToolName>pdo</ToolName>
+                    <ToolVersion>2.16.1.1</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool><Tool>
+                    <ToolName>perl</ToolName>
+                    <ToolVersion>v5.6</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool><Tool>
+                    <ToolName>gcc_arm</ToolName>
+                    <ToolVersion>4.7_2012q4</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+
+                <Tool>
+                    <ToolName>qac</ToolName>
+                    <ToolVersion>8.1.1-R</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+
+                <Tool>
+                    <ToolName>qacpp</ToolName>
+                    <ToolVersion>2.5</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+
+                <Tool>
+                    <ToolName>ti_arm</ToolName>
+                    <ToolVersion>5.1.5</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+
+                <Tool>
+                    <ToolName>ti_arp32</ToolName>
+                    <ToolVersion>1.0.8</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+
+                <Tool>
+                    <ToolName>ti_c6000</ToolName>
+                    <ToolVersion>7.4.20</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+
+                <Tool>
+                    <ToolName>ti_c6000</ToolName>
+                    <ToolVersion>7.4.24</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+
+                <Tool>
+                    <ToolName>ti_bios</ToolName>
+                    <ToolVersion>6.41.01.36</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+
+                <Tool>
+                    <ToolName>ti_bios</ToolName>
+                    <ToolVersion>6.70.01.03</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+
+                <Tool>
+                    <ToolName>ti_xdc</ToolName>
+                    <ToolVersion>3.30.04.52</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+
+                <Tool>
+                    <ToolName>ti_xdc</ToolName>
+                    <ToolVersion>3.50.05.12</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+                
+                <Tool>
+                    <ToolName>ti_sdk</ToolName>
+                    <ToolVersion>3.03.00.00_beta</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+
+                <Tool>
+                    <ToolName>courage</ToolName>
+                    <ToolVersion>4.19.2</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+                <Tool>
+                    <ToolName>T32</ToolName>
+                    <ToolVersion>T32_R_2017_02_000085076</ToolVersion>
+                    <isDisable>false</isDisable>
+                </Tool>
+            </Tools>
+            <TargetPlatformConfigurations>
+                <Exclude>
+                    <File>.Sconsign.dblite,*.py,*.pyc,*.</File>
+                    <Folder>03_Design/*,04_Engineering/*,05_Deliverables/*,06_Testing/*,07_Documentation/*</Folder>
+                </Exclude>
+            </TargetPlatformConfigurations>
+        </Platform>
+    </Platforms>
+
+    <UtilityConfigurations>
+        <UtilityConfiguration>
+            <UtilitySectionName>DASHBOARD</UtilitySectionName>
+            <isDisable>false</isDisable>
+            <UtilityOptions>
+                <UtilityOption>
+                    <OptionName>Open BuildDescription.xml</OptionName>
+                    <OptionValue>"C:\Program Files (x86)\Microsoft Office\Office12\INFOPATH.EXE" ENV{PROJ_PATH}/04_Engineering/03_Workspace/td4/BuildDescription.xml</OptionValue>
+                </UtilityOption>
+            </UtilityOptions>
+        </UtilityConfiguration>
+
+        <UtilityConfiguration>
+            <UtilitySectionName>ADDITIONAL_CONFIG</UtilitySectionName>
+            <isDisable>false</isDisable>
+            <UtilityOptions>
+                <UtilityOption>
+                    <OptionName>ALLOW_DUPLICATE_FILE</OptionName>
+                    <OptionValue>TRUE</OptionValue>
+                </UtilityOption>
+            </UtilityOptions>
+        </UtilityConfiguration>
+
+        <UtilityConfiguration>
+            <UtilitySectionName>EXCLUDE_FROM_SHADOWCOPY</UtilitySectionName>
+            <isDisable>false</isDisable>
+            <UtilityOptions>
+                <UtilityOption>
+                    <OptionName>EXTENSIONS</OptionName>
+                    <OptionValue>c,cpp,h,cop,pdf,py,pyc</OptionValue>
+                </UtilityOption>
+            </UtilityOptions>
+        </UtilityConfiguration>
+    </UtilityConfigurations>
+</BuildDescription>

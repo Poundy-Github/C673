@@ -1,0 +1,23 @@
+[settings]
+    os=Windows
+
+[requires]
+
+
+[options]
+    shared=False
+
+[full_settings]
+    os=Windows
+
+[full_requires]
+
+
+[full_options]
+    shared=False
+
+[recipe_hash]
+    ca260a6f1abe850ec0eb79f6ef3c65f9
+
+[env]
+

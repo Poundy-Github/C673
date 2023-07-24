@@ -1,0 +1,261 @@
+
+Import('*')
+
+if device == 'low':
+    setCompiler('arm-m')
+else:
+    setCompiler('arm-a-gcc')
+
+with open('../components_build_info.txt', 'a') as f:
+    print >> f, '   '
+    print >> f, 'Building SBL_LOOP'
+    
+if product in ['mfc431', 'mfc431ta19', 'mfc431lo19','mfc431lo20', 'hfl110', 'hfl110ta10', 'hfl130','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']:
+    CFG_LOAD_GEN = False
+else:
+    CFG_LOAD_GEN = True
+
+if product in ['ars441']:
+    base_project = 'ars441'
+
+elif product in ['mfc431', 'mfc431ta19', 'mfc431lo19','mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']:
+    base_project = 'mfc431'
+    if product != base_project:
+        addCompilerDefine('PRODUCT_MFC431')
+        appendConfiguroDefine('product=mfc431')
+        addLinkerDefine('PRODUCT_MFC431')
+
+elif product in ['hfl110','hfl110ta10']:
+    base_project = 'hfl110'
+
+elif product in ['hfl130']:
+    base_project = 'hfl130'
+
+else:
+    base_project = product
+
+setBaseProject(base_project)
+
+class  Component:
+    global product
+    global base_project
+    DONOTUSEFOR = []
+    OVERRIDEFOR = []
+    
+    INCLUDE    = []
+    SOURCE     = []
+    SOURCE_DIR = []
+    COMPDEF     = []
+    LIBS       = []
+    USEFROM    = None
+    
+    def AddComp ( self ):
+        self.USEFROM  = None    if product in self.DONOTUSEFOR else base_project    # Component blacklist. Add product if component not wanted default is usage of BaseProject
+        self.USEFROM  = product if product in self.OVERRIDEFOR else self.USEFROM    # Component override for application project. Add product if you want your own (not baseProject) as application project
+
+        pstr  = "{0: <30}".format("Component " + self.__class__.__name__ )
+        pstr += "{0: ^20}".format([ 'from Base ' + base_project, 'from this '+ product, 'not used' ][ [ base_project, product, None ].index(self.USEFROM) ] )
+        print pstr
+        
+        with open('../components_build_info.txt', 'a') as f:
+            print >> f, pstr
+        
+        incPath = ""
+        if self.USEFROM != None:
+            incPath = "\n".join(
+            [ Path.replace('$usedfrom', self.USEFROM )                      for Path       in self.INCLUDE]) + '\n'
+            [ addFiles(    Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE     ]
+            [ addDirs(     Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE_DIR ]
+            [ addLibrary(  Path.replace('$usedfrom', self.USEFROM )       ) for Path       in self.LIBS       ]
+            [ addCompilerDefine(Define)                                     for Define     in self.COMPDEF    ]	
+        return incPath
+
+
+
+################# Component Example ##############
+# As default component is taken from base_project location, only if entered in OVERRIDEFOR it is taken from product location
+#
+#class NAME(Component):
+#  DONOTUSEFOR = ['example'] <- Enter your project name if you don't want to build this component
+#  OVERRIDEFOR = ['example'] <- Enter your project name if you wan't this component from product location, and not from base_project location.
+#
+#  INCLUDE    = ['$usedfrom/include1,               <- Enter your include Path here. $usedfrom will be replaced.
+#                'include2]
+#  SOURCE     = [['$usedfrom/path1', ['*.c']],      <- Enter your source files here filename or pattern ( e.g *.c). $usedfrom will be replaced.
+#                ['path2', ['file1.cpp','file2.s']]]
+#  SOURCE_DIR = [['path1', ['*.c']]]                <- Enter your source dir here. It will recursively search for filename or pattern ( e.g *.c)
+#  COMPDEF    = ['define1','define2']               <- Enter your Component Defines here
+#  LIBS       = ['path1']                           <- Enter your Librarry Path here ( only path supported )
+
+
+
+################# Component DPUCOMMON #################
+class DPUCOMMON(Component):
+	
+  OVERRIDEFOR = ['mfc431hi28', 'mfc431ta19']
+	
+  INCLUDE = [
+              '04_Engineering/00_Projects/$usedfrom/common/GLOB',
+              '04_Engineering/01_Source_Code/common/MTSI',
+              '04_Engineering/01_Source_Code/common/GLOB',
+              '04_Engineering/01_Source_Code/common/GLOB/GLOB_DPU',
+            ]
+
+
+
+################# Component STARTERWARE #################
+class STARTERWARE(Component):
+  INCLUDE = [
+              '04_Engineering/04_Build/tools/starterware/platform',
+              '04_Engineering/04_Build/tools/starterware/include',
+              '04_Engineering/04_Build/tools/starterware/include/hw',
+              '04_Engineering/04_Build/tools/starterware/include/pm',
+              '04_Engineering/04_Build/tools/starterware/pm/pmhal',
+            ]
+  if device == "low":
+    INCLUDE += [
+                 '04_Engineering/04_Build/tools/starterware/include/tda3xx',
+                 '04_Engineering/04_Build/tools/starterware/include/tda3xx/hw',
+                 '04_Engineering/04_Build/tools/starterware/include/armv7m',
+                 '04_Engineering/04_Build/tools/starterware/include/armv7m/tda3xx',
+                 '04_Engineering/04_Build/tools/starterware/include/pm/pmhal',
+                 '04_Engineering/04_Build/tools/starterware/system_config/tda3xx_common'
+               ]
+  else:
+    INCLUDE += [
+                 '04_Engineering/04_Build/tools/starterware/include/armv7a',
+                 '04_Engineering/04_Build/tools/starterware/include/armv7a/tda2xx',
+                 '04_Engineering/04_Build/tools/starterware/include/tda2xx',
+                 '04_Engineering/04_Build/tools/starterware/include/tda2xx/hw',
+                 '04_Engineering/04_Build/tools/starterware/include/pm/pmlib',
+                 '04_Engineering/04_Build/tools/starterware/include/pm/pmhal'
+               ]
+
+  if device == "low":
+    LIBS = [
+            '04_Engineering/04_Build/tools/starterware/binary/pm/pmhal/lib/tda3xx/m4/release/starterware_pm_hal.aem4',
+            '04_Engineering/04_Build/tools/starterware/binary/drivers/lib/tda3xx/m4/release/starterware_hal.aem4',
+            '04_Engineering/04_Build/tools/starterware/binary/system_config/lib/tda3xx/m4/release/sys_config.aem4',
+            '04_Engineering/04_Build/tools/starterware/binary/platform/lib/tda3xx/m4/release/utils_platform.aem4'
+           ]
+  else:
+    LIBS = [
+             '04_Engineering/04_Build/tools/starterware/binary/pm/pmhal/lib/tda2xx/a15/debug/starterware_pm_hal.aa15fg',
+             '04_Engineering/04_Build/tools/starterware/binary/pm/pmlib/lib/tda2xx/a15/release/starterware_pm_lib.aa15fg',
+             '04_Engineering/04_Build/tools/starterware/binary/drivers/lib/tda2xx/a15/release/starterware_hal.aa15fg',
+             '04_Engineering/04_Build/tools/starterware/binary/system_config/lib/tda2xx/a15/release/sys_config.aa15fg',
+             '04_Engineering/04_Build/tools/starterware/binary/platform/lib/tda2xx/a15/release/utils_platform.aa15fg'
+           ]
+
+################# Component DPUSBL #################
+class DPUSBL(Component):
+  OVERRIDEFOR = ['mfc431hi28', 'mfc431ta19']
+
+  INCLUDE = [
+              '04_Engineering/00_Projects/$usedfrom',
+              '04_Engineering/01_Source_Code/DPUSBL/common',
+              '04_Engineering/01_Source_Code/DPUSBL/common/zlib',
+              '04_Engineering/01_Source_Code/DPUSBL/common/lzma',
+              '04_Engineering/01_Source_Code/DPUSBL/common/crc16',
+              '04_Engineering/01_Source_Code/DPUSBL/if',
+              '04_Engineering/01_Source_Code/DPUSBL/sbl_vhp',
+              '04_Engineering/01_Source_Code/DPUSBL/sbl_vhp/sbl_lib',
+              '04_Engineering/01_Source_Code/DPUSBL/sbl_vhp/sbl_utils',
+	      '04_Engineering/01_Source_Code/SYS/sys_crc/sys_crc_a4_sw',
+	      '04_Engineering/01_Source_Code/common/GLOB/GLOB_DPU',
+		  '04_Engineering/01_Source_Code/BASE_EB_ACG8/include',
+
+            ]
+  if device == "low":
+    INCLUDE += ['04_Engineering/01_Source_Code/DPUSBL/sbl_vl']
+  else:
+    INCLUDE += ['04_Engineering/01_Source_Code/DPUSBL/sbl_vh']
+
+  SOURCE = [
+             ['04_Engineering/00_Projects/$usedfrom/DPUSBL', ['*.c']],
+             ['04_Engineering/01_Source_Code/DPUSBL/common', ['*.c']],
+             ['04_Engineering/01_Source_Code/DPUSBL/common/zlib', ['*.c']],
+             ['04_Engineering/01_Source_Code/DPUSBL/common/lzma', ['*.c']],
+	     ['04_Engineering/01_Source_Code/SYS/sys_crc/sys_crc_a4_sw',['*.c']],
+           ]
+  if device == "low":
+    SOURCE += [
+                ['04_Engineering/01_Source_Code/DPUSBL/sbl_vl', ['*.c','*.asm']],
+                ['04_Engineering/01_Source_Code/DPUSBL/sbl_vhp/sbl_lib', ['*.c']],
+                ['04_Engineering/01_Source_Code/DPUSBL/sbl_vhp/sbl_utils', ['*.c']]
+              ]
+  else:
+    SOURCE += [
+                ['04_Engineering/01_Source_Code/DPUSBL/sbl_vh', ['*.c','*.S']]
+              ]
+
+
+################# Component DPUHWIF #################
+class DPUHWIF(Component):
+  INCLUDE = [
+              '04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/hd'
+            ]
+
+  if device == "high":
+    INCLUDE += [
+                 '04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/titda/firewall'
+               ]
+
+  SOURCE = [
+             ['04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/hd', ['qspi_cmd_init.c']],
+             ['04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/hd', ['qspiflash_driver.c']]
+           ]
+
+
+################# Component DPUMISC #################
+class DPUMISC(Component):
+  INCLUDE = ['04_Engineering/00_Projects/$usedfrom/DPUSERVICE/mems',
+             '04_Engineering/01_Source_Code/DPUSERVICE/services',
+             '04_Engineering/00_Projects/$usedfrom/DPUFF/config',
+             '04_Engineering/00_Projects/$usedfrom/DPUST/monitors',
+             '04_Engineering/01_Source_Code'
+            ]
+
+includePath=""
+
+Components = [
+    STARTERWARE(),
+    DPUSBL(),
+    DPUHWIF(),
+    DPUCOMMON(),
+    DPUMISC()
+   ]
+
+for i in Components:
+   #ucoment for debuging of layout issues
+   #print i
+   includePath += i.AddComp()
+
+
+setIncludePath(includePath)
+
+addCompilerDefine('CORE_CA8_SBL')
+addCompilerDefine('ENABLE_CORE_LOOPING')
+addCompilerDefine('BOOL_FLAG')
+
+if device == 'low':
+    addCompilerDefine('ARS441')
+    addCompilerDefine('BOOTMODE_QSPI')
+    addCompilerDefine('QSPI')
+    addCompilerDefine('tda3xx')
+    addCompilerDefine('TDA3XX_FAMILY_BUILD')
+    addCompilerDefine('BUILD_M4')
+elif device == 'high':
+    addCompilerDefine('QSPI')
+    addCompilerDefine('MCASP1_ENABLE')
+    addCompilerDefine('TDA2XX_BUILD')
+    addCompilerDefine('tda2xx')
+    addCompilerDefine('ZEBU_DDR_CONFIG')
+
+
+removeFiles('04_Engineering/01_Source_Code/DPUSBL/common/lzma', 'Threads.c')
+removeFiles('04_Engineering/01_Source_Code/DPUSBL/common/lzma', 'LzFindMt.c')
+removeFiles('04_Engineering/01_Source_Code/DPUSBL/common/lzma', 'LzmaEnc.c')
+removeFiles('04_Engineering/01_Source_Code/DPUSBL/common/lzma', '7zCrc.c')
+
+compile('sbl_loop')

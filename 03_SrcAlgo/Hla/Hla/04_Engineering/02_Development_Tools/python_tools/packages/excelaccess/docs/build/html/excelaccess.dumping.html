@@ -1,0 +1,428 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>excelaccess.dumping package &#8212; ExcelAccess 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="excelaccess.libwrappers.dataobjects package" href="excelaccess.libwrappers.dataobjects.html" />
+    <link rel="prev" title="Welcome to ExcelAccess’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="excelaccess-dumping-package">
+<h1>excelaccess.dumping package<a class="headerlink" href="#excelaccess-dumping-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-excelaccess.dumping.descriptor_openpyxl_wrapper">
+<span id="excelaccess-dumping-descriptor-openpyxl-wrapper-module"></span><h2>excelaccess.dumping.descriptor_openpyxl_wrapper module<a class="headerlink" href="#module-excelaccess.dumping.descriptor_openpyxl_wrapper" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="class">
+<dt id="excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx">
+<em class="property">class </em><code class="descclassname">excelaccess.dumping.descriptor_openpyxl_wrapper.</code><code class="descname">OpenpyxlDeEx</code><span class="sig-paren">(</span><em>excel_file_path</em>, <em>dump_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/descriptor_openpyxl_wrapper.html#OpenpyxlDeEx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">excelaccess.dumping._descriptor_wrapper.DescriptorWrapper</span></code></p>
+<p>Implementation of DescriptionWrapper with the openpyxl library.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>excel_file_path</strong> (<em>str</em>) – a (relative) path to an Excel file</li>
+<li><strong>dump_path</strong> (<em>str</em><em> or </em><em>None</em>) – just used if a dump file is created</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx.get_lib_sheet">
+<code class="descname">get_lib_sheet</code><span class="sig-paren">(</span><em>sheet_identifier</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/descriptor_openpyxl_wrapper.html#OpenpyxlDeEx.get_lib_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx.get_lib_sheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method returning specific excel sheets according to openpyxl library.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sheet_identifier</strong> (<em>str</em>) – name of a sheet</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">sheet object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">openpyxl.worksheet</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx.get_lib_sheets">
+<code class="descname">get_lib_sheets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/descriptor_openpyxl_wrapper.html#OpenpyxlDeEx.get_lib_sheets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx.get_lib_sheets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method returning all excel sheets according to openpyxl library - being in the ‘visible’ state.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">all (visible) excel sheets</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list(openpyxl.worksheet)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx.parse_cell_range">
+<code class="descname">parse_cell_range</code><span class="sig-paren">(</span><em>cell_range_str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/descriptor_openpyxl_wrapper.html#OpenpyxlDeEx.parse_cell_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx.parse_cell_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method parsing openpyxl cell ranges.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cell_range_str</strong> (<em>str</em>) – an openpyxl cell range</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">start row/col and end row/col</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(int, int, int, int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx.parse_merged_cells">
+<code class="descname">parse_merged_cells</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/descriptor_openpyxl_wrapper.html#OpenpyxlDeEx.parse_merged_cells"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx.parse_merged_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for parsing merged cells according to openpyxl library.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx.parse_sheet_names">
+<code class="descname">parse_sheet_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/descriptor_openpyxl_wrapper.html#OpenpyxlDeEx.parse_sheet_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx.parse_sheet_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method parsing sheet names according to openpyxl library.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx.read_workbook">
+<code class="descname">read_workbook</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/descriptor_openpyxl_wrapper.html#OpenpyxlDeEx.read_workbook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.descriptor_openpyxl_wrapper.OpenpyxlDeEx.read_workbook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read and parse given Excel file.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.dumping.descriptor_xlrd_wrapper">
+<span id="excelaccess-dumping-descriptor-xlrd-wrapper-module"></span><h2>excelaccess.dumping.descriptor_xlrd_wrapper module<a class="headerlink" href="#module-excelaccess.dumping.descriptor_xlrd_wrapper" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="class">
+<dt id="excelaccess.dumping.descriptor_xlrd_wrapper.XlrdDeEx">
+<em class="property">class </em><code class="descclassname">excelaccess.dumping.descriptor_xlrd_wrapper.</code><code class="descname">XlrdDeEx</code><span class="sig-paren">(</span><em>excel_file_path</em>, <em>dump_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/descriptor_xlrd_wrapper.html#XlrdDeEx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.descriptor_xlrd_wrapper.XlrdDeEx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">excelaccess.dumping._descriptor_wrapper.DescriptorWrapper</span></code></p>
+<p>Implementation of DescriptionWrapper with the xlrd library.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>excel_file_path</strong> (<em>str</em>) – a (relative) path to an Excel file</li>
+<li><strong>dump_path</strong> (<em>str</em><em> or </em><em>None</em>) – just used if a dump file is created</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="excelaccess.dumping.descriptor_xlrd_wrapper.XlrdDeEx.get_lib_sheet">
+<code class="descname">get_lib_sheet</code><span class="sig-paren">(</span><em>sheet_identifier</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/descriptor_xlrd_wrapper.html#XlrdDeEx.get_lib_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.descriptor_xlrd_wrapper.XlrdDeEx.get_lib_sheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method returning specific excel sheet according to xlrd library.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sheet_identifier</strong> (<em>str</em>) – name of a xlrd sheet</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">sheet by name</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">xlrd.sheet</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.descriptor_xlrd_wrapper.XlrdDeEx.get_lib_sheets">
+<code class="descname">get_lib_sheets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/descriptor_xlrd_wrapper.html#XlrdDeEx.get_lib_sheets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.descriptor_xlrd_wrapper.XlrdDeEx.get_lib_sheets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method returning all excel sheets according to xlrd library.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">all xlrd sheets</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list(xlrd.sheet)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.descriptor_xlrd_wrapper.XlrdDeEx.parse_merged_cells">
+<code class="descname">parse_merged_cells</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/descriptor_xlrd_wrapper.html#XlrdDeEx.parse_merged_cells"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.descriptor_xlrd_wrapper.XlrdDeEx.parse_merged_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for parsing merged cells according to xlrd library.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.descriptor_xlrd_wrapper.XlrdDeEx.parse_sheet_names">
+<code class="descname">parse_sheet_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/descriptor_xlrd_wrapper.html#XlrdDeEx.parse_sheet_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.descriptor_xlrd_wrapper.XlrdDeEx.parse_sheet_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method parsing sheet names according to xlrd library.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.descriptor_xlrd_wrapper.XlrdDeEx.read_workbook">
+<code class="descname">read_workbook</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/descriptor_xlrd_wrapper.html#XlrdDeEx.read_workbook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.descriptor_xlrd_wrapper.XlrdDeEx.read_workbook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for reading and processing excel file according to xlrd library.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.dumping.excel_description_extractor">
+<span id="excelaccess-dumping-excel-description-extractor-module"></span><h2>excelaccess.dumping.excel_description_extractor module<a class="headerlink" href="#module-excelaccess.dumping.excel_description_extractor" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="class">
+<dt id="excelaccess.dumping.excel_description_extractor.DescriptionExtractor">
+<em class="property">class </em><code class="descclassname">excelaccess.dumping.excel_description_extractor.</code><code class="descname">DescriptionExtractor</code><span class="sig-paren">(</span><em>excel_file_path</em>, <em>dump_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/excel_description_extractor.html#DescriptionExtractor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.excel_description_extractor.DescriptionExtractor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Central class for usage of DescriptionWrapper implementations. Determines which library to use according to excel file ending.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>excel_file_path</strong> (<em>str</em>) – a (relative) path to an Excel file</li>
+<li><strong>dump_path</strong> (<em>str</em><em> or </em><em>None</em>) – just used if a dump file is created</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_dump_name_from_excel">
+<code class="descname">get_dump_name_from_excel</code><span class="sig-paren">(</span><em>excel_file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/excel_description_extractor.html#DescriptionExtractor.get_dump_name_from_excel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_dump_name_from_excel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes dump file name from excel file name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>excel_file_path</strong> (<em>str</em>) – a (relative) path to an Excel file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Reurn:</th><td class="field-body">dump file name by Excel file name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_merged_cells">
+<code class="descname">get_merged_cells</code><span class="sig-paren">(</span><em>sheet_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/excel_description_extractor.html#DescriptionExtractor.get_merged_cells"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_merged_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns merged cells for a specific sheet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">merged cells for a given sheet</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list(MergedCell)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_merged_cells_from_dump">
+<code class="descname">get_merged_cells_from_dump</code><span class="sig-paren">(</span><em>sheet_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/excel_description_extractor.html#DescriptionExtractor.get_merged_cells_from_dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_merged_cells_from_dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns merged cells for a specific sheet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sheet_name</strong> (<em>str</em>) – a sheet name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">merged cells from dump for a given sheet</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list(MergedCell)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_sheet_names">
+<code class="descname">get_sheet_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/excel_description_extractor.html#DescriptionExtractor.get_sheet_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_sheet_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all sheet names from dump dict.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">all sheet names from dump dict</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list(str)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_sheet_names_from_dump">
+<code class="descname">get_sheet_names_from_dump</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/excel_description_extractor.html#DescriptionExtractor.get_sheet_names_from_dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_sheet_names_from_dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all sheet names saved to the dump file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">all sheet names from dump</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list(str)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.excel_description_extractor.DescriptionExtractor.read_dump">
+<code class="descname">read_dump</code><span class="sig-paren">(</span><em>dump_file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/excel_description_extractor.html#DescriptionExtractor.read_dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.read_dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads in an existing dump file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dump_file_path</strong> (<em>str</em>) – a (relative) path to a dump file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.excel_description_extractor.DescriptionExtractor.read_workbook">
+<code class="descname">read_workbook</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/excel_description_extractor.html#DescriptionExtractor.read_workbook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.read_workbook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads Excel file with apropriate liberary - depends on file ending (new or old).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.dumping.excel_description_extractor.DescriptionExtractor.read_workbooks">
+<code class="descname">read_workbooks</code><span class="sig-paren">(</span><em>excel_file_paths</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/dumping/excel_description_extractor.html#DescriptionExtractor.read_workbooks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.read_workbooks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in multiple excel files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>excel_file_paths</strong> (<em>list</em><em>(</em><em>str</em><em>)</em>) – the (relative) path to multiple Excel files</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>NotImplementedError</strong> – not yet finished</td>
+</tr>
+</tbody>
+</table>
+<p>TODO: apply to code if needed and vice versa</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.dumping">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-excelaccess.dumping" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">excelaccess.dumping package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-excelaccess.dumping.descriptor_openpyxl_wrapper">excelaccess.dumping.descriptor_openpyxl_wrapper module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.dumping.descriptor_xlrd_wrapper">excelaccess.dumping.descriptor_xlrd_wrapper module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.dumping.excel_description_extractor">excelaccess.dumping.excel_description_extractor module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.dumping">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to ExcelAccess’s documentation!</a></li>
+      <li>Next: <a href="excelaccess.libwrappers.dataobjects.html" title="next chapter">excelaccess.libwrappers.dataobjects package</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/excelaccess.dumping.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, uidq3472.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/excelaccess.dumping.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

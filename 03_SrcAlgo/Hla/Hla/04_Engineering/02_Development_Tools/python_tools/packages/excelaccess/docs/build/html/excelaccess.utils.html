@@ -1,0 +1,528 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>excelaccess.utils package &#8212; ExcelAccess 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="excelaccess.xmldescriptor package" href="excelaccess.xmldescriptor.html" />
+    <link rel="prev" title="excelaccess package" href="excelaccess.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="excelaccess-utils-package">
+<h1>excelaccess.utils package<a class="headerlink" href="#excelaccess-utils-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-excelaccess.utils.defs">
+<span id="excelaccess-utils-defs-module"></span><h2>excelaccess.utils.defs module<a class="headerlink" href="#module-excelaccess.utils.defs" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="data">
+<dt id="excelaccess.utils.defs.dict_key_sheet_names">
+<code class="descclassname">excelaccess.utils.defs.</code><code class="descname">dict_key_sheet_names</code><em class="property"> = ‘sheet_names’</em><a class="headerlink" href="#excelaccess.utils.defs.dict_key_sheet_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path-Definitions</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="excelaccess.utils.defs.site_packages_paths">
+<code class="descclassname">excelaccess.utils.defs.</code><code class="descname">site_packages_paths</code><em class="property"> = [‘.\..\libs’]</em><a class="headerlink" href="#excelaccess.utils.defs.site_packages_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple definitions</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.utils.excel_utils">
+<span id="excelaccess-utils-excel-utils-module"></span><h2>excelaccess.utils.excel_utils module<a class="headerlink" href="#module-excelaccess.utils.excel_utils" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="function">
+<dt id="excelaccess.utils.excel_utils.is_last">
+<code class="descclassname">excelaccess.utils.excel_utils.</code><code class="descname">is_last</code><span class="sig-paren">(</span><em>list_obj</em>, <em>list_item</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/excel_utils.html#is_last"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.excel_utils.is_last" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple check for last elment of a list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>list_obj</strong> (<em>list</em>) – a list</li>
+<li><strong>list_item</strong> – item to check</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">if item is last item</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Boolean</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.utils.excel_utils.is_old_excel_format">
+<code class="descclassname">excelaccess.utils.excel_utils.</code><code class="descname">is_old_excel_format</code><span class="sig-paren">(</span><em>excel_file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/excel_utils.html#is_old_excel_format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.excel_utils.is_old_excel_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple check for Excel format by file ending.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>excel_file_path</strong> (<em>str</em>) – a (relative) path to an Excel file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if is old, False if not and None if none of them applies</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Boolean or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.utils.excel_utils.parse_cell_idx">
+<code class="descclassname">excelaccess.utils.excel_utils.</code><code class="descname">parse_cell_idx</code><span class="sig-paren">(</span><em>cell_str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/excel_utils.html#parse_cell_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.excel_utils.parse_cell_idx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses Excel indices to int. (not ‘zero indexed’, standard Excel index range)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cell_str</strong> (<em>str</em>) – cell in Excel notation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">(row, column)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(int, int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.utils.excel_utils.parse_cell_idx_zero">
+<code class="descclassname">excelaccess.utils.excel_utils.</code><code class="descname">parse_cell_idx_zero</code><span class="sig-paren">(</span><em>cell_str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/excel_utils.html#parse_cell_idx_zero"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.excel_utils.parse_cell_idx_zero" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses above parse function and shifts indices by 1. (‘zero indexed’)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cell_str</strong> (<em>str</em>) – cell in Excel notation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">(row - 1, column - 1)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(int, int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.utils.general_functions">
+<span id="excelaccess-utils-general-functions-module"></span><h2>excelaccess.utils.general_functions module<a class="headerlink" href="#module-excelaccess.utils.general_functions" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="function">
+<dt id="excelaccess.utils.general_functions.get_dict_key_for_name">
+<code class="descclassname">excelaccess.utils.general_functions.</code><code class="descname">get_dict_key_for_name</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/general_functions.html#get_dict_key_for_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.general_functions.get_dict_key_for_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simply returns the provided string as lowercase string. (in order to have a centralized convention)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) – name string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">name string lowercase</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.utils.general_functions.get_doxygen">
+<code class="descclassname">excelaccess.utils.general_functions.</code><code class="descname">get_doxygen</code><span class="sig-paren">(</span><em>fn_name</em>, <em>brief</em>, <em>description</em>, <em>param</em>, <em>param_desc</em>, <em>return_val</em>, <em>line_border</em>, <em>line_start</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/general_functions.html#get_doxygen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.general_functions.get_doxygen" title="Permalink to this definition">¶</a></dt>
+<dd><p>creates and returns a doygen as formatted string TODO: fill better</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.utils.general_functions.get_doxygen2">
+<code class="descclassname">excelaccess.utils.general_functions.</code><code class="descname">get_doxygen2</code><span class="sig-paren">(</span><em>brief</em>, <em>pre</em>, <em>post</em>, <em>param</em>, <em>ret</em>, <em>globals</em>, <em>in_out_cor</em>, <em>callseq</em>, <em>testmthd</em>, <em>traceab</em>, <em>line_border</em>, <em>line_start</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/general_functions.html#get_doxygen2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.general_functions.get_doxygen2" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: fill; more generation instead of hardcoding?; move defs to defs.py?</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.utils.general_functions.local_packages">
+<code class="descclassname">excelaccess.utils.general_functions.</code><code class="descname">local_packages</code><span class="sig-paren">(</span><em>site_packages_paths=None</em>, <em>logging_level=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/general_functions.html#local_packages"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.general_functions.local_packages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds given paths to sys.path in order to provide imports of packages from other directories. Could also be moved outside a function to be directly executed on import</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>site_packages_paths</strong> (<em>str</em><em> or </em><em>list</em><em>(</em><em>str</em><em>)</em>) – (relative) path(s) to site-package(s)</li>
+<li><strong>logging_level</strong> – logging level to be used, defaults to logging.NOTSET</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.utils.general_functions.recursive_print">
+<code class="descclassname">excelaccess.utils.general_functions.</code><code class="descname">recursive_print</code><span class="sig-paren">(</span><em>src</em>, <em>dpth=1</em>, <em>key=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/general_functions.html#recursive_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.general_functions.recursive_print" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively prints nested elements.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.utils.general_functions.split_lines">
+<code class="descclassname">excelaccess.utils.general_functions.</code><code class="descname">split_lines</code><span class="sig-paren">(</span><em>string_to_split</em>, <em>line_border</em>, <em>line_start</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/general_functions.html#split_lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.general_functions.split_lines" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: fill; split lines of doxygen-header in order to keep all text in the line length borders specified for doxygen TODO: fill better</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.utils.regex_patterns">
+<span id="excelaccess-utils-regex-patterns-module"></span><h2>excelaccess.utils.regex_patterns module<a class="headerlink" href="#module-excelaccess.utils.regex_patterns" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+</div>
+<div class="section" id="module-excelaccess.utils.unorderd_tree">
+<span id="excelaccess-utils-unorderd-tree-module"></span><h2>excelaccess.utils.unorderd_tree module<a class="headerlink" href="#module-excelaccess.utils.unorderd_tree" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="class">
+<dt id="excelaccess.utils.unorderd_tree.RootNode">
+<em class="property">class </em><code class="descclassname">excelaccess.utils.unorderd_tree.</code><code class="descname">RootNode</code><span class="sig-paren">(</span><em>col_offset=0</em>, <em>row_offset=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/unorderd_tree.html#RootNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.unorderd_tree.RootNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#excelaccess.utils.unorderd_tree.TreeNode" title="excelaccess.utils.unorderd_tree.TreeNode"><code class="xref py py-class docutils literal"><span class="pre">excelaccess.utils.unorderd_tree.TreeNode</span></code></a></p>
+<p>Inherited class of TreeNode. Its purpose is only too provide an empty base root. That is needed because of flat header hierarchies.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>col_offset</strong> (<em>int</em>) – absolute column offset if table does not start at 0 in Excel</li>
+<li><strong>row_offset</strong> (<em>int</em>) – absolute row offset if table does not start at 0 in Excel</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="excelaccess.utils.unorderd_tree.TreeNode">
+<em class="property">class </em><code class="descclassname">excelaccess.utils.unorderd_tree.</code><code class="descname">TreeNode</code><span class="sig-paren">(</span><em>title</em>, <em>parent=None</em>, <em>row_index=0</em>, <em>col_index=0</em>, <em>col_offset=0</em>, <em>row_offset=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/unorderd_tree.html#TreeNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.unorderd_tree.TreeNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for a node in a tree-like structure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>title</strong> (<em>str</em>) – header field</li>
+<li><strong>parent</strong> (<a class="reference internal" href="#excelaccess.utils.unorderd_tree.TreeNode" title="excelaccess.utils.unorderd_tree.TreeNode"><em>TreeNode</em></a><em> or </em><em>None</em>) – parent element if there is one</li>
+<li><strong>row_index</strong> (<em>int</em>) – row index of this field for better determination and for indexing of data</li>
+<li><strong>col_index</strong> (<em>int</em>) – column index of this field for better determination and for indexing of data</li>
+<li><strong>col_offset</strong> (<em>int</em>) – absolute column offset if table does not start at 0 in Excel</li>
+<li><strong>row_offset</strong> (<em>int</em>) – absolute row offset if table does not start at 0 in Excel</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="excelaccess.utils.unorderd_tree.TreeNode.add_child">
+<code class="descname">add_child</code><span class="sig-paren">(</span><em>child</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/unorderd_tree.html#TreeNode.add_child"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.unorderd_tree.TreeNode.add_child" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a child to the calling node.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>child</strong> (<a class="reference internal" href="#excelaccess.utils.unorderd_tree.TreeNode" title="excelaccess.utils.unorderd_tree.TreeNode"><em>TreeNode</em></a>) – a child node to be added</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.utils.unorderd_tree.TreeNode.get_abs_col">
+<code class="descname">get_abs_col</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/unorderd_tree.html#TreeNode.get_abs_col"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.unorderd_tree.TreeNode.get_abs_col" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the absolut column index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">absolute column index</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.utils.unorderd_tree.TreeNode.get_abs_row">
+<code class="descname">get_abs_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/unorderd_tree.html#TreeNode.get_abs_row"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.unorderd_tree.TreeNode.get_abs_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the absolut row index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">absolute row index</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.utils.unorderd_tree.TreeNode.get_child">
+<code class="descname">get_child</code><span class="sig-paren">(</span><em>child_title</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/unorderd_tree.html#TreeNode.get_child"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.unorderd_tree.TreeNode.get_child" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the node’s title.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">node’s title</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.utils.unorderd_tree.TreeNode.get_rel_col">
+<code class="descname">get_rel_col</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/unorderd_tree.html#TreeNode.get_rel_col"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.unorderd_tree.TreeNode.get_rel_col" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the relative column index. I.d. subtracting the column offset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">relative column index</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.utils.unorderd_tree.TreeNode.get_rel_row">
+<code class="descname">get_rel_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/unorderd_tree.html#TreeNode.get_rel_row"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.unorderd_tree.TreeNode.get_rel_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the relative row index. I.d. subtracting the row offset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">relative row index</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.utils.unorderd_tree.get_leave_lambda">
+<code class="descclassname">excelaccess.utils.unorderd_tree.</code><code class="descname">get_leave_lambda</code><span class="sig-paren">(</span><em>node</em>, <em>retfunc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/unorderd_tree.html#get_leave_lambda"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.unorderd_tree.get_leave_lambda" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns leave nodes starting at the given node.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>node</strong> (<a class="reference internal" href="#excelaccess.utils.unorderd_tree.TreeNode" title="excelaccess.utils.unorderd_tree.TreeNode"><em>TreeNode</em></a>) – the node to start at</li>
+<li><strong>retfunc</strong> – lambda for return type</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of leave nodes</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list(<a class="reference internal" href="#excelaccess.utils.unorderd_tree.TreeNode" title="excelaccess.utils.unorderd_tree.TreeNode">TreeNode</a>)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.utils.unorderd_tree.get_leave_lambda_dict">
+<code class="descclassname">excelaccess.utils.unorderd_tree.</code><code class="descname">get_leave_lambda_dict</code><span class="sig-paren">(</span><em>node</em>, <em>retfunc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/unorderd_tree.html#get_leave_lambda_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.unorderd_tree.get_leave_lambda_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns leave nodes starting at the given node.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>node</strong> (<a class="reference internal" href="#excelaccess.utils.unorderd_tree.TreeNode" title="excelaccess.utils.unorderd_tree.TreeNode"><em>TreeNode</em></a>) – the node to start at</li>
+<li><strong>retfunc</strong> – lambda for return type</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dict</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict()</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.utils.unorderd_tree.get_leave_nodes">
+<code class="descclassname">excelaccess.utils.unorderd_tree.</code><code class="descname">get_leave_nodes</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/unorderd_tree.html#get_leave_nodes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.unorderd_tree.get_leave_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns leave nodes starting at the given node.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>node</strong> (<a class="reference internal" href="#excelaccess.utils.unorderd_tree.TreeNode" title="excelaccess.utils.unorderd_tree.TreeNode"><em>TreeNode</em></a>) – the node to start at</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of leave nodes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list(<a class="reference internal" href="#excelaccess.utils.unorderd_tree.TreeNode" title="excelaccess.utils.unorderd_tree.TreeNode">TreeNode</a>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.utils.unorderd_tree.print_tree">
+<code class="descclassname">excelaccess.utils.unorderd_tree.</code><code class="descname">print_tree</code><span class="sig-paren">(</span><em>src</em>, <em>dpth=1</em>, <em>retfunc=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/unorderd_tree.html#print_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.unorderd_tree.print_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a tree.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>src</strong> – tree node</li>
+<li><strong>dpth</strong> (<em>int</em>) – depth of indent</li>
+<li><strong>retfunc</strong> – lambda for return type, defaults to node.title</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body"><p class="first">TreeNode</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">string representation of a tree</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="excelaccess.utils.unorderd_tree.search">
+<code class="descclassname">excelaccess.utils.unorderd_tree.</code><code class="descname">search</code><span class="sig-paren">(</span><em>node</em>, <em>ordered_titles_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/utils/unorderd_tree.html#search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.utils.unorderd_tree.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: fill ; make for more than one ‘path’?</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-excelaccess.utils" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">excelaccess.utils package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-excelaccess.utils.defs">excelaccess.utils.defs module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.utils.excel_utils">excelaccess.utils.excel_utils module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.utils.general_functions">excelaccess.utils.general_functions module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.utils.regex_patterns">excelaccess.utils.regex_patterns module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.utils.unorderd_tree">excelaccess.utils.unorderd_tree module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="excelaccess.html">excelaccess package</a><ul>
+      <li>Previous: <a href="excelaccess.html" title="previous chapter">excelaccess package</a></li>
+      <li>Next: <a href="excelaccess.xmldescriptor.html" title="next chapter">excelaccess.xmldescriptor package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/excelaccess.utils.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, uidq3472.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/excelaccess.utils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

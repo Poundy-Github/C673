@@ -1,0 +1,16 @@
+-il 2
+
+-i "C:\Tools\ti_xdc\3.50.05.12\packages"
+-i "C:\Tools\ti_bios\6.70.01.03\packages"
+-i "C:\Tools\ti_bios\6.70.01.03\packages\ti\targets\arm\elf"
+
+-q "C:\Tools\ti_xdc\3.50.05.12\packages"
+-q "C:\Tools\ti_bios\6.70.01.03\packages"
+-q "C:\Tools\ti_bios\6.70.01.03\packages\ti\targets\arm\elf"
+
+-d SECTION_ALIGN_IMPL(alignment)=
+-d SECTION_CODE_IMPL(section)=
+-d SECTION_DATA_IMPL(section)=
+-d "xdc_target_types__="ti\targets\arm\elf\std.h""
+-d "xdc_target_name__=M4"
+-d "xdc_cfg__xheader__="<"xdc_cfg_xheader_patch>"""

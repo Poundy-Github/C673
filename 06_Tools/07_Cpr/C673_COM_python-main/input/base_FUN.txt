@@ -1,0 +1,4 @@
+void FunctionName(void *data)
+{
+	Rte_Write_PP_Cpr_SignalName(*(data_type *)data);
+}

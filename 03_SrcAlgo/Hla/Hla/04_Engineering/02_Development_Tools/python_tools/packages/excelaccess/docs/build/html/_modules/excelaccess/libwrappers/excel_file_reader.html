@@ -1,0 +1,211 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>excelaccess.libwrappers.excel_file_reader &#8212; ExcelAccess 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for excelaccess.libwrappers.excel_file_reader</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@author: uidq3472</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="c1"># needed if deployed with local packages not installed to the global python instance</span>
+<span class="c1"># noinspection PyUnresolvedReferences</span>
+<span class="kn">from</span> <span class="nn">excelaccess.utils.general_functions</span> <span class="k">import</span> <span class="n">local_packages</span>
+
+<span class="n">local_packages</span><span class="p">()</span>
+<span class="c1"># noinspection PyUnresolvedReferences</span>
+<span class="kn">from</span> <span class="nn">excelaccess.libwrappers</span> <span class="k">import</span> <span class="n">xlrd_xlwt_wrapper</span>
+<span class="c1"># noinspection PyUnresolvedReferences</span>
+<span class="kn">from</span> <span class="nn">excelaccess.utils.unorderd_tree</span> <span class="k">import</span> <span class="n">get_leave_lambda</span>
+
+<span class="c1"># xml cfg paths for testing</span>
+<span class="n">hla_xml</span> <span class="o">=</span> <span class="s2">&quot;.\hla_algo_interface_types.xls.xml&quot;</span>
+<span class="n">lsd_xml</span> <span class="o">=</span> <span class="s2">&quot;.\lsd_algo_interface_types.xls.xml&quot;</span>
+<span class="n">mfc_xml</span> <span class="o">=</span> <span class="s2">&quot;.\MFC401_ResourceSheet.xlsm.xml&quot;</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.excel_file_reader.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;For testing purposes. Actual functionality lies in ExcelFileReader-class below this function.&quot;&quot;&quot;</span>
+
+    <span class="sd">&quot;&quot;&quot; testing with hla &quot;&quot;&quot;</span>
+    <span class="n">hla_efo</span> <span class="o">=</span> <span class="n">ExcelFileReader</span><span class="p">(</span><span class="n">hla_xml</span><span class="p">)</span><span class="o">.</span><span class="n">read_excel_file</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./test_out/hla_test.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">testfile</span><span class="p">:</span>
+        <span class="n">testfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Excel file: &#39;</span><span class="si">{0}</span><span class="s2">&#39;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">hla_efo</span><span class="o">.</span><span class="n">excel_file_path</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="n">hla_efo</span><span class="o">.</span><span class="n">get_sheet_contents</span><span class="p">(</span><span class="n">hla_efo</span><span class="o">.</span><span class="n">xml_parser</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()):</span>
+            <span class="n">testfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+
+    <span class="n">retfunc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">node</span><span class="p">:</span> <span class="p">[(</span><span class="n">node</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">get_rel_col</span><span class="p">())]</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">hla_efo</span><span class="o">.</span><span class="n">get_sheet_by_name</span><span class="p">(</span><span class="s2">&quot;Meas&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="n">get_leave_lambda</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">header_tree</span><span class="p">,</span> <span class="n">retfunc</span><span class="p">)</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">rel_col</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">title</span> <span class="o">==</span> <span class="s2">&quot;Component / Description&quot;</span><span class="p">:</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="n">rel_col</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">data_list</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+
+    <span class="sd">&quot;&quot;&quot; testing with lsd &quot;&quot;&quot;</span>
+    <span class="n">lsd_efo</span> <span class="o">=</span> <span class="n">ExcelFileReader</span><span class="p">(</span><span class="n">lsd_xml</span><span class="p">)</span><span class="o">.</span><span class="n">read_excel_file</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./test_out/lsd_test.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">testfile</span><span class="p">:</span>
+        <span class="n">testfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Excel file: &#39;</span><span class="si">{0}</span><span class="s2">&#39;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lsd_efo</span><span class="o">.</span><span class="n">excel_file_path</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="n">lsd_efo</span><span class="o">.</span><span class="n">get_sheet_contents</span><span class="p">(</span><span class="n">lsd_efo</span><span class="o">.</span><span class="n">xml_parser</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()):</span>
+            <span class="n">testfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+
+    <span class="sd">&quot;&quot;&quot; testing with mfc &quot;&quot;&quot;</span>
+    <span class="n">mfc_efo</span> <span class="o">=</span> <span class="n">ExcelFileReader</span><span class="p">(</span><span class="n">mfc_xml</span><span class="p">)</span><span class="o">.</span><span class="n">read_excel_file</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./test_out/mfc_test.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">testfile</span><span class="p">:</span>
+        <span class="n">testfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Excel file: &#39;</span><span class="si">{0}</span><span class="s2">&#39;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mfc_efo</span><span class="o">.</span><span class="n">excel_file_path</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">sheet</span> <span class="ow">in</span> <span class="n">mfc_efo</span><span class="o">.</span><span class="n">get_sheet_contents</span><span class="p">(</span><span class="n">mfc_efo</span><span class="o">.</span><span class="n">xml_parser</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()):</span>
+            <span class="n">testfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+
+    <span class="n">table</span> <span class="o">=</span> <span class="n">mfc_efo</span><span class="o">.</span><span class="n">get_sheet_by_index</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">test</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">node</span><span class="p">:</span> <span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">get_abs_col</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_leave_lambda</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">header_tree</span><span class="p">,</span> <span class="n">test</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="ExcelFileReader"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.excel_file_reader.ExcelFileReader">[docs]</a><span class="k">class</span> <span class="nc">ExcelFileReader</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Class for reading an Excel file based on the provided XML configuration file.</span>
+<span class="sd">    </span>
+<span class="sd">    :param cfg_xml: a (relative) path to Config XML (if not provided via command line arguments)</span>
+<span class="sd">    :type cfg_xml: str or None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg_xml</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Constructor for ExcelFileReader-class. &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_logger</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_arg_parser</span><span class="p">()</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cfg_xml</span> <span class="o">=</span> <span class="n">cfg_xml</span> <span class="k">if</span> <span class="n">cfg_xml</span> <span class="k">else</span> <span class="n">args</span><span class="o">.</span><span class="n">cfg_xml</span>
+
+<div class="viewcode-block" id="ExcelFileReader.read_excel_file"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.excel_file_reader.ExcelFileReader.read_excel_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_excel_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads a given Excel file (through XML).</span>
+<span class="sd">        </span>
+<span class="sd">        :return: Excel file representation</span>
+<span class="sd">        :rtype: xlrd_xlwt_wrapper.ExcelFileObject</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg_xml</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg_xml</span><span class="p">):</span>
+                <span class="n">cfg_xml</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg_xml</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Using </span><span class="se">\&#39;</span><span class="si">{0}</span><span class="se">\&#39;</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cfg_xml</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Tried to use </span><span class="se">\&#39;</span><span class="si">{0}</span><span class="se">\&#39;</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg_xml</span><span class="p">))</span>
+                <span class="k">raise</span> <span class="ne">IOError</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;file not found or is no (XML-)file: </span><span class="si">{path}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">cfg_xml</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">excel_file</span> <span class="o">=</span> <span class="n">xlrd_xlwt_wrapper</span><span class="o">.</span><span class="n">ExcelFileObject</span><span class="p">(</span><span class="n">cfg_xml</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Could not compute cfg_xml-File (</span><span class="si">{0}</span><span class="s2">).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg_xml</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">excel_file</span></div>
+
+<div class="viewcode-block" id="ExcelFileReader.init_logger"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.excel_file_reader.ExcelFileReader.init_logger">[docs]</a>    <span class="k">def</span> <span class="nf">init_logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes logger for this module.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+        <span class="c1"># avoid multiple handlers respectively logs</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">):</span>
+            <span class="n">stream_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+            <span class="n">stream_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+            <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;(l.</span><span class="si">%(lineno)d</span><span class="s2">) - </span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(name)s</span><span class="s2"> - </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">stream_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">stream_handler</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExcelFileReader.init_arg_parser"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.excel_file_reader.ExcelFileReader.init_arg_parser">[docs]</a>    <span class="k">def</span> <span class="nf">init_arg_parser</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes argument parser.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Provide Config as XML file&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;cfg_xml&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to Config XML.&quot;</span><span class="p">)</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, uidq3472.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

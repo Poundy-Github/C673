@@ -1,0 +1,384 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>excelaccess.libwrappers.dataobjects package &#8212; ExcelAccess 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="excelaccess.libwrappers package" href="excelaccess.libwrappers.html" />
+    <link rel="prev" title="excelaccess.dumping package" href="excelaccess.dumping.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="excelaccess-libwrappers-dataobjects-package">
+<h1>excelaccess.libwrappers.dataobjects package<a class="headerlink" href="#excelaccess-libwrappers-dataobjects-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-excelaccess.libwrappers.dataobjects.excel_cell_object">
+<span id="excelaccess-libwrappers-dataobjects-excel-cell-object-module"></span><h2>excelaccess.libwrappers.dataobjects.excel_cell_object module<a class="headerlink" href="#module-excelaccess.libwrappers.dataobjects.excel_cell_object" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="class">
+<dt id="excelaccess.libwrappers.dataobjects.excel_cell_object.CellObject">
+<em class="property">class </em><code class="descclassname">excelaccess.libwrappers.dataobjects.excel_cell_object.</code><code class="descname">CellObject</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_cell_object.html#CellObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_cell_object.CellObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Intention: 
+- contains the cell value and operations on it
+- get, set, parse… evaluate(?)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.libwrappers.dataobjects.excel_column_object">
+<span id="excelaccess-libwrappers-dataobjects-excel-column-object-module"></span><h2>excelaccess.libwrappers.dataobjects.excel_column_object module<a class="headerlink" href="#module-excelaccess.libwrappers.dataobjects.excel_column_object" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="class">
+<dt id="excelaccess.libwrappers.dataobjects.excel_column_object.ColumnObject">
+<em class="property">class </em><code class="descclassname">excelaccess.libwrappers.dataobjects.excel_column_object.</code><code class="descname">ColumnObject</code><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_column_object.html#ColumnObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_column_object.ColumnObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Intention:
+- optional additional representation; maybe as an option before parsing the excel file?
+- mabye as just indexing different and get on-demand objects</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.libwrappers.dataobjects.excel_row_object">
+<span id="excelaccess-libwrappers-dataobjects-excel-row-object-module"></span><h2>excelaccess.libwrappers.dataobjects.excel_row_object module<a class="headerlink" href="#module-excelaccess.libwrappers.dataobjects.excel_row_object" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="class">
+<dt id="excelaccess.libwrappers.dataobjects.excel_row_object.RowObject">
+<em class="property">class </em><code class="descclassname">excelaccess.libwrappers.dataobjects.excel_row_object.</code><code class="descname">RowObject</code><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_row_object.html#RowObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_row_object.RowObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Intention:
+- contains it’s cells, maybe as list or whatever container is better
+- what about row blocks?
+- how to determine in general, where a new row starts?</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.libwrappers.dataobjects.excel_sheet_object">
+<span id="excelaccess-libwrappers-dataobjects-excel-sheet-object-module"></span><h2>excelaccess.libwrappers.dataobjects.excel_sheet_object module<a class="headerlink" href="#module-excelaccess.libwrappers.dataobjects.excel_sheet_object" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="class">
+<dt id="excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject">
+<em class="property">class </em><code class="descclassname">excelaccess.libwrappers.dataobjects.excel_sheet_object.</code><code class="descname">SheetObject</code><span class="sig-paren">(</span><em>name</em>, <em>config=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_sheet_object.html#SheetObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data structure containing and representing the excel file object’s sheets. It 
+owns methods for operating on its contents, e.g. all row-objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) – the sheets name</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject.add_table">
+<code class="descname">add_table</code><span class="sig-paren">(</span><em>table</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_sheet_object.html#SheetObject.add_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject.add_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a ExcelTableObject to the sheet`s table list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>table</strong> (<a class="reference internal" href="#excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject" title="excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject"><em>ExcelTableObject</em></a>) – a table present in this sheet</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject.get_caption">
+<code class="descname">get_caption</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_sheet_object.html#SheetObject.get_caption"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject.get_caption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for pretty printing the sheet`s identifier.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">caption</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject.get_port_name">
+<code class="descname">get_port_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_sheet_object.html#SheetObject.get_port_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject.get_port_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns port name from sheet config element.</p>
+<p>:return port name
+:rtype: str</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject.get_sheet_name">
+<code class="descname">get_sheet_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_sheet_object.html#SheetObject.get_sheet_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject.get_sheet_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the sheet`s name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the sheet name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject.get_table">
+<code class="descname">get_table</code><span class="sig-paren">(</span><em>table_idx=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_sheet_object.html#SheetObject.get_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject.get_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a table by its index from the sheet`s table list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>table_idx</strong> (<em>int</em>) – index of the table to be retrieved</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">table</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject" title="excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject">ExcelTableObject</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject.get_tables">
+<code class="descname">get_tables</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_sheet_object.html#SheetObject.get_tables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_sheet_object.SheetObject.get_tables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the sheet`s table list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">all tables</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list(<a class="reference internal" href="#excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject" title="excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject">ExcelTableObject</a>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.libwrappers.dataobjects.excel_table_object">
+<span id="excelaccess-libwrappers-dataobjects-excel-table-object-module"></span><h2>excelaccess.libwrappers.dataobjects.excel_table_object module<a class="headerlink" href="#module-excelaccess.libwrappers.dataobjects.excel_table_object" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="class">
+<dt id="excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject">
+<em class="property">class </em><code class="descclassname">excelaccess.libwrappers.dataobjects.excel_table_object.</code><code class="descname">ExcelTableObject</code><span class="sig-paren">(</span><em>table_start</em>, <em>table_end</em>, <em>header_rows</em>, <em>table_index=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_table_object.html#ExcelTableObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data structure containing and representing tables in a Excel sheet. It 
+owns methods for operating on its contents.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>int</strong><strong>) </strong><strong>table_start</strong> (<em>(</em><em>int</em><em>,</em>) – start</li>
+<li><strong>int</strong><strong>) </strong><strong>table_end</strong> (<em>(</em><em>int</em><em>,</em>) – end</li>
+<li><strong>header_rows</strong> (<em>int</em>) – count of header rows</li>
+<li><strong>table_index</strong> (<em>int</em>) – index of this table in its sheet</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject.get_end_col">
+<code class="descname">get_end_col</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_table_object.html#ExcelTableObject.get_end_col"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject.get_end_col" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for getting the table`s end column.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">end column</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject.get_end_row">
+<code class="descname">get_end_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_table_object.html#ExcelTableObject.get_end_row"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject.get_end_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for getting the table`s end row.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">end row</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject.get_out_header">
+<code class="descname">get_out_header</code><span class="sig-paren">(</span><em>idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_table_object.html#ExcelTableObject.get_out_header"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject.get_out_header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for pretty printing the table`s identifier.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">formatted header</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject.get_start_col">
+<code class="descname">get_start_col</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_table_object.html#ExcelTableObject.get_start_col"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject.get_start_col" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for getting the tables start column.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">start column</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject.get_start_row">
+<code class="descname">get_start_row</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_table_object.html#ExcelTableObject.get_start_row"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject.get_start_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for getting the table`s start row.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">start row</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject.set_header_tree">
+<code class="descname">set_header_tree</code><span class="sig-paren">(</span><em>header_tree</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/libwrappers/dataobjects/excel_table_object.html#ExcelTableObject.set_header_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.libwrappers.dataobjects.excel_table_object.ExcelTableObject.set_header_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the tables header tree structure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>header_tree</strong> (<a class="reference internal" href="excelaccess.utils.html#excelaccess.utils.unorderd_tree.TreeNode" title="excelaccess.utils.unorderd_tree.TreeNode"><em>TreeNode</em></a>) – tree with headers</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.libwrappers.dataobjects">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-excelaccess.libwrappers.dataobjects" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">excelaccess.libwrappers.dataobjects package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-excelaccess.libwrappers.dataobjects.excel_cell_object">excelaccess.libwrappers.dataobjects.excel_cell_object module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.libwrappers.dataobjects.excel_column_object">excelaccess.libwrappers.dataobjects.excel_column_object module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.libwrappers.dataobjects.excel_row_object">excelaccess.libwrappers.dataobjects.excel_row_object module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.libwrappers.dataobjects.excel_sheet_object">excelaccess.libwrappers.dataobjects.excel_sheet_object module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.libwrappers.dataobjects.excel_table_object">excelaccess.libwrappers.dataobjects.excel_table_object module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.libwrappers.dataobjects">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="excelaccess.dumping.html" title="previous chapter">excelaccess.dumping package</a></li>
+      <li>Next: <a href="excelaccess.libwrappers.html" title="next chapter">excelaccess.libwrappers package</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/excelaccess.libwrappers.dataobjects.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, uidq3472.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/excelaccess.libwrappers.dataobjects.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

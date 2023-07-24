@@ -1,0 +1,34 @@
+// COMPANY:   Continental Automotive
+// COMPONENT: DPUFF
+// VERSION:   $Revision: 1.1 $
+
+/// This file contains algo configuration about cores, schedulers
+/// @file
+
+#ifndef GEN_ALGO_TO_CORE_CFG_H
+#define GEN_ALGO_TO_CORE_CFG_H
+
+/*!<codegen_start:CFG_ALGO_TO_CORE>*/
+/*!<codegen_end:CFG_ALGO_TO_CORE>*/
+
+// PRQA S 1026 ++
+// 20.04.2017; uidg6511;
+// summary: Macro may be used as a constant expression.;
+// reason: These defines are used to define one other define using ifdef. It is not possible to do it with const. risk: none
+/*!<codegen_start:CFG_SCHEDULER_ID>*/
+/*!<codegen_end:CFG_SCHEDULER_ID>*/
+// PRQA S 1026 --
+
+/*!<codegen_start:CFG_SCHEDULER_INSTANCES>*/
+/*!<codegen_end:CFG_SCHEDULER_INSTANCES>*/
+
+// PRQA S 1020 ++
+// 20.04.2017; uidg6511;
+// summary: Msg(3:1020) Avoid macros. Use constants, enumerators, typedefs or inline functions instead. MISRA-C++ Rules 16-0-4, 16-2-1;
+// reason: this define is used to initialize an array in a cpp file. risk: none
+/*!<codegen_start:CFG_ALGO_SIGNALS>*/
+/*!<codegen_end:CFG_ALGO_SIGNALS>*/
+// PRQA S 1020 --
+
+#endif /*GEN_ALGO_TO_CORE_CFG_H*/
+

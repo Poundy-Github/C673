@@ -1,0 +1,30 @@
+[Connections]
+CfgSectionType=CompositeConnection
+SimConFile=$UserPathCfg$\algo\hla\hla_sim_sub.simcon
+
+
+[Request2ProvideConnections]
+CfgSectionType=Request2ProvideConnection
+
+
+; PARAMETER PORTS
+SIM HLA.HIL_UseHil           = Parameter.HIL_UseHil
+
+; ----- EVM HIL -----
+SIM HLA.HIL_hil2mts          = HIL_CLIENT.hil2mts
+HIL_CLIENT.mts2hil           = SIM HLA.HIL_mts2hil
+
+[Client2ServerConnections]
+CfgSectionType=Client2ServerConnection
+
+; ----- EVM HIL -----
+SIM HLA.TriggerHil.0         = SIM HLA.DistributeOutputData
+SIM HLA.TriggerHil.1         = HIL_CLIENT.Trigger
+SIM HLA.Wait4Hil.0           = HIL_CLIENT.Wait
+HIL_CLIENT.AlgoCalcDone.0    = HIL_CLIENT.DistributeOnlyDirtyProvidePorts
+
+; init/reset connections
+CFG.BatchPlayerInit.1        = HIL_CLIENT.Init
+CFG.BatchPlayerReset.1       = HIL_CLIENT.Init
+CFG.RecFileLoaded.2          = HIL_CLIENT.Init
+

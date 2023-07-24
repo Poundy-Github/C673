@@ -1,0 +1,209 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>excelaccess.dumping.excel_description_extractor &#8212; ExcelAccess 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for excelaccess.dumping.excel_description_extractor</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@author: uidq3472</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">descriptor_xlrd_wrapper</span> <span class="k">import</span> <span class="n">XlrdDeEx</span>
+<span class="kn">from</span> <span class="nn">descriptor_openpyxl_wrapper</span> <span class="k">import</span> <span class="n">OpenpyxlDeEx</span>
+<span class="c1"># noinspection PyUnresolvedReferences</span>
+<span class="kn">from</span> <span class="nn">excelaccess.utils.excel_utils</span> <span class="k">import</span> <span class="n">is_old_excel_format</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+
+
+<div class="viewcode-block" id="DescriptionExtractor"><a class="viewcode-back" href="../../../excelaccess.dumping.html#excelaccess.dumping.excel_description_extractor.DescriptionExtractor">[docs]</a><span class="k">class</span> <span class="nc">DescriptionExtractor</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Central class for usage of DescriptionWrapper implementations. Determines which library to use according to excel file ending. </span>
+<span class="sd">    </span>
+<span class="sd">    :param str excel_file_path: a (relative) path to an Excel file</span>
+<span class="sd">    :param dump_path: just used if a dump file is created</span>
+<span class="sd">    :type dump_path: str or None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">excel_file_path</span><span class="p">,</span> <span class="n">dump_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes description extractor.&quot;&quot;&quot;</span>
+        <span class="c1"># set up logger</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+        <span class="c1"># avoid multiple handlers respectively logs</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">):</span>
+            <span class="n">stream_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+            <span class="n">stream_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+            <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;(l.</span><span class="si">%(lineno)d</span><span class="s2">) - </span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(name)s</span><span class="s2"> - </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">stream_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">stream_handler</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">excel_file_path</span> <span class="o">=</span> <span class="n">excel_file_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dump_path</span> <span class="o">=</span> <span class="n">dump_path</span>
+
+<div class="viewcode-block" id="DescriptionExtractor.read_workbook"><a class="viewcode-back" href="../../../excelaccess.dumping.html#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.read_workbook">[docs]</a>    <span class="k">def</span> <span class="nf">read_workbook</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads Excel file with apropriate liberary - depends on file ending (new or old).&quot;&quot;&quot;</span>
+        <span class="c1"># check file ending to determine which library to use </span>
+        <span class="n">is_old</span> <span class="o">=</span> <span class="n">is_old_excel_format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">excel_file_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">is_old</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;No valid file extension for an Excel file: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">excel_file_path</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">is_old</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;is old excel file&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dumper</span> <span class="o">=</span> <span class="n">XlrdDeEx</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">excel_file_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dump_path</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">is_old</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;is new excel file&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dumper</span> <span class="o">=</span> <span class="n">OpenpyxlDeEx</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">excel_file_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dump_path</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dumper</span><span class="o">.</span><span class="n">read_workbook</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Could not read Excel file: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">excel_file_path</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Successfully read Excel file: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">excel_file_path</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="DescriptionExtractor.read_workbooks"><a class="viewcode-back" href="../../../excelaccess.dumping.html#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.read_workbooks">[docs]</a>    <span class="k">def</span> <span class="nf">read_workbooks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">excel_file_paths</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Read in multiple excel files. </span>
+<span class="sd">        </span>
+<span class="sd">        :param excel_file_paths: the (relative) path to multiple Excel files </span>
+<span class="sd">        :type excel_file_paths: list(str)</span>
+<span class="sd">        </span>
+<span class="sd">        :raises NotImplementedError: not yet finished</span>
+<span class="sd">        </span>
+<span class="sd">        TODO: apply to code if needed and vice versa</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">excel_file_paths</span><span class="p">,</span> <span class="s2">&quot;__iter__&quot;</span><span class="p">):</span>
+            <span class="n">excel_file_paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">excel_file_paths</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">excel_file_path</span> <span class="ow">in</span> <span class="n">excel_file_paths</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">read_workbook</span><span class="p">(</span><span class="n">excel_file_path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DescriptionExtractor.read_dump"><a class="viewcode-back" href="../../../excelaccess.dumping.html#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.read_dump">[docs]</a>    <span class="k">def</span> <span class="nf">read_dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dump_file_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads in an existing dump file.</span>
+<span class="sd">        </span>
+<span class="sd">        :param str dump_file_path: a (relative) path to a dump file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dump_reader</span> <span class="o">=</span> <span class="n">XlrdDeEx</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dump_reader</span><span class="o">.</span><span class="n">read_dump</span><span class="p">(</span><span class="n">dump_file_path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DescriptionExtractor.get_dump_name_from_excel"><a class="viewcode-back" href="../../../excelaccess.dumping.html#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_dump_name_from_excel">[docs]</a>    <span class="k">def</span> <span class="nf">get_dump_name_from_excel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">excel_file_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Computes dump file name from excel file name. </span>
+<span class="sd">        </span>
+<span class="sd">        :param str excel_file_path: a (relative) path to an Excel file</span>
+<span class="sd">        :reurn: dump file name by Excel file name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">excel_file_path</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.dump&quot;</span></div>
+
+<div class="viewcode-block" id="DescriptionExtractor.get_merged_cells_from_dump"><a class="viewcode-back" href="../../../excelaccess.dumping.html#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_merged_cells_from_dump">[docs]</a>    <span class="k">def</span> <span class="nf">get_merged_cells_from_dump</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns merged cells for a specific sheet. </span>
+<span class="sd">        </span>
+<span class="sd">        :param str sheet_name: a sheet name</span>
+<span class="sd">        :return: merged cells from dump for a given sheet</span>
+<span class="sd">        :rtype: list(MergedCell)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dump_reader</span><span class="o">.</span><span class="n">get_merged_cells_for_sheet</span><span class="p">(</span><span class="n">sheet_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DescriptionExtractor.get_sheet_names_from_dump"><a class="viewcode-back" href="../../../excelaccess.dumping.html#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_sheet_names_from_dump">[docs]</a>    <span class="k">def</span> <span class="nf">get_sheet_names_from_dump</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns all sheet names saved to the dump file. </span>
+<span class="sd">        </span>
+<span class="sd">        :return: all sheet names from dump</span>
+<span class="sd">        :rtype: list(str)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dump_reader</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="DescriptionExtractor.get_merged_cells"><a class="viewcode-back" href="../../../excelaccess.dumping.html#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_merged_cells">[docs]</a>    <span class="k">def</span> <span class="nf">get_merged_cells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns merged cells for a specific sheet. </span>
+<span class="sd">        </span>
+<span class="sd">        :return: merged cells for a given sheet</span>
+<span class="sd">        :rtype: list(MergedCell)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dumper</span><span class="o">.</span><span class="n">get_merged_cells_for_sheet</span><span class="p">(</span><span class="n">sheet_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DescriptionExtractor.get_sheet_names"><a class="viewcode-back" href="../../../excelaccess.dumping.html#excelaccess.dumping.excel_description_extractor.DescriptionExtractor.get_sheet_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_sheet_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns all sheet names from dump dict.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: all sheet names from dump dict</span>
+<span class="sd">        :rtype: list(str)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dumper</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, uidq3472.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

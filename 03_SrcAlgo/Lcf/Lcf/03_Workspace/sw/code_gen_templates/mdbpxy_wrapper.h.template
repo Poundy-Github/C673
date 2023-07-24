@@ -1,0 +1,27 @@
+// Copyright (C) Continental AG
+// All Rights Reserved
+// COMPONENT: IPC
+// VERSION:   $Revision: 1.1 $
+
+/// @file
+/// generated part of the MDB Wrapper for RTE.
+
+#ifndef MDBPXY_WRAPPER_H
+#define MDBPXY_WRAPPER_H
+
+#include <Std_Types.h>
+#include <Rte_Type.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/*!<codegen_start:MDBPXY_WRAPPER_FUNCTIONS_H>*/
+/*!<codegen_end:MDBPXY_WRAPPER_FUNCTIONS_H>*/
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // include guard
+

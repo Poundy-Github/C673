@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+
+<assemblyIdentity
+    type="win32"
+    name="msxml4.dll.private"
+    version="4.20.9848.0" />
+	
+<file name="msxml4a.dll"/>
+<file name="msxml4r.dll"/>
+
+<file name="msxml4.dll">
+
+    <comClass
+        description="XML DOM Document 4.0"
+        clsid="{88d969c0-f192-11d4-a65f-0040963251e5}"
+        threadingModel="Both"
+        tlbid="{f5078f18-c551-11d3-89b9-0000f81fe221}" />
+
+    <comClass
+        description="Free Threaded XML DOM Document 4.0"
+        clsid="{88d969c1-f192-11d4-a65f-0040963251e5}"
+        threadingModel="Both"
+        tlbid="{f5078f18-c551-11d3-89b9-0000f81fe221}" />
+
+    <comClass
+        description="XML Data Source Object 4.0"
+        clsid="{88d969c4-f192-11d4-a65f-0040963251e5}"
+        threadingModel="Apartment"
+        tlbid="{f5078f18-c551-11d3-89b9-0000f81fe221}" />
+
+    <comClass
+        description="XML HTTP 4.0"
+        clsid="{88d969c5-f192-11d4-a65f-0040963251e5}"
+        threadingModel="Apartment"
+        tlbid="{f5078f18-c551-11d3-89b9-0000f81fe221}" />
+
+    <comClass
+        description="Server XML HTTP 4.0"
+        clsid="{88d969c6-f192-11d4-a65f-0040963251e5}"
+        threadingModel="Apartment"
+        tlbid="{f5078f18-c551-11d3-89b9-0000f81fe221}" />
+
+    <comClass
+        description="XML Schema Cache 4.0"
+        clsid="{88d969c2-f192-11d4-a65f-0040963251e5}"
+        threadingModel="Both" />
+
+    <comClass
+        description="XSL Template 4.0"
+        clsid="{88d969c3-f192-11d4-a65f-0040963251e5}"
+        threadingModel="Both" />
+
+    <comClass
+        description="SAX XML Reader 4.0"
+        clsid="{7c6e29bc-8b8b-4c3d-859e-af6cd158be0f}"
+        threadingModel="Both" />
+
+    <comClass
+        description=""
+        clsid="{00b7e0ab-817a-44ad-a04b-d1148d524136}"
+        threadingModel="Both" />
+
+    <comClass
+        description="MXXMLWriter 4.0"
+        clsid="{88d969c8-f192-11d4-a65f-0040963251e5}"
+        threadingModel="Both" />
+
+    <comClass
+        description="MXHTMLWriter 4.0"
+        clsid="{88d969c9-f192-11d4-a65f-0040963251e5}"
+        threadingModel="Both" />
+
+    <comClass
+        description="SAXAttributes 4.0"
+        clsid="{88d969ca-f192-11d4-a65f-0040963251e5}"
+        threadingModel="Both" />
+
+    <comClass
+        description="MXNamespaceManager 4.0"
+        clsid="{88d969d6-f192-11d4-a65f-0040963251e5}"
+        threadingModel="Both" />
+
+    <typelib tlbid="{F5078F18-C551-11D3-89B9-0000F81FE221}"
+        version="4.0"
+        helpdir="D:\Projects\MTS2.2SP3\sw\out\isolated_deploy" />
+
+</file>
+
+</assembly>

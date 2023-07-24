@@ -1,0 +1,32 @@
+#-----------------------
+# variant configuration
+#-----------------------
+
+# <3|4> => 3=CortexM3, 4=CortexM4
+cortex_m_device = 4
+
+# create release variant
+release_variant = "release"
+if (cortex_m_device == 3):
+    release_ccflags = "-O2 --opt_for_speed=5"
+else:
+    release_ccflags = "-O2 --opt_for_speed=5 --float_support=vfplib"
+release_cppdefines = []
+
+# create debug variant
+debug_variant = "debug"
+if (cortex_m_device == 3):
+    debug_ccflags = ""
+else:
+    debug_ccflags = "--float_support=vfplib"
+debug_cppdefines = []
+
+# variable containing compiler flags, defines for all variants
+# when creating additional variant beside "release" and "debug", the variant must be added in this variable
+variant_list = [
+[release_variant, release_ccflags, release_cppdefines],
+[debug_variant,   debug_ccflags,   debug_cppdefines],
+]
+
+# library name
+target_name = "cml_arm_cortex_m4"

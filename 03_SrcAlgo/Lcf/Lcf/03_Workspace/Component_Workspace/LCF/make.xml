@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+  <BuildComponentCfg Component="lcf">
+    <Build name="lcf_algo_ti_c66xx" filter="ecu" desc="ti66xx target lib" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="lcf_sim_swc_lcf_sen" filter="sim" desc="sim dll environment" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="lcf_sim_swc_lcf_veh" filter="sim" desc="sim dll environment" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+	<Build name="lcf_sim_swc_vis" filter="vis" desc="vis dll environment" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="lcf_ide" filter="ide" desc="create ide's" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="*"/>
+    </Build>
+    <Build name="lcf_doxy" filter="doxy" desc="create doxy gen docu" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="*"/>
+    </Build>
+  </BuildComponentCfg>
+

@@ -1,0 +1,847 @@
+Import('*')
+
+setCompiler('arm-a-gcc')
+UseCompAlgo = False
+
+with open('../components_build_info.txt', 'a') as f:
+    print >> f, '   '
+    print >> f, 'Building ARM-A_0'
+
+if product in ['mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19' ,'mfc431bd10','mfc431va10', 'mfc431va21']:
+    base_project = 'mfc431'
+    UseCompAlgo = False
+    if product != base_project:
+        addCompilerDefine('PRODUCT_MFC431')
+        appendConfiguroDefine('product=mfc431')
+        addLinkerDefine('PRODUCT_MFC431')
+
+elif product in ['ars441']:
+    base_project = 'ars441'
+
+elif product in ['hfl110', 'hfl110ta10']:
+    base_project = 'hfl110'
+    UseCompAlgo = False
+
+else :
+    base_project = product
+
+
+if product in ['mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'hfl110', 'hfl110ta10','mfc431sc19','mfc431sw19' ,'mfc431bd10','mfc431va10', 'mfc431va21']:
+    CFG_LOAD_GEN = False
+else:
+    CFG_LOAD_GEN = True
+
+CFG_ICC_OT = False
+
+
+
+setBaseProject(base_project)
+
+includePath = ""
+
+if CFG_LOAD_GEN:
+    addFiles('04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/clg/arm_a', '*.cpp')
+
+class  Component:
+    global product
+    global base_project
+    DONOTUSEFOR = []
+    OVERRIDEFOR = []
+
+    INCLUDE    = []
+    SOURCE     = []
+    SOURCE_DIR = []
+    COMPDEF    = []
+    LIBS       = []
+    USEFROM    = None
+
+    def AddComp ( self ):
+        self.USEFROM  = None    if product in self.DONOTUSEFOR else base_project    # Component blacklist. Add product if component not wanted default is usage of BaseProject
+        self.USEFROM  = product if product in self.OVERRIDEFOR else self.USEFROM    # Component override for application project. Add product if you want your own (not baseProject) as application project
+
+        pstr  = "{0: <30}".format("Component " + self.__class__.__name__ )
+        pstr += "{0: ^20}".format([ 'from Base ' + base_project, 'from this '+ product, 'not used' ][ [ base_project, product, None ].index(self.USEFROM) ] )
+        print pstr
+        
+        with open('../components_build_info.txt', 'a') as f:
+            print >> f, pstr
+
+        incPath = ""
+        if self.USEFROM != None:
+            incPath = "\n".join(
+            [ Path.replace('$usedfrom', self.USEFROM )                      for Path       in self.INCLUDE]) + '\n'
+            [ addFiles(    Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE     ]
+            [ addDirs(     Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE_DIR ]
+            [ addLibrary(  Path.replace('$usedfrom', self.USEFROM )       ) for Path       in self.LIBS       ]
+            [ addCompilerDefine(Define)                                     for Define     in self.COMPDEF    ]
+        return incPath
+
+
+################# Component Example ##############
+# As default component is taken from base_project location, only if entered in OVERRIDEFOR it is taken from product location
+#
+#class NAME(Component):
+#  DONOTUSEFOR = ['example'] <- Enter your project name if you don't want to build this component
+#  OVERRIDEFOR = ['example'] <- Enter your project name if you wan't this component from product location, and not from base_project location.
+#
+#  INCLUDE    = ['$usedfrom/include1,                <- Enter your include Path here. $usedfrom will be replaced.
+#                'include2]
+#  SOURCE     = [['$usedfrom/path1', ['*.c']],       <- Enter your source files here filename or pattern ( e.g *.c). $usedfrom will be replaced.
+#                ['path2', ['file1.cpp','file2.s']]]
+#  SOURCE_DIR = [['path1', ['*.c']]]                <- Enter your source dir here. It will recursively search for filename or pattern ( e.g *.c)
+#  COMPDEF    = ['define1','define2']               <- Enter your Component Defines here
+#  LIBS       = ['path1']                           <- Enter your Librarry Path here ( only path supported )
+
+
+
+################# Component DPUCOMMON ##############
+# general includes, which every project needs from project specific code
+class DPUCOMMON(Component):
+
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+  INCLUDE=['']
+
+  INCLUDE+=['04_Engineering/00_Projects/$usedfrom',
+           '04_Engineering/00_Projects/'+base_project,  # For relative include paths first the product is searched and then the base
+           '04_Engineering/00_Projects/$usedfrom/common',
+           '04_Engineering/00_Projects/$usedfrom/common/DGM',
+           '04_Engineering/00_Projects/$usedfrom/common/GLOB',
+           '04_Engineering/01_Source_Code/common/MTSI',
+           '04_Engineering/01_Source_Code/common/RTA',
+           '04_Engineering/01_Source_Code/common/GLOB',
+           '04_Engineering/01_Source_Code/common/GLOB/GLOB_DPU'
+     ]
+
+################# Component SYS ##############
+class SYS(Component):
+  INCLUDE=['']
+  SOURCE = [['04_Engineering/01_Source_Code/sys/sys_mem/sys_mem_no_spe', ['Sys_Mem_NoSPE.c']]]
+
+
+################# Component DPURTE ##############
+class DPURTE(Component):
+
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+  INCLUDE=['']
+  
+  COMPDEF=['NDEBUG']
+
+  if device == 'high':
+    INCLUDE +=['04_Engineering/00_Projects/$usedfrom/common/RTE_VH/include',
+               '04_Engineering/00_Projects/$usedfrom/common/RTE_VH/algo']
+
+
+
+################# Component DPUFF #################
+class DPUFF(Component):
+  OVERRIDEFOR = ['hfl110ta10', 'mfc431lo19', 'mfc431lo20', 'mfc431ta19','mfc431sc19']
+  INCLUDE = ['04_Engineering/00_Projects/$usedfrom/DPUFF/config',
+             '04_Engineering/00_Projects/$usedfrom/DPUFF/eveclient',
+             '04_Engineering/01_Source_Code/DPUFF/eveclient',
+             '04_Engineering/01_Source_Code/DPUFF/et',
+             '04_Engineering/01_Source_Code/DPUFF/ga',
+             '04_Engineering/01_Source_Code/DPUFF/mdb']
+
+  SOURCE = [['04_Engineering/00_Projects/$usedfrom/DPUFF/eveclient', ['eve_algo_cfg.c']],
+            ['04_Engineering/00_Projects/$usedfrom/DPUFF/ga',        ['mdb_database.cpp', 'gen_adapter_conf.cpp']],
+            ['04_Engineering/01_Source_Code/DPUFF/eveclient',        ['eve_client.cpp']],
+            ['04_Engineering/01_Source_Code/DPUFF/et',               ['*.cpp']],
+            ['04_Engineering/01_Source_Code/DPUFF/mdb',              ['mdb.cpp']],
+            ['04_Engineering/01_Source_Code/DPUFF/services',         ['image_fingerprint_service.cpp']],
+            ['04_Engineering/01_Source_Code/DPUFF/ga',               ['generic_adapter.cpp']]]
+
+################# Component FCUDPU #################
+class FCUDPU(Component):
+  INCLUDE = ['04_Engineering/00_Projects/$usedfrom/FCU_DPU']
+
+  SOURCE = [['04_Engineering/00_Projects/$usedfrom/FCU_DPU',         ['fcudpu_converter.cpp']]]
+
+
+
+################# Component THIRDPARTY ##############
+# general includes, which every project needs from third party
+class THIRDPARTY(Component):
+  INCLUDE = ['04_Engineering/04_Build/tools/edma3_lld/packages',
+             '04_Engineering/04_Build/tools/starterware/include',
+             '04_Engineering/04_Build/tools/starterware/include/hw',
+             '04_Engineering/04_Build/tools/starterware/include/armv7a/$chipset',
+             '04_Engineering/04_Build/tools/starterware/platform',
+             '04_Engineering/04_Build/tools/starterware/include/tda2xx',
+             '04_Engineering/04_Build/tools/starterware/include/tda2xx/hw',
+             '04_Engineering/04_Build/tools/starterware/include/pm']
+
+  LIBS = [  '04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/drv/lib/a15/release/edma3_lld_drv.$lib_ext',
+            '04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/rm/lib/tda2xx-evm/a15/release/edma3_lld_rm.$lib_ext',
+            '04_Engineering/04_Build/tools/starterware/binary/drivers/lib/tda2xx/a15/release/starterware_hal.$lib_ext',
+            '04_Engineering/04_Build/tools/starterware/binary/platform/lib/tda2xx/a15/release/utils_platform.aa15fg']
+
+
+
+################# Component DPUMISC ##############
+# general includes, which every project needs from common code, ################# NEEDS TO BE CLEANED UP #################
+class DPUMISC(Component):
+  if product in ['hfl110', 'hfl110ta10']:
+    COMPDEF=['DPUSERVICE_CRC_LUT_SLICING=4']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/RTA',
+           '04_Engineering/00_Projects/$usedfrom/MTSI_VH',
+           '04_Engineering/01_Source_Code',
+           '04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/titda',
+           '04_Engineering/01_Source_Code/DPUHWIF',
+           '04_Engineering/01_Source_Code/DPUIPC',
+           '04_Engineering/01_Source_Code/MTSI_VH',
+           '04_Engineering/01_Source_Code/RTA',
+           '04_Engineering/00_Projects/$usedfrom/DPUINFRA'
+          ]
+
+  if device == 'high':
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/RTL',
+              '04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/gpio_vh',
+              '04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vh',
+              '04_Engineering/01_Source_Code/RTA_VH',
+              '04_Engineering/01_Source_Code/RTL',
+              '04_Engineering/01_Source_Code/RTL_VH',
+              '04_Engineering/01_Source_Code/SAP_VH']
+  SOURCE=[
+          ['04_Engineering/01_Source_Code/DGM/Dgm_SlaveHandler',  ['dem_handler_base.cpp', 'dem_handler_slave.cpp']],
+          ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/oscfg',        ['sysbios_wrapper_mapping.c']],
+          ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/infra',        ['state_manager.cpp', 'synchronised_startup.cpp','core_init_arm-a_0.cpp', 'SOC_Common_CPP_Infrastructure_Pkg.cpp', 'SOC_CortexA8_CPP_Infrastructure_Pkg.cpp', 'system_adapter.cpp']],
+          ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/osw',          ['sysbios_wrapper.cpp']],
+          ['04_Engineering/00_Projects/$usedfrom/DPUSERVICE/mems', ['mem_service_cfg.cpp', 'memory_cfg.cpp']],
+          ['04_Engineering/01_Source_Code/DPUSERVICE/crc',         ['crc_misc.cpp', 'crc_castagnoli.cpp', 'crc_lut.cpp']],
+          ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/edma',       ['algoedma_service.cpp', 'edma_cfg_arm-a_0.cpp', 'edma_handler.cpp', 'edma_memcpy.cpp', 'edma_os_functions.cpp', 'iedma_cfg.cpp']],
+          ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/services',   ['syscalls_override.c']],
+          ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/mems',       ['mem_service.cpp', 'shared_memory_manager.cpp']],
+          ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/tim',        ['system_clock.cpp', 'timer_driver.cpp']],
+          ['04_Engineering/01_Source_Code/DPUCOM/xcp',            ['xcp_validation_testing.cpp']],
+          ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/xcp',            ['xcp_service.cpp']],
+          ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/emt',            ['emc.c']],
+          ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc',            ['*.cpp']],
+          ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vh',         ['*.cpp']],
+          ['04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/hd',  ['qspiflash_driver.c', 'qspi_cmd_init.c']],
+          ['04_Engineering/01_Source_Code/RTA_VH',                ['*.cpp']],
+          ['04_Engineering/01_Source_Code/RTA',                   ['*.c']],
+          ['04_Engineering/01_Source_Code/RTL',                   ['*.c']],
+          ['04_Engineering/01_Source_Code/RTL_VH',                ['error_tracker.cpp']],
+          ['04_Engineering/00_Projects/$usedfrom/RTL',            ['*.c' ]],
+          ['04_Engineering/01_Source_Code/MTSI_VH',               ['meas_service.cpp', 'adapter_meas.cpp']]
+         ]
+
+  if CFG_ICC_OT:
+    SOURCE +=[['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/ot', ['*.cpp']]]
+
+  if CFG_LOAD_GEN:
+    INCLUDE+=['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/clg/arm_a']
+
+
+
+################# Component DPUCDR ##############
+class DPUCDR(Component):
+
+  OVERRIDEFOR = ['mfc431ta19']
+
+  INCLUDE=[]
+  SOURCE=[]
+  if product in ['mfc431', 'mfc431ta19', 'mfc431lo19','mfc431lo20', 'mfc431sc19','mfc431sw19' ,'mfc431bd10','mfc431va10', 'mfc431va21']:
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/DPUCDR']
+    SOURCE+=[['04_Engineering/01_Source_Code/DPUCDR/cdr', ['*.cpp']],
+             ['04_Engineering/01_Source_Code/DPUCDR/fh', ['*.cpp']]]
+
+
+
+################# Algo Checkpoint #################
+class DPUALGO(Component):
+  DONOTUSEFOR = []
+  DONOTUSEFOR += ['hfl110', 'hfl110ta10', 'mfc431', 'mfc431ta19', 'mfc431lo19','mfc431lo20', 'mfc431sc19','mfc431sw19' ,'mfc431bd10','mfc431va10', 'mfc431va21']
+
+  OVERRIDEFOR = []
+
+  INCLUDE=[]
+  SOURCE = []
+
+#  if product in ['mfc431hi28']:
+#    LIBS += [
+#                '04_Engineering/00_Projects/$usedfrom/algo/ti_cortex_a15/udw/libdaw_arm_cortex_a15_release.a'
+#           ]
+
+
+
+################# Component CCT #################
+class CCT(Component):
+  DONOTUSEFOR  = ['ars441']
+
+  INCLUDE = ['04_Engineering/01_Source_Code/cct']
+  SOURCE  = [['04_Engineering/01_Source_Code/cct',['*.cpp']]]
+
+
+
+################# Component CML #################
+class CML(Component):
+  DONOTUSEFOR = ['ars441']
+
+  INCLUDE=['04_Engineering/01_Source_Code/cml',
+           '04_Engineering/01_Source_Code/cml/bayes',
+           '04_Engineering/01_Source_Code/cml/exp',
+           '04_Engineering/01_Source_Code/cml/complex',
+           '04_Engineering/01_Source_Code/cml/fourier',
+           '04_Engineering/01_Source_Code/cml/interpol',
+           '04_Engineering/01_Source_Code/cml/kalman',
+           '04_Engineering/01_Source_Code/cml/matrix',
+           '04_Engineering/01_Source_Code/cml/misc',
+           '04_Engineering/01_Source_Code/cml/radar',
+           '04_Engineering/01_Source_Code/cml/stat',
+           '04_Engineering/01_Source_Code/cml/stl',
+           '04_Engineering/01_Source_Code/cml/stl/algorithm',
+           '04_Engineering/01_Source_Code/cml/stl/container',
+           '04_Engineering/01_Source_Code/cml/stl/math',
+           '04_Engineering/01_Source_Code/cml/',
+           '04_Engineering/01_Source_Code/cml/trigo',
+           '04_Engineering/01_Source_Code/cml/vector']
+  SOURCE=[['04_Engineering/01_Source_Code/cml/bayes',   ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/complex', ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/exp',     ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/fourier', ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/interpol',['*.c']],
+          ['04_Engineering/01_Source_Code/cml/kalman',  ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/matrix',  ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/misc',    ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/radar',   ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/stat',    ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/trigo',   ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/vector',  ['*.c']]]
+
+
+
+################# Component GS #################
+class GS(Component):
+  DONOTUSEFOR = ['ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19', 'mfc431sw19','mfc431bd10']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/gs',
+           '04_Engineering/01_Source_Code/gs']
+
+
+
+################# Component EMO #################
+class EMO(Component):
+  DONOTUSEFOR = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431sc19','mfc431sw19' ,'mfc431bd10','mfc431va10', 'mfc431va21']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/ga',
+           '04_Engineering/00_Projects/$usedfrom/emo',
+           '04_Engineering/01_Source_Code/emo/algorithms/alignment',
+           '04_Engineering/01_Source_Code/emo/algorithms/common',
+           '04_Engineering/01_Source_Code/emo/algorithms/groundplane/flash_lidar/ref',
+           '04_Engineering/01_Source_Code/emo/algorithms/groundplane/base',
+           '04_Engineering/01_Source_Code/emo/algorithms/sideplanes/flash_lidar/ref',
+           '04_Engineering/01_Source_Code/emo/algorithms/camtocam/base/ref',
+           '04_Engineering/01_Source_Code/emo/algorithms/common/toolbox',
+           '04_Engineering/01_Source_Code/emo/algorithms/dynpitch/base',
+           '04_Engineering/01_Source_Code/emo/applications/algocontainer/base',
+           '04_Engineering/01_Source_Code/emo/applications/algocontainer/hfls1_vdy',
+           '04_Engineering/01_Source_Code/emo/algorithms/lanelines/flash_lidar/ref',
+           '04_Engineering/01_Source_Code/emo/applications/common/base',
+           '04_Engineering/01_Source_Code/emo/applications/common/hfls1_vdy',
+           '04_Engineering/01_Source_Code/emo/applications/online_calibration/base',
+           '04_Engineering/01_Source_Code/emo/applications/egomotion/hfls1_vdy',
+           '04_Engineering/01_Source_Code/emo/applications/dynamic_pose/hfls1_vdy',
+           '04_Engineering/01_Source_Code/emo/applications/dynamic_pose/base',
+           '04_Engineering/01_Source_Code/emo/applications/online_calibration/hfls1_vdy',
+           '04_Engineering/01_Source_Code/emo/applications/egomotion/base',
+           '04_Engineering/01_Source_Code/emo/common/base',
+           '04_Engineering/01_Source_Code/emo/common/error',
+           '04_Engineering/01_Source_Code/emo/common/toolbox',
+           '04_Engineering/01_Source_Code/emo/common/type',
+           '04_Engineering/01_Source_Code/emo/platform/frame',
+           '04_Engineering/01_Source_Code/emo/platform/frame/vh28',
+           '04_Engineering/01_Source_Code/emo/platform/vh28/base',
+           '04_Engineering/01_Source_Code/emo/platform/toolbox',
+           '04_Engineering/01_Source_Code/emo/platform/vh28/emo_vh28_hfls1_vdy']
+
+  SOURCE=[['04_Engineering/01_Source_Code/emo/algorithms/alignment', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/algorithms/common/toolbox', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/algorithms/groundplane/flash_lidar/ref', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/algorithms/groundplane/base', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/algorithms/sideplanes/flash_lidar/ref', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/algorithms/camtocam/base/ref', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/algorithms/dynpitch/base',['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/applications/egomotion/base', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/algorithms/common/toolbox', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/applications/algocontainer/base', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/applications/algocontainer/hfls1_vdy', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/algorithms/lanelines/flash_lidar/ref',['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/applications/online_calibration/base', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/applications/online_calibration/hfls1_vdy', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/applications/dynamic_pose/hfls1_vdy', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/applications/egomotion/hfls1_vdy', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/applications/dynamic_pose/base', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/common/base', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/common/error', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/common/toolbox', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/platform/frame', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/platform/vh28/base', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/platform/toolbox', ['*.cpp']],
+          ['04_Engineering/01_Source_Code/emo/platform/vh28/emo_vh28_hfls1_vdy', ['*.cpp', 'emo_vh28_hfls1_vdy_pdo_tags_file.c']]]
+
+################# Component MEMO #################
+class MEMO(Component):
+  DONOTUSEFOR = ['hfl110', 'hfl110ta10', 'ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19', 'mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+
+  COMPDEF=['MEMO_PAR_INCLUDE']
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/MEMO',
+           '04_Engineering/00_Projects/$usedfrom/ga',
+           '04_Engineering/01_Source_Code/MEMO',
+           '04_Engineering/01_Source_Code/MEMO/emo_base',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_flowtracker',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_camtocam',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_camtocam/emo_camtocam_base',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_camtocam/emo_camtocam_ca15',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_camtocam/emo_camtocam_conf',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_camtocam/emo_camtocam_type',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_depth',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_dynpose',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_dynpose/emo_dynpose_conf',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_dynpose/emo_dynpose_type',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_epiflow',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_flowrefinement',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_flowrefinement/emo_flowref_base',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_flowrefinement/emo_flowref_conf',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_flowrefinement/emo_flowref_type',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_flowsampling',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_flowsampling/emo_flowsampling_conf',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_flowsampling/emo_flowsampling_type',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_ftrc',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_ftrc/emo_ftrc_base',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_ftrc/emo_ftrc_conf',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_ftrc/emo_ftrc_type',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_groundplane',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_groundplane/emo_groundplane_type',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_slam',
+           '04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules_interface/',
+           '04_Engineering/01_Source_Code/MEMO/emo_type',
+           '04_Engineering/01_Source_Code/MEMO/emo_type/emo_camera',
+           '04_Engineering/01_Source_Code/MEMO/emo_type/emo_error',
+           '04_Engineering/01_Source_Code/MEMO/emo_type/emo_image',
+           '04_Engineering/01_Source_Code/MEMO/emo_type/emo_vehicle',
+           '04_Engineering/01_Source_Code/MEMO/frame',
+           '04_Engineering/01_Source_Code/MEMO/frame/memo_dem',
+           '04_Engineering/01_Source_Code/MEMO/frame/memo_input',
+           '04_Engineering/01_Source_Code/MEMO/frame/memo_output',
+           '04_Engineering/01_Source_Code/MEMO/kernel',
+           '04_Engineering/01_Source_Code/MEMO/kernel/memo_groundplane',
+           '04_Engineering/01_Source_Code/MEMO/sw_support']
+
+
+  SOURCE=[['04_Engineering/01_Source_Code/MEMO/emo_base',                                                 ['emo_base_tools.c', 'emo_check_cpar.c', 'emo_check_io.c', 'emo_check_nvm.c', 'emo_check_staticinput.c', 'emo_kernel.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_flowtracker',                                 ['emo_flowtracker_Dyn.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_camtocam',                        ['emo_camtocam.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_camtocam/emo_camtocam_base',      ['emo_c2c_3dof.c','emo_c2c_5dof.c','emo_c2c_6dof.c','emo_c2c_debug.c','emo_c2c_lvmrq.c','emo_c2c_pred.c','emo_c2c_refinement.c','emo_c2c_samson.c','emo_c2c_tools.c','emo_c2c_trifocal.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_camtocam/emo_camtocam_ca15',      ['emo_c2c_lvmrq_a15.c','emo_c2c_samson_a15.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_depth',                           ['emo_depth.c', 'emo_depthlist.c', 'emo_depth_inputwrap.c', 'emo_depth_outputwrap.c', 'emo_depthlist_kalman.c', 'emo_depthlist_triangulation.c', 'emo_depthtool_svd.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_dynpose',                         ['emo_dynpose.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_epiflow',                         ['emo_epiflow.c', 'emo_epiflow_distortion.c', 'emo_epiflow_homography.c', 'emo_epiflow_inputwrap.c', 'emo_epiflow_match.c', 'emo_epiflow_projection3d2d.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_flowrefinement',                  ['emo_flowrefinement.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_flowrefinement/emo_flowref_base', ['emo_flowref_PC_wrap.cpp']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_flowsampling',                    ['emo_flowsampling.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_ftrc',                            ['emo_ftrc.c', 'emo_ftrc_tools.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_ftrc/emo_ftrc_base',              ['emo_ftrc_hlatracker.c', 'emo_ftrc_seedkill.c', 'emo_ftrc_track.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_groundplane',                     ['emo_groundplane.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules/emo_slam',                            ['emo_matrix_lib.c', 'emo_matrix_lib_arm_neon.c', 'emo_matrix_lib_c6x.c', 'emo_slam.c', 'emo_slam_sorting.c', 'emo_slamaugm_bof3d.c', 'emo_slamaugm_dif3d.c', 'emo_slamaugm_gpf3d.c', 'emo_slammeas.c', 'emo_slammeas_bof.c', 'emo_slammeas_bof1d.c', 'emo_slammeas_bof3d.c', 'emo_slammeas_c2c.c', 'emo_slammeas_dif.c', 'emo_slammeas_dif1d.c', 'emo_slammeas_dif3d.c', 'emo_slammeas_gp.c', 'emo_slammeas_gpf3d.c', 'emo_slammeas_vdy.c', 'emo_slammodel.c', 'emo_slamtime_post.c','emo_slamtime_pre.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_base/emo_modules_interface',                           ['emo_dynpose_interface.c', 'emo_flowrefinement_interface.c', 'emo_flowsampling_interface.c', 'emo_ftrc_predict_interface.c', 'emo_ftrc_update_interface.c', 'emo_sampledflowrefinement_interface.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_type/emo_camera',                                      ['emo_camera.c']],
+          ['04_Engineering/01_Source_Code/MEMO/emo_type/emo_error',                                       ['emo_error.c']],
+          ['04_Engineering/01_Source_Code/MEMO/frame',                                                    ['memo_main.c']],
+          ['04_Engineering/01_Source_Code/MEMO/frame/memo_dem',                                           ['memo_dem_manager.c']],
+          ['04_Engineering/01_Source_Code/MEMO/frame/memo_input',                                         ['memo_input.c', 'memo_input_camera.c', 'memo_input_vehicle.c', 'memo_input_image.c', 'memo_input_check_base.c']],
+          ['04_Engineering/01_Source_Code/MEMO/frame/memo_output',                                        ['memo_output.c']],
+          ['04_Engineering/01_Source_Code/MEMO/kernel',                                                   ['memo_kernelcfg.c', 'memo_check_io.c', 'memo_kernel.c']],
+          ['04_Engineering/01_Source_Code/MEMO/kernel/memo_groundplane',                                  ['memo_groundplane.c']],
+          ['04_Engineering/01_Source_Code/MEMO/sw_support',                                               ['emo_nvm_converter.c', 'memo_cpar_converter.c', 'memo_nvm_converter.c', 'memo_nvm_init.c' ]],
+          ]
+
+
+
+################# Component PC #################
+class PC(Component):
+  DONOTUSEFOR = ['hfl110', 'hfl110ta10', 'ars441']
+
+  COMPDEF=['TARGET_ARM', 'USE_OLD_ADC_CODING_STYLE_TYPEDEFS']
+
+  INCLUDE=['04_Engineering/01_Source_Code/PC',
+           '04_Engineering/01_Source_Code/PC/common',
+           '04_Engineering/01_Source_Code/PC/frame',
+           '04_Engineering/01_Source_Code/PC/ti_eve_arp32/pc_4d',
+           '04_Engineering/01_Source_Code/PC/Lucas-Kanade'
+           ]
+
+  SOURCE=[['04_Engineering/01_Source_Code/PC/frame',        ['pc_main.cpp']],
+          ['04_Engineering/01_Source_Code/PC/Lucas-Kanade', ['lucas_kanade_scale.cpp']]]
+
+
+################# Component SR_Legacy #################
+class SR_Legacy(Component):
+  DONOTUSEFOR = ['hfl110', 'hfl110ta10', 'ars441']
+  DONOTUSEFOR += ['mfc431', 'mfc431ta19', 'mfc431lo19','mfc431lo20', 'mfc431sc19','mfc431sw19' ,'mfc431bd10','mfc431va10', 'mfc431va21'] 
+ 
+  
+  COMPDEF=['SR_TARGET_ARM', 'CFG_SR_ARM_GCC', 'SR_TARGET_ARM_7A15', 'M_PROFILE_DEACTIVATE', 'SR_DEBUG_LEVEL=2']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sr',
+           '04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sr_wrp',
+           '04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sr_arp_wrp',
+           '04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sr_wrp_a',
+           '04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sr_wrp_b',
+           '04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sw_support/sr',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srab',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srarm',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srcc',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srcl',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srcld',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srclf',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srcolchk',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srcs',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srdia',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srdiacl',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srdis',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/sreve',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srfs',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srhcl',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srif',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srlib',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srn',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srncs',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srpcl',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srrcl',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srrd',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srss',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srssocr',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srt',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srtdm',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srtri',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srtri/ut_ref',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srtricl']
+
+  SOURCE_DIR = [['04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sr_wrp_a',  ['sr_a_rtewrapper.c', 'sr_wrp_a_main.c', 'sr_wrp_error.c', 'sr_wrp_helper.c', 'sr_wrp_mapping.c', 'sr_wrp_validation.c', 'sr_wrp_a_pdo_types.c']],
+                ['04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sr_wrp_b',  ['sr_b_rtewrapper.c', 'sr_wrp_b_main.c', 'sr_wrp_b_pdo_types.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy',                  ['iso3166_1.c', 'sr_buildinfo.c', 'sr_classprob.c', 'sr_communicationbuffer.c', 'sr_country.c', 'sr_countrycode.c', 'sr_cutout.c', 'sr_datemu.c', 'sr_detector.c', 'sr_error.c', 'sr_genendcheck.c', 'sr_gradientimage.c', 'sr_imgctrl.c', 'sr_kernelfeatures.c', 'sr_main.c', 'sr_outputdebug.c', 'sr_optimizations.c', 'sr_par.c', 'sr_print.c', 'sr_roi.c', 'sr_signmap.c', 'sr_tod.c', 'sr_truckdetect.c', 'sr_yellowcheck.c', 'sr_services.c', 'sr_eve.c', 'sr_rta.c', 'sr_memory.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srarm',            ['srarm_neon.s']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srab',             ['srab_actvsblue.c', 'srab_redcheck.c', 'srab_implicits.c', 'srab_featurescolor.c', 'srab_featurestrack.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srcc',             ['srcc_color.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srcl',             ['srcl_classifier.c', 'srcl_main.c', 'srcl_resultinfo.c', 'srcl_decisiontree.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srcld',            ['srcld_main.c', 'srcld_color.c', 'srcld_mvconcomps.c', 'srcld_color_LUT_create.c', 'srcld_color_LUT_angle.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srcolchk',         ['srcolchk_main.c', 'srcolchk_classifierparamspc_flt_actvsblue.c', 'srcolchk_classifierparamspc_flt_actvsbluenight.c', 'srcolchk_classifierparamspc_flt_redcheck_Triangle.c', 'srcolchk_classifierparamspc_flt_redcheck_triangleSpecific.c', 'srcolchk_classifierparamspc_flt_redcheck.c', 'srcolchk_classifierparamspc_flt_redcheckactive.c', 'srcolchk_classifierparamspc_flt_redcheckactivenight.c', 'srcolchk_classifierparamspc_flt_redchecknight.c', 'srcolchk_classifierparamspc_flt_redcheck_exits_day.c', 'srcolchk_classifierparamspc_flt_redcheck_exits_night.c', 'srcolchk_classifierparamspc_flt_truckstickertdm.c', 'srcolchk_classifierparamspc_flt_directional.c', 'srcolchk_classifierparamspc_flt_directionalnight.c', 'srcolchk_classifierparamspc_flt_redcheck_triangleUpright.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srdis',            ['srdis_main.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srcs',             ['srcs_accumulator.c', 'srcs_circles.c', 'srcs_gradient.c', 'srcs_interval.c', 'srcs_lookuparray.c','srcs_lookupline.c', 'srcs_main.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srfs',             ['srfs_main.c', 'srfs_preproc.c', 'srfs_shapes.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srhcl',            ['srhcl_adapter.c', 'srhcl_feature.c', 'srhcl_featurereduction.c', 'srhcl_featurepreproc.c', 'srhcl_featurenorm.c', 'srhcl_featuredigitextract.c', 'srhcl_featuredigitsignature.c', 'srhcl_featureiax.c', 'srhcl_featuremerge.c', 'srhcl_featureinvert.c', 'srhcl_featurecity.c', 'srhcl_featurecrop.c', 'srhcl_main.c', 'srhcl_par.c', 'srhcl_clfpar_CityBluevsBlueEnd_i16_t_opt.c', 'srhcl_featureextend.c', 'srhcl_classifierpc.c', 'srhcl_featuresuppltxt.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srclf',            ['srhcl_clfpar_npeu_i16_t.c', 'srhcl_clfpar_arab_i16_t.c', 'srhcl_clfpar_slcn_i16_t.c', 'srhcl_clfpar_sljp_i16_t.c', 'srhcl_clfpar_sleu_i16_t.c', 'srhcl_clfpar_wneu_i16_t.c', 'srhcl_clfpar_wneu_f32_t.c', 'srhcl_clfpar_CcClf_i16_t.c', 'srhcl_clfpar_CcClf_Lim40_i16_t.c', 'srhcl_clfpar_CcClf_Lim50_i16_t.c', 'srhcl_clfpar_CcClf_Lim70_i16_t.c', 'srhcl_clfpar_CcClf_EndXX_i16_t.c', 'srhcl_clfpar_ColCls_i16_t.c', 'srhcl_clfpar_ColCls_IT_i16_t.c', 'srhcl_clfpar_ColCls_GB_i16_t.c', 'srhcl_clfpar_CityCls_i16_t.c', 'srhcl_clfpar_CityClsFISE_i16_t.c', 'srhcl_clfpar_slrw_i16_t.c', 'srhcl_clfpar_stus_i16_t.c', 'srhcl_clfpar_Suppl_US_i16_t.c', 'srhcl_clfpar_Warning_Signs_i16_t.c', 'srhcl_clfpar_Super_NorthAmerica_i16_t.c', 'srhcl_clfpar_zneu_i16_t.c', 'srhcl_clfpar_slde_i16_t.c', 'srhcl_clfpar_slat_i16_t.c', 'srhcl_clfpar_dwde_i16_t.c', 'srhcl_clfpar_gwde_i16_t.c', 'srhcl_clfpar_stjp_i16_t.c', 'srhcl_clfpar_slfr_i16_t.c', 'srhcl_clfpar_sllu_i16_t.c', 'srhcl_clfpar_slgb_i16_t.c', 'srhcl_clfpar_sles_i16_t.c', 'srhcl_clfpar_slpt_i16_t.c', 'srhcl_clfpar_slit_i16_t.c', 'srhcl_clfpar_sleeu_i16_t.c', 'srhcl_clfpar_slneu_i16_t.c', 'srhcl_clfpar_slseeu_i16_t.c', 'srhcl_clfpar_slbe_i16_t.c', 'srhcl_clfpar_sltopus_i16_t.c', 'srhcl_clfpar_Supp_DE_Time_XX_XXh_Hier_i16_t.c', 'srhcl_clfpar_slom_i16_t.c', 'srhcl_clfpar_slgr_i16_t.c', 'srhcl_clfpar_Super_CA_Rect_i16_t.c', 'srhcl_clfpar_Super_European_i16_t.c', 'srhcl_clfpar_Super_German_and_Western_Europe_i16_t.c', 'srhcl_clfpar_Super_Eastern_Europe_i16_t.c', 'srhcl_clfpar_Super_Israel_i16_t.c', 'srhcl_clfpar_Super_Japan_i16_t.c', 'srhcl_clfpar_Super_North_American_i16_t.c', 'srhcl_clfpar_Super_Ex_Yugo_Europe_i16_t.c', 'srhcl_clfpar_Super_Asian_45Deg_i16_t.c', 'srhcl_clfpar_Super_Asian_i16_t.c', 'srhcl_clfpar_Super_Italian_i16_t.c', 'srhcl_clfpar_Super_British_i16_t.c', 'srhcl_clfpar_Super_Irish_i16_t.c', 'srhcl_clfpar_Super_Turkish_i16_t.c', 'srhcl_clfpar_Super_Polish_i16_t.c', 'srhcl_clfpar_Super_Chinese_i16_t.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srif',             ['srif_checksum.c', 'srif_inputvalidation.c', 'srif_inputwrapper.c', 'srif_interface.c', 'srif_state.c', 'srif_outputerror.c', 'srif_outputgeneration.c', 'srif_params.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srlib',            ['srlib_array.c', 'srlib_filter2d.c', 'srlib_image.c', 'srlib_statistic.c', 'srlib_vr.c', 'srlib_integralimage.c', 'srlib_cluster.c', 'srlib_clusterhelpers.c', 'srlib_imagescaling.c', 'srlib_matching.c', 'srlib_checksum.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srn',              ['srn_bayerpattern.c', 'srn_main.c', 'srn_normparameters.c', 'srn_whitebalance.c', 'srn_innerareaextract.c', 'srn_arabfeatureextraction.c', 'srn_utility.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srncs',            ['srncs_main.c', 'srncs_checkforwindow.c', 'srncs_init.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srpcl',            ['pcl_pca.c', 'pcl_polyclass.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srrcl',            ['srrcl_main.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srrd',             ['srrd_main.c', 'srrd_coarse.c', 'srrd_linecutting.c', 'srrd_templatematching.c', 'srrd_matching.c', 'srrd_digit.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srss',             ['srss_track.c', 'srss_omanfeatureextraction.c', 'srss_classhog.c', 'srss_classhogpar.c', 'srss_main.c', 'srss_trackclf.c', 'srss_objclf.c', 'srss_roiboxes.c', 'srss_roiboxespar.c', 'srss_detector.c', 'srss_rectangle.c', 'srss_featurehog.c', 'srss_common.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srt',              ['srt_cutout.c', 'srt_main.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srtdm',            ['srtdm_twodee.c', 'srtdm_camrot.c', 'srtdm_main.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srtri',            ['srtri_main.c', 'srtri_init.c', 'srtri_pc.c', 'srtri_errors.c', 'srtri_candidateselection.c', 'srtri_calculation.c', 'srtri_matching.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srtricl',          ['srtricl_main.c']],
+                ['04_Engineering/01_Source_Code/SR/SR_Legacy/srssocr',          ['srssocr_automata_enforcer.c', 'srssocr_automaton.c', 'srssocr_char_map.c', 'srssocr_classifier_high_aspect_ratio.c', 'srssocr_classifier_high_aspect_ratio_float.c', 'srssocr_classifier_low_aspect_ratio.c', 'srssocr_classifier_low_aspect_ratio_float.c', 'srssocr_classifier_mid_aspect_ratio.c', 'srssocr_classifier_mid_aspect_ratio_float.c', 'srssocr_class_refinement.c', 'srssocr_consolidator.c', 'srssocr_dropfall.c', 'srssocr_enforcer.c', 'srssocr_enforcer_axxkma.c', 'srssocr_enforcer_txxt.c', 'srssocr_enforcer_xxyykm.c', 'srssocr_enforcer_axxm.c', 'srssocr_enforcer_xxh.c', 'srssocr_enforcer_xxm.c', 'srssocr_enforcer_xxt.c', 'srssocr_features.c', 'srssocr_filter_clusters.c', 'srssocr_find_clusters.c', 'srssocr_fit.c', 'srssocr_interface.c', 'srssocr_interpolate_bayer_to_gray.c', 'srssocr_manager.c', 'srssocr_merge_find_set.c', 'srssocr_ocr.c', 'srssocr_pre_processing_noisereduction.c', 'srssocr_pre_processor.c', 'srssocr_rectangle_detection.c', 'srssocr_segmentation_dropfall_wrapper.c', 'srssocr_segmentation_init.c', 'srssocr_segmentation_invalid_segment_removal.c', 'srssocr_segmentation_manager.c', 'srssocr_segmentation_post_processing.c', 'srssocr_svm.c', 'srssocr_svmocr.c', 'srssocr_svm_neon.c', 'srssocr_validator.c', 'srssocr_enforcer_textsigns.c']]]
+
+
+################# Component SR #################
+class SR(Component):
+  DONOTUSEFOR = ['hfl110', 'hfl110ta10', 'ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19', 'mfc431sw19', 'mfc431va10', 'mfc431va21','mfc431bd10']
+
+  COMPDEF=['SR_TARGET_ARM', 'CFG_SR_ARM_GCC', 'SR_TARGET_ARM_7A8', 'M_PROFILE_DEACTIVATE']
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/SR/sr',
+           '04_Engineering/00_Projects/$usedfrom/SR/sr_arp_wrp',
+           '04_Engineering/00_Projects/$usedfrom/SR/sr_wrp_a',
+           '04_Engineering/00_Projects/$usedfrom/SR/sr_wrp_b',
+           '04_Engineering/00_Projects/$usedfrom/SR/sw_support/sr',
+           '04_Engineering/01_Source_Code/SR/',
+           '04_Engineering/01_Source_Code/SR/cfg',
+           '04_Engineering/01_Source_Code/SR/ms',
+           '04_Engineering/01_Source_Code/SR/ms/ab',
+           '04_Engineering/01_Source_Code/SR/ms/ab/ABWgt',
+           '04_Engineering/01_Source_Code/SR/ms/cl',
+           '04_Engineering/01_Source_Code/SR/ms/cl/cir',
+           '04_Engineering/01_Source_Code/SR/ms/cl/CLWgt',
+           '04_Engineering/01_Source_Code/SR/ms/cl/dia',
+           '04_Engineering/01_Source_Code/SR/ms/cl/HCL',
+           '04_Engineering/01_Source_Code/SR/ms/cl/ncs',
+           '04_Engineering/01_Source_Code/SR/ms/cl/rect',
+           '04_Engineering/01_Source_Code/SR/ms/cl/tri',
+           '04_Engineering/01_Source_Code/SR/ms/det',
+           '04_Engineering/01_Source_Code/SR/ms/det/cir',
+           '04_Engineering/01_Source_Code/SR/ms/det/dia',
+           '04_Engineering/01_Source_Code/SR/ms/det/ncs',
+           '04_Engineering/01_Source_Code/SR/ms/det/rect',
+           '04_Engineering/01_Source_Code/SR/ms/det/tri',
+           '04_Engineering/01_Source_Code/SR/ms/tracking',
+           '04_Engineering/01_Source_Code/SR/ms/tracking/lmd',
+           '04_Engineering/01_Source_Code/SR/postproc',
+           '04_Engineering/01_Source_Code/SR/srarm',
+           '04_Engineering/01_Source_Code/SR/sreve',
+           '04_Engineering/01_Source_Code/SR/ss',
+           '04_Engineering/01_Source_Code/SR/ss/SSWgt',
+           '04_Engineering/01_Source_Code/SR/Utilities',
+           '04_Engineering/01_Source_Code/SR/Utilities/Error',
+           '04_Engineering/01_Source_Code/SR/Utilities/HoughCircle',
+           '04_Engineering/01_Source_Code/SR/Utilities/ImgScaleNorm',
+           '04_Engineering/01_Source_Code/SR/Utilities/LIB',
+           '04_Engineering/01_Source_Code/SR/Utilities/Memory',
+           '04_Engineering/01_Source_Code/SR/Utilities/NormMask',
+           '04_Engineering/01_Source_Code/SR/Utilities/PCA',
+           '04_Engineering/01_Source_Code/SR/Utilities/PCL',
+           '04_Engineering/01_Source_Code/SR/Utilities/RTA',
+           '04_Engineering/01_Source_Code/SR/Utilities/SignClass',
+           '04_Engineering/01_Source_Code/SR/Utilities/SigVal',
+           '04_Engineering/01_Source_Code/SR/Utilities/tdmProjection',
+           '04_Engineering/01_Source_Code/SR/Utilities/TemplateMatching',
+           '04_Engineering/01_Source_Code/SR/Utilities/CountryInfo',
+           '04_Engineering/01_Source_Code/cml/stl',
+           '04_Engineering/01_Source_Code/cml/stl/container',
+           'C:/tools/gcc_arm/4.7_2012q4/arm-none-eabi/include/c++/4.7.3']
+  SOURCE=[['04_Engineering/00_Projects/$usedfrom/SR/sr_wrp_a',            ['sr_wrp_a_main.cpp']],
+          ['04_Engineering/00_Projects/$usedfrom/SR/sr_wrp_b',            ['sr_wrp_b_main.cpp']],
+          ['04_Engineering/00_Projects/$usedfrom/SR/sr',                  ['SRCountryDataTable.cpp']],
+          ['04_Engineering/01_Source_Code/SR',                            ['EVE.cpp', 'ImageROIData.cpp', 'ProcessEntity.cpp', 'SignRecognition.cpp', 'sr_main.cpp', 'ISignRecognitionInterface.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms',                         ['MainSigns.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/ab',                      ['AfterBurner.cpp', 'AfterBurnerUtility.cpp', 'ColorChecker.cpp', 'MainSignsAfterBurner.cpp', 'TruckStickerCheck.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/ab/ABWgt',                ['srcolchk_classifierparamspc_flt_actvsblue.cpp', 'srcolchk_classifierparamspc_flt_actvsbluenight.cpp', 'srcolchk_classifierparamspc_flt_directional.cpp', 'srcolchk_classifierparamspc_flt_directionalnight.cpp', 'srcolchk_classifierparamspc_flt_redcheck.cpp', 'srcolchk_classifierparamspc_flt_redcheckactive.cpp', 'srcolchk_classifierparamspc_flt_redcheckactivenight.cpp', 'srcolchk_classifierparamspc_flt_redchecknight.cpp', 'srcolchk_classifierparamspc_flt_redcheck_exits_day.cpp', 'srcolchk_classifierparamspc_flt_redcheck_exits_night.cpp', 'srcolchk_classifierparamspc_flt_redcheck_triangleUpright.cpp', 'srcolchk_classifierparamspc_flt_truckstickertdm.cpp', 'srcolchk_classifierparamspc_flt_redcheck_triangle.cpp', 'srcolchk_classifierparamspc_flt_redcheck_triangleSpecific.cpp', ]],
+          ['04_Engineering/01_Source_Code/SR/ms/cl',                      ['Classification.cpp', 'ClassificationFactory.cpp', 'ClassificationUtility.cpp', 'srcl_cfg.cpp', 'TrackClassification.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/cl/cir',                  ['CircularSignClassification.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/cl/CLWgt',                ['srcl_trainedparamsextension.cpp', 'srcl_trainedparamsshared.cpp', 'srhcl_clfpar_CcClf_EndXX_i16_t.cpp', 'srhcl_clfpar_CcClf_i16_t.cpp', 'srhcl_clfpar_CcClf_Lim40_i16_t.cpp', 'srhcl_clfpar_CcClf_Lim50_i16_t.cpp', 'srhcl_clfpar_CcClf_Lim70_i16_t.cpp', 'srhcl_clfpar_CityBluevsBlueEnd_i16_t_opt.cpp', 'srhcl_clfpar_CityClsFISE_i16_t.cpp', 'srhcl_clfpar_CityCls_i16_t.cpp', 'srhcl_clfpar_ColCls_i16_t.cpp', 'srhcl_clfpar_gwde_i16_t.cpp', 'srhcl_clfpar_npeu_i16_t.cpp', 'srhcl_clfpar_slat_i16_t.cpp', 'srhcl_clfpar_slbe_i16_t.cpp', 'srhcl_clfpar_slcn_i16_t.cpp',  'srhcl_clfpar_sleeu_i16_t.cpp', 'srhcl_clfpar_sles_i16_t.cpp', 'srhcl_clfpar_sleu_i16_t.cpp', 'srhcl_clfpar_slfr_i16_t.cpp', 'srhcl_clfpar_slgb_i16_t.cpp', 'srhcl_clfpar_slgr_i16_t.cpp', 'srhcl_clfpar_slit_i16_t.cpp', 'srhcl_clfpar_sljp_i16_t.cpp', 'srhcl_clfpar_sllu_i16_t.cpp', 'srhcl_clfpar_slneu_i16_t.cpp',  'srhcl_clfpar_slpt_i16_t.cpp','srhcl_clfpar_slseeu_i16_t.cpp', 'srhcl_clfpar_stjp_i16_t.cpp', 'srhcl_clfpar_stus_i16_t.cpp', 'srhcl_clfpar_Super_German_and_Western_Europe_i16_t.cpp', 'srhcl_clfpar_Super_NorthAmerica_i16_t.cpp', 'srhcl_clfpar_Suppl_US_i16_t.cpp', 'srhcl_clfpar_Supp_DE_Time_XX_XXh_Hier_i16_t.cpp', 'srhcl_clfpar_zneu_i16_t.cpp', 'srhcl_clfpar_Super_CA_Rect_i16_t.cpp', 'srhcl_clfpar_Warning_Signs_i16_t.cpp', 'srhcl_clfpar_Super_Japan_i16_t.cpp', 'srhcl_clfpar_Super_Asian_i16_t.cpp', 'srhcl_clfpar_Super_Israel_i16_t.cpp', 'srhcl_clfpar_Super_European_i16_t.cpp', 'srhcl_clfpar_Super_Eastern_Europe_i16_t.cpp', 'srhcl_clfpar_Super_Polish_i16_t.cpp', 'srhcl_clfpar_Super_North_American_i16_t.cpp', 'srhcl_clfpar_Super_Ex_Yugo_Europe_i16_t.cpp', 'srhcl_clfpar_Super_Turkish_i16_t.cpp', 'srhcl_clfpar_Super_British_i16_t.cpp', 'srhcl_clfpar_Super_Irish_i16_t.cpp', 'srhcl_clfpar_Super_Italian_i16_t.cpp', 'srhcl_clfpar_Super_Chinese_i16_t.cpp', 'srhcl_clfpar_Super_Asian_45Deg_i16_t.cpp', 'srhcl_clfpar_ColCls_IT_i16_t.cpp', 'srhcl_clfpar_ColCls_GB_i16_t.cpp','srhcl_clfpar_slru_i16_t.cpp','srhcl_clfpar_Node_CityPic_i16_t.cpp','srhcl_clfpar_Node_CityWhitePic_i16_t.cpp','srhcl_clfpar_Node_CityWhiteText_i16_t.cpp','srhcl_clfpar_slil_i16_t.cpp','srhcl_clfpar_ColCls_FR_i16_t.cpp','srhcl_clfpar_ColCls_LV_i16_t.cpp','srhcl_clfpar_Super_Bulgaria_i16_t.cpp','srhcl_clfpar_ColCls_RU_i16_t.cpp','srhcl_clfpar_ColCls_IL_i16_t.cpp','srhcl_clfpar_ColCls_BE_i16_t.cpp','srhcl_clfpar_slau_i16_t.cpp','srhcl_clfpar_sles_Top_Classifier_i16_t.cpp','srhcl_clfpar_slfrse_i16_t.cpp','srhcl_clfpar_ColCls_SE_i16_t.cpp','srhcl_clfpar_Super_Sweden_i16_t.cpp','srhcl_clfpar_Super_Canada_i16_t.cpp','srhcl_clfpar_Node_Danger_Children__Var2_i16_t.cpp','srhcl_clfpar_Node_Danger_Children__Var3_i16_t.cpp','srhcl_clfpar_Node_Danger_Children__Var4_i16_t.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/cl/dia',                  ['DiamondSignClassification.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/cl/HCL',                  ['CityLimitDetection.cpp', 'ClassifierPC.cpp', 'ClassifierPCEmbedded.cpp', 'FeatureUtility.cpp', 'FeatureUtilityEmbedded.cpp', 'HrchyClassification.cpp', 'HrchyQueue.cpp', 'ClassifierDecisionTree.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/cl/ncs',                  ['NoCircleSignClassification.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/cl/rect',                 ['RectangeSignClassification.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/cl/tri',                  ['TriangleSignClassification.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/det',                     ['Detection.cpp', 'DetectionFactory.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/det/cir',                 ['CircularSignDetection.cpp', 'CircularSignDetectionEmbedded.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/det/dia',                 ['DiamondSignsDetection.cpp', 'DiamondSignsDetectionEmbedded.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/det/ncs',                 ['NoCircleSignsDetection.cpp', 'NoCircleSignsDetectionEmbeded.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/det/rect',                ['RectangleSignsDetection.cpp', 'RectangleSignsDetectionEmbeded.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/det/tri',                 ['TriangleSignsDetection.cpp', 'TriangleSignsDetectionEmbeded.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/tracking',                ['Tracker.cpp', 'TrackerUtility.cpp', 'Tracking.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ms/tracking/lmd',            ['lmd_landmark.cpp', 'lmd_landmark_list.cpp', 'lmd_landmark_manager.cpp']],
+          ['04_Engineering/01_Source_Code/SR/postproc',                   ['PostProcessing.cpp']],
+          ['04_Engineering/01_Source_Code/SR/srarm',                      ['srarm_neon.s']],
+          ['04_Engineering/01_Source_Code/SR/ss',                         ['SupplementarySigns.cpp', 'SupplementarySignsClassification.cpp', 'SupplementarySignsCommon.cpp', 'SupplementarySignsDetection.cpp', 'SupplementarySignsDetectionEmbedded.cpp','SupplementarySignsHOG.cpp', 'SupplementarySignsRectangles.cpp', 'SupplementarySignsTracker.cpp', 'SupplementarySignsUtility.cpp']],
+          ['04_Engineering/01_Source_Code/SR/ss/SSWgt',                   ['srss_classhogpar.cpp', 'srss_roiboxespar.cpp']],
+          ['04_Engineering/01_Source_Code/SR/Utilities',                  ['KernelFlags.cpp', 'SUtility.cpp', 'Utility.cpp', 'UtilityEmbedded.cpp']],
+          ['04_Engineering/01_Source_Code/SR/Utilities/CountryInfo',      ['SRCountryCode.cpp']],
+          ['04_Engineering/01_Source_Code/SR/Utilities/Error',            ['sr_error.cpp', 'sr_print.cpp']],
+          ['04_Engineering/01_Source_Code/SR/Utilities/HoughCircle',      ['HoughCircleOperation.cpp']],
+          ['04_Engineering/01_Source_Code/SR/Utilities/ImgScaleNorm',     ['ImageScaleNormalize.cpp']],
+          ['04_Engineering/01_Source_Code/SR/Utilities/LIB',              ['Clusters.cpp', 'Gradient.cpp','GradientEmbedded.cpp', 'Image.cpp', 'IntegralImage.cpp', 'NormUtility.cpp', 'NormUtilityEmbedded.cpp']],
+          ['04_Engineering/01_Source_Code/SR/Utilities/Memory',           ['InterfaceMemory.cpp', 'Memory.cpp', 'SRMemory.cpp']],
+          ['04_Engineering/01_Source_Code/SR/Utilities/PCA',              ['PCA.cpp','PCAEmbedded.cpp']],
+          ['04_Engineering/01_Source_Code/SR/Utilities/PCL',              ['PCL.cpp','PCLEmbedded.cpp']],
+          ['04_Engineering/01_Source_Code/SR/Utilities/RTA',              ['SRRTA.cpp']],
+          ['04_Engineering/01_Source_Code/SR/Utilities/SigVal',           ['SignalValidation.cpp']],
+          ['04_Engineering/01_Source_Code/SR/Utilities/tdmProjection',    ['ThreeDimProjection.cpp']],
+          ['04_Engineering/01_Source_Code/SR/Utilities/TemplateMatching', ['TemplateMatching.cpp']]]
+
+
+
+################# Component TSA #################
+class TSA(Component):
+  DONOTUSEFOR = ['hfl110', 'hfl110ta10', 'ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19', 'mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+
+  COMPDEF=['TSA_TARGET_ARM', 'CFG_TSA_ARM_GCC', 'TSA_TARGET_ARM_7A15', '_NDEBUG', 'TSA_DEBUG_LEVEL=2']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/tsa',
+           '04_Engineering/01_Source_Code/tsa',
+           '04_Engineering/01_Source_Code/tsa/sw_support',
+           '04_Engineering/01_Source_Code/tsa/tsa_wrp',
+           '04_Engineering/01_Source_Code/tsa/tsagwa',
+           '04_Engineering/01_Source_Code/tsa/tsaif',
+           '04_Engineering/01_Source_Code/tsa/tsalib',
+           '04_Engineering/01_Source_Code/tsa/tsanpa',
+           '04_Engineering/01_Source_Code/tsa/tsapre',
+           '04_Engineering/01_Source_Code/tsa/tsarwf',
+           '04_Engineering/01_Source_Code/tsa/tsasla',
+           '04_Engineering/01_Source_Code/tsa/tsawwa']
+  SOURCE=[['04_Engineering/01_Source_Code/tsa',            ['iso3166_1.c', 'tsa_competence.c', 'tsa_country.c', 'tsa_debug.c', 'tsa_main.c', 'tsa_pdo_tags_file.c']],
+          ['04_Engineering/01_Source_Code/tsa/sw_support', ['tsa_cpar_init.c', 'tsa_nvm_init.c', 'tsa_nvm_convert.c']],
+          ['04_Engineering/01_Source_Code/tsa/tsa_wrp',    ['tsa_wrp_main.c', 'tsa_wrp_pdo_tags_file.c', 'tsa_wrp_rte.c', 'tsa_wrp_tsaif.c']],
+          ['04_Engineering/01_Source_Code/tsa/tsagwa',     ['tsagwa_main.c', 'tsagwa_cfg.c', 'tsagwa_was.c', 'tsagwa_sdb.c', 'tsagwa_sdb_evaluator.c', 'tsagwa_sdb_evaluatorgenerate_1.c', 'tsagwa_sdb_evaluatorgenerate_2.c', 'tsagwa_sdb_evaluatorgenerate_3.c', 'tsagwa_sdb_evaluatorgenerate_4.c', 'tsagwa_sdb_angleprimitives.c', 'tsagwa_sko_systemcoordinatorgenerate.c', 'tsagwa_sko.c', 'tsagwa_bom.c', 'tsagwa_bom_roadinclinationgenerate.c', 'tsagwa_bom_environmentalconditiongenerate.c', 'tsagwa_bom_driverattentiongenerate.c', 'tsagwa_bom_common.c', 'tsagwalite_main.c']],
+          ['04_Engineering/01_Source_Code/tsa/tsaif',      ['tsaif_interface.c', 'tsaif_outputgeneration.c', 'tsaif_state.c']],
+          ['04_Engineering/01_Source_Code/tsa/tsalib',     ['tsalib_sign.c', 'tsalib_general.c']],
+          ['04_Engineering/01_Source_Code/tsa/tsanpa',     ['tsanpa_main.c', 'tsanpa_cfg.c']],
+          ['04_Engineering/01_Source_Code/tsa/tsapre',     ['tsapre_cce.c', 'tsapre_config.c', 'tsapre_environment.c', 'tsapre_lane.c', 'tsapre_map.c', 'tsapre_parameters.c', 'tsapre_road.c', 'tsapre_rza.c', 'tsapre_sat.c', 'tsapre_sign.c', 'tsapre_speedunit.c', 'tsapre_trafficstyle.c', 'tsapre_tss.c', 'tsapre_tss_obj.c', 'tsapre_tss_sign.c', 'tsapre_vehicle.c']],
+          ['04_Engineering/01_Source_Code/tsa/tsarwf',     ['tsarwf_main.c', 'tsarwf_indicator.c', 'tsarwf_cfg.c']],
+          ['04_Engineering/01_Source_Code/tsa/tsasla',     ['tsasla2_main.c', 'tsasla2_sign_single.c', 'tsasla2_cam1_manipulating.c', 'tsasla2_cam1_rating.c', 'tsasla2_sign_multiple.c', 'tsasla2_fusion.c', 'tsasla2_state.c', 'tsasla2_cancel.c', 'tsasla2_commonFct.c', 'tsasla2_navi.c']],
+          ['04_Engineering/01_Source_Code/tsa/tsawwa',     ['tsawwa_main.c', 'tsawwa_cfg.c', 'tsawwa_indicator.c']]]
+
+
+
+################# Component UDW #################
+class UDW(Component):
+  DONOTUSEFOR = ['hfl110', 'hfl110ta10', 'ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19', 'mfc431sw19', 'mfc431va10', 'mfc431va21']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/udw/daw',
+           '04_Engineering/00_Projects/$usedfrom/udw/frame',
+           '04_Engineering/00_Projects/$usedfrom/udw/udw_custom',
+           '04_Engineering/01_Source_Code/udw/udw_base']
+  SOURCE=[['04_Engineering/00_Projects/$usedfrom/udw/daw',       ['udw_daw_wrapper.c']],
+          ['04_Engineering/00_Projects/$usedfrom/udw/frame',     ['udw_frame_main.c']],
+          ['04_Engineering/00_Projects/$usedfrom/udw/udw_custom',['udw_custom_ext.cpp', 'UDW_custom.cpp']],
+          ['04_Engineering/01_Source_Code/udw/udw_base',        ['*.c', '*.cpp']]]
+
+
+
+################# Component DPUST #################
+class DPUST(Component):
+
+  INCLUDE = []
+  SOURCE  = [
+             ['04_Engineering/00_Projects/$usedfrom/DPUST/monitors',            ['monitoring_cfg.cpp']],
+             ['04_Engineering/00_Projects/$usedfrom/DPUST/fatalerrorhandling',  ['cat2_error_reaction_cfg.cpp']],
+             ['04_Engineering/01_Source_Code/DPUST/alutest',                    ['c_alu_test_ca8.s']],
+             ['04_Engineering/01_Source_Code/DPUST/fatalerrorhandling',         ['*.cpp']],
+             ['04_Engineering/01_Source_Code/DPUST/monitors',                   ['monitor_adapter.cpp', 'monitor_adapter_arm-a_0.cpp', 'task_monitor.cpp']],
+             ['04_Engineering/01_Source_Code/DPUST/safetymanager',              ['service_function_wrappers.cpp', 'safety_manager_base.cpp', 'safety_manager_dummy.cpp', 'safety_manager_arm_a.cpp']],
+             ['04_Engineering/01_Source_Code/DPUST/mmu',                        ['mmu_base.cpp', 'cortex_a15_mmu.cpp']]
+            ]
+
+################# Component EM #################
+class EM(Component):
+  DONOTUSEFOR = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+  OVERRIDEFOR = []
+
+  INCLUDE=[]
+  SOURCE_DIR=[]
+   
+  if product in ['hfl110', 'hfl110ta10']:  
+  
+    ### SubComponent GIN
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/gin',
+            '04_Engineering/01_Source_Code/gin']
+
+    SOURCE_DIR+=[['04_Engineering/01_Source_Code/GIN', [ '*.cpp']]]
+  
+    ### SubComponent TP
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/tp',
+            '04_Engineering/01_Source_Code/tp']
+
+    SOURCE_DIR+=[['04_Engineering/00_Projects/$usedfrom/TP', [ '*.cpp']], 
+                 ['04_Engineering/01_Source_Code/TP', [ '*.cpp']]]
+
+    ### EM Component
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/em',
+              '04_Engineering/00_Projects/$usedfrom/em/frame',
+              '04_Engineering/01_Source_Code/em']
+  
+    SOURCE_DIR+=[['04_Engineering/00_Projects/$usedfrom/EM', [ '*.cpp']],
+                 ['04_Engineering/01_Source_Code/EM', [ '*.cpp']]]
+
+  else:
+   
+    ### SubComponent GSS
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/gss',
+              '04_Engineering/01_Source_Code/gss']
+
+    SOURCE_DIR+=[
+                ['04_Engineering/01_Source_Code/gss/common',            ['*.cpp']],
+                ['04_Engineering/01_Source_Code/gss/core/service',      ['*.cpp']],
+                ['04_Engineering/01_Source_Code/gss/core',       		['core_memory_pool.cpp', 'onedim_filter.cpp', 'patch_correlator_manager.cpp', 'segmentation_unit.cpp', 'service_unit.cpp']],
+                ['04_Engineering/01_Source_Code/gss/frame/common',      ['*.cpp']],
+                ['04_Engineering/01_Source_Code/gss/frame/fusion',      ['*.cpp']],
+                ['04_Engineering/01_Source_Code/gss/frame/core',      	['gss_check_data.cpp']],
+                ['04_Engineering/01_Source_Code/gss/fusion',      		['*.cpp']],				
+                ['04_Engineering/00_Projects/$usedfrom/gss',            ['*.cpp']]
+                ]
+
+    ### SubComponent OG
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/OG',
+              '04_Engineering/01_Source_Code/OG']
+
+    SOURCE_DIR+=[['04_Engineering/01_Source_Code/OG', ['*.cpp']], ['04_Engineering/00_Projects/$usedfrom/OG', ['*.cpp']]]
+
+    ### SubComponent TP
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/tp',
+              '04_Engineering/01_Source_Code/tp']
+
+    SOURCE_DIR+=[['04_Engineering/00_Projects/$usedfrom/TP', [ '*.cpp']], 
+                 ['04_Engineering/01_Source_Code/TP', [ '*.cpp']]]
+
+
+    ### EM Component
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/em',
+              '04_Engineering/00_Projects/$usedfrom/em/frame',
+              '04_Engineering/01_Source_Code/em']
+  
+    SOURCE_DIR+=[['04_Engineering/00_Projects/$usedfrom/EM', [ '*.cpp']],
+                 ['04_Engineering/01_Source_Code/EM', [ '*.cpp']]]
+
+################# Component LIQOR #################
+class LIQOR(Component):
+  DONOTUSEFOR  = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+  OVERRIDEFOR = []
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/ga',
+           '04_Engineering/00_Projects/$usedfrom/liqor',
+           '04_Engineering/01_Source_Code/liqor/common',
+           '04_Engineering/01_Source_Code/liqor/frame',
+           '04_Engineering/01_Source_Code/liqor/tidl',
+           '04_Engineering/01_Source_Code/liqor/frame/ti_arp32_eve']
+  SOURCE=[['04_Engineering/01_Source_Code/liqor/frame', ['*.cpp', '*.c']],
+          ['04_Engineering/01_Source_Code/liqor/tidl', ['*.c']] ]
+
+################# Component FORCE_APPL_PRJ_INC #################
+class FORCE_APPL_PRJ_INC(Component):
+  INCLUDE = ['04_Engineering/00_Projects/' + product]
+
+Components = [
+   FORCE_APPL_PRJ_INC(),
+   DPUCOMMON(),
+   DPURTE(),
+   THIRDPARTY(),
+   DPUALGO(),
+   DPUMISC(),
+   DPUCDR(),
+   DPUST(),
+   DPUFF(),
+   FCUDPU(),
+   CCT(),
+   CML(),
+   EM(),
+   GS(),
+   EMO(),
+   MEMO(),
+   LIQOR(),
+   PC(),
+   SR(),
+   TSA(),
+   UDW(),
+   SYS()
+  ]
+
+for i in Components:
+  includePath += i.AddComp()
+
+
+setIncludePath(includePath)
+addCompilerDefine('CORE_CA8_0')
+
+if unit_test_only == False:
+  compile('arm-a_0')
+
+includePathPDO = ""
+launchDir = GetLaunchDir().replace('\\', '/')
+includePathPDO += "\""+launchDir+"/04_Engineering/04_Build/tools/bios/packages/gnu/targets/arm/libs/install-native/arm-none-eabi/include\",\n"
+includePathPDO += "\"C:/tools/gcc_arm/4.7_2012q4/lib/gcc/arm-none-eabi/4.7.3/include\",\n"
+includePathPDO += "\""+launchDir+"/04_Engineering/04_Build/out/"+product+"\",\n"
+includePathPDO += "\",\n".join([ "\""+launchDir+"/"+Path  for Path       in includePath.split()])+"\";"
+outpath = launchDir+'/04_Engineering/04_Build/out/' +  product + '/release_arm-a_0'
+with open(outpath+'/arm-a_0_include_list.cfg', 'w+') as f:
+  f.write("sys_include_dirs = %s" % includePathPDO)

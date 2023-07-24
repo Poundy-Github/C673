@@ -1,0 +1,42 @@
+// T32 Mon Jun  5 17:03:54 2023
+
+B::
+
+TOOLBAR   ON
+STATUSBAR ON
+FramePOS 9.75,5.5714,,,Maximized
+WinPAGE.RESet
+
+WinPAGE.Create P000
+WinCLEAR
+
+WinPOS 1.875 1.0714 95. 26. 0. 1. W001
+WinTABS 41. 31.
+sYmbol.Browse.Var
+
+WinPOS 5.625 3.2143 122. 27. 16. 2. W003
+Var.PROfile %e Fcu_HeadOutputCustomData.sPreBrake.fPreBrakeDecel
+
+WinPOS -0.875 0.28571 155. 36. 0. 0. W002
+Var.View %e ACDCAccessData
+
+WinPOS 10.375 3.2143 144. 21. 16. 2. W004
+Var.PROfile %e Cps_SignalPhyData_FC_Voiceinfo
+
+WinPOS 6.375 21.429 144. 21. 16. 2. W006
+Var.PROfile %e Fcu_LcfVehGenericOutputData.LaDMC_StrAngReq_deg
+
+WinPOS 5.25 -1.5714 145. 17. 16. 2. W005
+Var.PROfile %e Fcu_LcfVehGenericOutputData.Lkas_ActToi_nu
+
+WinPOS 50.0 10.0 100. 31. 0. 0. W000
+Var.Watch
+
+Var.AddWatch Fcu_HeadOutputCustomData
+Var.AddWatch Cps_SignalPhyData_FC_Voiceinfo
+Var.AddWatch Fcu_LcfVehGenericOutputData
+Var.AddWatch Fcu_LcfSenGenericOutputData
+
+WinPAGE.select P000
+
+ENDDO

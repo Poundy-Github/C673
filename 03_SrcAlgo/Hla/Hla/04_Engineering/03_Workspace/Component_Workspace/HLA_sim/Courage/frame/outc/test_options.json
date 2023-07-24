@@ -1,0 +1,8 @@
+{
+    "EXCLUDED_PROJECTS": [], 
+    "INCLUDED_CORES": {
+        "default": [
+            "dsp_1"
+        ]
+    }
+}

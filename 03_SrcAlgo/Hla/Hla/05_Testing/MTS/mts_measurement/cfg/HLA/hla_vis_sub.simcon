@@ -1,0 +1,71 @@
+
+; TODO: place in the correct port names
+
+[Request2ProvideConnections]
+CfgSectionType=Request2ProvideConnection
+; If the port buffer mechanism is used the plugin will have the '__BufferDataID' port which should be filled
+; with the frame counter from some measfreezes signal header
+;VIS.__BufferDataID                          = UDEX.FrameCounter
+
+; --- RTE INPUTS ---
+
+VIS.pCPar_HlafPar                  = UDEX.pCPar_HlafPar
+VIS.pMonoCalibration               = UDEX.pMonoCalibration
+VIS.pHlaBusInputSignals            = UDEX.pHlaBusInputSignals
+VIS.pVehSig                        = UDEX.pVehSig
+VIS.pVehDyn                        = UDEX.pVehDyn
+VIS.pCbOutputs                     = UDEX.pCbOutputs
+VIS.pLsdEnvironmentData            = UDEX.pLsdEnvironmentData
+VIS.pLsdLightObjectList            = UDEX.pLsdLightObjectList
+VIS.pLsdLightList                  = UDEX.pLsdLightList
+
+
+; --- RTE OUTPUTS ---
+
+VIS.pAlgoCompState                 = UDEX.pAlgoCompState
+VIS.pHlaf_HeadlightControl         = UDEX.pHlaf_HeadlightControl
+;VIS.<measinput_request_port_name>           = UDEX.<measinput_provide_port_name>
+; ... possible additional needed input port connections
+
+; --- Internal Measfreeze ---
+VIS.HLA_ErrorStack                 = UDEX.HLA_ErrorStack
+VIS.HLAFData                       = UDEX.HLAFData
+
+; Sync parameter
+VIS.SyncRefHeader                                      = UDEX.hla_SyncRef
+VIS.SyncRefHeader_ParameterRequestPort                 = Parameter.HLA.SyncRef
+VIS.SyncModeParameter                                  = Parameter.SyncModeParameter
+
+; Parameter connections for RTE inputs
+VIS.pCPar_HlafPar_ParameterRequestPort                  = Parameter.HLA.pCPar_HlafPar
+VIS.pMonoCalibration_ParameterRequestPort               = Parameter.HLA.pMonoCalibration
+VIS.pHlaBusInputSignals_ParameterRequestPort            = Parameter.HLA.pHlaBusInputSignals
+VIS.pVehSig_ParameterRequestPort                        = Parameter.HLA.pVehSig
+VIS.pVehDyn_ParameterRequestPort                        = Parameter.HLA.pVehDyn
+VIS.pCbOutputs_ParameterRequestPort                     = Parameter.HLA.pCbOutputs
+VIS.pLsdEnvironmentData_ParameterRequestPort            = Parameter.HLA.pLsdEnvironmentData
+VIS.pLsdLightObjectList_ParameterRequestPort            = Parameter.HLA.pLsdLightObjectList
+VIS.pLsdLightList_ParameterRequestPort                  = Parameter.HLA.pLsdLightList
+
+
+; Parameter connections for RTE outputs
+VIS.pAlgoCompState_ParameterRequestPort                 = Parameter.HLA.pAlgoCompStateVis
+VIS.pHlaf_HeadlightControl_ParameterRequestPort         = Parameter.HLA.pHlaf_HeadlightControlVis
+
+[Client2ServerConnections]
+CfgSectionType=Client2ServerConnection
+
+; if consistent data is available the '__DoStore' port should be called to push the data to the buffer
+; when called for drawing data will automatically be selected by the sim_draw
+;UDEX.CycleEnd_HLA.65 = VIS.__DoStore
+
+UDEX.CycleEnd_HLA.0 = VIS.Doit
+UDEX.CycleEnd_HLA_MFC5xx.0 = VIS.Doit
+UDEX.CycleEnd[SRLCAM4xx Device-65ms].0 = VIS.Doit
+
+; optional init/reset connections
+CFG.BatchPlayerInit.0   = VIS.Init
+CFG.BatchPlayerReset.0  = VIS.Reset
+
+; --- CAN Data ---
+SIM CAN.CANReceive = VIS.CanReceive

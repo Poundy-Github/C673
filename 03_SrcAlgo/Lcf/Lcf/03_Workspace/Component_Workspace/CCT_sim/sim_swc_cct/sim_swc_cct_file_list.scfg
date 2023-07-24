@@ -1,0 +1,16 @@
+# config file containing source files in PC sim wrapper
+
+cct_sim_swc_source_files = """
+"""
+
+cct_algo_source_files = """
+"""
+
+cct_sim_swc_include_paths = """
+"""
+
+cct_sim_swc_pdo_sources = """
+"""
+
+pc_algo_source_files = """
+"""

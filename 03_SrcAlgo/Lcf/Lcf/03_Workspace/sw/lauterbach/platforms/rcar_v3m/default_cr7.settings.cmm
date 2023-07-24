@@ -1,0 +1,44 @@
+// T32_1000014 Mon Mar 19 09:38:09 2018
+
+B::
+
+TOOLBAR   ON
+STATUSBAR ON
+FramePOS 39.143,21.417,,,Maximized
+WinPAGE.RESet
+
+WinPAGE.Create P000
+WinCLEAR
+
+WinPOS 33.143 7.6667 127. 38. 0. 1. W005 ICONIC
+WinTABS 26. 26.
+sYmbol.Browse
+
+WinPOS 148.0 48.5 88. 20. 0. 0. W006 ICONIC
+term.view
+WinPAN 0. 4.
+
+WinPOS 0.0 53.917 104. 10. 26. 1. W004
+WinTABS 13. 16. 0. 0. 0. 0. 0.
+Break.List
+
+WinPOS 109.14 53.917 104. 12. 5. 0. W001
+Frame.view /Locals /Caller
+
+WinPOS 141.57 0.083333 48. 48. 0. 0. W003
+Register
+
+WinPOS 196.29 0.25 69. 46. 0. 0. W007
+var.watch %SpotLight
+
+
+WinPOS 0.0 0.0 136. 47. 16. 1. W000
+WinTABS 10. 22. 29. 62.
+List.auto
+
+WinPAGE.select P000
+
+sYmbol.SourcePATH.RESet
+
+
+ENDDO

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Cycles xmlns="http://schemas.continental-corporation.com/mts/swc/2016/cycle-definition">
+  <!--Cycle definitions-->
+  <Cycle Id="23" Name="LCF_VEH" CycleTime="20" MaxCycleTime="20" Description=""/>
+  <Cycle Id="65" Name="HLA" CycleTime="60" MaxCycleTime="60" Description=""/>
+  <Cycle Id="90" Name="LCF_SEN" CycleTime="60" MaxCycleTime="60" Description=""/>
+  <Cycle Id="207" Name="FCT_VEH" CycleTime="20" MaxCycleTime="20" Description=""/>  
+  <Cycle Id="208" Name="FCT_SEN" CycleTime="60" MaxCycleTime="60" Description=""/>
+  <Cycle Id="100" Name="TimeSync" CycleTime="20" MaxCycleTime="20" Description=""/>
+  <Cycle Id="66" Name="TSA" CycleTime="60" MaxCycleTime="60" Description=""/>
+  <Cycle Id="800" Name="LCF_Debug" CycleTime="60" MaxCycleTime="60" Description=""/>
+  <Cycle Id="21" Name="VDY" CycleTime="20" MaxCycleTime="20" Description=""/>
+  <Cycle Id="2" Name="VDY_Internal" CycleTime="20" MaxCycleTime="20" Description=""/>
+  <Cycle Id="110" Name="Sdc" CycleTime="50" MaxCycleTime="50" Description=""/>
+
+</Cycles>

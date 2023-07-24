@@ -1,0 +1,1786 @@
+<?xml version='1.0'?>
+<datamodel version="7.0" 
+           xmlns="http://www.tresos.de/_projects/DataModel2/16/root.xsd" 
+           xmlns:a="http://www.tresos.de/_projects/DataModel2/16/attribute.xsd" 
+           xmlns:v="http://www.tresos.de/_projects/DataModel2/06/schema.xsd" 
+           xmlns:d="http://www.tresos.de/_projects/DataModel2/06/data.xsd">
+
+  <d:ctr type="AUTOSAR" factory="autosar" 
+         xmlns:ad="http://www.tresos.de/_projects/DataModel2/08/admindata.xsd" 
+         xmlns:cd="http://www.tresos.de/_projects/DataModel2/08/customdata.xsd" 
+         xmlns:f="http://www.tresos.de/_projects/DataModel2/14/formulaexpr.xsd" 
+         xmlns:icc="http://www.tresos.de/_projects/DataModel2/08/implconfigclass.xsd" 
+         xmlns:mt="http://www.tresos.de/_projects/DataModel2/11/multitest.xsd"  
+         xmlns:variant="http://www.tresos.de/_projects/DataModel2/11/variant.xsd">
+    <d:lst type="TOP-LEVEL-PACKAGES">
+      <d:ctr name="Can" type="AR-PACKAGE">
+        <d:lst type="ELEMENTS">
+          <d:chc name="Can" type="AR-ELEMENT" value="MODULE-CONFIGURATION">
+            <d:ctr type="MODULE-CONFIGURATION">
+              <a:a name="DEF" value="ASPath:/AURIX2G/EcucDefs/Can"/>
+              <a:a name="IMPORTER_INFO" value="ImportEcuConfig_Radar"/>
+              <d:var name="IMPLEMENTATION_CONFIG_VARIANT" type="ENUMERATION" 
+                     value="VariantPostBuild">
+                <a:a name="IMPORTER_INFO" value="@DEF"/>
+              </d:var>
+              <d:ctr name="CanConfigSet" type="IDENTIFIABLE">
+                <a:a name="IMPORTER_INFO" value="ImportEcuConfig_Radar"/>
+                <d:lst name="CanController" type="MAP">
+                  <a:a name="IMPORTER_INFO" value="ImportEcuConfig_Radar"/>
+                  <d:ctr name="FC_Public" type="IDENTIFIABLE">
+                    <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                    <d:var name="CanBusoffProcessing" type="ENUMERATION" 
+                           value="INTERRUPT">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanControllerActivation" type="BOOLEAN" 
+                           value="true">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanControllerLoopbackEnable" type="BOOLEAN" 
+                           value="false">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanRxInputSelection" type="ENUMERATION" 
+                           value="CANxx_RXDA">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanControllerBaseAddress" type="INTEGER" 
+                           value="4028727552"/>
+                    <d:var name="CanRxProcessing" type="ENUMERATION" 
+                           value="INTERRUPT">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanTxProcessing" type="ENUMERATION" 
+                           value="INTERRUPT">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanWakeupFunctionalityAPI" type="BOOLEAN" 
+                           value="false">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanWakeupProcessing" type="ENUMERATION" 
+                           value="INTERRUPT">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanWakeupSupport" type="BOOLEAN" value="false">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:ref name="CanCpuClockRef" type="REFERENCE" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:ref>
+                    <d:ref name="CanPeripheralBusClockRef" type="REFERENCE" 
+                           value="ASPath:/Mcu/Mcu/McuModuleConfiguration/McuClockSettingConfig_0/McuClockReferencePointConfig"/>
+                    <d:lst name="CanWakeupSourceRef"/>
+                    <d:lst name="CanControllerBaudrateConfig" type="MAP">
+                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      <d:ctr name="CanControllerBaudrateConfig" 
+                             type="IDENTIFIABLE">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        <d:var name="CanControllerBaudRate" type="INTEGER" 
+                               value="500">
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:var>
+                        <d:var name="CanControllerBaudRateConfigID" 
+                               type="INTEGER" value="0">
+                          <a:a name="IMPORTER_INFO">
+                            <a:v>@DEF</a:v>
+                            <a:v>@CALC</a:v>
+                          </a:a>
+                        </d:var>
+                        <d:var name="CanControllerPropSeg" type="INTEGER" 
+                               value="47">
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:var>
+                        <d:var name="CanControllerSeg1" type="INTEGER" 
+                               value="17"/>
+                        <d:var name="CanControllerSeg2" type="INTEGER" 
+                               value="15"/>
+                        <d:var name="CanControllerSyncJumpWidth" type="INTEGER" 
+                               value="6"/>
+                        <d:lst name="CanControllerFdBaudrateConfig" type="MAP">
+                          <d:ctr name="CanControllerFdBaudrateConfig_0" 
+                                 type="IDENTIFIABLE">
+                            <d:var name="CanControllerFdBaudRate" 
+                                   type="INTEGER" value="2000"/>
+                            <d:var name="CanControllerPropSeg" type="INTEGER" 
+                                   value="7"/>
+                            <d:var name="CanControllerSeg1" type="INTEGER" 
+                                   value="7"/>
+                            <d:var name="CanControllerSeg2" type="INTEGER" 
+                                   value="5"/>
+                            <d:var name="CanControllerSyncJumpWidth" 
+                                   type="INTEGER" value="2"/>
+                            <d:lst 
+                                   name="CanControllerTrcvDelayCompensationOffset"/>
+                            <d:var name="CanControllerTxBitRateSwitch" 
+                                   type="BOOLEAN" value="true">
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:var>
+                          </d:ctr>
+                        </d:lst>
+                      </d:ctr>
+                    </d:lst>
+                    <d:ref name="CanControllerDefaultBaudrate" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public/CanControllerBaudrateConfig">
+                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                    </d:ref>
+                    <d:var name="CanControllerId" type="INTEGER" value="0"/>
+                    <d:lst name="CanTTController" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="FC" type="IDENTIFIABLE">
+                    <a:a name="IMPORTER_INFO" value="ImportEcuConfig_Radar"/>
+                    <d:var name="CanBusoffProcessing" type="ENUMERATION" 
+                           value="INTERRUPT">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanControllerActivation" type="BOOLEAN" 
+                           value="true">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanControllerLoopbackEnable" type="BOOLEAN" 
+                           value="false">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanRxInputSelection" type="ENUMERATION" 
+                           value="CANxx_RXDB"/>
+                    <d:var name="CanControllerBaseAddress" type="INTEGER" 
+                           value="4028728576"/>
+                    <d:var name="CanRxProcessing" type="ENUMERATION" 
+                           value="INTERRUPT">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanTxProcessing" type="ENUMERATION" 
+                           value="INTERRUPT">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanWakeupFunctionalityAPI" type="BOOLEAN" 
+                           value="false">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanWakeupProcessing" type="ENUMERATION" 
+                           value="INTERRUPT">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanWakeupSupport" type="BOOLEAN" value="false">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:ref name="CanCpuClockRef" type="REFERENCE" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:ref>
+                    <d:ref name="CanPeripheralBusClockRef" type="REFERENCE" 
+                           value="ASPath:/Mcu/Mcu/McuModuleConfiguration/McuClockSettingConfig_0/McuClockReferencePointConfig"/>
+                    <d:lst name="CanWakeupSourceRef"/>
+                    <d:lst name="CanControllerBaudrateConfig" type="MAP">
+                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig_Radar"/>
+                      <d:ctr name="CanControllerBaudrateConfig" 
+                             type="IDENTIFIABLE">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig_Radar"/>
+                        <d:var name="CanControllerBaudRate" type="INTEGER" 
+                               value="500"/>
+                        <d:var name="CanControllerBaudRateConfigID" 
+                               type="INTEGER" value="0">
+                          <a:a name="IMPORTER_INFO">
+                            <a:v>@DEF</a:v>
+                            <a:v>@CALC</a:v>
+                          </a:a>
+                        </d:var>
+                        <d:var name="CanControllerPropSeg" type="INTEGER" 
+                               value="47"/>
+                        <d:var name="CanControllerSeg1" type="INTEGER" 
+                               value="17"/>
+                        <d:var name="CanControllerSeg2" type="INTEGER" 
+                               value="15"/>
+                        <d:var name="CanControllerSyncJumpWidth" type="INTEGER" 
+                               value="6"/>
+                        <d:lst name="CanControllerFdBaudrateConfig" type="MAP">
+                          <d:ctr name="CanControllerFdBaudrateConfig_0" 
+                                 type="IDENTIFIABLE">
+                            <d:var name="CanControllerFdBaudRate" 
+                                   type="INTEGER" value="2000"/>
+                            <d:var name="CanControllerPropSeg" type="INTEGER" 
+                                   value="7"/>
+                            <d:var name="CanControllerSeg1" type="INTEGER" 
+                                   value="7"/>
+                            <d:var name="CanControllerSeg2" type="INTEGER" 
+                                   value="5"/>
+                            <d:var name="CanControllerSyncJumpWidth" 
+                                   type="INTEGER" value="2"/>
+                            <d:lst 
+                                   name="CanControllerTrcvDelayCompensationOffset"/>
+                            <d:var name="CanControllerTxBitRateSwitch" 
+                                   type="BOOLEAN" value="true">
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:var>
+                          </d:ctr>
+                        </d:lst>
+                      </d:ctr>
+                    </d:lst>
+                    <d:ref name="CanControllerDefaultBaudrate" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC/CanControllerBaudrateConfig">
+                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig_Radar"/>
+                    </d:ref>
+                    <d:var name="CanControllerId" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@CALC"/>
+                    </d:var>
+                    <d:lst name="CanTTController" type="MAP"/>
+                  </d:ctr>
+                </d:lst>
+                <d:lst name="CanHardwareObject" type="MAP">
+                  <a:a name="IMPORTER_INFO" value="ImportEcuConfig_Radar"/>
+                  <d:ctr name="MCUHOHGroup2_1_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="0"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="80"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup1_0_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="1"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="353"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_19_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="27"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="512"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup3_0_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="BASIC"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="52"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="TRANSMIT"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="0"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" value="0"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_0_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="2"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="368"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_2_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="3"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="378"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_3_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="4"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="382"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_4_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="5"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="384"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_5_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="6"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="450"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_6_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="7"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="523"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_7_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="8"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="591"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_9_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="9"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="632"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_10_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="10"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="648"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_11_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="11"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="651"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_12_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="12"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="680"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_13_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="13"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="706"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_14_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="14"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="722"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_15_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="15"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="734"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_16_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="16"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="759"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_18_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="17"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="906"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_20_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="18"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="943"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_21_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="19"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="957"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_22_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="20"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="962"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_23_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="21"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" 
+                               value="1287"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="HOH_2_FC" type="IDENTIFIABLE">
+                    <a:a name="IMPORTER_INFO" value="ImportEcuConfig_Radar"/>
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="TRANSMIT"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="BASIC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig_Radar"/>
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig_Radar"/>
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="0"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" value="0"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:var name="CanObjectId" type="INTEGER" value="53"/>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_24_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="22"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" 
+                               value="2015"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_25_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="23"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" 
+                               value="1891"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_26_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="24"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" 
+                               value="1874"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_27_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="25"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" 
+                               value="1536"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_23_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="28"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="273"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_24_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="29"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="274"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_25_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="30"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="275"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_26_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="31"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="276"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_27_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="32"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="277"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_28_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="33"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="278"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_29_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="34"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="279"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_30_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="35"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="280"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_31_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="36"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="281"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_32_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="37"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="282"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_33_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="38"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="283"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_34_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="39"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="284"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_35_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="40"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="285"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_36_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="41"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="286"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_37_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="42"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="287"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_38_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="43"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="288"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_39_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="44"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="310"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_40_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="45"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="312"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_41_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="46"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="411"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_42_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="47"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="497"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_43_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="48"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="513"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_44_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="49"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="836"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="CanWakeupFrame_FC_Public" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="BASIC"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1"/>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1"/>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="26"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC_Public"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter_0" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" 
+                               value="1030"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_0_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="50"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="837"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                  <d:ctr name="MCUHOHGroup2_1_FC" type="IDENTIFIABLE">
+                    <d:lst name="CanFdPaddingValue"/>
+                    <d:var name="CanHandleType" type="ENUMERATION" value="FULL"/>
+                    <d:lst name="CanHardwareObjectUsesPolling"/>
+                    <d:var name="CanHwObjectCount" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanHwFIFOThreshold" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="CanIdType" type="ENUMERATION" value="STANDARD"/>
+                    <d:var name="CanObjectId" type="INTEGER" value="51"/>
+                    <d:var name="CanObjectType" type="ENUMERATION" 
+                           value="RECEIVE"/>
+                    <d:lst name="CanTriggerTransmitEnable"/>
+                    <d:ref name="CanControllerRef" type="REFERENCE" 
+                           value="ASPath:/Can/Can/CanConfigSet/FC"/>
+                    <d:lst name="CanMainFunctionRWPeriodRef"/>
+                    <d:lst name="CanHwFilter" type="MAP">
+                      <d:ctr name="CanHwFilter" type="IDENTIFIABLE">
+                        <d:var name="CanHwFilterCode" type="INTEGER" value="838"/>
+                        <d:var name="CanHwFilterMask" type="INTEGER" 
+                               value="2047"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="CanTTHardwareObjectTrigger" type="MAP"/>
+                  </d:ctr>
+                </d:lst>
+                <d:lst name="CanIcom" type="MAP"/>
+              </d:ctr>
+              <d:ctr name="CanGeneral" type="IDENTIFIABLE">
+                <d:var name="CanDevErrorDetection" type="BOOLEAN" value="false"/>
+                <d:var name="CanInitDeInitApiMode" type="ENUMERATION" 
+                       value="CAN_17_MCMCAN_MCAL_SUPERVISOR">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="CanMultiCoreErrorDetect" type="BOOLEAN" 
+                       value="false"/>
+                <d:var name="CanIndex" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:lst name="CanLPduReceiveCalloutFunction"/>
+                <d:lst name="CanMainFunctionBusoffPeriod">
+                  <d:var type="FLOAT" value="0.005">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                </d:lst>
+                <d:var name="CanMainFunctionModePeriod" type="FLOAT" 
+                       value="0.005">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:lst name="CanMainFunctionWakeupPeriod"/>
+                <d:var name="CanMultiplexedTransmission" type="BOOLEAN" 
+                       value="true"/>
+                <d:var name="CanPublicIcomSupport" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="CanSetBaudrateApi" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="CanTimeoutDuration" type="FLOAT" value="0.001">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="CanVersionInfoApi" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="CanDeInitApi" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:lst name="CanOsCounterRef"/>
+                <d:ref name="CanSupportTTCANRef" type="REFERENCE" >
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:ref>
+                <d:lst name="CanIcomGeneral" type="MAP"/>
+                <d:lst name="CanMainFunctionRWPeriods" type="MAP">
+                  <d:ctr name="CanMainFunctionRWPeriods_0" type="IDENTIFIABLE">
+                    <d:var name="CanMainFunctionPeriod" type="FLOAT" 
+                           value="0.005">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                  </d:ctr>
+                </d:lst>
+              </d:ctr>
+              <d:ctr name="CommonPublishedInformation" type="IDENTIFIABLE">
+                <d:var name="ArMajorVersion" type="INTEGER" value="4">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ArMinorVersion" type="INTEGER" value="2">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ArPatchVersion" type="INTEGER" value="2">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwMajorVersion" type="INTEGER" value="20"/>
+                <d:var name="SwMinorVersion" type="INTEGER" value="0"/>
+                <d:var name="SwPatchVersion" type="INTEGER" value="2">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ModuleId" type="INTEGER" value="80">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="VendorId" type="INTEGER" value="17">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="VendorApiInfix" type="STRING" value="McmCan">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="Release" type="STRING" value="_TRICORE_TC387">
+                  <a:a name="IMPORTER_INFO">
+                    <a:v>@CALC</a:v>
+                    <a:v>@DEF</a:v>
+                  </a:a>
+                </d:var>
+              </d:ctr>
+            </d:ctr>
+          </d:chc>
+        </d:lst>
+      </d:ctr>
+    </d:lst>
+  </d:ctr>
+
+</datamodel>

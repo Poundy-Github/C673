@@ -1,0 +1,15 @@
+; Toolbar
+menu.rp
+(
+    add
+    toolbar
+    (
+        toolitem "Store all settings" 	"S,R" "do ..\..\common\store_settings.cmm"
+        toolitem "Load layout"        	"LL,B" "do ..\..\common\load_settings.cmm settings"
+		toolitem "Load breakpoints"  	"LB,B" "do ..\..\common\load_settings.cmm break"
+		separator
+        toolitem "Attach to target"  	"AT,g" "do ..\..\common\runscript.cmm attach.cmm"
+        toolitem "Detach from target"  	"DT,O" "do ..\..\common\runscript.cmm detach.cmm"
+		separator
+    )
+)

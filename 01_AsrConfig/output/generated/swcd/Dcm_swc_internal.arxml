@@ -1,0 +1,2065 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3_STRICT_COMPACT.xsd">
+   <AR-PACKAGES>
+  <AR-PACKAGE>
+   <SHORT-NAME>AUTOSAR_Dcm</SHORT-NAME>
+   <ELEMENTS/>
+   <AR-PACKAGES>
+    <AR-PACKAGE>
+     <SHORT-NAME>SwComponentTypes</SHORT-NAME>
+     <ELEMENTS>
+      <SERVICE-SW-COMPONENT-TYPE>
+       <SHORT-NAME>Dcm</SHORT-NAME>
+       <PORTS>
+            <!-- Provide default service interface as AUTOSAR 4.2 / 4.0 -->
+        <P-PORT-PROTOTYPE>
+         <SHORT-NAME>DCMServices</SHORT-NAME>
+         <PROVIDED-COM-SPECS>
+          <SERVER-COM-SPEC>
+           <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DCMServices/GetSecurityLevel</OPERATION-REF>
+           <QUEUE-LENGTH>1</QUEUE-LENGTH>
+          </SERVER-COM-SPEC>
+          <SERVER-COM-SPEC>
+           <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DCMServices/GetSesCtrlType</OPERATION-REF>
+           <QUEUE-LENGTH>1</QUEUE-LENGTH>
+          </SERVER-COM-SPEC>
+          <SERVER-COM-SPEC>
+           <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DCMServices/GetActiveProtocol</OPERATION-REF>
+           <QUEUE-LENGTH>1</QUEUE-LENGTH>
+          </SERVER-COM-SPEC>
+          <SERVER-COM-SPEC>
+           <OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DCMServices/ResetToDefaultSession</OPERATION-REF>
+           <QUEUE-LENGTH>1</QUEUE-LENGTH>
+          </SERVER-COM-SPEC>
+<!-- !LINKSTO Dcm.EB.CommunicationModeHandling.EnableSetActiveDiagnosis,1 -->
+         </PROVIDED-COM-SPECS>
+         <PROVIDED-INTERFACE-TREF
+          DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DCMServices</PROVIDED-INTERFACE-TREF>
+        </P-PORT-PROTOTYPE>
+<!-- !LINKSTO SWS_Dcm_01032,1 -->
+
+
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>SecurityAccess_SA_Level1</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/SecurityAccess_SA_Level1</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F120</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F120</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F121</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F121</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F122</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F122</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F189</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F189</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F089</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F089</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F187</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F187</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F18A</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F18A</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F18C</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F18C</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F190</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F190</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F170</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F170</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F171</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F171</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F184</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F184</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F188</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F188</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F123</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F123</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F191</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F191</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F194</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F194</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1F1</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F1</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1F2</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F2</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1F3</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F3</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1F5</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F5</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_3BAF</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_3BAF</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_0103</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_0103</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1F7</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F7</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1F8</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F8</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1F9</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F9</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_11B7</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_11B7</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1FA</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FA</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1FB</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FB</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1FC</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FC</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_11B5</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_11B5</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F186</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F186</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1FE</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FE</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1FF</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FF</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD14</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD14</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD15</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD15</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD16</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD16</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD17</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD17</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD18</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD18</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD19</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD19</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD1E</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD1E</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD1F</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD1F</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD20</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD20</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD21</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD21</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD22</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD22</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD23</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD23</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1F0</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F0</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD24</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD24</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD26</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD26</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD27</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD27</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD28</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD28</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD25</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD25</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F010</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F010</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1A3</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1A3</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1A4</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1A4</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1A5</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1A5</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1A7</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1A7</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1A8</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1A8</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1A9</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1A9</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1AA</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1AA</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1AB</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1AB</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD29</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD29</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FEC0</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FEC0</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FDFF</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FDFF</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_F1FD</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FD</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD00</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD00</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+          <R-PORT-PROTOTYPE>
+         <SHORT-NAME>DataServices_DcmDspData_FD2A</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD2A</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>ServiceRequestSupplierNotification_ServiceRequestSupplierNotification</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/ServiceRequestNotification</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x800B</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x800B</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x800C</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x800C</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x0203</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0203</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x0204</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0204</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x0205</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0205</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x8010</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x8010</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x0301</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0301</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x0303</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0303</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x0302</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0302</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x0305</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0305</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x0306</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0306</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x0307</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0307</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x0308</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0308</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x0309</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0309</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x030A</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x030A</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0x8011</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x8011</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0xF012</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0xF012</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+        <!-- !LINKSTO SWS_Dcm_01040,1 -->
+        <R-PORT-PROTOTYPE>
+         <SHORT-NAME>RoutineServices_DcmDspRoutine_0xF013</SHORT-NAME>
+         <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0xF013</REQUIRED-INTERFACE-TREF>
+        </R-PORT-PROTOTYPE>
+
+<!-- !LINKSTO Dcm.RequiredPort.DataServices_DcmDspPidData.CSInterface,1 -->
+
+
+       </PORTS>
+       <INTERNAL-BEHAVIORS>
+        <SWC-INTERNAL-BEHAVIOR>
+         <SHORT-NAME>DcmIntBeh</SHORT-NAME>
+         <EVENTS>
+              <!-- Provide default service interface as AUTOSAR 4.2 / 4.0 -->
+          <OPERATION-INVOKED-EVENT>
+           <SHORT-NAME>EV_GetSecurityLevel</SHORT-NAME>
+           <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DcmIntBeh/RE_GetSecurityLevel</START-ON-EVENT-REF>
+           <OPERATION-IREF>
+            <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DCMServices</CONTEXT-P-PORT-REF>
+            <TARGET-PROVIDED-OPERATION-REF
+             DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DCMServices/GetSecurityLevel</TARGET-PROVIDED-OPERATION-REF>
+           </OPERATION-IREF>
+          </OPERATION-INVOKED-EVENT>
+          <OPERATION-INVOKED-EVENT>
+           <SHORT-NAME>EV_GetSesCtrlType</SHORT-NAME>
+           <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DcmIntBeh/RE_GetSesCtrlType</START-ON-EVENT-REF>
+           <OPERATION-IREF>
+            <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DCMServices</CONTEXT-P-PORT-REF>
+            <TARGET-PROVIDED-OPERATION-REF
+             DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DCMServices/GetSesCtrlType</TARGET-PROVIDED-OPERATION-REF>
+           </OPERATION-IREF>
+          </OPERATION-INVOKED-EVENT>
+          <OPERATION-INVOKED-EVENT>
+           <SHORT-NAME>EV_GetActiveProtocol</SHORT-NAME>
+           <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DcmIntBeh/RE_GetActiveProtocol</START-ON-EVENT-REF>
+           <OPERATION-IREF>
+            <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DCMServices</CONTEXT-P-PORT-REF>
+            <TARGET-PROVIDED-OPERATION-REF
+             DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DCMServices/GetActiveProtocol</TARGET-PROVIDED-OPERATION-REF>
+           </OPERATION-IREF>
+          </OPERATION-INVOKED-EVENT>
+          <OPERATION-INVOKED-EVENT>
+           <SHORT-NAME>EV_ResetToDefaultSession</SHORT-NAME>
+           <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DcmIntBeh/RE_ResetToDefaultSession</START-ON-EVENT-REF>
+           <OPERATION-IREF>
+            <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DCMServices</CONTEXT-P-PORT-REF>
+            <TARGET-PROVIDED-OPERATION-REF
+             DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DCMServices/ResetToDefaultSession</TARGET-PROVIDED-OPERATION-REF>
+           </OPERATION-IREF>
+          </OPERATION-INVOKED-EVENT>
+<!-- !LINKSTO Dcm.EB.CommunicationModeHandling.EnableSetActiveDiagnosis,1 -->
+<!-- !LINKSTO SWS_Dcm_00699,1 -->
+         </EVENTS>
+         <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+         <INCLUDED-DATA-TYPE-SETS>
+          <INCLUDED-DATA-TYPE-SET>
+           <DATA-TYPE-REFS>
+            <DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Dcm/ImplementationDataTypes/Dcm_DidSupportedType</DATA-TYPE-REF>
+            <DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Dcm/ImplementationDataTypes/Dcm_ConfirmationStatusType</DATA-TYPE-REF>
+            <DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Dcm/ImplementationDataTypes/Dcm_OpStatusType</DATA-TYPE-REF>
+           <DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Dcm/ImplementationDataTypes/Dcm_NegativeResponseCodeType</DATA-TYPE-REF>
+           </DATA-TYPE-REFS>
+          </INCLUDED-DATA-TYPE-SET>
+         </INCLUDED-DATA-TYPE-SETS>
+         <PORT-API-OPTIONS>
+              <!-- Provide default service interface as AUTOSAR 4.2 / 4.0 -->
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/SecurityAccess_SA_Level1</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F120</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F121</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F122</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F189</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F089</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F187</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F18A</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F18C</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F190</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F170</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F171</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F184</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F188</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F123</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F191</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F194</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F1</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F2</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F3</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F5</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_3BAF</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_0103</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F7</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F8</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F9</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_11B7</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FA</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FB</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FC</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_11B5</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F186</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FE</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FF</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD14</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD15</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD16</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD17</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD18</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD19</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD1E</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD1F</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD20</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD21</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD22</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD23</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F0</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD24</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD26</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD27</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD28</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD25</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F010</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1A3</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1A4</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1A5</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1A7</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1A8</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1A9</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1AA</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1AB</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD29</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FEC0</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FDFF</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FD</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD00</PORT-REF>
+          </PORT-API-OPTION>
+            <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD2A</PORT-REF>
+          </PORT-API-OPTION>
+
+
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/ServiceRequestSupplierNotification_ServiceRequestSupplierNotification</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x800B</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x800C</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0203</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0204</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0205</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x8010</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0301</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0303</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0302</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0305</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0306</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0307</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0308</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0309</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x030A</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x8011</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0xF012</PORT-REF>
+          </PORT-API-OPTION>
+          <PORT-API-OPTION>
+           <ENABLE-TAKE-ADDRESS>true</ENABLE-TAKE-ADDRESS>
+           <INDIRECT-API>false</INDIRECT-API>
+           <PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0xF013</PORT-REF>
+          </PORT-API-OPTION>
+
+<!-- !LINKSTO SWS_Dcm_00699,1 -->
+
+
+         </PORT-API-OPTIONS>
+         <RUNNABLES>
+          <RUNNABLE-ENTITY>
+           <SHORT-NAME>RE_GetSecurityLevel</SHORT-NAME>
+           <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+           <SW-ADDR-METHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDR-METHOD-REF>
+           <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+           <SYMBOL>Dcm_GetSecurityLevel</SYMBOL>
+          </RUNNABLE-ENTITY>
+          <RUNNABLE-ENTITY>
+           <SHORT-NAME>RE_GetSesCtrlType</SHORT-NAME>
+           <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+           <SW-ADDR-METHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDR-METHOD-REF>
+           <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+           <SYMBOL>Dcm_GetSesCtrlType</SYMBOL>
+          </RUNNABLE-ENTITY>
+          <RUNNABLE-ENTITY>
+           <SHORT-NAME>RE_GetActiveProtocol</SHORT-NAME>
+           <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+           <SW-ADDR-METHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDR-METHOD-REF>
+           <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+           <SYMBOL>Dcm_GetActiveProtocol</SYMBOL>
+          </RUNNABLE-ENTITY>
+          <RUNNABLE-ENTITY>
+           <SHORT-NAME>RE_ResetToDefaultSession</SHORT-NAME>
+           <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+           <SW-ADDR-METHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDR-METHOD-REF>
+           <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
+           <SYMBOL>Dcm_ResetToDefaultSession</SYMBOL>
+          </RUNNABLE-ENTITY>
+<!-- !LINKSTO Dcm.EB.CommunicationModeHandling.EnableSetActiveDiagnosis,1 -->
+          <RUNNABLE-ENTITY>
+           <SHORT-NAME>RE_MainFunction</SHORT-NAME>
+           <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+           <SW-ADDR-METHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDR-METHOD-REF>
+           <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+           <DATA-READ-ACCESSS/>
+           <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+           </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+           <DATA-SEND-POINTS>
+           </DATA-SEND-POINTS>
+           <DATA-WRITE-ACCESSS/>
+           <SERVER-CALL-POINTS>
+               <!-- Provide default service interface as AUTOSAR 4.2 / 4.0 -->
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_SecurityAccessGetSeed_SA_Level1</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/SecurityAccess_SA_Level1</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/SecurityAccess_SA_Level1/GetSeed</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_SecurityAccessCompareKey_SA_Level1</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/SecurityAccess_SA_Level1</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/SecurityAccess_SA_Level1/CompareKey</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_SecurityAccessGetSecurityAttemptCounter_SA_Level1</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/SecurityAccess_SA_Level1</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/SecurityAccess_SA_Level1/GetSecurityAttemptCounter</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_SecurityAccessSetSecurityAttemptCounter_SA_Level1</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/SecurityAccess_SA_Level1</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/SecurityAccess_SA_Level1/SetSecurityAttemptCounter</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+
+
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F120</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F120</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F120/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F121</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F121</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F121/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F122</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F122</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F122/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F189</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F189</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F189/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_F089</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F089</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F089/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F089</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F089</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F089/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_F187</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F187</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F187/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F187</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F187</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F187/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_F18A</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F18A</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F18A/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F18A</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F18A</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F18A/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_F18C</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F18C</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F18C/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F18C</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F18C</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F18C/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_F190</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F190</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F190/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F190</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F190</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F190/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F170</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F170</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F170/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F171</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F171</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F171/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F184</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F184</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F184/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F188</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F188</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F188/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F123</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F123</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F123/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F191</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F191</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F191/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F194</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F194</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F194/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_F1F1</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F1</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F1/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1F1</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F1</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F1/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_F1F2</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F2</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F2/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1F2</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F2</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F2/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_F1F3</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F3</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F3/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1F3</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F3</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F3/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1F5</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F5</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F5/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_3BAF</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_3BAF</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_3BAF/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_0103</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_0103</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_0103/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1F7</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F7</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F7/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1F8</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F8</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F8/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1F9</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F9</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F9/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_11B7</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_11B7</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_11B7/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1FA</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FA</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FA/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1FB</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FB</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FB/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1FC</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FC</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FC/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_11B5</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_11B5</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_11B5/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F186</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F186</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F186/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_F1FE</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FE</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FE/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1FE</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FE</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FE/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_F1FF</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FF</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FF/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1FF</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FF</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FF/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD14</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD14</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD14/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD15</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD15</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD15/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD16</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD16</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD16/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD17</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD17</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD17/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD18</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD18</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD18/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD19</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD19</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD19/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD1E</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD1E</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD1E/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD1F</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD1F</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD1F/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD20</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD20</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD20/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD21</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD21</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD21/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD22</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD22</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD22/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD23</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD23</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD23/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_F1F0</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F0</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F0/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1F0</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1F0</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1F0/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_FD24</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD24</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD24/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD24</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD24</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD24/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD26</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD26</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD26/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD27</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD27</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD27/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD28</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD28</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD28/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD25</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD25</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD25/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesConditionCheckRead_DcmDspData_F010</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F010</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F010/ConditionCheckRead</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F010</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F010</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F010/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1A3</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1A3</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1A3/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1A4</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1A4</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1A4/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1A5</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1A5</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1A5/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1A7</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1A7</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1A7/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1A8</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1A8</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1A8/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1A9</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1A9</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1A9/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1AA</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1AA</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1AA/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1AB</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1AB</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1AB/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD29</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD29</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD29/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+  <!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FEC0</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FEC0</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FEC0/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_FDFF</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FDFF</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FDFF/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FDFF</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FDFF</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FDFF/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_F1FD</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FD</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FD/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_F1FD</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_F1FD</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_F1FD/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_FD00</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD00</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD00/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD00</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD00</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD00/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+              <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesWriteData_DcmDspData_FD2A</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD2A</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD2A/WriteData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+<!-- Since resetting control to ECU may happen in the context of the Dcm_MainFunction as well when dropping to the default session, this mapping must always exist -->
+                 <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_DataServicesReadData_DcmDspData_FD2A</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DataServices_DcmDspData_FD2A</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/DataServices_DcmDspData_FD2A/ReadData</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+
+
+
+
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_ServiceRequestSupplierNotificationIndication_ServiceRequestSupplierNotification</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/ServiceRequestSupplierNotification_ServiceRequestSupplierNotification</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/ServiceRequestNotification/Indication</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_ServiceRequestSupplierNotificationConfirmation_ServiceRequestSupplierNotification</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/ServiceRequestSupplierNotification_ServiceRequestSupplierNotification</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/ServiceRequestNotification/Confirmation</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x800B</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x800B</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x800B/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0x800B</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x800B</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x800B/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x800C</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x800C</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x800C/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0x800C</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x800C</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x800C/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x0203</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0203</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0203/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x0204</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0204</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0204/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x0205</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0205</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0205/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x8010</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x8010</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x8010/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0x8010</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x8010</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x8010/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x0301</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0301</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0301/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0x0301</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0301</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0301/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x0303</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0303</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0303/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0x0303</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0303</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0303/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x0302</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0302</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0302/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0x0302</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0302</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0302/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x0305</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0305</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0305/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0x0305</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0305</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0305/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x0306</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0306</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0306/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStop_DcmDspRoutine_0x0306</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0306</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0306/Stop</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0x0306</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0306</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0306/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x0307</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0307</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0307/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStop_DcmDspRoutine_0x0307</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0307</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0307/Stop</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0x0307</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0307</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0307/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x0308</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0308</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0308/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0x0308</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0308</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0308/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x0309</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0309</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0309/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0x0309</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x0309</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x0309/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x030A</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x030A</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x030A/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0x030A</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x030A</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x030A/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0x8011</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x8011</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x8011/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0x8011</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0x8011</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0x8011/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0xF012</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0xF012</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0xF012/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0xF012</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0xF012</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0xF012/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesStart_DcmDspRoutine_0xF013</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0xF013</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0xF013/Start</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+            <SYNCHRONOUS-SERVER-CALL-POINT>
+             <SHORT-NAME>sscp_RoutineServicesRequestResults_DcmDspRoutine_0xF013</SHORT-NAME>
+             <OPERATION-IREF>
+              <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_Dcm/SwComponentTypes/Dcm/RoutineServices_DcmDspRoutine_0xF013</CONTEXT-R-PORT-REF>
+              <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_Dcm/PortInterfaces/RoutineServices_DcmDspRoutine_0xF013/RequestResults</TARGET-REQUIRED-OPERATION-REF>
+             </OPERATION-IREF>
+             <TIMEOUT>0.0</TIMEOUT>
+            </SYNCHRONOUS-SERVER-CALL-POINT>
+           </SERVER-CALL-POINTS>
+           <SYMBOL>Dcm_MainFunction</SYMBOL>
+           <WAIT-POINTS/>
+          </RUNNABLE-ENTITY>
+         </RUNNABLES>
+         <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+        </SWC-INTERNAL-BEHAVIOR>
+       </INTERNAL-BEHAVIORS>
+      </SERVICE-SW-COMPONENT-TYPE>
+     </ELEMENTS>
+    </AR-PACKAGE>
+   </AR-PACKAGES>
+  </AR-PACKAGE>
+  <AR-PACKAGE>
+   <SHORT-NAME>EB_Dcm</SHORT-NAME>
+   <AR-PACKAGES>
+    <AR-PACKAGE>
+       <SHORT-NAME>SwcImplementations</SHORT-NAME>
+       <ELEMENTS>
+        <SWC-IMPLEMENTATION>
+         <SHORT-NAME>DcmImpl</SHORT-NAME>
+         <CODE-DESCRIPTORS>
+          <CODE>
+           <SHORT-NAME>Code</SHORT-NAME>
+           <ARTIFACT-DESCRIPTORS>
+            <AUTOSAR-ENGINEERING-OBJECT>
+             <SHORT-LABEL>EngObject</SHORT-LABEL>
+             <CATEGORY>SWSRC</CATEGORY>
+            </AUTOSAR-ENGINEERING-OBJECT>
+           </ARTIFACT-DESCRIPTORS>
+          </CODE>
+         </CODE-DESCRIPTORS>
+         <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+         <RESOURCE-CONSUMPTION>
+          <SHORT-NAME>Resources</SHORT-NAME>
+          <MEMORY-SECTIONS>
+           <MEMORY-SECTION>
+            <SHORT-NAME>CODE</SHORT-NAME>
+            <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+           </MEMORY-SECTION>
+          </MEMORY-SECTIONS>
+         </RESOURCE-CONSUMPTION>
+         <SW-VERSION>5.0.10</SW-VERSION>
+         <VENDOR-ID>1</VENDOR-ID>
+         <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/AUTOSAR_Dcm/SwComponentTypes/Dcm/DcmIntBeh</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+       </ELEMENTS>
+    </AR-PACKAGE>
+   </AR-PACKAGES>
+  </AR-PACKAGE>
+ </AR-PACKAGES>
+</AUTOSAR>

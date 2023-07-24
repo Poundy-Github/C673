@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<xs:schema targetNamespace="http://schemas.continental-corporation.com/mts/swc/2016/cycle-definition"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://schemas.continental-corporation.com/mts/swc/2016/cycle-definition"
+           xmlns:tns="http://schemas.continental-corporation.com/mts/swc/2016/cycle-definition"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="Cycles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Cycle" type="Cycles.Cycle" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:anyAttribute/>
+    </xs:complexType>
+    <xs:unique name="CycleIdUnique">
+      <xs:selector xpath="tns:View"/>
+      <xs:field xpath="@CycleID"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:complexType name="Cycles.Cycle">
+    <xs:attribute name="Name" type="xs:token" use="required" />
+    <xs:attribute name="Id" type="xs:unsignedInt" use="required" />
+    <xs:attribute name="CycleTime" type="xs:unsignedLong" use="required" />
+    <xs:attribute name="MaxCycleTime" type="xs:unsignedLong" use="required" />
+    <xs:attribute name="Description" type="xs:string" use="optional" />
+  </xs:complexType>
+</xs:schema>

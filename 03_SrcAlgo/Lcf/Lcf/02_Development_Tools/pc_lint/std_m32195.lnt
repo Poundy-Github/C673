@@ -1,0 +1,30 @@
+// Standard lint options
+
+//===================================================
+// Memory-Model
+//===================================================
+-fcu        // plain character is signed
+-sc1        // sizeof(char) is 1
+-ss2        // sizeof(short) is 2
+-si4        // sizeof(int) is 4
+-sl4        // sizeof(long) is 4
+-sll4       // sizeof(long long) is 4
+-sf4        // sizeof(float) is 4
+-sd4        // sizeof(double) is 4
+-sld4       // sizeof(long double)  is 4
+
+-spN4       // sizeof(near pointer) is 4
+-spF4       // sizeof(far pointer) is 4
+
+//===================================================
+// Include Settings for the Algo&SW Domains
+//===================================================
+adas_options.lnt
+
+//===================================================
+// Linbuffer increase
+//===================================================
+//+linebuf This option doubles the size of the line 
+//buffer, which is initially 600 bytes.
++linebuf 
++linebuf

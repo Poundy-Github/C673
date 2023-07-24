@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SimVis>
+    <Tab Name="HLA Debug" RefreshCycleMs="60">
+        <Splitter Orientation="Vertical" Ratio="6">
+            <View Name="View1" Ratio="6" />
+            <View Name="View2" Ratio="3" />
+            
+        </Splitter>
+    </Tab>
+ 
+    <ViewRef Url="HLA Debug.View1">
+        <RenderContext Name="CIPP.PerspectiveCROI"/>
+        <RenderContext Name="CHIPS.PerspectiveCROI"/>
+        <RenderContext Name="CIPP.OddYP0Image"/>
+        <RenderContext Name="LSD Draw Image"/>
+        <RenderContext Name="HLA Draw"/>
+    </ViewRef>
+
+    <ViewRef Url="HLA Debug.View2">
+        <RenderContext Name="CIPP.PerspectiveCROI"/>
+        <RenderContext Name="CHIPS.PerspectiveCROI"/>
+        <RenderContext Name="HLA Draw2"/>
+    </ViewRef>
+</SimVis>
+

@@ -1,0 +1,4 @@
+; Check if project variant is available
+
+; Default command for "attach"
+sys.attach

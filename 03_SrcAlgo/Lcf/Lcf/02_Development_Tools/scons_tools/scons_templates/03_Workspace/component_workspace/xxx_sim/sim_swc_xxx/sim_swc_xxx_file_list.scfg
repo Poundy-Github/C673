@@ -1,0 +1,43 @@
+# Note:
+# 1. Rename this file and replace xxx with component name in lowercase.
+# 2. Replace xxx with component name in lowercase.
+# 3. Update each variable according to the existing source files and include paths.
+# 4. Update project specific files with respect to project_path
+# ----------------------------------------------------------------------------------------
+
+# config file containing source files in PC sim wrapper
+
+Import("project_name")
+
+xxx_sim_swc_source_files = """
+sim_swc_xxx.cpp
+sim_swc_xxx_dll.cpp
+stdafx.cpp
+"""
+
+# source files for the project "project_name"
+if project_name == 'MFCxxx':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	xxx_sim_swc_source_files_project_specific = ("""XXX/xxx_sim/sim_swc_xxx.cpp""")
+	
+project_path = "../../00_Projects/" + project_name + "/"       
+xxx_sim_swc_source_files_project_specific_list = xxx_sim_swc_source_files_project_specific.split()
+xxx_sim_swc_source_files_project_specific_list = [project_path + rel_path for rel_path in xxx_sim_swc_source_files_project_specific_list]
+xxx_sim_swc_source_files_list = xxx_sim_swc_source_files.split()
+xxx_sim_swc_source_files = '\n'.join(xxx_sim_swc_source_files_list + xxx_sim_swc_source_files_project_specific_list)
+
+
+xxx_sim_swc_include_paths = """
+#../xxx_sim/sim_swc_xxx/
+"""
+
+# include paths for the project "project_name"
+if project_name == 'MFCxxx':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+	xxx_sim_swc_include_paths_project_specific = ("""XXX/xxx_sim/sim_swc_xxx.cpp""")
+	
+project_path = "../../00_Projects/" + project_name + "/"       
+xxx_sim_swc_include_paths_project_specific_list = xxx_sim_swc_include_paths_project_specific.split()
+xxx_sim_swc_include_paths_project_specific_list = [project_path + rel_path for rel_path in xxx_sim_swc_include_paths_project_specific_list]
+xxx_sim_swc_include_paths_list = xxx_sim_swc_include_paths.split()
+xxx_sim_swc_include_paths = '\n'.join(xxx_sim_swc_include_paths_list + xxx_sim_swc_include_paths_project_specific_list)

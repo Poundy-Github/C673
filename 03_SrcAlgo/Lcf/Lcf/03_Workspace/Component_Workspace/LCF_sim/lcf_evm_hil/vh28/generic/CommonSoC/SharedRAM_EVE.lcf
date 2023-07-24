@@ -1,0 +1,6 @@
+/* linker command file for GNU build environment */
+
+SECTIONS 
+{
+  .memsec_shared_data_eve : {*(SORT_BY_NAME(.memsec_shared_data_eve.*))} > DDR3_SHARED_EVE
+}

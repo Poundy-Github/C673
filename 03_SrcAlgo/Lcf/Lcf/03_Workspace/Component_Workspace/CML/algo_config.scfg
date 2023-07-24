@@ -1,0 +1,103 @@
+
+# read file list containing all variables used in this scfg file
+execfile(File("#algo_lib_file_list.scfg").abspath)
+execfile(File("#../cml_sim/sim_swc_cml/sim_swc_cml_file_list.scfg").abspath)
+cml_algo_sources_project_specific = """
+"""
+#execfile(File("#../00_Projects/MFC510/CML_sim/cml_algo_sources_project_specific.scfg").abspath)
+execfile(File("#../CML_sim/sim_swc_cml/sim_swc_config.scfg").abspath)
+
+# source and include paths for C674x
+c674x_src = Split(cml_algo_sources)
+c674x_cpp_path = Split(cml_algo_include_paths) + Split(cml_algo_common_include_paths)
+# include paths that must be added before compiler includes
+c674x_prepend_cpp_path = []
+
+# source and include paths for CortexA8
+ca8_src = Split(cml_algo_sources)
+ca8_cpp_path = Split(cml_algo_include_paths) + Split(cml_algo_common_include_paths)
+# include paths that must be added before compiler includes
+ca8_prepend_cpp_path = []
+
+# source and include paths for CortexA8
+ca15_src = Split(cml_algo_sources)
+ca15_cpp_path = Split(cml_algo_include_paths) + Split(cml_algo_common_include_paths)
+# include paths that must be added before compiler includes
+ca15_prepend_cpp_path = []
+
+# source and include paths for CortexM3/M4
+cmx_src = Split(cml_algo_sources)
+cmx_cpp_path = Split(cml_algo_include_paths) + Split(cml_algo_common_include_paths)
+# include paths that must be added before compiler includes
+cmx_prepend_cpp_path = []
+
+# source and include paths for PC sim
+pc_sim_src = Split(cml_algo_sources)
+pc_sim_cpp_path = Split(cml_algo_include_paths) + Split(cml_algo_common_include_paths)
+# include paths that must be added before compiler includes
+pc_prepend_cpp_path = []
+
+# source and include paths for Arp32
+#arp32_src = Split(cml_algo_ti_eve_arp32_sources)
+#arp32_cpp_path = Split(cml_algo_ti_eve_arp32_include_paths) + Split(cml_algo_common_include_paths)
+# include paths that must be added before compiler includes
+#arp32_prepend_cpp_path = []
+
+# pdo source
+pdo_src_list = Split(cml_algo_pdo_sources)
+
+# pdo source for sim
+pdo_sim_src_list = pdo_src_list + map(lambda x: ("../../../03_Workspace/algo/CML_sim/sim_swc_cml/" + x), Split(cml_sim_swc_pdo_sources))
+
+# wrapper source list for qac
+#wrapper_src = Split(cml_wrapper_sources)
+
+# define if sdl is generated when lib is compiled (default: True)
+generate_sdl_when_compiling_lib = False
+
+# header file containing TASK_ID_(component)
+id_file_path = "#../../../01_Source_Code/common/MTSI/glob_comp_id.h"
+
+# task ID. The value of this task ID will replace %s in PDO_TOOL_OPTIONS_ECU and PDO_TOOL_OPTIONS_SIM
+task_id_define = "TASK_ID_" + algo_name.upper()
+
+# PDO tool option for ECU
+PDO_TOOL_OPTIONS_ECU = ("-f sdl2.0 --disable normalobj --enable virtualobj --cycleinfo default," + 
+                       algo_name.upper() + "_ENV_PRIVATE " + algo_name.upper() + " %s -v 0x00000000-0xFFFFFFFF --checkvirtrange 0x00000000-0xFFFFFFFF")
+
+# PDO tool option for sim DLL                       
+PDO_TOOL_OPTIONS_SIM = ("-f sdl2.0 --disable normalobj --enable virtualobj --cycleinfo default," + 
+                       algo_name.upper() + "_ENV_PRIVATE," + algo_name.upper() + "_ENV " + algo_name.upper() + " %s -v 0x00000000-0xFFFFFFFF --checkvirtrange 0x00000000-0xFFFFFFFF")
+
+# compiler include path required by pdo_scan when generating sdl file for sim
+compiler_include_paths = """
+C:/LegacyApp/VisualStudio2005/VC/INCLUDE
+"""
+# polyspace target options and language settings
+#ps_target_option = {"-O": "0", "-OS-target": "Linux", "-batch": "true", "-dialect": "gnu3.4", "-post-analysis-command": "", "-to": "Software Safety Analysis level 0"}
+
+#ps_lan_settings = {"-align": "32", "-default-sign-of-char": "signed", "-double-is-64bits": "", "-int-is-32bits": "", "-little-endian": "Little", "-long-long-is-64bits": "", "-pointer-is-32bits": ""}
+# polyspace macros
+#ps_macros = ["NDEBUG", "__TI_COMPILER_VERSION__=5000000", "_LITTLE_ENDIAN", "__TI_EABI__=1", "_TMS320C6740", "__TMS320C6X__", "__STDC__", "__STDC_VERSION__=1", "__TI_32BIT_LONG__", "__SIZE_T_TYPE__=unsigned int", "__PTRDIFF_T_TYPE__=int", "_TMS320C6X", "restrict", "assert(X)="]
+
+# polyspace version "2012" or "2014", by default "2012"
+#ps_version = "2014"
+
+# polyspace additional includes
+#ps_additional_includes = Split(cml_algo_ps_additional_include_paths)
+
+# polyspace additional sources
+#ps_additional_sources = Split(cml_algo_ps_additional_sources)
+
+# qac_ide_options: analysis option for QAC via visual studio, default: '-disp'
+# please modify according to your needs
+# "-disp" displaying all messages
+# "-su=N" suppresses all qac warnings of level N
+#qac_ide_options = "-disp -su=0"
+# qac_cmd_options: analysis option for QAC via command line, default: ''
+# please modify according to your needs
+# "-disp" displaying all messages
+# "-su=N" suppresses all qac warnings of level N
+#qac_cmd_options = ""
+# qar_options: additional options for generating the compliance report
+#qar_options = ""

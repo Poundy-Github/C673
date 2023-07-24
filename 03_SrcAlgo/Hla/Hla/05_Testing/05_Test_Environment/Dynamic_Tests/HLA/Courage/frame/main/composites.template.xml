@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<location name="__CORE_NAME__" xmlns="http://contiautomotive.com/courage/coxml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <courage_tool_settings>
+      <project_root_dir>../../../../../../..</project_root_dir>
+   </courage_tool_settings>
+   <build_options>
+      <build_option name="COU_MOCKUP">COU_MOCKUP_LIBRARY_AUTO</build_option>
+      <build_option name="COU_COV">CTC</build_option>
+   </build_options>
+
+   <alloc_sw_implementation>
+      <include_paths>__AUTOMATICALLY_FILLED__</include_paths>
+      <defines>
+        <define name="__COURAGE_TEST_SWITCH__">1</define>
+      </defines>
+   </alloc_sw_implementation>
+
+   <composites>
+      <composite name="__COMPOSITE_NAME__">
+         <alloc_sw_implementation>
+
+            <productive_sources>
+               <source>../../../../../../../04_Engineering/01_Source_Code/HLA/frame/hla_main.c</source>
+            </productive_sources>
+
+            <test_sources>
+               <source>test_hla_main.c</source>
+            </test_sources>
+
+            <mockup_sources>
+               <source>../../mockup_services.c</source>
+               <source>../../../../../../../04_Engineering/01_Source_Code/HLA/frame/hla_outputs.c</source>
+               <source>../../../../../../../04_Engineering/01_Source_Code/HLA/hla_errorhandling.c</source>
+            </mockup_sources>
+
+         </alloc_sw_implementation>
+      </composite>
+
+   </composites>
+</location>

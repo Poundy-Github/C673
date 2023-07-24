@@ -1,0 +1,71 @@
+// COMPANY:   Continental Automotive
+// COMPONENT: DPUFF
+// VERSION:   $Revision: 1.1 $
+
+///@file
+
+/// defines the structures and other types required to represent an instance of a cluster.
+/// It is up to the client code of this function to create a .cpp file (usually called mdb_database.cpp)
+/// that defines arrays of the SCluster structure, which defines the structure of the MDB.  See the example
+/// mdb_database.cpp file used by the t_mdb.cpp unit test for an example implementation.  The state of
+/// the MDB and its clusters is mirrored across cores, so the same database must be used on all cores to
+/// prevent unpredictable results!
+
+#ifndef MDB_CLUSTER_H
+#define MDB_CLUSTER_H
+
+#include "glob_type.h"
+#include <DPUFF/mdb/mdb_cfg.h>
+
+/// Types of clusters that can be used by algorithm related code
+typedef enum tag_MDB_E_ClusterID
+{
+/*!<codegen_start:CLUSTER_ENUM>*/
+/*!<codegen_end:CLUSTER_ENUM>*/
+  MDB_e_NULL       = 0xFFFF,    ///< Not a cluster type - used only generic adapter config
+  MDB_e_FORCE32BIT = 0x70000000 ///< Force type to be 32-bit, as it is shared accross cores!
+} MDB_E_ClusterID;
+
+/// Used for test clusters that enable system and unit testing of the MDB on a live system
+/// u_IntegerOne, u_IntegerTwo and a_Message are all test fields
+/// used for testing the integrity of the MDB's cluster updates,
+/// when done both locally and over PCIe (for Vision Mid EVE)
+typedef struct tag_STestCluster_t
+{
+  uint32  u_IntegerOne;   ///< test field
+  uint32  u_IntegerTwo;   ///< test field
+  char    a_Message[100]; ///< test field
+  uint8*  p_DmaBuffer;    ///< Used for testing that DMA buffers are updated correctly
+} STestCluster_t;
+
+/// Structure representing a single cluster.  Instances of this structure must be initilised
+/// by client code in the database definition file (usually called mdb_database.cpp).  All
+/// members must be initialised - see the implementation of mdb_database.cpp that goes with
+/// the t_mdb.cpp unit test for an example of this initialisation */
+typedef struct tag_SCluster
+{
+  MDB_E_ClusterID e_ID;          ///< Unique ID of the cluster
+  sint32          s_NumBuffers;  ///< Number of buffers in the cluster
+  sint32          s_BufferSize;  ///< Size in bytes of each buffer in the cluster
+  MDB_pint        u_FirstBuffer; ///< Ptr to the first buffer in the cluster
+  uint32          u_Flags;       ///< Flags to enable special features of this cluster
+} SCluster;
+
+/// Extended cluster configuration entry for DMA data.
+///
+/// This is optional for each cluster
+/// but mandatory to handle clusters which references DMA / external data.
+typedef struct tag_SDmaConfigEntry
+{
+  MDB_E_ClusterID e_ClusterId;     ///< Unique ID of the cluster
+  MDB_pint        u_DmaData;       ///< pointer to DMA data (image pixel data) in RAM
+  uint32          u_DataPtrOffset; ///< offset/location of the pointer to DMA data within the MDB cluster payload
+  uint32          u_DataSize;      ///< size of the DMA data in byte
+  uint32          u_DataAlignment; ///< alignment of the DMA data in memory
+  uint8           u_Flags;         ///< defines properties of DMA data
+  MDB_E_ClusterID e_BaseCluster;   ///< not used at the moment
+} SDmaConfigEntry;
+
+
+#endif // ! MDB_CLUSTER_H
+

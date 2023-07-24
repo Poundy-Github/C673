@@ -1,0 +1,59 @@
+entry &CORENAME
+
+if "&CORENAME"=="arm-a_0"
+(
+    system.cpu dra7xx
+    core.assign 1				; attach to only CPU0
+    sys.JC rtck					; use adaptive clock as some higher fixed freq's fail
+    SYStem.memaccess dap		; allow dap access
+)
+else if "&CORENAME"=="arm-m_0"
+(
+    system.cpu DRA7XXIPU1-CORE0
+    system.memaccess dap
+    sys.Option DUALPORT ON
+)
+else if "&CORENAME"=="arm-m_1"
+(
+    system.cpu DRA7XXIPU1-CORE1
+    system.memaccess dap
+    sys.Option DUALPORT ON
+)
+else if "&CORENAME"=="dsp_0"
+(
+    system.cpu DRA7XXDSP1
+    sys.JC rtck					; use adaptive clock as some higher fixed freq's fail
+    sys.Option DUALPORT ON
+)
+else if "&CORENAME"=="dsp_1"
+(
+    system.cpu DRA7XXDSP2
+    sys.JC rtck					; use adaptive clock as some higher fixed freq's fail
+    sys.Option DUALPORT ON
+)
+else if "&CORENAME"=="eve_0"
+(
+    system.cpu TDA2XEVE
+    SYStem.CONFIG.CORE 9. 1.
+    CORE.ASSIGN 1
+    ;SYStem.CONFIG COREDEBUG.Base AHB:0x42083000
+    ;SYStem.CONFIG NJCR 9.
+    system.memaccess dap
+)
+else if "&CORENAME"=="eve_1"
+(
+    system.cpu TDA2XEVE
+    SYStem.CONFIG.CORE 10. 1.
+    CORE.ASSIGN 2
+    ;SYStem.CONFIG COREDEBUG.Base AHB:0x42183000
+    ;SYStem.CONFIG NJCR 10.
+    system.memaccess dap
+)
+else
+(
+	error "Unknown Core ID"
+)
+
+; Interrupts shall be disabled when single-stepping
+sys.Option IMASKHLL ON
+sys.Option IMASKASM ON

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<BarCharts>
+  <BarChart name="PERFORMANCE_COUNT1" chartID="0" chartHeight_lines="6" scaleFactor="2.0" defaultVerticalZoom="5.0"/>
+  <BarChart name="PERFORMANCE_COUNT2" chartID="1" chartHeight_lines="6" scaleFactor="2.0" defaultVerticalZoom="5.0"/>
+  <!-- VL statistics collector charts -->
+  <BarChart name="STAT_M4_______DDR_IO_KBYTES"  chartID="10" chartHeight_lines="6" scaleFactor="1.0" defaultVerticalZoom="80.0" sumInDerivedChartID="30" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_DSP1_____DDR_IO_KBYTES"  chartID="11" chartHeight_lines="6" scaleFactor="1.0" defaultVerticalZoom="80.0" sumInDerivedChartID="30" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_TPTC0_WR_DDR_IO_KBYTES"  chartID="12" chartHeight_lines="6" scaleFactor="1.0" defaultVerticalZoom="80.0" sumInDerivedChartID="30" ingnoreOverlapTimeUS="300"/>
+  <BarChart name="STAT_TPTC0_RD_DDR_IO_KBYTES"  chartID="13" chartHeight_lines="6" scaleFactor="1.0" defaultVerticalZoom="80.0" sumInDerivedChartID="30" ingnoreOverlapTimeUS="300"/>
+
+  <BarChart name="SUMMATION_IO_1_TO_4"  derivedChartID="30" chartHeight_lines="12" scaleFactor="1.0" defaultVerticalZoom="40.0" red="0.92" green="1.0" blue="0.4"/>
+
+</BarCharts>

@@ -1,0 +1,34 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Fill {variant}_ccflags with required compiler flags.
+#    The value in this template is only for example.
+# 3. Fill {variant}_cppdefines with required preprocessor defines.
+#    The value in this template is only for example.
+#    Each preprocessor define must be written as string and separated with ,
+# 4. When additional variant is created, add it in the variant_list. Otherwise, the
+#    variant will not be created.
+# ----------------------------------------------------------------------------------------
+
+#-----------------------
+# variant configuration
+#-----------------------
+
+# create release variant
+release_variant = "release"
+release_ccflags = "--abi=eabi --define=c6747 --display_error_number --diag_warning=225 --optimizer_interlist --opt_for_speed=5 -k"
+release_cppdefines = ["NDEBUG", "DEFINE1", "DEFINE2"]
+
+# create debug variant
+debug_variant = "debug"
+debug_ccflags = "--abi=eabi -g --define=c6747 --display_error_number --diag_warning=225 -k"
+debug_cppdefines = ["DEFINE1", "DEFINE2"]
+
+# variable containing compiler flags, defines for all variants
+# when creating additional variant beside "release" and "debug", the variant must be added in this variable
+variant_list = [
+[release_variant, release_ccflags, release_cppdefines],
+[debug_variant,   debug_ccflags,   debug_cppdefines],
+]
+
+# library name. The full name will be "lcf_c674x_{variant}.lib, for example: sib_c674x_release.lib
+target_name = algo_name + "_c674x"

@@ -1,0 +1,34 @@
+-it "ptrdiff_t=int"
+-it "wchar_t=unsigned short"
+-d "__attribute__ =_ignore_paren"
+-d "__cregister="
+-d "__inline=inline"
+-d "__int40_t=int"
+-d "__intaddr__="
+-d "__PTRDIFF_T_TYPE__=int"
+-d "__SIZE_T_TYPE__=unsigned"
+-d "__STDC_VERSION__=199901L"
+-d "__va_argref="
+-d "__va_parmadr="
+-d "__WCHAR_T_TYPE__=unsigned short"
+-d "_abs=abs"
+-d "_labs=labs"
+-d "_TMS320C6700=1"
+-d "_TMS320C6740=1"
+-d "_TMS320C6X=1"
+-d "ALGO_INLINE=inline"
+-d "interrupt="
+-d "restrict="
+-ar+
+-bits-
+-u-
+-sl-
+-na 63
+-xn 63
+-xc-
+-ex ansipc
+-ex pc
+-ex asm
+-ex c++
+-ex longlong
+-fpc-

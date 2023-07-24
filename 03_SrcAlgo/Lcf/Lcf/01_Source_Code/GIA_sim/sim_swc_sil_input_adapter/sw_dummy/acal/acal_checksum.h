@@ -1,0 +1,1 @@
+#define ACAL_CHECKSUM_IS_A_DUMMY

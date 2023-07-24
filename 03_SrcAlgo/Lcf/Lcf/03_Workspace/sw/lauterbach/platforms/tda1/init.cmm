@@ -1,0 +1,59 @@
+entry &CORENAME
+&STEREO_SOC=0
+&IS_DSP=0
+
+if "&CORENAME"=="arm-a_0"
+(
+    system.cpu TDA1MEV
+    system.JC rtck           ; use adaptive clock
+    system.memaccess dap     ; allow dap access for reading memory
+)
+else if "&CORENAME"=="arm-a_1"
+(
+    system.cpu TDA1MEV
+    system.JC rtck           ; use adaptive clock
+    system.memaccess dap     ; allow dap access for reading memory
+    &STEREO_SOC=1
+)
+else if "&CORENAME"=="arm-m_0"
+(
+    system.cpu TDA1MEV-DUCATI1
+    system.memaccess dap
+)
+else if "&CORENAME"=="arm-m_1"
+(
+    system.cpu TDA1MEV-DUCATI2
+    system.memaccess dap
+)
+else if "&CORENAME"=="arm-m_2"
+(
+    system.cpu TDA1MEV-DUCATI1
+    system.memaccess dap
+    &STEREO_SOC=1
+)
+else if "&CORENAME"=="dsp_0"
+(
+    system.cpu TDA1MEV-DSP
+    &IS_DSP=1
+)
+else if "&CORENAME"=="dsp_1"
+(
+    system.cpu TDA1MEV-DSP
+    &STEREO_SOC=1
+    &IS_DSP=1
+)
+else if "&CORENAME"=="eve_0"
+(
+    system.cpu TDA1XEVE
+    ;SYStem.CONFIG COREDEBUG.Base AHB:0x59083000
+    ;&IS_DSP=1
+)
+else if "&CORENAME"=="eve_1"
+(
+    system.cpu TDA1XEVE
+    ;SYStem.CONFIG COREDEBUG.Base AHB:0x59083000
+    &STEREO_SOC=1
+    &IS_DSP=1
+)
+
+

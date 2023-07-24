@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<Channels xmlns="http://schemas.continental-corporation.com/mts/swc/2016/channel-definition">
+  <!--The channel definition with Id=0 means a channel with all data-->
+  <!--<Channel Id="0" Name="CEM All data"/>-->
+  <Channel Id="1" Name="LCF_VEH"/>
+  <Channel Id="2" Name="HLA"/>
+  <Channel Id="3" Name="LCF_SEN"/>
+  <Channel Id="4" Name="FCT_VEH"/>
+  <Channel Id="5" Name="FCT_SEN"/>
+  <Channel Id="6" Name="TimeSync"/>
+  <Channel Id="7" Name="TSA"/>
+  <Channel Id="8" Name="LCF_Debug"/>
+  <Channel Id="9" Name="VDY"/>
+  <Channel Id="10" Name="VDY_Internal"/>
+  <Channel Id="11" Name="Sdc"/>
+</Channels>

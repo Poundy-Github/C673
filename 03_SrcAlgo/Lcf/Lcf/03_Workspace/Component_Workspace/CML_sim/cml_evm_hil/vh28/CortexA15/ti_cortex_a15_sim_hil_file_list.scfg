@@ -1,0 +1,20 @@
+# config file containing TI Cortex a15 sim hil source file list
+
+# Cortex a15 sim hil source files
+cortex_a15_sim_hil_sources = """
+CortexA15_EvmHilWrapper.cpp
+../C66xx/cantata_target_testing/test_cml_stl_matrix.cpp
+../C66xx/cantata_target_testing/test_cml_stl_array.cpp
+../C66xx/cantata_target_testing/test_cml_stl_array2d.cpp
+../C66xx/cantata_target_testing/test_cml_stl_vector.cpp
+../C66xx/cantata_target_testing/test_cml_stl_list.cpp
+../C66xx/cantata_target_testing/test_cml_stl_point.cpp
+../C66xx/cantata_target_testing/test_cml_stl_algorithm.cpp
+../C66xx/cantata_target_testing/test_cml_stl_iterator.cpp
+"""
+
+# Cortex a15 sim hil include paths
+cortex_a15_sim_hil_include_paths = """
+#../cml_sim/cml_evm_hil/vh28/evm_hil_projects/CortexA15/
+#../externals/sim_extensions/
+"""

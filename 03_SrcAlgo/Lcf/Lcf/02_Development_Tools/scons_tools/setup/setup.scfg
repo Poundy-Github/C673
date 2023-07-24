@@ -1,0 +1,54 @@
+
+# Replace xxx with the component name
+# Make True/False as required for the component
+
+component_name = "xxx"
+
+# For lib
+dsp = True
+if dsp:
+	dsp_core_dict = {
+	"c66xx" : False,
+	"c674x" : True
+	}
+	
+eve = False
+if eve:
+	eve_core_dict = {
+	"arp32" : False
+	}
+	
+arm = False
+if arm:
+	arm_core_dict = {
+	"cortex_a8" : False,
+	"cortex_a15" : False,
+	"cortex_m3" : False,
+	"cortex_m4" : False
+	}
+	
+# For simulation plugins
+sim = True
+if sim:
+	sim_dict = {
+	"sim_swc" : True,
+	"sim_swc_vis" : False,
+	"sim_adapt" : False
+	}
+	
+# For evm hil targets(sim = True)	
+evm_hil = False
+if evm_hil:
+	vme = False
+#	vh28 = False
+	
+	# If vme is used, select the cores
+	if vme:
+		vme_dict = {
+		"arp32" : False,
+		"C674x" : False,
+		"CortexA8" : False,
+		"CortexA8Only" : False
+#		"cortexM3" : False
+		}
+	

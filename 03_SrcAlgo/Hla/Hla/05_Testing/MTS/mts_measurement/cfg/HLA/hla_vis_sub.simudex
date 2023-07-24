@@ -1,0 +1,133 @@
+
+; ----- ProvidePorts -----
+; TODO: fill in section name, port name and URLs
+;[PPort <some name for the section>]
+;CfgSectionType        = UdexProvidePort::RAWGroup
+; the port name should follow the RTE type naming
+;Name                  = <measinput_port_name>
+; the first URL should match to the signal names used for mfc4xx
+;URL.1                 = DEVICE.<group_url>
+; if the config should work with old mfc3xx recordings too you will have to hard code the relevant mfc3xx signal URLs
+;URL.2                 = MFC3xx Device.<group_url>
+
+; --- RTE INPUTS ---
+[PPort pCPar_HlafPar]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = pCPar_HlafPar
+URL.1                 = DEVICE_REC.HLA.HLA_Parameter
+URL.2                 = DEVICE_REC.IPC.HLA_Parameter
+URL.3                 = DEVICE_REC.IPC.RTE_CPAR_HLA_Parameter
+URL.4                 = DEVICE_REC.IPC.HlaReqPortCpar
+
+[PPort pMonoCalibration]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = pMonoCalibration
+URL.1                 = DEVICE.EMO.MonoCalibrationEmoRRoi
+URL.2                 = DEVICE.ECM.pEcmOutMonoCalibrationRRoi
+URL.3                 = DEVICE.ECM.pMonoCalibrationRRoi
+URL.4                 = DEVICE_REC.ECM.pEcmOutMonoCalibrationRRoi
+URL.5                 = DEVICE_REC.ECM.pMonoCalibrationRRoi
+
+[PPort pHlaBusInputSignals]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = pHlaBusInputSignals
+URL.1                 = DEVICE.IPC.HlaBusInputSignals
+
+[PPort pVehSig]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = pVehSig
+URL.1                 = DEVICE.ECM.pVehSigSync
+URL.2                 = DEVICE.MEMO.VehSigSync
+URL.3                 = DEVICE.VDY.VehSig
+URL.4                 = DEVICE.IPC.VehSig
+URL.5                 = DEVICE_REC.ECM.pVehSigSync
+URL.6                 = DEVICE_REC.MEMO.VehSigSync
+URL.7                 = DEVICE_REC.VDY.VehSig
+URL.8                 = DEVICE_REC.IPC.VehSig
+
+[PPort pVehDyn]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = pVehDyn
+URL.1                 = DEVICE.MEMO.VehDynSync
+URL.2                 = DEVICE.VDY.VehDyn
+URL.3                 = DEVICE_REC.MEMO.VehDynSync
+URL.4                 = DEVICE_REC.VDY.VehDyn
+
+[PPort pCbOutputs]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = pCbOutputs
+URL.1                 = DEVICE.CB.pCbRteOut
+URL.2                 = DEVICE_REC.CB.pCbRteOut
+
+[PPort pLsdEnvironmentData]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = pLsdEnvironmentData
+URL.1                 = DEVICE.LSD.LsdProPortEnvironmentData
+URL.2                 = DEVICE_REC.LSD.LsdProPortEnvironmentData
+
+[PPort pLsdLightObjectList]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = pLsdLightObjectList
+URL.1                 = DEVICE.LSD.LsdProPortLightObjectList
+URL.2                 = DEVICE_REC.LSD.LsdProPortLightObjectList
+
+[PPort pLsdLightList]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = pLsdLightList
+URL.1                 = DEVICE.LSD.LsdProPortLightList
+URL.2                 = DEVICE_REC.LSD.LsdProPortLightList
+
+; --- RTE OUTPUTS ---
+
+[PPort pAlgoCompState]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = pAlgoCompState
+URL.1                 = DEVICE.HLA.AlgoCompState
+URL.2                 = DEVICE.HLA.HlaAlgoCompState
+URL.3                 = DEVICE_REC.HLA.AlgoCompState
+URL.4                 = DEVICE_REC.HLA.HlaAlgoCompState
+
+[PPort pHlaf_HeadlightControl]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = pHlaf_HeadlightControl
+URL.1                 = DEVICE.HLA.RTE_HLAF_HeadlightControl
+URL.2                 = DEVICE.HLA.HLAF_HeadlightControl
+URL.3                 = DEVICE_REC.HLA.RTE_HLAF_HeadlightControl
+URL.4                 = DEVICE_REC.HLA.HLAF_HeadlightControl
+
+; --- Internal Measfreeze ---
+[PPort HLA_ErrorStack]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = HLA_ErrorStack
+URL.1                 = DEVICE.HLA.HLAErrorStack
+URL.2                 = DEVICE.HLA.HlaErrorStack
+
+[PPort HLAFData]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = HLAFData
+URL.1                 = DEVICE.HLA.HlafData
+
+[PPort hla_SyncRef]
+CfgSectionType        = UdexProvidePort::RAWGroup
+Name                  = hla_SyncRef
+URL.1                 = DEVICE.HLA.HlaSyncRef
+URL.2                 = DEVICE.HLA.Hla_SyncRef
+
+; ----- ClientPorts -----
+[CPort CycleEnd_HLA]
+CfgSectionType        = UdexClientPort::CycleEndEvent
+Name                  = CycleEnd_HLA
+DataSource            = MFC4xx Device
+CycleID               = 65
+
+[CPort CycleEnd_HLA_MFC5xx]
+CfgSectionType        = UdexClientPort::CycleEndEvent
+Name                  = CycleEnd_HLA_MFC5xx
+DataSource            = MFC5xx Device
+CycleID               = 65
+
+[CPort CycleEnd_SRLCAM4xx Device_65ms_]
+CfgSectionType        = UdexClientPort::CycleEndEvent
+Name                  = CycleEnd[SRLCAM4xx Device-65ms]
+DataSource            = SRLCAM4xx Device
+CycleID               = 65

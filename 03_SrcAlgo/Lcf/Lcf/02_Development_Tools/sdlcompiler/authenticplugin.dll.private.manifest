@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+
+<assemblyIdentity
+    type="win32"
+    name="authenticplugin.dll.private"
+    version="15.0.1.0" />
+
+<file name="interop.msxml2.dll"/>
+<file name="interop.xmlspypluginlib.dll"/>
+<file name="axinterop.xmlspypluginlib.dll"/>
+
+<file name="authenticplugin.dll">
+
+    <comClass
+        description="Authentic Class"
+        clsid="{A5985EA9-3332-4DDF-AD7F-F6E98BFEAF94}"
+        threadingModel="Apartment"
+        progid="AuthenticPlugIn.Authentic"
+        tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+    <typelib tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}"
+        version="1.7"
+        helpdir="" />
+
+</file>
+
+<comInterfaceExternalProxyStub
+    name="IAuthentic"
+    iid="{E8682984-C923-4591-AFFC-56966F38FC29}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IXMLData"
+    iid="{8DBA4761-606B-445E-81B7-AD23391D5F33}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticLoadObject"
+    iid="{29DA04AD-8643-4D4A-868B-5D6BBD59D0C1}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticSelection"
+    iid="{9781D1A2-EBDB-48F5-B199-D3841686B152}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticEvent"
+    iid="{33CA5761-E0A4-4A90-A083-7C95DE7F5493}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthentic2"
+    iid="{9EA283FC-A9D6-46D0-9A9A-A08DFFFD46B9}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticToolbarRows"
+    iid="{DB8CE492-599F-44FA-8D94-F64AD4318CB8}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticToolbarRow"
+    iid="{8D96FB0A-F82E-464F-8BB1-56678DE9BC45}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticToolbarButtons2"
+    iid="{D8F1207D-8A90-4638-939F-3B5E2A7C7ECF}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticToolbarButtons"
+    iid="{DF0F048D-E737-420C-BD25-F6A62798AA57}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticToolbarButton2"
+    iid="{A95BD0A3-97C9-4863-B843-E8AEB0CF6D7C}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticToolbarButton"
+    iid="{EC7D52DE-414F-4840-8F1E-D96BABAD9B8E}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticCommands"
+    iid="{BCB6F279-87B3-42B6-8327-176C0E94E21B}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticCommand"
+    iid="{4D205EB2-940D-493F-B70D-0BC1330EB566}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticXMLTableCommands"
+    iid="{8B29CD1E-21C8-4487-BC48-712642F95124}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthentic3"
+    iid="{FC275496-3A50-479D-8AC7-8A2C94107F84}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthentic4"
+    iid="{AEBC3D07-4A10-47E4-B8DC-4138B1513652}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthentic5"
+    iid="{BF63DCE3-3F2B-4621-B48C-0075DD72EA0D}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticView1"
+    iid="{6B69B5AA-C62E-42A3-9070-D726AEC1A36B}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticView"
+    iid="{69AEB225-3F18-4899-9163-72801D0FD8A4}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticRange1"
+    iid="{5BC1A8FA-9633-4FEE-BF15-50D9ADD295BA}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticRange"
+    iid="{8C988CD0-55D5-4E5F-8FE3-4BE65CD0DB23}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="_IAuthenticEvents"
+    iid="{E09ACC38-E0CD-42AF-8093-9D4AEE080E7D}"
+    proxyStubClsid32="{00020420-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="IAuthenticDataTransfer"
+    iid="{56B7BCCA-2635-4D8B-8ABA-7FE0130E11CC}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="_IAuthenticViewEvents"
+    iid="{CE79D4C8-ADCB-4B35-ADBC-71C9ABBCC4FD}"
+    proxyStubClsid32="{00020420-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+<comInterfaceExternalProxyStub
+    name="_IAuthenticRangeEvents"
+    iid="{78120CC9-904D-49C6-AE2E-CCB1919A76C4}"
+    proxyStubClsid32="{00020420-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid="{1EA98F03-A6FF-4E36-B76E-25DF4B55C660}" />
+
+</assembly>

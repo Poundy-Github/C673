@@ -1,0 +1,585 @@
+
+Import('*')
+
+setCompiler('eve')
+UseCompAlgo = False
+
+with open('../components_build_info.txt', 'a') as f:
+    print >> f, '   '
+    print >> f, 'Building EVE_1'
+
+if product in ['mfc431', 'mfc431ta19', 'mfc431lo19','mfc431lo20', 'hfl110', 'hfl110ta10','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']:
+    CFG_LOAD_GEN = False
+else:
+    CFG_LOAD_GEN = True
+
+
+if product in ['ars441']:
+    base_project = 'ars441'
+
+elif product in ['mfc431', 'mfc431ta19', 'mfc431lo19','mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']:
+    base_project = 'mfc431'     
+    UseCompAlgo = False
+    if product != base_project:
+        addCompilerDefine('PRODUCT_MFC431')
+        appendConfiguroDefine('product=mfc431')
+        addLinkerDefine('PRODUCT_MFC431')
+  
+elif product in ['hfl110', 'hfl110ta10']:
+  base_project = 'hfl110'
+  UseCompAlgo = False
+
+else:
+  base_project = product
+
+setBaseProject(base_project)
+
+class  Component:
+    global product
+    global base_project
+    DONOTUSEFOR = []
+    OVERRIDEFOR = []
+    
+    INCLUDE    = []
+    SOURCE     = []
+    SOURCE_DIR = []
+    COMPDEF    = []
+    LIBS       = []
+    KFILES     = []
+    USEFROM    = None
+    
+    def AddComp ( self ):
+        self.USEFROM  = None    if product in self.DONOTUSEFOR else base_project    # Component blacklist. Add product if component not wanted default is usage of BaseProject
+        self.USEFROM  = product if product in self.OVERRIDEFOR else self.USEFROM    # Component override for application project. Add product if you want your own (not baseProject) as application project
+
+        pstr  = "{0: <30}".format("Component " + self.__class__.__name__ )
+        pstr += "{0: ^20}".format([ 'from Base ' + base_project, 'from this '+ product, 'not used' ][ [ base_project, product, None ].index(self.USEFROM) ] )
+        print pstr
+        
+        with open('../components_build_info.txt', 'a') as f:
+            print >> f, pstr
+        
+        incPath = ""
+        if self.USEFROM != None:
+
+          incPath = "\n".join(
+          [ Path.replace('$usedfrom', self.USEFROM )                      for Path       in self.INCLUDE]) + '\n'
+          [ addFiles(    Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE     ]
+          [ addDirs(     Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE_DIR ]
+          [ addLibrary(  Path.replace('$usedfrom', self.USEFROM )       ) for Path       in self.LIBS       ]
+          [ addCompilerDefine(Define)                                     for Define     in self.COMPDEF    ]
+
+          if len(self.KFILES) > 0:
+            addkfiles(*self.KFILES)
+
+        
+        return incPath
+
+
+################# Component Example ##############
+# As default component is taken from base_project location, only if entered in OVERRIDEFOR it is taken from product location
+#
+#class NAME(Component):
+#  DONOTUSEFOR = ['example'] <- Enter your project name if you don't want to build this component
+#  OVERRIDEFOR = ['example'] <- Enter your project name if you want this component from product location, and not from base_project location.
+#
+#  INCLUDE    = ['$usedfrom/include1,                <- Enter your include Path here. $usedfrom will be replaced.
+#                'include2]
+#  SOURCE     = [['$usedfrom/path1', ['*.c']],       <- Enter your source files here filename or pattern ( e.g *.c). $usedfrom will be replaced.
+#                ['path2', ['file1.cpp','file2.s']]]
+#  SOURCE_DIR = [['path1', ['*.c']]]                 <- Enter your source dir here. It will recursively search for filename or pattern ( e.g *.c)
+#  COMPDEF    = ['define1','define2']                <- Enter your Component Defines here
+#  LIBS       = ['path1']                            <- Enter your Librarry Path here ( only path supported )
+
+
+
+################# Component DPUCOMMON #################
+class DPUCOMMON(Component):
+
+    OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+  
+    INCLUDE = [
+               '04_Engineering/00_Projects/$usedfrom',
+               '04_Engineering/00_Projects/'+base_project,  # For relative include paths first the product is searched and then the base
+               '04_Engineering/00_Projects/$usedfrom/common/DGM',
+               '04_Engineering/00_Projects/$usedfrom/common/GLOB',
+               '04_Engineering/01_Source_Code/common/GLOB',
+               '04_Engineering/01_Source_Code/common/GLOB/GLOB_DPU',
+               '04_Engineering/01_Source_Code/common/MTSI',
+               '04_Engineering/01_Source_Code/common/RTA',
+              ]
+
+################# Component SYS ##############
+class SYS(Component):
+  DONOTUSEFOR  = ['hfl110','hfl110ta10']
+
+  INCLUDE=['']
+  SOURCE = [['04_Engineering/01_Source_Code/sys/sys_mem/sys_mem_no_spe', ['Sys_Mem_NoSPE.c']]]
+
+
+################# Component DPURTE ##############
+class DPURTE(Component):
+
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+  
+  COMPDEF=['NDEBUG']
+  
+  if device == 'low':
+      INCLUDE = [
+                  '04_Engineering/00_Projects/$usedfrom/common/RTE_VL/include',
+                  '04_Engineering/00_Projects/$usedfrom/common/RTE_VL/algo'
+      ]
+  else:
+      INCLUDE = [
+                  '04_Engineering/00_Projects/$usedfrom/common/RTE_VH/include',
+                  '04_Engineering/00_Projects/$usedfrom/common/RTE_VH/algo'
+      ]
+
+
+
+################# Component DPUFF #################
+class DPUFF(Component):
+    OVERRIDEFOR = ['hfl110ta10', 'mfc431lo19', 'mfc431lo20', 'mfc431ta19','mfc431sc19']
+    INCLUDE = [
+                '04_Engineering/00_Projects/$usedfrom/DPUFF/config'
+              ]
+    SOURCE  = [
+                ['04_Engineering/01_Source_Code/DPUFF/eveclient',         [ 'eve_testalgo.c' ]],
+                ['04_Engineering/00_Projects/$usedfrom/DPUFF/eveclient',  ['eve_algo_cfg.c']],
+                ['04_Engineering/01_Source_Code/DPUFF/eveclient',         [ 'eve_job_processor.cpp', 'eve_scheduler.cpp' ]]
+              ]
+
+
+
+################# Component STARTERWARE #################
+class STARTERWARE(Component):
+    INCLUDE = ['04_Engineering/04_Build/tools/evestarterware/inc',
+               '04_Engineering/04_Build/tools/evestarterware/drivers/inc',
+               '04_Engineering/04_Build/tools/evestarterware/inc/edma_csl',
+               '04_Engineering/04_Build/tools/starterware/include',
+               '04_Engineering/04_Build/tools/starterware/include/pm',
+               '04_Engineering/04_Build/tools/starterware/include/hw',
+               '04_Engineering/04_Build/tools/starterware/include/arp32',
+               '04_Engineering/04_Build/tools/starterware/include/arp32/tda2xx',
+               '04_Engineering/04_Build/tools/starterware/include/tda2xx',
+               '04_Engineering/04_Build/tools/starterware/include/tda2xx/hw',
+               '04_Engineering/04_Build/tools/evestarterware/inc/baseaddress/vayu/eve',
+               '04_Engineering/04_Build/tools/evestarterware/drivers/devices/vayu/cred/inc/eve1'
+              ]
+
+
+    if product in ['hfl110', 'hfl110ta10']:
+        SOURCE = [
+              ['04_Engineering/04_Build/tools/evestarterware/drivers/devices/vayu/cred/src/eve1', ['cred.c']],
+              ['04_Engineering/04_Build/tools/evestarterware/drivers/src',                        [ '*.asm', 'INTCTL.c', 'INTH.c', 'mbox.c', 'mmu.c', 'pcache.c', 'sctm.c' ]]
+             ]
+    else:
+        SOURCE = [
+              ['04_Engineering/04_Build/tools/evestarterware/drivers/devices/vayu/cred/src/eve1', ['cred.c']],
+              ['04_Engineering/04_Build/tools/evestarterware/drivers/src',                        [ '*.asm', '*.c' ]]
+             ]
+    
+    if product in ['mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']:
+
+        LIBS   = [
+                   '04_Engineering/04_Build/tools/starterware/binary/pm/pmhal/lib/tda2xx/arp32/debug/starterware_pm_hal.aearp32',
+                   '04_Engineering/04_Build/tools/starterware/binary/pm/pmlib/lib/tda2xx/arp32/debug/starterware_pm_lib.aearp32'
+                 ]
+
+
+
+################# Component DPUST #################
+class DPUST(Component):
+    INCLUDE = []
+    SOURCE  = [
+                ['04_Engineering/01_Source_Code/DPUST/monitors',          [ 'eve_monitor.cpp' ]],
+                ['04_Engineering/00_Projects/$usedfrom/DPUST/firewall',   [ 'firewallmgr_cfg.cpp' ]],
+                ['04_Engineering/01_Source_Code/DPUST/firewall',          [ 'firewallmgr_master.cpp', 'firewallmgr_master_vh.cpp' ]],
+                ['04_Engineering/01_Source_Code/DPUST/safetymanager',     [ 'safety_manager_base.cpp', 'safety_manager_dummy.cpp', 'safety_manager_eve.cpp' ]]
+              ]
+
+
+
+################# Component DPUSERVICE #################
+class DPUSERVICE(Component):
+    INCLUDE = [
+                '04_Engineering/00_Projects/$usedfrom/DPUSERVICE/mems',
+                '04_Engineering/00_Projects/$usedfrom/DPUSERVICE',
+                '04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/eves',
+                '04_Engineering/01_Source_Code/DPUSERVICE/services',
+              ]
+
+    if CFG_LOAD_GEN:
+        INCLUDE += ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/clg/eve', ]
+
+    SOURCE  = [
+                ['04_Engineering/00_Projects/$usedfrom/DPUSERVICE/mems',      [ 'memory_cfg.cpp']],
+                ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/eves',   [ 'eve_arp32_clock.cpp', 'eve_mini_sys_clock.cpp', 'eve_edma_memcpy.c']],
+                ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/osc',    [ 'eve_boot.asm' ]],
+              ]
+
+    if CFG_LOAD_GEN:
+        SOURCE += ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/clg/eve',   ['*.c']]
+
+
+
+################# Component ALGO #################
+class DPUALGO(Component):
+    DONOTUSEFOR = []
+    DONOTUSEFOR += ['hfl110', 'hfl110ta10', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+
+    OVERRIDEFOR = []
+    
+    INCLUDE = []
+               
+    if device == 'low':
+        INCLUDE += ['04_Engineering/00_Projects/$usedfrom/algo/sources/cct',
+                    '04_Engineering/00_Projects/$usedfrom/algo/sources/cml',
+                    '04_Engineering/00_Projects/$usedfrom/common/RTE_VL/algo']
+    else:
+        INCLUDE += ['04_Engineering/00_Projects/$usedfrom/common/RTE_VH/algo']
+
+
+
+################# Component DPUHWIF #################
+class DPUHWIF(Component):
+    INCLUDE = ['04_Engineering/01_Source_Code/DPUHWIF',
+               '04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/mc',
+               '04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/titda',
+               '04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/titda/cslr',
+               '04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/titda/firewall'
+              ]
+
+    SOURCE = []
+
+    SOURCE += [['04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/titda/firewall',    [ 'l3firewall_hal.c' ]]]
+
+
+
+################# Component DPUMISC #################
+class DPUMISC(Component):
+    INCLUDE = [
+                '04_Engineering/01_Source_Code',
+                '04_Engineering/01_Source_Code/DPUINFRA',
+                '04_Engineering/00_Projects/$usedfrom/DPUCOM/xcp',
+                '04_Engineering/01_Source_Code/RTA',
+                '04_Engineering/00_Projects/$usedfrom/RTA',
+                '04_Engineering/00_Projects/$usedfrom/DPUINFRA',
+                '04_Engineering/01_Source_Code/MTSI_VH'
+              ]
+    
+    if device == 'low':
+        INCLUDE += [
+                    '04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vl'
+                    '04_Engineering/01_Source_Code/MTSI_VL',
+                    '04_Engineering/01_Source_Code/RTA_VL'
+
+                   ]
+    else:
+        INCLUDE += [
+                    '04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vh',
+                    '04_Engineering/01_Source_Code/RTA_VH'
+                   ]
+
+    SOURCE = [
+                ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/infra', ['SOC_EVE_CPP_Infrastructure_Pkg.cpp']],
+                ['04_Engineering/01_Source_Code/RTA',            ['*.c']],
+                ['04_Engineering/01_Source_Code/MTSI_VH',    [ 'eve_meas_service.cpp' ]]
+             ]
+
+    if device == 'low':
+        SOURCE += [
+                    ['04_Engineering/01_Source_Code/MTSI_VL',    [ 'eve_meas_service.cpp' ]],
+                    ['04_Engineering/01_Source_Code/RTA_VL',     ['rta_service.cpp']]
+                  ]
+    else:
+        SOURCE += [
+                    ['04_Engineering/01_Source_Code/RTA_VH',     ['rta_service.cpp']]
+                  ]
+
+
+
+################# Component CML #################
+class CML(Component):
+  DONOTUSEFOR  = ['ars441']
+  
+  INCLUDE=['04_Engineering/01_Source_Code/cml',
+           '04_Engineering/01_Source_Code/cml/bayes',
+           '04_Engineering/01_Source_Code/cml/complex',
+           '04_Engineering/01_Source_Code/cml/exp',
+           '04_Engineering/01_Source_Code/cml/fourier',
+           '04_Engineering/01_Source_Code/cml/interpol',
+           '04_Engineering/01_Source_Code/cml/kalman',
+           '04_Engineering/01_Source_Code/cml/matrix',
+           '04_Engineering/01_Source_Code/cml/misc',
+           '04_Engineering/01_Source_Code/cml/radar',
+           '04_Engineering/01_Source_Code/cml/stat',
+           '04_Engineering/01_Source_Code/cml/stl',
+           '04_Engineering/01_Source_Code/cml/stl/algorithm',
+           '04_Engineering/01_Source_Code/cml/stl/container',
+           '04_Engineering/01_Source_Code/cml/stl/math',
+           '04_Engineering/01_Source_Code/cml/',
+           '04_Engineering/01_Source_Code/cml/trigo',
+           '04_Engineering/01_Source_Code/cml/vector']
+
+
+
+################# Component PC #################
+class PC(Component):
+  DONOTUSEFOR  = ['hfl110', 'hfl110ta10', 'ars441']
+
+  KFILES = ['04_Engineering/04_Build/out/$usedfrom/release_eve_1/04_Engineering/01_Source_Code/PC/ti_eve_arp32/pc_4d/pc_eve.lib', '04_Engineering/01_Source_Code/PC/ti_eve_arp32/pc_4d', '04_Engineering/01_Source_Code/PC/ti_eve_arp32/pc_4d/', 'pc_4d_kernel.k']
+
+  INCLUDE=['04_Engineering/01_Source_Code/PC',
+           '04_Engineering/01_Source_Code/PC/common',
+           '04_Engineering/01_Source_Code/PC/frame',
+           '04_Engineering/01_Source_Code/PC/Lucas-Kanade',
+           '04_Engineering/01_Source_Code/PC/ti_eve_arp32/pc_4d'
+           ]
+           
+  SOURCE=[['04_Engineering/01_Source_Code/PC/ti_eve_arp32/pc_4d',    [ 'pc_4d_buffer_structure.c', 'pc_4d_constant_data.c', 'pc_4d_dma_funcs.c', 'pc_4d_frame.c', 'pc_4d_lk_main.c', 'PC_ARP_interface.c']]]
+
+  if product in ['mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10'] :
+    LIBS = ['04_Engineering/04_Build/out/'+product+'/release_eve_1/04_Engineering/01_Source_Code/PC/ti_eve_arp32/pc_4d/pc_eve.lib']
+
+################# Component LIQOR #################
+class LIQOR(Component):
+  DONOTUSEFOR  = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+
+  KFILES = ['04_Engineering/04_Build/out/$usedfrom/release_eve_1/04_Engineering/01_Source_Code/LIQOR/frame/ti_arp32_eve/liqor_eve.lib', '04_Engineering/01_Source_Code/LIQOR/frame/ti_arp32_eve', '04_Engineering/01_Source_Code/LIQOR/frame/ti_arp32_eve', 'vcop_cnn_argmax_kernel.k', 'vcop_cnn_batchNorm_kernel.k', 'vcop_cnn_bias_kernel.k', 'vcop_cnn_conv2dRelu_kernel.k', 'vcop_cnn_eltWise_kernel.k', 'vcop_cnn_innerProduct_kernel.k', 'vcop_cnn_max_sum_kernel.k', 'vcop_cnn_nearest_neighbor_kernel.k', 'vcop_cnn_spatialPooling_kernel.k', 'vcop_cnn_sumRelu_kernel.k']
+
+  INCLUDE=[ '04_Engineering/01_Source_Code/liqor/common',
+            '04_Engineering/01_Source_Code/liqor/frame',
+            '04_Engineering/01_Source_Code/liqor/frame/ti_arp32_eve',
+            '04_Engineering/01_Source_Code/liqor/frame/ti_arp32_eve/dma_utils/inc',
+            '04_Engineering/01_Source_Code/liqor/tidl'
+          ]
+  SOURCE= [
+            ['04_Engineering/01_Source_Code/liqor/frame/ti_arp32_eve', ['*.c']],
+            ['04_Engineering/01_Source_Code/liqor/frame/ti_arp32_eve/dma_utils/src', ['*.c']]
+          ]
+
+  if product in ['hfl110', 'hfl110ta10'] :
+    LIBS = ['04_Engineering/04_Build/out/'+product+'/release_eve_1/04_Engineering/01_Source_Code/LIQOR/frame/ti_arp32_eve/liqor_eve.lib']
+  
+################# Component PCA #################
+class PCA(Component):
+  DONOTUSEFOR  = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+
+  COMPDEF=['PCA_TARGET_ARP32','PCA_MAINSTREAM']
+
+  KFILES = ['04_Engineering/04_Build/out/$usedfrom/release_eve_1/04_Engineering/01_Source_Code/PCA/frame/ti_eve_arp32/pca_eve.lib', '04_Engineering/01_Source_Code/PCA/frame/ti_eve_arp32', '04_Engineering/01_Source_Code/PCA/frame/ti_eve_arp32', 'vcop_center_of_gravity_16bits_kernel.k','vcop_sat_slide_kernel_ordering_kernel.k','vcop_sat_dist_fit_kernel.k','vcop_sat_final_approximation_kernel.k','vcop_crosstalk_kernel.k','vcop_distance_fit_16bits_kernel.k','vcop_extract_pulses_16bits_kernel.k','vcop_find_pulse_16bits_kernel.k','vcop_find_pulse_variableThresholds_kernel.k','vcop_find_pulse_convolution_kernel.k','vcop_find_pulse_histogram_kernel.k','vcop_find_pulse_positions_kernel.k','vcop_find_pulse_positions_simplified_kernel.k','vcop_intensity_area_16bits_kernel.k','vcop_matched_filter_16bits_kernel.k','vcop_matchedfilter_width_16bits_kernel.k','vcop_max_amplitude_pulse_16bits_kernel.k','vcop_nuke_and_interleave_16bits_kernel.k','vcop_nuke_filter_16bits_kernel.k','vcop_nuke_initial_16bits_kernel.k','vcop_start_end_index_16bits_kernel.k','vcop_tw_baseline_correction_final_kernel.k','vcop_tw_baseline_correction_temp_kernel.k','vcop_tw_distanceparts_2ndApprox_kernel.k','vcop_tw_distanceparts_3rdApprox_kernel.k','vcop_tw_distanceparts_dist2runits_kernel.k','vcop_tw_final_calculation_kernel.k','vcop_zeropad_sides_16bits_kernel.k','vcop_dark_pixels_correction_kernel.k','vcop_extract_convolution_16bits_kernel.k', 'vcop_sn_cross_product_kernel.k', 'vcop_sn_fast_inverse_square_root_kernel.k', 'vcop_sn_inside_surface_kernel.k', 'vcop_sn_surface_normals_kernel.k','vcop_sn_threshold_and_difference_kernel.k','vcop_sn_re_ordering_kernel.k','vcop_sn_cloud_ordering_kernel.k','vcop_defective_pixels_kernel.k','vcop_cs_sensor_to_world_kernel.k','vcop_cs_image_to_sensor_kernel.k','vcop_cs_cloud_ordering_kernel.k','vcop_matched_filter_narrow_kernel.k','vcop_sun_nuc_16bits_kernel.k','vcop_intensity_calibration_kernel.k','vcop_intensity_calibration_piecewise_kernel.k','vcop_intensity_standardizing_kernel.k','vcop_crosstalk_superimposed_kernel.k','vcop_emc_monitor_kernel.k','vcop_find_pulse_convolution_addedCond_kernel.k']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/pca',
+           '04_Engineering/01_Source_Code/pca/common',
+           '04_Engineering/01_Source_Code/pca/frame',
+           '04_Engineering/01_Source_Code/pca/frame/ti_eve_arp32',
+           '04_Engineering/01_Source_Code/pca/shared_helpers'
+           ]
+           
+  SOURCE=[['04_Engineering/01_Source_Code/pca/frame/ti_eve_arp32', [ 'hfl_arp32.c','hfl_arp32_pca_sat_error_fit.c','hfl_arp32_pca_surface_normal.c', 'hfl_arp32_pca_tw_final_range.c', 'hfl_arp32_pca_defective_pixels.c', 'hfl_arp32_pca_coordinate_system.c', 'hfl_arp32_preprocessing.c']]]
+
+  if product in ['hfl110', 'hfl110ta10'] :
+    LIBS = ['04_Engineering/04_Build/out/'+product+'/release_eve_1/04_Engineering/01_Source_Code/pca/frame/ti_eve_arp32/pca_eve.lib']
+
+
+
+################# Component SR_Legacy #################
+class SR_Legacy(Component):
+  DONOTUSEFOR  = ['hfl110', 'hfl110ta10', 'ars441']
+  DONOTUSEFOR += ['mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10'] 
+  
+  COMPDEF=['_NDEBUG', 'NDEBUG', 'SR_DEBUG_LEVEL=2', 'SR_TARGET_EVE', 'M_PROFILE_DEACTIVATE']
+  
+  KFILES = ['04_Engineering/04_Build/out/$usedfrom/release_eve_1/04_Engineering/01_Source_Code/SR/SR_Legacy/sreve/sr_eve.lib', '04_Engineering/01_Source_Code/SR/SR_Legacy/sreve/', '', 'sreve_integral_vcop.k', 'sreve_srcs_vcop.k', 'sreve_srncs_vcop.k', 'sreve_srrd_vcop.k', 'sreve_srtri_vcop.k']
+  
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sr',
+           '04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sr_wrp',
+           '04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sr_arp_wrp',
+           '04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sr_wrp_a',
+           '04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sr_wrp_b',
+           '04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sw_support/sr',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srab',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srarm',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srcc',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srcl',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srcld',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srclf',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srcolchk',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srcs',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srdia',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srdiacl',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srdis',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/sreve',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srfs',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srhcl',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srif',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srlib',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srn',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srncs',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srpcl',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srrcl',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srrd',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srss',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srssocr',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srt',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srtdm',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srtri',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srtri/ut_ref',
+           '04_Engineering/01_Source_Code/SR/SR_Legacy/srtricl']
+           
+  SOURCE=[['04_Engineering/00_Projects/$usedfrom/SR/SR_Legacy/sr_arp_wrp',             [ 'sr_wrp_arp.c']],
+          ['04_Engineering/01_Source_Code/SR/SR_Legacy/sreve',                         [ 'SR_ARP_Interface.c', 'sreve_edma.c', 'sreve_integral_arp32.c', 'sreve_srcs_arp32.c', 'sreve_srncs_arp32.c', 'sreve_srrd_arp32.c', 'sreve_srtri_arp32.c', 'sreve_vcop_mem.c']]]
+
+  LIBS = ['04_Engineering/04_Build/out/'+product+'/release_eve_1/04_Engineering/01_Source_Code/SR/SR_Legacy/sreve/sr_eve.lib']
+
+
+################# Component SR #################
+class SR(Component):
+  DONOTUSEFOR  = ['hfl110', 'hfl110ta10', 'ars441']
+  OVERRIDEFOR  = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19', 'mfc431sw19', 'mfc431va10', 'mfc431va21','mfc431bd10']
+  
+  KFILES = ['04_Engineering/04_Build/out/$usedfrom/release_eve_1/04_Engineering/01_Source_Code/SR/sreve/sr_eve.lib', '04_Engineering/01_Source_Code/SR/sreve/', '', 'sreve_integral_vcop.k', 'sreve_srcs_vcop.k', 'sreve_srncs_vcop.k', 'sreve_srrd_vcop.k', 'sreve_srtri_vcop.k']
+  
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/SR/sr',
+           '04_Engineering/00_Projects/$usedfrom/SR/sr_wrp',
+           '04_Engineering/00_Projects/$usedfrom/SR/sr_arp_wrp',
+           '04_Engineering/00_Projects/$usedfrom/SR/sr_wrp_a',
+           '04_Engineering/00_Projects/$usedfrom/SR/sr_wrp_b',
+           '04_Engineering/00_Projects/$usedfrom/SR/sw_support/sr',
+           '04_Engineering/01_Source_Code/SR/',
+           '04_Engineering/01_Source_Code/SR/cfg',
+           '04_Engineering/01_Source_Code/SR/cLib',
+           '04_Engineering/01_Source_Code/SR/cLib/LibraryPool',
+           '04_Engineering/01_Source_Code/SR/ms',
+           '04_Engineering/01_Source_Code/SR/ms/ab',
+           '04_Engineering/01_Source_Code/SR/ms/ab/ABWgt',
+           '04_Engineering/01_Source_Code/SR/ms/cl',
+           '04_Engineering/01_Source_Code/SR/ms/cl/cir',
+           '04_Engineering/01_Source_Code/SR/ms/cl/CLWgt',
+           '04_Engineering/01_Source_Code/SR/ms/cl/dia',
+           '04_Engineering/01_Source_Code/SR/ms/cl/HCL',
+           '04_Engineering/01_Source_Code/SR/ms/cl/ncs',
+           '04_Engineering/01_Source_Code/SR/ms/cl/rect',
+           '04_Engineering/01_Source_Code/SR/ms/cl/tri',
+           '04_Engineering/01_Source_Code/SR/ms/det',
+           '04_Engineering/01_Source_Code/SR/ms/det/cir',
+           '04_Engineering/01_Source_Code/SR/ms/det/dia',
+           '04_Engineering/01_Source_Code/SR/ms/det/ncs',
+           '04_Engineering/01_Source_Code/SR/ms/det/rect',
+           '04_Engineering/01_Source_Code/SR/ms/det/tri',
+           '04_Engineering/01_Source_Code/SR/ms/tracking',
+           '04_Engineering/01_Source_Code/SR/postproc',
+           '04_Engineering/01_Source_Code/SR/srarm',
+           '04_Engineering/01_Source_Code/SR/sreve',
+           '04_Engineering/01_Source_Code/SR/ss',
+           '04_Engineering/01_Source_Code/SR/ss/cipp',
+           '04_Engineering/01_Source_Code/SR/ss/ssocr/include',
+           '04_Engineering/01_Source_Code/SR/ss/ssocr/src',
+           '04_Engineering/01_Source_Code/SR/ss/SSWgt',
+           '04_Engineering/01_Source_Code/SR/Utilities',
+           '04_Engineering/01_Source_Code/SR/Utilities/Error',
+           '04_Engineering/01_Source_Code/SR/Utilities/HoughCircle',
+           '04_Engineering/01_Source_Code/SR/Utilities/LIB',
+           '04_Engineering/01_Source_Code/SR/Utilities/Memory',
+           '04_Engineering/01_Source_Code/SR/Utilities/NormMask',
+           '04_Engineering/01_Source_Code/SR/Utilities/PCA',
+           '04_Engineering/01_Source_Code/SR/Utilities/PCL',
+           '04_Engineering/01_Source_Code/SR/Utilities/RTA',
+           '04_Engineering/01_Source_Code/SR/Utilities/SignClass',
+           '04_Engineering/01_Source_Code/SR/Utilities/SigVal',
+           '04_Engineering/01_Source_Code/SR/Utilities/tdmProjection',
+           '04_Engineering/01_Source_Code/SR/Utilities/TemplateMatching',
+           '04_Engineering/01_Source_Code/SR/Utilities/CountryInfo'
+           ]
+           
+  SOURCE=[['04_Engineering/00_Projects/$usedfrom/SR/sr_arp_wrp',             [ 'sr_wrp_arp.c']],
+          ['04_Engineering/01_Source_Code/SR/sreve',                         [ 'SR_ARP_Interface.c', 'sreve_edma.c', 'sreve_integral_arp32.c', 'sreve_srcs_arp32.c', 'sreve_srncs_arp32.c', 'sreve_srrd_arp32.c', 'sreve_srtri_arp32.c', 'sreve_vcop_mem.c']]]
+
+  LIBS = ['04_Engineering/04_Build/out/'+product+'/release_eve_1/04_Engineering/01_Source_Code/SR/sreve/sr_eve.lib']
+
+################# Component VODCA #################
+class VODCA(Component):
+  DONOTUSEFOR  = ['hfl110', 'hfl110ta10', 'ars441']
+
+  COMPDEF=['VODCA_TARGET_ARP32']
+  
+  KFILES = ['04_Engineering/04_Build/out/$usedfrom/release_eve_1/04_Engineering/01_Source_Code/vodca/hog/ti_eve_arp32/vodca_eve.lib', '04_Engineering/01_Source_Code/vodca/hog/ti_eve_arp32', '', 'vcop_hog_features_kernel.k', 'vcop_hog_helper_kernel.k', 'vcop_hog_hyp_adaBoost_kernel.k', 'vcop_hog_hyp_classify_kernel.k', 'vcop_hog_img_scaler_kernel.k']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/vodca',
+           '04_Engineering/00_Projects/$usedfrom/vodca/frame',
+           '04_Engineering/01_Source_Code/vodca',
+           '04_Engineering/01_Source_Code/vodca/classifiers',
+           '04_Engineering/01_Source_Code/vodca/common',
+           '04_Engineering/01_Source_Code/vodca/frame',
+           '04_Engineering/01_Source_Code/vodca/frame/ti_eve_arp32',
+           '04_Engineering/01_Source_Code/vodca/hog',
+           '04_Engineering/01_Source_Code/vodca/hog/ti_eve_arp32',
+           '04_Engineering/01_Source_Code/vodca/interface',
+           '04_Engineering/01_Source_Code/vodca/shared_helpers'
+           ]
+           
+  SOURCE=[['04_Engineering/01_Source_Code/vodca/frame/ti_eve_arp32',    [ 'vodca_arp32.c', 'vodca_arp32_crc.c']],
+          ['04_Engineering/01_Source_Code/vodca/hog/ti_eve_arp32',      [ 'vodca_arp32_hog.c', 'vodca_arp32_hog_features.c', 'vodca_arp32_hog_features_blocks.c', 'vodca_arp32_hog_features_cells.c', 'vodca_arp32_hog_hyp_adaBoost.c', 'vodca_arp32_hog_hyp_classify.c', 'vodca_arp32_hog_hyp_svm.c', 'vodca_arp32_hog_img_scaler.c', 'vodca_arp32_hog_img_scaler_8.c', 'vodca_arp32_hog_img_scaler_16.c']]
+          ]
+
+  if product in ['mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10'] :
+    LIBS = ['04_Engineering/04_Build/out/'+product+'/release_eve_1/04_Engineering/01_Source_Code/vodca/hog/ti_eve_arp32/vodca_eve.lib']
+
+################# Component FORCE_APPL_PRJ_INC #################
+class FORCE_APPL_PRJ_INC(Component):
+  INCLUDE = ['04_Engineering/00_Projects/' + product]
+
+
+includePath=""
+
+
+Components = [
+    FORCE_APPL_PRJ_INC(),
+    DPUCOMMON(),
+    DPURTE(),
+    STARTERWARE(),
+    DPUFF(),
+    DPUST(),
+    DPUSERVICE(),
+    DPUALGO(),
+    DPUHWIF(),
+    DPUMISC(),
+    CML(),
+    PC(),
+    LIQOR(),
+    PCA(),
+    SR(),
+    VODCA()
+   ]
+            
+for i in Components:
+   #ucoment for debuging of layout issues 
+   #print i
+   includePath += i.AddComp()
+
+
+setIncludePath(includePath)
+addCompilerDefine('CORE_ARP32_1')
+addCompilerDefine('VAYU_PLATFORM')
+
+removeFiles('04_Engineering/04_Build/tools/evestarterware/src/eve1', 'test_done.c')
+
+
+# Exclude 3rd party directories from static code analysis
+addException('04_Engineering/04_Build/tools/evestarterware/drivers/devices/vayu/cred/src/eve1')
+addException('04_Engineering/04_Build/tools/evestarterware/drivers/src')
+
+if unit_test_only == False:
+  compile('eve_1')
+
+includePathPDO = ""
+launchDir = GetLaunchDir().replace('\\', '/')
+includePathPDO += "\""+launchDir+"/04_Engineering/04_Build/tools/bios/packages/gnu/targets/arm/libs/install-native/arm-none-eabi/include\",\n"
+includePathPDO += "\"C:/tools/gcc_arm/4.7_2012q4/lib/gcc/arm-none-eabi/4.7.3/include\",\n"
+includePathPDO += "\""+launchDir+"/04_Engineering/04_Build/out/"+product+"\",\n"
+includePathPDO += "\",\n".join([ "\""+launchDir+"/"+Path  for Path       in includePath.split()])+"\";"
+outpath = launchDir+'/04_Engineering/04_Build/out/' +  product + '/release_eve_1'
+with open(outpath+'/eve_1_include_list.cfg', 'w+') as f:
+	f.write("sys_include_dirs = %s" % includePathPDO)

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00045.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2023-01-30T17:19:40+08:00" UUID="f5c3a70c-4d84-4e60-ba5b-25c57c09489a">
+      <SHORT-NAME>CscPlatform</SHORT-NAME>
+      <ELEMENTS>
+        <CLIENT-SERVER-INTERFACE T="2023-01-30T16:27:44+08:00" UUID="DCE:af0b041d-68c6-4039-b847-40ce83ebf020">
+          <SHORT-NAME>CSI_Time_GetTimeStampInfo</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <OPERATIONS>
+            <CLIENT-SERVER-OPERATION T="2022-09-13T13:52:27+08:00" UUID="d3271afa-2400-42bf-9143-7298d4ac49b2">
+              <SHORT-NAME>GetGlobalTimeStatus</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE T="2022-09-24T20:30:01+08:00" UUID="c6c7bc2c-f0c8-4ca0-825e-89d377ddd343">
+                  <SHORT-NAME>status</SHORT-NAME>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint8_t</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SERVER-ARGUMENT-IMPL-POLICY>USE-ARGUMENT-TYPE</SERVER-ARGUMENT-IMPL-POLICY>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+              <POSSIBLE-ERROR-REFS>
+                <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/CscPlatform/CSI_Time_GetTimeStampInfo/E_OK</POSSIBLE-ERROR-REF>
+              </POSSIBLE-ERROR-REFS>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION T="2022-09-13T13:40:57+08:00" UUID="a50a56a3-8465-4c09-81c4-535910758ada">
+              <SHORT-NAME>GetTimeStampMs</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE T="2022-09-13T13:40:57+08:00" UUID="0de05808-a6ea-4f48-ac05-699169841b78">
+                  <SHORT-NAME>ts_ms</SHORT-NAME>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint64_t</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SERVER-ARGUMENT-IMPL-POLICY>USE-ARGUMENT-TYPE</SERVER-ARGUMENT-IMPL-POLICY>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+              <POSSIBLE-ERROR-REFS>
+                <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/CscPlatform/CSI_Time_GetTimeStampInfo/E_OK</POSSIBLE-ERROR-REF>
+              </POSSIBLE-ERROR-REFS>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION T="2022-09-13T13:40:57+08:00" UUID="a2698873-ea0e-4b02-b540-9ef92439ccbd">
+              <SHORT-NAME>GetTimeStampNs</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE T="2022-09-13T13:40:57+08:00" UUID="e8437b34-6f88-4651-9e93-a04101f2e907">
+                  <SHORT-NAME>ts_ns</SHORT-NAME>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint64_t</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SERVER-ARGUMENT-IMPL-POLICY>USE-ARGUMENT-TYPE</SERVER-ARGUMENT-IMPL-POLICY>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+              <POSSIBLE-ERROR-REFS>
+                <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/CscPlatform/CSI_Time_GetTimeStampInfo/E_OK</POSSIBLE-ERROR-REF>
+              </POSSIBLE-ERROR-REFS>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION T="2022-09-13T13:41:11+08:00" UUID="a9d4baac-737e-4ff8-aff4-c7032e750f33">
+              <SHORT-NAME>GetTimeStampSec</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE T="2022-09-13T13:40:57+08:00" UUID="b0132dc3-f07b-4b71-af71-483dfa1dbd88">
+                  <SHORT-NAME>ts_sec</SHORT-NAME>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint64_t</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SERVER-ARGUMENT-IMPL-POLICY>USE-ARGUMENT-TYPE</SERVER-ARGUMENT-IMPL-POLICY>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+              <POSSIBLE-ERROR-REFS>
+                <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/CscPlatform/CSI_Time_GetTimeStampInfo/E_OK</POSSIBLE-ERROR-REF>
+              </POSSIBLE-ERROR-REFS>
+            </CLIENT-SERVER-OPERATION>
+          </OPERATIONS>
+          <POSSIBLE-ERRORS>
+            <APPLICATION-ERROR T="2022-09-13T13:40:57+08:00" UUID="e97adf06-15d7-4cbb-9c5b-9e25ffcaeb55">
+              <SHORT-NAME>E_OK</SHORT-NAME>
+              <ERROR-CODE>0</ERROR-CODE>
+            </APPLICATION-ERROR>
+          </POSSIBLE-ERRORS>
+        </CLIENT-SERVER-INTERFACE>
+        <APPLICATION-SW-COMPONENT-TYPE T="2022-09-13T13:43:33+08:00" UUID="a76a5631-2d6d-4ea5-920a-f6469f62e3c6">
+          <SHORT-NAME>Time</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE T="2023-01-30T16:27:55+08:00" UUID="4e5d0235-4546-4d68-8207-edfa09a85221">
+              <SHORT-NAME>CS_Time_GetTimeStampInfo</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/CscPlatform/CSI_Time_GetTimeStampInfo</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-02-28T17:30:53+08:00" UUID="80bb6214-d819-401c-b734-92bee5f083a7">
+              <SHORT-NAME>GlobalTime_Slave_StbMSynchronizedTimeBase_0</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_StbM/PortInterfaces/StbM_GlobalTime_Slave_StbMSynchronizedTimeBase_0</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR T="2022-09-13T13:56:35+08:00" UUID="9803a677-2a9d-40db-b9b3-67d26643e735">
+              <SHORT-NAME>Time_IB</SHORT-NAME>
+              <EVENTS>
+                <OPERATION-INVOKED-EVENT UUID="f8a5443a-1cc1-4080-b31d-0515b2fb6627">
+                  <SHORT-NAME>GetGlobalTimeStatus_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CscPlatform/Time/Time_IB/Time_GetGlobalTimeStatus</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CscPlatform/Time/CS_Time_GetTimeStampInfo</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/CscPlatform/CSI_Time_GetTimeStampInfo/GetGlobalTimeStatus</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="a4351423-0cfe-464a-a051-71206fc1e799">
+                  <SHORT-NAME>GetTimeStampMs_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CscPlatform/Time/Time_IB/Time_GetTimeStampMs</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CscPlatform/Time/CS_Time_GetTimeStampInfo</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/CscPlatform/CSI_Time_GetTimeStampInfo/GetTimeStampMs</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="44dd3e74-5080-4580-b480-ca5faeea4a32">
+                  <SHORT-NAME>GetTimeStampNs_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CscPlatform/Time/Time_IB/Time_GetTimeStampNs</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CscPlatform/Time/CS_Time_GetTimeStampInfo</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/CscPlatform/CSI_Time_GetTimeStampInfo/GetTimeStampNs</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT UUID="9ae37195-88c3-4e74-8ed7-dc495990032e">
+                  <SHORT-NAME>GetTimeStampSec_Event</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CscPlatform/Time/Time_IB/Time_GetTimeStampSec</START-ON-EVENT-REF>
+                  <OPERATION-IREF>
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CscPlatform/Time/CS_Time_GetTimeStampInfo</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/CscPlatform/CSI_Time_GetTimeStampInfo/GetTimeStampSec</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <INIT-EVENT T="2022-09-13T11:53:03+08:00" UUID="8fd620af-be3a-4841-9a84-2df61e25e9fc">
+                  <SHORT-NAME>InitEvent_Time_InitFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CscPlatform/Time/Time_IB/Time_InitFunction</START-ON-EVENT-REF>
+                </INIT-EVENT>
+                <TIMING-EVENT T="2022-09-13T12:11:04+08:00" UUID="ba4f6cd3-4cec-412a-b650-dc6a6a6dc659">
+                  <SHORT-NAME>TimingEvent_Time_MainFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CscPlatform/Time/Time_IB/Time_MainFunction</START-ON-EVENT-REF>
+                  <PERIOD>0.005</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY T="2022-09-13T13:57:10+08:00" UUID="142d9b9e-346f-47b1-8abe-9c96793762f9">
+                  <SHORT-NAME>Time_GetGlobalTimeStatus</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Time_GetGlobalTimeStatus</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2022-09-13T13:44:11+08:00" UUID="de661781-8197-4238-80af-376df32fe89c">
+                  <SHORT-NAME>Time_GetTimeStampMs</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Time_GetTimeStampMs</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2022-09-20T10:06:58+08:00" UUID="25369812-4e1b-46d1-87c8-8ca5fc4c0223">
+                  <SHORT-NAME>Time_GetTimeStampNs</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Time_GetTimeStampNs</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2022-09-20T10:07:04+08:00" UUID="2efa50c3-fdcd-4cc8-9cf2-f94dc628af66">
+                  <SHORT-NAME>Time_GetTimeStampSec</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Time_GetTimeStampSec</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2022-09-13T12:11:14+08:00" UUID="DCE:98b4b83c-62f9-4ff6-b614-bc0ba4a4bd6c">
+                  <SHORT-NAME>Time_InitFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Time_InitFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2022-09-13T12:11:22+08:00" UUID="DCE:6425a85b-249e-4a63-b537-63e4ce82886b">
+                  <SHORT-NAME>Time_MainFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT T="2022-09-13T12:11:22+08:00" UUID="3697033b-bdec-4dcd-8ce2-f21e521bfc46">
+                      <SHORT-NAME>scp_GetCurrentTime</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/CscPlatform/Time/GlobalTime_Slave_StbMSynchronizedTimeBase_0</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/StbM_GlobalTime_Slave_StbMSynchronizedTimeBase_0/GetCurrentTime</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT T="2022-09-13T12:11:22+08:00" UUID="f26b4272-8b64-4f7d-8bca-c1aeae40f99c">
+                      <SHORT-NAME>scp_GetRateDeviation</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/CscPlatform/Time/GlobalTime_Slave_StbMSynchronizedTimeBase_0</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/StbM_GlobalTime_Slave_StbMSynchronizedTimeBase_0/GetRateDeviation</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT T="2022-09-13T12:11:22+08:00" UUID="d8dfd9b5-3f8d-4a2a-97a7-f3b9ffc19096">
+                      <SHORT-NAME>scp_GetTimeBaseStatus</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/CscPlatform/Time/GlobalTime_Slave_StbMSynchronizedTimeBase_0</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_StbM/PortInterfaces/StbM_GlobalTime_Slave_StbMSynchronizedTimeBase_0/GetTimeBaseStatus</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>Time_MainFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION T="2022-09-13T11:56:40+08:00" UUID="165d201c-5041-41bb-b363-cfd6cabe372e">
+          <SHORT-NAME>TimeImpl</SHORT-NAME>
+          <CODE-DESCRIPTORS>
+            <CODE T="2022-09-13T11:56:29+08:00" UUID="96a9995e-ad50-41f9-abab-9969fefca821">
+              <SHORT-NAME>CodeGen</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/CscPlatform/Time/Time_IB/Time_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWHDR0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/CscPlatform/Time/Time_IB/Time_InitFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <ARTIFACT-DESCRIPTORS>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-09-13T11:56:29+08:00">
+                  <SHORT-LABEL>SWSRC</SHORT-LABEL>
+                  <CATEGORY>SWSRC</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-09-13T11:56:29+08:00">
+                  <SHORT-LABEL>SWHDR</SHORT-LABEL>
+                  <CATEGORY>SWHDR</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+              </ARTIFACT-DESCRIPTORS>
+            </CODE>
+          </CODE-DESCRIPTORS>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <RESOURCE-CONSUMPTION T="2022-09-13T11:56:40+08:00" UUID="9c1c76f4-7567-42b7-b155-bd118721d5f9">
+            <SHORT-NAME>Resource</SHORT-NAME>
+            <MEMORY-SECTIONS>
+              <MEMORY-SECTION T="2022-09-13T11:56:40+08:00" UUID="09e4517f-956d-4f6d-9ca5-46879d4f1da7">
+                <SHORT-NAME>CODE</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2022-09-13T11:56:40+08:00" UUID="b9cf1272-0c58-4732-a79c-439a8859ab02">
+                <SHORT-NAME>VAR_UNSPECIFIED</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/VAR</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+            </MEMORY-SECTIONS>
+          </RESOURCE-CONSUMPTION>
+          <SW-VERSION>0.0.1</SW-VERSION>
+          <VENDOR-ID>0</VENDOR-ID>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/CscPlatform/Time/Time_IB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

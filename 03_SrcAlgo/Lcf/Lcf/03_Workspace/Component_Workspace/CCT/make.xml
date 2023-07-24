@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+  <BuildComponentCfg Component="cct">
+    <Build name="cct_algo_ti_c674x" filter="ecu" desc="ti674x target lib" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="cct_algo_ti_c66xx" filter="ecu" desc="ti66xx target lib" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="cct_algo_ti_cortex_a8" filter="ecu" desc="ti cortex A8 target lib" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="cct_algo_ti_cortex_a15" filter="ecu" desc="ti cortex A15 target lib" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="cct_algo_pc" filter="sim" desc="PC lib" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="cct_sim_swc_cut_roi" filter="vis" desc="sim cut roi" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="cct_sim_swc_vis_image" filter="vis" desc="sim vis image" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="cct_sim_swc_vis_perspectives" filter="vis" desc="sim perspectives" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="cct_sim_swc_vis_rt_range" filter="vis" desc="Visualization for RT Range system data" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="cct_sim_swc_vis_velodyne" filter="vis" desc="Visualization for Velodyne laser scanner data" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="cct_sim_swc_hil_client" filter="sim" desc="sim hil client" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="Release"/>
+      <BuildType type="Debug"/>
+      <BuildType type="*"/>
+    </Build>
+    <Build name="cct_unittests" filter="unittest" desc="do the unit test" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="*"/>
+    </Build>
+    <Build name="cct_ide" filter="ide" desc="create ide's" execute="scons" sconstruct_dir=".\"  attrib="-j %NUMBER_OF_PROCESSORS%">
+      <BuildType type="*"/>
+    </Build>
+  </BuildComponentCfg>
+
+

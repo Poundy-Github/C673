@@ -1,0 +1,38 @@
+ca8.zip: Platform.xdc
+Platform.xdc:
+ca8.zip: Platform.xs
+Platform.xs:
+ca8.zip: config.bld
+config.bld:
+ca8.zip: package/.vers_b150
+package/.vers_b150:
+ca8.zip: package/.vers_g180
+package/.vers_g180:
+ca8.zip: package/.vers_r170
+package/.vers_r170:
+ca8.zip: package/.xdc-y30
+package/.xdc-y30:
+ca8.zip: package/build.cfg
+package/build.cfg:
+ca8.zip: package/ca8.ccs
+package/ca8.ccs:
+ca8.zip: package/ca8.class
+package/ca8.class:
+ca8.zip: package/ca8.java
+package/ca8.java:
+ca8.zip: package/ca8.sch
+package/ca8.sch:
+ca8.zip: package/package.bld.xml
+package/package.bld.xml:
+ca8.zip: package/package.defs.h
+package/package.defs.h:
+ca8.zip: package/package.ext.xml
+package/package.ext.xml:
+ca8.zip: package/package.rel.dot
+package/package.rel.dot:
+ca8.zip: package/package_ca8.c
+package/package_ca8.c:
+ca8.zip: package.bld
+package.bld:
+ca8.zip: package.xdc
+package.xdc:

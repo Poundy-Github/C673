@@ -1,0 +1,61 @@
+# define component name
+component_name = "cct"
+
+# unit test directory
+unit_test_dir = "modtests"
+
+# list of write protected directories which should be writable 
+writeable_dir = [source_code_dir, 
+                 build_dir,
+                 deliverables_dir, 
+                 testing_dir]
+
+# use visual studio 2010 for builing this simulation
+generate_vs2010 = True
+
+# define if GCC is used for ARM (the default is using TI compiler)
+gcc_used = False
+
+# define if dsp is used in this component (default: True)
+c674x_used = False
+
+# define if eve is used in this component
+eve_used = False
+
+# define if Cortex A8 is used in this component
+ca8_used = False
+
+# define if Cortex A15 lib is build (default: False)
+ca15_used = False
+
+# define if C66xx lib is built (default: False)
+c66xx_used = False
+
+# define if ecu hil_wrapper is available
+ecu_hil_wrapper_used = False
+
+# define if unit test is available
+include_unit_test = False
+
+# define polyspace
+generate_ps = False
+
+#--------------------------------------------------------------------------------------
+# define algo/component specific project lists
+#--------------------------------------------------------------------------------------
+
+# list of algo name in this component, when there is more than one algo in one component
+# if algo_name_list is not defined, the default value is the component_name
+algo_name_list = [component_name]
+
+# define list of source folders for simulation targets to be built,
+# Note 1: the following definitions are merely examples, please adapt according to component
+# paths have to be relative to 03_Workspace/algo/xxx_sim!
+# Note 2: All paths need to be relative to SConstruct, i.e. start with "#" (#=SConstruct-location)
+# if there is one algo in the component (default):
+sim_proj_list = ["#../" + component_name + "_sim/sim_swc_cut_roi",
+                 "#../" + component_name + "_sim/sim_swc_hil_client"
+                 "#../" + component_name + "_sim/sim_swc_vis_image",
+                 "#../" + component_name + "_sim/sim_swc_vis_perspectives",
+                 "#../" + component_name + "_sim/sim_swc_vis_rt_range",
+                 "#../" + component_name + "_sim/sim_swc_vis_velodyne"]

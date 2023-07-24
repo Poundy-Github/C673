@@ -1,0 +1,32 @@
+# config file containing source files in sim_swc_vis_rt_range
+
+sim_swc_vis_rt_range_source_files = """
+sim_swc_vis_rt_range.cpp
+sim_swc_vis_rt_range_dll.cpp
+stdafx.cpp
+vis_rt_range.cpp
+../../../../01_Source_Code/externals/sim_extensions/sim_gl_tools.cpp
+"""
+
+sim_swc_vis_rt_range_include_file_paths = """
+#../../../01_Source_Code/CML/bayes
+#../../../01_Source_Code/CML/complex
+#../../../01_Source_Code/CML/fourier
+#../../../01_Source_Code/CML/interpol
+#../../../01_Source_Code/CML/kalman
+#../../../01_Source_Code/CML/matrix
+#../../../01_Source_Code/CML/misc
+#../../../01_Source_Code/CML/stat
+#../../../01_Source_Code/CML/stl
+#../../../01_Source_Code/CML/stl/algorithm
+#../../../01_Source_Code/CML/stl/container
+#../../../01_Source_Code/CML/stl/math
+#../../../01_Source_Code/CML/trigo
+#../../../01_Source_Code/CML/vector
+#../cct_sim/sim_swc_vis_rt_range/
+#../../../01_Source_Code/externals/sim/include/sim_kernel/
+#../../../01_Source_Code/externals/sim/include/sim_swc/
+#../../../01_Source_Code/externals/sim/include/sim_adapter/
+#../../../01_Source_Code/externals/sim_extensions/
+#../../../01_Source_Code/externals/ctk/include/
+"""

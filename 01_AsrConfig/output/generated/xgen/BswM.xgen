@@ -1,0 +1,3679 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?module BswM?>
+<xgen xmlns="http://www.elektrobit.com/2013/xgen" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <module name="BswM" version="1.15.7 B466224">
+        <configuration class="PreCompile">
+            <!-- only generate the contents of BswM_CfgTypes.h once, for the first variant -->
+            <?artifact type="types-h" directory="include" file="BswM_CfgTypes.h" generate="yes"?>
+
+            <parameter name="relocatable-enable">
+                <boolean-value>true</boolean-value>
+            </parameter>
+<type name="UInt8Symbol">
+    <reference type="uint8">
+        <compiler-abstraction>
+            <var memory-class="TYPEDEF"/>
+        </compiler-abstraction>
+    </reference>
+</type>
+<type name="BswMPduGroupSwitchActionType">
+    <struct>
+        <member count="4" name="EnableMask" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="4" name="DisableMask" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="RequestInit" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="BswMActionListItemType">
+    <struct>
+        <member name="ArtifactIndex" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="ActionListItemType" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="IsAbortOnFail" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="ActionType" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="BswMRangeType">
+    <struct>
+        <member name="Head" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="Tail" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="BswMActionListType">
+    <struct>
+        <member name="ActionListItemSegment" type="BswMRangeType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="IsTriggered" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="BswMRuleType">
+    <struct>
+        <member name="ID" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="LogicalExprIndex" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TrueActionListIndex" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="FalseActionListIndex" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="RuleInitState" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="BswM_ConfigType">
+    <struct>
+        <member name="RuleTable" type="BswMRuleType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="RuleDependencyTable" type="uint16">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="RuleDependencyListRangeTable" type="BswMRangeType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="ActionListTable" type="BswMActionListType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="ActionListItemTable" type="BswMActionListItemType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduGroupSwitchActionTable" type="BswMPduGroupSwitchActionType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="UInt8InitialValuesTable" type="UInt8Symbol">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="UInt16InitialValuesTable" type="uint16">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="UInt32InitialValuesTable" type="uint32">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="PlatformSignature" type="uint32">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="LcfgSignature" type="uint32">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="CfgSignature" type="uint32">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PublicInfoSignature" type="uint32">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="NumRules" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="NumRulesDeferred" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="NumActionLists" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+
+
+        </configuration>
+        <configuration class="PostBuild">
+            <?artifact type="postbuild-h" directory="include" file="BswM_PBcfg.h" generate="yes"?>
+            <?artifact type="postbuild-c" directory="src" file="BswM_PBcfg.c" generate="yes"?>
+<type name="BswM_ConfigLayoutType">
+    <struct>
+        <member count="4" name="BswM_RootConfig" type="BswM_ConfigType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="45" name="RuleTable" type="BswMRuleType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="46" name="RuleDependencyTable" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="14" name="RuleDependencyListRangeTable" type="BswMRangeType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="47" name="ActionListTable" type="BswMActionListType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="73" name="ActionListItemTable" type="BswMActionListItemType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="12" name="PduGroupSwitchActionTable" type="BswMPduGroupSwitchActionType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="4" name="UInt16InitialValuesTable" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="8" name="UInt8InitialValuesTable" type="UInt8Symbol">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="BswM_ConstConfigLayoutType">
+    <reference type="BswM_ConfigLayoutType">
+        <compiler-abstraction>
+            <const memory-class="TYPEDEF"/>
+        </compiler-abstraction>
+    </reference>
+</type>
+
+
+            <memory-section name="CONFIG_DATA_UNSPECIFIED">
+            <parameter name="postbuild-configuration-name.BswM_ConfigLayout">
+                <symbolic-value>BSWM_PB_CFG_NAME</symbolic-value>
+            </parameter><instance name="BswM_ConfigLayout" type="BswM_ConstConfigLayoutType">
+    <parameter name="postbuild-configuration-name">
+        <parameter reference="postbuild-configuration-name.BswM_ConfigLayout"/>
+    </parameter>
+    <compiler-abstraction>
+        <var memory-class="BSWM_CONST"/>
+    </compiler-abstraction>
+    <field>
+        <field>
+            <field>
+                <ref>
+                    <struct-field name="RuleTable"/>
+                    <array-field index="0"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="RuleDependencyTable"/>
+                    <array-field index="0"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="RuleDependencyListRangeTable"/>
+                    <array-field index="0"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="ActionListTable"/>
+                    <array-field index="0"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="ActionListItemTable"/>
+                    <array-field index="0"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="PduGroupSwitchActionTable"/>
+                    <array-field index="0"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="UInt8InitialValuesTable"/>
+                    <array-field index="0"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="UInt16InitialValuesTable"/>
+                    <array-field index="0"/>
+                </ref>
+            </field>
+            <field>
+                <ref/>
+            </field>
+            <field>
+                <int>2281703698</int>
+            </field>
+            <field>
+                <int>1858847467</int>
+            </field>
+            <field>
+                <int>662634896</int>
+            </field>
+            <field>
+                <int>3585052355</int>
+            </field>
+            <field>
+                <int>27</int>
+            </field>
+            <field>
+                <int>24</int>
+            </field>
+            <field>
+                <int>29</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <ref>
+                    <struct-field name="RuleTable"/>
+                    <array-field index="27"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="RuleDependencyTable"/>
+                    <array-field index="28"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="RuleDependencyListRangeTable"/>
+                    <array-field index="8"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="ActionListTable"/>
+                    <array-field index="29"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="ActionListItemTable"/>
+                    <array-field index="55"/>
+                </ref>
+            </field>
+            <field>
+                <ref/>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="UInt8InitialValuesTable"/>
+                    <array-field index="5"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="UInt16InitialValuesTable"/>
+                    <array-field index="1"/>
+                </ref>
+            </field>
+            <field>
+                <ref/>
+            </field>
+            <field>
+                <int>2281703698</int>
+            </field>
+            <field>
+                <int>1858847467</int>
+            </field>
+            <field>
+                <int>662634896</int>
+            </field>
+            <field>
+                <int>3585052355</int>
+            </field>
+            <field>
+                <int>6</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>6</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <ref>
+                    <struct-field name="RuleTable"/>
+                    <array-field index="33"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="RuleDependencyTable"/>
+                    <array-field index="34"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="RuleDependencyListRangeTable"/>
+                    <array-field index="10"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="ActionListTable"/>
+                    <array-field index="35"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="ActionListItemTable"/>
+                    <array-field index="61"/>
+                </ref>
+            </field>
+            <field>
+                <ref/>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="UInt8InitialValuesTable"/>
+                    <array-field index="6"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="UInt16InitialValuesTable"/>
+                    <array-field index="2"/>
+                </ref>
+            </field>
+            <field>
+                <ref/>
+            </field>
+            <field>
+                <int>2281703698</int>
+            </field>
+            <field>
+                <int>1858847467</int>
+            </field>
+            <field>
+                <int>662634896</int>
+            </field>
+            <field>
+                <int>3585052355</int>
+            </field>
+            <field>
+                <int>6</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>6</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <ref>
+                    <struct-field name="RuleTable"/>
+                    <array-field index="39"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="RuleDependencyTable"/>
+                    <array-field index="40"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="RuleDependencyListRangeTable"/>
+                    <array-field index="12"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="ActionListTable"/>
+                    <array-field index="41"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="ActionListItemTable"/>
+                    <array-field index="67"/>
+                </ref>
+            </field>
+            <field>
+                <ref/>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="UInt8InitialValuesTable"/>
+                    <array-field index="7"/>
+                </ref>
+            </field>
+            <field>
+                <ref>
+                    <struct-field name="UInt16InitialValuesTable"/>
+                    <array-field index="3"/>
+                </ref>
+            </field>
+            <field>
+                <ref/>
+            </field>
+            <field>
+                <int>2281703698</int>
+            </field>
+            <field>
+                <int>1858847467</int>
+            </field>
+            <field>
+                <int>662634896</int>
+            </field>
+            <field>
+                <int>3585052355</int>
+            </field>
+            <field>
+                <int>6</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>6</int>
+            </field>
+        </field>
+    </field>
+    <field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_EcuReset_JUMPTOSYSSUPPLIERBOOTLOADER">
+            <field>
+                <int>26</int>
+            </field>
+            <field>
+                <int>26</int>
+            </field>
+            <field>
+                <int>28</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_EcuReset_SOFT">
+            <field>
+                <int>25</int>
+            </field>
+            <field>
+                <int>25</int>
+            </field>
+            <field>
+                <int>27</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_EcuReset_HARD">
+            <field>
+                <int>24</int>
+            </field>
+            <field>
+                <int>24</int>
+            </field>
+            <field>
+                <int>26</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_EcuReset_EXECUTE">
+            <field>
+                <int>23</int>
+            </field>
+            <field>
+                <int>23</int>
+            </field>
+            <field>
+                <int>25</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_280003_EnRxTx_Norm_NM">
+            <field>
+                <int>20</int>
+            </field>
+            <field>
+                <int>20</int>
+            </field>
+            <field>
+                <int>20</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_280303_DisRxTx_Norm_NM">
+            <field>
+                <int>19</int>
+            </field>
+            <field>
+                <int>19</int>
+            </field>
+            <field>
+                <int>19</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_280002_EnRxTx_NM">
+            <field>
+                <int>18</int>
+            </field>
+            <field>
+                <int>18</int>
+            </field>
+            <field>
+                <int>18</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_280302_DisRxTx_NM">
+            <field>
+                <int>17</int>
+            </field>
+            <field>
+                <int>17</int>
+            </field>
+            <field>
+                <int>17</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_280001_EnRxTx_Norm">
+            <field>
+                <int>16</int>
+            </field>
+            <field>
+                <int>16</int>
+            </field>
+            <field>
+                <int>16</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_280301_DisRxTx_Norm">
+            <field>
+                <int>15</int>
+            </field>
+            <field>
+                <int>15</int>
+            </field>
+            <field>
+                <int>15</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmNoCom_PrivateCan">
+            <field>
+                <int>13</int>
+            </field>
+            <field>
+                <int>10</int>
+            </field>
+            <field>
+                <int>10</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmBusoff_PrivateCan">
+            <field>
+                <int>12</int>
+            </field>
+            <field>
+                <int>12</int>
+            </field>
+            <field>
+                <int>12</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmSilentCom_PrivateCan">
+            <field>
+                <int>11</int>
+            </field>
+            <field>
+                <int>11</int>
+            </field>
+            <field>
+                <int>11</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmFullCom_PrivateCan">
+            <field>
+                <int>10</int>
+            </field>
+            <field>
+                <int>13</int>
+            </field>
+            <field>
+                <int>13</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmFullCom_PublicCan">
+            <field>
+                <int>9</int>
+            </field>
+            <field>
+                <int>9</int>
+            </field>
+            <field>
+                <int>8</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmBusoff_PublicCan">
+            <field>
+                <int>8</int>
+            </field>
+            <field>
+                <int>8</int>
+            </field>
+            <field>
+                <int>7</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmSilentCom_PublicCan">
+            <field>
+                <int>7</int>
+            </field>
+            <field>
+                <int>7</int>
+            </field>
+            <field>
+                <int>6</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmNoCom_PublicCan">
+            <field>
+                <int>6</int>
+            </field>
+            <field>
+                <int>6</int>
+            </field>
+            <field>
+                <int>5</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_PrepShutdown">
+            <field>
+                <int>5</int>
+            </field>
+            <field>
+                <int>5</int>
+            </field>
+            <field>
+                <int>9</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_RunTwo">
+            <field>
+                <int>4</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+            <field>
+                <int>2</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneB">
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneA">
+            <field>
+                <int>2</int>
+            </field>
+            <field>
+                <int>2</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoB">
+            <field>
+                <int>1</int>
+            </field>
+            <field>
+                <int>4</int>
+            </field>
+            <field>
+                <int>4</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoA">
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Comco_PduGroupSwitchTxReq">
+            <field>
+                <int>22</int>
+            </field>
+            <field>
+                <int>22</int>
+            </field>
+            <field>
+                <int>23</int>
+            </field>
+            <field>
+                <int>24</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Comco_PduGroupSwitchRxReq">
+            <field>
+                <int>21</int>
+            </field>
+            <field>
+                <int>21</int>
+            </field>
+            <field>
+                <int>21</int>
+            </field>
+            <field>
+                <int>22</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_WakupValidation_PublicCan">
+            <field>
+                <int>14</int>
+            </field>
+            <field>
+                <int>14</int>
+            </field>
+            <field>
+                <int>14</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_PrepShutdown">
+            <field>
+                <int>5</int>
+            </field>
+            <field>
+                <int>5</int>
+            </field>
+            <field>
+                <int>5</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneD">
+            <field>
+                <int>4</int>
+            </field>
+            <field>
+                <int>4</int>
+            </field>
+            <field>
+                <int>4</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneC">
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_RunTwo">
+            <field>
+                <int>2</int>
+            </field>
+            <field>
+                <int>2</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoD">
+            <field>
+                <int>1</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+            <field>
+                <int>2</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoC">
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoD">
+            <field>
+                <int>5</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+            <field>
+                <int>5</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_PrepShutdown">
+            <field>
+                <int>4</int>
+            </field>
+            <field>
+                <int>5</int>
+            </field>
+            <field>
+                <int>4</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneD">
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>4</int>
+            </field>
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneC">
+            <field>
+                <int>2</int>
+            </field>
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>2</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Runtwo">
+            <field>
+                <int>1</int>
+            </field>
+            <field>
+                <int>2</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoC">
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoD">
+            <field>
+                <int>5</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+            <field>
+                <int>5</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_PrepShutdown">
+            <field>
+                <int>4</int>
+            </field>
+            <field>
+                <int>5</int>
+            </field>
+            <field>
+                <int>4</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneD">
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>4</int>
+            </field>
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneC">
+            <field>
+                <int>2</int>
+            </field>
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>2</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Runtwo">
+            <field>
+                <int>1</int>
+            </field>
+            <field>
+                <int>2</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoC">
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+            <field>
+                <int>65535</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+    </field>
+    <field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoA">
+            <int>23</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoB">
+            <int>22</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneA">
+            <int>21</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneB">
+            <int>20</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_RunTwo">
+            <int>19</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_PrepShutdown">
+            <int>18</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoB">
+            <int>22</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmNoCom_PublicCan">
+            <int>17</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmSilentCom_PublicCan">
+            <int>16</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmBusoff_PublicCan">
+            <int>15</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmFullCom_PublicCan">
+            <int>14</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmFullCom_PrivateCan">
+            <int>13</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmSilentCom_PrivateCan">
+            <int>12</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmBusoff_PrivateCan">
+            <int>11</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_CanSmNoCom_PrivateCan">
+            <int>10</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_WakupValidation_PublicCan">
+            <int>26</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_EcuReset_EXECUTE">
+            <int>3</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_EcuReset_HARD">
+            <int>2</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_EcuReset_SOFT">
+            <int>1</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_EcuReset_JUMPTOSYSSUPPLIERBOOTLOADER">
+            <int>0</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_280301_DisRxTx_Norm">
+            <int>9</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_280001_EnRxTx_Norm">
+            <int>8</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_280302_DisRxTx_NM">
+            <int>7</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_280002_EnRxTx_NM">
+            <int>6</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_280303_DisRxTx_Norm_NM">
+            <int>5</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Dcm_280003_EnRxTx_Norm_NM">
+            <int>4</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Comco_PduGroupSwitchRxReq">
+            <int>25</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Comco_PduGroupSwitchTxReq">
+            <int>24</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoC">
+            <int>5</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_RunTwo">
+            <int>3</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneC">
+            <int>2</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoD">
+            <int>4</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneD">
+            <int>1</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_PrepShutdown">
+            <int>0</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoC">
+            <int>5</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Runtwo">
+            <int>4</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneC">
+            <int>3</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneD">
+            <int>2</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_PrepShutdown">
+            <int>1</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoD">
+            <int>0</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoC">
+            <int>5</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_Runtwo">
+            <int>4</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneC">
+            <int>3</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_GoOffOneD">
+            <int>2</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_PrepShutdown">
+            <int>1</int>
+        </field>
+        <field comment="BswM_EB_Rule_BswMRule_StartupTwoD">
+            <int>0</int>
+        </field>
+    </field>
+    <field>
+        <field comment="BswM_ReqPort">
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>6</int>
+            </field>
+        </field>
+        <field comment="CanSm_CurrentStatePort_PublicCan">
+            <field>
+                <int>6</int>
+            </field>
+            <field>
+                <int>11</int>
+            </field>
+        </field>
+        <field comment="CanSm_CurrentStatePort_PrivateCan">
+            <field>
+                <int>11</int>
+            </field>
+            <field>
+                <int>15</int>
+            </field>
+        </field>
+        <field comment="EcuM_WakeupValidation_PublicCan">
+            <field>
+                <int>15</int>
+            </field>
+            <field>
+                <int>16</int>
+            </field>
+        </field>
+        <field comment="BswMBswModeNotification_DcmEcuReset">
+            <field>
+                <int>16</int>
+            </field>
+            <field>
+                <int>20</int>
+            </field>
+        </field>
+        <field comment="BswMBswModeNotification_DcmCommunicationControl">
+            <field>
+                <int>20</int>
+            </field>
+            <field>
+                <int>26</int>
+            </field>
+        </field>
+        <field comment="BswMSwcModeNotification_Comco_RxReq">
+            <field>
+                <int>26</int>
+            </field>
+            <field>
+                <int>27</int>
+            </field>
+        </field>
+        <field comment="BswMSwcModeNotification_Comco_TxReq">
+            <field>
+                <int>27</int>
+            </field>
+            <field>
+                <int>28</int>
+            </field>
+        </field>
+        <field comment="BswM_ReqPort">
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>3</int>
+            </field>
+        </field>
+        <field comment="BswMModeRequestPort_Slave">
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>6</int>
+            </field>
+        </field>
+        <field comment="BswM_ReqPort">
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>3</int>
+            </field>
+        </field>
+        <field comment="BswMModeRequestPort_Slave">
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>6</int>
+            </field>
+        </field>
+        <field comment="BswM_ReqPort">
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>3</int>
+            </field>
+        </field>
+        <field comment="BswMModeRequestPort_Slave">
+            <field>
+                <int>3</int>
+            </field>
+            <field>
+                <int>6</int>
+            </field>
+        </field>
+    </field>
+    <field>
+        <field comment="BswM_ActLst_GoOffOneA">
+            <field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>2</int>
+                </field>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_GoOffOneB">
+            <field>
+                <field>
+                    <int>2</int>
+                </field>
+                <field>
+                    <int>5</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_RunTwo">
+            <field>
+                <field>
+                    <int>5</int>
+                </field>
+                <field>
+                    <int>8</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_StartupTwoA">
+            <field>
+                <field>
+                    <int>8</int>
+                </field>
+                <field>
+                    <int>10</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_StartupTwoB">
+            <field>
+                <field>
+                    <int>10</int>
+                </field>
+                <field>
+                    <int>14</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_CanNoCom_PublicCan">
+            <field>
+                <field>
+                    <int>14</int>
+                </field>
+                <field>
+                    <int>16</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_CanSilentCom_PublicCan">
+            <field>
+                <field>
+                    <int>16</int>
+                </field>
+                <field>
+                    <int>18</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_CanBusoff_PublicCan">
+            <field>
+                <field>
+                    <int>18</int>
+                </field>
+                <field>
+                    <int>20</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_CanFullCom_PublicCan">
+            <field>
+                <field>
+                    <int>20</int>
+                </field>
+                <field>
+                    <int>22</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_PrpShutdown">
+            <field>
+                <field>
+                    <int>22</int>
+                </field>
+                <field>
+                    <int>25</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_CanNoCom_PrivateCan">
+            <field>
+                <field>
+                    <int>25</int>
+                </field>
+                <field>
+                    <int>27</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_CanSilentCom_PrivateCan">
+            <field>
+                <field>
+                    <int>27</int>
+                </field>
+                <field>
+                    <int>29</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_CanBusoff_PrivateCan">
+            <field>
+                <field>
+                    <int>29</int>
+                </field>
+                <field>
+                    <int>30</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_CanFullCom_PrivateCan">
+            <field>
+                <field>
+                    <int>30</int>
+                </field>
+                <field>
+                    <int>32</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_WakupValidation_PublicCan">
+            <field>
+                <field>
+                    <int>32</int>
+                </field>
+                <field>
+                    <int>33</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Dcm_280301_DisRxTx_Norm">
+            <field>
+                <field>
+                    <int>33</int>
+                </field>
+                <field>
+                    <int>35</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Dcm_280001_EnRxTx_Norm">
+            <field>
+                <field>
+                    <int>35</int>
+                </field>
+                <field>
+                    <int>37</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Dcm_280302_DisRxTx_NM">
+            <field>
+                <field>
+                    <int>37</int>
+                </field>
+                <field>
+                    <int>39</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Dcm_280002_EnRxTx_NM">
+            <field>
+                <field>
+                    <int>39</int>
+                </field>
+                <field>
+                    <int>41</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Dcm_280303_DisRxTx_Norm_NM">
+            <field>
+                <field>
+                    <int>41</int>
+                </field>
+                <field>
+                    <int>44</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Dcm_280003_EnRxTx_Norm_NM">
+            <field>
+                <field>
+                    <int>44</int>
+                </field>
+                <field>
+                    <int>47</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Comco_Pdu_RxGroup_Active">
+            <field>
+                <field>
+                    <int>47</int>
+                </field>
+                <field>
+                    <int>48</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Comco_Pdu_RxGroup_InActive">
+            <field>
+                <field>
+                    <int>48</int>
+                </field>
+                <field>
+                    <int>49</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Comco_Pdu_TxGroup_Active">
+            <field>
+                <field>
+                    <int>49</int>
+                </field>
+                <field>
+                    <int>50</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Comco_Pdu_TxGroup_InActive">
+            <field>
+                <field>
+                    <int>50</int>
+                </field>
+                <field>
+                    <int>51</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Dcm_EcuReset_EXECUTE">
+            <field>
+                <field>
+                    <int>51</int>
+                </field>
+                <field>
+                    <int>52</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Dcm_EcuReset_HARD">
+            <field>
+                <field>
+                    <int>52</int>
+                </field>
+                <field>
+                    <int>53</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Dcm_EcuReset_SOFT">
+            <field>
+                <field>
+                    <int>53</int>
+                </field>
+                <field>
+                    <int>54</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_Dcm_EcuReset_JUMPTOSYSSUPPLIERBOOTLOADER">
+            <field>
+                <field>
+                    <int>54</int>
+                </field>
+                <field>
+                    <int>55</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_RunTwo">
+            <field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>1</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_StartupTwoC">
+            <field>
+                <field>
+                    <int>1</int>
+                </field>
+                <field>
+                    <int>2</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_StartupTwoD">
+            <field>
+                <field>
+                    <int>2</int>
+                </field>
+                <field>
+                    <int>3</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_GoOffOneC">
+            <field>
+                <field>
+                    <int>3</int>
+                </field>
+                <field>
+                    <int>4</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_GoOffOneD">
+            <field>
+                <field>
+                    <int>4</int>
+                </field>
+                <field>
+                    <int>5</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_PrepShutdown">
+            <field>
+                <field>
+                    <int>5</int>
+                </field>
+                <field>
+                    <int>6</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_RunTwo">
+            <field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>1</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_StartupTwoC">
+            <field>
+                <field>
+                    <int>1</int>
+                </field>
+                <field>
+                    <int>2</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_GoOffOneC">
+            <field>
+                <field>
+                    <int>2</int>
+                </field>
+                <field>
+                    <int>3</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_GoOffOneD">
+            <field>
+                <field>
+                    <int>3</int>
+                </field>
+                <field>
+                    <int>4</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_PrepShutdown">
+            <field>
+                <field>
+                    <int>4</int>
+                </field>
+                <field>
+                    <int>5</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_StartupTwoD">
+            <field>
+                <field>
+                    <int>5</int>
+                </field>
+                <field>
+                    <int>6</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_RunTwo">
+            <field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>1</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_StartupTwoC">
+            <field>
+                <field>
+                    <int>1</int>
+                </field>
+                <field>
+                    <int>2</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_GoOffOneC">
+            <field>
+                <field>
+                    <int>2</int>
+                </field>
+                <field>
+                    <int>3</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_GoOffOneD">
+            <field>
+                <field>
+                    <int>3</int>
+                </field>
+                <field>
+                    <int>4</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_PrepShutdown">
+            <field>
+                <field>
+                    <int>4</int>
+                </field>
+                <field>
+                    <int>5</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="BswM_ActLst_StartupTwoD">
+            <field>
+                <field>
+                    <int>5</int>
+                </field>
+                <field>
+                    <int>6</int>
+                </field>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+    </field>
+    <field>
+        <field>
+            <field comment="BswM_Act_RteSwitch_GoOffOneA">
+                <int>6</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_GoOffOneA">
+                <int>4</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_RteSwitch_GoOffOneB">
+                <int>7</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_GO_OFF_ONE_D">
+                <int>21</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_GoOffOneB">
+                <int>5</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_RunTwo">
+                <int>2</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_RteSwitch_RunTwo">
+                <int>8</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_UserCallout_Comco_Init">
+                <int>26</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_StartupTwoA">
+                <int>0</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_RteSwitch_StartupTwoA">
+                <int>9</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_StartupTwoB">
+                <int>1</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_STARTUP_TWO_D">
+                <int>20</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_RequestRunTwo">
+                <int>3</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_RteSwitch_StartupTwoB">
+                <int>10</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_CanNoComPublicCan">
+                <int>11</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_CanSMStatePublic_NoCom">
+                <int>38</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_CanSilentComPublicCan">
+                <int>12</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_CanSMStatePublic_SlientCom">
+                <int>37</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_CanSMStatePublic_Busoff">
+                <int>35</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_PublicCAN_BusOff_Recorvery_Tja1043">
+                <int>50</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_CanFullComPublicCan">
+                <int>13</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_CanSMStatePublic_FullCom">
+                <int>36</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_RteSwitch_PrpShutdown">
+                <int>15</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_PrepShutdown">
+                <int>14</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_PrepShutdown_C1">
+                <int>43</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_CanNoComPrivateCan">
+                <int>16</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_CanSMStatePrivate_NoCom">
+                <int>42</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_CanSilentComPrivateCan">
+                <int>17</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_CanSMStatePrivate_SlientCom">
+                <int>41</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_CanSMStatePrivate_Busoff">
+                <int>39</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_CanFullComPrivateCan">
+                <int>18</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_CanSMStatePrivate_FullCom">
+                <int>40</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswMAction_WakupValidation_PublicCan">
+                <int>19</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Dcm_0x280301_DisRxTx_Norm">
+                <int>22</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_DiagComControl_DisRxTxNorM">
+                <int>44</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Dcm_0x280001_EnRxTx_Norm">
+                <int>23</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_DiagComControl_EnRxTxNorM">
+                <int>45</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Dcm_0x280302_DisRxTx_NM">
+                <int>24</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_DiagComControl_DisRxTxNM">
+                <int>47</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Dcm_0x280002_EnRxTx_NM">
+                <int>25</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_DiagComControl_EnRxTxNM">
+                <int>46</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Dcm_0x280301_DisRxTx_Norm">
+                <int>22</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Dcm_0x280302_DisRxTx_NM">
+                <int>24</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_DiagComControl_DisRxTxNorM_NM">
+                <int>49</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Dcm_0x280001_EnRxTx_Norm">
+                <int>23</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Dcm_0x280002_EnRxTx_NM">
+                <int>25</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_RteSwitch_DiagComControl_EnRxTxNorM_NM">
+                <int>48</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Comco_Pdu_RxGroup_Active">
+                <int>27</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Comco_Pdu_RxGroup_InActive">
+                <int>28</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Comco_Pdu_TxGroup_Active">
+                <int>29</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Comco_Pdu_TxGroup_InActive">
+                <int>30</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>1</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Dcm_EcuReset_EXECUTE">
+                <int>31</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Dcm_EcuReset_HARD">
+                <int>32</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Dcm_EcuReset_SOFT">
+                <int>33</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="Act_Dcm_EcuReset_JUMPTOSYSSUPPLIERBOOTLOADER">
+                <int>34</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_RunTwo">
+                <int>2</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_StartupTwoC">
+                <int>0</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_StartupTwoD">
+                <int>1</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_GoOffOneC">
+                <int>3</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_GoOffOneD">
+                <int>4</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_PrepShutdown">
+                <int>5</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_RunTwo">
+                <int>1</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_StartupTwoC">
+                <int>0</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_GoOffOneC">
+                <int>2</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_GoOffOneD">
+                <int>3</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_PrepShutdown">
+                <int>4</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_StartupTwoD">
+                <int>5</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_RunTwo">
+                <int>1</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_StartupTwoC">
+                <int>0</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_GoOffOneC">
+                <int>2</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_GoOffOneD">
+                <int>3</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_PrepShutdown">
+                <int>4</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="BswM_Act_StartupTwoD">
+                <int>5</int>
+            </field>
+            <field comment="BSWM_ACTION">
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+    </field>
+    <field>
+        <field>
+            <field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+            <field>
+                <field>
+                    <int>252</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <field>
+                    <int>4</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+            <field>
+                <field>
+                    <int>254</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <field>
+                    <int>3</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+            <field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+            <field>
+                <field>
+                    <int>243</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <field>
+                    <int>4</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+            <field>
+                <field>
+                    <int>247</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <field>
+                    <int>12</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+            <field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+            <field>
+                <field>
+                    <int>240</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <field>
+                    <int>15</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+            <field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <field>
+                    <int>5</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+            <field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+            <field>
+                <field>
+                    <int>250</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <field>
+                    <int>10</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+            <field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+            <field>
+                <field>
+                    <int>245</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+                <field>
+                    <int>255</int>
+                </field>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+    </field>
+    <field>
+        <field comment="Initial value of Port BswM_ReqPort">
+            <int>0</int>
+        </field>
+        <field comment="Initial value of Port BswM_ReqPort">
+            <int>0</int>
+        </field>
+        <field comment="Initial value of Port BswM_ReqPort">
+            <int>0</int>
+        </field>
+        <field comment="Initial value of Port BswM_ReqPort">
+            <int>0</int>
+        </field>
+    </field>
+    <field>
+        <field comment="Initial value of Port EcuM_WakeupValidation_PublicCan">
+            <symbol>ECUM_WKSTATUS_NONE</symbol>
+        </field>
+        <field comment="Initial value of Port BswMBswModeNotification_DcmEcuReset">
+            <int>5</int>
+        </field>
+        <field comment="Initial value of Port BswMBswModeNotification_DcmCommunicationControl">
+            <int>0</int>
+        </field>
+        <field comment="Initial value of Port BswMSwcModeNotification_Comco_RxReq">
+            <int>0</int>
+        </field>
+        <field comment="Initial value of Port BswMSwcModeNotification_Comco_TxReq">
+            <int>0</int>
+        </field>
+        <field comment="Initial value of Port BswMModeRequestPort_Slave">
+            <int>1</int>
+        </field>
+        <field comment="Initial value of Port BswMModeRequestPort_Slave">
+            <int>1</int>
+        </field>
+        <field comment="Initial value of Port BswMModeRequestPort_Slave">
+            <int>1</int>
+        </field>
+    </field>
+</instance>
+
+
+            </memory-section>
+        </configuration>
+        <configuration class="PostBuild">
+            <?artifact type="int-h" directory="include" file="BswM_Int_Cfg.h" generate="no"?>
+            <!-- The following symbols are currently undefined and, in case
+                 of a Postbuild binary generation, will yield a generate error.
+                 This is a failsafe measure.
+            -->
+            <symbol-def name="ECUM_WKSTATUS_NONE">
+                <parameter reference="ECUM_WKSTATUS_NONE"/>
+            </symbol-def>
+        </configuration>
+    </module>
+  <xi:include href="Base.xgen" xpointer="element(/1/1)" />
+</xgen>

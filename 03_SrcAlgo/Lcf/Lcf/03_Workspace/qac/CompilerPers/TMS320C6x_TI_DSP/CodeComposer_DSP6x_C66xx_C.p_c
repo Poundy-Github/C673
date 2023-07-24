@@ -1,0 +1,54 @@
+-it "ptrdiff_t=int"
+-it "wchar_t=unsigned short"
+-d "__cregister="
+-d "DO_PRAGMA_SECTION_INIT(a, b)="
+-d "DO_PRAGMA_SECTION_UNINIT(a, b)="
+-d "__inline=inline"
+-d "__intaddr__="
+-d "__PTRDIFF_T_TYPE__=int"
+-d "__SIZE_T_TYPE__=unsigned"
+-d "__va_argref="
+-d "__va_parmadr="
+-d "__WCHAR_T_TYPE__=unsigned short"
+-d "_abs=abs"
+-d "_labs=labs"
+-d "ALGO_INLINE=inline"
+-d "__int40_t=int"
+-d "__STDC_VERSION__=199901L"
+-d "interrupt="
+-d "restrict="
+-d "__attribute__ =_ignore_paren"
+-d "_TMS320C6600=1"
+-d "_TMS320C6700=1"
+-d "_TMS320C6X=1"
+-ar+
+-bits-
+-u-
+-s int=32
+-a int=4
+-s short=16
+-a short=2
+-s long=32
+-a long=4
+-s longlong=64
+-a longlong=8
+-s float=32
+-a float=4
+-s double=64
+-a double=8
+-s ldouble=64
+-a ldouble=8
+-s dataptr=32
+-a dataptr=4
+-s codeptr=32
+-a codeptr=4
+-na 63
+-xn 63
+-xc-
+-fi "CompilerPers\TMS320C6x_TI_DSP\generic_CompPers.h"
+-ex ansipc
+-ex pc
+-ex asm
+-ex c++
+-ex longlong
+-fpc-

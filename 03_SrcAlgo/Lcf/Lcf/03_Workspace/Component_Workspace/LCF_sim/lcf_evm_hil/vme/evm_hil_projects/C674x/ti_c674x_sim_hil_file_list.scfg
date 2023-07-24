@@ -1,0 +1,16 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Update each variable according to the existing source files and include paths.
+# ----------------------------------------------------------------------------------------
+
+# config file containing TI C674x sim hil source file list
+
+# C674x sim hil source files
+C674x_sim_hil_sources = """
+C674x_EvmHilWrapper_lcf.cpp
+"""
+
+# C674x sim hil include paths
+C674x_sim_hil_include_paths = """
+#../lcf_sim/lcf_evm_hil/vme/evm_hil_projects/C674x/
+"""

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <Jobs>
+  <Job name="Local_Compstate" protocol ="http" server="lul2yxmg:1111" job="Local_Smoketest" username="" pwd="" build="STD_OFF">
+      <Paremeter  name="Variant" value="MFS430BW16_I420_STABLE"/>
+  </Job>
+  <Job name="Remote_Compstate" protocol ="http" server="lud1np5g:8080" job="MFS430BW16_SimRun_CompState_INT_DP" username="" pwd="" build="STD_ON">
+  <Paremeter  name="DEVPATH" value="MFS430BW16_I420_STABLE"/>
+  </Job> 
+  <Job name="Remote_Compstate" protocol ="http" server="lud1np5g:8080" job="MFS430BW16_SimRun_CompState_INT_DP" username="" pwd="" build="STD_OFF"/>
+  <!-- <Job name="Remote_Compstate" protocol ="http" server="lud1np5g:8080" job="MFS430BW15_SimRun_CompState_INT" username="" pwd=""/>-->
+ 
+  <!--<Job name="Remote_SW_DevGate" protocol ="http" server="lud3301g:8080" job="MFC440GY18" username="" pwd=""\> -->
+
+  <!-- <Job name="Remote_SW_DevGate" protocol ="http" server="lud3301g:8080" job="MFC4xx_DevGate" username="" pwd=""/> -->
+  <Job name="Remote_SW_DevGate" protocol ="http" server="lud24tvg:8080" job="I410_BW16_MBuilder" username="" pwd="" build="STD_OFF">   
+    <Paremeter  name="buildspec.txt" value="Dummy.txt"/>
+    <Paremeter  name="checkpoints" value="algo_stereo:HEAD"/>
+
+  </Job>
+   </Jobs>

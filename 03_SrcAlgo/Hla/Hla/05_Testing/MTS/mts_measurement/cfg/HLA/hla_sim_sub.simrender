@@ -1,0 +1,13 @@
+[HLA Draw]
+CfgSectionType=RenderConnection
+Render.1.1=DrawFunction1
+MouseListener=1
+KeyboardListener=1
+WindowListener=1
+
+[HLA Draw2]
+CfgSectionType=RenderConnection
+Render.1.1=DrawFunction2
+MouseListener=1
+KeyboardListener=1
+WindowListener=1

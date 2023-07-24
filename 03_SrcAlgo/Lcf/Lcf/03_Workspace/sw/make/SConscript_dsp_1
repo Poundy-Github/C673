@@ -1,0 +1,996 @@
+
+Import('*')
+
+setCompiler('dsp')
+base_project = 'not-set'
+
+with open('../components_build_info.txt', 'a') as f:
+    print >> f, '   '
+    print >> f, 'Building DSP_1'
+
+UseCompAlgo = False
+
+if product in ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'hfl110', 'hfl110ta10','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']:
+    CFG_LOAD_GEN = False
+else:
+    CFG_LOAD_GEN = True
+
+CFG_ICC_OT = False
+
+
+if product == 'ars441':
+  base_project = 'ars441'
+
+elif product in ['mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']:
+    base_project = 'mfc431'
+    UseCompAlgo = False
+    if product != base_project:
+        addCompilerDefine('PRODUCT_MFC431')
+        appendConfiguroDefine('product=mfc431')
+        addLinkerDefine('PRODUCT_MFC431')
+
+elif product in ['hfl110', 'hfl110ta10']:
+  base_project = 'hfl110'
+  UseCompAlgo = False
+
+else:
+  base_project = product
+
+setBaseProject(base_project)
+
+
+class  Component:
+    global product
+    global base_project
+    DONOTUSEFOR = []
+    OVERRIDEFOR = []
+
+    INCLUDE    = []
+    SOURCE     = []
+    SOURCE_DIR = []
+    COMPDEF    = []
+    LIBS       = []
+    USEFROM    = None
+
+    def AddComp ( self ):
+        self.USEFROM  = None    if product in self.DONOTUSEFOR else base_project    # Component blacklist. Add product if component not wanted default is usage of BaseProject
+        self.USEFROM  = product if product in self.OVERRIDEFOR else self.USEFROM    # Component override for application project. Add product if you want your own (not baseProject) as application project
+
+        pstr  = "{0: <30}".format("Component " + self.__class__.__name__ )
+        pstr += "{0: ^20}".format([ 'from Base ' + base_project, 'from this '+ product, 'not used' ][ [ base_project, product, None ].index(self.USEFROM) ] )
+        print pstr
+
+        with open('../components_build_info.txt', 'a') as f:
+            print >> f, pstr
+        
+        incPath = ""
+        if self.USEFROM != None:
+            incPath = "\n".join(
+            [ Path.replace('$usedfrom', self.USEFROM )                      for Path       in self.INCLUDE]) + '\n'
+            [ addFiles(    Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE     ]
+            [ addDirs(     Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE_DIR ]
+            [ addLibrary(  Path.replace('$usedfrom', self.USEFROM )       ) for Path       in self.LIBS       ]
+            [ addCompilerDefine(Define)                                     for Define     in self.COMPDEF    ]
+        return incPath
+
+
+################# Component Example ##############
+# As default component is taken from base_project location, only if entered in OVERRIDEFOR it is taken from product location
+#
+#class NAME(Component):
+#  DONOTUSEFOR = ['example'] <- Enter your project name if you don't want to build this component
+#  OVERRIDEFOR = ['example'] <- Enter your project name if you want this component from product location, and not from base_project location.
+#
+#  INCLUDE    = ['$usedfrom/include1,                <- Enter your include Path here. $usedfrom will be replaced.
+#                'include2]
+#  SOURCE     = [['$usedfrom/path1', ['*.c']],       <- Enter your source files here filename or pattern ( e.g *.c). $usedfrom will be replaced.
+#                ['path2', ['file1.cpp','file2.s']]]
+#  SOURCE_DIR = [['path1', ['*.c']]]                 <- Enter your source dir here. It will recursively search for filename or pattern ( e.g *.c)
+#  COMPDEF    = ['define1','define2']                <- Enter your Component Defines here
+#  LIBS       = ['path1']                            <- Enter your Librarry Path here ( only path supported )
+
+
+
+################# Component Common #################
+class DPUCOMMON(Component):
+
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+
+  INCLUDE = [
+                '04_Engineering/00_Projects/$usedfrom',
+                '04_Engineering/00_Projects/'+base_project,  # For relative include paths first the product is searched and then the base
+                '04_Engineering/00_Projects/$usedfrom/common/DGM',
+                '04_Engineering/00_Projects/$usedfrom/common/GLOB',
+                '04_Engineering/01_Source_Code/common/GLOB',
+                '04_Engineering/01_Source_Code/common/GLOB/GLOB_DPU',
+                '04_Engineering/01_Source_Code/common/MTSI',
+                '04_Engineering/01_Source_Code/common/RTA'
+            ]
+
+################# Component SYS ##############
+class SYS(Component):
+  INCLUDE=['']
+  SOURCE = [['04_Engineering/01_Source_Code/sys/sys_mem/sys_mem_no_spe', ['Sys_Mem_NoSPE.c']]]
+
+
+################# Component DPURTE ##############
+class DPURTE(Component):
+
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+  
+  COMPDEF=['NDEBUG']
+  
+  if device == 'low':
+    INCLUDE = [
+                '04_Engineering/00_Projects/$usedfrom/common/RTE_VL/include',
+                '04_Engineering/00_Projects/$usedfrom/common/RTE_VL/algo'
+               ]
+  else:
+    INCLUDE = [
+                '04_Engineering/00_Projects/$usedfrom/common/RTE_VH/include',
+                '04_Engineering/00_Projects/$usedfrom/common/RTE_VH/algo'
+               ]
+
+
+
+################# Component DPUFF #################
+class DPUFF(Component):
+  OVERRIDEFOR = ['hfl110ta10', 'mfc431lo19', 'mfc431lo20', 'mfc431ta19','mfc431sc19']
+  INCLUDE = [
+                '04_Engineering/00_Projects/$usedfrom/DPUFF/config',
+                '04_Engineering/01_Source_Code/DPUFF/et',
+                '04_Engineering/01_Source_Code/DPUFF/mdb'
+            ]
+
+  SOURCE =  [
+                ['04_Engineering/00_Projects/$usedfrom/DPUFF/eveclient', ['eve_algo_cfg.c']],
+                ['04_Engineering/00_Projects/$usedfrom/DPUFF/ga',        ['mdb_database.cpp', 'gen_adapter_conf.cpp']],
+                ['04_Engineering/01_Source_Code/DPUFF/et',              ['*.cpp']],
+                ['04_Engineering/01_Source_Code/DPUFF/eveclient',       ['eve_client.cpp']],
+                ['04_Engineering/01_Source_Code/DPUFF/ga',              ['generic_adapter.cpp']],
+                ['04_Engineering/01_Source_Code/DPUFF/mdb',             ['mdb.cpp']]
+            ]
+
+  if product not in ['ars441']:
+    SOURCE += [ ['04_Engineering/01_Source_Code/DPUFF/services',        ['image_fingerprint_service.cpp']]]
+
+  if product == 'ars441':
+    INCLUDE += [ '04_Engineering/00_Projects/$usedfrom/DPUFF/ga']
+    SOURCE += [ ['04_Engineering/00_Projects/$usedfrom/DPUFF/ga',       ['dummy_algo_wrapper.cpp']]]
+
+
+
+################# Component DPUSERVICE #################
+class DPUSERVICE(Component):
+  INCLUDE = [
+                '04_Engineering/01_Source_Code/DPUSERVICE',
+                '04_Engineering/01_Source_Code/DPUSERVICE/services',
+                '04_Engineering/01_Source_Code/DPUSERVICE/tim',
+                '04_Engineering/00_Projects/$usedfrom/DPUSERVICE'
+            ]
+  SOURCE =  [
+                ['04_Engineering/00_Projects/$usedfrom/DPUSERVICE/mems', ['mem_service_cfg.cpp', 'memory_cfg.cpp']],
+                ['04_Engineering/01_Source_Code/DPUSERVICE/crc',            ['*.cpp']],
+                ['04_Engineering/01_Source_Code/DPUSERVICE/tim',            ['multi_timer.cpp']],
+                ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/edma', ['edma_cfg_dsp_1.cpp', 'algoedma_service.cpp',  'edma_handler.cpp', 'edma_memcpy.cpp',  'edma_os_functions.cpp', 'iedma_cfg.cpp']],
+                ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/mems', ['mem_service.cpp', 'shared_memory_manager.cpp']],
+                ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/tim',  ['system_clock.cpp', 'timer_driver.cpp']]
+            ]
+
+  if CFG_LOAD_GEN:
+    INCLUDE +=  ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/clg/dsp']
+
+  if CFG_LOAD_GEN:
+    SOURCE +=   [['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/clg/dsp',   [ '*.c', '*.asm' ]]]
+
+
+
+################# Component DPUINFRA #################
+class DPUINFRA(Component):
+  INCLUDE = ['04_Engineering/01_Source_Code/DPUINFRA',
+             '04_Engineering/00_Projects/$usedfrom/DPUINFRA'
+            ]
+
+  SOURCE =  [
+                ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/oscfg',        ['sysbios_wrapper_mapping.c']],
+                ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/infra',        ['state_manager.cpp', 'synchronised_startup.cpp', 'core_init_dsp_1.cpp' ]],
+                ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/infra',        [ 'SOC_Common_CPP_Infrastructure_Pkg.cpp', 'SOC_DSP_S_CPP_Infrastructure_Pkg.cpp', 'system_adapter.cpp' ]],
+                ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/osw',          [ 'sysbios_wrapper.cpp' ]]
+            ]
+
+
+
+################# Component DPUCOM #################
+class DPUCOM(Component):
+
+  CFG_IOB_MODE = product in ['mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+  
+  INCLUDE = ['04_Engineering/01_Source_Code/DPUCOM/xcp']
+  if device == 'low':
+    INCLUDE += ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vl']
+  else:
+    INCLUDE += ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vh']
+
+  if CFG_IOB_MODE:
+      INCLUDE += ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/iob\n']
+      
+  SOURCE =  [
+                ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc',            [ 'icc_mailbox.cpp', 'icc_messages.cpp' ]],
+                ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/xcp',            [ 'xcp_service.cpp' ]],
+                ['04_Engineering/01_Source_Code/DPUCOM/xcp',                      [ 'xcp_validation_testing.cpp' ]]
+            ]
+  if CFG_ICC_OT:
+    SOURCE +=   [['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/ot',            [ '*.cpp' ]]]
+    
+  if device == 'low':
+    SOURCE +=   [['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vl',        [ '*.cpp' ]]]
+  else:
+    SOURCE +=   [['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vh',        [ '*.cpp' ]]]
+
+  if CFG_IOB_MODE:
+    SOURCE +=   [['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/iob',            [ 'iob_test.cpp', 'SharpnessTest.c' ]]]
+
+
+################# Component DPUHWIF #################
+class DPUHWIF(Component):
+  INCLUDE = ['04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/titda',
+             '04_Engineering/01_Source_Code/DPUHWIF'
+            ]
+  if device == 'low':
+    INCLUDE += [
+                '04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/gpio_vl'
+               ]
+  else:
+    INCLUDE += [
+                '04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/gpio_vh'
+               ]
+
+
+
+################# Component Misc #################
+class DPUMISC(Component):
+  INCLUDE = [
+                '04_Engineering/01_Source_Code',
+                '04_Engineering/01_Source_Code/DPUIPC',
+                '04_Engineering/01_Source_Code/RTA',
+                '04_Engineering/00_Projects/$usedfrom/RTA',
+                '04_Engineering/04_Build/tools/edma3_lld/packages',
+                '04_Engineering/04_Build/tools/starterware/include',
+                '04_Engineering/04_Build/tools/starterware/include/hw',
+                '04_Engineering/04_Build/tools/starterware/include/pm',
+                '04_Engineering/04_Build/tools/starterware/pm/pmhal/common',
+                '04_Engineering/04_Build/tools/starterware/include/c66x',
+                '04_Engineering/04_Build/tools/starterware/system_config/c66x'
+            ]
+  # VH/VL independent
+  INCLUDE += [
+                '04_Engineering/01_Source_Code/RTA_VH',
+                '04_Engineering/01_Source_Code/RTL',
+                '04_Engineering/01_Source_Code/RTL_VH',
+                '04_Engineering/00_Projects/$usedfrom/MTSI_VH',
+                '04_Engineering/01_Source_Code/MTSI_VH',
+                '04_Engineering/00_Projects/$usedfrom/RTL'
+             ]
+  if device == 'low':
+    INCLUDE += [
+                '04_Engineering/04_Build/tools/starterware/include/tda3xx',
+                '04_Engineering/04_Build/tools/starterware/include/tda3xx/hw',
+                '04_Engineering/04_Build/tools/starterware/include/c66x/$chipset',
+                '04_Engineering/01_Source_Code/SAP_VL'
+               ]
+  else:
+    INCLUDE += [
+                '04_Engineering/04_Build/tools/starterware/include/tda2xx',
+                '04_Engineering/04_Build/tools/starterware/include/tda2xx/hw',
+                '04_Engineering/04_Build/tools/starterware/include/c66x/$chipset',
+                '04_Engineering/01_Source_Code/SAP_VH'
+               ]
+  SOURCE =  [
+                ['04_Engineering/01_Source_Code/DGM/Dgm_SlaveHandler',  [ 'dem_handler_base.cpp', 'dem_handler_slave.cpp' ]],
+            ]
+  # VH/VL independent:
+  SOURCE += [
+                ['04_Engineering/01_Source_Code/RTL',                   [ '*.c' ]],
+                ['04_Engineering/01_Source_Code/RTL_VH',                [ 'error_tracker.cpp' ]],
+                ['04_Engineering/00_Projects/$usedfrom/RTL',             [ '*.c' ]],
+                ['04_Engineering/01_Source_Code/MTSI_VH',               [ 'adapter_meas.cpp', 'meas_service.cpp', 'meas_service_buffered.cpp' ]],
+                ['04_Engineering/01_Source_Code/RTA_VH',                [ '*.cpp'  ]],
+                ['04_Engineering/01_Source_Code/RTA',                   [ '*.c' ]]
+              ]
+
+  LIBS = []
+  if device == 'low':
+    LIBS += [
+            '04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/rm/lib/tda3xx-evm/66/release/edma3_lld_rm.$lib_ext',
+            '04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/drv/lib/66/release/edma3_lld_drv.$lib_ext',
+            '04_Engineering/04_Build/tools/starterware/binary/drivers/lib/tda3xx/66/release/starterware_hal.$lib_ext'
+            ]
+  else:
+    LIBS += [
+            '04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/rm/lib/tda2xx-evm/66/release/edma3_lld_rm.$lib_ext',
+            '04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/drv/lib/66/release/edma3_lld_drv.$lib_ext',
+            '04_Engineering/04_Build/tools/starterware/binary/drivers/lib/tda2xx/66/release/starterware_hal.$lib_ext',
+            '04_Engineering/04_Build/tools/starterware/binary/pm/pmhal/lib/tda2xx/66/debug/starterware_pm_hal.ae66',
+            '04_Engineering/04_Build/tools/starterware/binary/pm/pmlib/lib/tda2xx/66/debug/starterware_pm_lib.ae66',
+            '04_Engineering/04_Build/tools/starterware/binary/system_config/lib/tda2xx/66/debug/sys_config.ae66'
+            ]
+
+
+################# Component Algo #################
+class DPUALGO(Component):
+  DONOTUSEFOR = []
+
+  OVERRIDEFOR = []
+
+  LIBS    = []
+  INCLUDE = []
+  SOURCE  = []
+
+  if product == 'ars441':
+    COMPDEF = ['CML_OPT_c66x']
+    INCLUDE += [
+                '04_Engineering/00_Projects/$usedfrom/algo/sources',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/ga',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/dap',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/ec',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/emlib',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/gppp',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/ga',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/gs',
+				'04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/rc',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/algo_common',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/cml',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/eccc_carpark_classification',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/eccc_carpark_classification/ccbc_border_confidence',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/eccc_carpark_classification/ccdh_detection_height',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/eccc_carpark_classification/ccgg_grid_gate',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/eccc_carpark_classification/ccgo_grid_occupancy',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/eccc_carpark_classification/ccgp_grid_periodicity',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/eccc_carpark_classification/cclu_lateral_uniformity',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/eccc_carpark_classification/ccmt_multi_target',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/eccc_carpark_classification/ccod_object_density',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/eccc_carpark_classification/ccof_observer_fusion',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/eccc_carpark_classification/ccop_object_periodicity',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/eccc_carpark_classification/ccsm_state_machine',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/eccc_carpark_classification/ccts_traffic_speed',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ecrtb_roller_test_bench',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcat_alignment_tunnel',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcbc_border_confidence',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcco_close_occlusion',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcdd_detection_density',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcdg_detection_gate',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcdh_detection_height',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcdm_detection_map',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcfd_frontside_difference',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcgg_grid_gate',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcgp_grid_patterns',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tclgh_longitudinal_grid_histogram',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcmm_moving_mirrors',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcmp_multi_paths',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcmt_multi_target',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcof_observer_fusion',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcot_occupancy_triangle',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcow_object_width',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcsm_state_machine',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tctd_tunnel_distance',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcts_tunnel_sensitive',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec/ectc_tunnel_classification/tcvgh_vertical_grid_histogram',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/dap',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/bit_array',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/general',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/grid',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/histogram',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/jpda',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/size',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/gppp',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/gppp/gpfex_feature_extraction',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/gppp/gpprd_prediction',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/gppp/gpseg_segmentation',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/gppp/gpupd_update_process',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gfrs/swu_freespace_description/include',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gp',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gp/common/include',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gp/swu_grid_fusion/include',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gp/swu_grid_post_processing/include',
+				'04_Engineering/00_Projects/$usedfrom/algo/sources/rc/rc2',
+				'04_Engineering/00_Projects/$usedfrom/algo/sources/rc/rc2/feature_buffer',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/rc/rc2/input_filtering',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/rc/rc2/input_selection',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/rc/rc2/kalman_filter',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/rc/rc2/quality_measures',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/rc/rc2/object_based_observers',				
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/rc/rc2/rc2_lib',	
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/rc/rc2/eb_curve_entry_classification'	
+               ]
+
+  if product == 'ars441':
+    SOURCE_DIR = [
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/ec',         ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/dap',        ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/emlib',      ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/gppp',         ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/cml',                     ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/em/ec',                   ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/em/dap',                  ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib',                ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/em/gppp',                   ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['dap_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['ec_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['gp_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['rd_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['dapveh_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['ga_static_mem.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['ga_meas.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['ga_rc1_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                      ['ga_rc2_wrapper.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/gp',                      ['*.cpp']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/rc/rc2',                  ['*.c']],
+                ['04_Engineering/00_Projects/$usedfrom/algo/sources/rc/rc2',                  ['*.cpp']]
+             ]
+
+
+################# Component DPUST #################
+class DPUST(Component):
+  SOURCE =  [
+             ['04_Engineering/00_Projects/$usedfrom/DPUST/monitors',            [ 'monitoring_cfg.cpp',
+                                                                                  'dsp_edc_cfg.cpp' ]],
+             ['04_Engineering/00_Projects/$usedfrom/DPUST/fatalerrorhandling',  ['cat2_error_reaction_cfg.cpp']],
+             ['04_Engineering/01_Source_Code/DPUST/alutest',                    [ 'c_alu_test_dsp.s' ]],
+             ['04_Engineering/01_Source_Code/DPUST/fatalerrorhandling',         [ 'cat2_error_reaction.cpp' ]],
+             ['04_Engineering/01_Source_Code/DPUST/monitors',                   [ 'monitor_adapter.cpp',
+                                                                                  'monitor_adapter_dsp_1.cpp',
+                                                                                  'task_monitor.cpp',
+                                                                                  'sections_monitor.cpp',
+                                                                                  'dsp_exception_return_hook.asm',
+                                                                                  'dsp_edc.cpp',
+                                                                                  'dsp_edc_helper.cpp' ]],
+             ['04_Engineering/01_Source_Code/DPUST/safetymanager',              [ 'safety_manager_base.cpp',
+                                                                                  'safety_manager_dummy.cpp',
+                                                                                  'service_function_wrappers.cpp',
+                                                                                  'safety_manager_dsp_c66x.cpp',
+                                                                                  'swe.asm' ]],
+             ['04_Engineering/01_Source_Code/DPUST/mmu',                        [ 'system_mmu.cpp' ]],
+             ['04_Engineering/01_Source_Code/DPUST/firewall',                   [ 'xmc.cpp' ]]
+            ]
+			
+			
+
+################# Component GS #################
+class GS(Component):
+  DONOTUSEFOR  = ['ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sw19','mfc431bd10']
+  
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/gs',
+           '04_Engineering/01_Source_Code/gs']
+
+  if product in ['hfl110', 'hfl110ta10']:
+    SOURCE = [  ['04_Engineering/00_Projects/$usedfrom/gs', ['*.cpp']],
+                ['04_Engineering/01_Source_Code/gs', ['*.cpp']]]
+
+
+################# Component CCT #################
+class CCT(Component):
+    DONOTUSEFOR  = ['ars441']
+
+    COMPDEF=['CCT_USE_INTRINSICS']
+
+    INCLUDE=['04_Engineering/01_Source_Code/cct']
+    SOURCE=[['04_Engineering/01_Source_Code/cct',['*.cpp']]]
+
+
+
+################# Component CML #################
+class CML(Component):
+  DONOTUSEFOR  = ['ars441']
+
+  if product in ['hfl110', 'hfl110ta10']:
+    COMPDEF = ['CML_USE_INTRINSICS', 'CML_OPT_c66x']
+  else:
+    COMPDEF = ['CML_USE_INTRINSICS']
+
+  INCLUDE=['04_Engineering/01_Source_Code/cml',
+           '04_Engineering/01_Source_Code/cml/bayes',
+           '04_Engineering/01_Source_Code/cml/exp',
+           '04_Engineering/01_Source_Code/cml/complex',
+           '04_Engineering/01_Source_Code/cml/fourier',
+           '04_Engineering/01_Source_Code/cml/interpol',
+           '04_Engineering/01_Source_Code/cml/kalman',
+           '04_Engineering/01_Source_Code/cml/matrix',
+           '04_Engineering/01_Source_Code/cml/misc',
+           '04_Engineering/01_Source_Code/cml/radar',
+           '04_Engineering/01_Source_Code/cml/stat',
+           '04_Engineering/01_Source_Code/cml/stl',
+           '04_Engineering/01_Source_Code/cml/stl/algorithm',
+           '04_Engineering/01_Source_Code/cml/stl/container',
+           '04_Engineering/01_Source_Code/cml/stl/math',
+           '04_Engineering/01_Source_Code/cml/',
+           '04_Engineering/01_Source_Code/cml/trigo',
+           '04_Engineering/01_Source_Code/cml/vector']
+  SOURCE=[['04_Engineering/01_Source_Code/cml/bayes',   ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/exp',     ['*.c']], 
+          ['04_Engineering/01_Source_Code/cml/complex', ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/fourier', ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/interpol',['*.c']],
+          ['04_Engineering/01_Source_Code/cml/kalman',  ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/matrix',  ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/misc',    ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/radar',   ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/stat',    ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/trigo',   ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/vector',  ['*.c']]]
+
+
+################# Component ECM #################
+class ECM(Component):
+  DONOTUSEFOR = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19', 'mfc431sw19', 'mfc431va10', 'mfc431va21', 'mfc431bd10', 'hfl110', 'hfl110ta10']
+  
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/ecm/frame',
+           '04_Engineering/00_Projects/$usedfrom/ecm/sw_support',
+           '04_Engineering/01_Source_Code/ecm/frame',
+           '04_Engineering/01_Source_Code/ecm/kernel'
+           ]
+
+  SOURCE=[['04_Engineering/00_Projects/$usedfrom/ecm/sw_support',   ['ecm_cpar_init.c', 'ecm_nvm_convert.c', 'ecm_nvm_init.c']],
+          ['04_Engineering/01_Source_Code/ecm/frame',               ['ecm_calib.cpp', 'ecm_extraction.cpp', 'ecm_manager.cpp', 'ecm_math.cpp', 'ecm_manager_hfl.cpp', 'ecm_extraction_hfl.cpp', 'ecm_calib_hfl.cpp']],
+          ['04_Engineering/01_Source_Code/ecm/kernel',              [ 'ecm_main.cpp', 'ecm_wrapper.cpp', 'ecm_reports.cpp', 'ecm_inputvalidations.cpp', 'ecm_pdo_tags_file.c', 'ecm_blobfiltering.cpp']],
+          ]
+
+
+################# Component EM #################
+class EM(Component):
+  DONOTUSEFOR = ['ars441', 'hfl110', 'hfl110ta10']
+  OVERRIDEFOR = []
+
+  INCLUDE=[]
+  SOURCE_DIR=[]
+   
+  if product in ['hfl110', 'hfl110ta10']:  
+  
+    ### SubComponent GIN
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/gin',
+            '04_Engineering/01_Source_Code/gin']
+
+    SOURCE_DIR+=[['04_Engineering/01_Source_Code/GIN', [ '*.cpp']]]
+  
+    ### SubComponent TP
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/tp',
+            '04_Engineering/01_Source_Code/tp']
+
+    SOURCE_DIR+=[['04_Engineering/01_Source_Code/TP', [ '*.cpp']]]
+
+    ### EM Component
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/em',
+              '04_Engineering/00_Projects/$usedfrom/em/frame',
+              '04_Engineering/01_Source_Code/em']
+  
+    SOURCE_DIR+=[['04_Engineering/01_Source_Code/EM', [ '*.cpp']]]
+
+  else:
+   
+    ### SubComponent GSS
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/gss',
+              '04_Engineering/01_Source_Code/gss']
+
+    SOURCE_DIR+=[
+                ['04_Engineering/01_Source_Code/gss',        ['*.cpp']],
+                ['04_Engineering/00_Projects/$usedfrom/gss', ['*.cpp']]
+                ]
+
+    ### SubComponent OG
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/OG',
+              '04_Engineering/01_Source_Code/OG']
+
+    SOURCE_DIR+=[['04_Engineering/01_Source_Code/OG', ['*.cpp']], ['04_Engineering/00_Projects/$usedfrom/OG', ['*.cpp']]]
+
+    ### SubComponent TP
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/tp',
+              '04_Engineering/01_Source_Code/tp']
+
+    SOURCE_DIR+=[['04_Engineering/01_Source_Code/TP', [ '*.cpp']]]
+
+
+    ### EM Component
+    INCLUDE+=['04_Engineering/00_Projects/$usedfrom/em',
+              '04_Engineering/00_Projects/$usedfrom/em/frame',
+              '04_Engineering/01_Source_Code/em']
+  
+    SOURCE_DIR+=[['04_Engineering/01_Source_Code/EM', [ '*.cpp']]]
+
+
+
+################# Component PCA #################
+class PCA(Component):
+  DONOTUSEFOR  = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+  OVERRIDEFOR = []
+
+  COMPDEF=['PCA_TARGET_DSP']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/ga',
+           '04_Engineering/00_Projects/$usedfrom/pca',
+           '04_Engineering/01_Source_Code/pca/common',
+           '04_Engineering/01_Source_Code/pca/frame',
+           '04_Engineering/01_Source_Code/pca/frame/ti_eve_arp32',
+           '04_Engineering/01_Source_Code/pca/shared_helpers']
+  SOURCE=[['04_Engineering/01_Source_Code/pca/frame', ['pca_tw_final_range.cpp', 'pca_error_check.cpp', 'pca.cpp', 'pca_surf_norm.cpp', 'pca_variant_handler.cpp', 'pca_coordinate_system.cpp', 'pca_arc_pixel.cpp', 'pca_blockage_pixel.cpp', 'pca_dark_pixel.cpp', 'pca_reference_implementation.cpp', 'pca_intensity_handler.cpp', 'pca_fusi_frame_controller.cpp']]]
+
+
+
+################# Component POC #################
+class POC(Component):
+  DONOTUSEFOR  = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+  OVERRIDEFOR = []
+
+  COMPDEF=['POC_TARGET_DSP']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/ga',
+           '04_Engineering/00_Projects/$usedfrom/poc',
+           '04_Engineering/01_Source_Code/poc',
+           '04_Engineering/01_Source_Code/poc/algo',
+           '04_Engineering/01_Source_Code/poc/algo/feature',
+           '04_Engineering/01_Source_Code/poc/algo/matching',
+           '04_Engineering/01_Source_Code/poc/algo/post_proc',
+           '04_Engineering/01_Source_Code/poc/frame',
+           '04_Engineering/01_Source_Code/poc/manager']
+  SOURCE=[['04_Engineering/01_Source_Code/poc/algo',            ['*.cpp']],
+          ['04_Engineering/01_Source_Code/poc/algo/feature',    ['*.cpp']],
+          ['04_Engineering/01_Source_Code/poc/algo/matching',   ['*.cpp']],
+          ['04_Engineering/01_Source_Code/poc/algo/post_proc',  ['*.cpp']],
+          ['04_Engineering/01_Source_Code/poc/frame',           ['*.cpp']],
+          ['04_Engineering/01_Source_Code/poc/manager',         ['*.cpp']]]
+
+################# Component VODCA #################
+class VODCA(Component):
+  DONOTUSEFOR  = ['hfl110', 'hfl110ta10', 'ars441']
+
+  COMPDEF=['VODCA_TARGET_DSP']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/vodca',
+           '04_Engineering/00_Projects/$usedfrom/vodca/frame',
+           '04_Engineering/01_Source_Code/vodca',
+           '04_Engineering/01_Source_Code/vodca/classifiers',
+           '04_Engineering/01_Source_Code/vodca/common',
+           '04_Engineering/01_Source_Code/vodca/frame',
+           '04_Engineering/01_Source_Code/vodca/frame/frame',
+           '04_Engineering/01_Source_Code/vodca/frame/ti_eve_arp32',
+           '04_Engineering/01_Source_Code/vodca/hog',
+           '04_Engineering/01_Source_Code/vodca/hog/ti_eve_arp32',
+           '04_Engineering/01_Source_Code/vodca/interface',
+           '04_Engineering/01_Source_Code/vodca/shared_helpers'
+           ]
+
+  SOURCE=[['04_Engineering/01_Source_Code/vodca/hog',                   [ 'hog_fp_inv_sqrt.cpp']],
+          ['04_Engineering/01_Source_Code/vodca/frame',                 [ 'vodca.cpp', 'vodca_error_check.cpp', 'vodca_pdo_tags_file.c', 'vodca_base_class.cpp', 'vodca_data_check.cpp', 'vodca_error_tracker.cpp']],
+          ['04_Engineering/01_Source_Code/vodca/frame/ti_eve_arp32',    [ 'vodca_arp32_worker_shared_memory.cpp']]
+          ]
+
+
+
+################# Component PC #################
+class PC(Component):
+  DONOTUSEFOR  = ['hfl110', 'hfl110ta10', 'ars441']
+
+  COMPDEF=['TARGET_DSP', 'USE_OLD_ADC_CODING_STYLE_TYPEDEFS']
+
+  INCLUDE=['04_Engineering/01_Source_Code/PC',
+           '04_Engineering/01_Source_Code/PC/common',
+           '04_Engineering/01_Source_Code/PC/frame',
+           '04_Engineering/01_Source_Code/PC/ti_eve_arp32/pc_4d',
+           '04_Engineering/01_Source_Code/PC/Lucas-Kanade'
+           ]
+
+  SOURCE=[['04_Engineering/01_Source_Code/PC/common',       ['*.cpp']],
+          ['04_Engineering/01_Source_Code/PC/frame',        ['*.cpp']],
+          ['04_Engineering/01_Source_Code/PC/Lucas-Kanade', ['lucas_kanade_scale.cpp']],
+          ['04_Engineering/01_Source_Code/PC/Lucas-Kanade', ['pc_template_tracking.cpp']]]
+
+
+
+################# Component RUM #################
+class RUM(Component):
+  DONOTUSEFOR = ['hfl110', 'hfl110ta10', 'ars441']
+  OVERRIDEFOR = []
+
+  COMPDEF=['M_PROFILE_DEACTIVATE']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/rum',
+           '04_Engineering/00_Projects/$usedfrom/rum/booster/brake_blink_lights',
+           '04_Engineering/00_Projects/$usedfrom/rum/frame',
+           '04_Engineering/00_Projects/$usedfrom/rum/hypgen',
+           '04_Engineering/01_Source_Code/rum',
+           '04_Engineering/01_Source_Code/rum/clustering',
+           '04_Engineering/01_Source_Code/rum/image_processing/common',
+           '04_Engineering/01_Source_Code/rum/common',
+           '04_Engineering/01_Source_Code/rum/frame',
+           '04_Engineering/01_Source_Code/rum/hypgen',
+           '04_Engineering/01_Source_Code/rum/image_processing/booster',
+           '04_Engineering/01_Source_Code/rum/image_processing/booster/brake_blink_lights',
+           '04_Engineering/01_Source_Code/rum/image_processing/booster/flow_booster',
+           '04_Engineering/01_Source_Code/rum/image_processing/template_tracking',
+           '04_Engineering/01_Source_Code/rum/kernel'
+           ]
+
+
+  SOURCE=[['04_Engineering/00_Projects/$usedfrom/rum/booster/brake_blink_lights',               [ 'rum_light_indicator_mnlr.cpp']],
+           ['04_Engineering/00_Projects/$usedfrom/rum/hypgen',                                  [ 'rum_emerge_map.cpp']],
+           ['04_Engineering/01_Source_Code/rum/clustering',                                     [ 'rum_clustering_nms_greedy.cpp', 'rum_clustering.cpp' , 'rum_clustered_detections.cpp']],
+           ['04_Engineering/01_Source_Code/rum/common',                                         [ 'rum_anchor_areas.cpp', 'rum_rta.cpp', 'rum_measfreeze_inst.cpp', 'rum_classifier_information.cpp', 'rum_camera.cpp']],
+           ['04_Engineering/01_Source_Code/rum/frame',                                          [ 'rum_error_check_inst.cpp','rum_error_tracker.cpp', 'rum_debug_storage.cpp']],
+           ['04_Engineering/01_Source_Code/rum/hypgen',                                         [ 'rum_anchorareagenerator.cpp', 'rum_hypgen.cpp', 'rum_scan_sched.cpp', 'rum_image_quad.cpp', 'rum_scan_helper.cpp']],
+           ['04_Engineering/01_Source_Code/rum/image_processing/booster/brake_blink_lights',    [ 'rum_img_proc_miscellanea.cpp', 'rum_light_indicator_booster.cpp', 'rum_light_obj_information.cpp', 'rum_light_segmentation.cpp', 'rum_pdf_image.cpp', 'rum_extract_coordinates.cpp', 'rum_first_level_features.cpp']],
+           ['04_Engineering/01_Source_Code/rum/image_processing/booster/flow_booster',          [ 'rum_flow_booster.cpp']],
+           ['04_Engineering/01_Source_Code/rum/image_processing/template_tracking',             [ 'rum_tt.cpp', 'rum_template.cpp', 'rum_tt_list.cpp', 'rum_truncation.cpp']],
+           ['04_Engineering/01_Source_Code/rum/kernel',                                         [ 'rum_yaw_rate_filter.cpp', 'rum_main.cpp', 'rum_detector_params_parser.cpp', 'rum_opmode_handler.cpp']]
+           ]
+
+
+
+################# Component FCT #################
+class FCT(Component):
+  DONOTUSEFOR  = ['hfl110', 'hfl110ta10', 'ars441']
+
+  INCLUDE=[]
+  SOURCE=[]
+  
+  ### SubComponent ACDC
+  INCLUDE +=['04_Engineering/00_Projects/$usedfrom/acdc',
+             '04_Engineering/00_Projects/$usedfrom/acdc/aip',
+             '04_Engineering/00_Projects/$usedfrom/acdc/cd',
+             '04_Engineering/00_Projects/$usedfrom/acdc/emp',
+             '04_Engineering/00_Projects/$usedfrom/acdc/espm',
+             '04_Engineering/00_Projects/$usedfrom/acdc/frame_acdc',
+             '04_Engineering/01_Source_Code/acdc',
+             '04_Engineering/01_Source_Code/acdc/aip',
+             '04_Engineering/01_Source_Code/acdc/cd',
+             '04_Engineering/01_Source_Code/acdc/emp',
+             '04_Engineering/01_Source_Code/acdc/espm',
+             '04_Engineering/01_Source_Code/acdc/frame_acdc',
+             '04_Engineering/01_Source_Code/acdc/sfl']
+
+  SOURCE +=[['04_Engineering/00_Projects/$usedfrom/ACDC/aip',           [ 'aip_par.c', 'aip_customfunctions.c']],
+            ['04_Engineering/00_Projects/$usedfrom/ACDC/cd',            [ 'cd_wrapper.c', 'cd_par.c', 'cd_customfunctions.c']],
+            ['04_Engineering/00_Projects/$usedfrom/ACDC/espm',          [ 'espm_par.c']],
+            ['04_Engineering/00_Projects/$usedfrom/ACDC/frame_acdc',    [ 'acdc_wrapper.c']],
+            ['04_Engineering/01_Source_Code/ACDC/aip',                  [ 'aip_main.c', 'aip_ego.c', 'aip_objects.c', 'aip_shapepoints.c']],
+            ['04_Engineering/01_Source_Code/ACDC/cd',                   [ 'cd_epf.c','cd_calculateanec.c', 'cd_calculateobjhistory.c', 'cd_calculateobjproperties.c', 'cd_calculatettb.c', 'cd_calculatettc.c', 'cd_calculatettm.c', 'cd_calculatetts.c', 'cd_calculateoverlap.c', 'cd_calculatepsc.c', 'cd_calculation.c', 'cd_hypacc.c', 'cd_hypcollision.c', 'cd_hypcommon.c', 'cd_hypcrossing.c', 'cd_hypcutin.c', 'cd_hypcyclecoll.c', 'cd_hyphandler.c', 'cd_hyplong.c', 'cd_hyponcoming.c', 'cd_hyppass.c', 'cd_hyppedcoll.c', 'cd_hyprunup.c', 'cd_hyprunupstationary.c', 'cd_hypselection.c', 'cd_hypstatic.c', 'cd_main.c', 'cd_merging.c']],
+            ['04_Engineering/01_Source_Code/ACDC/emp',                  [ 'emp_calculation.c', 'emp_main.c']],
+            ['04_Engineering/01_Source_Code/ACDC/espm',                 [ 'espm_degradation.c', 'espm_main.c']],
+            ['04_Engineering/01_Source_Code/ACDC/frame_acdc',           [ 'acdc_algo_control.c', 'acdc_error.c', 'acdc_io.c', 'acdc_main.c', 'acdc_meas.c']],
+            ['04_Engineering/01_Source_Code/ACDC/sfl',                  [ 'sfl_math.c', 'sfl_vector.c']]
+            ]
+  
+  ### SubComponent CAL
+  INCLUDE += ['04_Engineering/01_Source_Code/CAL']
+        
+  SOURCE += [['04_Engineering/01_Source_Code/CAL',                      ['cal_dist2curve.c', 'cal_dyn.c', 'cal_fuzzy.c', 'cal_kin.c', 'cal_lineseg.c', 'cal_linetraceseg.c', 'cal_param.c', 'cal_prob.c', 'cal_std.c', 'cal_switch.c']]]
+  
+  ### SubComponent SLATE
+  INCLUDE +=['04_Engineering/00_Projects/$usedfrom/slate',
+             '04_Engineering/00_Projects/$usedfrom/slate/frame_slate',
+             '04_Engineering/01_Source_Code/slate',
+             '04_Engineering/01_Source_Code/slate/frame_slate'
+           ]
+
+  SOURCE +=[['04_Engineering/01_Source_Code/SLATE/frame_slate',         [ 'slate_algocontrol.c', 'slate_calc_ext_obj_id.c', 'slate_error.c', 'slate_io.c', 'slate_meas.c', 'slate_obj_main.c']]
+           ]
+  
+  ### SubComponent SLATE1
+  INCLUDE +=['04_Engineering/00_Projects/$usedfrom/slate1',
+             '04_Engineering/00_Projects/$usedfrom/slate1/cp',
+             '04_Engineering/00_Projects/$usedfrom/slate1/la',
+             '04_Engineering/00_Projects/$usedfrom/slate1/ooi',
+             '04_Engineering/00_Projects/$usedfrom/slate1/out',
+             '04_Engineering/00_Projects/$usedfrom/slate1/sit',
+             '04_Engineering/01_Source_Code/slate1',
+             '04_Engineering/01_Source_Code/slate1/cp',
+             '04_Engineering/01_Source_Code/slate1/la',
+             '04_Engineering/01_Source_Code/slate1/ooi',
+             '04_Engineering/01_Source_Code/slate1/out',
+             '04_Engineering/01_Source_Code/slate1/sit'
+            ]
+
+  SOURCE +=[['04_Engineering/00_Projects/$usedfrom/SLATE1/cp',          [ 'cp_customfunctions.c', 'cp_par.c']],
+            ['04_Engineering/00_Projects/$usedfrom/SLATE1/la',          [ 'la_customfunctions.c', 'la_par.c']],
+            ['04_Engineering/00_Projects/$usedfrom/SLATE1/ooi',         [ 'ooi_customfunctions.c', 'ooi_par.c']],
+            ['04_Engineering/00_Projects/$usedfrom/SLATE1/out',         [ 'out_customfunctions.c', 'out_par.c']],
+            ['04_Engineering/00_Projects/$usedfrom/SLATE1/sit',         [ 'sit_customfunctions.c', 'sit_par.c']],
+            ['04_Engineering/01_Source_Code/SLATE1/cp',                 [ 'cp_fusion_cam.c', 'cp_fusion_navi.c', 'cp_fusion_road.c', 'cp_fusion_trace.c', 'cp_kalman.c', 'cp_main.c', 'cp_trajectory.c']],
+            ['04_Engineering/01_Source_Code/SLATE1/la',                 [ 'la_acc_function_presel.c', 'la_camera_lane_assoc.c', 'la_corridor.c', 'la_corridor_cam.c', 'la_corridor_cam_adapt.c', 'la_corridor_crit.c', 'la_corridor_navi.c', 'la_corridor_radarroad.c', 'la_corridor_scene.c', 'la_corridor_trackwidth.c', 'la_geometric_lane_assoc.c', 'la_kalman.c', 'la_laneassociation.c', 'la_laneassociation_stateflow.c', 'la_main.c', 'la_pred_lane_assoc.c', 'la_predictions.c', 'la_traj2objrelation.c']],
+            ['04_Engineering/01_Source_Code/SLATE1/ooi',                [ 'ooi_main.c', 'ooi_objloss.c', 'ooi_objselection.c', 'ooi_select_moving.c', 'ooi_select_oncoming.c', 'ooi_select_stationary.c']],
+            ['04_Engineering/01_Source_Code/SLATE1/out',                [ 'out_main.c', 'out_output.c']],
+            ['04_Engineering/01_Source_Code/SLATE1/sit',                [ 'sit_calc_cutin_pot.c', 'sit_calc_cutout_pot.c', 'sit_check_occupied_lane.c', 'sit_lanechange.c', 'sit_lanechange_cam.c', 'sit_lanechange_kinem.c', 'sit_lanechange_multiobj.c', 'sit_main.c', 'sit_o2o.c', 'sit_objfeatures.c', 'sit_objscore.c', 'sit_objscoreprep.c', 'sit_traffic_density.c', 'sit_traffic_density_objhistcalc.c', 'sit_traffic_estimation.c']]
+           ]
+  
+  ### SubComponent SLATE2
+  INCLUDE +=['04_Engineering/00_Projects/$usedfrom/slate2',
+             '04_Engineering/00_Projects/$usedfrom/slate2/apm',
+             '04_Engineering/00_Projects/$usedfrom/slate2/fip',
+             '04_Engineering/01_Source_Code/slate2',
+             '04_Engineering/01_Source_Code/slate2/apm',
+             '04_Engineering/01_Source_Code/slate2/fip'
+            ]
+
+  SOURCE +=[['04_Engineering/00_Projects/$usedfrom/SLATE2/apm',         [ 'apm_par.c']],
+            ['04_Engineering/00_Projects/$usedfrom/SLATE2/fip',         [ 'fip_customfunctions.c', 'fip_par.c']],
+            ['04_Engineering/01_Source_Code/SLATE2/apm',                [ 'apm_degradation.c', 'apm_main.c']],
+            ['04_Engineering/01_Source_Code/SLATE2/fip',                [ 'fip_camera_lane_plg.c', 'fip_curvature_change.c', 'fip_lane_matrix_plg.c', 'fip_main.c', 'fip_navi_data_plg.c', 'fip_navi_data_process.c', 'fip_objattributes.c', 'fip_object_traces.c', 'fip_object_traces_dynamic.c', 'fip_object_traces_ego.c', 'fip_object_traces_static.c', 'fip_road.c', 'fip_road_type.c', 'fip_traffic_orientation.c', 'fip_tunnel.c']]
+           ]
+  
+  
+  ### Component FCT
+  INCLUDE += ['04_Engineering/00_Projects/$usedfrom/fct',
+              '04_Engineering/00_Projects/$usedfrom/fct/frame',
+              '04_Engineering/00_Projects/$usedfrom/fct/frame_sen',
+              '04_Engineering/01_Source_Code/fct',
+              '04_Engineering/01_Source_Code/fct/frame',
+              '04_Engineering/01_Source_Code/fct/frame_sen']
+        
+  SOURCE += [['04_Engineering/01_Source_Code/FCT/frame_sen',        ['*.c']]
+            ]
+
+
+################# Component HLA #################
+class HLA(Component):
+  DONOTUSEFOR = ['hfl110', 'hfl110ta10', 'ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/ga',
+           '04_Engineering/00_Projects/$usedfrom/hla',
+           '04_Engineering/00_Projects/$usedfrom/hla/parameters',
+           '04_Engineering/00_Projects/$usedfrom/hla/sw_support',
+           '04_Engineering/01_Source_Code/hla',
+           '04_Engineering/01_Source_Code/hla/function',
+           '04_Engineering/01_Source_Code/hla/frame',
+           ]
+
+  SOURCE=[['04_Engineering/00_Projects/$usedfrom/hla/parameters',   [ '*.c']],
+          ['04_Engineering/00_Projects/$usedfrom/hla/sw_support',   [ '*.c']],
+          ['04_Engineering/01_Source_Code/hla/function',            [ '*.c']],
+          ['04_Engineering/01_Source_Code/hla/frame',               [ '*.c']],
+          ['04_Engineering/01_Source_Code/hla',                     [ '*.c']]
+          ]
+          
+################# Component FAMO #################
+class FAMO(Component):
+  DONOTUSEFOR  = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10']
+  OVERRIDEFOR = []
+  
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/FAMO',
+           '04_Engineering/01_Source_Code/famo',
+           '04_Engineering/01_Source_Code/famo/frame',
+           '04_Engineering/01_Source_Code/famo/gen',
+           '04_Engineering/01_Source_Code/famo/gen/acal',
+           '04_Engineering/01_Source_Code/famo/gen/base',
+           '04_Engineering/01_Source_Code/famo/gen/cb',
+           '04_Engineering/01_Source_Code/famo/gen/cb',
+           '04_Engineering/01_Source_Code/famo/gen/cipp',
+           '04_Engineering/01_Source_Code/famo/gen/ecm',
+           '04_Engineering/01_Source_Code/famo/gen/em',
+           '04_Engineering/01_Source_Code/famo/gen/emo',
+           '04_Engineering/01_Source_Code/famo/gen/famo',
+           '04_Engineering/01_Source_Code/famo/gen/fct',
+           '04_Engineering/01_Source_Code/famo/gen/fex',
+           '04_Engineering/01_Source_Code/famo/gen/fsd',
+           '04_Engineering/01_Source_Code/famo/gen/gen',
+           '04_Engineering/01_Source_Code/famo/gen/hla',
+           '04_Engineering/01_Source_Code/famo/gen/lcf',
+           '04_Engineering/01_Source_Code/famo/gen/ld',
+           '04_Engineering/01_Source_Code/famo/gen/lsd',
+           '04_Engineering/01_Source_Code/famo/gen/map',
+           '04_Engineering/01_Source_Code/famo/gen/pc',
+           '04_Engineering/01_Source_Code/famo/gen/pfc',
+           '04_Engineering/01_Source_Code/famo/gen/pv',
+           '04_Engineering/01_Source_Code/famo/gen/rum',
+           '04_Engineering/01_Source_Code/famo/gen/sac',
+           '04_Engineering/01_Source_Code/famo/gen/sib',
+           '04_Engineering/01_Source_Code/famo/gen/sr',
+           '04_Engineering/01_Source_Code/famo/gen/tlr',
+           '04_Engineering/01_Source_Code/famo/gen/tsa',
+           '04_Engineering/01_Source_Code/famo/gen/udw',
+           '04_Engineering/01_Source_Code/famo/gen/vdy',
+           '04_Engineering/01_Source_Code/famo/gen/vodca',
+           '04_Engineering/01_Source_Code/famo/plausiChecks',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/acal',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/cb',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/cipp',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/combi',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/ecm',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/em',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/emo',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/famo',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/fct',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/fex',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/fsd',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/gen',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/hla',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/lcf',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/ld',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/lsd',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/map',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/pc',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/pfc',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/pv',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/rum',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/sac',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/sib',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/sr',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/tlr',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/tsa',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/udw',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/vdy',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/vodca'
+           ]
+		   
+  if product in ['hfl110', 'hfl110ta10']:
+      INCLUDE += ['04_Engineering/01_Source_Code/famo/gen/gsm',
+                '04_Engineering/01_Source_Code/famo/gen/liqor',
+                '04_Engineering/01_Source_Code/famo/gen/pca',
+                '04_Engineering/01_Source_Code/famo/gen/pdm',
+                '04_Engineering/01_Source_Code/famo/gen/poc',
+                '04_Engineering/01_Source_Code/famo/gen/gen',
+                '04_Engineering/01_Source_Code/famo/gen/tp'] 
+
+				
+  SOURCE=[['04_Engineering/01_Source_Code/famo/frame', ['*.c']]]
+
+################# Component FORCE_APPL_PRJ_INC #################
+class FORCE_APPL_PRJ_INC(Component):
+  INCLUDE = ['04_Engineering/00_Projects/' + product]
+
+Components = [
+  FORCE_APPL_PRJ_INC(),
+  DPUALGO(),
+  DPURTE(),
+  DPUCOMMON(),
+  DPUFF(),
+  DPUSERVICE(),
+  DPUINFRA(),
+  DPUCOM(),
+  DPUHWIF(),
+  DPUMISC(),
+  DPUST(),
+  CCT(),
+  CML(),
+  FAMO(),
+  GS(),
+  ECM(),
+  EM(),
+  HLA(),
+  PCA(),
+  POC(),
+  VODCA(),
+  PC(),
+  RUM(),
+  FCT(),
+  SYS()
+]
+
+includePath = ""
+
+for i in Components:
+   includePath += i.AddComp()
+
+
+setIncludePath(includePath)
+addCompilerDefine('CORE_DSP_1')
+
+
+if CFG_LOAD_GEN:
+    addCompilerDefine('C66X1')
+
+if unit_test_only == False:
+  compile('dsp_1')
+
+
+includePathPDO = ""
+launchDir = GetLaunchDir().replace('\\', '/')
+includePathPDO += "\""+launchDir+"/04_Engineering/04_Build/tools/bios/packages/gnu/targets/arm/libs/install-native/arm-none-eabi/include\",\n"
+includePathPDO += "\"C:/tools/gcc_arm/4.7_2012q4/lib/gcc/arm-none-eabi/4.7.3/include\",\n"
+includePathPDO += "\""+launchDir+"/04_Engineering/04_Build/out/"+product+"\",\n"
+includePathPDO += "\",\n".join([ "\""+launchDir+"/"+Path  for Path       in includePath.split()])+"\";"
+outpath = launchDir+'/04_Engineering/04_Build/out/' +  product + '/release_dsp_1'
+with open(outpath+'/dsp_1_include_list.cfg', 'w+') as f:
+  f.write("sys_include_dirs = %s" % includePathPDO)

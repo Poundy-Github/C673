@@ -1,0 +1,23 @@
+
+
+LogFile of the RtaXmlGenerator
+
+Project:   S202
+BuildUnit: IUC
+Date:      09.11.2022 15:33:36
+
+
+The following error occurred during generator run: 
+
+There is any problem regarding the inputCfgFile (Invalid format, given path or file not available, ...)
+
+The file or directory 
+"01_AsrConfig\output\pdo" 
+which has been provided as "pdo_path" in the inputCfgFile
+is not available. Please double check related entry in the inputCfgFile: 
+"..\Config\RtaXmlGenerator_InputCfg_S202.yaml" 
+
+Or you may need to provide the related reference path as an argument at generator call that the absolute path can be built up.
+
+HINT: You can run the generator with the argument "-h" 
+      in order to get the information about all the required and optional arguments including description.  

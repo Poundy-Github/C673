@@ -1,0 +1,47 @@
+#-----------------------
+# variant config
+#-----------------------
+
+# create release variant
+release_variant = "release"
+release_ccflags = "--code_state=16 -O2 -g --diag_warning=225 --enum_type=packed --float_support=VFPv3"
+release_cppdefines = ["_INCLUDE_NIMU_CODE", "_INCLUDE_IPv6_CODE", "_NDK_EXTERN_CONFIG"]
+release_linkflags = "--reread_libs --warn_sections --rom_model"
+release_libpaths = []
+release_libs = []
+release_lcffile = ["#../lcf_sim/lcf_evm_hil/vh28/generic/CommonSoC/SharedRAM.cmd"]
+
+# create debug variant
+debug_variant = "debug"
+debug_ccflags = "--code_state=16 -g --diag_warning=225 --enum_type=packed --float_support=VFPv3"
+debug_cppdefines = ["_INCLUDE_NIMU_CODE", "_INCLUDE_IPv6_CODE", "_NDK_EXTERN_CONFIG"]
+debug_linkflags = "--reread_libs --warn_sections --rom_model"
+debug_libpaths = []
+debug_libs = []
+debug_lcffile = ["#../lcf_sim/lcf_evm_hil/vh28/generic/CommonSoC/SharedRAM.cmd"]
+
+# variable containing compiler flags, defines and linker flags for all variants
+# when creating additional variant beside "release" and "debug", the variant must be added in this variable
+variant_list = [
+[release_variant, release_ccflags, release_cppdefines, release_linkflags, release_libpaths, release_libs, release_lcffile],
+[debug_variant,   debug_ccflags,   debug_cppdefines,   debug_linkflags, debug_libpaths, debug_libs, debug_lcffile],
+]
+
+# out file name
+outfile_name = algo_name.upper() + "_CortexM4_EvmHilWrapper.out"
+
+# ccs project name
+ccs_project_name = algo_name.upper() + "_TI_CortexM4_EvmHilWrapper"
+
+print "--------------------------------------------------------------------------------"
+print "Evalboard, ARM CortexM4"
+print "--------------------------------------------------------------------------------"
+print "compiler_options                =   <predefined_flags>   ||   <component_specific flags>  ||   <common_flags>"   
+print "compiler_options_release        =  -c  -mv7M4 -me --gcc --abi=eabi --runtime=c95   ||   ", release_ccflags, "   ||"
+print "compiler_options_debug          =  -c  -mv7M4 -me --gcc --abi=eabi --runtime=c95   ||   ", debug_ccflags, "   ||"
+print "compiler_defines_release        =", release_cppdefines
+print "compiler_defines_debug          =", debug_cppdefines
+print "compiler_linkflags_release      =", release_linkflags
+print "compiler_linkflags_debug        =", debug_linkflags
+print "--------------------------------------------------------------------------------"
+print " "

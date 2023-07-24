@@ -1,0 +1,3 @@
+#ifndef LCF_LKS_CPAR_INTFVER
+#define LCF_LKS_CPAR_DUMMY_H
+#endif

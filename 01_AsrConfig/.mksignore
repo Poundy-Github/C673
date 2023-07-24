@@ -1,0 +1,15 @@
+#This file takes the form of a Java Properties file.  
+#
+#Keys are the relative path to a directory in the project, using '/' 
+#as separators, and escaping all instances of ':', '=' and ' '.
+#Use a value of '-' to designate an ignored directory, and '+' to override a 
+#parent directory's setting to put a specific subdirectory or file back under 
+#MKS Source control.
+#
+#Example: bin=-
+#
+
+tmp=-
+log=-
+out=-
+preprocess_gen=-

@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<Events>
+  <Event localID="1" name="TOTAL"/>
+  <Event localID="2" name="EXEC"/>
+  <Event localID="3" name="RESET"/>
+  <Event localID="4" name="RUN"/>
+  <Event localID="5" name="INPUT_CHECKS"/>
+  <Event localID="6" name="SET_DEFAULTS"/>
+  <Event localID="7" name="HLAF_EXEC"/>
+  <Event localID="8" name="OUTPUT_CHECKS"/>
+  <Event localID="9" name="DEM_EVENTS"/>
+  <Event localID="20" name="HLAF_INIT"/>
+  <Event localID="21" name="HLAF_DECISION"/>
+  <Event localID="22" name="HLAF_MATRIX"/>
+  <Event localID="255" name="LAST"/>
+</Events>

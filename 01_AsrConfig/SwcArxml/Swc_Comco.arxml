@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00045.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE T="2023-02-28T16:23:51+08:00" UUID="53205f16-13e3-46c6-af87-8242187e2ee1">
+      <SHORT-NAME>Comco</SHORT-NAME>
+      <ELEMENTS>
+        <CLIENT-SERVER-INTERFACE T="2023-02-28T16:16:53+08:00" UUID="DCE:92fceb1a-71c0-4ed6-a961-9ca36388a4d7">
+          <SHORT-NAME>CSI_NMWakupFlag</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <OPERATIONS>
+            <CLIENT-SERVER-OPERATION T="2023-02-28T16:16:32+08:00" UUID="9bc6dcd4-06fa-4530-8ee1-fecbf0fa8db6">
+              <SHORT-NAME>NMWakupFlag</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE T="2023-02-28T16:16:32+08:00" UUID="449456c7-28f3-4413-b5b2-cef54afa48b5">
+                  <SHORT-NAME>u_WakeupFlag</SHORT-NAME>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint8_t</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SERVER-ARGUMENT-IMPL-POLICY>USE-ARGUMENT-TYPE</SERVER-ARGUMENT-IMPL-POLICY>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+              <POSSIBLE-ERROR-REFS>
+                <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Comco/CSI_NMWakupFlag/E_NOT_OK</POSSIBLE-ERROR-REF>
+                <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Comco/CSI_NMWakupFlag/E_OK</POSSIBLE-ERROR-REF>
+              </POSSIBLE-ERROR-REFS>
+            </CLIENT-SERVER-OPERATION>
+          </OPERATIONS>
+          <POSSIBLE-ERRORS>
+            <APPLICATION-ERROR T="2023-02-28T16:16:32+08:00" UUID="74aee5fc-9377-4b6d-a688-304170c57d89">
+              <SHORT-NAME>E_OK</SHORT-NAME>
+              <ERROR-CODE>0</ERROR-CODE>
+            </APPLICATION-ERROR>
+            <APPLICATION-ERROR T="2023-02-28T16:16:32+08:00" UUID="6b27f2e6-397d-447f-a7fe-3835e7ad6521">
+              <SHORT-NAME>E_NOT_OK</SHORT-NAME>
+              <ERROR-CODE>1</ERROR-CODE>
+            </APPLICATION-ERROR>
+          </POSSIBLE-ERRORS>
+        </CLIENT-SERVER-INTERFACE>
+        <CLIENT-SERVER-INTERFACE T="2023-02-28T16:22:04+08:00" UUID="DCE:d3554783-9543-4eaa-b592-29f3b6b4aafd">
+          <SHORT-NAME>CSI_nmCurrentState</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <OPERATIONS>
+            <CLIENT-SERVER-OPERATION T="2023-02-28T16:22:04+08:00" UUID="36b02f71-0d21-4994-a256-4c03c97349b3">
+              <SHORT-NAME>nmCurrentState</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE T="2023-02-28T16:22:04+08:00" UUID="f79e9bb1-a789-47c0-904f-7a0873cc47e8">
+                  <SHORT-NAME>u_CurNmState</SHORT-NAME>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint8_t</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SERVER-ARGUMENT-IMPL-POLICY>USE-ARGUMENT-TYPE</SERVER-ARGUMENT-IMPL-POLICY>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+              <POSSIBLE-ERROR-REFS>
+                <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Comco/CSI_nmCurrentState/E_NOT_OK</POSSIBLE-ERROR-REF>
+                <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Comco/CSI_nmCurrentState/E_OK</POSSIBLE-ERROR-REF>
+              </POSSIBLE-ERROR-REFS>
+            </CLIENT-SERVER-OPERATION>
+          </OPERATIONS>
+          <POSSIBLE-ERRORS>
+            <APPLICATION-ERROR T="2023-02-28T16:22:04+08:00" UUID="23717406-630e-4c5e-92c0-67457763f9c5">
+              <SHORT-NAME>E_NOT_OK</SHORT-NAME>
+              <ERROR-CODE>1</ERROR-CODE>
+            </APPLICATION-ERROR>
+            <APPLICATION-ERROR T="2023-02-28T16:22:04+08:00" UUID="aa976a89-997d-4713-8d84-756ef2e0bbb8">
+              <SHORT-NAME>E_OK</SHORT-NAME>
+              <ERROR-CODE>0</ERROR-CODE>
+            </APPLICATION-ERROR>
+          </POSSIBLE-ERRORS>
+        </CLIENT-SERVER-INTERFACE>
+        <CLIENT-SERVER-INTERFACE T="2023-02-28T16:23:51+08:00" UUID="DCE:7887d781-6dbd-4796-a251-5efcf493cc10">
+          <SHORT-NAME>CSI_nmPreviousState</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <OPERATIONS>
+            <CLIENT-SERVER-OPERATION T="2023-02-28T16:23:51+08:00" UUID="141d1224-5422-4a50-a737-9c4a87af54a1">
+              <SHORT-NAME>nmPreviousState</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE T="2023-02-28T16:23:51+08:00" UUID="18e87014-f249-4f76-90e9-434fe92cf2d3">
+                  <SHORT-NAME>u_PreNmState</SHORT-NAME>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/Swc_DataTypes/uint8_t</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                  <SERVER-ARGUMENT-IMPL-POLICY>USE-ARGUMENT-TYPE</SERVER-ARGUMENT-IMPL-POLICY>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+              <POSSIBLE-ERROR-REFS>
+                <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Comco/CSI_nmPreviousState/E_NOT_OK</POSSIBLE-ERROR-REF>
+                <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/Comco/CSI_nmPreviousState/E_OK</POSSIBLE-ERROR-REF>
+              </POSSIBLE-ERROR-REFS>
+            </CLIENT-SERVER-OPERATION>
+          </OPERATIONS>
+          <POSSIBLE-ERRORS>
+            <APPLICATION-ERROR T="2023-02-28T16:23:51+08:00" UUID="68137d1e-8848-4626-bb81-9556649f83d0">
+              <SHORT-NAME>E_NOT_OK</SHORT-NAME>
+              <ERROR-CODE>1</ERROR-CODE>
+            </APPLICATION-ERROR>
+            <APPLICATION-ERROR T="2023-02-28T16:23:51+08:00" UUID="18517d13-4b35-47e4-bddb-2ce0caffd7eb">
+              <SHORT-NAME>E_OK</SHORT-NAME>
+              <ERROR-CODE>0</ERROR-CODE>
+            </APPLICATION-ERROR>
+          </POSSIBLE-ERRORS>
+        </CLIENT-SERVER-INTERFACE>
+        <APPLICATION-SW-COMPONENT-TYPE T="2023-02-23T14:22:22+08:00" UUID="cdb0ce43-e51d-40f7-812a-54d5c367bbcd">
+          <SHORT-NAME>Comco</SHORT-NAME>
+          <LONG-NAME T="2023-02-23T09:59:29+08:00">
+            <L-4 T="2023-02-23T09:59:42+08:00" L="FOR-ALL">Communication Coordinator</L-4>
+          </LONG-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE T="2023-02-28T16:17:54+08:00" UUID="f989845f-6be2-4ce1-8c75-2d7ac37ed446">
+              <SHORT-NAME>PP_Comco_CSI_NMWakupFlag</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Comco/CSI_NMWakupFlag</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2023-02-28T16:22:41+08:00" UUID="f75dc656-3344-445f-a796-bfd54cf3b450">
+              <SHORT-NAME>PP_Comco_CSI_nmCurrentState</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Comco/CSI_nmCurrentState</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE T="2023-02-28T16:24:23+08:00" UUID="e09c821c-8687-46df-b24c-10df485bcff5">
+              <SHORT-NAME>PP_Comco_CSI_nmPreviousState</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Comco/CSI_nmPreviousState</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="e4928b08-ba14-4dee-825a-3f723404c48d">
+              <SHORT-NAME>PP_Comco_MSI_RxPduGroupSwitch</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/Swc_PortInterface/MSI_IPduGroupSwitch</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <P-PORT-PROTOTYPE UUID="00562dfb-29d7-4c8b-84ee-d181f0b6035e">
+              <SHORT-NAME>PP_Comco_MSI_TxPduGroupSwitch</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/Swc_PortInterface/MSI_IPduGroupSwitch</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="565397d8-3711-48c2-8180-68fb95732e97">
+              <SHORT-NAME>RP_BswM_MSI_DiagComControlMode</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/Swc_PortInterface/MSI_DiagComControlMode</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-02-01T14:09:55+08:00" UUID="89d3b58b-da01-420d-98af-410f0f3e2377">
+              <SHORT-NAME>RP_ComM_UserRequest_Private</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_ComM/PortInterfaces/ComM_UserRequest</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-02-01T14:09:26+08:00" UUID="b2b0d2b4-5cea-44eb-8a42-03b1a4ef880c">
+              <SHORT-NAME>RP_ComM_UserRequest_Public</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_ComM/PortInterfaces/ComM_UserRequest</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-02-01T13:36:41+08:00" UUID="eb180715-45ea-4a55-9815-410ef5e87f88">
+              <SHORT-NAME>RP_Com_SRI_EspVehSpd</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_EspVehSpd</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-02-01T13:29:05+08:00" UUID="df70c674-b1b4-414f-9b68-4a868ec880c1">
+              <SHORT-NAME>RP_Com_SRI_EspVehSpdVld</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/Swc_PortInterface/SRI_EspVehSpdVld</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE UUID="b3ebfd67-4377-47f5-9a71-1846bbbd293a">
+              <SHORT-NAME>RP_EvAdc_GetValue_VMON_IGN</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/Swc_PortInterface/CSI_EvAdc_GetValue</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+            <R-PORT-PROTOTYPE T="2023-02-01T13:16:40+08:00" UUID="438ea06f-785c-4a37-b1a3-82d96a5753ad">
+              <SHORT-NAME>RP_VoltMonI_SRI_DisableCommunication</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/VoltageMonitor/SRI_VoltMonI_DisableCommunication</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR T="2023-02-23T14:23:10+08:00" UUID="aaed0db7-ce08-4293-a2ac-8098875da4ed">
+              <SHORT-NAME>Comco_IB</SHORT-NAME>
+              <DATA-TYPE-MAPPING-REFS>
+                <DATA-TYPE-MAPPING-REF DEST="DATA-TYPE-MAPPING-SET">/Swc_DataTypes/BswMModeMapping</DATA-TYPE-MAPPING-REF>
+              </DATA-TYPE-MAPPING-REFS>
+              <EVENTS>
+                <TIMING-EVENT T="2023-02-23T10:13:49+08:00" UUID="fb9e3db3-743d-48fd-9a69-47b63c5eef5d">
+                  <SHORT-NAME>TimingEvent_Comco_MainFunction</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Comco/Comco/Comco_IB/Comco_MainFunction</START-ON-EVENT-REF>
+                  <PERIOD>0.01</PERIOD>
+                </TIMING-EVENT>
+                <OPERATION-INVOKED-EVENT T="2023-02-28T16:26:35+08:00" UUID="def721f2-57dc-4811-adec-8d12d92f7d65">
+                  <SHORT-NAME>oie_PP_Comco_CSI_NMWakupFlag_NMWakupFlag</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Comco/Comco/Comco_IB/Comco_u_NMWakupFlag_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF T="2023-02-28T16:26:35+08:00">
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Comco/Comco/PP_Comco_CSI_NMWakupFlag</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Comco/CSI_NMWakupFlag/NMWakupFlag</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT T="2023-02-23T14:22:44+08:00" UUID="72e08ac9-f84f-4039-836b-34ce064d94f2">
+                  <SHORT-NAME>oie_PP_Comco_CSI_nmCurrentState_nmCurrentState</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Comco/Comco/Comco_IB/Comco_u_nmCurrentState_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF T="2023-02-28T16:26:40+08:00">
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Comco/Comco/PP_Comco_CSI_nmCurrentState</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Comco/CSI_nmCurrentState/nmCurrentState</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+                <OPERATION-INVOKED-EVENT T="2023-02-23T14:23:10+08:00" UUID="794e4f22-6a47-46fa-a189-5b2a24ffc188">
+                  <SHORT-NAME>oie_PP_Comco_CSI_nmPreviousState_nmPreviousState</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Comco/Comco/Comco_IB/Comco_u_nmPreviousState_Read</START-ON-EVENT-REF>
+                  <OPERATION-IREF T="2023-02-28T16:26:44+08:00">
+                    <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Comco/Comco/PP_Comco_CSI_nmPreviousState</CONTEXT-P-PORT-REF>
+                    <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Comco/CSI_nmPreviousState/nmPreviousState</TARGET-PROVIDED-OPERATION-REF>
+                  </OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+              </EVENTS>
+              <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY T="2023-02-01T14:10:29+08:00" UUID="DCE:3d4b30b5-8a46-496e-a89b-c2dd4561f9de">
+                  <SHORT-NAME>Comco_MainFunction</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                    <VARIABLE-ACCESS UUID="6bfdd609-a034-4262-837f-4d16bde36e59">
+                      <SHORT-NAME>drparg_DE_EspVehSpd</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Comco/Comco/RP_Com_SRI_EspVehSpd</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_EspVehSpd/DE_EspVehSpd</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="4c00de65-7f45-4195-8443-22578cb70ab3">
+                      <SHORT-NAME>drparg_DE_EspVehSpdVld</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Comco/Comco/RP_Com_SRI_EspVehSpdVld</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/Swc_PortInterface/SRI_EspVehSpdVld/DE_EspVehSpdVld</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                    <VARIABLE-ACCESS UUID="b1791cf1-d0b0-48fc-87ea-92b952ddd720">
+                      <SHORT-NAME>drparg_DE_VoltMonI_DisableCo</SHORT-NAME>
+                      <ACCESSED-VARIABLE>
+                        <AUTOSAR-VARIABLE-IREF>
+                          <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Comco/Comco/RP_VoltMonI_SRI_DisableCommunication</PORT-PROTOTYPE-REF>
+                          <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/VoltageMonitor/SRI_VoltMonI_DisableCommunication/DE_VoltMonI_DisableCommunication</TARGET-DATA-PROTOTYPE-REF>
+                        </AUTOSAR-VARIABLE-IREF>
+                      </ACCESSED-VARIABLE>
+                    </VARIABLE-ACCESS>
+                  </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                  <MODE-ACCESS-POINTS>
+                    <MODE-ACCESS-POINT>
+                      <MODE-GROUP-IREF>
+                        <R-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                          <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Comco/Comco/RP_BswM_MSI_DiagComControlMode</CONTEXT-R-PORT-REF>
+                          <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Swc_PortInterface/MSI_DiagComControlMode/proto_DcmCommunicationControl</TARGET-MODE-GROUP-REF>
+                        </R-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                      </MODE-GROUP-IREF>
+                    </MODE-ACCESS-POINT>
+                  </MODE-ACCESS-POINTS>
+                  <MODE-SWITCH-POINTS>
+                    <MODE-SWITCH-POINT UUID="b608aee0-7286-4b52-8375-edfb31604f5a">
+                      <SHORT-NAME>msp_proto_MDG_IPduGroupSwitch_0</SHORT-NAME>
+                      <MODE-GROUP-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Comco/Comco/PP_Comco_MSI_RxPduGroupSwitch</CONTEXT-P-PORT-REF>
+                        <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Swc_PortInterface/MSI_IPduGroupSwitch/proto_MDG_IPduGroupSwitch</TARGET-MODE-GROUP-REF>
+                      </MODE-GROUP-IREF>
+                    </MODE-SWITCH-POINT>
+                    <MODE-SWITCH-POINT UUID="b278ea0a-3b32-4247-a0a0-26dcfbc0abbb">
+                      <SHORT-NAME>msp_proto_MDG_IPduGroupSwitch_1</SHORT-NAME>
+                      <MODE-GROUP-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/Comco/Comco/PP_Comco_MSI_TxPduGroupSwitch</CONTEXT-P-PORT-REF>
+                        <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Swc_PortInterface/MSI_IPduGroupSwitch/proto_MDG_IPduGroupSwitch</TARGET-MODE-GROUP-REF>
+                      </MODE-GROUP-IREF>
+                    </MODE-SWITCH-POINT>
+                  </MODE-SWITCH-POINTS>
+                  <SERVER-CALL-POINTS>
+                    <SYNCHRONOUS-SERVER-CALL-POINT UUID="9050d38a-de17-4a13-a221-ddf15450f3ca">
+                      <SHORT-NAME>scp_GetPhyValue</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Comco/Comco/RP_EvAdc_GetValue_VMON_IGN</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/Swc_PortInterface/CSI_EvAdc_GetValue/GetPhyValue</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT T="2023-02-01T14:10:29+08:00" UUID="3d8593dc-663d-46dc-9f3d-ce6089632d0c">
+                      <SHORT-NAME>scp_RequestComMode</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Comco/Comco/RP_ComM_UserRequest_Public</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_ComM/PortInterfaces/ComM_UserRequest/RequestComMode</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                    <SYNCHRONOUS-SERVER-CALL-POINT T="2023-02-01T14:10:29+08:00" UUID="2104aca4-a2bc-42f0-8582-c1295584038f">
+                      <SHORT-NAME>scp_RequestComMode0</SHORT-NAME>
+                      <OPERATION-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/Comco/Comco/RP_ComM_UserRequest_Private</CONTEXT-R-PORT-REF>
+                        <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_ComM/PortInterfaces/ComM_UserRequest/RequestComMode</TARGET-REQUIRED-OPERATION-REF>
+                      </OPERATION-IREF>
+                      <TIMEOUT>0.0</TIMEOUT>
+                    </SYNCHRONOUS-SERVER-CALL-POINT>
+                  </SERVER-CALL-POINTS>
+                  <SYMBOL>Comco_MainFunction</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-02-23T13:36:43+08:00" UUID="DCE:bbe92bbb-4e77-43a4-b243-3d066c2b334d">
+                  <SHORT-NAME>Comco_u_NMWakupFlag_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Comco_u_NMWakupFlag_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-02-23T13:58:00+08:00" UUID="DCE:b874ea3e-ae75-41a7-b0bf-502cdb05c8f0">
+                  <SHORT-NAME>Comco_u_nmCurrentState_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Comco_u_nmCurrentState_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY T="2023-02-23T13:57:27+08:00" UUID="DCE:3a55800d-1647-427f-a136-01cc1097ded7">
+                  <SHORT-NAME>Comco_u_nmPreviousState_Read</SHORT-NAME>
+                  <MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                  <SYMBOL>Comco_u_nmPreviousState_Read</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+        <SWC-IMPLEMENTATION T="2023-02-23T14:04:45+08:00" UUID="823a71be-4268-4d43-9abd-3cbe2a2dbcd5">
+          <SHORT-NAME>Comco_Impl</SHORT-NAME>
+          <CODE-DESCRIPTORS>
+            <CODE T="2023-02-23T14:04:54+08:00" UUID="c39594d2-0902-4907-909e-7e90edeea3f9">
+              <SHORT-NAME>comcoordinator</SHORT-NAME>
+              <ADMIN-DATA>
+                <SDGS>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC0</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/Comco/Comco/Comco_IB/Comco_MainFunction?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC1</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/Comco/Comco/Comco_IB/Comco_u_NMWakupFlag_Read?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC3</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/Comco/Comco/Comco_IB/Comco_u_nmPreviousState_Read?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                  <SDG GID="AnyInstanceRef">
+                    <SD GID="_ExtensionKey">com.dassault_systemes.ab.RunnableEntityRef.SWSRC2</SD>
+                    <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/gs/gtc/air</SD>
+                    <SD GID="_Type">AnyInstanceRef</SD>
+                    <SD GID="gChecksum"></SD>
+                    <SD GID="gTimestamp">0001-01-01T00:00:00Z</SD>
+                    <SD GID="checksum"></SD>
+                    <SD GID="timestamp">0001-01-01T00:00:00Z</SD>
+                    <SDG GID="target">
+                      <SD GID="_NsURI">http://autosar.org/schema/r4.0/autosar40/swc/sib</SD>
+                      <SD GID="_Type">RunnableEntity</SD>
+                      <SD GID="_URI">ar:/#/Comco/Comco/Comco_IB/Comco_u_nmCurrentState_Read?type=RunnableEntity</SD>
+                    </SDG>
+                  </SDG>
+                </SDGS>
+              </ADMIN-DATA>
+              <ARTIFACT-DESCRIPTORS>
+                <AUTOSAR-ENGINEERING-OBJECT T="2022-07-26T20:31:35+08:00">
+                  <SHORT-LABEL>SWSRC</SHORT-LABEL>
+                  <CATEGORY>SWSRC</CATEGORY>
+                </AUTOSAR-ENGINEERING-OBJECT>
+              </ARTIFACT-DESCRIPTORS>
+            </CODE>
+          </CODE-DESCRIPTORS>
+          <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+          <RESOURCE-CONSUMPTION T="2022-07-26T20:32:46+08:00" UUID="1077bd5c-073a-48e9-a6b6-082a64c45ec5">
+            <SHORT-NAME>Resources</SHORT-NAME>
+            <MEMORY-SECTIONS>
+              <MEMORY-SECTION T="2022-07-26T20:32:46+08:00" UUID="199e1aaf-61af-46a2-a623-d5872de4f7b6">
+                <SHORT-NAME>CODE</SHORT-NAME>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2022-07-26T20:32:46+08:00" UUID="0c5c750d-b6f9-4ac9-bbf5-c0f0867c918b">
+                <SHORT-NAME>CODE_LOCAL</SHORT-NAME>
+                <OPTIONS>
+                  <OPTION>coreLocal</OPTION>
+                </OPTIONS>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR/MemMap/SwAddrMethods/CODE_LOCAL</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+              <MEMORY-SECTION T="2022-07-26T20:32:46+08:00" UUID="03046c59-739f-4857-8f6a-6c7b73915386">
+                <SHORT-NAME>VAR_CLEARED_LOCAL</SHORT-NAME>
+                <OPTIONS>
+                  <OPTION>coreLocal</OPTION>
+                </OPTIONS>
+                <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR/MemMap/SwAddrMethods/VAR_CLEARED_LOCAL</SW-ADDRMETHOD-REF>
+              </MEMORY-SECTION>
+            </MEMORY-SECTIONS>
+          </RESOURCE-CONSUMPTION>
+          <SW-VERSION>1.0.0</SW-VERSION>
+          <VENDOR-ID>0</VENDOR-ID>
+          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/Comco/Comco/Comco_IB</BEHAVIOR-REF>
+        </SWC-IMPLEMENTATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

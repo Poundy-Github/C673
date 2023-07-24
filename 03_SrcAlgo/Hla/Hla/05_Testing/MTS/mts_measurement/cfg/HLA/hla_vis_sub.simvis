@@ -1,0 +1,21 @@
+<SimVis>
+    <Tab Name="HLA" RefreshCycleMs="60">
+        <Splitter Orientation="Horizontal" Ratio="1">
+            <View Name="View2" Ratio="5" />
+            <View Name="View1" Ratio="1" />
+        </Splitter>
+    </Tab>
+    <ViewRef Url="HLA.View2">
+
+        <RenderContext Name="CIPP.PerspectiveCROI" />
+        <RenderContext Name="CHIPS.PerspectiveCROI" />
+        <RenderContext Name="CIPP.OddYP0Image" />
+        <RenderContext Name="HLA.Overlay"/>
+    </ViewRef>
+    <ViewRef Url="HLA.View1">
+
+        <RenderContext Name="CIPP.PerspectiveCROI" />
+        <RenderContext Name="CHIPS.PerspectiveCROI" />
+        <RenderContext Name="HLA.Overlay2"/>
+    </ViewRef>
+</SimVis>

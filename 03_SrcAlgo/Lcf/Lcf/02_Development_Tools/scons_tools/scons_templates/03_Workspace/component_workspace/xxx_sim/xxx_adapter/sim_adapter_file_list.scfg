@@ -1,0 +1,17 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Update each variable according to the existing source files and include paths.
+# ----------------------------------------------------------------------------------------
+
+# config file containing source files in sim adapter
+
+sim_adapter_source_files = """
+sim_adapter_xxx.cpp
+sim_adapter_xxx_dll.cpp
+stdafx.cpp
+"""
+
+sim_adapter_include_file_paths = """
+#../xxx_sim/xxx_adapter/
+#../xxx_sim/xxx_adapter/include/
+"""

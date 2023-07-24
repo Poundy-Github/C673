@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<html>
+    <style>
+        body { padding: 10px }
+    </style>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+	
+    <header >
+		<h1 >Output Directory Index List</h1>
+	</header>
+    <section >
+        <ul>
+		{% for dir in dirs %}
+            <li><a href="{{dir}}" >{{dir}}</a></li>
+		{% endfor %}
+		</ul>
+    </section>
+</html>

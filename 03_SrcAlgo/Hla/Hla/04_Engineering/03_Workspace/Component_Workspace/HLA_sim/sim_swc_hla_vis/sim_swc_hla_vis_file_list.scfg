@@ -1,0 +1,82 @@
+# Note:
+# 1. Rename this file and replace xxx with component name in lowercase.
+# 2. Replace hla with component name in lowercase.
+# 3. Update each variable according to the existing source files and include paths.
+# 4. Update project specific files with respect to project_path
+# ----------------------------------------------------------------------------------------
+
+# config file containing source files in sim visualization
+
+Import("project_name")
+
+hla_vis_sim_swc_source_files_project_specific = ''
+hla_vis_sim_swc_include_paths_project_specific = ''
+
+hla_vis_sim_swc_source_files = """
+     sim_swc_hla_vis.cpp
+     sim_swc_hla_vis_dll.cpp
+     stdafx.cpp
+     ../sim_swc_hla/sim_hla_ethernet.cpp
+     ../sim_swc_hla/sim_hla_can.cpp
+     ../sim_swc_hla/sim_hla_measdata.cpp
+     ../sim_swc_hla/utils/param.cpp
+     ../../../../01_Source_Code/hla/hla_errorhandling.c
+     
+     ../sim_swc_hla/sim_hla_visu/SimVisuMenu/sim_visu_color.cpp
+     ../sim_swc_hla/sim_hla_visu/SimVisuMenu/sim_visu_menusub.cpp
+     ../sim_swc_hla/sim_hla_visu/SimVisuMenu/sim_visu_button.cpp
+     ../sim_swc_hla/sim_hla_visu/SimVisuMenu/sim_visu_menu.cpp
+     ../sim_swc_hla/sim_hla_visu/sim_hla_visu_basic.cpp
+     ../sim_swc_hla/sim_hla_visu/sim_hla_visu_head.cpp
+     ../sim_swc_hla/sim_hla_visu/sim_hla_visu_table.cpp
+     ../sim_swc_hla/sim_hla_visu/sim_hla_visu_utils.cpp
+     ../sim_swc_hla/sim_hla_visu/sim_hla_visu_turnoff.cpp
+     ../sim_swc_hla/sim_hla_visu/sim_hla_visu_hlaf.cpp
+     ../sim_swc_hla/sim_hla_visu/sim_hla_visu_error.cpp
+     
+"""
+
+# Now the additional ones that are really project specific
+if 'MFC5' in project_name:
+    hla_vis_sim_swc_source_files += """
+    ../../../../01_Source_Code/cml/trigo/cml_trigo.c
+    ../../../../01_Source_Code/cml/misc/cml_misc.c
+    ../../../../01_Source_Code/cml/matrix/cml_mat.c
+    """
+
+# source files for the project "project_name"
+if project_name == 'MFC431':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+    hla_vis_sim_swc_source_files_project_specific = """
+        
+    """
+    
+project_path                                   = "../../00_Projects/" + project_name + "/"
+hla_vis_sim_swc_source_files_project_specific_list = hla_vis_sim_swc_source_files_project_specific.split()
+hla_vis_sim_swc_source_files_project_specific_list = [project_path + rel_path for rel_path in hla_vis_sim_swc_source_files_project_specific_list]
+hla_vis_sim_swc_source_files_list                  = hla_vis_sim_swc_source_files.split()
+hla_vis_sim_swc_source_files                       = '\n'.join(hla_vis_sim_swc_source_files_list + hla_vis_sim_swc_source_files_project_specific_list)
+
+
+hla_vis_sim_swc_include_paths = """
+    #../hla_sim/sim_swc_hla_vis/
+    #../hla_sim/sim_swc_hla
+    #../hla_sim/sim_swc_hla/utils
+    #../hla_sim/sim_swc_hla/sim_hla_visu
+    #../hla_sim/sim_swc_hla/sim_hla_visu/SimVisuMenu
+"""
+
+# include paths for the project "project_name"
+if project_name == 'MFC431':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+    hla_vis_sim_swc_include_paths_project_specific = """
+        
+    """
+
+project_path                                    = "../../00_Projects/" + project_name + "/"
+hla_vis_sim_swc_include_paths_project_specific_list = hla_vis_sim_swc_include_paths_project_specific.split()
+hla_vis_sim_swc_include_paths_project_specific_list = [project_path + rel_path for rel_path in hla_vis_sim_swc_include_paths_project_specific_list]
+hla_vis_sim_swc_include_paths_list                  = hla_vis_sim_swc_include_paths.split()
+hla_vis_sim_swc_include_paths                       = '\n'.join(hla_vis_sim_swc_include_paths_list + hla_vis_sim_swc_include_paths_project_specific_list)
+
+

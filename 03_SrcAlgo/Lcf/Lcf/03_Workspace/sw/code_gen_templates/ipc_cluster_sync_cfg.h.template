@@ -1,0 +1,33 @@
+// Copyright (C) Continental AG
+// All Rights Reserved
+// COMPONENT: IPC
+// VERSION:   $Revision: 1.1 $
+
+/// This file contains configuration of ipc clusters.
+/// @file
+
+#ifndef IPC_CLUSTER_SYNC_CFG_H
+#define IPC_CLUSTER_SYNC_CFG_H
+
+#include <common/GLOB/glob_type.h>
+#include <IPC_SLAVE/ipc_cluster_sync_types.h>
+
+/// Used for the mapping between the ipc clusters and the mdb clusters. It contains also the related swapping function and the size of the cluster.
+/// This list shall contain ALL the clusters.
+extern const t_SyncElement IPCCFG_a_SYNC_LIST[IPC_E_NUM_CLUSTERS];
+
+/// Size of a_clusterShortcutList
+/*!<codegen_start:NO_SHORTCUT_CLUSTERS>*/
+/*!<codegen_end:NO_SHORTCUT_CLUSTERS>*/
+
+// PRQA S 3710 ++ // 2017-09-06; uidg6511; summary: Msg(3:3710) Expression(s) with enum type used as operand(s) to '+'.;
+// reason: u_NO_SHORTCUT_CLUSTERS belongs to the type enum because of code optimization: it is like a const without using place in memory.
+// The + 1 is here added in order to be visible by the users of the array. It could be hidden after the definition of u_NO_SHORTCUT_CLUSTERS, but it would not be so clear.
+
+/// Contains the clusters using NVM.
+/// the last value (+ 1) is set as guard but is not used. with this guard, the array is never empty
+extern t_NvmClusterShortCut a_clusterShortcutList[u_NO_SHORTCUT_CLUSTERS + 1];
+// PRQA S 3710 --
+
+#endif
+

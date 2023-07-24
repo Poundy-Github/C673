@@ -1,0 +1,9 @@
+ all                > 
+   cml_algo         > 
+     cml_algo_pc    > algo lib: pc
+   cml_ide          > 
+     cml_ide_msvc   > MSVC project
+   cml_sim          > 
+     cml_sim_pc     > 
+       cml_sim_swc  > PC sim: sim_swc
+ unzip_tools        > unzip ti_tools

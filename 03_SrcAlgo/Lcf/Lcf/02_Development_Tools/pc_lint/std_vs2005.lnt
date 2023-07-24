@@ -1,0 +1,27 @@
+// Microsoft Visual C++ .NET 2003,
+// -si4 -sl4 -sp8, lib-mfc.lnt lib-stl.lnt lib-w32.lnt
+// Standard lint options
+
+co-msc80.lnt
+env-vc8.lnt
+lib-atl.lnt lib-stl.lnt lib-w32.lnt
+-si4 -sl4 -sp8
+-w3
+-e820
+
++fwc
++fat 
++linebuf 
++linebuf
+
+// Include definitions for platform 'Win32'
+-i"C:\Program Files\Microsoft Visual Studio 8\VC\include"
+-i"C:\Program Files\Microsoft Visual Studio 8\VC\atlmfc\include"
+-i"C:\Program Files\Microsoft Visual Studio 8\VC\PlatformSDK\include"
+-i"C:\Program Files\Microsoft Visual Studio 8\SDK\v2.0\include"
+-i"C:\Program Files\WTL75\include"
+
+//===================================================
+// Misc
+//===================================================
+-wlib(0) // Suppress Error Messages for Libary Header Files

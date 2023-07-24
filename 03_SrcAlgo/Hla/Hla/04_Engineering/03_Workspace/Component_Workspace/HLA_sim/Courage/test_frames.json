@@ -1,0 +1,117 @@
+{
+    "component": "HLA",
+    "test_frames":[
+      {
+      "file_name": "04_Engineering/01_Source_Code/HLA/frame/hla_main.c",
+      "test_file_name": "test_hla_main.c",
+      "short_name": "main",
+      "test_path": "frame/main",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/frame/hla_input_checks.c",
+      "test_file_name": "test_hla_input_checks.c",
+      "short_name": "inc",
+      "test_path": "frame/inc",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/frame/hla_output_checks.c",
+      "test_file_name": "test_hla_output_checks.c",
+      "short_name": "outc",
+      "test_path": "frame/outc",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/frame/hla_outputs.c",
+      "test_file_name": "test_hla_outputs.c",
+      "short_name": "outp",
+      "test_path": "frame/outp",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/function/hlaf_decision_blockage.c",
+      "test_file_name": "test_hlaf_decision_blockage.c",
+      "short_name": "decb",
+      "test_path": "function/decb",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/function/hlaf_decision_keepoff.c",
+      "test_file_name": "test_hlaf_decision_keepoff.c",
+      "short_name": "decko",
+      "test_path": "function/decko",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/function/hlaf_dimming.c",
+      "test_file_name": "test_hlaf_dimming.c",
+      "short_name": "dim",
+      "test_path": "function/dim",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/function/hlaf_decision_environment.c",
+      "test_file_name": "test_hlaf_decision_environment.c",
+      "short_name": "decen",
+      "test_path": "function/decen",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/function/hlaf_decision.c",
+      "test_file_name": "test_hlaf_decision.c",
+      "short_name": "dec",
+      "test_path": "function/dec",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/function/hlaf.c",
+      "test_file_name": "test_hlaf.c",
+      "short_name": "hlaf",
+      "test_path": "function/hlaf",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/function/hlaf_matrix.c",
+      "test_file_name": "test_hlaf_matrix.c",
+      "short_name": "mat",
+      "test_path": "function/mat",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/function/hlaf_matrixgfa.c",
+      "test_file_name": "test_hlaf_matrixgfa.c",
+      "short_name": "matgfa",
+      "test_path": "function/matgfa",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/function/hlaf_matrix_objects.c",
+      "test_file_name": "test_hlaf_matrix_objects.c",
+      "short_name": "mato",
+      "test_path": "function/mato",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/hla_cam_rot.c",
+      "test_file_name": "test_hla_cam_rot.c",
+      "short_name": "cr",
+      "test_path": "cr",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/hla_errorhandling.c",
+      "test_file_name": "test_hla_errorhandling.c",
+      "short_name": "eh",
+      "test_path": "eh",
+      "enabled": true
+       },
+       {
+      "file_name": "04_Engineering/01_Source_Code/HLA/hla_utils.c",
+      "test_file_name": "test_hla_utils.c",
+      "short_name": "ut",
+      "test_path": "ut",
+      "enabled": true
+       }
+    ]
+}

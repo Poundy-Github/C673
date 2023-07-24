@@ -1,0 +1,22 @@
+# config file containing hil server source file list
+
+# hil server source files
+hil_server_sources = """
+../../generic/hil_server/algo_scheduler.cpp
+../../generic/hil_server/device_init.c
+../../generic/hil_server/client.c
+../../generic/hil_server/netHooks.c
+"""
+
+# common hil server source files
+hil_server_rta_sources = """
+../../generic/hil_server/evm_algo_service_types.cpp
+../../generic/hil_server/image_fingerprint.cpp
+../../generic/hil_server/rta_service.c
+"""
+
+# hil server include paths
+hil_server_include_paths = """
+../../generic/hil_server/
+../../../../../../algo/externals/sim_extensions/
+"""

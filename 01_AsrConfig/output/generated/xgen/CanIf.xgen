@@ -1,0 +1,5226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?module CanIf?>
+
+<xgen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://www.elektrobit.com/2013/xgen" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+
+
+
+
+
+
+  <!-- This is the configuration of module CanIf -->
+  <module name="CanIf" version="6.10.19 B466224">
+
+    <!-- This is the precompile-time configuration of the module. -->
+    <configuration class="PreCompile">
+
+        <?artifact directory="include" file="CanIf_Types_Int.h" type="types-h" generate="yes" ?>
+
+
+
+      <parameter name="relocatable-enable">
+        <boolean-value>true</boolean-value>
+      </parameter>
+
+      <!--
+          Type declarations:
+          Specifies the content of CanIf_Types_Int.h
+      -->
+
+      <type name="CanIf_TxBufferIndexType">
+        <comment><![CDATA[ \brief Index type for Tx buffers
+
+ This type defines the index width for Tx buffers.]]></comment>
+        <reference type="uint16" />
+      </type>
+
+      <type name="CanIf_RxBufferIndexType">
+        <comment><![CDATA[ \brief Index type for Rx buffers
+
+ This type defines the index width for Rx buffers.]]></comment>
+        <reference type="uint16" />
+      </type>
+
+      <type name="CanIf_LPduIndexType">
+        <comment><![CDATA[ \brief Index type for L-PDU related data
+
+ This type defines the index type for L-PDU related data.]]></comment>
+        <reference type="uint16" />
+      </type>
+
+      <!-- This is the type definition of the root structure -->
+      <type name="CanIf_ConfigType">
+        <comment><![CDATA[ \brief Type for the CAN interface configuration
+
+ This type defines the global configuration of the CAN interface.]]></comment>
+        <struct>
+          <member name="PlatformSignature" type="uint32" comment="Used to validate the platform"/>
+          <member name="LcfgSignature" type="uint32" comment="Used to validate the post build configuration against the link time configuration"/>
+          <member name="CfgSignature" type="uint32" comment="Used to validate the post build configuration against the precompile time configuration"/>
+          <member name="PublicInfoSignature" type="uint32" comment="Used to validate the post build configuration against the precompile time published information configuration"/>
+          <member name="txLPduConfigPtr" type="CanIf_TxLPduConfigType" comment="ptr. to array of Tx L-PDU configurations">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member  name="rxLPduConfigPtr" type="CanIf_RxLPduConfigType" comment="ptr. to array of Rx L-PDU configurations">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="sortedRxLPduConfigPtr" type="CanIf_SortedRxLPduConfigType" comment="ptr. to array of sorted Rx L-PDU configurations">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="driverConfigPtr" type="CanIf_CanDriverConfigType" comment="pointer a driver configuration">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="trcvChnlConfigPtr" type="CanIf_CanTrcvChnlConfigType" comment="pointer a transceiver channel configuration">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="nrOfStaticTxLPdus" type="CanIf_LPduIndexType" comment="number of static Tx L-PDUs"/>
+          <member name="nrOfTxLPdus" type="CanIf_LPduIndexType" comment="number of Tx L-PDUs"/>
+          <member name="nrOfRxLPdus" type="CanIf_LPduIndexType" comment="number of Rx L-PDUs"/>
+          <member name="nrOfTxBuffers" type="CanIf_TxBufferIndexType" comment="number of Tx buffers"/>
+          <member name="maxCanControllerId" type="uint8" comment="maximum Can controller index"/>
+          <member name="nrOfTransceivers" type="uint8" comment="number of transceivers configured"/>
+        </struct>
+      </type>
+
+      <!-- This type is used for configuration of Tx L-PDUs. -->
+      <type name="CanIf_TxLPduConfigType">
+        <comment><![CDATA[ \brief Tx L-PDU configuration type
+
+ This type is used for configuration of Tx L-PDUs.]]></comment>
+        <struct>
+          <member name="canId" type="Can_IdType" comment="CAN ID"/>
+          <member name="hth" type="Can_HwHandleType" comment="HTH"/>
+          <member name="bufferIndex" type="CanIf_TxBufferIndexType" comment="index of Tx buffer"/>
+          <member name="memIndex" type="CanIf_TxBufferIndexType" comment="index in Tx memory"/>
+          <member name="sourcePduId_UL" type="PduIdType" comment="source PDU ID of upper layer"/>
+          <member name="userType" type="uint8" comment="type of callback function"/>
+          <member name="intCtrlIdx" type="uint8" comment="CanIf internal controller index"/>
+          <member name="PduLength" type="PduLengthType" comment="PDU length in EcuC"/>
+          <member name="truncateOptions" type="uint8" comment="PDU options regarding its truncation"/>
+        </struct>
+      </type>
+
+      <!-- This type defines the configuration of the index table for Rx L-PDUs. -->
+      <type name="CanIf_SortedRxLPduConfigType">
+        <comment><![CDATA[ \brief Rx L-PDU index type
+
+ This type is the index table to select a Rx L-Pdu.]]></comment>
+        <struct>
+          <member name="upperRangeCanId" type="uint32"  comment="Upper range CAN ID/no range flag"/>
+          <member name="canId" type="Can_IdType" comment="CAN ID"/>
+          <member name="rxLPduIndex" type="CanIf_LPduIndexType"/>
+        </struct>
+      </type>
+
+      <!-- This type defines the configuration of a Rx L-PDU. -->
+      <type name="CanIf_RxLPduConfigType">
+        <comment><![CDATA[ \brief Rx L-PDU configuration type
+
+ This type defines the configuration of a Rx L-PDU.]]></comment>
+        <struct>
+          <member name="targetPduId" type="PduIdType" comment="target PDU ID"/>
+          <member name="limitedPduLength" type="uint8" comment="target PDU length"/>
+          <member name="userType" type="uint8" comment="type of callback function"/>
+          <member name="dlc" type="uint8" comment="CAN DLC"/>
+        </struct>
+      </type>
+
+      <!-- This is the data type used for HTH configuration. -->
+      <type name="CanIf_HthConfigType">
+        <comment><![CDATA[ \brief HTH configuration type
+
+ This is the data type used for HTH configuration.]]></comment>
+        <struct>
+          <member name="firstIndex" type="CanIf_LPduIndexType" comment="index of first pending Tx request"/>
+          <member type="uint8" name="intCtrlIdx" comment="CanIf internal controller index"/>
+        </struct>
+      </type>
+
+      <!-- This is the data type used for HRH configuration. -->
+      <type name="CanIf_HrhConfigType">
+        <comment><![CDATA[ \brief HRH configuration type
+
+ This is the data type used for HRH configuration.]]></comment>
+        <struct>
+          <member name="firstIndex" type="CanIf_LPduIndexType" comment="index of first Rx L-PDU for this HRH"/>
+          <member name="lastIndex" type="CanIf_LPduIndexType" comment="index of last Rx L-PDU for this HRH"/>
+          <member name="swFiltering" type="uint8">
+            <comment>
+              <![CDATA[CANIF_BINARY_SOFTWARE_FILTERING - binary search;
+                       CANIF_NO_SOFTWARE_FILTERING - no sw filtering.
+              ]]>
+            </comment>
+          </member>
+          <member name="intCtrlIdx" type="uint8" comment="CanIf internal controller index"/>
+        </struct>
+      </type>
+
+      <!-- This is the type used for controller configuration. -->
+      <type name="CanIf_CanControllerConfigType">
+        <comment><![CDATA[ \brief Controller configuration
+
+ This is the type used for controller configuration.]]></comment>
+        <struct>
+          <member name="controllerId" type="uint8" comment="CAN controller ID"/>
+          <member name="driverIndex" type="uint8" comment="CAN driver index"/>
+        </struct>
+      </type>
+
+      <!-- This type defines the driver configuration used in the CAN interface. -->
+      <type name="CanIf_CanDriverConfigType">
+        <comment><![CDATA[ \brief Driver configuration type
+
+ This type defines the driver configuration used in the CAN interface.]]></comment>
+        <struct>
+          <member name="ctrlConfigPtr" type="CanIf_CanControllerConfigType" comment="array of controller configurations">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="hohIdToCanIfIdxPtr" type="uint16" comment="HOH ID translation array">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="hthConfigPtr" type="CanIf_HthConfigType" comment="array of HTH configurations">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="hrhConfigPtr" type="CanIf_HrhConfigType" comment="array of HRH configurations">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="upperHohIdLimit" type="Can_HwHandleType" comment="maximum configured HOH ID + 1"/>
+          <member name="nrOfHths" type="Can_HwHandleType" comment="number of configured HTHs"/>
+          <member name="nrOfControllers" type="uint8" comment="Number of CAN controllers contained in this driver"/>
+        </struct>
+      </type>
+
+      <!-- This type is used for configuring the wakable CAN Transceiver Driver channels. -->
+      <type name="CanIf_CanTrcvChnlConfigType">
+        <comment> <![CDATA[ \brief CAN Transceiver Driver channel configuration
+
+ This type is used for configuring the wakable CAN Transceiver Driver
+ channels.]]></comment>
+        <struct>
+          <member name="trcvChnlId" type="uint8" comment="transceiver channel ID"/>
+          <member name="trcvDrvIdx" type="uint8" comment="driver index"/>
+        </struct>
+      </type>
+
+    </configuration>  <!-- PreCompile -->
+
+    <!-- This is the post-build configuration of the module. -->
+    <configuration class="PostBuild">
+
+      <?artifact directory="include" file="CanIf_PBcfg.h" type="postbuild-h" ?>
+      <?artifact directory="src" file="CanIf_PBcfg.c" type="postbuild-c" generate="yes" ?>
+
+      <!--
+          Type declarations:
+          Specifies the content of CanIf_PBcfg.h
+      -->
+
+      <!-- This is the type definition of the layout type of the
+           modules' post-build configuration structure -->
+      <!-- !LINKSTO dsn.CanIf.PostBuildConfigurationData,1 -->
+      <type name="CanIf_ConfigLayoutType">
+        <struct>
+          <member name="RootCfg" type="CanIf_ConfigType"/>
+          <member name="txLPduConfig" type="CanIf_TxLPduConfigType" count="53"/>
+          <member name="rxLPduConfig" type="CanIf_RxLPduConfigType" count="54"/>
+          <member name="driverHthConfig" type="CanIf_HthConfigType" count="2"/>
+          <member name="driverHrhConfig" type="CanIf_HrhConfigType" count="52"/>
+          <member name="hohIdToCanIfIdx" type="uint16" count="54"/>
+          <member name="canControllerConfig" type="CanIf_CanControllerConfigType" count="2"/>
+          <!-- this implementation supports a single can driver only -->
+          <member name="canDriverConfig" type="CanIf_CanDriverConfigType" count="1"/>
+          <member name="sortedRxLPduConfig" type="CanIf_SortedRxLPduConfigType" count="55"/>
+          <member name="canTrcvChnlConfig" type="CanIf_CanTrcvChnlConfigType" count="1"/>
+        </struct>
+      </type>
+
+      <type name="CanIf_ConstConfigLayoutType">
+        <reference type="CanIf_ConfigLayoutType">
+          <compiler-abstraction>
+            <const memory-class="CANIF_APPL_CONST" />
+          </compiler-abstraction>
+        </reference>
+      </type>
+
+      <!--
+          Type definition and initialisation:
+          Specifies the content of CanIf_Pbcfg.c
+      -->
+
+      <memory-section name="CONFIG_DATA_UNSPECIFIED">
+      <instance type="CanIf_ConstConfigLayoutType"
+             name="CanIf_ConfigLayout">
+
+        <parameter name="postbuild-configuration-name">
+          <symbolic-value>CanIf_Config</symbolic-value>
+        </parameter>
+        <parameter name="postbuild-configuration-name">
+          <symbolic-value>CanIfInitCfg</symbolic-value>
+        </parameter>
+
+        <!-- CanIf_ConfigType -->
+        <field>
+          <field>
+            <int>2281703698</int>
+          </field>
+          <field>
+            <int>1140991788</int>
+          </field>
+          <field>
+            <int>309991485</int>
+          </field>
+          <field>
+            <int>3439262691</int>
+          </field>
+          <field>
+            <ref>
+              <struct-field name="txLPduConfig" />
+              <array-field index="0" />
+            </ref>
+          </field>
+          <field>
+            <ref>
+              <struct-field name="rxLPduConfig" />
+              <array-field index="0" />
+            </ref>
+          </field>
+          <field>
+            <ref>
+              <struct-field name="sortedRxLPduConfig" />
+              <array-field index="0" />
+            </ref>
+          </field>
+          <field>
+            <ref>
+              <struct-field name="canDriverConfig" />
+              <array-field index="0" />
+            </ref>
+          </field>
+          <field>
+            <ref>
+              <struct-field name="canTrcvChnlConfig" />
+              <array-field index="0" />
+            </ref>
+          </field>
+          <field>
+            <int>53</int>
+          </field>
+          <field>
+            <int>53</int>
+          </field>
+          <field>
+            <int>54</int>
+          </field>
+          <field>
+            <int>53</int>
+          </field>
+          <field>
+            <int>1</int>
+          </field>
+          <field>
+            <int>1</int>
+          </field>
+        </field>
+
+        <!-- CanIf_TxLPduConfigType -->
+        <!-- txLPduConfig[] -->
+        <field>
+          <field>
+            <field>
+              <int>1073742266</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>32</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742404</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>1</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742599</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>2</int>
+            </field>
+            <field>
+              <int>128</int>
+            </field>
+            <field>
+              <int>2</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742610</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>3</int>
+            </field>
+            <field>
+              <int>192</int>
+            </field>
+            <field>
+              <int>3</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742618</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>4</int>
+            </field>
+            <field>
+              <int>256</int>
+            </field>
+            <field>
+              <int>4</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073743217</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>5</int>
+            </field>
+            <field>
+              <int>320</int>
+            </field>
+            <field>
+              <int>5</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>16</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073743250</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>6</int>
+            </field>
+            <field>
+              <int>384</int>
+            </field>
+            <field>
+              <int>6</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>8</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073743508</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>7</int>
+            </field>
+            <field>
+              <int>448</int>
+            </field>
+            <field>
+              <int>7</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>8</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1899</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>8</int>
+            </field>
+            <field>
+              <int>512</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN 2.0 frame length -->
+              <int>8</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1899</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>9</int>
+            </field>
+            <field>
+              <int>520</int>
+            </field>
+            <field>
+              <int>2</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN 2.0 frame length -->
+              <int>8</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073743706</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>10</int>
+            </field>
+            <field>
+              <int>528</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073743706</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>11</int>
+            </field>
+            <field>
+              <int>592</int>
+            </field>
+            <field>
+              <int>3</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742087</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>12</int>
+            </field>
+            <field>
+              <int>656</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742088</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>13</int>
+            </field>
+            <field>
+              <int>720</int>
+            </field>
+            <field>
+              <int>9</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1538</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>14</int>
+            </field>
+            <field>
+              <int>784</int>
+            </field>
+            <field>
+              <!-- user specific upper layer -->
+              <!-- !LINKSTO CanIf.EB.UseCddComIfHandleId.TargetPduId,1 -->
+              <int>0</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>2</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN 2.0 frame length -->
+              <int>8</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742160</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>15</int>
+            </field>
+            <field>
+              <int>792</int>
+            </field>
+            <field>
+              <int>10</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742161</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>16</int>
+            </field>
+            <field>
+              <int>856</int>
+            </field>
+            <field>
+              <int>11</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742162</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>17</int>
+            </field>
+            <field>
+              <int>920</int>
+            </field>
+            <field>
+              <int>12</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742163</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>18</int>
+            </field>
+            <field>
+              <int>984</int>
+            </field>
+            <field>
+              <int>13</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742164</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>19</int>
+            </field>
+            <field>
+              <int>1048</int>
+            </field>
+            <field>
+              <int>14</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742176</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>20</int>
+            </field>
+            <field>
+              <int>1112</int>
+            </field>
+            <field>
+              <int>15</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742177</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>21</int>
+            </field>
+            <field>
+              <int>1176</int>
+            </field>
+            <field>
+              <int>16</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742178</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>22</int>
+            </field>
+            <field>
+              <int>1240</int>
+            </field>
+            <field>
+              <int>17</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742179</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>23</int>
+            </field>
+            <field>
+              <int>1304</int>
+            </field>
+            <field>
+              <int>18</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742180</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>24</int>
+            </field>
+            <field>
+              <int>1368</int>
+            </field>
+            <field>
+              <int>19</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742181</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>25</int>
+            </field>
+            <field>
+              <int>1432</int>
+            </field>
+            <field>
+              <int>20</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742182</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>26</int>
+            </field>
+            <field>
+              <int>1496</int>
+            </field>
+            <field>
+              <int>21</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742183</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>27</int>
+            </field>
+            <field>
+              <int>1560</int>
+            </field>
+            <field>
+              <int>22</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742184</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>28</int>
+            </field>
+            <field>
+              <int>1624</int>
+            </field>
+            <field>
+              <int>23</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742185</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>29</int>
+            </field>
+            <field>
+              <int>1688</int>
+            </field>
+            <field>
+              <int>24</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742192</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>30</int>
+            </field>
+            <field>
+              <int>1752</int>
+            </field>
+            <field>
+              <int>25</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742193</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>31</int>
+            </field>
+            <field>
+              <int>1816</int>
+            </field>
+            <field>
+              <int>26</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742194</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>32</int>
+            </field>
+            <field>
+              <int>1880</int>
+            </field>
+            <field>
+              <int>27</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742195</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>33</int>
+            </field>
+            <field>
+              <int>1944</int>
+            </field>
+            <field>
+              <int>28</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742196</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>34</int>
+            </field>
+            <field>
+              <int>2008</int>
+            </field>
+            <field>
+              <int>29</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742197</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>35</int>
+            </field>
+            <field>
+              <int>2072</int>
+            </field>
+            <field>
+              <int>30</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742198</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>36</int>
+            </field>
+            <field>
+              <int>2136</int>
+            </field>
+            <field>
+              <int>31</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742199</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>37</int>
+            </field>
+            <field>
+              <int>2200</int>
+            </field>
+            <field>
+              <int>32</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742200</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>38</int>
+            </field>
+            <field>
+              <int>2264</int>
+            </field>
+            <field>
+              <int>33</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742201</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>39</int>
+            </field>
+            <field>
+              <int>2328</int>
+            </field>
+            <field>
+              <int>34</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742208</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>40</int>
+            </field>
+            <field>
+              <int>2392</int>
+            </field>
+            <field>
+              <int>35</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742209</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>41</int>
+            </field>
+            <field>
+              <int>2456</int>
+            </field>
+            <field>
+              <int>36</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742224</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>42</int>
+            </field>
+            <field>
+              <int>2520</int>
+            </field>
+            <field>
+              <int>37</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742227</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>43</int>
+            </field>
+            <field>
+              <int>2584</int>
+            </field>
+            <field>
+              <int>38</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742229</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>44</int>
+            </field>
+            <field>
+              <int>2648</int>
+            </field>
+            <field>
+              <int>39</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742230</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>45</int>
+            </field>
+            <field>
+              <int>2712</int>
+            </field>
+            <field>
+              <int>40</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742231</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>46</int>
+            </field>
+            <field>
+              <int>2776</int>
+            </field>
+            <field>
+              <int>41</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742232</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>47</int>
+            </field>
+            <field>
+              <int>2840</int>
+            </field>
+            <field>
+              <int>42</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742322</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>48</int>
+            </field>
+            <field>
+              <int>2904</int>
+            </field>
+            <field>
+              <int>43</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>8</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1106</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>49</int>
+            </field>
+            <field>
+              <int>2968</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>5</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN 2.0 frame length -->
+              <int>8</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742340</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>50</int>
+            </field>
+            <field>
+              <int>2976</int>
+            </field>
+            <field>
+              <int>44</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742343</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>51</int>
+            </field>
+            <field>
+              <int>3040</int>
+            </field>
+            <field>
+              <int>45</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073743392</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+            <field>
+              <!-- !LINKSTO dsn.CanIf.PBconfig.bufferindex,1 -->
+              <int>52</int>
+            </field>
+            <field>
+              <int>3104</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <!-- !LINKSTO CanIf.EB.Metadata.Config.1,1 -->
+            <field>
+              <int>255</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <!-- Pdu Length from EcuC -->
+              <!-- Check if Can FD -->
+                <!-- Check if the PDU length from EcuC is larger than the max CAN FD frame length -->
+              <int>64</int>
+            </field>            
+            <field>
+              <!-- Truncating options -->
+              <!-- Check if parameter CanIfTxPduTruncation is ON -->
+                <!-- Set bit 0 for the truncating options -->
+                <!-- Check if CanIfTxPduTruncateToFrame is enabled and ON -->
+                    <!-- Set bit 1 for the truncating options -->
+              <int>3</int>
+            </field>
+          </field>
+        </field>
+
+
+        <!-- rxLPduConfig -->
+        <field>
+          <field>
+            <!-- Rx-PDU 0 -->
+            
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 1 -->
+            
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 2 -->
+            
+            <field>
+              <int>2</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 3 -->
+            
+            <field>
+              <int>3</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 4 -->
+            
+            <field>
+              <int>4</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 5 -->
+            
+            <field>
+              <int>5</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 6 -->
+            
+            <field>
+              <int>6</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 7 -->
+            
+            <field>
+              <int>7</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 8 -->
+            
+            <field>
+              <int>8</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 9 -->
+            
+            <field>
+              <int>9</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 10 -->
+            
+            <field>
+              <int>10</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 11 -->
+            
+            <field>
+              <int>11</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 12 -->
+            
+            <field>
+              <int>12</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 13 -->
+            
+            <field>
+              <int>13</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 14 -->
+            
+            <field>
+              <int>14</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 15 -->
+            
+            <field>
+              <int>15</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 16 -->
+            
+            <field>
+              <int>16</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 17 -->
+            
+            <field>
+              <int>17</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 18 -->
+            
+            <field>
+              <int>18</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 19 -->
+            
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              
+              <int>16</int>
+            </field>
+            <field>
+              <int>3</int>
+            </field>
+            <field>
+              <int>16</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 20 -->
+            
+            <field>
+              <int>19</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 21 -->
+            
+            <field>
+              <int>20</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 22 -->
+            
+            <field>
+              <int>21</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 23 -->
+            
+            <field>
+              <int>3</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 24 -->
+            
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 25 -->
+            
+            <field>
+              <int>2</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 26 -->
+            
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 27 -->
+            
+            <field>
+              <int>22</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 28 -->
+            
+            <field>
+              <int>23</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 29 -->
+            
+            <field>
+              <int>24</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 30 -->
+            
+            <field>
+              <!-- user specific upper layer -->
+              <!-- !LINKSTO CanIf.EB.UseCddComIfHandleId.TargetPduId,1 -->
+              <int>0</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>2</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 31 -->
+            
+            <field>
+              <int>25</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 32 -->
+            
+            <field>
+              <int>26</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 33 -->
+            
+            <field>
+              <int>27</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 34 -->
+            
+            <field>
+              <int>28</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 35 -->
+            
+            <field>
+              <int>29</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 36 -->
+            
+            <field>
+              <int>30</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 37 -->
+            
+            <field>
+              <int>31</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 38 -->
+            
+            <field>
+              <int>32</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 39 -->
+            
+            <field>
+              <int>33</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 40 -->
+            
+            <field>
+              <int>34</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 41 -->
+            
+            <field>
+              <int>35</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 42 -->
+            
+            <field>
+              <int>36</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 43 -->
+            
+            <field>
+              <int>37</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 44 -->
+            
+            <field>
+              <int>38</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 45 -->
+            
+            <field>
+              <int>39</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 46 -->
+            
+            <field>
+              <int>40</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 47 -->
+            
+            <field>
+              <int>41</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 48 -->
+            
+            <field>
+              <int>42</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 49 -->
+            
+            <field>
+              <int>43</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 50 -->
+            
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              
+              <int>8</int>
+            </field>
+            <field>
+              <int>5</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 51 -->
+            
+            <field>
+              <int>44</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 52 -->
+            
+            <field>
+              <int>45</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+          <field>
+            <!-- Rx-PDU 53 -->
+            
+            <field>
+              <int>46</int>
+            </field>
+            <field>
+              
+              <int>64</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>64</int>
+            </field>
+          </field>
+        </field>
+
+        <!-- driverHthConfig -->
+        <field>
+            <field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>14</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+        </field>
+
+
+        <!-- driverHrhConfig -->
+        <field>
+            <field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>1</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>2</int>
+              </field>
+              <field>
+                <int>2</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>3</int>
+              </field>
+              <field>
+                <int>3</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>4</int>
+              </field>
+              <field>
+                <int>4</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>5</int>
+              </field>
+              <field>
+                <int>5</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>6</int>
+              </field>
+              <field>
+                <int>6</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>7</int>
+              </field>
+              <field>
+                <int>7</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>8</int>
+              </field>
+              <field>
+                <int>8</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>9</int>
+              </field>
+              <field>
+                <int>9</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>10</int>
+              </field>
+              <field>
+                <int>10</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>11</int>
+              </field>
+              <field>
+                <int>11</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>12</int>
+              </field>
+              <field>
+                <int>12</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>13</int>
+              </field>
+              <field>
+                <int>13</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>14</int>
+              </field>
+              <field>
+                <int>14</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>15</int>
+              </field>
+              <field>
+                <int>15</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>16</int>
+              </field>
+              <field>
+                <int>16</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>17</int>
+              </field>
+              <field>
+                <int>17</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>18</int>
+              </field>
+              <field>
+                <int>18</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>19</int>
+              </field>
+              <field>
+                <int>19</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>20</int>
+              </field>
+              <field>
+                <int>20</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>21</int>
+              </field>
+              <field>
+                <int>21</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>22</int>
+              </field>
+              <field>
+                <int>23</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>24</int>
+              </field>
+              <field>
+                <int>24</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>25</int>
+              </field>
+              <field>
+                <int>25</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>26</int>
+              </field>
+              <field>
+                <int>26</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>27</int>
+              </field>
+              <field>
+                <int>28</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>29</int>
+              </field>
+              <field>
+                <int>30</int>
+              </field>
+              <field>
+                <int>0</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>31</int>
+              </field>
+              <field>
+                <int>31</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>32</int>
+              </field>
+              <field>
+                <int>32</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>33</int>
+              </field>
+              <field>
+                <int>33</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>34</int>
+              </field>
+              <field>
+                <int>34</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>35</int>
+              </field>
+              <field>
+                <int>35</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>36</int>
+              </field>
+              <field>
+                <int>36</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>37</int>
+              </field>
+              <field>
+                <int>37</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>38</int>
+              </field>
+              <field>
+                <int>38</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>39</int>
+              </field>
+              <field>
+                <int>39</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>40</int>
+              </field>
+              <field>
+                <int>40</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>41</int>
+              </field>
+              <field>
+                <int>41</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>42</int>
+              </field>
+              <field>
+                <int>42</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>43</int>
+              </field>
+              <field>
+                <int>43</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>44</int>
+              </field>
+              <field>
+                <int>44</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>45</int>
+              </field>
+              <field>
+                <int>45</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>46</int>
+              </field>
+              <field>
+                <int>46</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>47</int>
+              </field>
+              <field>
+                <int>47</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>48</int>
+              </field>
+              <field>
+                <int>48</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>49</int>
+              </field>
+              <field>
+                <int>49</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>50</int>
+              </field>
+              <field>
+                <int>50</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>51</int>
+              </field>
+              <field>
+                <int>51</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>52</int>
+              </field>
+              <field>
+                <int>52</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>53</int>
+              </field>
+              <field>
+                <int>53</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+            <field>
+              <field>
+                <int>54</int>
+              </field>
+              <field>
+                <int>54</int>
+              </field>
+              <field>
+                <int>255</int>
+              </field>
+              <field>
+                <int>1</int>
+              </field>
+            </field>
+        </field>
+
+        <!-- hohIdToCanIfIdx -->
+        <field>
+
+           <field>
+             <int>0</int>
+           </field>
+           <field>
+             <int>1</int>
+           </field>
+           <field>
+             <int>2</int>
+           </field>
+           <field>
+             <int>3</int>
+           </field>
+           <field>
+             <int>4</int>
+           </field>
+           <field>
+             <int>5</int>
+           </field>
+           <field>
+             <int>6</int>
+           </field>
+           <field>
+             <int>7</int>
+           </field>
+           <field>
+             <int>8</int>
+           </field>
+           <field>
+             <int>9</int>
+           </field>
+           <field>
+             <int>10</int>
+           </field>
+           <field>
+             <int>11</int>
+           </field>
+           <field>
+             <int>12</int>
+           </field>
+           <field>
+             <int>13</int>
+           </field>
+           <field>
+             <int>14</int>
+           </field>
+           <field>
+             <int>15</int>
+           </field>
+           <field>
+             <int>16</int>
+           </field>
+           <field>
+             <int>17</int>
+           </field>
+           <field>
+             <int>18</int>
+           </field>
+           <field>
+             <int>19</int>
+           </field>
+           <field>
+             <int>20</int>
+           </field>
+           <field>
+             <int>21</int>
+           </field>
+           <field>
+             <int>22</int>
+           </field>
+           <field>
+             <int>23</int>
+           </field>
+           <field>
+             <int>24</int>
+           </field>
+           <field>
+             <int>25</int>
+           </field>
+           <field>
+             <int>26</int>
+           </field>
+           <field>
+             <int>27</int>
+           </field>
+           <field>
+             <int>28</int>
+           </field>
+           <field>
+             <int>29</int>
+           </field>
+           <field>
+             <int>30</int>
+           </field>
+           <field>
+             <int>31</int>
+           </field>
+           <field>
+             <int>32</int>
+           </field>
+           <field>
+             <int>33</int>
+           </field>
+           <field>
+             <int>34</int>
+           </field>
+           <field>
+             <int>35</int>
+           </field>
+           <field>
+             <int>36</int>
+           </field>
+           <field>
+             <int>37</int>
+           </field>
+           <field>
+             <int>38</int>
+           </field>
+           <field>
+             <int>39</int>
+           </field>
+           <field>
+             <int>40</int>
+           </field>
+           <field>
+             <int>41</int>
+           </field>
+           <field>
+             <int>42</int>
+           </field>
+           <field>
+             <int>43</int>
+           </field>
+           <field>
+             <int>44</int>
+           </field>
+           <field>
+             <int>45</int>
+           </field>
+           <field>
+             <int>46</int>
+           </field>
+           <field>
+             <int>47</int>
+           </field>
+           <field>
+             <int>48</int>
+           </field>
+           <field>
+             <int>49</int>
+           </field>
+           <field>
+             <int>50</int>
+           </field>
+           <field>
+             <int>51</int>
+           </field>
+           <field>
+             <int>32768</int>
+           </field>
+           <field>
+             <int>32769</int>
+           </field>
+        </field>
+
+        <!-- canControllerConfig -->
+        <field>
+          <field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+          </field>
+        </field>
+
+        <!-- canDriverConfig -->
+        <field>
+          <field>
+            <field>
+              <ref>
+                <struct-field name="canControllerConfig" />
+                <array-field index="0" />
+              </ref>
+            </field>
+            <field>
+              <ref>
+                <struct-field name="hohIdToCanIfIdx" />
+                <array-field index="0" />
+              </ref>
+            </field>
+            <field>
+              <ref>
+                <struct-field name="driverHthConfig" />
+                <array-field index="0" />
+              </ref>
+            </field>
+            <field>
+              <ref>
+                <struct-field name="driverHrhConfig" />
+                <array-field index="0" />
+              </ref>
+            </field>
+            <field>
+              <int>54</int>
+            </field>
+            <field>
+             <int>2</int>
+            </field>
+            <field>
+             <int>2</int>
+            </field>
+          </field>
+        </field>
+
+
+        <!-- sortedRxLPduConfig -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+                <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+              <!-- Get and store the Mask and the Id to call EcuC -->
+              
+              
+              
+              <!-- !LINKSTO CanIf.EB.Metadata.Config.5,1 -->
+        <field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073741904</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742177</int>
+            </field>
+            <field>
+              <int>1</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742192</int>
+            </field>
+            <field>
+              <int>2</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742202</int>
+            </field>
+            <field>
+              <int>3</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742206</int>
+            </field>
+            <field>
+              <int>4</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742208</int>
+            </field>
+            <field>
+              <int>5</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742274</int>
+            </field>
+            <field>
+              <int>6</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742347</int>
+            </field>
+            <field>
+              <int>7</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742415</int>
+            </field>
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742456</int>
+            </field>
+            <field>
+              <int>9</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742472</int>
+            </field>
+            <field>
+              <int>10</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742475</int>
+            </field>
+            <field>
+              <int>11</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742504</int>
+            </field>
+            <field>
+              <int>12</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742530</int>
+            </field>
+            <field>
+              <int>13</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742546</int>
+            </field>
+            <field>
+              <int>14</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742558</int>
+            </field>
+            <field>
+              <int>15</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742583</int>
+            </field>
+            <field>
+              <int>16</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742730</int>
+            </field>
+            <field>
+              <int>17</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742767</int>
+            </field>
+            <field>
+              <int>18</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742781</int>
+            </field>
+            <field>
+              <int>20</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742786</int>
+            </field>
+            <field>
+              <int>21</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073743111</int>
+            </field>
+            <field>
+              <int>22</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>2015</int>
+            </field>
+            <field>
+              <int>23</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073743839</int>
+            </field>
+            <field>
+              <int>25</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1891</int>
+            </field>
+            <field>
+              <int>24</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073743698</int>
+            </field>
+            <field>
+              <int>26</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1536</int>
+            </field>
+            <field>
+              <int>30</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1087</int>
+            </field>
+            <field>
+              <int>1072</int>
+            </field>
+            <field>
+              <int>50</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>1073742911</int>
+            </field>
+            <field>
+              <int>1073742896</int>
+            </field>
+            <field>
+              <int>50</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>512</int>
+            </field>
+            <field>
+              <int>48</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742336</int>
+            </field>
+            <field>
+              <int>19</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742097</int>
+            </field>
+            <field>
+              <int>27</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742098</int>
+            </field>
+            <field>
+              <int>28</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742099</int>
+            </field>
+            <field>
+              <int>29</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742100</int>
+            </field>
+            <field>
+              <int>31</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742101</int>
+            </field>
+            <field>
+              <int>32</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742102</int>
+            </field>
+            <field>
+              <int>33</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742103</int>
+            </field>
+            <field>
+              <int>34</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742104</int>
+            </field>
+            <field>
+              <int>35</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742105</int>
+            </field>
+            <field>
+              <int>36</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742106</int>
+            </field>
+            <field>
+              <int>37</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742107</int>
+            </field>
+            <field>
+              <int>38</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742108</int>
+            </field>
+            <field>
+              <int>39</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742109</int>
+            </field>
+            <field>
+              <int>40</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742110</int>
+            </field>
+            <field>
+              <int>41</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742111</int>
+            </field>
+            <field>
+              <int>42</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742112</int>
+            </field>
+            <field>
+              <int>43</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742134</int>
+            </field>
+            <field>
+              <int>44</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742136</int>
+            </field>
+            <field>
+              <int>45</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742235</int>
+            </field>
+            <field>
+              <int>46</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742321</int>
+            </field>
+            <field>
+              <int>47</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742337</int>
+            </field>
+            <field>
+              <int>49</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742660</int>
+            </field>
+            <field>
+              <int>51</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742661</int>
+            </field>
+            <field>
+              <int>52</int>
+            </field>
+          </field>
+          <field>
+            <field>
+              <int>4294967295</int>
+            </field>
+            <field>
+              <int>1073742662</int>
+            </field>
+            <field>
+              <int>53</int>
+            </field>
+          </field>
+        </field>
+
+        <!-- canTrcvChnlConfig -->
+        <field>
+          <field>
+            <field>
+              <int>0</int>
+            </field>
+            <field>
+              <int>0</int>
+            </field>
+          </field>
+        </field>
+
+      </instance>
+      </memory-section>
+    </configuration>  <!-- PostBuild -->
+  </module>
+
+  <!-- include the AUTOSAR standard data types, etc. -->
+  <xi:include href="Base.xgen" xpointer="element(/1/1)"/>
+
+</xgen>
+

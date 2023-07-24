@@ -1,0 +1,1478 @@
+<?xml version='1.0'?>
+<datamodel version="7.0" 
+           xmlns="http://www.tresos.de/_projects/DataModel2/16/root.xsd" 
+           xmlns:a="http://www.tresos.de/_projects/DataModel2/16/attribute.xsd" 
+           xmlns:v="http://www.tresos.de/_projects/DataModel2/06/schema.xsd" 
+           xmlns:d="http://www.tresos.de/_projects/DataModel2/06/data.xsd">
+
+  <d:ctr type="AUTOSAR" factory="autosar" 
+         xmlns:ad="http://www.tresos.de/_projects/DataModel2/08/admindata.xsd" 
+         xmlns:cd="http://www.tresos.de/_projects/DataModel2/08/customdata.xsd" 
+         xmlns:f="http://www.tresos.de/_projects/DataModel2/14/formulaexpr.xsd" 
+         xmlns:icc="http://www.tresos.de/_projects/DataModel2/08/implconfigclass.xsd" 
+         xmlns:mt="http://www.tresos.de/_projects/DataModel2/11/multitest.xsd"  
+         xmlns:variant="http://www.tresos.de/_projects/DataModel2/11/variant.xsd">
+    <d:lst type="TOP-LEVEL-PACKAGES">
+      <d:ctr name="Fee" type="AR-PACKAGE">
+        <d:lst type="ELEMENTS">
+          <d:chc name="Fee" type="AR-ELEMENT" value="MODULE-CONFIGURATION">
+            <d:ctr type="MODULE-CONFIGURATION">
+              <a:a name="DEF" value="ASPath:/AURIX2G/EcucDefs/Fee"/>
+              <d:var name="IMPLEMENTATION_CONFIG_VARIANT" type="ENUMERATION" 
+                     value="VariantPostBuild">
+                <a:a name="IMPORTER_INFO" value="@DEF"/>
+              </d:var>
+              <d:lst name="FeeBlockConfiguration" type="MAP">
+                <d:ctr name="Fee_NvMBlock_ConfigID" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="16">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="4">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NvMBlock_ConfigID_Red" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="17">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="4">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_DEFAULT_0" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="32">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="644">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_0" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="48">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_1" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="49">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_2" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="50">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_3" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="51">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_4" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="52">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_5" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="53">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_6" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="54">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_7" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="55">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_8" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="56">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_9" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="57">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_10" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="58">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_11" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="59">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_12" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="60">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_13" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="61">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_14" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="62">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_DEM_PRIMARY_15" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="63">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="68">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_ECUHardwareVersion" 
+                       type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="80">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="10">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_SerialNumberDataId" 
+                       type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="96">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="15">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_FAB_switch" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="112">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="1">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_TSR_switch" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="128">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="1">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_TLA_switch" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="144">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="1">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_Security_AttemptCount" 
+                       type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="160">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="4">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_VINDataIdentifier" 
+                       type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="64">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="17">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_EOL_Info_Input" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="352"/>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="8">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_Block_SecureUpdateLog" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="192">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="1"/>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="507904"/>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="true"/>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="4096">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" value="0"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_PartNumber_Sector" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="208">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="1"/>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="512000"/>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="true"/>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="4096">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" value="0"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_Block_Startup_Flag" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="240"/>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="1"/>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="520192"/>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="true"/>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="4096">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" value="0"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_Block_ABCheck" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="224"/>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="1"/>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="516096"/>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="true"/>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="4096">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" value="0"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_Fingerprint" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="256">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="11">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NVM_BLOCK_Vehicletype" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="272">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="3">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NvM_BLOCK_PCBASerialNumberDataIdentifier" 
+                       type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="288">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="7">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NvM_BLOCK_LaneFunctionConfiguration" 
+                       type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="304">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="5">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NvM_BLOCK_EOLCalibrationData" 
+                       type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="320">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="22">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NvM_BLOCK_SDACalibrationData" 
+                       type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="336">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="3">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NvM_Block_EOLModeGate" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="176"/>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="1"/>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="503808"/>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="true"/>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="4096">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NvM_Block_HMISwitchStatus" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="368">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="9">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="FeeBlockConfiguration_FD14" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="384">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="49">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="FeeBlockConfiguration_FD15" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="400">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="49">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="FeeBlockConfiguration_FD16" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="416">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="49">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="FeeBlockConfiguration_FD17" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="432">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="49">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="FeeBlockConfiguration_FD18" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="448">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="49">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="FeeBlockConfiguration_FD19" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="464">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="49">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NvM_BLOCK_VDYData" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="480">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="108">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="10000">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:var>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral">
+                    <a:a name="IMPORTER_INFO" value="@CALC(MemAs)"/>
+                  </d:ref>
+                </d:ctr>
+                <d:ctr name="Fee_NvM_BLOCK_FS_Debug_Status" type="IDENTIFIABLE">
+                  <d:var name="FeeBlockNumber" type="INTEGER" value="496"/>
+                  <d:var name="FeeQsBlockInstances" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQsBlockAddress" type="INTEGER" value="0">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeQuasiStaticManager" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FeeBlockSize" type="INTEGER" value="164"/>
+                  <d:var name="FeeImmediateData" type="BOOLEAN" value="false"/>
+                  <d:var name="FeeNumberOfWriteCycles" type="INTEGER" 
+                         value="16777215"/>
+                  <d:ref name="FeeDeviceIndex" type="REFERENCE" 
+                         value="ASPath:/Fls/Fls/FlsGeneral"/>
+                </d:ctr>
+              </d:lst>
+              <d:ctr name="FeeGeneral" type="IDENTIFIABLE">
+                <d:var name="FeeDevErrorDetect" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeSafetyEnable" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeInitCheckApi" type="BOOLEAN" value="true"/>
+                <d:var name="FeeMainFunctionPeriod" type="FLOAT" value="0.01">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:lst name="FeeNvmJobEndNotification">
+                  <d:var type="FUNCTION-NAME" value="NvM_JobEndNotification"/>
+                </d:lst>
+                <d:lst name="FeeNvmJobErrorNotification">
+                  <d:var type="FUNCTION-NAME" value="NvM_JobErrorNotification"/>
+                </d:lst>
+                <d:lst name="FeeQsJobEndNotification">
+                  <d:var type="FUNCTION-NAME" value="QS_JobEndNotification"/>
+                </d:lst>
+                <d:lst name="FeeQsJobErrorNotification">
+                  <d:var type="FUNCTION-NAME" value="QS_JobErrorNotification"/>
+                </d:lst>
+                <d:var name="FeePollingMode" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeSetModeSupported" type="BOOLEAN" value="true"/>
+                <d:var name="FeeVersionInfoApi" type="BOOLEAN" value="true"/>
+                <d:var name="FeeVirtualPageSize" type="INTEGER" value="8">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeBlockTypeConfigured" type="ENUMERATION" 
+                       value="FEE_DOUBLE_SECTOR_AND_QUASI_STATIC_DATA"/>
+              </d:ctr>
+              <d:ctr name="FeePublishedInformation" type="IDENTIFIABLE">
+                <d:var name="FeeBlockOverhead" type="INTEGER" value="17">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeePageOverhead" type="INTEGER" value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+              </d:ctr>
+              <d:ctr name="FeeIfxSpecificConfig" type="IDENTIFIABLE">
+                <d:var name="FeeThresholdValue" type="INTEGER" value="200">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeMaxBlockCount" type="INTEGER" value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeBlocksScannedPerCycle" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeUseEraseSuspend" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeStateVarStructure" type="STRING" 
+                       value="Fee_StateVar">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeUnConfigBlock" type="ENUMERATION" 
+                       value="FEE_UNCONFIG_BLOCK_IGNORE">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeUnConfigBlkOverflowHandle" type="ENUMERATION" 
+                       value="FEE_CONTINUE">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeGcRestart" type="ENUMERATION" 
+                       value="FEE_GC_RESTART_INIT">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeGetCycleCountApi" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeEccErrorInfoApi" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeEraseAllEnable" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeGetPrevDataApi" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeCancelAllApi" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeMaxBytesPerCycle" type="ENUMERATION" 
+                       value="FEE_MAX_BYTES_512">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeNvmIllegalStateNotification" 
+                       type="FUNCTION-NAME" value="NULL_PTR">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeQsIllegalStateNotification" 
+                       type="FUNCTION-NAME" value="NULL_PTR">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeQsHardenErrorNotification" type="FUNCTION-NAME" 
+                       value="NULL_PTR">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FeeVirginFlashIllegalState" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+              </d:ctr>
+              <d:lst name="FeeDemEventParameterRefs" type="MAP">
+                <d:ctr name="FeeDemEventParameterRefs_0" type="IDENTIFIABLE">
+                  <d:lst name="FEE_E_GC_INIT">
+                    <a:a name="IMPORTER_INFO" value="@CALC(SvcAs,dem.events,1)"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Dem/Dem/DemConfigSet_0/FEE_E_GC_INIT">
+                      <a:a name="IMPORTER_INFO" value="@CALC"/>
+                    </d:ref>
+                  </d:lst>
+                  <d:lst name="FEE_E_WRITE">
+                    <a:a name="IMPORTER_INFO" value="@CALC(SvcAs,dem.events,1)"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Dem/Dem/DemConfigSet_0/FEE_E_WRITE">
+                      <a:a name="IMPORTER_INFO" value="@CALC"/>
+                    </d:ref>
+                  </d:lst>
+                  <d:lst name="FEE_E_READ">
+                    <a:a name="IMPORTER_INFO" value="@CALC(SvcAs,dem.events,1)"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Dem/Dem/DemConfigSet_0/FEE_E_READ">
+                      <a:a name="IMPORTER_INFO" value="@CALC"/>
+                    </d:ref>
+                  </d:lst>
+                  <d:lst name="FEE_E_GC_READ">
+                    <a:a name="IMPORTER_INFO" value="@CALC(SvcAs,dem.events,1)"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Dem/Dem/DemConfigSet_0/FEE_E_GC_READ">
+                      <a:a name="IMPORTER_INFO" value="@CALC"/>
+                    </d:ref>
+                  </d:lst>
+                  <d:lst name="FEE_E_GC_WRITE">
+                    <a:a name="IMPORTER_INFO" value="@CALC(SvcAs,dem.events,1)"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Dem/Dem/DemConfigSet_0/FEE_E_GC_WRITE">
+                      <a:a name="IMPORTER_INFO" value="@CALC"/>
+                    </d:ref>
+                  </d:lst>
+                  <d:lst name="FEE_E_GC_ERASE">
+                    <a:a name="IMPORTER_INFO" value="@CALC(SvcAs,dem.events,1)"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Dem/Dem/DemConfigSet_0/FEE_E_GC_ERASE">
+                      <a:a name="IMPORTER_INFO" value="@CALC"/>
+                    </d:ref>
+                  </d:lst>
+                  <d:lst name="FEE_E_INVALIDATE">
+                    <a:a name="IMPORTER_INFO" value="@CALC(SvcAs,dem.events,1)"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Dem/Dem/DemConfigSet_0/FEE_E_INVALIDATE">
+                      <a:a name="IMPORTER_INFO" value="@CALC"/>
+                    </d:ref>
+                  </d:lst>
+                  <d:lst name="FEE_E_WRITE_CYCLES_EXHAUSTED">
+                    <a:a name="IMPORTER_INFO" value="@CALC(SvcAs,dem.events,1)"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Dem/Dem/DemConfigSet_0/FEE_E_WRITE_CYCLES_EXHAUSTED">
+                      <a:a name="IMPORTER_INFO" value="@CALC"/>
+                    </d:ref>
+                  </d:lst>
+                  <d:lst name="FEE_E_GC_TRIG">
+                    <a:a name="IMPORTER_INFO" value="@CALC(SvcAs,dem.events,1)"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Dem/Dem/DemConfigSet_0/FEE_E_GC_TRIG">
+                      <a:a name="IMPORTER_INFO" value="@CALC"/>
+                    </d:ref>
+                  </d:lst>
+                  <d:lst name="FEE_E_UNCONFIG_BLK_EXCEEDED">
+                    <a:a name="IMPORTER_INFO" value="@CALC(SvcAs,dem.events,1)"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Dem/Dem/DemConfigSet_0/FEE_E_UNCONFIG_BLK_EXCEEDED">
+                      <a:a name="IMPORTER_INFO" value="@CALC"/>
+                    </d:ref>
+                  </d:lst>
+                </d:ctr>
+              </d:lst>
+              <d:ctr name="CommonPublishedInformation" type="IDENTIFIABLE">
+                <d:var name="ArMajorVersion" type="INTEGER" value="4">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ArMinorVersion" type="INTEGER" value="2">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ArPatchVersion" type="INTEGER" value="2">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwMajorVersion" type="INTEGER" value="20"/>
+                <d:var name="SwMinorVersion" type="INTEGER" value="0"/>
+                <d:var name="SwPatchVersion" type="INTEGER" value="2">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ModuleId" type="INTEGER" value="21">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="VendorId" type="INTEGER" value="17">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="Release" type="STRING" value="_TRICORE_TC387">
+                  <a:a name="IMPORTER_INFO">
+                    <a:v>@CALC</a:v>
+                    <a:v>@DEF</a:v>
+                  </a:a>
+                </d:var>
+              </d:ctr>
+            </d:ctr>
+          </d:chc>
+        </d:lst>
+      </d:ctr>
+    </d:lst>
+  </d:ctr>
+
+</datamodel>

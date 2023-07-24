@@ -1,0 +1,11 @@
+global &gCORENAME
+global &gHAS_CORE_R7
+
+if "&gCORENAME &gHAS_CORE_R7"=="ca53 1"
+(
+	; attach debug master core first
+	INTERCOM localhost:10000 sys.attach
+)
+
+; attach this debug core
+sys.attach

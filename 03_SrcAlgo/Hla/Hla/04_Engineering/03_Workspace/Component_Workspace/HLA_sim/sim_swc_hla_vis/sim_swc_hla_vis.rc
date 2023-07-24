@@ -1,0 +1,136 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1, 0, 0, 0
+ PRODUCTVERSION 1, 0, 0, 0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x29L
+#else
+ FILEFLAGS 0x28L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040704b0"
+        BEGIN
+            VALUE "Comments", "uidt8578 1/16/2013 2:04:42 PM"
+            VALUE "CompanyName", "Continental AG BC-DAS A.D.C.GmbH"
+            VALUE "FileDescription", "hla Component Simulation"
+            VALUE "FileVersion", "1, 0, 0, 0"
+            VALUE "InternalName", "Release"
+            VALUE "LegalCopyright", "Copyright © 2012"
+            VALUE "OriginalFilename", "sim_swc_hla.dll"
+            VALUE "ProductName", "Release"
+            VALUE "ProductVersion", "1, 0, 0, 0"
+            VALUE "SpecialBuild", "-"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x407, 1200
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_IMAGE_BMW_LOGO                RCDATA        "..\\sim_swc_hla\\res\\bmwLogo_128px.rgb"
+IDR_IMAGE_HIGHWAY_DTCT            RCDATA        "..\\sim_swc_hla\\res\\Sign_330_HiWay_128pix.rgb"
+IDR_IMAGE_HIGHWAY_IDLE            RCDATA        "..\\sim_swc_hla\\res\\Sign_330_HiWay-Idle_128pix.rgb"
+IDR_IMAGE_CITY_DTCT               RCDATA        "..\\sim_swc_hla\\res\\Sign_City_128pix.rgb"
+IDR_IMAGE_TUNNEL_AHEAD            RCDATA        "..\\sim_swc_hla\\res\\Sign_327_Tunnel-Ahead_128pix.rgb"
+IDR_IMAGE_TUNNEL_INSIDE           RCDATA        "..\\sim_swc_hla\\res\\Sign_327_Tunnel_128pix.rgb"
+IDR_IMAGE_BAD_WEATHER             RCDATA        "..\\sim_swc_hla\\res\\Rain_Cloud_128pix.rgb"
+IDR_IMAGE_DAYLIGHT                RCDATA        "..\\sim_swc_hla\\res\\Sunny_128pix.rgb"
+IDR_IMAGE_TWILIGHT_1              RCDATA        "..\\sim_swc_hla\\res\\Twilight_1_128pix.rgb"
+IDR_IMAGE_TWILIGHT_2              RCDATA        "..\\sim_swc_hla\\res\\Twilight_2_128pix.rgb"
+IDR_IMAGE_TWILIGHT_3              RCDATA        "..\\sim_swc_hla\\res\\Twilight_3_128pix.rgb"
+IDR_IMAGE_RHT_TRAFFIC             RCDATA        "..\\sim_swc_hla\\res\\Righthand_Traffic_128pix.rgb"
+IDR_IMAGE_LHT_TRAFFIC             RCDATA        "..\\sim_swc_hla\\res\\Lefthand_Traffic_128pix.rgb"
+IDR_IMAGE_BLOCKAGE_FULLBLIND      RCDATA        "..\\sim_swc_hla\\res\\Blockage_FullBlind_128pix.rgb"
+IDR_IMAGE_BLOCKAGE_CONDENSATION   RCDATA        "..\\sim_swc_hla\\res\\Blockage_Condensation_128pix.rgb"
+IDR_IMAGE_ONCOMING_VEHICLE        RCDATA        "..\\sim_swc_hla\\res\\OncomingVeh_128pix.rgb"
+IDR_IMAGE_PRECEDING_VEHICLE       RCDATA        "..\\sim_swc_hla\\res\\PrecedingVeh_128pix.rgb"
+IDR_IMAGE_MIN_SPEED               RCDATA        "..\\sim_swc_hla\\res\\MinSpeed_128pix.rgb"
+IDR_IMAGE_DELAY                   RCDATA        "..\\sim_swc_hla\\res\\Sandglass_128pix.rgb"
+IDR_IMAGE_CLEARANCE_MEASUREMENT   RCDATA        "..\\sim_swc_hla\\res\\Clearance_128pix.rgb"
+IDR_IMAGE_HB_OFF                  RCDATA        "..\\sim_swc_hla\\res\\HBoff_128pix.rgb"
+IDR_IMAGE_HB_ON                   RCDATA        "..\\sim_swc_hla\\res\\HBon_128pix.rgb"
+IDR_IMAGE_HB_PARTIAL_LEFT_RIGHT   RCDATA        "..\\sim_swc_hla\\res\\HBpartialLeftRight_128pix.rgb"
+IDR_IMAGE_HB_PARTIAL_LEFT         RCDATA        "..\\sim_swc_hla\\res\\HBpartialLeft_128pix.rgb"
+IDR_IMAGE_HB_PARTIAL_RIGHT        RCDATA        "..\\sim_swc_hla\\res\\HBpartialRight_128pix.rgb"
+IDR_IMAGE_MERICA                  RCDATA        "..\\sim_swc_hla\\res\\Merica_128pix.rgb"
+IDR_IMAGE_RUNTIME                 RCDATA        "..\\sim_swc_hla\\res\\Runtime_128pix.rgb"
+IDR_IMAGE_FOG                     RCDATA        "..\\sim_swc_hla\\res\\fog.rgb"
+
+#endif    // German (Germany) resources
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

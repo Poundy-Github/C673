@@ -1,0 +1,1 @@
+This folder shall contain self-made python scripts that can be used for several use cases

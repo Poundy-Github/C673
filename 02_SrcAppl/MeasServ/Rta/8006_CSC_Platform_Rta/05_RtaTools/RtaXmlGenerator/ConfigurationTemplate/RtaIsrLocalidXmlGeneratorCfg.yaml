@@ -1,0 +1,22 @@
+---
+
+
+# The headerFile(s) describing the event IDs
+# Here one or more headerFiles shall be provided containing the event/interrupt IDs. 
+# Like in RAD6 DPU:
+# - 'interface/ti_awr294x/common_arm_r5f_dsp_c66/drivers/hw_include/awr294x/cslr_intr_dss.h'
+# - 'interface/ti_awr294x/common_arm_r5f_dsp_c66/drivers/hw_include/cslr_intr_c66x.h'
+ISR_XML_INPUT_FILES:  
+- 'headerFile_1_ContainingEventOrIterruptIDs.h'
+- 'headerFile_n_ContainingEventOrIterruptIDs.h'
+
+# The offset of the interrupt id values - it has to match with the define "RTA_INTERRUPT_LOCAL_ID_OFFSET" in rta_cfg.h  
+ISR_XML_OFFSET: 100
+
+# Additional interrupts or events. 
+# Here the possibilitly exists to add additional interrupts e. g. the directly mapped interrupts in case of C6xxx
+ISR_XML_ADD_ISR: 
+#- ADD_ISR_NAME: DIRECTLY_MAPPED_EVENT_1 
+#  ADD_ISR_VALUE: 4
+#- ADD_ISR_NAME: DIRECTLY_MAPPED_EVENT_2 
+#  ADD_ISR_VALUE: 5

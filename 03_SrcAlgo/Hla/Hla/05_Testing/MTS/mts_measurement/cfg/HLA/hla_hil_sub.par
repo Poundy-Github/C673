@@ -1,0 +1,4 @@
+[HIL_UseHil].Type=simI8_t
+[HIL_UseHil].Value=1
+[HIL_UseHil].ArrayLength=1
+

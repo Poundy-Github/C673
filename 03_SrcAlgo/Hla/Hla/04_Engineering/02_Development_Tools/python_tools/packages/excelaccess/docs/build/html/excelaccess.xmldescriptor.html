@@ -1,0 +1,529 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>excelaccess.xmldescriptor package &#8212; ExcelAccess 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="excelaccess" href="modules.html" />
+    <link rel="prev" title="excelaccess.utils package" href="excelaccess.utils.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="excelaccess-xmldescriptor-package">
+<h1>excelaccess.xmldescriptor package<a class="headerlink" href="#excelaccess-xmldescriptor-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-excelaccess.xmldescriptor.xml_creator">
+<span id="excelaccess-xmldescriptor-xml-creator-module"></span><h2>excelaccess.xmldescriptor.xml_creator module<a class="headerlink" href="#module-excelaccess.xmldescriptor.xml_creator" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="class">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser">
+<em class="property">class </em><code class="descclassname">excelaccess.xmldescriptor.xml_creator.</code><code class="descname">XMLParser</code><span class="sig-paren">(</span><em>cfg_xml_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads/Writes XML files in Context of Excel file tasks.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cfg_xml_path</strong> (<em>str</em>) – a (relative) path to a XML configuration file</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.add_excel_config">
+<code class="descname">add_excel_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.add_excel_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.add_excel_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a configuration element to the Excel file tag. Returns a Excel config element in each and every case.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Excel config element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">xml.etree.ElementTree.SubElement</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.add_header">
+<code class="descname">add_header</code><span class="sig-paren">(</span><em>table_elem</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.add_header"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.add_header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds header element if not existing. Returns a header element in each and every case.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>table_elem</strong> (<em>xml.etree.ElementTree.SubElement</em>) – table element where to add header element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">header element</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">xml.etree.ElementTree.SubElement</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.add_header_field">
+<code class="descname">add_header_field</code><span class="sig-paren">(</span><em>parent_elem</em>, <em>title</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.add_header_field"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.add_header_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a header field element to its parent. Which is either a header element or an other header field element. Returns a header field element in each and every case.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent_elem</strong> (<em>xml.etree.ElementTree.SubElement</em>) – parent element where to add header field element</li>
+<li><strong>title</strong> (<em>str</em>) – the title of the header field</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">header element</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">xml.etree.ElementTree.SubElement</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.add_sheet">
+<code class="descname">add_sheet</code><span class="sig-paren">(</span><em>sheet_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.add_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.add_sheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a sheet element if not existing.  Returns a sheet element in each and every case.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">sheet element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">xml.etree.ElementTree.SubElement</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.add_table">
+<code class="descname">add_table</code><span class="sig-paren">(</span><em>sheet_elem</em>, <em>table_id</em>, <em>table_start=’‘</em>, <em>table_end=’‘</em>, <em>header_rows=’‘</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.add_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.add_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a table element if not existing. Returns a table element in each and every case.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sheet_elem</strong> (<em>xml.etree.ElementTree.SubElement</em>) – sheet element where to add table element</li>
+<li><strong>table_id</strong> (<em>int</em>) – id of the table</li>
+<li><strong>table_start</strong> (<em>str</em>) – start cell of table in Excel notation</li>
+<li><strong>table_end</strong> (<em>str</em>) – end cell of table in Excel notation</li>
+<li><strong>header_rows</strong> (<em>int</em>) – row count of table header</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">table element</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">xml.etree.ElementTree.SubElement</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.get_excel_config">
+<code class="descname">get_excel_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.get_excel_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.get_excel_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Excel file tag`s configuration element.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Excel config element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">xml.etree.ElementTree.SubElement or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.get_excel_path">
+<code class="descname">get_excel_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.get_excel_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.get_excel_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the path to Excel file from XML configuration.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">excel file path</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.get_header">
+<code class="descname">get_header</code><span class="sig-paren">(</span><em>table_elem</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.get_header"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.get_header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a header element below a table element.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>table_elem</strong> (<em>xml.etree.ElementTree.SubElement</em>) – table element where to look for header element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">header element</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">xml.etree.ElementTree.SubElement or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.get_header_field">
+<code class="descname">get_header_field</code><span class="sig-paren">(</span><em>parent_elem</em>, <em>title</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.get_header_field"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.get_header_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a header field element below its parent element by its title.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parent_elem</strong> (<em>xml.etree.ElementTree.SubElement</em>) – parent element where to look for header field element</li>
+<li><strong>title</strong> (<em>str</em>) – the title of the header field</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">header element</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">xml.etree.ElementTree.SubElement or None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.get_header_fields">
+<code class="descname">get_header_fields</code><span class="sig-paren">(</span><em>parent_elem</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.get_header_fields"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.get_header_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all header field elements below a parent element.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>parent_elem</strong> (<em>xml.etree.ElementTree.SubElement</em>) – parent element where to look for header field elements</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list fo header elements</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list(xml.etree.ElementTree.SubElement)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.get_sheet_config">
+<code class="descname">get_sheet_config</code><span class="sig-paren">(</span><em>sheet_elem</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.get_sheet_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.get_sheet_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the config of a given sheet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sheet_elem</strong> (<em>xml.etree.ElementTree.SubElement</em>) – sheet element where to look for config element</td>
+</tr>
+</tbody>
+</table>
+<p>:return sheet config element
+:rtype: xml.etree.ElementTree-Subelement</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.get_sheet_names">
+<code class="descname">get_sheet_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.get_sheet_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.get_sheet_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns names of all sheet elements.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">sheet element names</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list(str)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.get_table">
+<code class="descname">get_table</code><span class="sig-paren">(</span><em>sheet_elem</em>, <em>table_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.get_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.get_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retuns a table element below a sheet element by its table id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sheet_elem</strong> (<em>xml.etree.ElementTree.SubElement</em>) – sheet element where to look for table element</li>
+<li><strong>table_id</strong> (<em>int</em>) – id of the table</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">table element</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">xml.etree.ElementTree.SubElement or None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.get_tables">
+<code class="descname">get_tables</code><span class="sig-paren">(</span><em>sheet_elem</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.get_tables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.get_tables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all table elements below a sheet_element.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sheet_elem</strong> (<em>xml.etree.ElementTree.SubElement</em>) – sheet element where to look for table element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of table elements</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list(xml.etree.ElementTree.SubElement)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.get_xml_sheet">
+<code class="descname">get_xml_sheet</code><span class="sig-paren">(</span><em>sheet_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.get_xml_sheet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.get_xml_sheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a sheet element by its name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sheet_name</strong> (<em>str</em>) – name of an Excel sheet</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">sheet element</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">xml.etree.ElementTree.SubElement or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.get_xml_sheets">
+<code class="descname">get_xml_sheets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.get_xml_sheets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.get_xml_sheets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all sheet elements.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of sheet elements</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list(xml.etree.ElementTree.SubElement)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.init_from_file">
+<code class="descname">init_from_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.init_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.init_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initiliazes the xml tree from file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.init_new">
+<code class="descname">init_new</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.init_new"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.init_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates new xml tree.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.read_xml">
+<code class="descname">read_xml</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.read_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.read_xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads xml tree from existing source file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> (<em>str</em>) – a (relative) path to a XML configuration file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><em>elem_tag</em>, <em>elem_parent</em>, <em>elem_attrs=None</em>, <em>elem_values=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Looks for an element by its values and removes it from its parent. Returns True if element was found and removed and False if element could not be found.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>elem_tag</strong> (<em>str</em>) – tag to be searched</li>
+<li><strong>elem_parent</strong> (<em>Element</em>) – parent element from which to start to search</li>
+<li><strong>elem_attrs</strong> (<em>list</em><em>(</em><em>str</em><em>) or </em><em>None</em>) – xml attribute keys</li>
+<li><strong>elem_values</strong> (<em>list</em><em> or </em><em>None</em>) – values for each attr key</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.strip">
+<code class="descname">strip</code><span class="sig-paren">(</span><em>elem</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.strip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.strip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes leading and trailing spaces from elements and their texts.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>elem</strong> (<em>Element</em>) – XML element which text is to be stripped</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="excelaccess.xmldescriptor.xml_creator.XMLParser.write_xml">
+<code class="descname">write_xml</code><span class="sig-paren">(</span><em>out_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/excelaccess/xmldescriptor/xml_creator.html#XMLParser.write_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#excelaccess.xmldescriptor.xml_creator.XMLParser.write_xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes xml tree to .xml-file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>out_path</strong> (<em>str</em>) – path (including filename) where output should be saved</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.xmldescriptor.xml_defs">
+<span id="excelaccess-xmldescriptor-xml-defs-module"></span><h2>excelaccess.xmldescriptor.xml_defs module<a class="headerlink" href="#module-excelaccess.xmldescriptor.xml_defs" title="Permalink to this headline">¶</a></h2>
+<p>&#64;author: uidq3472</p>
+<dl class="data">
+<dt id="excelaccess.xmldescriptor.xml_defs.header_field_config_tag">
+<code class="descclassname">excelaccess.xmldescriptor.xml_defs.</code><code class="descname">header_field_config_tag</code><em class="property"> = ‘header_field_config’</em><a class="headerlink" href="#excelaccess.xmldescriptor.xml_defs.header_field_config_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>xml tag attributes</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="excelaccess.xmldescriptor.xml_defs.header_field_title">
+<code class="descclassname">excelaccess.xmldescriptor.xml_defs.</code><code class="descname">header_field_title</code><em class="property"> = ‘header_title’</em><a class="headerlink" href="#excelaccess.xmldescriptor.xml_defs.header_field_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>xml tag attribute lists (ordering attrs)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-excelaccess.xmldescriptor">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-excelaccess.xmldescriptor" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">excelaccess.xmldescriptor package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-excelaccess.xmldescriptor.xml_creator">excelaccess.xmldescriptor.xml_creator module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.xmldescriptor.xml_defs">excelaccess.xmldescriptor.xml_defs module</a></li>
+<li><a class="reference internal" href="#module-excelaccess.xmldescriptor">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="excelaccess.html">excelaccess package</a><ul>
+      <li>Previous: <a href="excelaccess.utils.html" title="previous chapter">excelaccess.utils package</a></li>
+      <li>Next: <a href="modules.html" title="next chapter">excelaccess</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/excelaccess.xmldescriptor.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, uidq3472.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/excelaccess.xmldescriptor.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

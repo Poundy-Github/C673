@@ -1,0 +1,36 @@
+# Note:
+# 1. Replace xxx with component name in lowercase.
+# 2. Fill {variant}_ccflags with required compiler flags.
+#    The value in this template is only for example.
+# 3. Fill {variant}_cppdefines with required preprocessor defines.
+#    The value in this template is only for example.
+#    Each preprocessor define must be written as string and separated with ,
+# 4. When additional variant is created, add it in the variant_list. Otherwise, the
+#    variant will not be created.
+# ----------------------------------------------------------------------------------------
+
+#-----------------------
+# variant configuration
+#-----------------------
+
+# create release variant
+release_variant = "release"
+release_ccflags = "-mf=5 --symdebug:none --display_error_number --diag_suppress 1 --diag_suppress 230 --diag_suppress 232"
+#--debug_software_pipeline --optimizer_interlist --gen_opt_info=2 -k --src_interlist"
+#--advice:performance=all"
+release_cppdefines = ["_NDEBUG", "NDEBUG"]
+
+# create debug variant
+debug_variant = "debug"
+debug_ccflags = "-O0 --symdebug:dwarf --display_error_number --diag_suppress 1 --diag_suppress 230 --diag_suppress 232"
+debug_cppdefines = ["_DEBUG", "DEBUG"]
+
+# variable containing compiler flags, defines for all variants
+# when creating additional variant beside "release" and "debug", the variant must be added in this variable
+variant_list = [
+[release_variant, release_ccflags, release_cppdefines],
+[debug_variant,   debug_ccflags,   debug_cppdefines],
+]
+
+# library name. The full name will be "xxx_c66xx_{variant}.lib, for example: hla_c66xx_release.lib
+target_name = algo_name + "_c66xx"

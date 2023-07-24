@@ -1,0 +1,25 @@
+entry &FILENAME &ARG0 &ARG1 &ARG2 &ARG3 &ARG4
+global &gPROJECTNAME &gPLATFORM &gBASEPATH
+
+&PREFIX="&(gBASEPATH)\settings\&(gPROJECTNAME)\&(gCORENAME)"
+
+; Try project specific script
+&PATH="&(gBASEPATH)\projects\&(gPROJECTNAME)\&FILENAME"
+if FILE.EXIST(&PATH)
+(
+	do &PATH &ARG0 &ARG1 &ARG2 &ARG3 &ARG4
+	enddo
+)
+
+; Try platform specific scripts
+&PATH="&(gBASEPATH)\platforms\&(gPLATFORM)\&FILENAME"
+if FILE.EXIST(&PATH)
+(
+	do &PATH &ARG0 &ARG1 &ARG2 &ARG3 &ARG4
+	enddo
+)
+
+; Default to common script
+&PATH="&(gBASEPATH)\common\&FILENAME"
+do &PATH &ARG0 &ARG1 &ARG2 &ARG3 &ARG4
+enddo

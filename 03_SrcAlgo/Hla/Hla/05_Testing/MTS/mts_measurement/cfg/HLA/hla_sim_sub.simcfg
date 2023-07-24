@@ -1,0 +1,62 @@
+
+; ----- GATEWAYS -----
+[CFG]
+CfgSectionType  = GatewayComponent
+ExternalObject  = SIM Cfg
+
+[HLA_INPUT]
+CfgSectionType  = UdexComponent
+ExternalObject  = SIM UDEX
+SimUdexDefFile  = input.simudex
+DataSources = DEVICE = $DEVICE$; DEVICE_REC = $DEVICE_REC$
+
+[SIMImageRight]
+CfgSectionType = GatewayComponent
+ExternalObject = SIM Image Right
+
+
+; ----- COMPONENTS -----
+[SIM HLA]
+CfgSectionType   = SimpleComponent
+PluginFile       = $UserPathMeasObj$\$APPLICATION_PATH$\hla_sim\sim_swc_hla$REF$.dll
+ParamFile        = $SYNC_PORT$, $UserPathCfg$\hla\hla_sync_port.par
+SimRenderConFile = hla_sim_sub.simrender
+LoadWithErrors   = true
+
+; ----- CONNECTIONS -----
+[Connections]
+CfgSectionType=CompositeConnection
+SimConFile=hla_sim_sub.simcon
+ComponentInstances = SIM HLA
+
+
+; ----- EXPOSED PORTS -----
+[ExposedProvidePorts]
+CfgSectionType=ExposedProvidePort
+pAlgoCompState                 = SIM HLA.pAlgoCompState
+pHlaf_HeadlightControl         = SIM HLA.pHlaf_HeadlightControl
+
+[ExposedRequestPorts]
+CfgSectionType=ExposedRequestPort
+pBaseCtrlData                  = SIM HLA.pBaseCtrlData
+pCPar_HlafPar                  = SIM HLA.pCPar_HlafPar
+pCbOutputs                     = SIM HLA.pCbOutputs
+pGenObjectList                 = SIM HLA.pGenObjectList
+pHlaBusInputSignals            = SIM HLA.pHlaBusInputSignals
+pHlaRadarObjectList            = SIM HLA.pHlaRadarObjectList
+pMonoCalibration               = SIM HLA.pMonoCalibration
+pVehDyn                        = SIM HLA.pVehDyn
+pVehSig                        = SIM HLA.pVehSig
+pLsdEnvironmentData            = SIM HLA.pLsdEnvironmentData
+pLsdLightObjectList            = SIM HLA.pLsdLightObjectList
+pLsdLightList                  = SIM HLA.pLsdLightList
+
+
+[ExposedClientPorts]
+CfgSectionType = ExposedClientPort
+Done = SIM HLA.CalculationDone.0
+
+[ExposedServerPorts]
+CfgSectionType=ExposedServerPort
+Doit = SIM HLA.Doit
+

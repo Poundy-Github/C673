@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?module EcuM?>
+
+<xgen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://www.elektrobit.com/2013/xgen" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+
+  <!-- This is the configuration of module EcuM -->
+  <module name="EcuM" version="5.15.8 B466224">
+
+    <!-- This is the Precompile-time configuration of the module. -->
+    <configuration class="PreCompile">
+      <?artifact directory="include" file="EcuM_PbCfgTypes.h" type="types-h" generate="yes" ?>
+      <!-- !LINKSTO EcuM.Impl.PBVariant.Relocatable,1 -->
+      <parameter name="relocatable-enable">
+        <boolean-value>true</boolean-value>
+      </parameter>
+      <!-- This is the type definition of the root structure -->
+      <!-- !LINKSTO EcuM4038,1 -->
+      <type name="EcuM_ConfigType">
+        <struct>
+          <!-- !LINKSTO EcuM2801,1 -->
+          <member name="PlatformSignature" type="uint32" comment="Used to validate the platform"/>
+          <member name="LcfgSignature" type="uint32" comment="Used to validate the post build configuration against the link time configuration"/>
+          <member name="CfgSignature" type="uint32" comment="Used to validate the post build configuration against the precompile time configuration"/>
+          <member name="PublicInfoSignature" type="uint32" comment="Used to validate Public information"/>
+          <member name="DefaultAppMode" type="uint8" comment="The referenced OsDefaultAppMode"/>
+          <member name="PtrDriverInitListOne" type="uint8" comment="Reference to EcuM_ConfigLayoutType.DriverInitListOne">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member name="NumDriversInitListOne" type="uint8" comment="Number of configured drivers in Init Block 1 per variant"/>
+          <member name="DefaultShutdownTarget" type="uint8" comment="The selected EcuM shutdown target"/>
+          <member name="DefaultMode" type="uint8" comment="Mode of the default shutdown target (only required if DefaultShutdownState is equal to ECUM_STATE_SLEEP or ECUM_STATE_RESET)."/>
+        </struct>
+      </type>
+    </configuration>  <!-- PreCompile -->
+
+    <!-- This is the post-build configuration of the module. -->
+    <configuration class="PostBuild">
+      <?artifact directory="include" file="EcuM_PBcfg.h" type="postbuild-h" generate="yes" ?>
+      <?artifact directory="src" file="EcuM_PBcfg.c" type="postbuild-c" generate="yes" ?>
+      <!--
+          Type declarations:
+          Specifies the content of EcuM_PBcfg.h and EcuM_CfgTypes.h
+      -->
+      <!-- This is the type definition of the layout type of the
+           modules' postbuild configuration structure -->
+      <type name="EcuM_ConfigLayoutType">
+        <struct>
+          <!-- Member of the layout type starting with the RootCfg -->
+          <member name="RootCfg" type="EcuM_ConfigType"/>
+          <member name="DriverInitListOne" type="uint8" count="14" comment="Configured Drivers List in Init Block 1"/>
+        </struct>
+      </type>
+
+      <type name="EcuM_ConstConfigLayoutType">
+        <reference type="EcuM_ConfigLayoutType">
+          <compiler-abstraction>
+            <const memory-class="ECUM_APPL_CONST" />
+          </compiler-abstraction>
+        </reference>
+      </type>
+
+      <!--
+          Type definition and initialization:
+          Specifies the content of EcuM_Pbcfg.c
+      -->
+
+      <memory-section name="CONFIG_DATA_UNSPECIFIED">
+        <instance type="EcuM_ConstConfigLayoutType"
+               name="EcuM_Configuration">
+
+          <parameter name="postbuild-configuration-name">
+            <symbolic-value>EcuM_Config_0</symbolic-value>
+          </parameter>
+
+          <!-- EcuM_ConfigType -->
+          <field>
+            <field>
+              <int>2281703698</int>
+            </field>
+            <field>
+              <int>2949684411</int>
+            </field>
+            <field>
+              <int>2576289525</int>
+            </field>
+            <field>
+              <int>1985246510</int>
+            </field>
+            <field>
+                <int>0 </int>
+            </field> <!-- OsAppMode -->
+            <field>
+              <ref>
+                <struct-field name="DriverInitListOne"/>
+                <array-field index="0" />
+              </ref>
+            </field> <!-- PtrDriverInitListOne -->
+            <field>
+              <int>14</int> <!-- NumDriversInitListOne -->
+            </field> <!-- NumDriversInitListOne -->
+            <field>
+                <int>128</int> <!-- ECUM_STATE_OFF -->
+            </field> <!-- DefaultShutdownTarget -->
+            <field>
+                <int>0</int> <!-- DefaultMode default value -->
+            </field> <!-- DefaultMode -->
+          </field>  <!-- EcuM_ConfigType -->
+          <!-- DriverInitListOne -->
+          <field>
+            <field>
+              <int>0</int> <!-- Driver index -->
+            </field>
+            <field>
+              <int>1</int> <!-- Driver index -->
+            </field>
+            <field>
+              <int>2</int> <!-- Driver index -->
+            </field>
+            <field>
+              <int>3</int> <!-- Driver index -->
+            </field>
+            <field>
+              <int>4</int> <!-- Driver index -->
+            </field>
+            <field>
+              <int>5</int> <!-- Driver index -->
+            </field>
+            <field>
+              <int>6</int> <!-- Driver index -->
+            </field>
+            <field>
+              <int>7</int> <!-- Driver index -->
+            </field>
+            <field>
+              <int>8</int> <!-- Driver index -->
+            </field>
+            <field>
+              <int>9</int> <!-- Driver index -->
+            </field>
+            <field>
+              <int>10</int> <!-- Driver index -->
+            </field>
+            <field>
+              <int>11</int> <!-- Driver index -->
+            </field>
+            <field>
+              <int>12</int> <!-- Driver index -->
+            </field>
+            <field>
+              <int>13</int> <!-- Driver index -->
+            </field>
+          </field> <!-- DriverInitListOne -->
+        </instance> <!-- EcuM_ConfigLayoutType -->
+      </memory-section>
+    </configuration>
+  </module>
+
+  <!-- include the AUTOSAR standard data types, etc. -->
+  <!-- The xpointer atribute shouldrather be something like "xpointer(//module[name='...'])",
+       but unfortunately our XML parser does not support the XPointer xpointer() Scheme.
+       This is also the reason why all these xincludes must be at the end of the file rather
+       than at the beginning, because that way the other xgen files that include this one can
+       be sure that "element(/1/1)" is the EcuM module element.
+  -->
+  <xi:include href="Base.xgen" xpointer="element(/1/1)"/>
+
+</xgen>

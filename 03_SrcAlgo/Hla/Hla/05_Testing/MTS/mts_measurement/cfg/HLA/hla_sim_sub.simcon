@@ -1,0 +1,52 @@
+
+[Request2ProvideConnections]
+CfgSectionType=Request2ProvideConnection
+
+SIM HLA.SyncModeParameter = Parameter.SyncModeParameter
+
+; REQUEST PORTS 
+SIM HLA.pCPar_HlafPar_ParameterRequestPort                  = Parameter.HLA.pCPar_HlafPar
+SIM HLA.pCbOutputs_ParameterRequestPort                     = Parameter.HLA.pCbOutputs
+SIM HLA.pGenObjectList_ParameterRequestPort                 = Parameter.HLA.pGenObjectList
+SIM HLA.pHlaBusInputSignals_ParameterRequestPort            = Parameter.HLA.pHlaBusInputSignals
+SIM HLA.pHlaRadarObjectList_ParameterRequestPort            = Parameter.HLA.pHlaRadarObjectList
+SIM HLA.pMonoCalibration_ParameterRequestPort               = Parameter.HLA.pMonoCalibration
+SIM HLA.pVehDyn_ParameterRequestPort                        = Parameter.HLA.pVehDyn
+SIM HLA.pVehSig_ParameterRequestPort                        = Parameter.HLA.pVehSig
+SIM HLA.pLsdEnvironmentData_ParameterRequestPort            = Parameter.HLA.pLsdEnvironmentData
+SIM HLA.pLsdLightObjectList_ParameterRequestPort            = Parameter.HLA.pLsdLightObjectList
+SIM HLA.pLsdLightList_ParameterRequestPort                  = Parameter.HLA.pLsdLightList
+
+; PROVIDE PORTS (used for visualization only)
+SIM HLA.pAlgoCompState                                      = HLA_INPUT.pAlgoCompState
+SIM HLA.pHlaf_HeadlightControl                              = HLA_INPUT.pHlaf_HeadlightControl
+
+SIM HLA.pAlgoCompState_ParameterRequestPort                 = Parameter.HLA.pAlgoCompState
+SIM HLA.pHlaf_HeadlightControl_ParameterRequestPort         = Parameter.HLA.pHlaf_HeadlightControl
+
+; INTERNAL MEAS DATA PORTS
+SIM HLA.SyncRefHeader                       = HLA_INPUT.hla_SyncRef
+SIM HLA.SyncRefHeader_ParameterRequestPort  = Parameter.HLA.SyncRef
+SIM HLA.RecFileName                         = SIMImageRight.RecFileName
+SIM HLA.InputTimestamp                      = SIMImageRight.AbsoluteTimestamp
+SIM HLA.HLA_ErrorStack                      = HLA_INPUT.HLA_ErrorStack
+
+; PARAMETER PORTS
+
+[Client2ServerConnections]
+CfgSectionType=Client2ServerConnection
+
+; connection required for doing measfreezes
+SIM HLA.MeasFreeze           = SIM HLA.MeasFreeze
+
+; connection required for sending data from provide ports
+SIM HLA.DistributeOutputData = SIM HLA.DistributeOutputData
+
+; init/reset connections
+CFG.BatchPlayerInit.0        = SIM HLA.Init
+CFG.BatchPlayerReset.0       = SIM HLA.Reset
+CFG.RecFileLoaded.0          = SIM HLA.Reset
+CFG.RecFileLoaded.1          = SIM HLA.Init
+
+SIM HLA.MO.PostLoadAction    = SIM HLA.Reset
+

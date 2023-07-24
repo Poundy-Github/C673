@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<memento version="1.0" lastmodified="Feb 14, 2023 10:31:13 AM">
+    <CodeGen CHECK_GENERATE_ALL="true" COMBO_GENERATE_MODE="generate" CHECK_IGNORE_VERIFICAION="false">
+        <__metadata>
+            <WidgetGroupdId_1 __expanded="true"/>
+            <LABEL_GENERATE_MODE/>
+            <COMBO_GENERATE_MODE __radix="DEC" __separators="false"/>
+            <LABEL_IGNORE_VERIFICATION/>
+            <CHECK_IGNORE_VERIFICAION/>
+            <LABEL_GENERATE_ALL/>
+            <CHECK_GENERATE_ALL/>
+            <CODE_GEN_TABLE __width="100 100 200 300 100"
+                __sortcolumn="3" __visible="nyyyy" __sortorder="1"/>
+            <description __desc="Triggers selected generation mode for selected modules, can be code or arxmls or any other mode registered by the modules"/>
+        </__metadata>
+        <CODE_GEN_TABLE>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Adc"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Adc_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Atomics"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Atomics_TS_TxDxM1I0R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Base"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Base_TS_TxDxM5I1R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="BswM"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="BswM_TS_TxDxM1I15R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Can"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Can_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="CanIf"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="CanIf_TS_TxDxM6I10R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="CanSM"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="CanSM_TS_TxDxM3I7R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="CanTSyn"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="CanTSyn_TS_TxDxM3I0R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="CanTp"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="CanTp_TS_TxDxM6I8R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Com"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Com_TS_TxDxM6I3R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="ComM"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="ComM_TS_TxDxM5I19R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Compiler"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Compiler_TS_TxDxM1I0R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Crc"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Crc_TS_TxDxM6I11R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Dcm"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Dcm_TS_TxDxM5I0R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Dem"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Dem_TS_TxDxM6I4R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Det"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Det_TS_TxDxM6I5R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Dio"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Dio_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Dma"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Dma_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="EcuC"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="EcuC_TS_TxDxM5I0R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="EcuM"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="EcuM_TS_TxDxM5I15R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Fee"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Fee_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Fls"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Fls_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="I2c"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="I2c_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Icu"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Icu_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Make"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Make_TS_TxDxM4I0R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="McalExt"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="McalExt_TS_T16D27M1I0R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="McalLib"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="McalLib_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Mcu"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Mcu_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="MemIf"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="MemIf_TS_TxDxM5I11R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="MemMap"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="MemMap_TS_TxDxM1I3R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="NvM"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="NvM_TS_TxDxM6I17R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Os"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Os_TS_T16D27M6I1R0_AS403" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="PbcfgM"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="PbcfgM_TS_TxDxM1I2R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="PduR"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="PduR_TS_TxDxM5I3R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Platforms"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Platforms_TS_T16DxM4I0R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Port"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Port_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Pwm"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Pwm_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="ResourceM"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="ResourceM_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Rte"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Rte_TS_TxDxM6I6R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Spi"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Spi_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="StbM"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="StbM_TS_TxDxM4I0R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Xcp"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Xcp_TS_TxDxM2I12R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="CanNm"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="CanNm_TS_TxDxM6I19R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="CanTrcv3"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="CanTrcv_Tja1043_Aurix2GAS422" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="FiM"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="FiM_TS_TxDxM2I5R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Ioc"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Ioc_TS_T16D27M6I0R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+            <__ TABLE_COL_MODULE_CONFIG_NAME="Nm"
+                TABLE_COL_MODULE_CONFIG_ENABLED="true"
+                TABLE_COL_MODULE_ID="Nm_TS_TxDxM5I12R0" TABLE_COL_MODULE_CONFIG_GENERATE="true"/>
+        </CODE_GEN_TABLE>
+    </CodeGen>
+</memento>

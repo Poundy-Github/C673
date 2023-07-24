@@ -1,0 +1,9 @@
+entry &CORENAME
+global &gCORENAME &gBASEPATH &gPROJECTNAME &gPLATFORM
+
+&gCORENAME="&CORENAME"
+&gBASEPATH="../.."
+&gPROJECTNAME="mfl420"
+&gPLATFORM="tda1"
+
+do &(gBASEPATH)\common\init.cmm

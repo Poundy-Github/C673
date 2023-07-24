@@ -1,0 +1,634 @@
+
+Import('*')
+
+setCompiler('arm-m')
+base_project = 'not-set'
+
+with open('../components_build_info.txt', 'a') as f:
+    print >> f, '   '
+    print >> f, 'Building ARM-M_1'
+
+UseCompAlgo=False
+
+# Now disable features with False (False, 0) for the products
+# in which the features are not needed
+
+if product in ['ars441']:
+  base_project = 'ars441'
+
+elif product in ['mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19' ,'mfc431bd10','mfc431va10', 'mfc431va21']:
+    base_project = 'mfc431'
+    UseCompAlgo = False
+    if product != base_project:
+        addCompilerDefine('PRODUCT_MFC431')
+        appendConfiguroDefine('product=mfc431')
+        addLinkerDefine('PRODUCT_MFC431')
+
+elif product in ['hfl110','hfl110ta10']:
+  base_project = 'hfl110'
+  UseCompAlgo = False
+
+else:
+  base_project = product
+
+setBaseProject(base_project)
+
+
+
+class  Component:
+    global product
+    global base_project
+    DONOTUSEFOR = []
+    OVERRIDEFOR = []
+
+    INCLUDE    = []
+    SOURCE     = []
+    SOURCE_DIR = []
+    COMPDEF    = []
+    LIBS       = []
+    USEFROM    = None
+
+    def AddComp ( self ):
+        self.USEFROM  = None    if product in self.DONOTUSEFOR else base_project    # Component blacklist. Add product if component not wanted default is usage of BaseProject
+        self.USEFROM  = product if product in self.OVERRIDEFOR else self.USEFROM    # Component override for application project. Add product if you want your own (not baseProject) as application project
+
+        pstr  = "{0: <30}".format("Component " + self.__class__.__name__ )
+        pstr += "{0: ^20}".format([ 'from Base ' + base_project, 'from this '+ product, 'not used' ][ [ base_project, product, None ].index(self.USEFROM) ] )
+        print pstr
+
+        with open('../components_build_info.txt', 'a') as f:
+            print >> f, pstr
+        
+        incPath = ""
+        if self.USEFROM != None:
+            incPath = "\n".join(
+            [ Path.replace('$usedfrom', self.USEFROM )                      for Path       in self.INCLUDE]) + '\n'
+            [ addFiles(    Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE     ]
+            [ addDirs(     Path.replace('$usedfrom', self.USEFROM ), File ) for Path, File in self.SOURCE_DIR ]
+            [ addLibrary(  Path.replace('$usedfrom', self.USEFROM )       ) for Path       in self.LIBS       ]
+            [ addCompilerDefine(Define)                                     for Define     in self.COMPDEF    ]
+        return incPath
+
+
+
+################# Component Example ##############
+# As default component is taken from base_project location, only if entered in OVERRIDEFOR it is taken from product location
+#
+#class NAME(Component):
+#  DONOTUSEFOR = ['example'] <- Enter your project name if you don't want to build this component
+#  OVERRIDEFOR = ['example'] <- Enter your project name if you wan't this component from product location, and not from base_project location.
+#
+#  INCLUDE    = ['$usedfrom/include1,               <- Enter your include Path here. $usedfrom will be replaced.
+#                'include2]
+#  SOURCE     = [['$usedfrom/path1', ['*.c']],      <- Enter your source files here filename or pattern ( e.g *.c). $usedfrom will be replaced.
+#                ['path2', ['file1.cpp','file2.s']]]
+#  SOURCE_DIR = [['path1', ['*.c']]]                <- Enter your source dir here. It will recursively search for filename or pattern ( e.g *.c)
+#  COMPDEF    = ['define1','define2']               <- Enter your Component Defines here
+#  LIBS       = ['path1']                           <- Enter your Librarry Path here ( only path supported )
+
+
+
+
+################# Component Common ##############
+class DPUCOMMON(Component):
+
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+
+  INCLUDE = [
+              '04_Engineering/00_Projects/$usedfrom',
+              '04_Engineering/00_Projects/'+base_project,  # For relative include paths first the product is searched and then the base
+              '04_Engineering/00_Projects/$usedfrom/common/DGM',
+              '04_Engineering/00_Projects/$usedfrom/common/GLOB',
+              '04_Engineering/01_Source_Code/common/GLOB',
+              '04_Engineering/01_Source_Code/common/GLOB/GLOB_DPU',
+              '04_Engineering/01_Source_Code/common/MTSI',
+              '04_Engineering/01_Source_Code/common/RTA',
+             ]
+
+################# Component SYS ##############
+class SYS(Component):
+  INCLUDE=['']
+  SOURCE = [['04_Engineering/01_Source_Code/sys/sys_mem/sys_mem_no_spe', ['Sys_Mem_NoSPE.c']]]
+
+
+################# Component DPURTE ##############
+class DPURTE(Component):
+
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20','mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+
+  COMPDEF=['NDEBUG']
+  
+  if device == 'low':
+    INCLUDE = [
+                '04_Engineering/00_Projects/$usedfrom/common/RTE_VL/include',
+                '04_Engineering/00_Projects/$usedfrom/common/RTE_VL/algo',
+               ]
+  else:
+    INCLUDE = [
+                '04_Engineering/00_Projects/$usedfrom/common/RTE_VH/include',
+                '04_Engineering/00_Projects/$usedfrom/common/RTE_VH/algo',
+               ]
+
+
+
+################# Component DPUFF ##############
+class DPUFF(Component):
+  OVERRIDEFOR = ['hfl110ta10', 'mfc431lo19', 'mfc431lo20', 'mfc431ta19','mfc431sc19']
+  INCLUDE = [
+              '04_Engineering/00_Projects/$usedfrom/DPUFF/config',
+              '04_Engineering/01_Source_Code/DPUFF/et'
+             ]
+
+  SOURCE = [
+            ['04_Engineering/00_Projects/$usedfrom/DPUFF/ga',        ['mdb_database.cpp', 'gen_adapter_conf.cpp']],
+            ['04_Engineering/00_Projects/$usedfrom/DPUFF/eveclient', ['eve_algo_cfg.c']],
+            ['04_Engineering/01_Source_Code/DPUFF/ga',               ['generic_adapter.cpp']],
+            ['04_Engineering/01_Source_Code/DPUFF/et',               ['*.cpp']],
+            ['04_Engineering/01_Source_Code/DPUFF/mdb',              ['mdb.cpp']],
+            ['04_Engineering/01_Source_Code/DPUFF/eveclient',        ['eve_client.cpp']]
+           ]
+
+  if product not in ['ars441']:
+    SOURCE += [['04_Engineering/01_Source_Code/DPUFF/services',      ['image_fingerprint_service.cpp']]]
+
+
+
+################# Component Algo ##############
+class DPUALGO(Component):
+  DONOTUSEFOR  = []
+  DONOTUSEFOR += ['hfl110', 'hfl110ta10', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19' ,'mfc431bd10','mfc431va10', 'mfc431va21']
+
+  OVERRIDEFOR = []
+
+  INCLUDE = []
+
+  SOURCE = []
+  SOURCE_DIR = []
+  if family == 'radar':
+    INCLUDE += [
+                '04_Engineering/00_Projects/$usedfrom/algo/sources',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/em/emlib',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/ga',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/00_Custom/gs',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/algo_common',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/cml',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/general',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/bit_array',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/histogram',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib/jpda',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/ga',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gfrs/swu_freespace_description/include',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gp',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gp/common/include',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gp/swu_grid_fusion/include',
+                '04_Engineering/00_Projects/$usedfrom/algo/sources/gp/swu_grid_post_processing/include',
+                ]
+
+  if product not in ['hfl110', 'hfl110ta10', 'ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19' ,'mfc431bd10','mfc431va10', 'mfc431va21']:
+    SOURCE += [['04_Engineering/00_Projects/$usedfrom/algo/sources/gs',                           ['*.cpp']]]
+
+  if family == 'radar':
+    SOURCE_DIR += [
+               ['04_Engineering/00_Projects/$usedfrom/algo/sources/cml',                           ['*.c']],
+               ['04_Engineering/00_Projects/$usedfrom/algo/sources/em/emlib',                      ['*.c']],
+               ['04_Engineering/00_Projects/$usedfrom/algo/sources/ga',                            ['ga_meas.c']],
+              ]
+
+
+
+################# Component DPUCOM ############
+class DPUCOM(Component):
+  CFG_ICC_OT   = False
+  CFG_ETH      = False
+
+  INCLUDE = ['04_Engineering/01_Source_Code/DPUCOM/xcp']
+
+  if device == 'low':
+    INCLUDE += ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vl']
+  else:
+    INCLUDE += ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vh']
+
+
+  SOURCE = [['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc',                    ['icc_mailbox.cpp', 'icc_messages.cpp']],
+            ['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/xcp',                    ['xcp_service.cpp']],
+            ['04_Engineering/01_Source_Code/DPUCOM/xcp',                              ['xcp_validation_testing.cpp']]
+           ]
+  if CFG_ICC_OT:
+    SOURCE += [['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/ot',                  ['*.cpp']]]
+  if device == 'low':
+    SOURCE += [['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vl',              ['*.cpp']]]
+  else:
+    SOURCE += [['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/icc_vh',              ['*.cpp']]]
+
+  if CFG_ETH:  
+    SOURCE += [['04_Engineering/01_Source_Code/DPUCOM_TI_TDA123/eth',                 ['eth_init.c', 'eth_nethooks.c', 'eth_test.c', 'eth_pca_task.cpp', 'eth_pca_service.cpp']]]
+
+
+
+################# Component DPUHWIF ############
+class DPUHWIF(Component):
+  INCLUDE = ['04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/titda',
+             '04_Engineering/01_Source_Code/DPUHWIF'
+            ]
+
+  if device == 'low':
+    INCLUDE += ['04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/gpio_vl'
+               ]
+
+  if device == 'high':
+    INCLUDE += ['04_Engineering/01_Source_Code/DPUHWIF_TI_TDA123/gpio_vh'
+               ]
+
+
+
+################# Component DPUSERVICE ############
+class DPUSERVICE(Component):
+  CFG_LOAD_GEN = False
+
+  INCLUDE = ['04_Engineering/00_Projects/$usedfrom/DPUSERVICE',
+             '04_Engineering/01_Source_Code/DPUSERVICE']
+
+  SOURCE = [['04_Engineering/00_Projects/$usedfrom/DPUSERVICE/mems',      ['mem_service_cfg.cpp','memory_cfg.cpp']],
+            ['04_Engineering/01_Source_Code/DPUSERVICE/crc',              ['crc_misc.cpp', 'crc_castagnoli.cpp', 'crc_lut.cpp', 'sys_crc_a4.c']],
+            ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/mems',   ['shared_memory_manager.cpp']],
+            ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/tim',    ['system_clock.cpp', 'timer_driver.cpp' ]],
+            ['04_Engineering/01_Source_Code/DPUSERVICE/tim',              ['multi_timer.cpp']],
+            
+           ]
+  if CFG_LOAD_GEN:
+    SOURCE += ['04_Engineering/01_Source_Code/DPUSERVICE_TI_TDA123/clg/arm_m',      ['*.c']]
+
+
+
+################# Component DPUINFRA ############
+class DPUINFRA(Component):
+   INCLUDE = ['04_Engineering/00_Projects/$usedfrom/DPUINFRA']
+
+   SOURCE = [['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/oscfg',            ['sysbios_wrapper_mapping.c']],
+             ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/infra',            [ 'state_manager.cpp', 'synchronised_startup.cpp','core_init_arm-m_1.cpp' ]],
+             ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/infra',            [ 'SOC_Common_CPP_Infrastructure_Pkg.cpp', 'SOC_M3_Algo_CPP_Infrastructure_Pkg.cpp', 'system_adapter.cpp' ]],
+             ['04_Engineering/01_Source_Code/DPUINFRA_TI_TDA123/osw',              [ 'sysbios_wrapper.cpp' ]]
+            ]
+
+
+
+################# Component DPUST ###############
+class DPUST(Component):
+    INCLUDE = []
+
+    SOURCE = [['04_Engineering/00_Projects/$usedfrom/DPUST/monitors',           ['monitoring_cfg.cpp']],
+              ['04_Engineering/00_Projects/$usedfrom/DPUST/fatalerrorhandling', ['cat2_error_reaction_cfg.cpp']],
+              ['04_Engineering/01_Source_Code/DPUST/alutest',                   ['c_alu_test_m3.s']],
+              ['04_Engineering/01_Source_Code/DPUST/safetymanager',             [ 'safety_manager_base.cpp', 'safety_manager_dummy.cpp', 'service_function_wrappers.cpp' ]],
+              ['04_Engineering/01_Source_Code/DPUST/fatalerrorhandling',        [ 'cat2_error_reaction.cpp' ]],
+              ['04_Engineering/01_Source_Code/DPUST/monitors',                  [ 'monitor_adapter.cpp', 'monitor_adapter_arm-m_1.cpp', 'task_monitor.cpp' ]],
+             ]
+
+
+
+################# Component Misc ##############
+class DPUMISC(Component):
+  INCLUDE = [
+             '04_Engineering/00_Projects/$usedfrom/MTSI_VH',
+             '04_Engineering/01_Source_Code/common/MTSI',
+             '04_Engineering/04_Build/tools/edma3_lld/packages',
+             '04_Engineering/04_Build/tools/edma3_lld/packages/ti/sdo/edma3/drv',
+             '04_Engineering/01_Source_Code',
+             '04_Engineering/01_Source_Code/DPUIPC',
+            ]
+
+  if device == 'low':
+    INCLUDE += [
+           '04_Engineering/00_Projects/$usedfrom/SAP_VL',
+           '04_Engineering/01_Source_Code/SAP_VL',
+           ]
+
+  else:
+    INCLUDE += [
+           '04_Engineering/01_Source_Code/SAP_VH',
+           ]
+
+  SOURCE = [
+            ['04_Engineering/01_Source_Code/DGM/Dgm_SlaveHandler',     [ 'dem_handler_base.cpp', 'dem_handler_slave.cpp' ]],
+            ['04_Engineering/01_Source_Code/MTSI_VH',                  [ 'adapter_meas.cpp', 'meas_service.cpp' ]],
+            ]
+
+
+
+################# Component RTARTL ##############
+class RTARTL(Component):
+  INCLUDE = [
+             '04_Engineering/00_Projects/$usedfrom/RTA',
+             '04_Engineering/00_Projects/$usedfrom/RTL',
+             '04_Engineering/00_Projects/$usedfrom/MTSI_VH',
+             '04_Engineering/01_Source_Code/MTSI_VH',
+             '04_Engineering/01_Source_Code/RTA',
+             '04_Engineering/01_Source_Code/RTA_VH',
+             '04_Engineering/01_Source_Code/RTL',
+             '04_Engineering/01_Source_Code/RTL_VH',
+             ]
+  # VH/VL independent:
+  SOURCE = [
+            ['04_Engineering/00_Projects/$usedfrom/RTL',           ['*.c']],
+            ['04_Engineering/01_Source_Code/RTA',                 ['*.c']],
+            ['04_Engineering/01_Source_Code/RTA_VH',              [ '*.cpp' ]],
+            ['04_Engineering/01_Source_Code/RTL',                 ['*.c']],
+            ['04_Engineering/01_Source_Code/RTL_VH',              ['error_tracker.cpp']],
+            ]
+
+
+
+################# Component STARTERWARE ##############
+class STARTERWARE(Component):
+  INCLUDE = [
+             '04_Engineering/04_Build/tools/starterware/include',
+             '04_Engineering/04_Build/tools/starterware/include/hw',
+             '04_Engineering/04_Build/tools/starterware/include/armv7m/$chipset',
+            ]
+  SOURCE = [
+            ]
+
+  if device == 'low':
+    INCLUDE += ['04_Engineering/04_Build/tools/starterware/include/tda3xx']
+  else:
+    INCLUDE += ['04_Engineering/04_Build/tools/starterware/include/tda2xx']
+
+  LIBS = []
+  if device == 'low':
+    LIBS += ['04_Engineering/04_Build/tools/starterware/binary/utils/common/lib/tda3xx/m4/release/starterware_common.$lib_ext',
+             '04_Engineering/04_Build/tools/starterware/binary/drivers/lib/tda3xx/m4/release/starterware_hal.$lib_ext']
+  else:
+    LIBS += ['04_Engineering/04_Build/tools/starterware/binary/utils/common/lib/tda2xx/m4/release/starterware_common.$lib_ext',
+             '04_Engineering/04_Build/tools/starterware/binary/drivers/lib/tda2xx/m4/release/starterware_hal.$lib_ext']
+
+
+
+################# Component CCT ##############
+class DPUCCT(Component):
+  DONOTUSEFOR  = ['ars441']
+
+  INCLUDE = [
+            '04_Engineering/01_Source_Code/cct',
+            ]
+
+  SOURCE = [['04_Engineering/01_Source_Code/cct', ['*.cpp']]]
+
+
+
+################# Component GS ##############
+class GS(Component):
+  DONOTUSEFOR  = ['ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19', 'mfc431sw19','mfc431bd10']
+
+  INCLUDE = [
+             '04_Engineering/00_Projects/$usedfrom/gs',
+             '04_Engineering/01_Source_Code/gs',
+            ]
+
+
+
+################# Component VDY ##############
+class DPUVDY(Component):
+  DONOTUSEFOR = ['ars441']
+  OVERRIDEFOR = ['mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19', 'mfc431sw19','mfc431va10', 'mfc431va21','mfc431bd10']
+
+  INCLUDE = [
+             '04_Engineering/00_Projects/$usedfrom/ga',
+             '04_Engineering/00_Projects/$usedfrom/vdy',
+             '04_Engineering/00_Projects/$usedfrom/vdy/custom/vdy',
+             '04_Engineering/00_Projects/$usedfrom/vdy/vdy',
+             '04_Engineering/01_Source_Code/vdy/rtw',
+             '04_Engineering/01_Source_Code/vdy/vdy',
+             ]
+
+  SOURCE = [
+           ['04_Engineering/00_Projects/$usedfrom/vdy/custom/vdy',                  ['*.c']],
+           ['04_Engineering/00_Projects/$usedfrom/vdy/vdy',                         ['*.c']],
+           ['04_Engineering/01_Source_Code/vdy/rtw',                                ['*.c']],
+           ['04_Engineering/01_Source_Code/vdy/vdy',                                ['*.c']],
+           ]
+
+
+
+################# Component CML ##############
+class DPUCML(Component):
+  DONOTUSEFOR  = ['ars441']
+
+  INCLUDE=['04_Engineering/01_Source_Code/cml',
+           '04_Engineering/01_Source_Code/cml/bayes',
+           '04_Engineering/01_Source_Code/cml/exp',
+           '04_Engineering/01_Source_Code/cml/complex',
+           '04_Engineering/01_Source_Code/cml/fourier',
+           '04_Engineering/01_Source_Code/cml/interpol',
+           '04_Engineering/01_Source_Code/cml/kalman',
+           '04_Engineering/01_Source_Code/cml/matrix',
+           '04_Engineering/01_Source_Code/cml/misc',
+           '04_Engineering/01_Source_Code/cml/radar',
+           '04_Engineering/01_Source_Code/cml/stat',
+           '04_Engineering/01_Source_Code/cml/stl',
+           '04_Engineering/01_Source_Code/cml/stl/algorithm',
+           '04_Engineering/01_Source_Code/cml/stl/container',
+           '04_Engineering/01_Source_Code/cml/stl/math',
+           '04_Engineering/01_Source_Code/cml/',
+           '04_Engineering/01_Source_Code/cml/trigo',
+           '04_Engineering/01_Source_Code/cml/vector']
+  SOURCE=[['04_Engineering/01_Source_Code/cml/bayes',   ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/complex', ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/exp',     ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/fourier', ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/interpol',['*.c']],
+          ['04_Engineering/01_Source_Code/cml/kalman',  ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/matrix',  ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/misc',    ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/radar',   ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/stat',    ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/trigo',   ['*.c']],
+          ['04_Engineering/01_Source_Code/cml/vector',  ['*.c']]]
+
+
+################# Component FCT ##############
+class DPUFCT(Component):
+  DONOTUSEFOR  = ['hfl110', 'hfl110ta10', 'ars441']
+
+  INCLUDE=[]
+  SOURCE=[]
+
+  ### SubComponent CAL
+  INCLUDE += ['04_Engineering/01_Source_Code/CAL']
+
+  SOURCE += [['04_Engineering/01_Source_Code/CAL',         ['cal_dist2curve.c', 'cal_dyn.c', 'cal_fuzzy.c', 'cal_kin.c', 'cal_lineseg.c', 'cal_linetraceseg.c', 'cal_param.c', 'cal_prob.c', 'cal_std.c', 'cal_switch.c']]]
+
+
+  ### SubComponent MEDIC
+  INCLUDE += ['04_Engineering/00_Projects/$usedfrom/medic',
+              '04_Engineering/00_Projects/$usedfrom/medic/dim',
+              '04_Engineering/00_Projects/$usedfrom/medic/dim/dim_eba',
+              '04_Engineering/00_Projects/$usedfrom/medic/dim20',
+              '04_Engineering/00_Projects/$usedfrom/medic/frame_medic',
+              '04_Engineering/00_Projects/$usedfrom/medic/head',
+              '04_Engineering/00_Projects/$usedfrom/medic/head20',
+              '04_Engineering/01_Source_Code/medic',
+              '04_Engineering/01_Source_Code/medic/dim',
+              '04_Engineering/01_Source_Code/medic/dim20',
+              '04_Engineering/01_Source_Code/medic/frame_medic',
+              '04_Engineering/01_Source_Code/medic/head',
+              '04_Engineering/01_Source_Code/medic/head20']
+
+  SOURCE += [['04_Engineering/00_Projects/$usedfrom/MEDIC/dim',         ['dim_wrapper.c', 'dim_sigpreproc.c']],
+             ['04_Engineering/00_Projects/$usedfrom/MEDIC/dim/dim_eba', ['dim_mod_activity_par_eba.c', 'dim_mod_attention_par_eba.c', 'dim_mod_feedback_par_eba.c']],
+             ['04_Engineering/00_Projects/$usedfrom/MEDIC/dim20',       ['dim20_wrapper.c', 'dim20_sigpreproc.c', 'dim20_mod_feedback_par_eba.c', 'dim20_mod_attention_par_eba.c', 'dim20_mod_activity_par_eba.c']],
+             ['04_Engineering/00_Projects/$usedfrom/MEDIC/frame_medic', ['medic_customfunctions.c']],
+             ['04_Engineering/00_Projects/$usedfrom/MEDIC/head',        ['head_autocode_cfg.c', 'head_codingSwitches.c', 'head_customSystemfunction.c', 'head_custOutput.c', 'head_inputData.c', 'head_mts_custom.c', 'head_out_brakefunction.c', 'head_out_hbafunction.c', 'head_out_togglefunction.c', 'head_out_warnfunction.c', 'head_par.c', 'head_wrapper.c']],
+             ['04_Engineering/00_Projects/$usedfrom/MEDIC/head20',      ['head20_autocode_cfg.c', 'head20_codingSwitches.c', 'head20_custOutput.c', 'head20_inputData.c', 'head20_mts_custom.c', 'head20_out_brakefunction.c', 'head20_out_hbafunction.c', 'head20_out_togglefunction.c', 'head20_out_warnfunction.c', 'head20_par.c', 'head20_wrapper.c']],
+             ['04_Engineering/01_Source_Code/MEDIC/dim',                ['dim_main.c', 'dim_mod_activity.c', 'dim_mod_attention.c', 'dim_mod_feedback.c']],
+             ['04_Engineering/01_Source_Code/MEDIC/dim20',              ['dim20_main.c', 'dim20_input_mgr.c', 'dim20_hypothesis_mgr.c', 'dim20_output_mgr.c']],
+             ['04_Engineering/01_Source_Code/MEDIC/frame_medic',        ['medic_algo_control.c', 'medic_io.c', 'medic_main.c', 'medic_meas.c']],
+             ['04_Engineering/01_Source_Code/MEDIC/head',               ['head_generic_sm.c', 'head_main.c', 'head_mts.c', 'head_par_fct.c', 'head_spm.c']],
+             ['04_Engineering/01_Source_Code/MEDIC/head20',             ['head20_generic_sm.c', 'head20_main.c', 'head20_mts.c', 'head20_par_fct.c', 'head20_spm.c']],
+             ]
+
+
+  ### Component FCT
+  INCLUDE += ['04_Engineering/00_Projects/$usedfrom/fct',
+              '04_Engineering/00_Projects/$usedfrom/fct/frame',
+              '04_Engineering/00_Projects/$usedfrom/fct/frame_veh',
+              '04_Engineering/01_Source_Code/fct',
+              '04_Engineering/01_Source_Code/fct/frame',
+              '04_Engineering/01_Source_Code/fct/frame_veh']
+
+  SOURCE += [['04_Engineering/00_Projects/$usedfrom/FCT/frame_veh', ['*.c']],
+             ['04_Engineering/01_Source_Code/FCT/frame_veh',        ['*.c']]]
+
+################# Component FAMO #################
+class FAMO(Component):
+  DONOTUSEFOR  = ['ars441', 'mfc431', 'mfc431ta19', 'mfc431lo19', 'mfc431lo20', 'mfc431sc19','mfc431sw19','mfc431va10', 'mfc431va21', 'mfc431bd10','hfl110', 'hfl110ta10']
+  OVERRIDEFOR = []
+  
+  INCLUDE=['04_Engineering/00_Projects/$usedfrom/FAMO',
+           '04_Engineering/01_Source_Code/famo',
+           '04_Engineering/01_Source_Code/famo/frame',
+           '04_Engineering/01_Source_Code/famo/gen',
+           '04_Engineering/01_Source_Code/famo/gen/acal',
+           '04_Engineering/01_Source_Code/famo/gen/base',
+           '04_Engineering/01_Source_Code/famo/gen/cb',
+           '04_Engineering/01_Source_Code/famo/gen/cb',
+           '04_Engineering/01_Source_Code/famo/gen/cipp',
+           '04_Engineering/01_Source_Code/famo/gen/ecm',
+           '04_Engineering/01_Source_Code/famo/gen/em',
+           '04_Engineering/01_Source_Code/famo/gen/emo',
+           '04_Engineering/01_Source_Code/famo/gen/famo',
+           '04_Engineering/01_Source_Code/famo/gen/fct',
+           '04_Engineering/01_Source_Code/famo/gen/fex',
+           '04_Engineering/01_Source_Code/famo/gen/fsd',
+           '04_Engineering/01_Source_Code/famo/gen/gen',
+           '04_Engineering/01_Source_Code/famo/gen/hla',
+           '04_Engineering/01_Source_Code/famo/gen/lcf',
+           '04_Engineering/01_Source_Code/famo/gen/ld',
+           '04_Engineering/01_Source_Code/famo/gen/lsd',
+           '04_Engineering/01_Source_Code/famo/gen/map',
+           '04_Engineering/01_Source_Code/famo/gen/pc',
+           '04_Engineering/01_Source_Code/famo/gen/pfc',
+           '04_Engineering/01_Source_Code/famo/gen/pv',
+           '04_Engineering/01_Source_Code/famo/gen/rum',
+           '04_Engineering/01_Source_Code/famo/gen/sac',
+           '04_Engineering/01_Source_Code/famo/gen/sib',
+           '04_Engineering/01_Source_Code/famo/gen/sr',
+           '04_Engineering/01_Source_Code/famo/gen/tlr',
+           '04_Engineering/01_Source_Code/famo/gen/tsa',
+           '04_Engineering/01_Source_Code/famo/gen/udw',
+           '04_Engineering/01_Source_Code/famo/gen/vdy',
+           '04_Engineering/01_Source_Code/famo/gen/vodca',
+           '04_Engineering/01_Source_Code/famo/plausiChecks',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/acal',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/cb',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/cipp',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/combi',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/ecm',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/em',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/emo',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/famo',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/fct',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/fex',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/fsd',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/gen',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/hla',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/lcf',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/ld',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/lsd',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/map',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/pc',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/pfc',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/pv',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/rum',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/sac',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/sib',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/sr',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/tlr',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/tsa',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/udw',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/vdy',
+           '04_Engineering/01_Source_Code/famo/plausiChecks/vodca'
+           ]
+		   
+  if product in ['hfl110', 'hfl110ta10']:
+      INCLUDE += ['04_Engineering/01_Source_Code/famo/gen/gsm',
+                '04_Engineering/01_Source_Code/famo/gen/liqor',
+                '04_Engineering/01_Source_Code/famo/gen/pca',
+                '04_Engineering/01_Source_Code/famo/gen/pdm',
+                '04_Engineering/01_Source_Code/famo/gen/poc',
+                '04_Engineering/01_Source_Code/famo/gen/gen',
+                '04_Engineering/01_Source_Code/famo/gen/tp'] 
+
+				
+  SOURCE=[['04_Engineering/01_Source_Code/famo/frame', ['*.c']]]
+
+################# Component FORCE_APPL_PRJ_INC #################
+class FORCE_APPL_PRJ_INC(Component):
+  INCLUDE = ['04_Engineering/00_Projects/' + product]
+
+Components = [
+  FORCE_APPL_PRJ_INC(),
+  DPUCOMMON(),
+  DPURTE(),
+  DPUVDY(),
+  DPUCML(),
+  DPUFCT(),
+  GS(),
+  DPUCCT(),
+  DPUFF(),
+  DPUCOM(),
+  DPUHWIF(),
+  DPUSERVICE(),
+  DPUINFRA(),
+  DPUST(),
+  DPUALGO(),
+  DPUMISC(),
+  FAMO(),
+  STARTERWARE(),
+  RTARTL(),
+  SYS()
+  ]
+
+
+includePath=""
+
+for i in Components:
+  includePath += i.AddComp()
+
+
+setIncludePath(includePath)
+addCompilerDefine('CORE_M3_1')
+
+if unit_test_only == False:
+  compile('arm-m_1')
+
+includePathPDO = ""
+launchDir = GetLaunchDir().replace('\\', '/')
+includePathPDO += "\""+launchDir+"/04_Engineering/04_Build/tools/bios/packages/gnu/targets/arm/libs/install-native/arm-none-eabi/include\",\n"
+includePathPDO += "\"C:/tools/gcc_arm/4.7_2012q4/lib/gcc/arm-none-eabi/4.7.3/include\",\n"
+includePathPDO += "\""+launchDir+"/04_Engineering/04_Build/out/"+product+"\",\n"
+includePathPDO += "\",\n".join([ "\""+launchDir+"/"+Path  for Path       in includePath.split()])+"\";"
+outpath = launchDir+'/04_Engineering/04_Build/out/' +  product + '/release_arm-m_1'
+with open(outpath+'/arm-m_1_include_list.cfg', 'w+') as f:
+  f.write("sys_include_dirs = %s" % includePathPDO)

@@ -1,0 +1,100 @@
+# Note:
+# 1. Rename this file and replace xxx with component name in lowercase.
+# 2. Replace xxx with component name in lowercase.
+# 3. Update each variable according to the existing source files and include paths.
+# 4. Update project specific files with respect to project_path
+# ----------------------------------------------------------------------------------------
+
+# config file containing source files in PC sim wrapper
+
+Import("project_name")
+
+hla_sim_swc_source_files_project_specific = ''
+hla_sim_swc_include_paths_project_specific = ''
+hla_sim_swc_source_files = """
+    DB_wrapper.cpp
+    HLA_DB.cpp
+    sim_headlightassist.cpp
+    sim_hla_labelDB.cpp
+    sim_hla_measdata.cpp
+    sim_hla_pdo_tags_file.c
+    sim_hla_recfileindex.cpp
+    sim_hla_ethernet.cpp
+    sim_hla_can.cpp
+    sim_swc_dbg.cpp
+    sim_swc_hla.cpp
+    sim_swc_hla_dll.cpp
+    stdafx.cpp
+    utils/log.cpp
+    utils/param.cpp
+    
+    sim_hla_visu/SimVisuMenu/sim_visu_menu.cpp
+    sim_hla_visu/SimVisuMenu/sim_visu_color.cpp
+    sim_hla_visu/SimVisuMenu/sim_visu_menusub.cpp
+    sim_hla_visu/SimVisuMenu/sim_visu_button.cpp
+
+    sim_hla_visu/sim_hla_visu.cpp
+    sim_hla_visu/sim_hla_visu_basic.cpp
+    sim_hla_visu/sim_hla_visu_utils.cpp
+    sim_hla_visu/sim_hla_visu_head.cpp
+    sim_hla_visu/sim_hla_visu_table.cpp
+    sim_hla_visu/sim_hla_visu_error.cpp
+    sim_hla_visu/sim_hla_visu_hlaf.cpp
+    sim_hla_visu/sim_hla_visu_turnoff.cpp
+    sim_hla_visu/sim_hla_visu_interface.cpp
+    sim_hla_visu/sim_hla_visu_labels.cpp
+    
+    ../hla_evm_hil/vh28/evm_hil_projects/C66xx/C66xx_EvmHilWrapper_hla.cpp
+    ../hla_evm_hil/vh28/evm_hil_projects/CortexM4/CortexM4_EvmHilWrapper.cpp
+    
+    ../Courage/eh/test_hla_errorhandling.c
+    ../Courage/ut/test_hla_utils.c
+    ../Courage/function/dec/test_hlaf_decision.c
+    ../Courage/function/decb/test_hlaf_decision_blockage.c
+    ../Courage/function/decen/test_hlaf_decision_environment.c
+    ../Courage/function/decko/test_hlaf_decision_keepoff.c
+    ../Courage/function/hlaf/test_hlaf.c
+    ../Courage/function/mat/test_hlaf_matrix.c
+    ../Courage/function/matgfa/test_hlaf_matrixgfa.c
+    ../Courage/frame/inc/test_hla_input_checks.c
+    ../Courage/frame/main/test_hla_main.c
+    ../Courage/frame/outc/test_hla_output_checks.c
+    ../Courage/frame/outp/test_hla_outputs.c
+"""
+
+# source files for the project "project_name"
+if project_name == 'MFC431':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+    hla_sim_swc_source_files_project_specific = """
+        
+    """
+    
+project_path                                   = "../../00_Projects/" + project_name + "/"
+hla_sim_swc_source_files_project_specific_list = hla_sim_swc_source_files_project_specific.split()
+hla_sim_swc_source_files_project_specific_list = [project_path + rel_path for rel_path in hla_sim_swc_source_files_project_specific_list]
+hla_sim_swc_source_files_list                  = hla_sim_swc_source_files.split()
+hla_sim_swc_source_files                       = '\n'.join(hla_sim_swc_source_files_list + hla_sim_swc_source_files_project_specific_list)
+hla_sim_swc_include_paths = """
+    #../HLA_sim/sim_swc_hla
+    #../HLA_sim/sim_swc_hla/utils
+    #../hla_sim/sim_swc_hla/sim_hla_visu
+    #../hla_sim/sim_swc_hla/sim_hla_visu/SimVisuMenu
+"""
+
+# include paths for the project "project_name"
+if project_name == 'MFC431':
+    #relative path of the project specific files with respect to "04_Engineering/00_Projects/project_name"
+    hla_sim_swc_include_paths_project_specific = """
+        
+    """
+
+project_path                                    = "../../00_Projects/" + project_name + "/"
+hla_sim_swc_include_paths_project_specific_list = hla_sim_swc_include_paths_project_specific.split()
+hla_sim_swc_include_paths_project_specific_list = [project_path + rel_path for rel_path in hla_sim_swc_include_paths_project_specific_list]
+hla_sim_swc_include_paths_list                  = hla_sim_swc_include_paths.split()
+hla_sim_swc_include_paths                       = '\n'.join(hla_sim_swc_include_paths_list + hla_sim_swc_include_paths_project_specific_list)
+
+# sim pdo source files (C files for creating SDL file)
+hla_sim_swc_pdo_sources = """
+    sim_hla_pdo_tags_file.c
+"""

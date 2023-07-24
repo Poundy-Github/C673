@@ -1,0 +1,16 @@
+
+
+LogFile of the RtaXmlGenerator
+
+Project:   S202
+BuildUnit: IUC
+Date:      19.10.2022 16:47:32
+
+
+The following error occurred during generator run: 
+
+There is any problem regarding the inputCfgFile (Invalid format, given path or file not available, ...)
+
+The reference path 
+01_AsrConfig\output\pdo  
+  given as argument at generator call is invalid. 

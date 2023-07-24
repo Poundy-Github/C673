@@ -1,0 +1,372 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>excelaccess.libwrappers.xlrd_xlwt_wrapper &#8212; ExcelAccess 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for excelaccess.libwrappers.xlrd_xlwt_wrapper</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@author: uidq3472</span>
+
+<span class="sd">http://xlrd.readthedocs.io/en/latest/</span>
+<span class="sd">https://xlwt.readthedocs.io/en/latest/</span>
+<span class="sd">http://xlutils.readthedocs.io/en/latest/</span>
+
+<span class="sd">-&gt; ATTENTION to indexing: most of the time has to be decremented by 1 before use </span>
+<span class="sd">   due to the aligning to xlwings which is 1 indexed instead of zero indexed</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">xlrd</span>
+<span class="kn">import</span> <span class="nn">xlwt</span>
+<span class="c1"># noinspection PyUnresolvedReferences</span>
+<span class="c1"># noinspection PyProtectedMember</span>
+<span class="kn">from</span> <span class="nn">excelaccess.libwrappers._excel_library_wrapper</span> <span class="k">import</span> <span class="n">ExcelLibraryWrapper</span>
+<span class="kn">from</span> <span class="nn">dataobjects</span> <span class="k">import</span> <span class="n">excel_sheet_object</span><span class="p">,</span> <span class="n">excel_table_object</span>
+<span class="c1"># noinspection PyUnresolvedReferences</span>
+<span class="c1"># noinspection PyProtectedMember</span>
+<span class="kn">from</span> <span class="nn">excelaccess.utils</span> <span class="k">import</span> <span class="n">excel_utils</span> <span class="k">as</span> <span class="n">eu</span>
+<span class="c1"># noinspection PyUnresolvedReferences</span>
+<span class="c1"># noinspection PyProtectedMember</span>
+<span class="kn">from</span> <span class="nn">excelaccess.utils</span> <span class="k">import</span> <span class="n">unorderd_tree</span> <span class="k">as</span> <span class="n">utree</span>
+<span class="c1"># noinspection PyUnresolvedReferences</span>
+<span class="c1"># noinspection PyProtectedMember</span>
+<span class="kn">from</span> <span class="nn">excelaccess.xmldescriptor.xml_defs</span> <span class="k">import</span> <span class="n">table_start_attr</span><span class="p">,</span> <span class="n">table_end_attr</span><span class="p">,</span> <span class="n">header_rows_attr</span>
+
+
+<div class="viewcode-block" id="ExcelFileObject"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject">[docs]</a><span class="k">class</span> <span class="nc">ExcelFileObject</span><span class="p">(</span><span class="n">ExcelLibraryWrapper</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;ExcelFileObject for xlrd/xlwt libraries.</span>
+<span class="sd">    </span>
+<span class="sd">    :param str cfg_xml_path: a (relative) path to a Config XML file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg_xml_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor for ExcelFileObject.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="c1"># log used library versions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;using xlrd/xlwt: </span><span class="si">{xlrd_v}</span><span class="s2">/</span><span class="si">{xlwt_v}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xlrd_v</span><span class="o">=</span><span class="n">xlrd</span><span class="o">.</span><span class="n">__VERSION__</span><span class="p">,</span> <span class="n">xlwt_v</span><span class="o">=</span><span class="n">xlwt</span><span class="o">.</span><span class="n">__VERSION__</span><span class="p">))</span>
+
+        <span class="c1"># call superclass contructor</span>
+        <span class="n">ExcelLibraryWrapper</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg_xml_path</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_workbook</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ExcelFileObject.read_workbook"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.read_workbook">[docs]</a>    <span class="k">def</span> <span class="nf">read_workbook</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads in a Excel file with xlrd.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wb</span> <span class="o">=</span> <span class="n">xlrd</span><span class="o">.</span><span class="n">open_workbook</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">excel_file_path</span><span class="p">,</span> <span class="n">on_demand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># , formatting_info=True)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;xlrd_wrapper.readWorkbook&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;read in workbook &#39;</span><span class="si">{workbook}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workbook</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">excel_file_path</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="ExcelFileObject.get_lib_sheets"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_lib_sheets">[docs]</a>    <span class="k">def</span> <span class="nf">get_lib_sheets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns all sheets of a workbook.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: list of sheets</span>
+<span class="sd">        :rtype: list(xlrd.sheet)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wb</span><span class="o">.</span><span class="n">sheets</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ExcelFileObject.get_lib_sheet"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_lib_sheet">[docs]</a>    <span class="k">def</span> <span class="nf">get_lib_sheet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_identifier</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns one specific sheet from a workbook. </span>
+<span class="sd">        </span>
+<span class="sd">        :param str sheet_identifier: a sheet name</span>
+<span class="sd">        :return: xlrd sheet object by name</span>
+<span class="sd">        :rtype: list(xlrd.sheet)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wb</span><span class="o">.</span><span class="n">sheet_by_name</span><span class="p">(</span><span class="n">sheet_identifier</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExcelFileObject.get_xml_sheet_names"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_xml_sheet_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_xml_sheet_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns sheet names present in the XML file.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: Excel sheet names</span>
+<span class="sd">        :rtype: list(str)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">xml_parser</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ExcelFileObject.get_sheet_contents"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_sheet_contents">[docs]</a>    <span class="k">def</span> <span class="nf">get_sheet_contents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_names</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Computes sheets and their tables and data.</span>
+<span class="sd">        </span>
+<span class="sd">        :param sheet_names: Excel sheet names </span>
+<span class="sd">        :type sheet_names: list(str)</span>
+<span class="sd">        :return: sheets</span>
+<span class="sd">        :rtype: list(SheetObject) or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sheet_names</span><span class="p">,</span> <span class="s2">&quot;__iter__&quot;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">sheet_name</span> <span class="ow">in</span> <span class="n">sheet_names</span><span class="p">:</span>
+                <span class="n">sheet_obj</span> <span class="o">=</span> <span class="n">excel_sheet_object</span><span class="o">.</span><span class="n">SheetObject</span><span class="p">(</span><span class="n">sheet_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xml_parser</span><span class="o">.</span><span class="n">get_sheet_config</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">xml_parser</span><span class="o">.</span><span class="n">get_xml_sheet</span><span class="p">(</span><span class="n">sheet_name</span><span class="p">)))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">get_sheet_content</span><span class="p">(</span><span class="n">sheet_obj</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_sheet</span><span class="p">(</span><span class="n">sheet_obj</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheets_list</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Method needs iterable! (e.g. list of sheet names)&quot;</span><span class="p">)</span>
+            <span class="k">return</span></div>
+
+<div class="viewcode-block" id="ExcelFileObject.get_sheet_content"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_sheet_content">[docs]</a>    <span class="k">def</span> <span class="nf">get_sheet_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_obj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Computes content of one SheetObject.&quot;&quot;&quot;</span>
+        <span class="n">sheet_name</span> <span class="o">=</span> <span class="n">sheet_obj</span><span class="o">.</span><span class="n">get_sheet_name</span><span class="p">()</span>
+
+        <span class="c1"># get merged cells and tables for sheet</span>
+        <span class="n">sheet_merged_cells</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_merged_cells</span><span class="p">(</span><span class="n">sheet_name</span><span class="p">)</span>
+        <span class="n">tables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tables_from_xml</span><span class="p">(</span><span class="n">sheet_name</span><span class="p">)</span>
+
+        <span class="sd">&quot;&quot;&quot; TODO: remove hardcoding, or rather move the whole thing somewhere else; e.g. move to table object in order to make the parameters more transparent?&quot;&quot;&quot;</span>
+        <span class="c1"># compute xml tables to table objects and add them to the sheet object</span>
+        <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
+            <span class="n">table_obj</span> <span class="o">=</span> <span class="n">excel_table_object</span><span class="o">.</span><span class="n">ExcelTableObject</span><span class="p">(</span><span class="n">eu</span><span class="o">.</span><span class="n">parse_cell_idx</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">table_start_attr</span><span class="p">]),</span>
+                                                            <span class="n">eu</span><span class="o">.</span><span class="n">parse_cell_idx</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">table_end_attr</span><span class="p">]),</span>
+                                                            <span class="nb">int</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="n">header_rows_attr</span><span class="p">]))</span>
+            <span class="n">sheet_merged_cells</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_table_content</span><span class="p">(</span><span class="n">sheet_name</span><span class="p">,</span> <span class="n">sheet_merged_cells</span><span class="p">,</span> <span class="n">table_obj</span><span class="p">)</span>
+            <span class="n">sheet_obj</span><span class="o">.</span><span class="n">add_table</span><span class="p">(</span><span class="n">table_obj</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExcelFileObject.save"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        :raises NotImplementedError: method not yet implemented</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># wwb = copy(self.wb)</span>
+        <span class="c1"># wwb.save(&quot;test.xls&quot;)</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="ExcelFileObject.close"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        :raises NotImplementedError: method not yet implemented</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="ExcelFileObject.get_table_content"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.get_table_content">[docs]</a>    <span class="k">def</span> <span class="nf">get_table_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">table_obj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Computes content of on ExcelTableObject.</span>
+<span class="sd">        </span>
+<span class="sd">        TODOs: </span>
+<span class="sd">        -&gt; aufteilen in Funktionen und verschieben falls sinnvoll in entsprechende Klassen</span>
+<span class="sd">        -&gt; effizienz! z.B. merged cells ueber dicts schon im dump etwas ordnen und hier besser drauf zugreifen</span>
+<span class="sd">        -&gt; alles auf logger umbauen und prints entfernen</span>
+<span class="sd">        -&gt; contents laden falls in xml vorhanden!</span>
+<span class="sd">        ==&gt; refactoring, splitting and improving!</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># create table object or something for mapping purposes? as soon as I know how to clue all together</span>
+        <span class="c1"># get sheet xlrd sheet object</span>
+        <span class="n">sheet_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lib_sheet</span><span class="p">(</span><span class="n">sheet_name</span><span class="p">)</span>
+        <span class="n">header_rows</span> <span class="o">=</span> <span class="n">table_obj</span><span class="o">.</span><span class="n">header_rows</span>
+        <span class="n">table_start</span> <span class="o">=</span> <span class="n">table_obj</span><span class="o">.</span><span class="n">table_start</span>
+        <span class="n">table_end</span> <span class="o">=</span> <span class="n">table_obj</span><span class="o">.</span><span class="n">table_end</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;(#rows)</span><span class="si">{header_rows}</span><span class="s2">::(start)</span><span class="si">{table_start}</span><span class="s2">:(end)</span><span class="si">{table_end}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">header_rows</span><span class="o">=</span><span class="n">header_rows</span><span class="p">,</span>
+                                                                                               <span class="n">table_start</span><span class="o">=</span><span class="n">table_start</span><span class="p">,</span>
+                                                                                               <span class="n">table_end</span><span class="o">=</span><span class="n">table_end</span><span class="p">))</span>
+
+        <span class="c1"># ranges for reading the table header segment</span>
+        <span class="n">header_row_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">table_start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">table_start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">header_rows</span><span class="p">)</span>
+        <span class="n">header_col_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">table_start</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">table_end</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># ranges for reading the table dataobjects segment</span>
+        <span class="n">data_row_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">((</span><span class="n">table_start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">header_rows</span><span class="p">,</span> <span class="n">table_end</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">data_col_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">table_start</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">table_end</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="sd">&quot;&quot;&quot; TODO: save differentiation of merged cells to dump?&quot;&quot;&quot;</span>
+        <span class="c1"># split merged cell information into header... </span>
+        <span class="n">header_merged_cells</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;header_row_range: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">header_row_range</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;header_col_range: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">header_col_range</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">cells</span><span class="p">:</span>
+
+                <span class="k">if</span> <span class="n">cell</span><span class="o">.</span><span class="n">start_row</span> <span class="ow">in</span> <span class="n">header_row_range</span> <span class="ow">and</span> <span class="n">cell</span><span class="o">.</span><span class="n">start_column</span> <span class="ow">in</span> <span class="n">header_col_range</span><span class="p">:</span>
+                    <span class="n">header_merged_cells</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Headersegment merged cells: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">header_merged_cells</span><span class="p">))</span>
+
+        <span class="n">table_obj</span><span class="o">.</span><span class="n">header_merged_cells</span> <span class="o">=</span> <span class="n">header_merged_cells</span>
+
+        <span class="c1"># ...and dataobjects                </span>
+        <span class="n">data_merged_cells</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">cells</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">cell</span><span class="o">.</span><span class="n">start_row</span> <span class="ow">in</span> <span class="n">data_row_range</span> <span class="ow">and</span> <span class="n">cell</span><span class="o">.</span><span class="n">start_column</span> <span class="ow">in</span> <span class="n">data_col_range</span><span class="p">:</span>
+                    <span class="n">data_merged_cells</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Datasegment merged cells: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_merged_cells</span><span class="p">))</span>
+
+        <span class="n">table_obj</span><span class="o">.</span><span class="n">data_merged_cells</span> <span class="o">=</span> <span class="n">data_merged_cells</span>
+
+        <span class="c1"># remove used cells so next table has not to check cells which can not be in its range anymore</span>
+        <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">cells</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">data_merged_cells</span> <span class="ow">or</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">header_merged_cells</span><span class="p">:</span>
+                <span class="n">cells</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Remaining merged cells: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cells</span><span class="p">))</span>
+
+        <span class="n">header_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_header_tree</span><span class="p">(</span><span class="n">sheet_obj</span><span class="p">,</span> <span class="n">header_col_range</span><span class="p">,</span> <span class="n">header_row_range</span><span class="p">,</span> <span class="n">header_merged_cells</span><span class="p">)</span>
+        <span class="c1"># print([(node.title, node.col_index, node.row_index) for node in utree.get_leave_nodes(header_tree)])</span>
+
+
+        <span class="sd">&quot;&quot;&quot; TODO: work with dataobjects; add header from file option and header saving to file! ; attention to merged cells in the dataobjects segment!&quot;&quot;&quot;</span>
+        <span class="n">data_segment</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">in_merged</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">merged_end</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data_row_range</span><span class="p">:</span>
+            <span class="n">data_row</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">data_col_range</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">merged_end</span> <span class="o">&lt;</span> <span class="n">col</span><span class="p">:</span>
+                    <span class="n">in_merged</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">if</span> <span class="n">in_merged</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">data_row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sheet_obj</span><span class="o">.</span><span class="n">cell_value</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">data_merged_cells</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="n">cell</span><span class="o">.</span><span class="n">start_column</span> <span class="ow">and</span> <span class="n">row</span> <span class="o">==</span> <span class="n">cell</span><span class="o">.</span><span class="n">start_row</span><span class="p">:</span>
+                        <span class="n">in_merged</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="n">merged_end</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">end_column</span>
+
+            <span class="n">in_merged</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">data_segment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_row</span><span class="p">)</span>
+
+        <span class="n">table_obj</span><span class="o">.</span><span class="n">data_list</span> <span class="o">=</span> <span class="n">data_segment</span>
+        <span class="n">table_obj</span><span class="o">.</span><span class="n">set_header_tree</span><span class="p">(</span><span class="n">header_tree</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">cells</span></div>
+
+<div class="viewcode-block" id="ExcelFileObject.create_header_tree"><a class="viewcode-back" href="../../../excelaccess.libwrappers.html#excelaccess.libwrappers.xlrd_xlwt_wrapper.ExcelFileObject.create_header_tree">[docs]</a>    <span class="k">def</span> <span class="nf">create_header_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sheet_obj</span><span class="p">,</span> <span class="n">header_col_range</span><span class="p">,</span> <span class="n">header_row_range</span><span class="p">,</span> <span class="n">header_merged_cells</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a tree structure of the header fields in the specified ranges of the provided sheet.</span>
+<span class="sd">        </span>
+<span class="sd">        :param xlrd.sheet sheet_obj: Excel sheet to operate on</span>
+<span class="sd">        :param list(int) header_col_range: the range of columns of the header</span>
+<span class="sd">        :param list(int) header_row_range: the range of rows of the header</span>
+<span class="sd">        :param lsit(MergedCell) header_merged_cells: list of merged cells in the header area</span>
+<span class="sd">        :param parent: parent node</span>
+<span class="sd">        :type parent: TreeNode or None</span>
+<span class="sd">        :return: tree of headers</span>
+<span class="sd">        :rtype: TreeNode</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># empty root node because of tables without a single top element</span>
+        <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">parent</span> <span class="o">=</span> <span class="n">utree</span><span class="o">.</span><span class="n">RootNode</span><span class="p">()</span>
+
+        <span class="c1"># if there is at least onerow left, compute it</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">header_row_range</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">header_row_range</span><span class="p">:</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">header_row_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="n">in_merged</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">merged_end</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">header_col_range</span><span class="p">:</span>
+
+                <span class="c1"># check if already in a merged cell range</span>
+                <span class="k">if</span> <span class="n">merged_end</span> <span class="o">&lt;</span> <span class="n">col</span><span class="p">:</span>
+                    <span class="n">in_merged</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">if</span> <span class="n">in_merged</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># get cell value and check if its empty</span>
+                <span class="n">child</span> <span class="o">=</span> <span class="n">parent</span>
+                <span class="n">cell_val</span> <span class="o">=</span> <span class="n">sheet_obj</span><span class="o">.</span><span class="n">cell_value</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">cell_val</span><span class="p">:</span>
+                    <span class="n">child</span> <span class="o">=</span> <span class="n">utree</span><span class="o">.</span><span class="n">TreeNode</span><span class="p">(</span><span class="n">cell_val</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">row_index</span><span class="o">=</span><span class="n">row</span><span class="p">,</span> <span class="n">col_index</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+                    <span class="n">parent</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+
+                <span class="c1"># check if is a merged cell</span>
+                <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">header_merged_cells</span><span class="p">:</span>
+                    <span class="c1"># check if a merged cell is starting here</span>
+                    <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="n">cell</span><span class="o">.</span><span class="n">start_column</span> <span class="ow">and</span> <span class="n">row</span> <span class="o">==</span> <span class="n">cell</span><span class="o">.</span><span class="n">start_row</span><span class="p">:</span>
+                        <span class="n">in_merged</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="n">merged_end</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">end_column</span>
+                        <span class="n">merge_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">start_column</span><span class="p">,</span> <span class="n">cell</span><span class="o">.</span><span class="n">end_column</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="c1"># else check if we are in a merged cell range</span>
+                    <span class="k">elif</span> <span class="n">cell</span><span class="o">.</span><span class="n">start_column</span> <span class="o">&lt;</span> <span class="n">col</span> <span class="o">&lt;=</span> <span class="n">cell</span><span class="o">.</span><span class="n">end_column</span> <span class="ow">and</span> <span class="n">row</span> <span class="o">==</span> <span class="n">cell</span><span class="o">.</span><span class="n">start_row</span><span class="p">:</span>
+                        <span class="c1"># there already is a recursion running down this path: abort method call</span>
+                        <span class="k">return</span>
+
+                <span class="c1"># handle if in merged cell range or not</span>
+                <span class="k">if</span> <span class="n">in_merged</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">create_header_tree</span><span class="p">(</span><span class="n">sheet_obj</span><span class="p">,</span> <span class="n">merge_range</span><span class="p">,</span> <span class="n">header_row_range</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">header_merged_cells</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">create_header_tree</span><span class="p">(</span><span class="n">sheet_obj</span><span class="p">,</span> <span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">header_row_range</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">header_merged_cells</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">parent</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;main not implemented&quot;</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, uidq3472.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

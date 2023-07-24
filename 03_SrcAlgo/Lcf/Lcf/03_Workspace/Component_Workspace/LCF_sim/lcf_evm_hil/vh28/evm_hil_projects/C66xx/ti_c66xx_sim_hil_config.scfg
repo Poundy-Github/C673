@@ -1,0 +1,34 @@
+# read file list containing source files and include paths
+execfile(File("#../lcf_sim/lcf_evm_hil/vh28/evm_hil_projects/C66xx/ti_c66xx_sim_hil_file_list.scfg").abspath)
+execfile(File("#../lcf_sim/lcf_evm_hil/vh28/generic/CommonSoC/ecu_sim_hil_file_list.scfg").abspath)
+execfile(File("#../../../01_Source_Code/algo/lcf/algo_lib_file_list.scfg").abspath)
+#execfile(File("#../../../01_Source_Code/algo/00_Custom/fct/algo_lib_custom_file_list.scfg").abspath)
+execfile(File("#../lcf_sim/lcf_evm_hil/vh28/generic/hil_server/hil_server_file_list.scfg").abspath)
+execfile(File("#../lcf_sim/sim_swc_lcf/sim_swc_lcf_file_list.scfg").abspath)
+
+# sources files list
+ti_c66xx_hil_src = (Split(C66xx_sim_hil_sources) + 
+                    Split(ecu_sim_hil_sources) +  
+                    Split(ecu_eve_sim_hil_sources) + 
+                    Split(hil_server_rta_sources))
+
+# include paths list
+ti_c66xx_hil_cpp_path = (Split(lcf_algo_include_paths) + 
+
+                         Split(lcf_algo_common_include_paths) + 
+                         Split(ecu_sim_hil_include_paths) + 
+                         Split(C66xx_sim_hil_include_paths) + 
+                         Split(hil_server_include_paths) + 
+                         Split(lcf_sim_swc_include_paths))
+             
+# include paths list that should be added before compiler include paths
+ti_c66xx_prepend_cpp_path = []
+
+# external libraries
+external_lib = ["libc.a"]
+
+# sysbios configuration file
+sysbios_cfg = "app.cfg"
+
+# xdctools compiler options
+xs_compiler_options = '--compileOptions "-g --optimize_with_debug"'

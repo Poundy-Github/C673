@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="FBL">
+    <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl2" Children="Controls" ControlName="FBL">
+      <Property Name="Name">RadioButtonControl2</Property>
+      <Property Name="Size">40, 16</Property>
+      <Property Name="Location">193, 16</Property>
+      <Property Name="Text">FBL</Property>
+      <Property Name="SymbolConfiguration">6;1;FBL;;;Env_FBL_Target;1;;;-1;;;;</Property>
+      <Property Name="TabIndex">24</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.RadioButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null" Name="RadioButtonControl1" Children="Controls" ControlName="APP">
+      <Property Name="Name">RadioButtonControl1</Property>
+      <Property Name="Size">40, 16</Property>
+      <Property Name="Location">101, 16</Property>
+      <Property Name="Text">APP</Property>
+      <Property Name="SwitchValueVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;</Property>
+      <Property Name="SwitchValueVT">1;Lower;0</Property>
+      <Property Name="SwitchValue">0</Property>
+      <Property Name="SymbolConfiguration">6;1;FBL;;;Env_FBL_Target;1;;;-1;;;;</Property>
+      <Property Name="TabIndex">23</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Target">
+      <Property Name="Name">StaticTextControl1</Property>
+      <Property Name="Size">41, 13</Property>
+      <Property Name="Location">8, 16</Property>
+      <Property Name="Text">Target</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl3" Children="Controls" ControlName="Exchange">
+      <Property Name="Name">ButtonControl3</Property>
+      <Property Name="Size">59, 32</Property>
+      <Property Name="Location">8, 102</Property>
+      <Property Name="Text">Exchange</Property>
+      <Property Name="SymbolConfiguration">6;1;FBL;;;Env_FBL_Exchange;1;;;-1;;;;</Property>
+      <Property Name="TabIndex">15</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl4" Children="Controls" ControlName="Rollback">
+      <Property Name="Name">ButtonControl4</Property>
+      <Property Name="Size">59, 32</Property>
+      <Property Name="Location">79, 102</Property>
+      <Property Name="Text">Rollback</Property>
+      <Property Name="SymbolConfiguration">6;1;FBL;;;Env_FBL_Rollback;1;;;-1;;;;</Property>
+      <Property Name="TabIndex">16</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ClockControl, Vector.CANalyzer.Panels.CommonControls, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null" Name="ClockControl1" ControlName="TimeCount">
+      <Property Name="Name">ClockControl1</Property>
+      <Property Name="Size">121, 27</Property>
+      <Property Name="Location">162, 38</Property>
+      <Property Name="Mode">StopWatch</Property>
+      <Property Name="Source">CAPL</Property>
+      <Property Name="SymbolConfiguration">
+      </Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl4" Children="Controls" ControlName="Status">
+      <Property Name="Name">StaticTextControl4</Property>
+      <Property Name="Size">89, 13</Property>
+      <Property Name="Location">8, 43</Property>
+      <Property Name="Text">Status</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl2" Children="Controls" ControlName="Stop">
+      <Property Name="Name">ButtonControl2</Property>
+      <Property Name="Size">59, 32</Property>
+      <Property Name="Location">224, 103</Property>
+      <Property Name="Text">Stop</Property>
+      <Property Name="SymbolConfiguration">4;1;FBL;;;Env_FBL_Stop;1;;;-1</Property>
+      <Property Name="TabIndex">10</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl1" Children="Controls" ControlName="Update">
+      <Property Name="Name">ButtonControl1</Property>
+      <Property Name="Size">59, 32</Property>
+      <Property Name="Location">152, 102</Property>
+      <Property Name="Text">Update</Property>
+      <Property Name="SymbolConfiguration">6;1;FBL;;;Env_FBL_Update;1;;;-1;;;;</Property>
+      <Property Name="TabIndex">9</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" Children="Controls" ControlName="Process">
+      <Property Name="Name">StaticTextControl3</Property>
+      <Property Name="Size">89, 22</Property>
+      <Property Name="Location">8, 77</Property>
+      <Property Name="Text">Process</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl3" Children="Controls" ControlName="Status">
+      <Property Name="Name">TextBoxControl3</Property>
+      <Property Name="Size">55, 28</Property>
+      <Property Name="Location">101, 40</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="ValueDisplay">Text</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">
+      </Property>
+      <Property Name="DescriptionSize">0, 0</Property>
+      <Property Name="UsedValueTable">PhysicalValue</Property>
+      <Property Name="SymbolConfiguration">4;1;FBL;;;Env_FBL_Status;4;;;-1</Property>
+      <Property Name="TabIndex">7</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ProgressBarControl, Vector.CANalyzer.Panels.CommonControls, Version=12.0.216.0, Culture=neutral, PublicKeyToken=null" Name="ProgressBarControl1" Children="Controls" ControlName="Progress Bar">
+      <Property Name="Name">ProgressBarControl1</Property>
+      <Property Name="Size">182, 28</Property>
+      <Property Name="Location">101, 69</Property>
+      <Property Name="OriginValue">0</Property>
+      <Property Name="ValuePos">Right</Property>
+      <Property Name="DecimalPlaces">0</Property>
+      <Property Name="ValueSize">23, 28</Property>
+      <Property Name="SymbolConfiguration">4;1;FBL;;;Env_FBL_Progress;1;;;-1</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">294, 140</Property>
+  </Object>
+</Panel>

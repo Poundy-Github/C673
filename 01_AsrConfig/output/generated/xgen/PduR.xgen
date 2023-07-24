@@ -1,0 +1,2352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?module PduR?>
+
+<xgen xmlns="http://www.elektrobit.com/2013/xgen" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <!-- This is the configuration of module PduR -->
+    <module name="PduR" version="5.3.47 B466224">
+        <!-- This is the precompile-time configuration of the module. -->
+        <configuration class="PreCompile">
+            <?artifact generate="no" directory="include" file="PduR_CfgTypes.h" type="types-h"?>
+
+            <parameter name="relocatable-enable">
+                <boolean-value>false</boolean-value>
+            </parameter>
+
+
+        <!-- START static PreCompile type definitions -->
+        <type name="PduR_GateTpSessionIndexType">
+          <reference type="uint16">
+            <compiler-abstraction>
+              <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+          </reference>
+        </type>
+        <!-- END static PreCompile type definitions -->
+
+
+        <!-- PreCompile type definitions -->
+        <!-- START GENERATED PreCompile type definitions -->
+<type name="PduR_RefToRAM">
+    <reference type="uint16">
+        <compiler-abstraction>
+            <var memory-class="TYPEDEF"/>
+        </compiler-abstraction>
+    </reference>
+</type>
+<type name="PduR_BufTpIndexType">
+    <reference type="uint16">
+        <compiler-abstraction>
+            <var memory-class="TYPEDEF"/>
+        </compiler-abstraction>
+    </reference>
+</type>
+<type name="PduR_PduIdType">
+    <reference type="uint16">
+        <compiler-abstraction>
+            <var memory-class="TYPEDEF"/>
+        </compiler-abstraction>
+    </reference>
+</type>
+<type name="PduR_RefToModuleAPI">
+    <reference type="uint16">
+        <compiler-abstraction>
+            <var memory-class="TYPEDEF"/>
+        </compiler-abstraction>
+    </reference>
+</type>
+<type name="PduR_AbstractRoutingTableEntry">
+    <struct>
+        <member name="TargetPduId" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_RTabUpTpType">
+    <struct>
+        <member name="TargetPduId" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TargetModuleAPIRef" type="PduR_RefToModuleAPI">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_RTabUpTpConfigType">
+    <struct>
+        <member name="RTabTxRef" type="PduR_RTabUpTpType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="RTabRxRef" type="PduR_RTabUpTpType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="RTabTxCount" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="RTabRxCount" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_RTabLoTpType">
+    <struct>
+        <member name="TargetPduId" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TargetModuleAPIRef" type="PduR_RefToModuleAPI">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_RTabLoTpConfigType">
+    <struct>
+        <member name="RTabRxRef" type="PduR_RTabLoTpType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="RTabTxRef" type="PduR_RTabLoTpType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="RTabRxCount" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="RTabTxCount" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_RTabUpIfTxType">
+    <struct>
+        <member name="TargetPduId" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TargetModuleAPIRef" type="PduR_RefToModuleAPI">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_RTabUpIfTxConfigType">
+    <struct>
+        <member name="RTabTxRef" type="PduR_RTabUpIfTxType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="RTabTxCount" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_RTabLoIfType">
+    <struct>
+        <member name="TargetPduId" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TargetModuleAPIRef" type="PduR_RefToModuleAPI">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_RTabLoIfConfigType">
+    <struct>
+        <member name="RTabRxRef" type="PduR_RTabLoIfType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="RTabTxRef" type="PduR_RTabLoIfType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="RTabRxCount" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="RTabTxCount" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_Nto1TabTpType">
+    <struct>
+        <member name="GMPduId" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="GMPduIdMemRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_Nto1TabTpConfigType">
+    <struct>
+        <member name="Nto1TabTpRef" type="PduR_Nto1TabTpType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="Nto1TabTpCount" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_TpThresholdType">
+    <reference type="uint16">
+        <compiler-abstraction>
+            <var memory-class="TYPEDEF"/>
+        </compiler-abstraction>
+    </reference>
+</type>
+<type name="PduR_GTabTpRxType">
+    <struct>
+        <member name="TargetPduId" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="SessionQueueMemRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TpThreshold" type="PduR_TpThresholdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TargetModuleAPIRef" type="PduR_RefToModuleAPI">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="RemainingEntries" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_GTabTpConfigType">
+    <struct>
+        <member name="GTabRxRef" type="PduR_GTabTpRxType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="GTabRxCount" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_GTabIfRxType">
+    <struct>
+        <member name="TargetPduId" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="BufferId" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TargetModuleAPIRef" type="PduR_RefToModuleAPI">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_GTabIfConfigType">
+    <struct>
+        <member name="GTabRxRef" type="PduR_GTabIfRxType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="GTabRxCount" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_MTabUpTpTxType">
+    <struct>
+        <member name="TargetPduId" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="UprLyrTxPduId" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TargetModuleAPIRef" type="PduR_RefToModuleAPI">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="SourceModuleAPIRef" type="PduR_RefToModuleAPI">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TotalNumDests" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_MTabUpTpConfigType">
+    <struct>
+        <member name="MTabTxRef" type="PduR_MTabUpTpTxType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="MTabTxCount" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_MTabUpIfTxType">
+    <struct>
+        <member name="TargetPduId" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TargetModuleAPIRef" type="PduR_RefToModuleAPI">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="SourceModuleAPIRef" type="PduR_RefToModuleAPI">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="UprLyrTxPduId" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="BufferId" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TotalNumDests" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TxConfEnabled" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_MTabUpIfConfigType">
+    <struct>
+        <member name="MTabTxRef" type="PduR_MTabUpIfTxType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="MTabTxCount" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_MTabLoIfRxType">
+    <struct>
+        <member name="TargetPduId" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="TargetModuleAPIRef" type="PduR_RefToModuleAPI">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="MoreEntries" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_MTabLoIfConfigType">
+    <struct>
+        <member name="MTabRxRef" type="PduR_MTabLoIfRxType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="MTabRxCount" type="PduR_PduIdType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_PduLengthType">
+    <reference type="uint16">
+        <compiler-abstraction>
+            <var memory-class="TYPEDEF"/>
+        </compiler-abstraction>
+    </reference>
+</type>
+<type name="PduR_BufTpConfigType">
+    <struct>
+        <member name="MemRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="Length" type="PduR_PduLengthType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_BufTfDynPyldConfigType">
+    <struct>
+        <member name="DefaultRef" type="uint8">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="MemRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="UsedSduLengthPtr" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="Length" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="Depth" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_BufDfDynPyldConfigType">
+    <struct>
+        <member name="MemRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="UsedSduLengthPtr" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="Length" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="Depth" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_BufSbConfigType">
+    <struct>
+        <member name="DefaultRef" type="uint8">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="MemRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="Length" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_BufTfConfigType">
+    <struct>
+        <member name="DefaultRef" type="uint8">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="MemRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="Length" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="Depth" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_BufDfConfigType">
+    <struct>
+        <member name="MemRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="Length" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="Depth" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_PBConfigType">
+    <struct>
+        <member name="PduR_PlatformSignature" type="uint32">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_PublicInfoSignature" type="uint32">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_CfgSignature" type="uint32">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_LcfgSignature" type="uint32">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufDefaultRef" type="uint8">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufSbConfigRef" type="PduR_BufSbConfigType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufDfConfigRef" type="PduR_BufDfConfigType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufTfConfigRef" type="PduR_BufTfConfigType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufSbDynPyldConfigRef" type="PduR_BufSbConfigType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufDfDynPyldConfigRef" type="PduR_BufDfDynPyldConfigType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufTfDynPyldConfigRef" type="PduR_BufTfDynPyldConfigType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufTpConfigRef" type="PduR_BufTpConfigType">
+            <compiler-abstraction>
+                <ref2cfg/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_MTabLoIfConfig" type="PduR_MTabLoIfConfigType">
+            <compiler-abstraction>
+                <const memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_MTabUpIfConfig" type="PduR_MTabUpIfConfigType">
+            <compiler-abstraction>
+                <const memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_MTabUpTpConfig" type="PduR_MTabUpTpConfigType">
+            <compiler-abstraction>
+                <const memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_GTabIfConfig" type="PduR_GTabIfConfigType">
+            <compiler-abstraction>
+                <const memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_GTabTpConfig" type="PduR_GTabTpConfigType">
+            <compiler-abstraction>
+                <const memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_Nto1TabTpConfig" type="PduR_Nto1TabTpConfigType">
+            <compiler-abstraction>
+                <const memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="2" name="PduR_RTabLoIfConfig" type="PduR_RTabLoIfConfigType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="2" name="PduR_RTabUpIfTxConfig" type="PduR_RTabUpIfTxConfigType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="1" name="PduR_RTabLoTpConfig" type="PduR_RTabLoTpConfigType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="1" name="PduR_RTabUpTpConfig" type="PduR_RTabUpTpConfigType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_ConfigurationId" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufSbCount" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufDfCount" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufTfCount" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufSbDynPyldCount" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufDfDynPyldCount" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufTfDynPyldCount" type="uint16">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufTpCount" type="PduR_BufTpIndexType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_MultiTpTxSessionInfoRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_MultiIfTxInfoRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufSbDynPyldInfoRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufDfInfoRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufDfDynPyldInfoRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufTfInfoRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_BufTfDynPyldInfoRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_GateTpSessionInfoRef" type="PduR_RefToRAM">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member name="PduR_MultiTpTxRPathsMax" type="uint8">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_GateTpQueueIndexType">
+    <reference type="uint8">
+        <compiler-abstraction>
+            <var memory-class="TYPEDEF"/>
+        </compiler-abstraction>
+    </reference>
+</type>
+
+        <!-- END GENERATED PreCompile type definitions -->
+        </configuration> <!-- precompile -->
+
+        <!-- This is the post-build configuration of the module. -->
+        <configuration class="PostBuild">
+            <?artifact type="postbuild-h" directory="include" file="PduR_PBcfg.h" generate="yes"?>
+            <?artifact type="postbuild-c" directory="src" file="PduR_PBcfg.c" generate="yes"?>
+
+            <parameter name="postbuild-configuration-name.PduR_ConfigLayout">
+                <symbolic-value>PduRRoutingTables</symbolic-value>
+            </parameter>
+
+            <!-- PostBuild type and variable definitions -->
+            <!-- START GENERATED PostBuild type and variable definitions --><type name="PduR_ConfigLayoutType">
+    <struct>
+        <member name="PduR_RootConfig" type="PduR_PBConfigType">
+            <compiler-abstraction>
+                <const memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="47" name="PduR_RTabLoIfRx" type="PduR_RTabLoIfType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="47" name="PduR_RTabLoIfTx" type="PduR_RTabLoIfType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="47" name="PduR_RTabUpIfTx" type="PduR_RTabUpIfTxType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="4" name="PduR_RTabLoTpRx" type="PduR_RTabLoTpType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="2" name="PduR_RTabLoTpTx" type="PduR_RTabLoTpType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="2" name="PduR_RTabUpTpTx" type="PduR_RTabUpTpType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+        <member count="4" name="PduR_RTabUpTpRx" type="PduR_RTabUpTpType">
+            <compiler-abstraction>
+                <var memory-class="TYPEDEF"/>
+            </compiler-abstraction>
+        </member>
+    </struct>
+</type>
+<type name="PduR_ConstConfigLayoutType">
+    <reference type="PduR_ConfigLayoutType">
+        <compiler-abstraction>
+            <const memory-class="TYPEDEF"/>
+        </compiler-abstraction>
+    </reference>
+</type>
+
+            <memory-section name="SEC_CONFIG_DATA_UNSPECIFIED"><instance name="PduR_ConfigLayout" type="PduR_ConstConfigLayoutType">
+    <parameter name="postbuild-configuration-name">
+        <parameter reference="postbuild-configuration-name.PduR_ConfigLayout"/>
+    </parameter>
+    <compiler-abstraction>
+        <var memory-class="PDUR_APPL_CONST"/>
+    </compiler-abstraction>
+    <field>
+        <field>
+            <int>2281703698</int>
+        </field>
+        <field>
+            <int>3287861272</int>
+        </field>
+        <field>
+            <int>2503975737</int>
+        </field>
+        <field>
+            <int>3958107115</int>
+        </field>
+        <field>
+            <ref/>
+        </field>
+        <field>
+            <ref/>
+        </field>
+        <field>
+            <ref/>
+        </field>
+        <field>
+            <ref/>
+        </field>
+        <field>
+            <ref/>
+        </field>
+        <field>
+            <ref/>
+        </field>
+        <field>
+            <ref/>
+        </field>
+        <field>
+            <ref/>
+        </field>
+        <field>
+            <field>
+                <ref/>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <ref/>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <ref/>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <ref/>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <ref/>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field>
+                <ref/>
+            </field>
+            <field>
+                <int>0</int>
+            </field>
+        </field>
+        <field>
+            <field comment="CanIf">
+                <field>
+                    <ref>
+                        <struct-field name="PduR_RTabLoIfRx"/>
+                        <array-field index="0"/>
+                    </ref>
+                </field>
+                <field>
+                    <ref>
+                        <struct-field name="PduR_RTabLoIfTx"/>
+                        <array-field index="0"/>
+                    </ref>
+                </field>
+                <field>
+                    <int>47</int>
+                </field>
+                <field>
+                    <int>47</int>
+                </field>
+            </field>
+            <field comment="CanNm">
+                <field>
+                    <ref/>
+                </field>
+                <field>
+                    <ref/>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+        </field>
+        <field>
+            <field comment="Com">
+                <field>
+                    <ref>
+                        <struct-field name="PduR_RTabUpIfTx"/>
+                        <array-field index="0"/>
+                    </ref>
+                </field>
+                <field>
+                    <int>47</int>
+                </field>
+            </field>
+            <field comment="Dcm">
+                <field>
+                    <ref/>
+                </field>
+                <field>
+                    <int>0</int>
+                </field>
+            </field>
+        </field>
+        <field>
+            <field comment="CanTp">
+                <field>
+                    <ref>
+                        <struct-field name="PduR_RTabLoTpRx"/>
+                        <array-field index="0"/>
+                    </ref>
+                </field>
+                <field>
+                    <ref>
+                        <struct-field name="PduR_RTabLoTpTx"/>
+                        <array-field index="0"/>
+                    </ref>
+                </field>
+                <field>
+                    <int>4</int>
+                </field>
+                <field>
+                    <int>2</int>
+                </field>
+            </field>
+        </field>
+        <field>
+            <field comment="Dcm">
+                <field>
+                    <ref>
+                        <struct-field name="PduR_RTabUpTpTx"/>
+                        <array-field index="0"/>
+                    </ref>
+                </field>
+                <field>
+                    <ref>
+                        <struct-field name="PduR_RTabUpTpRx"/>
+                        <array-field index="0"/>
+                    </ref>
+                </field>
+                <field>
+                    <int>2</int>
+                </field>
+                <field>
+                    <int>4</int>
+                </field>
+            </field>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+        <field>
+            <int>0</int>
+        </field>
+    </field>
+    <field>
+        <field comment="Routing path:'GW_50_80R', calling module:'CanIf-LO-IF', PDU ID:0">
+            <field>
+                <int>0</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'VCU_161_353R', calling module:'CanIf-LO-IF', PDU ID:1">
+            <field>
+                <int>1</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_170_368R', calling module:'CanIf-LO-IF', PDU ID:2">
+            <field>
+                <int>2</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_17A_378R', calling module:'CanIf-LO-IF', PDU ID:3">
+            <field>
+                <int>3</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_17E_382R', calling module:'CanIf-LO-IF', PDU ID:4">
+            <field>
+                <int>4</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_180_384R', calling module:'CanIf-LO-IF', PDU ID:5">
+            <field>
+                <int>5</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_1C2_450R', calling module:'CanIf-LO-IF', PDU ID:6">
+            <field>
+                <int>6</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_20B_523R', calling module:'CanIf-LO-IF', PDU ID:7">
+            <field>
+                <int>7</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_24F_591R', calling module:'CanIf-LO-IF', PDU ID:8">
+            <field>
+                <int>8</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_278_632R', calling module:'CanIf-LO-IF', PDU ID:9">
+            <field>
+                <int>9</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_288_648R', calling module:'CanIf-LO-IF', PDU ID:10">
+            <field>
+                <int>10</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_28B_651R', calling module:'CanIf-LO-IF', PDU ID:11">
+            <field>
+                <int>11</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_2A8_680R', calling module:'CanIf-LO-IF', PDU ID:12">
+            <field>
+                <int>12</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_2C2_706R', calling module:'CanIf-LO-IF', PDU ID:13">
+            <field>
+                <int>13</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_2D2_722R', calling module:'CanIf-LO-IF', PDU ID:14">
+            <field>
+                <int>14</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_2DE_734R', calling module:'CanIf-LO-IF', PDU ID:15">
+            <field>
+                <int>15</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'TBOX_2F7_759R', calling module:'CanIf-LO-IF', PDU ID:16">
+            <field>
+                <int>16</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'VCU_38A_906R', calling module:'CanIf-LO-IF', PDU ID:17">
+            <field>
+                <int>17</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_3AF_943R', calling module:'CanIf-LO-IF', PDU ID:18">
+            <field>
+                <int>18</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_3BD_957R', calling module:'CanIf-LO-IF', PDU ID:19">
+            <field>
+                <int>19</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_3C2_962R', calling module:'CanIf-LO-IF', PDU ID:20">
+            <field>
+                <int>20</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'GW_507_1287R', calling module:'CanIf-LO-IF', PDU ID:21">
+            <field>
+                <int>21</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_111_273R', calling module:'CanIf-LO-IF', PDU ID:22">
+            <field>
+                <int>22</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_112_274R', calling module:'CanIf-LO-IF', PDU ID:23">
+            <field>
+                <int>23</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_113_275R', calling module:'CanIf-LO-IF', PDU ID:24">
+            <field>
+                <int>24</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_114_276R', calling module:'CanIf-LO-IF', PDU ID:25">
+            <field>
+                <int>25</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_115_277R', calling module:'CanIf-LO-IF', PDU ID:26">
+            <field>
+                <int>26</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_116_278R', calling module:'CanIf-LO-IF', PDU ID:27">
+            <field>
+                <int>27</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_117_279R', calling module:'CanIf-LO-IF', PDU ID:28">
+            <field>
+                <int>28</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_118_280R', calling module:'CanIf-LO-IF', PDU ID:29">
+            <field>
+                <int>29</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_119_281R', calling module:'CanIf-LO-IF', PDU ID:30">
+            <field>
+                <int>30</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_11A_282R', calling module:'CanIf-LO-IF', PDU ID:31">
+            <field>
+                <int>31</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_11B_283R', calling module:'CanIf-LO-IF', PDU ID:32">
+            <field>
+                <int>32</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_11C_284R', calling module:'CanIf-LO-IF', PDU ID:33">
+            <field>
+                <int>33</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_11D_285R', calling module:'CanIf-LO-IF', PDU ID:34">
+            <field>
+                <int>34</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_11E_286R', calling module:'CanIf-LO-IF', PDU ID:35">
+            <field>
+                <int>35</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_11F_287R', calling module:'CanIf-LO-IF', PDU ID:36">
+            <field>
+                <int>36</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_120_288R', calling module:'CanIf-LO-IF', PDU ID:37">
+            <field>
+                <int>37</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_136_310R', calling module:'CanIf-LO-IF', PDU ID:38">
+            <field>
+                <int>38</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FR_138_312R', calling module:'CanIf-LO-IF', PDU ID:39">
+            <field>
+                <int>39</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'ADC_19B_411R', calling module:'CanIf-LO-IF', PDU ID:40">
+            <field>
+                <int>40</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'ADC_1F1_497R', calling module:'CanIf-LO-IF', PDU ID:41">
+            <field>
+                <int>43</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'ADC_200_512R', calling module:'CanIf-LO-IF', PDU ID:42">
+            <field>
+                <int>41</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'ADC_201_513R', calling module:'CanIf-LO-IF', PDU ID:43">
+            <field>
+                <int>42</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'ADC_344_836R', calling module:'CanIf-LO-IF', PDU ID:44">
+            <field>
+                <int>44</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'ADC_345_837R', calling module:'CanIf-LO-IF', PDU ID:45">
+            <field>
+                <int>45</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'ADC_346_838R', calling module:'CanIf-LO-IF', PDU ID:46">
+            <field>
+                <int>46</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+    </field>
+    <field>
+        <field comment="Routing path:'FC_1BA_442T', calling module:'CanIf-LO-IF', PDU ID:0">
+            <field>
+                <int>35</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_244_580T', calling module:'CanIf-LO-IF', PDU ID:1">
+            <field>
+                <int>39</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_307_775T', calling module:'CanIf-LO-IF', PDU ID:2">
+            <field>
+                <int>40</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_312_786T', calling module:'CanIf-LO-IF', PDU ID:3">
+            <field>
+                <int>41</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_31A_794T', calling module:'CanIf-LO-IF', PDU ID:4">
+            <field>
+                <int>42</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_571_1393T', calling module:'CanIf-LO-IF', PDU ID:5">
+            <field>
+                <int>43</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_592_1426T', calling module:'CanIf-LO-IF', PDU ID:6">
+            <field>
+                <int>44</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_694_1684T', calling module:'CanIf-LO-IF', PDU ID:7">
+            <field>
+                <int>46</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_107_263T', calling module:'CanIf-LO-IF', PDU ID:8">
+            <field>
+                <int>0</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_108_264T', calling module:'CanIf-LO-IF', PDU ID:9">
+            <field>
+                <int>1</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_150_336T', calling module:'CanIf-LO-IF', PDU ID:10">
+            <field>
+                <int>2</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_151_337T', calling module:'CanIf-LO-IF', PDU ID:11">
+            <field>
+                <int>3</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_152_338T', calling module:'CanIf-LO-IF', PDU ID:12">
+            <field>
+                <int>4</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_153_339T', calling module:'CanIf-LO-IF', PDU ID:13">
+            <field>
+                <int>5</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_154_340T', calling module:'CanIf-LO-IF', PDU ID:14">
+            <field>
+                <int>6</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_160_352T', calling module:'CanIf-LO-IF', PDU ID:15">
+            <field>
+                <int>7</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_161_353T', calling module:'CanIf-LO-IF', PDU ID:16">
+            <field>
+                <int>8</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_162_354T', calling module:'CanIf-LO-IF', PDU ID:17">
+            <field>
+                <int>9</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_163_355T', calling module:'CanIf-LO-IF', PDU ID:18">
+            <field>
+                <int>10</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_164_356T', calling module:'CanIf-LO-IF', PDU ID:19">
+            <field>
+                <int>11</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_165_357T', calling module:'CanIf-LO-IF', PDU ID:20">
+            <field>
+                <int>12</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_166_358T', calling module:'CanIf-LO-IF', PDU ID:21">
+            <field>
+                <int>13</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_167_359T', calling module:'CanIf-LO-IF', PDU ID:22">
+            <field>
+                <int>14</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_168_360T', calling module:'CanIf-LO-IF', PDU ID:23">
+            <field>
+                <int>15</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_169_361T', calling module:'CanIf-LO-IF', PDU ID:24">
+            <field>
+                <int>16</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_170_368T', calling module:'CanIf-LO-IF', PDU ID:25">
+            <field>
+                <int>17</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_171_369T', calling module:'CanIf-LO-IF', PDU ID:26">
+            <field>
+                <int>18</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_172_370T', calling module:'CanIf-LO-IF', PDU ID:27">
+            <field>
+                <int>19</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_173_371T', calling module:'CanIf-LO-IF', PDU ID:28">
+            <field>
+                <int>20</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_174_372T', calling module:'CanIf-LO-IF', PDU ID:29">
+            <field>
+                <int>21</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_175_373T', calling module:'CanIf-LO-IF', PDU ID:30">
+            <field>
+                <int>22</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_176_374T', calling module:'CanIf-LO-IF', PDU ID:31">
+            <field>
+                <int>23</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_177_375T', calling module:'CanIf-LO-IF', PDU ID:32">
+            <field>
+                <int>24</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_178_376T', calling module:'CanIf-LO-IF', PDU ID:33">
+            <field>
+                <int>25</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_179_377T', calling module:'CanIf-LO-IF', PDU ID:34">
+            <field>
+                <int>26</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_180_384T', calling module:'CanIf-LO-IF', PDU ID:35">
+            <field>
+                <int>27</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_181_385T', calling module:'CanIf-LO-IF', PDU ID:36">
+            <field>
+                <int>28</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_190_400T', calling module:'CanIf-LO-IF', PDU ID:37">
+            <field>
+                <int>29</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_193_403T', calling module:'CanIf-LO-IF', PDU ID:38">
+            <field>
+                <int>30</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_195_405T', calling module:'CanIf-LO-IF', PDU ID:39">
+            <field>
+                <int>31</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_196_406T', calling module:'CanIf-LO-IF', PDU ID:40">
+            <field>
+                <int>32</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_197_407T', calling module:'CanIf-LO-IF', PDU ID:41">
+            <field>
+                <int>33</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_198_408T', calling module:'CanIf-LO-IF', PDU ID:42">
+            <field>
+                <int>34</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_1F2_498T', calling module:'CanIf-LO-IF', PDU ID:43">
+            <field>
+                <int>36</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_204_516T', calling module:'CanIf-LO-IF', PDU ID:44">
+            <field>
+                <int>37</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_207_519T', calling module:'CanIf-LO-IF', PDU ID:45">
+            <field>
+                <int>38</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_620_1568T', calling module:'CanIf-LO-IF', PDU ID:46">
+            <field>
+                <int>45</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Com">
+                <int>0</int>
+            </field>
+        </field>
+    </field>
+    <field>
+        <field comment="Routing path:'FC_1BA_442T', calling module:'Com-UP-IF', PDU ID:0">
+            <field>
+                <int>0</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_244_580T', calling module:'Com-UP-IF', PDU ID:1">
+            <field>
+                <int>1</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_307_775T', calling module:'Com-UP-IF', PDU ID:2">
+            <field>
+                <int>2</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_312_786T', calling module:'Com-UP-IF', PDU ID:3">
+            <field>
+                <int>3</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_31A_794T', calling module:'Com-UP-IF', PDU ID:4">
+            <field>
+                <int>4</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_571_1393T', calling module:'Com-UP-IF', PDU ID:5">
+            <field>
+                <int>5</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_592_1426T', calling module:'Com-UP-IF', PDU ID:6">
+            <field>
+                <int>6</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_694_1684T', calling module:'Com-UP-IF', PDU ID:7">
+            <field>
+                <int>7</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_107_263T', calling module:'Com-UP-IF', PDU ID:8">
+            <field>
+                <int>12</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_108_264T', calling module:'Com-UP-IF', PDU ID:9">
+            <field>
+                <int>13</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_150_336T', calling module:'Com-UP-IF', PDU ID:10">
+            <field>
+                <int>15</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_151_337T', calling module:'Com-UP-IF', PDU ID:11">
+            <field>
+                <int>16</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_152_338T', calling module:'Com-UP-IF', PDU ID:12">
+            <field>
+                <int>17</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_153_339T', calling module:'Com-UP-IF', PDU ID:13">
+            <field>
+                <int>18</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_154_340T', calling module:'Com-UP-IF', PDU ID:14">
+            <field>
+                <int>19</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_160_352T', calling module:'Com-UP-IF', PDU ID:15">
+            <field>
+                <int>20</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_161_353T', calling module:'Com-UP-IF', PDU ID:16">
+            <field>
+                <int>21</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_162_354T', calling module:'Com-UP-IF', PDU ID:17">
+            <field>
+                <int>22</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_163_355T', calling module:'Com-UP-IF', PDU ID:18">
+            <field>
+                <int>23</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_164_356T', calling module:'Com-UP-IF', PDU ID:19">
+            <field>
+                <int>24</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_165_357T', calling module:'Com-UP-IF', PDU ID:20">
+            <field>
+                <int>25</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_166_358T', calling module:'Com-UP-IF', PDU ID:21">
+            <field>
+                <int>26</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_167_359T', calling module:'Com-UP-IF', PDU ID:22">
+            <field>
+                <int>27</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_168_360T', calling module:'Com-UP-IF', PDU ID:23">
+            <field>
+                <int>28</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_169_361T', calling module:'Com-UP-IF', PDU ID:24">
+            <field>
+                <int>29</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_170_368T', calling module:'Com-UP-IF', PDU ID:25">
+            <field>
+                <int>30</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_171_369T', calling module:'Com-UP-IF', PDU ID:26">
+            <field>
+                <int>31</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_172_370T', calling module:'Com-UP-IF', PDU ID:27">
+            <field>
+                <int>32</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_173_371T', calling module:'Com-UP-IF', PDU ID:28">
+            <field>
+                <int>33</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_174_372T', calling module:'Com-UP-IF', PDU ID:29">
+            <field>
+                <int>34</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_175_373T', calling module:'Com-UP-IF', PDU ID:30">
+            <field>
+                <int>35</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_176_374T', calling module:'Com-UP-IF', PDU ID:31">
+            <field>
+                <int>36</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_177_375T', calling module:'Com-UP-IF', PDU ID:32">
+            <field>
+                <int>37</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_178_376T', calling module:'Com-UP-IF', PDU ID:33">
+            <field>
+                <int>38</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_179_377T', calling module:'Com-UP-IF', PDU ID:34">
+            <field>
+                <int>39</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_180_384T', calling module:'Com-UP-IF', PDU ID:35">
+            <field>
+                <int>40</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_181_385T', calling module:'Com-UP-IF', PDU ID:36">
+            <field>
+                <int>41</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_190_400T', calling module:'Com-UP-IF', PDU ID:37">
+            <field>
+                <int>42</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_193_403T', calling module:'Com-UP-IF', PDU ID:38">
+            <field>
+                <int>43</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_195_405T', calling module:'Com-UP-IF', PDU ID:39">
+            <field>
+                <int>44</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_196_406T', calling module:'Com-UP-IF', PDU ID:40">
+            <field>
+                <int>45</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_197_407T', calling module:'Com-UP-IF', PDU ID:41">
+            <field>
+                <int>46</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_198_408T', calling module:'Com-UP-IF', PDU ID:42">
+            <field>
+                <int>47</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_1F2_498T', calling module:'Com-UP-IF', PDU ID:43">
+            <field>
+                <int>48</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_204_516T', calling module:'Com-UP-IF', PDU ID:44">
+            <field>
+                <int>50</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_207_519T', calling module:'Com-UP-IF', PDU ID:45">
+            <field>
+                <int>51</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+        <field comment="Routing path:'FC_620_1568T', calling module:'Com-UP-IF', PDU ID:46">
+            <field>
+                <int>52</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanIf">
+                <int>2</int>
+            </field>
+        </field>
+    </field>
+    <field>
+        <field comment="Routing path:'Diag_Func_IpduR', calling module:'CanTp-LO-TP', PDU ID:0">
+            <field>
+                <int>3</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Dcm">
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="Routing path:'Diag_FuncFD_IpduR', calling module:'CanTp-LO-TP', PDU ID:1">
+            <field>
+                <int>1</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Dcm">
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="Routing path:'Diag_Phys_IpduR', calling module:'CanTp-LO-TP', PDU ID:2">
+            <field>
+                <int>2</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Dcm">
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="Routing path:'Diag_PhysFD_IpduR', calling module:'CanTp-LO-TP', PDU ID:3">
+            <field>
+                <int>0</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Dcm">
+                <int>1</int>
+            </field>
+        </field>
+    </field>
+    <field>
+        <field comment="Routing path:'Diag_DataRespFD_IpduT', calling module:'CanTp-LO-TP', PDU ID:0">
+            <field>
+                <int>0</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Dcm">
+                <int>1</int>
+            </field>
+        </field>
+        <field comment="Routing path:'Diag_DataResp_IpduT', calling module:'CanTp-LO-TP', PDU ID:1">
+            <field>
+                <int>1</int>
+            </field>
+            <field comment="TargetModuleAPIRef: Dcm">
+                <int>1</int>
+            </field>
+        </field>
+    </field>
+    <field>
+        <field comment="Routing path:'Diag_DataRespFD_IpduT', calling module:'Dcm-UP-TP', PDU ID:0">
+            <field>
+                <int>1</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanTp">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'Diag_DataResp_IpduT', calling module:'Dcm-UP-TP', PDU ID:1">
+            <field>
+                <int>0</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanTp">
+                <int>0</int>
+            </field>
+        </field>
+    </field>
+    <field>
+        <field comment="Routing path:'Diag_Func_IpduR', calling module:'Dcm-UP-TP', PDU ID:0">
+            <field>
+                <int>3</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanTp">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'Diag_FuncFD_IpduR', calling module:'Dcm-UP-TP', PDU ID:1">
+            <field>
+                <int>2</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanTp">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'Diag_Phys_IpduR', calling module:'Dcm-UP-TP', PDU ID:2">
+            <field>
+                <int>0</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanTp">
+                <int>0</int>
+            </field>
+        </field>
+        <field comment="Routing path:'Diag_PhysFD_IpduR', calling module:'Dcm-UP-TP', PDU ID:3">
+            <field>
+                <int>1</int>
+            </field>
+            <field comment="TargetModuleAPIRef: CanTp">
+                <int>0</int>
+            </field>
+        </field>
+    </field>
+</instance>
+
+            </memory-section>
+            <!-- END GENERATED PostBuild type and variable definitions -->
+        </configuration> <!-- post-build -->
+
+
+    </module>
+
+    <!-- include the AUTOSAR standard data types, etc. -->
+    <xi:include href="Base.xgen" xpointer="element(/1/1)" />
+</xgen>

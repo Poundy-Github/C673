@@ -1,0 +1,22 @@
+---
+# This is the configurationInput file in which all relevant information must be collected, like outputPath, required files, ...
+# This file has to be provided as an argument to the generator. 
+#
+# The paths can be given either as absolute paths or as relative paths. 
+# In case there are relative path are delivered it is important that a referencePath is given at generator call (optional parameter -r).
+# All provided relPath have to be then relative to given referencePath, that the absolute path can be determined in the generator. 
+# The format of given information is really important, especially the names on the left hand side.
+# It has to be always of the following format: 
+#
+# <name> : <value> 
+#
+# Just subtitute the <#######> in below lines with real texts/paths.
+
+
+project            : C673 #<The ProjectName>
+build_unit         : IUC #<The name of the buildUnit>
+output_path        : 02_SrcAppl\MeasServ\Rta\02_Config\GenData #<The path where the LutCfgFile shall be generated to> 
+os_dir_path        : 01_AsrConfig\output\generated\include #<The path containing the related osFiles like Mk_gen_user.h (ElektroBitSafetyOs) or Os_Types_Lcfg.h (VectorOs)>
+rta_taskids_h      : 02_SrcAppl\MeasServ\Rta\02_Config\GenData\os_rta_task_ids.h #<The path - including the filename - where to find the os_rta_task_ids.h>
+os_type            : OS_TYPE_EB #<The os which is used it can be one of the following: OS_TYPE_EB_S, OS_TYPE_EB, OS_TYPE_VECTOR, OS_TYPE_RTOS>
+#os_cfg_file        : <[Only required in case of RTOS(FreeRTOS or SafeRTOS)] The osCfgFile incl path >
