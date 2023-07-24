@@ -1,0 +1,43 @@
+
+Name: generate/template/Eth_17_GEthMac.m
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 28964594773972822371826320292204978345081201590177579532785
+ 120741975956841773303963503098829207180116477583659058
+
+Name: generate/template/inc/Eth_17_GEthMac_Cfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 28964594773965313226587258326959341964735192978476521830106
+ 526630356136717925087189780283977114170151232825407679
+
+Name: generate/template/inc/Eth_17_GEthMac_PBcfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377421208164580605701841628208620466640293226993818030
+ 8861878119472302365188772508474389168571331122225973
+
+Name: generate/template/src/Eth_17_GEthMac_PBcfg.c
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377421616486985787507027045124020997700239695502521538
+ 4970713941135285022238573300804072594751244210939220
+
+Name: config/AS422/Eth_17_GEthMac.xdm
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 28964594773971816619842266653397224539812956602480325097517
+ 050991413499625551163240844155537583847250560166263860
+
+Name: generate/template/Eth_17_GEthMac_Bswmd.arxml
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377426980202843434204662563215188756454989034171979963
+ 3765847724008301083888810457127991234875970690659087
+

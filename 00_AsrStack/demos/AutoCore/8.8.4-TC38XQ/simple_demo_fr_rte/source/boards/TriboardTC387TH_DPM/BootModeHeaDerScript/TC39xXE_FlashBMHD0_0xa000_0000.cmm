@@ -1,0 +1,11 @@
+; TC39xXE_FlashBMHD0_0xa000_0000.cmm
+; This script flashes BootModeHeaDer0 of a TC39xXE chip
+
+; A TC397XX BB seems to be OK with being called
+;  - TC397XE
+;  - TC399XE
+; But the following will lead to "enabling MCDS failed"
+;  - *-Astep
+;  - TC397X
+;  - TC399X
+do ~~~~/TC39x_FlashBMHD0_0xa000_0000.cmm TC397XE

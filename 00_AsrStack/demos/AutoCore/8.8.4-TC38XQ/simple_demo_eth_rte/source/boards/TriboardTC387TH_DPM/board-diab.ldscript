@@ -1,0 +1,67 @@
+/* board-diab.ldscript
+ *
+ * Partial linker script to define board memory layout.
+ *
+ * $Id: board-diab.ldscript 29552 2018-11-29 08:53:43Z sash270423 $
+ *
+ * Copyright Elektrobit Automotive GmbH
+ * All rights exclusively reserved for Elektrobit Automotive GmbH,
+ * unless expressly agreed to otherwise.
+*/
+
+MEMORY
+{
+	/* Usage of flash:
+	 *
+	 * There's 3*3MiB flash in PF0 to PF2.
+	 * There's   1MiB flash in PF3.
+	 *
+	 * Note that some of this flash might be used by the HSM.
+	 * Sectors 0 to 64 of PF0 are located at 0x80000000 .. 0x800fffff.
+	 * Sector size is 0x4000 B = 16 kiB.
+	 * PF0 logical sectors S0 to S39 may be configured as "HSM_exclusive".
+	 * In this example we don't expect that this memory is reserved for HSM.
+	 *
+	 *
+	 * Note, that early versions of TC3XX have only 96k of int_ram_core[01],
+	 * while newer steppings will have 2*240k for core 0 and core 1.
+	*/
+
+	int_rom_vect  : org = 0x80000000, len = 20k
+	int_rom       : org = 0x80005000, len = 10240k
+	int_ram_core0 : org = 0x70000000, len = (240k - (GENLD_csaCore0_NCSA*64))
+	int_ram_core1 : org = 0x60000000, len = (240k - (GENLD_csaCore1_NCSA*64))
+	int_ram_core2 : org = 0x50000000, len = (96k - (GENLD_csaCore2_NCSA*64))
+	int_ram_core3 : org = 0x40000000, len = (96k - (GENLD_csaCore3_NCSA*64))
+}
+
+/* Where the CSA memory is located:
+ * OS_csaCorex_BEGIN is the base of the CSA block of core x
+ * GENLD_csaCore0_NCSA is the number of CSAs in the block
+ *
+ * OS_csaCorex_BEGIN must be aligned on a 64-byte boundary (lower 6 bits all zero)
+ */
+OS_csaCore0_BEGIN  = 0xd0000000 + SIZEOF(int_ram_core0);
+OS_csaCore1_BEGIN  = 0xd0000000 + SIZEOF(int_ram_core1);
+OS_csaCore2_BEGIN  = 0xd0000000 + SIZEOF(int_ram_core2);
+OS_csaCore3_BEGIN  = 0xd0000000 + SIZEOF(int_ram_core3);
+
+/* for read-only memory region providing access to all RAMs */
+__GLBL_DATA_START = ADDR(int_ram_core3);
+__GLBL_DATA_END = ADDR(int_ram_core0) + SIZEOF(int_ram_core0);
+
+/* _LITERAL_DATA_ required, if -Xsmall-const is used. It should be placed in the middle of the small constant area.
+ * In our example we allocate "small" read-only variables starting at __GLBL_SMALL_RODATA_START.
+ * BOL instructions have signed 16-bit offsets, so they have a range of -0x08000 to 0x007fff.
+*/
+_LITERAL_DATA_ = __GLBL_SMALL_RODATA_START + 0x07ff0;
+
+/* The OS kernel shall not use small data areas. To test the OS kernel while -Xsmall-data is enabled,
+ * we map all user specific data to core 0. This is not recommended for real-world applications.
+ * We assume that customers know what they want to achieve by using SDAs.
+*/
+_SMALL_DATA_ = __USER_DATA_CORE_OVERRIDE_BEGIN + 0x07ff0;
+_SDA_BASE_   = _SMALL_DATA_;
+__SDA_BASE_  = _SMALL_DATA_;
+
+

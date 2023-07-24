@@ -1,0 +1,18 @@
+; TC397X_A_FlashBMHD0_0xa000_0000.cmm
+; This script flashes BootModeHeaDer0 of a TC397X-Astep chip
+
+RESeT
+SYStem.CPU TC397X-Astep
+
+; We first re-use Lauterbach's flash declarations,
+; but override them later.
+do ~~/demo/tricore/flash/tc39x.cmm CPU=TC397X-Astep PREPAREONLY
+
+local &lockstepBits
+
+; Nobody should go to ASIL-C/D production with an A-step,
+; but we enable lock-step mode on all four cores anyway.
+&lockstepBits=0xf
+
+; Call the TC3XX script for flashing the BMHD.
+do ~~~~/FlashBMHD0_0xa000_0000.cmm &lockstepBits

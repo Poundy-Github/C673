@@ -1,0 +1,28 @@
+; TC38x_FlashBMHD0_0xa000_0000.cmm
+; This script flashes BootModeHeaDer0 of a TC38xQ chip
+
+RESeT
+; Note: TC387Q also works for TC389QP
+SYStem.CPU TC387Q
+
+; We first re-use Lauterbach's flash setup,
+; but override the flash declarations later.
+do ~~/demo/tricore/flash/tc38x.cmm CPU=TC387Q PREPAREONLY
+
+local &lockstepBits
+
+; On all known TC38x chips there are two lock-step cores.
+; Known:
+;  - AD Step
+;    - SAL-TC380QP-160F300
+;    - SAL-TC389QP-160F300S
+;    - SAL-TC387QP-160F300S
+;    - SAK-TC389QP-160F300S
+;    - SAK-TC387QP-160F300S
+;    - SAK-TC387TP-128F300S
+;    - SAK-TC387TP-160F300S
+; We assume that always the first two cores are lock-step cores.
+&lockstepBits=0x3
+
+; Call the TC3XX script for flashing the BMHD.
+do ~~~~/FlashBMHD0_0xa000_0000.cmm &lockstepBits

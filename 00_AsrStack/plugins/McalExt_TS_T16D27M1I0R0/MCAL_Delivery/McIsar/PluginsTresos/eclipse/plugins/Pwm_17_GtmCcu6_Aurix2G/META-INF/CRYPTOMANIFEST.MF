@@ -1,0 +1,43 @@
+
+Name: generate/template/inc/Pwm_17_GtmCcu6_PBcfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377426131396232610420615306084261045646335645046896538
+ 1131271764223271488914060277165383421964849983628625
+
+Name: generate/template/inc/Pwm_17_GtmCcu6_Cfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 28964594743923362350110934175876635693745915236771950575672
+ 112702947229724645828555487686712755982127142484213055
+
+Name: config/AS422/Pwm_17_GtmCcu6.xdm
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377425464429035075367233901117509126790020216788300252
+ 5042480764991264949556573804882883457361170270019251
+
+Name: generate/template/src/Pwm_17_GtmCcu6_PBcfg.c
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 28964594746482554667482995485110052748778281411798022432134
+ 059991449116112368716827561908643493341219747317312917
+
+Name: generate/template/Pwm_17_GtmCcu6_Bswmd.arxml
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377420702313719167482892514421264139057268526848055879
+ 6950719024042014628642263123766289222068158958674355
+
+Name: generate/template/Pwm_17_GtmCcu6.m
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 28964594773971432416733922524570274175417232169347946999098
+ 161839342126417437317531794869531743644798713248078995
+

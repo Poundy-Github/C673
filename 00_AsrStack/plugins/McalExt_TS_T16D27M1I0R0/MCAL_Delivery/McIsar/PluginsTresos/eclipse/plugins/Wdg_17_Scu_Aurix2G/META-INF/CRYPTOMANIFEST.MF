@@ -1,0 +1,43 @@
+
+Name: config/AS422/Wdg_17_Scu.xdm
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377422930941468640220214745485518210360442057408815903
+ 2604311653231495859764229561680255836095402755291043
+
+Name: generate/template/inc/Wdg_17_Scu_PBcfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377423454232057555231500363659863450301853229964331825
+ 5911881662273112691429031046442873662982564210896646
+
+Name: generate/template/src/Wdg_17_Scu_PBcfg.c
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377424608368583673083373236136740116274228060702600181
+ 8070705997594308839236853212534485388579428761520330
+
+Name: generate/template/inc/Wdg_17_Scu_Cfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377424402769477197467975811282291482625618853656719118
+ 6707092223737168473883361250530269696639895871762206
+
+Name: generate/template/Wdg_17_Scu.m
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377424236297352854387951286634214753125661531673388848
+ 9440685835657461172668221303000563749506778207074671
+
+Name: generate/template/Wdg_17_Scu_Bswmd.arxml
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 28964594745407972720783339082118110785513401834906368981655
+ 977482365738791335939903284912943925775138453151697275
+

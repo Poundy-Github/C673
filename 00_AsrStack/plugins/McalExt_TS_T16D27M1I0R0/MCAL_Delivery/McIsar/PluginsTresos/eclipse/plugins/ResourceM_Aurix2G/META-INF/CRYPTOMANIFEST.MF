@@ -1,0 +1,8 @@
+
+Name: config/AS422/ResourceM.xdm
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377421061500651338608216635493290717996113751018135542
+ 3024810398579779958095953335892319492936070646099058
+

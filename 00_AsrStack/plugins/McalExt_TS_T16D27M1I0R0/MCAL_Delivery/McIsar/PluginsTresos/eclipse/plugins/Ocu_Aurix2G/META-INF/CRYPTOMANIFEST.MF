@@ -1,0 +1,43 @@
+
+Name: generate/template/inc/Ocu_PBcfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377422575418497652266733413517335223513114580914412827
+ 6196509773038862752557003423135230952205548126807274
+
+Name: generate/template/Ocu.m
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377421385418304388122473050570865322797687599785611378
+ 6866027041803976012108817280036941706777782112964119
+
+Name: config/AS422/Ocu.xdm
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377423839273770431473067889629423410564571417341514661
+ 5338203239339581572419265437793504714654453694807671
+
+Name: generate/template/inc/Ocu_Cfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377424513771439892670121773168079537391480748699680349
+ 9680891731995615015180893990999700932061141198399001
+
+Name: generate/template/Ocu_Bswmd.arxml
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 28964594738585318059690387191387914058445149619637548093404
+ 984072378613689661213484023994812008134667662471642847
+
+Name: generate/template/src/Ocu_PBcfg.c
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 44189296973756320666312739847392949706637541588402864093380
+ 6499354179561214294815944081888479156990600199037
+

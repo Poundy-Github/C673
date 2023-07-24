@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<memento version="1.0" lastmodified="Apr 27, 2020 8:52:47 AM">
+    <ImportEcuConfig system_comboText=""
+        ecuConfiguration_comboText_ComM="ComM"
+        bufferAssignmentCheckbox="Create default buffer assignment"
+        ecuConfiguration_comboText_Com="Com"
+        ecuConfiguration_comboText_PduR="PduR"
+        ecuConfiguration_comboText_FrIf="FrIf" overrideCheckbox="false"
+        suffixCheckbox="true" ecuConfiguration_comboText_EcuC="EcuC"
+        ecuConfiguration_comboText_Fr="Fr"
+        ecuConfiguration_comboText_Dem="Dem" ecuInstance_comboText="" ecuConfiguration_comboText_FrSM="FrSM">
+        <__metadata>
+            <WidgetModuleConfigurationGroup __expanded="true"/>
+            <ButtonsGroup __expanded="true"/>
+            <selectAll __toggled="false"/>
+            <deselectAll __toggled="false"/>
+            <configuration_labelText_Fr/>
+            <configuration_comboText_Fr __radix="DEC" __separators="false"/>
+            <configuration_labelText_FrIf/>
+            <configuration_comboText_FrIf __radix="DEC" __separators="false"/>
+            <configuration_labelText_FrSM/>
+            <configuration_comboText_FrSM __radix="DEC" __separators="false"/>
+            <configuration_labelText_Com/>
+            <configuration_comboText_Com __radix="DEC" __separators="false"/>
+            <configuration_labelText_ComM/>
+            <configuration_comboText_ComM __radix="DEC" __separators="false"/>
+            <configuration_labelText_Dem/>
+            <configuration_comboText_Dem __radix="DEC" __separators="false"/>
+            <configuration_labelText_EcuC/>
+            <configuration_comboText_EcuC __radix="DEC" __separators="false"/>
+            <configuration_labelText_PduR/>
+            <configuration_comboText_PduR __radix="DEC" __separators="false"/>
+            <prefixLabel/>
+            <prefixText __radix="DEC" __separators="false"/>
+            <bufferAssignmentLabel/>
+            <bufferAssignmentCombobox __radix="DEC" __separators="false"/>
+            <suffixLabel/>
+            <suffixCheckbox/>
+            <overrideProjectSettingsGroup __expanded="true"/>
+            <browser/>
+            <overrideCheckbox/>
+            <overrideLabel/>
+            <overrideGroup __expanded="true"/>
+            <spacerGroup __expanded="true"/>
+            <systemLabel/>
+            <systemCombobox __radix="DEC" __separators="false"/>
+            <ecuInstanceLabel/>
+            <ecuInstanceCombobox __radix="DEC" __separators="false"/>
+        </__metadata>
+    </ImportEcuConfig>
+</memento>

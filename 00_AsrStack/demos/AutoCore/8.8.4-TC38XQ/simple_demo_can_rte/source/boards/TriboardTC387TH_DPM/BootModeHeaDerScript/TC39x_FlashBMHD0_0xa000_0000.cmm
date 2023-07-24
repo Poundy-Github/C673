@@ -1,0 +1,74 @@
+; TC39x_FlashBMHD0_0xa000_0000.cmm
+; This script flashes BootModeHeaDer0 of a TC39x chip
+
+local &tc39x_cpu &tc39x_cpu_to_debugger
+entry &tc39x_cpu
+
+area
+
+echo "--- --- ---"
+echo "TC39x_FlashBMHD0_0xa000_0000.cmm"
+echo "--- --- ---"
+
+RESeT
+
+sys.detect.basecpu
+sys.detect.cpu
+
+&tc39x_cpu_to_debugger="&tc39x_cpu"
+if ("&tc39x_cpu"=="")
+(
+	echo %WARNING "WARNING No TC39X CPU name given. TC399X and a restricted set of lock-step cores will be used."
+	&tc39x_cpu_to_debugger="TC399X"
+)
+echo "CPU name which is used for the debugger settings is "+"&tc39x_cpu_to_debugger"
+
+SYStem.CPU &tc39x_cpu_to_debugger
+sys.up
+
+; We first re-use Lauterbach's flash setup,
+; but override the flash declarations later.
+do ~~/demo/tricore/flash/tc39x.cmm CPU=&tc39x_cpu_to_debugger PREPAREONLY
+
+local &lockstepBits
+
+; On _ALMOST_ all known TC39x chips there are four lock-step cores.
+; According to the LSENA*-bits only the first four cores can be lock-step cores.
+; Known:
+;  - BC Step
+;    - SAL-TC399XX-256F300S
+;    - SAL-TC399XP-256F300S
+;    - SAL-TC397XP-256F300S
+;    - SAK-TC399XP-256F300S
+;    - SAK-TC399XX-256F300S
+;    - SAK-TC397XP-256F300S
+;    - SAK-TC397XA-256F300S
+;    - SAK-TC397XT-256F300S
+;    - SAK-TC397QA-160F300S <-- Has only 3 lock-step cores.
+;    - SAK-TC397XX-256F300S
+;    - SAK-TC397QP-192F300S
+;    - SAK-TC397QP-256F300S
+;    - SAK-TC397XZ-256F300S
+;    - SAK-TC397TT-256F300S <-- Has 6 cores according to the documentation, but probably only has 3.
+if ("&tc39x_cpu"=="")
+(
+	echo %WARNING "WARNING No TC39X CPU name given. Reducing number of lock-step cores to 3."
+	echo "In the currently known derivatives at least the first three cores are lock-step cores."
+	&lockstepBits=0x7
+)
+if (STRing.FIND("&tc39x_cpu","TC397QA"))
+(
+	;CPU3 lockstep is not available
+	&lockstepBits=0x7
+)
+else if (STRing.FIND("&tc39x_cpu","TC397T"))
+(
+	&lockstepBits=0x7
+)
+else
+(
+	&lockstepBits=0xf
+)
+
+; Call the TC3XX script for flashing the BMHD.
+do ~~~~/FlashBMHD0_0xa000_0000.cmm &lockstepBits

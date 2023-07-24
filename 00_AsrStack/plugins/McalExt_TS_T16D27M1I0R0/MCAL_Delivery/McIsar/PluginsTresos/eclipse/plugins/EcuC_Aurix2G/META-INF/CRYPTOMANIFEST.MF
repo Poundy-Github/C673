@@ -1,0 +1,8 @@
+
+Name: config/AS422/EcuC.xdm
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377421312333311028918102166800415833339884661538391957
+ 2982084836273994898792708948194203015676861473174502
+

@@ -1,0 +1,551 @@
+; FlashBMHD0_0xa000_0000.cmm
+
+local &oneBmhdIsValid &progflash &lockstepBits &yesAnswer
+global &OSB_LogFile
+
+entry &lockstepBits
+
+area
+
+IF VERSION.BUILD()<38225.
+(
+	DIALOG.OK "Please request a TRACE32 software update to support Boot Mode Header handling (btmtc-support@lauterbach.com)"
+	ENDDO
+)
+
+gosub SetupLogFile
+
+if ("&OSB_LogFile"!="-")
+(
+	AREA.CLOSE A000
+	AREA.OPEN A000 "&OSB_LogFile" /Append /NoFileCache
+	area
+)
+
+&yesAnswer=FALSE()
+print ""
+print "--- --- ---"
+print "FlashBMHD0_0xa000_0000.cmm"
+print "--- --- ---"
+print ""
+print "The purpose of this script is to check and to flash BootModeHeaDers (BMHDs)."
+print "WARNING flashing invalid BMHDs can lock your device."
+print "Elektrobit Automotive GmbH doesn't accept any responsibility for the effect of this script."
+print ""
+print "This script will ask you at least one more 'yes' or 'no' question before flashing."
+print "Clicking 'no' shall always mean 'do not flash', while clicking 'yes' often enough will lead to"
+print "flashing."
+print ""
+print "If in doubt, click on 'no' and read the information in the message area or in the log file."
+print "The log file is:"
+print "'"+"&OSB_LogFile"+"'"
+print "If the log file is '-', there is not log file. See the message area for further information."
+print ""
+DIALOG.YESNO "See the message area of your debugger." \
+             "Do you wish to continue? If in doubt, click 'no'."
+entry &yesAnswer
+
+if (!&yesAnswer)
+(
+	print "Aborting..."
+	gosub EndScript
+	enddo
+)
+
+echo "Continuing..."
+
+if ("&lockstepBits"=="")
+(
+	echo "WARN lockstepBits not set, assuming 0x1 (only core 0 is in lock-step mode)."
+	echo "     We could use 0xf to say 'all are in lockstep mode', however, the documentation says about LSENA[1-3]:"
+	echo "       'Only if the respective CPUx Lockstep functionality is available on the product,'"
+	echo "       'otherwise the bit is Reserved, must be configured to 0 in UCB_BMHDx.'"
+	&lockstepBits=0x1
+)
+
+&oneBmhdIsValid=FALSE()
+
+print "--- ---"
+print "Initial BMHD report"
+print "--- ---"
+GOSUB ReportAllBootModeHeaders
+entry &oneBmhdIsValid
+
+
+&progflash=FALSE()
+
+if (&oneBmhdIsValid)
+(
+	DIALOG.YESNO "Found at least one valid BootModeHeaDer (BMHD)," \
+	             "see message area of your debugger window." \
+	             "Log file: '"+"&OSB_LogFile"+"'" \
+	             "Do you want to flash a BMHD anyway?"
+	ENTRY &progflash
+)
+else
+(
+	DIALOG.YESNO "Found no valid BootModeHeaDer (BMHD)," \
+	             "see message area of your debugger window." \
+	             "Log file: '"+"&OSB_LogFile"+"'" \
+	             "Do you want to flash a BMHD?"
+	ENTRY &progflash
+)
+
+if (!&progflash)
+(
+	echo "Decided not to flash..."
+	gosub EndScript
+	ENDDO
+)
+
+
+echo "Decided to flash..."
+
+; ~~/demo/tricore/flash/tc38x.cmm should already have been executed.
+
+FLASH.RESet
+
+; Note: The /BootModeHeaDer option can't span enough space, so NEVER USE FLASH.Erase!
+;       We mark BMHD1, so it is never erased.
+; Data flash DF0
+FLASH.Create 17. 0xAF000000--0xAF07FFFF 0x1000 NOP    Long   ; DF0, DF0_EEPROM0..DF0_EEPROM127
+; Note: Could we restrict this to UCB0 only?
+FLASH.Create 18. 0xAF400000--0xAF4007FF 0x0200 TARGET Long /BootModeHeaDer 0xAF400200++0x1f3 ; DF0, DF0_UCB0..DF0_UCB3
+FLASH.Create 18. 0xAF400800--0xAF400FFF 0x0200 NOP    Long   ; DF0, DF0_UCB4..DF0_UCB7
+FLASH.Create 18. 0xAF401000--0xAF4017FF 0x0200 TARGET Long /BootModeHeaDer 0xAF401200++0x1f3 ; DF0, DF0_UCB8..DF0_UCB11
+FLASH.Create 18. 0xAF401800--0xAF405FFF 0x0200 NOP    Long   ; DF0, DF0_UCB12..DF0_UCB47
+FLASH.Create 19. 0xAF800000--0xAF80FFFF 0x0200 NOP    Long   ; DF0, DF0_CFS0..DF0_CFS127
+; Data flash DF1
+FLASH.Create 20. 0xAFC00000--0xAFC1FFFF 0x1000 NOP    Long   ; DF1, DF1_EEPROM (HSM)
+
+; Prepare target flash control algorithm
+FLASH.TARGET 0xC0000000 0xD0000000 0x4000 ~~/demo/tricore/flash/long/tc3.bin
+
+
+; Now load, check and if the check succeeds, then flash.
+
+private &flashResult
+
+SETUP.Var %SpotLight
+v.dump 0xAF400000
+v.dump 0xAF401000
+
+echo "Enable flash programming."
+; Note: This could be restricted to one address range, however, we want to flash two address ranges at once.
+FLASH.ReProgram ALL
+
+echo "Write BMHD0"
+gosub WriteBmhd 0xAF400000 &lockstepBits
+entry &flashResult
+if (!&flashResult)
+(
+	echo "Flashing failed - cancelling flash reprogramming."
+	FLASH.ReProgram CANCEL
+	echo "Exiting. See log for further details."
+	gosub EndScriptFlash
+	enddo
+)
+
+; We found no error in the BMHDs we flashed.
+; Ask the users one last time whether we shall flash the BMHD.
+&yesAnswer=FALSE()
+DIALOG.YESNO "BMHDs were staged in TRACE32's virtual host memory." \
+						 "This script found no errors." \
+						 "Log file: '"+"&OSB_LogFile"+"'" \
+						 "Shall the BMHDs be flashed?"
+entry &yesAnswer
+if (!&yesAnswer)
+(
+	echo "Cancelling flash reprogramming."
+	FLASH.ReProgram CANCEL
+	echo "Exiting..."
+	gosub EndScriptFlash
+	enddo
+)
+
+echo "Flashing the BMHDs..."
+FLASH.ReProgram off
+echo "Done flashing the BMHDs."
+WAIT 1.s
+echo "Switching the device off and on again"
+Sys.Down
+Sys.Up
+RESET
+
+
+gosub EndScriptFlash
+ENDDO
+
+;========================================================================
+; End this script
+;
+EndScript:
+(
+	echo "Ending script FlashBMHD0_0xa000_0000.cmm."
+	AREA.CLOSE A000
+	echo "It is recommended to close the debugger now, unless you want to continue flashing BMHDs"
+	enddo
+)
+EndScriptFlash:
+(
+	; Restore the defaults of ~~/demo/tricore/flash/tc38x.cmm, to have less dangerous flash declaration
+	; ... just in case the last FLASH.reset fails...
+	FLASH.RESet
+
+	; Data flash DF0
+	FLASH.Create 17. 0xAF000000--0xAF07FFFF 0x1000 TARGET Long   ; DF0, DF0_EEPROM0..DF0_EEPROM127
+	FLASH.Create 18. 0xAF400000--0xAF4007FF 0x0200 NOP    Long   ; DF0, DF0_UCB0..DF0_UCB3
+	FLASH.Create 18. 0xAF400800--0xAF400FFF 0x0200 NOP    Long   ; DF0, DF0_UCB4..DF0_UCB7
+	FLASH.Create 18. 0xAF401000--0xAF4017FF 0x0200 NOP    Long   ; DF0, DF0_UCB8..DF0_UCB11
+	FLASH.Create 18. 0xAF401800--0xAF405FFF 0x0200 NOP    Long   ; DF0, DF0_UCB12..DF0_UCB47
+	FLASH.Create 19. 0xAF800000--0xAF80FFFF 0x0200 NOP    Long   ; DF0, DF0_CFS0..DF0_CFS127
+	; Data flash DF1
+	FLASH.Create 20. 0xAFC00000--0xAFC1FFFF 0x1000 NOP    Long   ; DF1, DF1_EEPROM (HSM)
+
+	; Reset all flash are declarations - just to be sure...
+	FLASH.RESet
+
+	gosub EndScript
+	enddo
+)
+
+;========================================================================
+; Write our standard BMHD.
+;
+WriteBmhd:
+(
+	private &addr &addr2 &lockstepBits &result
+	entry &addr &lockstepBits
+
+	&result=FALSE()
+	gosub WriteSingleBmhd &addr &lockstepBits
+	entry &result
+	if (!&result)
+	(
+		echo "WriteBmhd: Flashing ORIG failed"
+		return FALSE()
+	)
+	&result=FALSE()
+	&addr2=&addr+0x1000
+	gosub WriteSingleBmhd &addr2 &lockstepBits
+	entry &result
+	if (!&result)
+	(
+		echo "WriteBmhd: Flashing COPY failed"
+		return FALSE()
+	)
+
+	return TRUE()
+)
+
+
+;========================================================================
+; Report all boot mode headers
+;
+ReportAllBootModeHeaders:
+(
+	local &origValid &copyValid &oneValid
+
+	&oneValid=FALSE()
+
+	; UCB0[0-3]
+	echo "Reading BMHD0 ..."
+	GOSUB CheckBootModeHeader 0xAF400000
+	entry &origValid
+	GOSUB CheckBootModeHeader 0xAF401000
+	entry &copyValid
+	if ((&origValid)&&(&copyValid))
+	(
+		&oneValid=TRUE()
+	)
+	echo "Reading BMHD1 ..."
+	GOSUB CheckBootModeHeader 0xAF400200
+	entry &origValid
+	GOSUB CheckBootModeHeader 0xAF401200
+	if ((&origValid)&&(&copyValid))
+	(
+		&oneValid=TRUE()
+	)
+	echo "Reading BMHD2 ..."
+	GOSUB CheckBootModeHeader 0xAF400400
+	entry &origValid
+	GOSUB CheckBootModeHeader 0xAF401400
+	entry &copyValid
+	if ((&origValid)&&(&copyValid))
+	(
+		&oneValid=TRUE()
+	)
+	echo "Reading BMHD3 ..."
+	GOSUB CheckBootModeHeader 0xAF400600
+	entry &origValid
+	GOSUB CheckBootModeHeader 0xAF401600
+	entry &copyValid
+	if ((&origValid)&&(&copyValid))
+	(
+		&oneValid=TRUE()
+	)
+
+	echo "Is there one valid BMHD? "+"&oneValid"
+	echo "End of BMDH report."
+	RETURN &oneValid
+)
+
+;========================================================================
+; Write a single BMHD
+;
+WriteSingleBmhd:
+(
+	private &addr &lockstepBits &bmi &bmhdid &stad &crc &invcrc &result &confirmation
+	entry &addr &lockstepBits
+
+	&result=FALSE()
+
+	; BMI.PINDIS  = 0: Mode selection by HWCFG pins is enabled
+	; BMI.HWCFG   = 7: Internal start from Flash
+	; BMI.LSENA   = &lockstepBits // Derivative specific (see WARN about lockstepBits)
+	; BMI.LBISTENA= 0: LBIST execution start by SSW is DISabled (Note: If LBIST during reset is enabled,
+	;                  the machine may reset, do a self-test, reset and do a self-test again. During this procedure,
+	;                  it may be difficult for the debugger to catch the device again).
+	; BMI.CHSWENA = 0: CHSW execution after SSW is enabled
+	; BMI.Reserved= 0
+	&bmi=0x0E|(((&lockstepBits)&0xf)<<4)
+	; BMHDID=magic
+	&bmhdid=0xB359
+	; Start address is always 0xa000_0000 for us
+	&stad=0xa0000000
+	; We expect the following value on confirmation
+	&confirmation=0x43211234
+
+	echo "Writing single BMHD at "+"&addr"+" ..."
+	echo "  BMI   : "+"&bmi"
+	Data.Set &addr %Word &bmi
+	echo "  BMHDID: "+"&bmhdid"
+	Data.Set (&addr+0x2) %Word &bmhdid
+	echo "  STAD  : "+"&stad"
+	Data.Set (&addr+0x4) %Long &stad
+	echo "  CONFIR: "+"&confirmation"
+	Data.Set (&addr+0x1f0) %Long &confirmation
+
+	echo "  Calculating CRC..."
+	Data.SUM &addr++0x7 /Long /ByteSWAP /CRC32
+	&crc=Data.SUM()
+	&invcrc=((~&crc)&0xffffffff)
+
+	echo "  CRC   : "+"&crc"
+	echo "  CRC_N : "+"&invcrc"
+	Data.Set (&addr+0x8) %Long &crc
+	Data.Set (&addr+0xc) %Long &invcrc
+
+	echo "  Done writing."
+
+	gosub CheckBootModeHeader &addr
+	entry &result
+
+	return &result
+)
+
+;========================================================================
+; Check if Boot Mode Header has valid contents
+;
+CheckBootModeHeader:
+(
+	local &addr &result &bmi &bmhdid &stad &crc &invcrc &confirmation &calcCRC &invCalcCRC &zeroSum
+	local &bmiPINDIS &bmiHWCFG &bmiLSENA0 &bmiLSENA1 &bmiLSENA2 &bmiLSENA3 &bmiLBISTENA &bmiCHSWENA &bmiRes
+	local &bmiPINDISstr &bmiHWCFGstr &bmiLSENA0str &bmiLSENA1str &bmiLSENA2str &bmiLSENA3str &bmiLBISTENAstr
+	local &bmiCHSWENAstr
+	entry &addr
+	&result=TRUE()
+
+	ON.ERROR GOSUB
+	(
+		&result=FALSE()
+		RETURN
+	)
+
+	if (!STRing.FIND("&addr",":"))
+	(
+		&addr="C:&addr"
+	)
+
+	; Get Boot Mode Index (16 bit)
+	&bmi=Data.Word(&addr+0x0)
+	&bmiPINDIS=(&bmi)&0x1
+	&bmiHWCFG=((&bmi)>>0x1)&0x7
+	&bmiLSENA0=((&bmi)>>0x4)&0x1
+	&bmiLSENA1=((&bmi)>>0x5)&0x1
+	&bmiLSENA2=((&bmi)>>0x6)&0x1
+	&bmiLSENA3=((&bmi)>>0x7)&0x1
+	&bmiLBISTENA=((&bmi)>>0x8)&0x1
+	&bmiCHSWENA=((&bmi)>>0x9)&0x7
+	&bmiRes=((&bmi)>>0x12)&0xf
+	; Get Boot Mode Header ID (16 bit)
+	&bmhdid=Data.Word(&addr+0x2)
+	; Get Start Address (32 bit)
+	&stad=Data.Long(&addr+0x4)
+	; Get CRC checksums (2*32 bit)
+	&crc=Data.Long(&addr+0x8)
+	&invcrc=Data.Long(&addr+0xc)
+	; Get confirmation (32 bit)
+	&confirmation=Data.Long(&addr+0x1f0)
+
+	; Prepare some strings
+	&bmiPINDISstr="Mode selection by HWCFG pins is enabled"
+	&bmiHWCFGstr="<<?>>"
+	&bmiLSENA0str="Lockstep monitoring for CPU0 is DISabled"
+	&bmiLSENA1str="Lockstep monitoring for CPU1 is DISabled"
+	&bmiLSENA2str="Lockstep monitoring for CPU2 is DISabled"
+	&bmiLSENA3str="Lockstep monitoring for CPU3 is DISabled"
+	&bmiLBISTENAstr="LBIST execution start by SSW is DISabled"
+	&bmiCHSWENAstr="CHSW execution after SSW is enabled"
+	if (&bmiPINDIS==0x1)
+	(
+		&bmiPINDISstr="Mode selection by HWCFG pins is disabled"
+	)
+	if (&bmiHWCFG==0x3)
+	(
+		&bmiHWCFGstr="ASC Bootstrap Loader Mode (ASC BSL)"
+	)
+	if (&bmiHWCFG==0x4)
+	(
+		&bmiHWCFGstr="Generic Bootstrap Loader Mode (ASC/CAN BSL)"
+	)
+	if (&bmiHWCFG==0x6)
+	(
+		&bmiHWCFGstr="Alternate Boot Mode (ABM)"
+	)
+	if (&bmiHWCFG==0x7)
+	(
+		&bmiHWCFGstr="Internal start from Flash"
+	)
+	if (&bmiLSENA0==0x1)
+	(
+		&bmiLSENA0str="Lockstep monitoring for CPU0 is enabled"
+	)
+	if (&bmiLSENA1==0x1)
+	(
+		&bmiLSENA1str="Lockstep monitoring for CPU1 is enabled"
+	)
+	if (&bmiLSENA2==0x1)
+	(
+		&bmiLSENA2str="Lockstep monitoring for CPU2 is enabled"
+	)
+	if (&bmiLSENA3==0x1)
+	(
+		&bmiLSENA3str="Lockstep monitoring for CPU3 is enabled"
+	)
+	if (&bmiLBISTENA==0x1)
+	(
+		&bmiLBISTENAstr="LBIST execution start by SSW is enabled"
+	)
+	if (&bmiCHSWENA==0x5)
+	(
+		&bmiCHSWENAstr="CHSW execution after SSW is DISabled"
+	)
+
+	; Print the content of the BMHD
+	echo "Content of BootModeHeaDer at "+"&addr"+":"
+	echo "  BMI         : "+"&bmi"
+	echo "  BMI.PINDIS  : "+"&bmiPINDIS"+": "+"&bmiPINDISstr"
+	echo "  BMI.HWCFG   : "+"&bmiHWCFG"+": "+"&bmiHWCFGstr"
+	echo "  BMI.LSENA0  : "+"&bmiLSENA0"+": "+"&bmiLSENA0str"
+	echo "  BMI.LSENA1  : "+"&bmiLSENA1"+": "+"&bmiLSENA1str"
+	echo "  BMI.LSENA2  : "+"&bmiLSENA2"+": "+"&bmiLSENA2str"
+	echo "  BMI.LSENA3  : "+"&bmiLSENA3"+": "+"&bmiLSENA3str"
+	echo "  BMI.LBISTENA: "+"&bmiLBISTENA"+": "+"&bmiLBISTENAstr"
+	echo "  BMI.CHSWENA : "+"&bmiCHSWENA"+": "+"&bmiCHSWENAstr"
+	echo "  BMI.Reserved: "+"&bmiRes"
+	echo "  BMHDID      : "+"&bmhdid"
+	echo "  STAD        : "+"&stad"
+	echo "  CRC         : "+"&crc"
+	echo "  CRC_N       : "+"&invcrc"
+	echo "  CONFIRMATION: "+"&confirmation"
+	echo "  Checking BMHD ..."
+
+	; Check Boot Mode Header ID
+	if (&bmhdid!=0xB359)
+	(
+		echo "  ERROR BMHID is not 0xB359"
+		&result=FALSE()
+	)
+
+	; bmiRes and the other reserved fields should be zero
+	if (&bmiRes!=0x0)
+	(
+		echo "  ERROR BMI.Res is not 0x0"
+		&result=FALSE()
+	)
+	Data.SUM (&addr+0x10)--(&addr+0x1ef) /Byte
+	&zeroSum=Data.SUM()
+	if (&zeroSum!=0)
+	(
+		echo "  ERROR space between (&addr+0x10)--(&addr+0x1ef) is not filled with zeros"
+		&result=FALSE()
+	)
+
+	; Check Boot Mode Header CRC
+	; calculate CRC over the BMHDx content (total 2 words including BMI, BMHDID and STAD)
+	Data.SUM &addr++0x7 /Long /ByteSWAP /CRC32
+	&calcCRC=Data.SUM()
+	&invCalcCRC=((~&calcCRC)&0xffffffff)
+	echo "  LOG   CRC   should be "+"&calcCRC"
+	echo "  LOG   CRC_N should be "+"&invCalcCRC"
+	if (&crc!=&calcCRC)
+	(
+		echo "  ERROR Wrong CRC"
+		&result=FALSE()
+	)
+	if (&invcrc!=&invCalcCRC)
+	(
+		echo "  ERROR Wrong CRC_N"
+		&result=FALSE()
+	)
+
+	; Expect fixed confirmation=0x43211234, see Ifx_Cfg_SswBmhd.c
+	if (&confirmation!=0x43211234)
+	(
+		echo "  ERROR Wrong CONFI - should be 0x43211234"
+		&result=FALSE()
+	)
+
+	; We only flash a start address off 0xa000_0000, so consider this the only valid value.
+	if (&stad!=0xa0000000)
+	(
+		echo "  WARN  Unexpected STAD - should be 0xa0000000"
+		&result=FALSE()
+	)
+
+	echo "  LOG   result is "+"&result"
+
+	RETURN &result
+)
+
+;========================================================================
+; Setup log file
+;
+SetupLogFile:
+(
+	private &absDebugger &absCwd &logFn
+	if ("&OSB_LogFile"=="-")
+	(
+		print "FlashBMHD0_0xa000_0000.cmm: SetupLogFile: Not writing to a log file"
+		wait 1.s
+		return
+	)
+	&logFn="FlashBMHD0_0xa000_0000.log"
+	&absDebugger=os.file.abspath("~~/")
+	&absCwd=os.file.abspath("./")
+	if ("&absDebugger"=="&absCwd")
+	(
+		&OSB_LogFile=os.file.abspath("~~~~/&logFn")
+	)
+	else
+	(
+		&OSB_LogFile=os.file.abspath("./&logFn")
+	)
+
+	print "FlashBMHD0_0xa000_0000.cmm: SetupLogFile: Log file is "+"&OSB_LogFile"
+
+	wait 1.s
+	return
+)
+

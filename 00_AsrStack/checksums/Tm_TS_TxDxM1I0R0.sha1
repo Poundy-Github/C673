@@ -1,0 +1,14 @@
+044881ece4b5731d2ac7405d03220a23e962d4e1 *plugins\Tm_TS_TxDxM1I0R0\META-INF\MANIFEST.MF
+ff107ed22c18e0a98f7fd435034509ccf6df024f *plugins\Tm_TS_TxDxM1I0R0\anchors.xml
+322e847990000566f33a506c241ebcbfad6232f8 *plugins\Tm_TS_TxDxM1I0R0\autosar\Tm.bmd
+afedeea1502106fca6bcd61c8ed08b77beb4e9aa *plugins\Tm_TS_TxDxM1I0R0\config\Tm.xdm
+05bccecd8b3966adbe5bd9ff0a0837725eb320ea *plugins\Tm_TS_TxDxM1I0R0\generate\include\Tm_Cfg.h
+29622901761e2b400791ed75aa0af7aec5aac2de *plugins\Tm_TS_TxDxM1I0R0\generate_swcd\swcd\Tm_Bswmd.arxml
+d3a69dcc1f2a749c23a781883db2a86372b8ec3c *plugins\Tm_TS_TxDxM1I0R0\include\Tm.h
+42c4f920002477c5ca5fcf7b410ec74264211537 *plugins\Tm_TS_TxDxM1I0R0\include\Tm_Trace.h
+f4540cb54d1aabe7590c6aceee0d34f556ccebc6 *plugins\Tm_TS_TxDxM1I0R0\include\Tm_Types.h
+d1fd482572b36e1110a11691c0d014dc7ebd509c *plugins\Tm_TS_TxDxM1I0R0\include\Tm_Version.h
+f420b3841f142f57f452fe57a10e79e06c49975c *plugins\Tm_TS_TxDxM1I0R0\make\Tm_defs.mak
+f0e9aae89dc29d9bd989ed5625ca5c93d96e020e *plugins\Tm_TS_TxDxM1I0R0\make\Tm_rules.mak
+5fee62987cced3dab5731297b7892eee639eac94 *plugins\Tm_TS_TxDxM1I0R0\plugin.xml
+74b4fd76815f31cadd11a26d622ba9f3def3162f *plugins\Tm_TS_TxDxM1I0R0\src\Tm.c

@@ -1,0 +1,71 @@
+
+Name: config/AS422/McuPreConfiguration.xdm
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377422716486497773659289835590545846299049959974781410
+ 8630220016373416588875234953615849105406141933468708
+
+Name: generate/template/Mcu_Bswmd.arxml
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377422829893507289700476505606022940226139351992243064
+ 9644590949684993160860821104571724231655486233914146
+
+Name: generate/template/src/Mcu_PBcfg.c
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377422479600982164288229811453665526491968208643697144
+ 6870024923020349771656958906365929484733319683264101
+
+Name: generate/template/Mcu.m
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377421220327158904786636851637832247690046910896477535
+ 6693009038119486928115752794407230350344982737700973
+
+Name: config/AS422/Mcu.xdm
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377424178538962814904813134316487834012739642511665202
+ 2432322430563417637670068984904965375914206265539300
+
+Name: generate/template/Mcu_17_TimerIp.m
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377422993118835927855689563124799309457658098144729136
+ 3455803265510616968433631495702663331651658259005107
+
+Name: generate/template/inc/Mcu_17_TimerIp_Cfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 74155374890387512877702579931696371359316882695599074358015
+ 26939959437607639389046309456051609351885950999681345752
+
+Name: generate/template/inc/Mcu_PBcfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377420723828642078495994376668480871897781421258470501
+ 8841439305362082949277705194882873328189250913787569
+
+Name: generate/template/inc/Mcu_Cfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377420397322199058257337621681478643617090114206315393
+ 4017537098301421132056982036809756252715542021301571
+
+Name: generate/template/src/Mcu_17_TimerIp_Cfg.c
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 28964594773968721034810678256627182677620754509196652241436
+ 431482660924552745534410129158373472510556953122207626
+

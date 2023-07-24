@@ -1,0 +1,657 @@
+<?xml version='1.0'?>
+<datamodel version="7.0" 
+           xmlns="http://www.tresos.de/_projects/DataModel2/16/root.xsd" 
+           xmlns:a="http://www.tresos.de/_projects/DataModel2/16/attribute.xsd" 
+           xmlns:v="http://www.tresos.de/_projects/DataModel2/06/schema.xsd" 
+           xmlns:d="http://www.tresos.de/_projects/DataModel2/06/data.xsd">
+
+  <d:ctr type="AUTOSAR" factory="autosar" 
+         xmlns:ad="http://www.tresos.de/_projects/DataModel2/08/admindata.xsd" 
+         xmlns:cd="http://www.tresos.de/_projects/DataModel2/08/customdata.xsd" 
+         xmlns:f="http://www.tresos.de/_projects/DataModel2/14/formulaexpr.xsd" 
+         xmlns:icc="http://www.tresos.de/_projects/DataModel2/08/implconfigclass.xsd" 
+         xmlns:mt="http://www.tresos.de/_projects/DataModel2/11/multitest.xsd"  
+         xmlns:variant="http://www.tresos.de/_projects/DataModel2/11/variant.xsd">
+    <d:lst type="TOP-LEVEL-PACKAGES">
+      <d:ctr name="SoAd" type="AR-PACKAGE">
+        <d:lst type="ELEMENTS">
+          <d:chc name="SoAd" type="AR-ELEMENT" value="MODULE-CONFIGURATION">
+            <d:ctr type="MODULE-CONFIGURATION">
+              <a:a name="DEF" value="ASPath:/TS_TxDxM1I8R0/SoAd"/>
+              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+              <d:ctr name="CommonPublishedInformation" type="IDENTIFIABLE">
+                <d:var name="ArMajorVersion" type="INTEGER" value="4">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ArMinorVersion" type="INTEGER" value="2">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ArPatchVersion" type="INTEGER" value="2">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwMajorVersion" type="INTEGER" value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwMinorVersion" type="INTEGER" value="8">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwPatchVersion" type="INTEGER" value="18"/>
+                <d:var name="ModuleId" type="INTEGER" value="56">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="VendorId" type="INTEGER" value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="Release" type="STRING" value="">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+              </d:ctr>
+              <d:ctr name="PublishedInformation" type="IDENTIFIABLE">
+                <d:var name="PbcfgMSupport" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+              </d:ctr>
+              <d:var name="IMPLEMENTATION_CONFIG_VARIANT" type="ENUMERATION" 
+                     value="VariantPostBuild">
+                <a:a name="IMPORTER_INFO" value="@DEF"/>
+              </d:var>
+              <d:ctr name="SoAdDefensiveProgramming" type="IDENTIFIABLE">
+                <d:var name="SoAdDefProgEnabled" type="BOOLEAN" value="false"/>
+                <d:var name="SoAdPrecondAssertEnabled" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SoAdPostcondAssertEnabled" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SoAdStaticAssertEnabled" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SoAdUnreachAssertEnabled" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SoAdInvariantAssertEnabled" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+              </d:ctr>
+              <d:ctr name="SoAdGeneral" type="IDENTIFIABLE">
+                <d:var name="SoAdDevErrorDetect" type="BOOLEAN" value="true"/>
+                <d:var name="SoAdGetAndResetMeasurementDataApi" type="BOOLEAN" 
+                       value="false"/>
+                <d:var name="SoAdIPv6AddressEnabled" type="BOOLEAN" 
+                       value="false"/>
+                <d:var name="SoAdMainFunctionPeriod" type="FLOAT" value="0.1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SoAdSoConMax" type="INTEGER" >
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SoAdRoutingGroupMax" type="INTEGER" >
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SoAdVersionInfoApi" type="BOOLEAN" value="true"/>
+                <d:var name="SoAdTlsEnabled" type="BOOLEAN" value="false"/>
+                <d:ctr name="VendorSpecific" type="IDENTIFIABLE">
+                  <d:var name="SoAdDataMemSize" type="INTEGER" value="0">
+                    <a:a name="ENABLE" value="false"/>
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="SoAdDataMemSizeExtension" type="BOOLEAN" 
+                         value="false"/>
+                  <d:var name="SoAdRelocatableCfgEnable" type="BOOLEAN" 
+                         value="false"/>
+                  <d:var name="SoAdRouteMax" type="ENUMERATION" 
+                         value="INDEX_UINT8"/>
+                  <d:var name="SoAdTimerType" type="ENUMERATION" value="UINT32"/>
+                  <d:var name="SoAdSoConIdType" type="ENUMERATION" 
+                         value="UINT16">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="SoAdRoutingGroupIdType" type="ENUMERATION" 
+                         value="UINT16"/>
+                  <d:var name="SoAdReportInvPDUHeaderIdToDetEnable" 
+                         type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="SoAdSocketRouteDestFanInEnable" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                </d:ctr>
+                <d:var name="SoAdMainFunctionPeriodTx" type="FLOAT" value="0.1">
+                  <a:a name="IMPORTER_INFO">
+                    <a:v>@DEF</a:v>
+                    <a:v>@CALC</a:v>
+                  </a:a>
+                </d:var>
+                <d:var name="SoAdEnableMainFunctionTx" type="BOOLEAN" 
+                       value="false"/>
+              </d:ctr>
+              <d:lst name="SoAdBswModules" type="MAP">
+                <d:ctr name="PduR" type="IDENTIFIABLE">
+                  <a:a name="IMPORTER_INFO" value="@REC"/>
+                  <d:var name="SoAdIf" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@REC"/>
+                  </d:var>
+                  <d:var name="SoAdTp" type="BOOLEAN" value="false"/>
+                  <d:var name="SoAdIfTriggerTransmit" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@REC"/>
+                  </d:var>
+                  <d:var name="SoAdIfTxConfirmation" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@REC"/>
+                  </d:var>
+                  <d:var name="SoAdSoConModeChg" type="BOOLEAN" value="false">
+                    <a:a name="IMPORTER_INFO" value="@REC"/>
+                  </d:var>
+                  <d:var name="SoAdLocalIpAddrAssigmentChg" type="BOOLEAN" 
+                         value="false">
+                    <a:a name="IMPORTER_INFO" value="@REC"/>
+                  </d:var>
+                  <d:var name="SoAdUseCallerInfix" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@REC"/>
+                  </d:var>
+                  <d:var name="SoAdUseTypeInfix" type="BOOLEAN" value="true">
+                    <a:a name="IMPORTER_INFO" value="@REC"/>
+                  </d:var>
+                  <d:ref name="SoAdBswModuleRef" type="REFERENCE" >
+                    <a:a name="IMPORTER_INFO" value="@REC"/>
+                  </d:ref>
+                </d:ctr>
+              </d:lst>
+              <d:lst name="SoAdConfig" type="MAP">
+                <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                <d:ctr name="SoAdConfig" type="IDENTIFIABLE">
+                  <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                  <d:lst name="SoAdSocketConnectionGroup" type="MAP">
+                    <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                    <d:ctr name="CGSocketConnectionBundleUDP" 
+                           type="IDENTIFIABLE">
+                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      <d:var name="SoAdResourceManagementEnable" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="SoAdSocketAutomaticSoConSetup" 
+                             type="BOOLEAN" value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="SoAdSocketSoConModeChgNotification" 
+                             type="BOOLEAN" value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="SoAdSocketIpAddrAssignmentChgNotification" 
+                             type="BOOLEAN" value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="SoAdSocketTpRxBufferMin" type="INTEGER" 
+                             value="0">
+                        <a:a name="ENABLE" value="false"/>
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="SoAdSocketMsgAcceptanceFilterEnabled" 
+                             type="BOOLEAN" value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="SoAdSocketFramePriority" type="INTEGER" 
+                             value="0">
+                        <a:a name="ENABLE" value="false"/>
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:chc name="SoAdSocketProtocol" type="IDENTIFIABLE" 
+                             value="SoAdSocketUdp">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        <d:ctr name="SoAdSocketUdp" type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:var name="SoAdSocketUdpAliveSupervisionTimeout" 
+                                 type="FLOAT" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketUdpListenOnly" type="BOOLEAN" 
+                                 value="false">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketUdpRetryEnabled" 
+                                 type="BOOLEAN" value="true"/>
+                          <d:var 
+                                 name="SoAdSocketUdpStrictHeaderLenCheckEnabled" 
+                                 type="BOOLEAN" value="false">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketUdpTriggerTimeout" 
+                                 type="FLOAT" value="0.1">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketnPduUdpTxBufferMin" 
+                                 type="INTEGER" value="0">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdTxBufferPoolSize" type="INTEGER" 
+                                 value="0">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdEnableShadowBufferSize" 
+                                 type="INTEGER" value="600"/>
+                        </d:ctr>
+                        <d:ctr name="SoAdSocketTcp" type="IDENTIFIABLE">
+                          <d:var name="SoAdSocketTcpImmediateTpTxConfirmation" 
+                                 type="BOOLEAN" value="false">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpInitiate" type="BOOLEAN" 
+                                 value="true">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpKeepAlive" type="BOOLEAN" 
+                                 value="false">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpKeepAliveInterval" 
+                                 type="FLOAT" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpKeepAliveProbesMax" 
+                                 type="INTEGER" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpKeepAliveTime" type="FLOAT" 
+                                 value="7200.0">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpNoDelay" type="BOOLEAN" 
+                                 value="true">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpTxQuota" type="INTEGER" 
+                                 value="0">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                        </d:ctr>
+                      </d:chc>
+                      <d:ref name="SoAdSocketLocalAddressRef" type="REFERENCE" 
+                             value="ASPath:/TcpIp/TcpIp/TcpIpConfig/SocketAddress_TestNode_NEP">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:ref>
+                      <d:var name="SoAdSocketLocalPort" type="INTEGER" 
+                             value="50000">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="SoAdPduHeaderEnable" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:lst name="SoAdSocketConnection" type="MAP">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        <d:ctr name="SocketConnectionTestToDebugNode" 
+                               type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:var name="SoAdSocketId" type="INTEGER" value="0">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:ref name="SoAdTlsConnectionRef" type="REFERENCE" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:ref>
+                          <d:ctr name="SoAdSocketRemoteAddress" 
+                                 type="IDENTIFIABLE">
+                            <a:a name="ENABLE" value="true"/>
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            <d:var name="SoAdSocketRemoteIpAddress" 
+                                   type="STRING" value="192.168.88.77">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            </d:var>
+                            <d:var name="SoAdSocketRemotePort" type="INTEGER" 
+                                   value="60000">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            </d:var>
+                          </d:ctr>
+                        </d:ctr>
+                      </d:lst>
+                    </d:ctr>
+                    <d:ctr name="CGSocketConnectionBundleTCP" 
+                           type="IDENTIFIABLE">
+                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      <d:var name="SoAdResourceManagementEnable" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="SoAdSocketAutomaticSoConSetup" 
+                             type="BOOLEAN" value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="SoAdSocketSoConModeChgNotification" 
+                             type="BOOLEAN" value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="SoAdSocketIpAddrAssignmentChgNotification" 
+                             type="BOOLEAN" value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="SoAdSocketTpRxBufferMin" type="INTEGER" 
+                             value="0">
+                        <a:a name="ENABLE" value="false"/>
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="SoAdSocketMsgAcceptanceFilterEnabled" 
+                             type="BOOLEAN" value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="SoAdSocketFramePriority" type="INTEGER" 
+                             value="0">
+                        <a:a name="ENABLE" value="false"/>
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:chc name="SoAdSocketProtocol" type="IDENTIFIABLE" 
+                             value="SoAdSocketTcp">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        <d:ctr name="SoAdSocketUdp" type="IDENTIFIABLE">
+                          <d:var name="SoAdSocketUdpAliveSupervisionTimeout" 
+                                 type="FLOAT" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketUdpListenOnly" type="BOOLEAN" 
+                                 value="false">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketUdpRetryEnabled" 
+                                 type="BOOLEAN" value="false">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var 
+                                 name="SoAdSocketUdpStrictHeaderLenCheckEnabled" 
+                                 type="BOOLEAN" value="false">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketUdpTriggerTimeout" 
+                                 type="FLOAT" value="0.1">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketnPduUdpTxBufferMin" 
+                                 type="INTEGER" value="0">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdTxBufferPoolSize" type="INTEGER" 
+                                 value="0">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdEnableShadowBufferSize" 
+                                 type="INTEGER" value="200">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                        </d:ctr>
+                        <d:ctr name="SoAdSocketTcp" type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:var name="SoAdSocketTcpImmediateTpTxConfirmation" 
+                                 type="BOOLEAN" value="false">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpInitiate" type="BOOLEAN" 
+                                 value="false">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpKeepAlive" type="BOOLEAN" 
+                                 value="false">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpKeepAliveInterval" 
+                                 type="FLOAT" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpKeepAliveProbesMax" 
+                                 type="INTEGER" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpKeepAliveTime" type="FLOAT" 
+                                 value="7200.0">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpNoDelay" type="BOOLEAN" 
+                                 value="true">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdSocketTcpTxQuota" type="INTEGER" 
+                                 value="0">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                        </d:ctr>
+                      </d:chc>
+                      <d:ref name="SoAdSocketLocalAddressRef" type="REFERENCE" 
+                             value="ASPath:/TcpIp/TcpIp/TcpIpConfig/SocketAddress_TestNode_NEP">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:ref>
+                      <d:var name="SoAdSocketLocalPort" type="INTEGER" 
+                             value="50020">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="SoAdPduHeaderEnable" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:lst name="SoAdSocketConnection" type="MAP">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        <d:ctr name="SocketConnectionDebugToTestNode" 
+                               type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:var name="SoAdSocketId" type="INTEGER" value="1">
+                            <a:a name="IMPORTER_INFO" value="@CALC"/>
+                          </d:var>
+                          <d:ref name="SoAdTlsConnectionRef" type="REFERENCE" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:ref>
+                          <d:ctr name="SoAdSocketRemoteAddress" 
+                                 type="IDENTIFIABLE">
+                            <a:a name="ENABLE" value="true"/>
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            <d:var name="SoAdSocketRemoteIpAddress" 
+                                   type="STRING" value="192.168.88.77">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            </d:var>
+                            <d:var name="SoAdSocketRemotePort" type="INTEGER" 
+                                   value="60020">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            </d:var>
+                          </d:ctr>
+                        </d:ctr>
+                      </d:lst>
+                    </d:ctr>
+                  </d:lst>
+                  <d:lst name="SoAdPduRoute" type="MAP">
+                    <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                    <d:ctr name="PRPdu_CounterOut_T" type="IDENTIFIABLE">
+                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      <d:var name="SoAdTxPduId" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:ref name="SoAdTxPduRef" type="REFERENCE" 
+                             value="ASPath:/EcuC/EcuC/EcucPduCollection/Pdu_CounterOut_T">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:ref>
+                      <d:var name="SoAdTxUpperLayerType" type="ENUMERATION" 
+                             value="IF">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="SoAdTxPduCollectionSemantics" 
+                             type="ENUMERATION" value="SOAD_COLLECT_QUEUED">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:lst name="SoAdPduRouteDest" type="MAP">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        <d:ctr name="SocketConnectionTestToDebugNode_10" 
+                               type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:ref name="SoAdTxSocketConnOrSocketConnBundleRef" 
+                                 type="REFERENCE" 
+                                 value="ASPath:/SoAd/SoAd/SoAdConfig/CGSocketConnectionBundleUDP/SocketConnectionTestToDebugNode">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:ref>
+                          <d:var name="SoAdTxPduHeaderId" type="INTEGER" 
+                                 value="10">
+                            <a:a name="ENABLE" value="true"/>
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:lst name="SoAdTxRoutingGroupRef"/>
+                          <d:var name="SoAdTxUdpTriggerMode" type="ENUMERATION" 
+                                 value="TRIGGER_ALWAYS">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdTxUdpTriggerTimeout" type="FLOAT" 
+                                 value="0.1">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                        </d:ctr>
+                      </d:lst>
+                      <d:var name="SoAdSkipIfTxConfirmation" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="PRPdu_DummyIn_T" type="IDENTIFIABLE">
+                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      <d:var name="SoAdTxPduId" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@CALC"/>
+                      </d:var>
+                      <d:ref name="SoAdTxPduRef" type="REFERENCE" 
+                             value="ASPath:/EcuC/EcuC/EcucPduCollection/Pdu_DummyIn_T">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:ref>
+                      <d:var name="SoAdTxUpperLayerType" type="ENUMERATION" 
+                             value="IF">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="SoAdTxPduCollectionSemantics" 
+                             type="ENUMERATION" value="SOAD_COLLECT_QUEUED">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:lst name="SoAdPduRouteDest" type="MAP">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        <d:ctr name="SocketConnectionDebugToTestNode_21" 
+                               type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:ref name="SoAdTxSocketConnOrSocketConnBundleRef" 
+                                 type="REFERENCE" 
+                                 value="ASPath:/SoAd/SoAd/SoAdConfig/CGSocketConnectionBundleTCP/SocketConnectionDebugToTestNode">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:ref>
+                          <d:var name="SoAdTxPduHeaderId" type="INTEGER" 
+                                 value="21">
+                            <a:a name="ENABLE" value="true"/>
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:lst name="SoAdTxRoutingGroupRef"/>
+                          <d:var name="SoAdTxUdpTriggerMode" type="ENUMERATION" 
+                                 value="TRIGGER_ALWAYS">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdTxUdpTriggerTimeout" type="FLOAT" 
+                                 value="0.1">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                        </d:ctr>
+                      </d:lst>
+                      <d:var name="SoAdSkipIfTxConfirmation" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                  </d:lst>
+                  <d:lst name="SoAdSocketRoute" type="MAP">
+                    <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                    <d:ctr name="SRSocketConnectionTestToDebugNode_11" 
+                           type="IDENTIFIABLE">
+                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      <d:ref name="SoAdRxSocketConnOrSocketConnBundleRef" 
+                             type="REFERENCE" 
+                             value="ASPath:/SoAd/SoAd/SoAdConfig/CGSocketConnectionBundleUDP/SocketConnectionTestToDebugNode">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:ref>
+                      <d:var name="SoAdRxPduHeaderId" type="INTEGER" value="11">
+                        <a:a name="ENABLE" value="true"/>
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:lst name="SoAdSocketRouteDest" type="MAP">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        <d:ctr name="Pdu_DummyOut_R" type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:ref name="SoAdRxPduRef" type="REFERENCE" 
+                                 value="ASPath:/EcuC/EcuC/EcucPduCollection/Pdu_DummyOut_R">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:ref>
+                          <d:var name="SoAdRxPduId" type="INTEGER" value="0">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdRxUpperLayerType" type="ENUMERATION" 
+                                 value="IF">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:lst name="SoAdRxRoutingGroupRef"/>
+                        </d:ctr>
+                      </d:lst>
+                    </d:ctr>
+                    <d:ctr name="SRSocketConnectionDebugToTestNode_20" 
+                           type="IDENTIFIABLE">
+                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      <d:ref name="SoAdRxSocketConnOrSocketConnBundleRef" 
+                             type="REFERENCE" 
+                             value="ASPath:/SoAd/SoAd/SoAdConfig/CGSocketConnectionBundleTCP/SocketConnectionDebugToTestNode">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:ref>
+                      <d:var name="SoAdRxPduHeaderId" type="INTEGER" value="20">
+                        <a:a name="ENABLE" value="true"/>
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:lst name="SoAdSocketRouteDest" type="MAP">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        <d:ctr name="Pdu_CounterIn_R" type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:ref name="SoAdRxPduRef" type="REFERENCE" 
+                                 value="ASPath:/EcuC/EcuC/EcucPduCollection/Pdu_CounterIn_R">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:ref>
+                          <d:var name="SoAdRxPduId" type="INTEGER" value="0">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="SoAdRxUpperLayerType" type="ENUMERATION" 
+                                 value="IF">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:lst name="SoAdRxRoutingGroupRef"/>
+                        </d:ctr>
+                      </d:lst>
+                    </d:ctr>
+                  </d:lst>
+                  <d:lst name="SoAdRoutingGroup" type="MAP"/>
+                </d:ctr>
+              </d:lst>
+            </d:ctr>
+          </d:chc>
+        </d:lst>
+      </d:ctr>
+    </d:lst>
+  </d:ctr>
+
+</datamodel>

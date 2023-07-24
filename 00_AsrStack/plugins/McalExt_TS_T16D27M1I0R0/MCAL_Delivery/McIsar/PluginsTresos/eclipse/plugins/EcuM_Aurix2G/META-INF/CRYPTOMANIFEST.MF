@@ -1,0 +1,15 @@
+
+Name: generate/Demo_Aurix2G/DemoApp_Cfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377425614597235120325197510838733465575274550817577109
+ 4318376241318881907295263822494160173830019473423692
+
+Name: config/AS422/EcuM.xdm
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377425443998342313608285771523849311947213525064162031
+ 2691287892262594416726235057454072400364142677604173
+

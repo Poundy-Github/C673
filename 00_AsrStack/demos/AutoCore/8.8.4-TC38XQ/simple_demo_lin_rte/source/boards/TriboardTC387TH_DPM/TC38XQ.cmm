@@ -1,0 +1,68 @@
+; t32.cmm - Trace32 flash programming script for TC387QP on TriboardTC3X7TH
+;
+
+
+entry &elffile
+if "&elffile"==""
+(
+	&elffile="../../../output/bin/*.elf"
+)
+
+
+; Initialize and start the debugger
+RESet
+SYStem.CPU TC387QP
+SYStem.Option DUALPORT ON
+SETUP.Var %SpotLight
+
+; Flash programming
+
+; shameless re-use of Lauterbachs flash declarations
+DO ~~/demo/tricore/flash/tc38x.cmm CPU=TC387QP PREPAREONLY
+
+; Certain tool-chains (e.g. dcc) might generate RAM information which disturbs the target-controlled FLASH
+; programming, so we restrict loading to the flash area.
+PRIVATE &pflashBegin &pflashSizeB
+&pflashBegin=0x80000000
+&pflashSizeB=0x01000000
+
+; only flash if necessary
+Data.LOAD.Elf "&elffile" &pflashBegin++&pflashSizeB /DIFF /SingleLineAdjacent
+IF FOUND()
+(
+  ; found differences, i.e. flash needs to be re-programmed
+  FLASH.ReProgram ALL
+  Data.LOAD.Elf "&elffile" &pflashBegin++&pflashSizeB
+  FLASH.ReProgram OFF
+
+  ; verify programming
+  Data.LOAD.Elf "&elffile" &pflashBegin++&pflashSizeB /DIFF
+  IF FOUND()
+  (
+    ; maybe binary uses regions that are not covered by the flash declaration.
+    PRIVATE &diffAddress
+    &diffAddress=TRACK.ADDRESS()
+    DIALOG.MESSAGE "File &elffile has not been fully flashed, difference found at address &diffAddress (check flash declaration)"
+    sys.log.list
+  )
+)
+
+; open some windows
+WAIT 1.s
+Print "Flash Programming successful! Run the GO command to start."
+
+Sys.Down
+Core.Assign 1 2 3 4
+Core.ShowActive
+Sys.Up
+
+; Show code and registers
+l
+r
+
+; Set PC to 0xa000_0000 in case there is no respective bootmode header in DFLASH which does this.
+core.select 0
+r.s pc 0xa0000000
+
+
+ENDDO

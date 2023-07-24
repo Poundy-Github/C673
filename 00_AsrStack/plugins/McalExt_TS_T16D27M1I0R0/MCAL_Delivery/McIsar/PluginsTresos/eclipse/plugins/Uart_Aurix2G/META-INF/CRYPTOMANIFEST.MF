@@ -1,0 +1,36 @@
+
+Name: generate/template/inc/Uart_PBcfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377422655254442988852254192531412218991477788491487184
+ 2357478741083867344849160321127544889932232590621638
+
+Name: generate/template/inc/Uart_Cfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377420255738567961080697040899281195548839696586534286
+ 0931175169898867604953948617930568013884527329287154
+
+Name: generate/template/Uart_Bswmd.arxml
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377425220815984903807766074588767661642144905010241695
+ 4299099669215892313070614938328731488747095365158711
+
+Name: generate/template/src/Uart_PBcfg.c
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377422797467338713162510138797961955987245002944312817
+ 1801921993444532980532379430856726314748343120232784
+
+Name: config/AS422/Uart.xdm
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 28964594773966516614459277268604122747474181800541228248149
+ 961276812369528398506194821307605714745538168194205420
+

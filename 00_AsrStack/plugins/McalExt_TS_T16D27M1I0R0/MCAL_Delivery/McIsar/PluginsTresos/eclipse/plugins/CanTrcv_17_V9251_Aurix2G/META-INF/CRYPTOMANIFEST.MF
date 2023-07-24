@@ -1,0 +1,29 @@
+
+Name: config/AS422/CanTrcv_17_V9251.xdm
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 28964594754777366730157095868828376554857486209905674042126
+ 929999035464928142974125679065491174858270561931345690
+
+Name: generate/template/src/CanTrcv_17_V9251_Cfg.c
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 28964594740866471852064713401777693144964249413180090048034
+ 830820199389907114112837206229652194233198376647837568
+
+Name: generate/template/CanTrcv_17_V9251_Bswmd.arxml
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377420974422403629392491506878683086822198054705555776
+ 2478299208577122478795671772291830014127680511016174
+
+Name: generate/template/inc/CanTrcv_17_V9251_Cfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377420534539932901011052303262503122574639300142096864
+ 1818076653753730447892499693867246682281958390143978
+

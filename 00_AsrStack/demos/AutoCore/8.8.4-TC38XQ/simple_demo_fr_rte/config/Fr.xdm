@@ -1,0 +1,291 @@
+<?xml version='1.0'?>
+<datamodel version="7.0" 
+           xmlns="http://www.tresos.de/_projects/DataModel2/16/root.xsd" 
+           xmlns:a="http://www.tresos.de/_projects/DataModel2/16/attribute.xsd" 
+           xmlns:v="http://www.tresos.de/_projects/DataModel2/06/schema.xsd" 
+           xmlns:d="http://www.tresos.de/_projects/DataModel2/06/data.xsd">
+
+  <d:ctr type="AUTOSAR" factory="autosar" 
+         xmlns:ad="http://www.tresos.de/_projects/DataModel2/08/admindata.xsd" 
+         xmlns:cd="http://www.tresos.de/_projects/DataModel2/08/customdata.xsd" 
+         xmlns:f="http://www.tresos.de/_projects/DataModel2/14/formulaexpr.xsd" 
+         xmlns:icc="http://www.tresos.de/_projects/DataModel2/08/implconfigclass.xsd" 
+         xmlns:mt="http://www.tresos.de/_projects/DataModel2/11/multitest.xsd"  
+         xmlns:variant="http://www.tresos.de/_projects/DataModel2/11/variant.xsd">
+    <d:lst type="TOP-LEVEL-PACKAGES">
+      <d:ctr name="Fr" type="AR-PACKAGE">
+        <d:lst type="ELEMENTS">
+          <d:chc name="Fr" type="AR-ELEMENT" value="MODULE-CONFIGURATION">
+            <d:ctr type="MODULE-CONFIGURATION">
+              <a:a name="DEF" value="ASPath:/AURIX2G/EcucDefs/Fr"/>
+              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+              <d:var name="IMPLEMENTATION_CONFIG_VARIANT" type="ENUMERATION" 
+                     value="VariantPostBuild">
+                <a:a name="IMPORTER_INFO" value="@DEF"/>
+              </d:var>
+              <d:ctr name="FrGeneral" type="IDENTIFIABLE">
+                <d:var name="FrCtrlTestCount" type="INTEGER" value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FrDevErrorDetect" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FrDisableLPduSupport" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FrIndex" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FrTimeoutDurationFactor" type="INTEGER" value="400">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FrNumCtrlSupported" type="INTEGER" value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FrPrepareLPduSupport" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FrReconfigLPduSupport" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FrRxStringentCheck" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FrRxStringentLengthCheck" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FrNmVectorEnable" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FrVersionInfoApi" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FrInitApiMode" type="ENUMERATION" 
+                       value="FR_MCAL_SUPERVISOR">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FrTxConflictDetection" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+              </d:ctr>
+              <d:ctr name="CommonPublishedInformation" type="IDENTIFIABLE">
+                <d:var name="ArMajorVersion" type="INTEGER" value="4">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ArMinorVersion" type="INTEGER" value="2">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ArPatchVersion" type="INTEGER" value="2">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwMajorVersion" type="INTEGER" value="20">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwMinorVersion" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwPatchVersion" type="INTEGER" value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ModuleId" type="INTEGER" value="81">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="VendorId" type="INTEGER" value="17">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="VendorApiInfix" type="STRING" value="Eray">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="Release" type="STRING" value="_TRICORE_TC387">
+                  <a:a name="IMPORTER_INFO">
+                    <a:v>@CALC</a:v>
+                    <a:v>@DEF</a:v>
+                  </a:a>
+                </d:var>
+              </d:ctr>
+              <d:lst name="FrMultipleConfiguration" type="MAP">
+                <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                <d:ctr name="FrMultipleConfiguration" type="IDENTIFIABLE">
+                  <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                  <d:lst name="FrController" type="MAP">
+                    <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                    <d:ctr name="FlexRay_Controller_1" type="IDENTIFIABLE">
+                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      <d:var name="FrCtrlIdx" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FrPAllowHaltDueToClock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPAllowPassiveToActive" type="INTEGER" 
+                             value="0">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPChannels" type="ENUMERATION" 
+                             value="FR_CHANNEL_A">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPClusterDriftDamping" type="INTEGER" 
+                             value="1">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPSecondKeySlotId" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FrPdAcceptedStartupRange" type="INTEGER" 
+                             value="109">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPDecodingCorrection" type="INTEGER" 
+                             value="36">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPDelayCompensationA" type="INTEGER" 
+                             value="10">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPDelayCompensationB" type="INTEGER" 
+                             value="10">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPdListenTimeout" type="INTEGER" 
+                             value="802404">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPdMicrotick" type="ENUMERATION" 
+                             value="T25NS">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPExternalSync" type="BOOLEAN" value="false">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPFallBackInternal" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPKeySlotId" type="INTEGER" value="10">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPKeySlotOnlyEnabled" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPKeySlotUsedForStartup" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPKeySlotUsedForSync" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPLatestTx" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPMacroInitialOffsetA" type="INTEGER" 
+                             value="8">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPMacroInitialOffsetB" type="INTEGER" 
+                             value="8">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPMicroInitialOffsetA" type="INTEGER" 
+                             value="34">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPMicroInitialOffsetB" type="INTEGER" 
+                             value="34">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPMicroPerCycle" type="INTEGER" 
+                             value="400000">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPNmVectorEarlyUpdate" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPOffsetCorrectionOut" type="INTEGER" 
+                             value="259">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPOffsetCorrectionStart" type="INTEGER" 
+                             value="9987">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPPayloadLengthDynMax" type="INTEGER" 
+                             value="16">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPRateCorrectionOut" type="INTEGER" 
+                             value="1202">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPSamplesPerMicrotick" type="ENUMERATION" 
+                             value="N2SAMPLES">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPTwoKeySlotMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPWakeupChannel" type="ENUMERATION" 
+                             value="FR_CHANNEL_A">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrPWakeupPattern" type="INTEGER" value="63">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:var>
+                      <d:var name="FrRxInputSelectionA" type="ENUMERATION" 
+                             value="FR_RXSEL0_PORT14_8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FrRxInputSelectionB" type="ENUMERATION" 
+                             value="FR_RXSEL0_PORT14_7">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:ctr name="FrAbsoluteTimer" type="IDENTIFIABLE">
+                        <d:var name="FrAbsTimerIdx" type="INTEGER" value="0">
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:var>
+                      </d:ctr>
+                      <d:lst name="FrControllerDemEventParameterRefs" 
+                             type="MAP">
+                        <d:ctr name="FrControllerDemEventParameterRefs_0" 
+                               type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" 
+                               value="@CALC(SvcAs,dem.events,1)"/>
+                          <d:lst name="FR_E_CTRL_TESTRESULT">
+                            <d:ref type="REFERENCE" 
+                                   value="ASPath:/Dem/Dem/DemConfigSet_0/FR_E_CTRL_TESTRESULT">
+                              <a:a name="IMPORTER_INFO" value="@CALC"/>
+                            </d:ref>
+                          </d:lst>
+                        </d:ctr>
+                      </d:lst>
+                      <d:lst name="FrFifo" type="MAP"/>
+                    </d:ctr>
+                  </d:lst>
+                  <d:ctr name="FrClockConfiguration" type="IDENTIFIABLE">
+                    <d:var name="FrClockDivider" type="INTEGER" value="1">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                  </d:ctr>
+                </d:ctr>
+              </d:lst>
+            </d:ctr>
+          </d:chc>
+        </d:lst>
+      </d:ctr>
+    </d:lst>
+  </d:ctr>
+
+</datamodel>

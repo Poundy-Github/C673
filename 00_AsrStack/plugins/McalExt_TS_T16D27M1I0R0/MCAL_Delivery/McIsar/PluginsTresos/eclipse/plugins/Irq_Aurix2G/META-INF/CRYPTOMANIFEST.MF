@@ -1,0 +1,22 @@
+
+Name: config/AS422/Irq.xdm
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377423512156709207120973425471360507130397416752293484
+ 3211089697907723617869377990504665521387233225600326
+
+Name: generate/template/Irq_Bswmd.arxml
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377423317144986895236416892424990839012507841834712768
+ 2964741669608245542030594621351356426539045529941518
+
+Name: generate/template/inc/Irq_Cfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 28964594773966379121043852245552825472081431817454273211519
+ 407770482453847383648270508071377523997868274929237785
+

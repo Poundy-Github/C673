@@ -1,0 +1,1235 @@
+<?xml version='1.0'?>
+<datamodel version="7.0" 
+           xmlns="http://www.tresos.de/_projects/DataModel2/16/root.xsd" 
+           xmlns:a="http://www.tresos.de/_projects/DataModel2/16/attribute.xsd" 
+           xmlns:v="http://www.tresos.de/_projects/DataModel2/06/schema.xsd" 
+           xmlns:d="http://www.tresos.de/_projects/DataModel2/06/data.xsd">
+
+  <d:ctr type="AUTOSAR" factory="autosar" 
+         xmlns:ad="http://www.tresos.de/_projects/DataModel2/08/admindata.xsd" 
+         xmlns:cd="http://www.tresos.de/_projects/DataModel2/08/customdata.xsd" 
+         xmlns:f="http://www.tresos.de/_projects/DataModel2/14/formulaexpr.xsd" 
+         xmlns:icc="http://www.tresos.de/_projects/DataModel2/08/implconfigclass.xsd" 
+         xmlns:mt="http://www.tresos.de/_projects/DataModel2/11/multitest.xsd"  
+         xmlns:variant="http://www.tresos.de/_projects/DataModel2/11/variant.xsd">
+    <d:lst type="TOP-LEVEL-PACKAGES">
+      <d:ctr name="LinIf" type="AR-PACKAGE">
+        <d:lst type="ELEMENTS">
+          <d:chc name="LinIf" type="AR-ELEMENT" value="MODULE-CONFIGURATION">
+            <d:ctr type="MODULE-CONFIGURATION">
+              <a:a name="DEF" value="ASPath:/TS_TxDxM5I8R0/LinIf"/>
+              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+              <d:ctr name="CommonPublishedInformation" type="IDENTIFIABLE">
+                <d:var name="ArMajorVersion" type="INTEGER" value="4">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ArMinorVersion" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ArPatchVersion" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwMajorVersion" type="INTEGER" value="5">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwMinorVersion" type="INTEGER" value="8">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwPatchVersion" type="INTEGER" value="30">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ModuleId" type="INTEGER" value="62">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="VendorId" type="INTEGER" value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="Release" type="STRING" value="">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+              </d:ctr>
+              <d:var name="IMPLEMENTATION_CONFIG_VARIANT" type="ENUMERATION" 
+                     value="VariantPostBuild">
+                <a:a name="IMPORTER_INFO" value="@DEF"/>
+              </d:var>
+              <d:ctr name="LinIfGeneral" type="IDENTIFIABLE">
+                <d:var name="LinIfCancelTransmitSupported" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfDevErrorDetect" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfMultipleDriversSupported" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfMultipleTrcvDriverSupported" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfNcOptionalRequestSupported" type="BOOLEAN" 
+                       value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:lst name="LinIfPublicCddHeaderFile"/>
+                <d:var name="LinIfTpSupported" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfTrcvDriverSupported" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfVersionInfoApi" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfBusMirroringSupported" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfRuntimeErrorReporting" type="BOOLEAN" 
+                       value="false"/>
+                <d:var name="LinIfSingleLinTrcvAPIInfixEnable" type="BOOLEAN" 
+                       value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfCheckWakeupSupported" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfScheduleTableEndNotificationSupported" 
+                       type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfUpperLayerCddSupported" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfDriverAPIInfixEnable" type="BOOLEAN" 
+                       value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfLinDriverAPI" type="ENUMERATION" value="REV42"/>
+                <d:var name="LinIfLinErrorCalloutName" type="FUNCTION-NAME" >
+                  <a:a name="ENABLE" value="false"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfLinErrorCalloutStatusForward" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfLinErrorCalloutHeaderFile" type="STRING" >
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfLinSuccessCalloutName" type="FUNCTION-NAME" >
+                  <a:a name="ENABLE" value="false"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfLinSuccessCalloutStatusForward" 
+                       type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfLinSuccessCalloutHeaderFile" type="STRING" >
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfMapChannelIdDirect" type="BOOLEAN" 
+                       value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfMapComMChannelIdDirect" type="BOOLEAN" 
+                       value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfMaxChannels" type="INTEGER" value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfMaxEventTriggeredFrames" type="INTEGER" 
+                       value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfMaxTxPdus" type="INTEGER" value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfRelocatablePbcfgEnable" type="BOOLEAN" 
+                       value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfMirroringOnMultiCoreSupported" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfMirrorToCDDReportingEnable" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfMirrorToCDDReportingFunctionName" 
+                       type="FUNCTION-NAME" >
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfMirrorToCDDReportingHeader" type="STRING" >
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:ctr name="ReportToDem" type="IDENTIFIABLE">
+                  <d:var name="LinIfTxBitErrorReportToDem" type="ENUMERATION" 
+                         value="DISABLE">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="LinIfTxBitErrorDebounceMethod" 
+                         type="ENUMERATION" value="INTERNAL">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="LinIfTxBitErrorDemDetErrorId" type="INTEGER" 
+                         value="9">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="LinIfRxChecksumErrorReportToDem" 
+                         type="ENUMERATION" value="DISABLE">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="LinIfRxChecksumDebounceMethod" 
+                         type="ENUMERATION" value="INTERNAL">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="LinIfRxChecksumErrDemDetErrorId" type="INTEGER" 
+                         value="9">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="LinIfRxNoRespErrorReportToDem" 
+                         type="ENUMERATION" value="DISABLE">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="LinIfRxNoRespDebounceMethod" type="ENUMERATION" 
+                         value="INTERNAL">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="LinIfRxNoRespErrDemDetErrorId" type="INTEGER" 
+                         value="9">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                </d:ctr>
+                <d:lst name="LinIfCddFunctionsUL" type="MAP"/>
+                <d:lst name="LinIfScheduleTableEndNotificationCallout" 
+                       type="MAP"/>
+                <d:var name="LinIfResponseErrorSignalChangedCallout" 
+                       type="FUNCTION-NAME" >
+                  <a:a name="ENABLE" value="false"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfSaveConfigurationCallout" 
+                       type="FUNCTION-NAME" >
+                  <a:a name="ENABLE" value="false"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+              </d:ctr>
+              <d:ctr name="LinIfEbGeneral" type="IDENTIFIABLE">
+                <d:ctr name="LinIfEbGeneralBswmdImplementation" 
+                       type="IDENTIFIABLE">
+                  <a:a name="ENABLE" value="false"/>
+                  <d:lst name="LinIfEbGeneralBswmdImplementationRefs" 
+                         type="MAP"/>
+                </d:ctr>
+              </d:ctr>
+              <d:lst name="LinIfGlobalConfig" type="MAP">
+                <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                <d:ctr name="LinIfGlobalConfig" type="IDENTIFIABLE">
+                  <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                  <d:lst name="LinIfChannel" type="MAP">
+                    <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                    <d:ctr name="LinChannel" type="IDENTIFIABLE">
+                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      <d:var name="LinIfChannelId" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:ref name="LinIfCddRef" type="REFERENCE" >
+                        <a:a name="ENABLE" value="false"/>
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                      <d:ref name="LinIfChannelRef" type="REFERENCE" 
+                             value="ASPath:/Lin/Lin/LinGlobalConfig/LinChannel">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:ref>
+                      <d:ref name="LinIfComMNetworkHandleRef" type="REFERENCE" 
+                             value="ASPath:/ComM/ComM/ComMConfigSet/LinNetwork">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                      </d:ref>
+                      <d:var name="LinIfBusIdleTimeoutPeriod" type="FLOAT" 
+                             value="4.0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="LinIfMaxFrameCnt" type="INTEGER" value="4">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:chc name="LinIfNodeType" type="IDENTIFIABLE" 
+                             value="LinIfMaster">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        <d:ctr name="LinIfMaster" type="IDENTIFIABLE">
+                          <d:var name="LinIfJitter" type="FLOAT" value="0.0">
+                            <a:a name="IMPORTER_INFO">
+                              <a:v>@DEF</a:v>
+                              <a:v>@CALC</a:v>
+                            </a:a>
+                          </d:var>
+                        </d:ctr>
+                        <d:ctr name="LinIfSlave" type="IDENTIFIABLE">
+                          <d:var name="LinIfLinProtocolVersion" 
+                                 type="ENUMERATION" value="ISO17987">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:ref name="LinIfResponseErrorSignal" 
+                                 type="REFERENCE" >
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:ref>
+                          <d:ctr name="LinIfNodeConfigurationIdentification" 
+                                 type="IDENTIFIABLE">
+                            <d:var name="LinIfSerialNumber" type="INTEGER" >
+                              <a:a name="ENABLE" value="true"/>
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:var>
+                            <d:var name="LinIfConfiguredNAD" type="INTEGER" 
+                                   value="1">
+                              <a:a name="IMPORTER_INFO">
+                                <a:v>@DEF</a:v>
+                                <a:v>@CALC</a:v>
+                              </a:a>
+                            </d:var>
+                            <d:var name="LinIfFunctionId" type="INTEGER" >
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:var>
+                            <d:var name="LinIfInitialNAD" type="INTEGER" >
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:var>
+                            <d:var name="LinIfNasTimeout" type="FLOAT" >
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:var>
+                            <d:var name="LinIfSupplierId" type="INTEGER" >
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:var>
+                            <d:var name="LinIfVariantId" type="INTEGER" >
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:var>
+                          </d:ctr>
+                        </d:ctr>
+                      </d:chc>
+                      <d:var name="LinIfGotoSleepConfirmationUL" 
+                             type="ENUMERATION" value="LIN_SM">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="LinIfGotoSleepIndicationUL" 
+                             type="ENUMERATION" value="LIN_SM">
+                        <a:a name="ENABLE" value="false"/>
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:ctr name="LinIfMaster" type="IDENTIFIABLE">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        <d:var name="LinIfClusterTimeBase" type="FLOAT" 
+                               value="0.01">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        </d:var>
+                        <d:var name="LinIfJitter" type="FLOAT" value="0.0">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        </d:var>
+                      </d:ctr>
+                      <d:var name="LinIfScheduleRequestConfirmationUL" 
+                             type="ENUMERATION" value="LIN_SM">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:lst name="LinIfSlave" type="MAP">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        <d:ctr name="DebugNode" type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:var name="LinIfProtocolVersion" type="STRING" 
+                                 value="2.0">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:var name="LinIfConfiguredNad" type="INTEGER" 
+                                 value="2">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:var name="LinIfFunctionId" type="INTEGER" value="1">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:var name="LinIfSupplierId" type="INTEGER" 
+                                 value="4660">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:var name="LinIfVariant" type="INTEGER" value="3">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                        </d:ctr>
+                      </d:lst>
+                      <d:lst name="LinIfFrame" type="MAP">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        <d:ctr name="Pdu_CounterIn_0R" type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:var name="LinIfFrameId" type="INTEGER" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="LinIfFrameIndex" type="INTEGER" value="0">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO">
+                              <a:v>@DEF</a:v>
+                              <a:v>@CALC</a:v>
+                            </a:a>
+                          </d:var>
+                          <d:ctr name="LinIfFixedFrameSdu" type="IDENTIFIABLE">
+                            <d:lst name="LinIfFixedFrameSduByte" type="MAP"/>
+                          </d:ctr>
+                          <d:var name="LinIfLength" type="INTEGER" value="2">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:var name="LinIfFrameType" type="ENUMERATION" 
+                                 value="UNCONDITIONAL">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:ctr name="LinIfFrameDemEventParameterRefs" 
+                                 type="IDENTIFIABLE">
+                            <a:a name="ENABLE" value="false"/>
+                            <d:ref name="LINIF_E_TX_BIT_ERROR" type="REFERENCE" >
+                              <a:a name="ENABLE" value="false"/>
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:ref>
+                            <d:ref name="LINIF_E_RX_CHECKSUM_ERROR" 
+                                   type="REFERENCE" >
+                              <a:a name="ENABLE" value="false"/>
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:ref>
+                            <d:ref name="LINIF_E_RX_NO_RESPONSE_ERROR" 
+                                   type="REFERENCE" >
+                              <a:a name="ENABLE" value="false"/>
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:ref>
+                          </d:ctr>
+                          <d:var name="LinIfPid" type="INTEGER" value="128">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:chc name="LinIfPduDirection" type="IDENTIFIABLE" 
+                                 value="LinIfRxPdu">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            <d:ctr name="LinIfInternalPdu" type="IDENTIFIABLE"/>
+                            <d:ctr name="LinIfRxPdu" type="IDENTIFIABLE">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                              <a:a name="SHORT-NAME" value="Pdu_CounterIn_0R"/>
+                              <d:var name="LinIfRxIndicationUL" 
+                                     type="ENUMERATION" >
+                                <a:a name="ENABLE" value="false"/>
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                              <d:ref name="LinIfRxPduRef" type="REFERENCE" 
+                                     value="ASPath:/EcuC/EcuC/EcucPduCollection/Pdu_CounterIn_0R">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                              </d:ref>
+                              <d:var name="LinIfUserRxIndicationUL" 
+                                     type="ENUMERATION" value="PDUR">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                              </d:var>
+                            </d:ctr>
+                            <d:ctr name="LinIfSlaveToSlavePdu" 
+                                   type="IDENTIFIABLE"/>
+                            <d:ctr name="LinIfTxPdu" type="IDENTIFIABLE">
+                              <d:var name="LinIfTxConfirmationUL" 
+                                     type="ENUMERATION" >
+                                <a:a name="ENABLE" value="false"/>
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                              <d:var name="LinIfTxPduId" type="INTEGER" 
+                                     value="1">
+                                <a:a name="IMPORTER_INFO">
+                                  <a:v>@DEF</a:v>
+                                  <a:v>@CALC</a:v>
+                                </a:a>
+                              </d:var>
+                              <d:ref name="LinIfTxPduRef" type="REFERENCE" >
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:ref>
+                              <d:var name="LinIfTxTriggerTransmitUL" 
+                                     type="ENUMERATION" >
+                                <a:a name="ENABLE" value="false"/>
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                              <d:var name="LinIfUserTxUL" type="ENUMERATION" 
+                                     value="PDUR">
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                            </d:ctr>
+                          </d:chc>
+                          <d:var name="LinIfChecksumType" type="ENUMERATION" 
+                                 value="CLASSIC">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:lst name="LinIfSubstitutionFrames" type="MAP"/>
+                        </d:ctr>
+                        <d:ctr name="Pdu_CounterOut_1T" type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:var name="LinIfFrameId" type="INTEGER" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="LinIfFrameIndex" type="INTEGER" value="1">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO">
+                              <a:v>@DEF</a:v>
+                              <a:v>@CALC</a:v>
+                            </a:a>
+                          </d:var>
+                          <d:ctr name="LinIfFixedFrameSdu" type="IDENTIFIABLE">
+                            <d:lst name="LinIfFixedFrameSduByte" type="MAP"/>
+                          </d:ctr>
+                          <d:var name="LinIfLength" type="INTEGER" value="2">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:var name="LinIfFrameType" type="ENUMERATION" 
+                                 value="UNCONDITIONAL">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:ctr name="LinIfFrameDemEventParameterRefs" 
+                                 type="IDENTIFIABLE">
+                            <a:a name="ENABLE" value="false"/>
+                            <d:ref name="LINIF_E_TX_BIT_ERROR" type="REFERENCE" >
+                              <a:a name="ENABLE" value="false"/>
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:ref>
+                            <d:ref name="LINIF_E_RX_CHECKSUM_ERROR" 
+                                   type="REFERENCE" >
+                              <a:a name="ENABLE" value="false"/>
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:ref>
+                            <d:ref name="LINIF_E_RX_NO_RESPONSE_ERROR" 
+                                   type="REFERENCE" >
+                              <a:a name="ENABLE" value="false"/>
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:ref>
+                          </d:ctr>
+                          <d:var name="LinIfPid" type="INTEGER" value="193">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:chc name="LinIfPduDirection" type="IDENTIFIABLE" 
+                                 value="LinIfTxPdu">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            <d:ctr name="LinIfInternalPdu" type="IDENTIFIABLE"/>
+                            <d:ctr name="LinIfRxPdu" type="IDENTIFIABLE">
+                              <d:var name="LinIfRxIndicationUL" 
+                                     type="ENUMERATION" >
+                                <a:a name="ENABLE" value="false"/>
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                              <d:ref name="LinIfRxPduRef" type="REFERENCE" >
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:ref>
+                              <d:var name="LinIfUserRxIndicationUL" 
+                                     type="ENUMERATION" value="PDUR">
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                            </d:ctr>
+                            <d:ctr name="LinIfSlaveToSlavePdu" 
+                                   type="IDENTIFIABLE"/>
+                            <d:ctr name="LinIfTxPdu" type="IDENTIFIABLE">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                              <a:a name="SHORT-NAME" value="Pdu_CounterOut_1T"/>
+                              <d:var name="LinIfTxConfirmationUL" 
+                                     type="ENUMERATION" >
+                                <a:a name="ENABLE" value="false"/>
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                              <d:var name="LinIfTxPduId" type="INTEGER" 
+                                     value="0">
+                                <a:a name="IMPORTER_INFO" value="@CALC"/>
+                              </d:var>
+                              <d:ref name="LinIfTxPduRef" type="REFERENCE" 
+                                     value="ASPath:/EcuC/EcuC/EcucPduCollection/Pdu_CounterOut_1T">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                              </d:ref>
+                              <d:var name="LinIfTxTriggerTransmitUL" 
+                                     type="ENUMERATION" >
+                                <a:a name="ENABLE" value="false"/>
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                              <d:var name="LinIfUserTxUL" type="ENUMERATION" 
+                                     value="PDUR">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                              </d:var>
+                            </d:ctr>
+                          </d:chc>
+                          <d:var name="LinIfChecksumType" type="ENUMERATION" 
+                                 value="CLASSIC">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:lst name="LinIfSubstitutionFrames" type="MAP"/>
+                        </d:ctr>
+                        <d:ctr name="schTabConfig0" type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:var name="LinIfFrameId" type="INTEGER" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="LinIfFrameIndex" type="INTEGER" value="2">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO">
+                              <a:v>@DEF</a:v>
+                              <a:v>@CALC</a:v>
+                            </a:a>
+                          </d:var>
+                          <d:var name="LinIfLength" type="INTEGER" value="8">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:var name="LinIfFrameType" type="ENUMERATION" 
+                                 value="ASSIGN">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:ctr name="LinIfFrameDemEventParameterRefs" 
+                                 type="IDENTIFIABLE">
+                            <a:a name="ENABLE" value="false"/>
+                            <d:ref name="LINIF_E_TX_BIT_ERROR" type="REFERENCE" >
+                              <a:a name="ENABLE" value="false"/>
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:ref>
+                            <d:ref name="LINIF_E_RX_CHECKSUM_ERROR" 
+                                   type="REFERENCE" >
+                              <a:a name="ENABLE" value="false"/>
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:ref>
+                            <d:ref name="LINIF_E_RX_NO_RESPONSE_ERROR" 
+                                   type="REFERENCE" >
+                              <a:a name="ENABLE" value="false"/>
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:ref>
+                          </d:ctr>
+                          <d:var name="LinIfPid" type="INTEGER" value="60">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:chc name="LinIfPduDirection" type="IDENTIFIABLE" 
+                                 value="LinIfInternalPdu">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            <d:ctr name="LinIfInternalPdu" type="IDENTIFIABLE">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            </d:ctr>
+                            <d:ctr name="LinIfRxPdu" type="IDENTIFIABLE">
+                              <d:var name="LinIfRxIndicationUL" 
+                                     type="ENUMERATION" >
+                                <a:a name="ENABLE" value="false"/>
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                              <d:ref name="LinIfRxPduRef" type="REFERENCE" >
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:ref>
+                              <d:var name="LinIfUserRxIndicationUL" 
+                                     type="ENUMERATION" value="PDUR">
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                            </d:ctr>
+                            <d:ctr name="LinIfSlaveToSlavePdu" 
+                                   type="IDENTIFIABLE"/>
+                            <d:ctr name="LinIfTxPdu" type="IDENTIFIABLE">
+                              <d:var name="LinIfTxConfirmationUL" 
+                                     type="ENUMERATION" >
+                                <a:a name="ENABLE" value="false"/>
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                              <d:var name="LinIfTxPduId" type="INTEGER" 
+                                     value="1">
+                                <a:a name="IMPORTER_INFO">
+                                  <a:v>@DEF</a:v>
+                                  <a:v>@CALC</a:v>
+                                </a:a>
+                              </d:var>
+                              <d:ref name="LinIfTxPduRef" type="REFERENCE" >
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:ref>
+                              <d:var name="LinIfTxTriggerTransmitUL" 
+                                     type="ENUMERATION" >
+                                <a:a name="ENABLE" value="false"/>
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                              <d:var name="LinIfUserTxUL" type="ENUMERATION" 
+                                     value="PDUR">
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                            </d:ctr>
+                          </d:chc>
+                          <d:ctr name="LinIfFixedFrameSdu" type="IDENTIFIABLE">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            <d:lst name="LinIfFixedFrameSduByte" type="MAP">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                              <d:ctr name="LinIfFixedFrameSduByte_0" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="0">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="2">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_1" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="1">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="6">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_2" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="2">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="177">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_3" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="3">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="52">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_4" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="4">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="18">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_5" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="5">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="1">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_6" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="6">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="0">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_7" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="7">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="128">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                            </d:lst>
+                          </d:ctr>
+                          <d:var name="LinIfChecksumType" type="ENUMERATION" 
+                                 value="CLASSIC">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:lst name="LinIfSubstitutionFrames" type="MAP"/>
+                        </d:ctr>
+                        <d:ctr name="schTabConfig1" type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:var name="LinIfFrameId" type="INTEGER" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="LinIfFrameIndex" type="INTEGER" value="3">
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO">
+                              <a:v>@DEF</a:v>
+                              <a:v>@CALC</a:v>
+                            </a:a>
+                          </d:var>
+                          <d:var name="LinIfLength" type="INTEGER" value="8">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:var name="LinIfFrameType" type="ENUMERATION" 
+                                 value="ASSIGN_NAD">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:ctr name="LinIfFrameDemEventParameterRefs" 
+                                 type="IDENTIFIABLE">
+                            <a:a name="ENABLE" value="false"/>
+                            <d:ref name="LINIF_E_TX_BIT_ERROR" type="REFERENCE" >
+                              <a:a name="ENABLE" value="false"/>
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:ref>
+                            <d:ref name="LINIF_E_RX_CHECKSUM_ERROR" 
+                                   type="REFERENCE" >
+                              <a:a name="ENABLE" value="false"/>
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:ref>
+                            <d:ref name="LINIF_E_RX_NO_RESPONSE_ERROR" 
+                                   type="REFERENCE" >
+                              <a:a name="ENABLE" value="false"/>
+                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            </d:ref>
+                          </d:ctr>
+                          <d:var name="LinIfPid" type="INTEGER" value="60">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:chc name="LinIfPduDirection" type="IDENTIFIABLE" 
+                                 value="LinIfInternalPdu">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            <d:ctr name="LinIfInternalPdu" type="IDENTIFIABLE">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            </d:ctr>
+                            <d:ctr name="LinIfRxPdu" type="IDENTIFIABLE">
+                              <d:var name="LinIfRxIndicationUL" 
+                                     type="ENUMERATION" >
+                                <a:a name="ENABLE" value="false"/>
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                              <d:ref name="LinIfRxPduRef" type="REFERENCE" >
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:ref>
+                              <d:var name="LinIfUserRxIndicationUL" 
+                                     type="ENUMERATION" value="PDUR">
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                            </d:ctr>
+                            <d:ctr name="LinIfSlaveToSlavePdu" 
+                                   type="IDENTIFIABLE"/>
+                            <d:ctr name="LinIfTxPdu" type="IDENTIFIABLE">
+                              <d:var name="LinIfTxConfirmationUL" 
+                                     type="ENUMERATION" >
+                                <a:a name="ENABLE" value="false"/>
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                              <d:var name="LinIfTxPduId" type="INTEGER" 
+                                     value="1">
+                                <a:a name="IMPORTER_INFO">
+                                  <a:v>@DEF</a:v>
+                                  <a:v>@CALC</a:v>
+                                </a:a>
+                              </d:var>
+                              <d:ref name="LinIfTxPduRef" type="REFERENCE" >
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:ref>
+                              <d:var name="LinIfTxTriggerTransmitUL" 
+                                     type="ENUMERATION" >
+                                <a:a name="ENABLE" value="false"/>
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                              <d:var name="LinIfUserTxUL" type="ENUMERATION" 
+                                     value="PDUR">
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:var>
+                            </d:ctr>
+                          </d:chc>
+                          <d:ctr name="LinIfFixedFrameSdu" type="IDENTIFIABLE">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            <d:lst name="LinIfFixedFrameSduByte" type="MAP">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                              <d:ctr name="LinIfFixedFrameSduByte_0" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="0">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="2">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_1" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="1">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="6">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_2" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="2">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="176">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_3" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="3">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="52">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_4" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="4">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="18">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_5" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="5">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="1">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_6" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="6">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="0">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                              <d:ctr name="LinIfFixedFrameSduByte_7" 
+                                     type="IDENTIFIABLE">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:var name="LinIfFixedFrameSduBytePos" 
+                                       type="INTEGER" value="7">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                                <d:var name="LinIfFixedFrameSduByteVal" 
+                                       type="INTEGER" value="3">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:var>
+                              </d:ctr>
+                            </d:lst>
+                          </d:ctr>
+                          <d:var name="LinIfChecksumType" type="ENUMERATION" 
+                                 value="CLASSIC">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:lst name="LinIfSubstitutionFrames" type="MAP"/>
+                        </d:ctr>
+                      </d:lst>
+                      <d:lst name="LinIfScheduleTable" type="MAP">
+                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        <d:ctr name="schTabConfig" type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:var name="LinIfScheduleMode" type="ENUMERATION" 
+                                 value="LINTP_APPLICATIVE_SCHEDULE">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="LinIfScheduleTableIndex" type="INTEGER" 
+                                 value="1">
+                            <a:a name="IMPORTER_INFO" value="@CALC"/>
+                          </d:var>
+                          <d:var name="LinIfScheduleTableName" type="STRING" 
+                                 value="schTabConfig">
+                            <a:a name="ENABLE" value="true"/>
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:var name="LinIfRunMode" type="ENUMERATION" 
+                                 value="RUN_ONCE">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:var name="LinIfResumePosition" type="ENUMERATION" 
+                                 value="CONTINUE_AT_IT_POINT">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:lst name="LinIfEntry" type="MAP">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            <d:ctr name="Entry0" type="IDENTIFIABLE">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                              <d:ref name="LinIfCollisionResolvingRef" 
+                                     type="REFERENCE" >
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:ref>
+                              <d:var name="LinIfDelay" type="FLOAT" value="0.02">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                              </d:var>
+                              <d:var name="LinIfEntryIndex" type="INTEGER" 
+                                     value="0">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                              </d:var>
+                              <d:lst name="LinIfFrameRef">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:ref type="REFERENCE" 
+                                       value="ASPath:/LinIf/LinIf/LinIfGlobalConfig/LinChannel/schTabConfig0">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:ref>
+                              </d:lst>
+                            </d:ctr>
+                            <d:ctr name="Entry1" type="IDENTIFIABLE">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                              <d:ref name="LinIfCollisionResolvingRef" 
+                                     type="REFERENCE" >
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:ref>
+                              <d:var name="LinIfDelay" type="FLOAT" value="0.02">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                              </d:var>
+                              <d:var name="LinIfEntryIndex" type="INTEGER" 
+                                     value="1">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                              </d:var>
+                              <d:lst name="LinIfFrameRef">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:ref type="REFERENCE" 
+                                       value="ASPath:/LinIf/LinIf/LinIfGlobalConfig/LinChannel/schTabConfig1">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:ref>
+                              </d:lst>
+                            </d:ctr>
+                          </d:lst>
+                          <d:ref name="LinIfScheduleTableEndNotificationRef" 
+                                 type="REFERENCE" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:ref>
+                        </d:ctr>
+                        <d:ctr name="schTab1" type="IDENTIFIABLE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          <d:var name="LinIfScheduleMode" type="ENUMERATION" 
+                                 value="LINTP_APPLICATIVE_SCHEDULE">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="LinIfScheduleTableIndex" type="INTEGER" 
+                                 value="2">
+                            <a:a name="IMPORTER_INFO" value="@CALC"/>
+                          </d:var>
+                          <d:var name="LinIfScheduleTableName" type="STRING" 
+                                 value="schTab1">
+                            <a:a name="ENABLE" value="true"/>
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:var name="LinIfRunMode" type="ENUMERATION" 
+                                 value="RUN_CONTINUOUS">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:var name="LinIfResumePosition" type="ENUMERATION" 
+                                 value="START_FROM_BEGINNING">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                          </d:var>
+                          <d:lst name="LinIfEntry" type="MAP">
+                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                            <d:ctr name="Entry0" type="IDENTIFIABLE">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                              <d:ref name="LinIfCollisionResolvingRef" 
+                                     type="REFERENCE" >
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:ref>
+                              <d:var name="LinIfDelay" type="FLOAT" value="0.02">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                              </d:var>
+                              <d:var name="LinIfEntryIndex" type="INTEGER" 
+                                     value="0">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                              </d:var>
+                              <d:lst name="LinIfFrameRef">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:ref type="REFERENCE" 
+                                       value="ASPath:/LinIf/LinIf/LinIfGlobalConfig/LinChannel/Pdu_CounterIn_0R">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:ref>
+                              </d:lst>
+                            </d:ctr>
+                            <d:ctr name="Entry1" type="IDENTIFIABLE">
+                              <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                              <d:ref name="LinIfCollisionResolvingRef" 
+                                     type="REFERENCE" >
+                                <a:a name="IMPORTER_INFO" value="@DEF"/>
+                              </d:ref>
+                              <d:var name="LinIfDelay" type="FLOAT" value="0.02">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                              </d:var>
+                              <d:var name="LinIfEntryIndex" type="INTEGER" 
+                                     value="1">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                              </d:var>
+                              <d:lst name="LinIfFrameRef">
+                                <a:a name="IMPORTER_INFO" 
+                                     value="ImportEcuConfig"/>
+                                <d:ref type="REFERENCE" 
+                                       value="ASPath:/LinIf/LinIf/LinIfGlobalConfig/LinChannel/Pdu_CounterOut_1T">
+                                  <a:a name="IMPORTER_INFO" 
+                                       value="ImportEcuConfig"/>
+                                </d:ref>
+                              </d:lst>
+                            </d:ctr>
+                          </d:lst>
+                          <d:ref name="LinIfScheduleTableEndNotificationRef" 
+                                 type="REFERENCE" >
+                            <a:a name="ENABLE" value="false"/>
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:ref>
+                        </d:ctr>
+                      </d:lst>
+                      <d:var name="LinIfStartupState" type="ENUMERATION" 
+                             value="NORMAL">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:ctr name="LinIfTransceiverDrvConfig" 
+                             type="IDENTIFIABLE">
+                        <a:a name="ENABLE" value="false"/>
+                        <d:ref name="LinIfTrcvIdRef" type="REFERENCE" >
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:ref>
+                      </d:ctr>
+                      <d:var name="LinIfWakeupConfirmationUL" 
+                             type="ENUMERATION" value="LIN_SM">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                  </d:lst>
+                  <d:var name="LinIfTimeBase" type="FLOAT" value="0.001"/>
+                </d:ctr>
+              </d:lst>
+              <d:ctr name="LinIfDefensiveProgramming" type="IDENTIFIABLE">
+                <d:var name="LinIfDefProgEnabled" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfPrecondAssertEnabled" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfPostcondAssertEnabled" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfStaticAssertEnabled" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfUnreachAssertEnabled" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="LinIfInvariantAssertEnabled" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+              </d:ctr>
+              <d:ctr name="PublishedInformation" type="IDENTIFIABLE">
+                <d:var name="PbcfgMSupport" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+              </d:ctr>
+            </d:ctr>
+          </d:chc>
+        </d:lst>
+      </d:ctr>
+    </d:lst>
+  </d:ctr>
+
+</datamodel>

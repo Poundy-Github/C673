@@ -1,0 +1,22 @@
+
+Name: generate/template/Hssl_Bswmd.arxml
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377422061007746790976880964237835008813757132438779604
+ 4563442239370249014426964859538072018836999835744652
+
+Name: config/AS422/Hssl.xdm
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377424004054972769063645781220585988821618208674395430
+ 1383073310227948218679033669316227739530986474082378
+
+Name: generate/template/inc/Hssl_Cfg.h
+SignatureKeyID: Infineon
+SignatureKeyProviderID: dreisoft.tresos.launcher2.CryptoKeyProvider
+SignatureAlgorithmID: DSA
+Signature: 11313377424086625881490157467911093716298214773745967481128
+ 9698131228426475291056663130766380048792524922747537
+

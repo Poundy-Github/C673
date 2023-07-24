@@ -1,0 +1,219 @@
+// board-tasking.ldscript
+//
+// $Id: board-tasking.ldscript 33863 2021-05-03 11:11:22Z miwi261726 $
+//
+// Common part of linker script for the Tasking linker
+// This file will be included into the generated linker script.
+//
+// The internal DSPR RAM is divided between data & CSAs for each core.
+// The end of the DSPR is used for a configured number of CSAs, the rest
+// is left for data. The number of CSAs available to each core is configured
+// in Tresos Studio (within OsCoreConfig)
+
+architecture TC
+{
+	endianness
+	{
+		little;
+	}
+
+	space linear
+	{
+		id = 1;
+		mau = 8;
+
+		map (src_offset=0x00000000, dest_offset=0x00000000, size=4G, dest=bus:fpi_bus);
+
+		copytable (align = 1 << 2, copy_unit = 1, dest = linear);
+	}
+
+	bus fpi_bus
+	{
+		mau = 8;
+		width = 32;
+	}
+}
+
+architecture TC1V1.6.2 extends TC
+{
+}
+
+processor mpe
+{
+	derivative = tcxxx;
+}
+
+derivative tcxxx
+{
+	core vtc
+	{
+		architecture = TC1V1.6.2;
+	}
+
+	bus fpi_bus
+	{
+		mau = 8;
+		width = 32;
+		map (dest=bus:vtc:fpi_bus, dest_offset=0, size=4G);
+	}
+}
+
+// Note: the GENLD_csaCore<coreId>_NCSA identifiers are replaced by the linker script generator
+
+// DSPR - Space used for CSA
+#define NCSA_C0 GENLD_csaCore0_NCSA
+#define INTRAM_CORE0 (DSPR_CORE0 - NCSA_C0*64)
+
+#ifdef DSPR_CORE1
+#define NCSA_C1 GENLD_csaCore1_NCSA
+#define INTRAM_CORE1 (DSPR_CORE1 - NCSA_C1*64)
+#endif
+
+#ifdef DSPR_CORE2
+#define NCSA_C2 GENLD_csaCore2_NCSA
+#define INTRAM_CORE2 (DSPR_CORE2 - NCSA_C2*64)
+#endif
+
+#ifdef DSPR_CORE3
+#define NCSA_C3 GENLD_csaCore3_NCSA
+#define INTRAM_CORE3 (DSPR_CORE3 - NCSA_C3*64)
+#endif
+
+#ifdef DSPR_CORE4
+#define NCSA_C4 GENLD_csaCore4_NCSA
+#define INTRAM_CORE4 (DSPR_CORE4 - NCSA_C4*64)
+#endif
+
+#ifdef DSPR_CORE5
+#define NCSA_C5 GENLD_csaCore5_NCSA
+#define INTRAM_CORE5 (DSPR_CORE5 - NCSA_C5*64)
+#endif
+
+// size of the initial memory portion int_rom_vect used for vectors
+#define INT_ROM_VECT_SIZE 20k
+
+// Flash ROM at 0x80000000, PMU0 (mapped to seg. 8 for cached access)
+memory int_rom_vect
+{
+	mau = 8;
+	size = INT_ROM_VECT_SIZE;
+	type = rom;
+	map (dest=bus:mpe:fpi_bus, dest_offset=0x80000000, size=INT_ROM_VECT_SIZE);
+}
+
+memory int_rom
+{
+	mau = 8;
+	size = (PFLASH_SIZE - INT_ROM_VECT_SIZE);
+	type = rom;
+	map (dest=bus:mpe:fpi_bus,
+		dest_offset=(0x80000000+INT_ROM_VECT_SIZE),
+		size=(PFLASH_SIZE - INT_ROM_VECT_SIZE));
+}
+
+// internal DSPRs of the different cores
+memory int_ram_core0
+{
+	mau = 8;
+	size = INTRAM_CORE0;
+	type = ram;
+	map (dest=bus:mpe:fpi_bus, dest_offset=0x70000000, size=INTRAM_CORE0);
+}
+
+#ifdef DSPR_CORE1
+memory int_ram_core1
+{
+	mau = 8;
+	size = INTRAM_CORE1;
+	type = ram;
+	map (dest=bus:mpe:fpi_bus, dest_offset=0x60000000, size=INTRAM_CORE1);
+}
+#endif
+
+#ifdef DSPR_CORE2
+memory int_ram_core2
+{
+	mau = 8;
+	size = INTRAM_CORE2;
+	type = ram;
+	map (dest=bus:mpe:fpi_bus, dest_offset=0x50000000, size=INTRAM_CORE2);
+}
+#endif
+
+#ifdef DSPR_CORE3
+memory int_ram_core3
+{
+	mau = 8;
+	size = INTRAM_CORE3;
+	type = ram;
+	map (dest=bus:mpe:fpi_bus, dest_offset=0x40000000, size=INTRAM_CORE3);
+}
+#endif
+
+#ifdef DSPR_CORE4
+memory int_ram_core4
+{
+	mau = 8;
+	size = INTRAM_CORE4;
+	type = ram;
+	map (dest=bus:mpe:fpi_bus, dest_offset=0x30000000, size=INTRAM_CORE4);
+}
+#endif
+
+#ifdef DSPR_CORE5
+memory int_ram_core5
+{
+	mau = 8;
+	size = INTRAM_CORE5;
+	type = ram;
+	map (dest=bus:mpe:fpi_bus, dest_offset=0x10000000, size=INTRAM_CORE5);
+}
+#endif
+
+section_layout mpe:vtc:linear
+{
+	// Where the CSA memory is located:
+	// OS_csaCorex_BEGIN is the base of the CSA block of core x
+	// OS_csaCorex_NCSA is the number of CSAs in the block
+	//
+	// OS_csaCorex_BEGIN must be aligned on a 64-byte boundary (lower 6 bits all zero)
+	"OS_csaCore0_BEGIN"  := 0xd0000000 + sizeof(mem:int_ram_core0);
+	"OS_csaCore0_NCSA"   := NCSA_C0;
+#ifdef DSPR_CORE1
+	"OS_csaCore1_BEGIN"  := 0xd0000000 + sizeof(mem:int_ram_core1);
+	"OS_csaCore1_NCSA"   := NCSA_C1;
+#endif
+#ifdef DSPR_CORE2
+	"OS_csaCore2_BEGIN"  := 0xd0000000 + sizeof(mem:int_ram_core2);
+	"OS_csaCore2_NCSA"   := NCSA_C2;
+#endif
+#ifdef DSPR_CORE3
+	"OS_csaCore3_BEGIN"  := 0xd0000000 + sizeof(mem:int_ram_core3);
+	"OS_csaCore3_NCSA"   := NCSA_C3;
+#endif
+#ifdef DSPR_CORE4
+	"OS_csaCore4_BEGIN"  := 0xd0000000 + sizeof(mem:int_ram_core4);
+	"OS_csaCore4_NCSA"   := NCSA_C4;
+#endif
+#ifdef DSPR_CORE5
+	"OS_csaCore5_BEGIN"  := 0xd0000000 + sizeof(mem:int_ram_core5);
+	"OS_csaCore5_NCSA"   := NCSA_C5;
+#endif
+
+	// some symbols for global read/execute permissions
+#if defined(DSPR_CORE5)
+	"__GLBL_DATA_START"   := 0x10000000;
+#elif defined(DSPR_CORE4)
+	"__GLBL_DATA_START"   := 0x30000000;
+#elif defined(DSPR_CORE3)
+	"__GLBL_DATA_START"   := 0x40000000;
+#elif defined(DSPR_CORE2)
+	"__GLBL_DATA_START"   := 0x50000000;
+#elif defined(DSPR_CORE1)
+	"__GLBL_DATA_START"   := 0x60000000;
+#else
+	"__GLBL_DATA_START"   := 0x70000000;
+#endif
+
+	"__GLBL_DATA_END"     := 0x70000000 + sizeof(mem:int_ram_core0);
+}

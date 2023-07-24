@@ -1,0 +1,24 @@
+; TC3XX_NoLockStep_FlashBMHD0_0xa000_0000.cmm
+; This script flashes BootModeHeaDer0 of a TC3xx chip.
+; It disables the lock-step mode of all cores except core 0.
+; Note that core without lock-step monitoring are not suitable for ASIL-C and ASIL-D purposes.
+
+private &yesAnswer
+
+DIALOG.YESNO "This script assums that the system is up (sys.up)" \
+             "and prepared for flashing." \
+             "Is this the case?"
+entry &yesAnswer
+
+if (!&yesAnswer)
+(
+	echo "Decision: Not ready for flashing. Exiting..."
+	enddo
+)
+
+local &lockstepBits
+
+&lockstepBits=0x1
+
+; Call the TC3XX script for flashing the BMHD.
+do ~~~~/FlashBMHD0_0xa000_0000.cmm &lockstepBits
